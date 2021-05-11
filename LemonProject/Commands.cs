@@ -21,6 +21,7 @@ namespace LemonProject
             if (args[0].Equals("help")) { help(cmdargs); }
             if (args[0].Equals("shutdown")) { shutdown(); }
             if (args[0].Equals("reboot")) { reboot(); }
+            if (args[0].Equals("time")) { time(); }
         }
 
         public static void Init()
@@ -30,6 +31,7 @@ namespace LemonProject
             cmds.Add("help");
             cmds.Add("shutdown");
             cmds.Add("reboot");
+            cmds.Add("time");
         }
 
         static void print(string[] args)
@@ -70,6 +72,12 @@ namespace LemonProject
             Console.WriteLine("DP2, not for public use.");
             Console.WriteLine("By bad-codr and deadlocust");
             Console.WriteLine();
+            Console.Write("The time is ");
+            Console.Write(Cosmos.HAL.RTC.Hour);
+            Console.Write(":");
+            Console.Write(Cosmos.HAL.RTC.Minute);
+            Console.Write(" ");
+            Console.Write(Cosmos.HAL.RTC.Second);
         }
         
         static void shutdown()
@@ -80,6 +88,15 @@ namespace LemonProject
         static void reboot()
         {
             Cosmos.System.Power.Reboot();
+        }
+        static void time()
+        {
+            Console.Write("The time is ");
+            Console.Write(Cosmos.HAL.RTC.Hour);
+            Console.Write(":");
+            Console.Write(Cosmos.HAL.RTC.Minute);
+            Console.Write(" ");
+            Console.Write(Cosmos.HAL.RTC.Second);
         }
     }
 }

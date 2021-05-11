@@ -7,6 +7,9 @@ namespace LemonProject
     {
         protected override void BeforeRun()
         {
+            var hour = Cosmos.HAL.RTC.Hour;
+            var minute = Cosmos.HAL.RTC.Minute;
+            var second = Cosmos.HAL.RTC.Second;
             Console.Clear();
         }
 
