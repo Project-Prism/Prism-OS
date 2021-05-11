@@ -36,8 +36,8 @@ namespace LemonProject
         
         static void credits(string[] args)
         {
-            Console.Writeline("Lemon OS (c) 2021");
-            Console.Writeline("By bad-codr and deadlocust");
+            Console.WriteLine("Lemon OS (c) 2021");
+            Console.WriteLine("By bad-codr and deadlocust");
         }
     }
 } 
