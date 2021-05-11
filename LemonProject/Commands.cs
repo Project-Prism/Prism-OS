@@ -17,15 +17,16 @@ namespace LemonProject
             {
                 Utils.Error("Invalid command.");
             }
-            if (args[0] == "print")
-            {
-                print(cmdargs);
-            }
+            if (args[0].Equals("print")) { print(cmdargs); }
+            if (args[0].Equals("credits")) { credits(); }
+            if (args[0].Equals("help")) { help(cmdargs); }
         }
 
         public static void Init()
         {
             cmds.Add("print");
+            cmds.Add("credits");
+            cmds.Add("help");
         }
 
         static void print(string[] args)
@@ -34,10 +35,33 @@ namespace LemonProject
             Console.WriteLine(content);
         }
         
-        static void credits(string[] args)
+        static void help(string[] args)
+        {
+            if (args.Length < 1)
+            {
+                Utils.colorCache = Console.ForegroundColor;
+                SetColor(ConsoleColor.Yellow);
+                Console.WriteLine("--Commands--");
+                SetColor(ConsoleColor.DarkYellow);
+                foreach (string cmd in cmds)
+                {
+                    Console.WriteLine(cmd);
+                }
+                SetColor(colorCache);
+                Console.WriteLine("You can get more specific help for each command by using: HELP <COMMAND_NAME>");
+                Console.WriteLine();
+            }
+            else
+            {
+                // todo: add specific help for each command by checking args
+            }
+        }
+        
+        static void credits()
         {
             Console.WriteLine("Lemon OS (c) 2021");
             Console.WriteLine("By bad-codr and deadlocust");
+            Console.WriteLine();
         }
     }
 } 
