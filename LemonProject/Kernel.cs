@@ -13,7 +13,7 @@ namespace LemonProject
         protected override void Run()
         {
             Utils.SetColor(ConsoleColor.Green);
-            Console.WriteLine("Powered by Cosmos Kernel");
+            Console.WriteLine("Powered by the Cosmos Kernel");
             Utils.Sleep(2);
             Console.Clear();
             Initialize();
