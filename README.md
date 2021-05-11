@@ -1,2 +1,2 @@
 # Lemon-OS
-Poggy poggy
+A basic operating system built by two people
