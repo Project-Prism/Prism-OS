@@ -1,2 +1,2 @@
 # Lemon-OS
-A basic operating system built by two people
+<h3>A basic operating system built by two people</h3>
