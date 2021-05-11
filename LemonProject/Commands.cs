@@ -40,14 +40,14 @@ namespace LemonProject
             if (args.Length < 1)
             {
                 Utils.colorCache = Console.ForegroundColor;
-                SetColor(ConsoleColor.Yellow);
+                Utils.SetColor(ConsoleColor.Yellow);
                 Console.WriteLine("--Commands--");
                 SetColor(ConsoleColor.DarkYellow);
                 foreach (string cmd in cmds)
                 {
                     Console.WriteLine(cmd);
                 }
-                SetColor(colorCache);
+                Utils.SetColor(Utils.colorCache);
                 Console.WriteLine("You can get more specific help for each command by using: HELP <COMMAND_NAME>");
                 Console.WriteLine();
             }
