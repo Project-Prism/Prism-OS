@@ -35,6 +35,21 @@ namespace LemonProject
             Utils.SetColor(colorCache);
         }
 
+        public static void clockhour()
+        {
+            var hour = Cosmos.HAL.RTC.Hour;
+        }
+
+        public static void clockminute()
+        {
+            var minute = Cosmos.HAL.RTC.Minute;
+        }
+
+        public static void clocksecond()
+        {
+            var second = Cosmos.HAL.RTC.Second;
+        }
+
         public static void SetColor(ConsoleColor color) { Console.ForegroundColor = color; }
         public static void SetBackColor(ConsoleColor color) { Console.BackgroundColor = color; }
     }

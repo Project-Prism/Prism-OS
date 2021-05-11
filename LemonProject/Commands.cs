@@ -17,7 +17,7 @@ namespace LemonProject
             if (!cmds.Contains(args[0])) { Utils.Error("Invalid command."); }
 
             if (args[0].Equals("print")) { print(cmdargs); }
-            if (args[0].Equals("credits")) { credits(); }
+            if (args[0].Equals("about")) { about(); }
             if (args[0].Equals("help")) { help(cmdargs); }
             if (args[0].Equals("shutdown")) { shutdown(); }
             if (args[0].Equals("reboot")) { reboot(); }
@@ -26,7 +26,7 @@ namespace LemonProject
         public static void Init()
         {
             cmds.Add("print");
-            cmds.Add("credits");
+            cmds.Add("about");
             cmds.Add("help");
             cmds.Add("shutdown");
             cmds.Add("reboot");
@@ -64,9 +64,10 @@ namespace LemonProject
             }
         }
 
-        static void credits()
+        static void about()
         {
             Console.WriteLine("Lemon OS (c) 2021");
+            Console.WriteLine("DP2, not for public use.");
             Console.WriteLine("By bad-codr and deadlocust");
             Console.WriteLine();
         }
