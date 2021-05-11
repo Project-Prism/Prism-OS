@@ -19,6 +19,8 @@ namespace LemonProject
             if (args[0].Equals("print")) { print(cmdargs); }
             if (args[0].Equals("credits")) { credits(); }
             if (args[0].Equals("help")) { help(cmdargs); }
+            if (args[0].Equals("shutdown")) { shutdown(); }
+            if (args[0].Equals("reboot")) { reboot(); }
         }
 
         public static void Init()
@@ -26,6 +28,8 @@ namespace LemonProject
             cmds.Add("print");
             cmds.Add("credits");
             cmds.Add("help");
+            cmds.Add("shutdown");
+            cmds.Add("reboot");
         }
 
         static void print(string[] args)
@@ -65,6 +69,16 @@ namespace LemonProject
             Console.WriteLine("Lemon OS (c) 2021");
             Console.WriteLine("By bad-codr and deadlocust");
             Console.WriteLine();
+        }
+        
+        static void shutdown()
+        {
+            Cosmos.System.Power.Shutdown();
+        }
+        
+        static void reboot()
+        {
+            Cosmos.System.Power.Reboot();
         }
     }
 }
