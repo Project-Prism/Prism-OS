@@ -11,3 +11,12 @@ Cosmos is a program that allows you to create an entire operating system using c
 It allows for a file system, graphics, console, and hardware access, aswell as getting user input from a keyboard and a mouse.
 </p>
 </details>
+
+<details>
+    <Summary>
+        About Lemon OS
+    </Summary>
+<p>
+(Updating later)
+</p>
+</details>
