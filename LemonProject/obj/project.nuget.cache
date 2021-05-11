@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VwuMHSBp3FYFS2hGPO2NasKFwTdDZsLX3CoVeerFQidAfJb2USHUJpZXGfivW9c0wUpOn1frhTYhL0c2fni23w==",
+  "dgSpecHash": "6kICVcTYGjSIwYHoEZGrKA31Eu81cHSwo9l7jlMH8tjlNVQLdKtywrX+hpA74X222HvspZ6Zb5ZtQPW3alJBlA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\EvanLawrence\\Source\\Repos\\Lemon\\LemonProject\\LemonProject.csproj",
+  "projectFilePath": "C:\\Users\\EvanLawrence\\Source\\Repos\\Lemon-OS\\LemonProject\\LemonProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\EvanLawrence\\.nuget\\packages\\cosmos.build\\0.1.0-localbuild20200708061311\\cosmos.build.0.1.0-localbuild20200708061311.nupkg.sha512",
     "C:\\Users\\EvanLawrence\\.nuget\\packages\\cosmos.common\\0.1.0-localbuild20200708061311\\cosmos.common.0.1.0-localbuild20200708061311.nupkg.sha512",

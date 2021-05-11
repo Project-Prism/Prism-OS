@@ -7,3 +7,12 @@ C:\Users\evany\source\repos\LemonProject\LemonProject\obj\Debug\netcoreapp2.0\co
 C:\Users\evany\source\repos\LemonProject\LemonProject\obj\Debug\netcoreapp2.0\cosmos\LemonProject.dll
 C:\Users\evany\source\repos\LemonProject\LemonProject\obj\Debug\netcoreapp2.0\cosmos\LemonProject.pdb
 C:\Users\evany\source\repos\LemonProject\LemonProject\obj\Debug\netcoreapp2.0\cosmos\LemonProject.csprojAssemblyReference.cache
+C:\Users\EvanLawrence\Source\Repos\Lemon-OS\LemonProject\obj\Debug\netcoreapp2.0\cosmos\LemonProject.csprojAssemblyReference.cache
+C:\Users\EvanLawrence\Source\Repos\Lemon-OS\LemonProject\obj\Debug\netcoreapp2.0\cosmos\LemonProject.AssemblyInfoInputs.cache
+C:\Users\EvanLawrence\Source\Repos\Lemon-OS\LemonProject\obj\Debug\netcoreapp2.0\cosmos\LemonProject.AssemblyInfo.cs
+C:\Users\EvanLawrence\Source\Repos\Lemon-OS\LemonProject\obj\Debug\netcoreapp2.0\cosmos\LemonProject.csproj.CoreCompileInputs.cache
+C:\Users\EvanLawrence\Source\Repos\Lemon-OS\LemonProject\obj\Debug\netcoreapp2.0\cosmos\LemonProject.dll
+C:\Users\EvanLawrence\Source\Repos\Lemon-OS\LemonProject\obj\Debug\netcoreapp2.0\cosmos\LemonProject.pdb
+C:\Users\EvanLawrence\Source\Repos\Lemon-OS\LemonProject\bin\Debug\netcoreapp2.0\cosmos\LemonProject.deps.json
+C:\Users\EvanLawrence\Source\Repos\Lemon-OS\LemonProject\bin\Debug\netcoreapp2.0\cosmos\LemonProject.dll
+C:\Users\EvanLawrence\Source\Repos\Lemon-OS\LemonProject\bin\Debug\netcoreapp2.0\cosmos\LemonProject.pdb

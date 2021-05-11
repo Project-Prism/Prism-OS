@@ -1705,11 +1705,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\EvanLawrence\\Source\\Repos\\Lemon\\LemonProject\\LemonProject.csproj",
+      "projectUniqueName": "C:\\Users\\EvanLawrence\\Source\\Repos\\Lemon-OS\\LemonProject\\LemonProject.csproj",
       "projectName": "LemonProject",
-      "projectPath": "C:\\Users\\EvanLawrence\\Source\\Repos\\Lemon\\LemonProject\\LemonProject.csproj",
+      "projectPath": "C:\\Users\\EvanLawrence\\Source\\Repos\\Lemon-OS\\LemonProject\\LemonProject.csproj",
       "packagesPath": "C:\\Users\\EvanLawrence\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\EvanLawrence\\Source\\Repos\\Lemon\\LemonProject\\obj\\",
+      "outputPath": "C:\\Users\\EvanLawrence\\Source\\Repos\\Lemon-OS\\LemonProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

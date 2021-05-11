@@ -42,7 +42,7 @@ namespace LemonProject
                 Utils.colorCache = Console.ForegroundColor;
                 Utils.SetColor(ConsoleColor.Yellow);
                 Console.WriteLine("--Commands--");
-                SetColor(ConsoleColor.DarkYellow);
+                Utils.SetColor(ConsoleColor.DarkYellow);
                 foreach (string cmd in cmds)
                 {
                     Console.WriteLine(cmd);
