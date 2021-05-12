@@ -7,7 +7,6 @@ namespace LemonProject
 {
     public class Cmds
     {
-        #region setup
         public static List<string> cmds = new List<string>();
         #region command-check
         public static void Parse(string input)
@@ -24,8 +23,7 @@ namespace LemonProject
             if (args[0].Equals("time")) { time(); }
             if (args[0].Equals("clear")) { clear(); }
         }
-        #endregion
-        #region init
+        
         public static void Init()
         {
             cmds.Add("print");
@@ -35,10 +33,9 @@ namespace LemonProject
             cmds.Add("time");
             cmds.Add("clear");
         }
-        #endregion
-        #endregion
-        #region commands
         
+        #region Misc Commands
+      
         static void print(string[] args)
         {
             if (args.Length < 1)
@@ -135,6 +132,7 @@ ___________________________________________________
         {
             Console.Clear();
         }
+        
         #endregion
     }
 }
