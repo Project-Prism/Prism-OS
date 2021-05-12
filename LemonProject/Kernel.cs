@@ -5,6 +5,7 @@ namespace LemonProject
 {
     public class Kernel : Sys.Kernel
     {
+        #region before-run
         protected override void BeforeRun()
         {
             var hour = Cosmos.HAL.RTC.Hour;
@@ -12,24 +13,9 @@ namespace LemonProject
             var second = Cosmos.HAL.RTC.Second;
             Console.Clear();
         }
-
+        #endregion
+        #region on-boot
         protected override void Run()
-        {
-            Utils.SetColor(ConsoleColor.Green);
-            Console.WriteLine("Powered by the Cosmos Kernel");
-            Utils.Sleep(2);
-            Console.Clear();
-            Initialize();
-            
-            while (true)
-            {
-                Console.Write(">");
-                string cmd = Console.ReadLine();
-                Cmds.Parse(cmd);
-            }
-        }
-
-        static void Initialize()
         {
             Utils.SetColor(ConsoleColor.Yellow);
             Console.WriteLine(@"
@@ -40,11 +26,25 @@ namespace LemonProject
  | |___|  __/ | | | | | (_) | | | | | |__| |____) |
  |______\___|_| |_| |_|\___/|_| |_|  \____/|_____/ 
 ");
+            Utils.SetColor(ConsoleColor.Green);
             Console.WriteLine();
-            Cmds.Init();
-            Utils.Sleep(3); // instead of sleeping we could also initialize more stuff here when we need to
-            Console.Clear();
+            Console.WriteLine("Powered by the Cosmos Kernel");
             Utils.SetColor(ConsoleColor.Gray);
+            Cmds.Init();
+            Utils.Sleep(5); // instead of sleeping we could also initialize more stuff here when we need to
+            Console.Clear();
+            Console.WriteLine("Lemon OS (c) 2021, DP2, not for public release/use.");
+            Console.WriteLine("For a list of commands, type \"help\"");
+            Console.WriteLine();
+#endregion
+            #region user-input
+            while (true)
+            {
+                Console.Write("> ");
+                string cmd = Console.ReadLine();
+                Cmds.Parse(cmd);
+            }
+            #endregion
         }
     }
 }

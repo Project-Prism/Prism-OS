@@ -9,6 +9,7 @@ namespace LemonProject
     {
         public static ConsoleColor colorCache;
 
+        #region utils.sleep
         public static void Sleep(int secNum)
         {
             int StartSec = RTC.Second;
@@ -26,7 +27,8 @@ namespace LemonProject
                 // Loop round
             }
         }
-
+        #endregion
+        #region error
         public static void Error(string errorcontent)
         {
             colorCache = Console.ForegroundColor;
@@ -34,7 +36,8 @@ namespace LemonProject
             Console.WriteLine("Error: " + errorcontent);
             Utils.SetColor(colorCache);
         }
-
+        #endregion
+        #region warn
         public static void Warn(string warncontent)
         {
             colorCache = Console.ForegroundColor;
@@ -42,6 +45,7 @@ namespace LemonProject
             Console.WriteLine("Warning: " + warncontent);
             Utils.SetColor(colorCache);
         }
+        #endregion
 
         public static void SetColor(ConsoleColor color) { Console.ForegroundColor = color; }
         public static void SetBackColor(ConsoleColor color) { Console.BackgroundColor = color; }
