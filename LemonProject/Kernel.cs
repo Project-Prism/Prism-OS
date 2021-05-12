@@ -15,6 +15,7 @@ namespace LemonProject
         
         protected override void Run()
         {
+            //display logo at boot
             Utils.SetColor(ConsoleColor.Yellow);
             Console.WriteLine(@"
   _                                   ____   _____ 
@@ -34,6 +35,7 @@ namespace LemonProject
             Console.WriteLine("Lemon OS (c) 2021, release 1.2.");
             Console.WriteLine("For a list of commands, type \"help\"");
             Console.WriteLine();
+            //get user input
             while (true)
             {
                 Console.Write("> ");
