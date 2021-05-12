@@ -23,7 +23,8 @@ namespace LemonProject
             if (args[0].Equals("time")) { time(); }
             if (args[0].Equals("clear")) { clear(); }
         }
-        
+        #endregion
+
         public static void Init()
         {
             cmds.Add("print");
