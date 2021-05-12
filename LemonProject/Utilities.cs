@@ -1,4 +1,4 @@
-﻿using Cosmos.HAL;
+using Cosmos.HAL;
 using System;
 using System.Collections.Generic;
 using System.Text;
