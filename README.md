@@ -1,4 +1,5 @@
 # About lemon
+(Moving to Prizm)
 Lemon OS is a small project maintained by two developers.
 This project is based off of Cosmos.
 
