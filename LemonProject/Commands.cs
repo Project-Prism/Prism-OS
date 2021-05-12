@@ -83,7 +83,7 @@ namespace LemonProject
                 Console.WriteLine();
                 return;
             }
-            else if (args[1] == "/r")
+            else if (args[1] == "-r")
             {
                 Console.WriteLine("Reboot machine? [Y/N]");
                 ConsoleKeyInfo input = Console.ReadKey(false);
