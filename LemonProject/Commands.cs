@@ -71,6 +71,7 @@ namespace LemonProject
             Console.WriteLine("Lemon OS (c) 2021");
             Console.WriteLine("DP2, not for public use.");
             Console.WriteLine("By bad-codr and deadlocust");
+            Utils.warn("This is a closed beta version of Lemon os, we are not responsible for any damages caused by it.");
             Console.WriteLine();
             Console.Write("The time is ");
             Console.Write(Cosmos.HAL.RTC.Hour);
