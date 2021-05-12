@@ -5,7 +5,6 @@ namespace LemonProject
 {
     public class Kernel : Sys.Kernel
     {
-        #region before-run
         protected override void BeforeRun()
         {
             var hour = Cosmos.HAL.RTC.Hour;
@@ -13,8 +12,7 @@ namespace LemonProject
             var second = Cosmos.HAL.RTC.Second;
             Console.Clear();
         }
-        #endregion
-        #region on-boot
+        
         protected override void Run()
         {
             Utils.SetColor(ConsoleColor.Yellow);
@@ -36,15 +34,12 @@ namespace LemonProject
             Console.WriteLine("Lemon OS (c) 2021, release 1.2.");
             Console.WriteLine("For a list of commands, type \"help\"");
             Console.WriteLine();
-#endregion
-            #region user-input
             while (true)
             {
                 Console.Write("> ");
                 string cmd = Console.ReadLine();
                 Cmds.Parse(cmd);
             }
-            #endregion
         }
     }
 }
