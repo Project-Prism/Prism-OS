@@ -33,7 +33,7 @@ namespace LemonProject
             Cmds.Init();
             Utils.Sleep(5); // instead of sleeping we could also initialize more stuff here when we need to
             Console.Clear();
-            Console.WriteLine("Lemon OS (c) 2021, DP2, not for public release/use.");
+            Console.WriteLine("Lemon OS (c) 2021, release 1.2.");
             Console.WriteLine("For a list of commands, type \"help\"");
             Console.WriteLine();
 #endregion
