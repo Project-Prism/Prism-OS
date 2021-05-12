@@ -7,7 +7,6 @@ This project is based off of Cosmos.
         About Lemon OS
     </Summary>
 <p>
-     (Probably gonna rename to Prism to avoid eventual legal issues with another project named the same)
      Lemon OS is an open source project started in 2021. More coming soon.
 </p>
 </details>
