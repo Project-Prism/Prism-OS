@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Sys = Cosmos.System;
 
 namespace LemonProject
