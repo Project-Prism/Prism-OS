@@ -19,8 +19,7 @@ namespace LemonProject
             if (args[0].Equals("print")) { print(cmdargs); }
             if (args[0].Equals("about")) { about(); }
             if (args[0].Equals("help")) { help(cmdargs); }
-            if (args[0].Equals("shutdown")) { shutdown(); }
-            if (args[0].Equals("reboot")) { reboot(); }
+            if (args[0].Equals("shutdown")) { shutdown(cmdargs); }
             if (args[0].Equals("time")) { time(); }
         }
 
@@ -30,7 +29,6 @@ namespace LemonProject
             cmds.Add("about");
             cmds.Add("help");
             cmds.Add("shutdown");
-            cmds.Add("reboot");
             cmds.Add("time");
         }
 
@@ -75,15 +73,27 @@ namespace LemonProject
             Console.WriteLine();
         }
         
-        static void shutdown()
+        static void shutdown(string[] args)
         {
-            Cosmos.System.Power.Shutdown();
+            if (args.Length < 1)
+            {
+                Console.WriteLine("Shutdown machine? [Y/N]");
+                ConsoleKeyInfo input = Console.ReadKey(false);
+                if (input.KeyChar == 'Y' || input.KeyChar == 'y') { Cosmos.System.Power.Shutdown(); }
+                Console.WriteLine();
+                return;
+            }
+            else if (args[1] == "/r")
+            {
+                Console.WriteLine("Reboot machine? [Y/N]");
+                ConsoleKeyInfo input = Console.ReadKey(false);
+                if (input.KeyChar == 'Y' || input.KeyChar == 'y') { Cosmos.System.Power.Reboot(); }
+                Console.WriteLine();
+                return;
+            }
+            return;
         }
         
-        static void reboot()
-        {
-            Cosmos.System.Power.Reboot();
-        }
         static void time()
         {
             Console.Write("The time is ");
