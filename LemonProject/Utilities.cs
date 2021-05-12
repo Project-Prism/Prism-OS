@@ -35,11 +35,11 @@ namespace LemonProject
             Utils.SetColor(colorCache);
         }
 
-        public static void warn(string warncontent)
+        public static void Warn(string warncontent)
         {
             colorCache = Console.ForegroundColor;
             Utils.SetColor(ConsoleColor.Yellow);
-            Console.WriteLine("Error: " + warncontent);
+            Console.WriteLine("Warning: " + warncontent);
             Utils.SetColor(colorCache);
         }
 
