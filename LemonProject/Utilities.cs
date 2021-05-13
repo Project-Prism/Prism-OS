@@ -43,7 +43,15 @@ namespace LemonProject
             Utils.SetColor(colorCache);
         }
 
-        public static void SetColor(ConsoleColor color) { Console.ForegroundColor = color; }
+        public static void syetem_message(string message)
+        {
+            colorCache = Console.ForegroundColor;
+            Utils.SetColor(ConsoleColor.Magenta);
+            Console.WriteLine(message);
+            Utils.SetColor(colorCache);
+        }
+
+    public static void SetColor(ConsoleColor color) { Console.ForegroundColor = color; }
         public static void SetBackColor(ConsoleColor color) { Console.BackgroundColor = color; }
     }
 }

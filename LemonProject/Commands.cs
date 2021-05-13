@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Cosmos.System.Graphics;
 
 namespace LemonProject
 {
     public class Cmds
     {
+        public static int PixelHeight;
+        public static int PixelWidth;
         public static List<string> cmds = new List<string>();
 
         public static void Parse(string input)
@@ -22,6 +25,7 @@ namespace LemonProject
             if (args[0].Equals("shutdown")) { shutdown(cmdargs); }
             if (args[0].Equals("time")) { time(); }
             if (args[0].Equals("clear")) { clear(); }
+            if (args[0].Equals("vdriver")) { videodriver(); }
         }
 
         public static void Init()
@@ -32,10 +36,11 @@ namespace LemonProject
             cmds.Add("shutdown");
             cmds.Add("time");
             cmds.Add("clear");
+            cmds.Add("videodriver");
         }
-        
+
         #region Misc Commands
-      
+
         static void print(string[] args)
         {
             if (args.Length < 1)
@@ -45,8 +50,8 @@ namespace LemonProject
             string content = String.Join(" ", args);
             Console.WriteLine(content);
         }
-        
-        
+
+
         static void help(string[] args)
         {
             if (args.Length < 1)
@@ -71,8 +76,8 @@ namespace LemonProject
                 // todo: add specific help for each command by checking args
             }
         }
-        
-        
+
+
         static void about()
         {
             Utils.SetColor(ConsoleColor.Yellow);
@@ -94,7 +99,7 @@ ___________________________________________________
             Console.WriteLine();
             Utils.SetColor(ConsoleColor.White);
         }
-        
+
 
         static void shutdown(string[] args)
         {
@@ -116,7 +121,7 @@ ___________________________________________________
             }
             return;
         }
-        
+
         static void time()
         {
             Console.Write("The time is ");
@@ -132,7 +137,11 @@ ___________________________________________________
         {
             Console.Clear();
         }
-        
+        static void videodriver()
+        {
+            Utils.syetem_message("Starting video driver...");
+        }
+
         #endregion
     }
 }
