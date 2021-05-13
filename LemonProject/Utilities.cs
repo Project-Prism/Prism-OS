@@ -2,7 +2,7 @@ using Cosmos.HAL;
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+    
 namespace LemonProject
 {
     public class Utils
@@ -49,6 +49,14 @@ namespace LemonProject
             Utils.SetColor(ConsoleColor.Magenta);
             Console.WriteLine(message);
             Utils.SetColor(colorCache);
+        }
+
+        public static void cursor()
+        {
+            Utils.syetem_message("cursor is not finished, expect bugs!");
+            int mousex = Convert.ToInt32(Cosmos.System.MouseManager.X);
+            int mousey = Convert.ToInt32(Cosmos.System.MouseManager.Y);
+            Cosmos.System.MouseManager.HandleMouse(mousex, mousey, 1, 1);
         }
 
     public static void SetColor(ConsoleColor color) { Console.ForegroundColor = color; }

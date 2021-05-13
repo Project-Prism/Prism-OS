@@ -23,9 +23,10 @@ namespace LemonProject
             if (args[0].Equals("about")) { about(); }
             if (args[0].Equals("help")) { help(cmdargs); }
             if (args[0].Equals("shutdown")) { shutdown(cmdargs); }
-            if (args[0].Equals("time")) { time(); }
+            if (args[0].Equals("systime")) { systime(); }
             if (args[0].Equals("clear")) { clear(); }
-            if (args[0].Equals("vdriver")) { videodriver(); }
+            if (args[0].Equals("sysinfo")) { sysinfo(); }
+            if (args[0].Equals("cursor")) { cursor(); }
         }
 
         public static void Init()
@@ -34,13 +35,13 @@ namespace LemonProject
             cmds.Add("about");
             cmds.Add("help");
             cmds.Add("shutdown");
-            cmds.Add("time");
+            cmds.Add("systime");
             cmds.Add("clear");
-            cmds.Add("videodriver");
+            cmds.Add("sysinfo");
+            cmds.Add("cursor");
         }
 
         #region Misc Commands
-
         static void print(string[] args)
         {
             if (args.Length < 1)
@@ -50,8 +51,6 @@ namespace LemonProject
             string content = String.Join(" ", args);
             Console.WriteLine(content);
         }
-
-
         static void help(string[] args)
         {
             if (args.Length < 1)
@@ -76,8 +75,6 @@ namespace LemonProject
                 // todo: add specific help for each command by checking args
             }
         }
-
-
         static void about()
         {
             Utils.SetColor(ConsoleColor.Yellow);
@@ -99,8 +96,6 @@ ___________________________________________________
             Console.WriteLine();
             Utils.SetColor(ConsoleColor.White);
         }
-
-
         static void shutdown(string[] args)
         {
             if (args.Length < 1)
@@ -121,27 +116,29 @@ ___________________________________________________
             }
             return;
         }
-
-        static void time()
+        static void systime()
         {
-            Console.Write("The time is ");
             Console.Write(Cosmos.HAL.RTC.Hour);
             Console.Write(":");
             Console.Write(Cosmos.HAL.RTC.Minute);
-            Console.Write(", ");
-            Console.Write(Cosmos.HAL.RTC.Second);
-            Console.WriteLine("S");
+            Console.Write(":");
+            Console.WriteLine(Cosmos.HAL.RTC.Second);
         }
-
         static void clear()
         {
             Console.Clear();
         }
-        static void videodriver()
+        static void sysinfo()
         {
-            Utils.syetem_message("Starting video driver...");
+            var cspeed = Cosmos.Core.CPU.GetCPUCycleSpeed();
+            var ram = Cosmos.Core.CPU.GetAmountOfRAM();
+            Utils.syetem_message("CPU clock speed: " + cspeed + " Mhz");
+            Utils.syetem_message("Total ram: " + ram + " MB");
         }
-
+        static void cursor()
+        {
+            Utils.cursor();
+        }
         #endregion
     }
 }
