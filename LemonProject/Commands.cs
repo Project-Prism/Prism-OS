@@ -10,35 +10,51 @@ namespace LemonProject
     {
         public static int PixelHeight;
         public static int PixelWidth;
-        public static List<string> cmds = new List<string>();
+        public struct Command
+        {
+            public string Name, HelpDesc;
+            public function func;
+        }
+
+        public static List<Command> cmds = new List<Command>();
+        public delegate void function(string[] args);
 
         public static void Parse(string input)
         {
             string[] args = input.Split(new char[0]);
             string[] cmdargs = { };
             if (input.Contains(" ")) { cmdargs = input.Remove(0, input.IndexOf(' ') + 1).Split(new char[0]); }
-            if (!cmds.Contains(args[0])) { Utils.Error("Invalid command."); }
 
-            if (args[0].Equals("print")) { print(cmdargs); }
-            if (args[0].Equals("about")) { about(); }
-            if (args[0].Equals("help")) { help(cmdargs); }
-            if (args[0].Equals("shutdown")) { shutdown(cmdargs); }
-            if (args[0].Equals("systime")) { systime(); }
-            if (args[0].Equals("clear")) { clear(); }
-            if (args[0].Equals("sysinfo")) { sysinfo(); }
-            if (args[0].Equals("cursor")) { cursor(); }
+            foreach (Command cmd in cmds)
+            {
+                if (args[0].Equals(cmd.Name))
+                {
+                    cmd.func(cmdargs);
+                    return;
+                }
+            }
+
+            Utils.Error("Invalid command.");
         }
-
+        
+        private static void AddCommand(string name, string desc, function func)
+        {
+            Command cd = new Command();
+            cd.Name = name;
+            cd.HelpDesc = desc;
+            cd.func = func;
+            cmds.Add(cd);
+        }
+        
         public static void Init()
         {
-            cmds.Add("print");
-            cmds.Add("about");
-            cmds.Add("help");
-            cmds.Add("shutdown");
-            cmds.Add("systime");
-            cmds.Add("clear");
-            cmds.Add("sysinfo");
-            cmds.Add("cursor");
+            AddCommand("print", "insert help description here", print);
+            AddCommand("about", "insert help description here", about);
+            AddCommand("help", "insert help description here", help);
+            AddCommand("shutdown", "insert help description here", shutdown);
+            AddCommand("systime", "insert help description here", systime);
+            AddCommand("clear", "insert help description here", clear);
+            AddCommand("cursor", "insert help description here", cursor);
         }
 
         #region Misc Commands
@@ -51,6 +67,7 @@ namespace LemonProject
             string content = String.Join(" ", args);
             Console.WriteLine(content);
         }
+        
         static void help(string[] args)
         {
             if (args.Length < 1)
@@ -61,9 +78,9 @@ namespace LemonProject
                 Console.WriteLine("---- List of all available commands ----");
                 Console.WriteLine();
                 Utils.SetColor(ConsoleColor.Blue);
-                foreach (string cmd in cmds)
+                foreach (Command cmd in cmds)
                 {
-                    Console.WriteLine(cmd);
+                    Console.WriteLine(cmd.Name);
                 }
                 Utils.SetColor(Utils.colorCache);
                 Console.WriteLine();
@@ -72,9 +89,18 @@ namespace LemonProject
             }
             else
             {
-                // todo: add specific help for each command by checking args
+                foreach (Command cmd in cmds)
+                {
+                    if (args[1] == cmd.Name)
+                    {
+                        Console.WriteLine(cmd.HelpDesc);
+                        Console.WriteLine();
+                        return;
+                    }
+                }
             }
         }
+        
         static void about()
         {
             Utils.SetColor(ConsoleColor.Yellow);
