@@ -12,14 +12,14 @@ namespace LemonProject
             int posY;
             int height;
             int widht;
-            // is supposed to be something like this https://www.google.com/url?sa=i&url=https%3A%2F%2Fappliedgo.net%2Ftui%2F&psig=AOvVaw0RrvLGWNqMLIJ9KLgAaHp0&ust=1621079727150000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCOjtoN2OyfACFQAAAAAdAAAAABAD
+            // is supposed to be something like this https://appliedgo.net/media/tui/dashboard.gif
 
         }
         io()
         {
 
         }
-        #region
+        #region scroller
         public static void inputUpdater(string Input) 
         {
             
@@ -61,7 +61,7 @@ namespace LemonProject
                 }                
             }
         }
-        #region scroller
+        #endregion
     }
 }
 

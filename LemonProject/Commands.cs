@@ -51,14 +51,15 @@ namespace LemonProject
 
         public static void Init()
         {
-            AddCommand("print", "insert help description here", print);
-            AddCommand("about", "insert help description here", about);
-            AddCommand("help", "insert help description here", help);
-            AddCommand("shutdown", "insert help description here", shutdown);
-            AddCommand("systime", "insert help description here", systime);
-            AddCommand("clear", "insert help description here", clear);
-            AddCommand("cursor", "insert help description here", cursor);
-            AddCommand("gingle","plays the gingle from the beginning",gingle);
+            AddCommand("print", "Print any string of text, used for console applications.", print);
+            AddCommand("about", "About prism OS", about);
+            AddCommand("help", "List all available commands", help);
+            AddCommand("shutdown", "Shuts down the system.\nArguments\n==========\n-r restarts the system instead", shutdown);
+            AddCommand("systime", "prints the system time", systime);
+            AddCommand("clear", "clear entire console", clear);
+            AddCommand("cursor", "testing a cursor for future GUI", cursor);
+            AddCommand("gingle", "plays the gingle from the beginning", jingle);
+            AddCommand("sysinfo", "Prints system information", sysinfo);
         }
 
         #region Misc Commands
@@ -173,7 +174,7 @@ _______________________________________________
             Utils.syetem_message("CPU clock speed: " + cspeed + " Mhz");
             Utils.syetem_message("Total ram: " + ram + " MB");
         }
-        static void gingle(string[] args)
+        static void jingle(string[] args)
         {
             Console.Beep(2000, 100);
             Console.Beep(2500, 100);
