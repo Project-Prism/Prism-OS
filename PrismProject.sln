@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismProject", "LemonProject\PrismProject.csproj", "{73F59E35-03B8-41C8-8BC6-F9A221D1ACF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismProject", "PrismProject\PrismProject.csproj", "{73F59E35-03B8-41C8-8BC6-F9A221D1ACF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
