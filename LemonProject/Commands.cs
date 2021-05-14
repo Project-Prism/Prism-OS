@@ -36,7 +36,10 @@ namespace LemonProject
 
             Utils.Error("Invalid command.");
         }
+
         
+        
+
         private static void AddCommand(string name, string desc, function func)
         {
             Command cd = new Command();
@@ -45,7 +48,7 @@ namespace LemonProject
             cd.func = func;
             cmds.Add(cd);
         }
-        
+
         public static void Init()
         {
             AddCommand("print", "insert help description here", print);
@@ -55,6 +58,7 @@ namespace LemonProject
             AddCommand("systime", "insert help description here", systime);
             AddCommand("clear", "insert help description here", clear);
             AddCommand("cursor", "insert help description here", cursor);
+            AddCommand("gingle","plays the gingle from the beginning",gingle);
         }
 
         #region Misc Commands
@@ -67,7 +71,7 @@ namespace LemonProject
             string content = String.Join(" ", args);
             Console.WriteLine(content);
         }
-        
+
         static void help(string[] args)
         {
             if (args.Length < 1)
@@ -100,19 +104,18 @@ namespace LemonProject
                 }
             }
         }
-        
-        static void about()
+
+        static void about(string[] args)
         {
             Utils.SetColor(ConsoleColor.Yellow);
             Console.WriteLine(@"
-___________________________________________________
-  _                                   ____   _____ 
- | |                                 / __ \ / ____|
- | |     ___ _ __ ___   ___  _ __   | |  | | (___  
- | |    / _ \ '_ ` _ \ / _ \| '_ \  | |  | |\___ \ 
- | |___|  __/ | | | | | (_) | | | | | |__| |____) |
- |______\___|_| |_| |_|\___/|_| |_|  \____/|_____/
-___________________________________________________
+_______________________________________________
+    ____       _                   ____  _____
+   / __ \_____(_)________ ___     / __ \/ ___/
+  / /_/ / ___/ / ___/ __ `__ \   / / / /\__ \ 
+ / ____/ /  / (__  ) / / / / /  / /_/ /___/ / 
+/_/   /_/  /_/____/_/ /_/ /_/   \____//____/                                                
+_______________________________________________
 ");
             Utils.SetColor(ConsoleColor.Green);
             Console.WriteLine("");
@@ -126,7 +129,12 @@ ___________________________________________________
         {
             if (args.Length < 1)
             {
-                Console.WriteLine("Shutdown machine? [Y/N]");
+                Console.WriteLine(@"Shutdown machine?
+ ____       ____ 
+||y ||   / ||n ||
+||__||  /  ||__||
+|/__\| /   |/__\|"
+                );
                 ConsoleKeyInfo input = Console.ReadKey(false);
                 if (input.KeyChar == 'Y' || input.KeyChar == 'y') { Cosmos.System.Power.Shutdown(); }
                 Console.WriteLine();
@@ -134,7 +142,11 @@ ___________________________________________________
             }
             else if (args[1] == "-r")
             {
-                Console.WriteLine("Reboot machine? [Y/N]");
+                Console.WriteLine(@"Reboot machine?
+ ____       ____ 
+||y ||   / ||n ||
+||__||  /  ||__||
+|/__\| /   |/__\|");
                 ConsoleKeyInfo input = Console.ReadKey(false);
                 if (input.KeyChar == 'Y' || input.KeyChar == 'y') { Cosmos.System.Power.Reboot(); }
                 Console.WriteLine();
@@ -142,7 +154,7 @@ ___________________________________________________
             }
             return;
         }
-        static void systime()
+        static void systime(string[] args)
         {
             Console.Write(Cosmos.HAL.RTC.Hour);
             Console.Write(":");
@@ -150,18 +162,25 @@ ___________________________________________________
             Console.Write(":");
             Console.WriteLine(Cosmos.HAL.RTC.Second);
         }
-        static void clear()
+        static void clear(string[] args)
         {
             Console.Clear();
         }
-        static void sysinfo()
+        static void sysinfo(string[] args)
         {
             var cspeed = Cosmos.Core.CPU.GetCPUCycleSpeed();
             var ram = Cosmos.Core.CPU.GetAmountOfRAM();
             Utils.syetem_message("CPU clock speed: " + cspeed + " Mhz");
             Utils.syetem_message("Total ram: " + ram + " MB");
         }
-        static void cursor()
+        static void gingle(string[] args)
+        {
+            Console.Beep(2000, 100);
+            Console.Beep(2500, 100);
+            Console.Beep(3000, 100);
+            Console.Beep(2500, 100);
+        }
+        static void cursor(string[] args)
         {
             Utils.cursor();
         }
