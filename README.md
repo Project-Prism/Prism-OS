@@ -1,13 +1,13 @@
-# Lemon OS
-Lemon OS is a small project maintained by two developers.
+# Prism OS
+Prism OS is a small project maintained by two developers.
 This project is based off of Cosmos.
 
 <details>
     <Summary>
-        About Lemon OS
+        About Prism OS
     </Summary>
 <p>
-     Lemon OS is an open source project started in 2021. More coming soon.
+     Prism OS is an open source project started in 2021. More coming soon.
 </p>
 </details>
 
