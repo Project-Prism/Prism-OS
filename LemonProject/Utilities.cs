@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
     
-namespace LemonProject
+namespace PrismProject
 {
     public class Utils
     {

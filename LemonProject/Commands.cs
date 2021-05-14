@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Cosmos.System.Graphics;
 
-namespace LemonProject
+namespace PrismProject
 {
     public class Cmds
     {

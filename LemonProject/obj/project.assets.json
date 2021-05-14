@@ -1705,9 +1705,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\EvanLawrence\\Source\\Repos\\Prism-OS\\LemonProject\\LemonProject.csproj",
-      "projectName": "LemonProject",
-      "projectPath": "C:\\Users\\EvanLawrence\\Source\\Repos\\Prism-OS\\LemonProject\\LemonProject.csproj",
+      "projectUniqueName": "C:\\Users\\EvanLawrence\\Source\\Repos\\Prism-OS\\LemonProject\\PrismProject.csproj",
+      "projectName": "PrismProject",
+      "projectPath": "C:\\Users\\EvanLawrence\\Source\\Repos\\Prism-OS\\LemonProject\\PrismProject.csproj",
       "packagesPath": "C:\\Users\\EvanLawrence\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\EvanLawrence\\Source\\Repos\\Prism-OS\\LemonProject\\obj\\",
       "projectStyle": "PackageReference",

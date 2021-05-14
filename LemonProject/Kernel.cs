@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Sys = Cosmos.System;
 
-namespace LemonProject
+namespace PrismProject
 {
     public class Kernel : Sys.Kernel
     {

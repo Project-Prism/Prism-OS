@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XPdWmZ4LQmSuJv9RFSWUtCxxTvUQIjDZ6alFBKwlmpJdfv4unbFUSV3icdYr5N1MDtUEWUQSPyUfFBcvso1lVg==",
+  "dgSpecHash": "C6d1OkAlwXrguZ6871uwCplcFvwN1FXfepKST4eiJhmehuwxydmQo2x26f+5G6HHzNjA7+o2zimVDedZu1DV5w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\EvanLawrence\\Source\\Repos\\Prism-OS\\LemonProject\\LemonProject.csproj",
+  "projectFilePath": "C:\\Users\\EvanLawrence\\Source\\Repos\\Prism-OS\\LemonProject\\PrismProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\EvanLawrence\\.nuget\\packages\\cosmos.build\\0.1.0-localbuild20200708061311\\cosmos.build.0.1.0-localbuild20200708061311.nupkg.sha512",
     "C:\\Users\\EvanLawrence\\.nuget\\packages\\cosmos.common\\0.1.0-localbuild20200708061311\\cosmos.common.0.1.0-localbuild20200708061311.nupkg.sha512",
