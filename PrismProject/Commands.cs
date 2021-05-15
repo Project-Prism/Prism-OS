@@ -112,7 +112,7 @@ namespace PrismProject
             {
                 foreach (Command cmd in cmds)
                 {
-                    if (args[1] == cmd.Name)
+                    if (args[0] == cmd.Name)
                     {
                         Console.WriteLine(cmd.HelpDesc);
                         Console.WriteLine();
