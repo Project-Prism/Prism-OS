@@ -59,7 +59,16 @@ namespace PrismProject
             Cosmos.System.MouseManager.HandleMouse(mousex, mousey, 1, 1);
         }
 
-    public static void SetColor(ConsoleColor color) { Console.ForegroundColor = color; }
+        public static void PlayGingle()
+        {
+            Console.Beep(2000, 500);
+            Console.Beep(2500, 100);
+            Console.Beep(3000, 100);
+            Console.Beep(2500, 100);
+            Console.Beep(2000, 500);
+        }
+        
+        public static void SetColor(ConsoleColor color) { Console.ForegroundColor = color; }
         public static void SetBackColor(ConsoleColor color) { Console.BackgroundColor = color; }
     }
 }
