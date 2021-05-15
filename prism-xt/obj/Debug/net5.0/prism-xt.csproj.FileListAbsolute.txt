@@ -1,0 +1,5 @@
+C:\Users\EvanLawrence\source\repos\prism-xt\prism-xt\obj\Debug\net5.0\prism-xt.csprojAssemblyReference.cache
+C:\Users\EvanLawrence\source\repos\prism-xt\prism-xt\obj\Debug\net5.0\prism-xt.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\EvanLawrence\source\repos\prism-xt\prism-xt\obj\Debug\net5.0\prism-xt.AssemblyInfoInputs.cache
+C:\Users\EvanLawrence\source\repos\prism-xt\prism-xt\obj\Debug\net5.0\prism-xt.AssemblyInfo.cs
+C:\Users\EvanLawrence\source\repos\prism-xt\prism-xt\obj\Debug\net5.0\prism-xt.csproj.CoreCompileInputs.cache
