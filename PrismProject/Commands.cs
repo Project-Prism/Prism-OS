@@ -192,10 +192,7 @@ _______________________________________________
         }
         static void jingle(string[] args)
         {
-            Console.Beep(2000, 100);
-            Console.Beep(2500, 100);
-            Console.Beep(3000, 100);
-            Console.Beep(2500, 100);
+            Utils.PlayJingle();
         }
         static void cursor(string[] args)
         {
