@@ -8,9 +8,6 @@ namespace PrismProject
     {
         protected override void BeforeRun()
         {
-            var hour = Cosmos.HAL.RTC.Hour;
-            var minute = Cosmos.HAL.RTC.Minute;
-            var second = Cosmos.HAL.RTC.Second;
             Console.Clear();
         }
         
@@ -25,15 +22,12 @@ namespace PrismProject
  / ____/ /  / (__  ) / / / / /  / /_/ /___/ / 
 /_/   /_/  /_/____/_/ /_/ /_/   \____//____/   
 ");
+            Utils.PlayJingle();
             Utils.SetColor(ConsoleColor.Green);
             Console.WriteLine();
             Console.WriteLine("Powered by the Cosmos Kernel");
-            Console.Beep(2000,100);
-            Console.Beep(2500,100);
-            Console.Beep(3000,100);
-            Console.Beep(2500, 100);
-            Utils.SetColor(ConsoleColor.Gray);
             Cmds.Init();
+            Utils.SetColor(ConsoleColor.Gray);
             Utils.Sleep(2); // instead of sleeping we could also initialize more stuff here when we need to
             Console.Clear();
             Console.WriteLine("Prism OS (c) 2021, release 1.2.");
