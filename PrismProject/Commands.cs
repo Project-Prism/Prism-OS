@@ -72,14 +72,7 @@ namespace PrismProject
 
         static void tone(string[] args)
         {
-            if (args.Length < 2)
-            {
-                Utils.Error("Insufficient arguments.");
-            }
-            if (args.Length > 2)
-            {
-                Utils.Error("Insufficient arguments.");
-            }
+            Utils.argcheck(args, 2, 2);
             int beep1 = int.Parse(args[0]);
             int beep2 = int.Parse(args[1]);
             Console.Beep(beep1, beep2);
@@ -93,6 +86,7 @@ namespace PrismProject
                 Utils.SetColor(ConsoleColor.Cyan);
                 Console.WriteLine("________________________________________");
                 Console.WriteLine("---- List of all available commands ----");
+                Console.WriteLine("=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
                 Console.WriteLine();
                 Utils.SetColor(ConsoleColor.Blue);
                 foreach (Command cmd in cmds)
@@ -132,9 +126,9 @@ _______________________________________________
 ");
             Utils.SetColor(ConsoleColor.Green);
             Console.WriteLine("");
-            Console.WriteLine("Lemon OS (c) 2021, release 1.2");
+            Console.WriteLine("Prism OS (c) 2021, release 1.2");
             Console.WriteLine("Created by bad-codr and deadlocust");
-            Utils.Warn("This is a closed beta version of Lemon OS, we are not responsible for any damages caused by it.");
+            Utils.Warn("This is a closed beta version of Prism OS, we are not responsible for any damages caused by it.");
             Console.WriteLine();
             Utils.SetColor(ConsoleColor.White);
         }
@@ -153,7 +147,7 @@ _______________________________________________
                 Console.WriteLine();
                 return;
             }
-            else if (args[1] == "-r")
+            else if (args[0] == "-r")
             {
                 Console.WriteLine(@"Reboot machine?
  ____       ____ 
