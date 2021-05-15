@@ -1,7 +1,5 @@
 using Cosmos.HAL;
 using System;
-using System.Collections.Generic;
-using System.Text;
     
 namespace PrismProject
 {
@@ -59,7 +57,7 @@ namespace PrismProject
             Cosmos.System.MouseManager.HandleMouse(mousex, mousey, 1, 1);
         }
 
-        public static void PlayGingle()
+        public static void Playjingle()
         {
             Console.Beep(2000, 500);
             Console.Beep(2500, 100);

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Cosmos.System.Graphics;
 
 namespace PrismProject
 {
@@ -57,7 +54,6 @@ namespace PrismProject
             AddCommand("shutdown", "Shuts down the system.\nArguments\n==========\n-r restarts the system instead", shutdown);
             AddCommand("systime", "prints the system time", systime);
             AddCommand("clear", "clear entire console", clear);
-            AddCommand("cursor", "testing a cursor for future GUI", cursor);
             AddCommand("jingle", "plays the gingle from the beginning", jingle);
             AddCommand("sysinfo", "Prints system information", sysinfo);
             AddCommand("tone", "used to make sounds in an app", tone);
@@ -192,11 +188,7 @@ _______________________________________________
         }
         static void jingle(string[] args)
         {
-            Utils.PlayJingle();
-        }
-        static void cursor(string[] args)
-        {
-            Utils.cursor();
+            Utils.Playjingle();
         }
         #endregion
     }

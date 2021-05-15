@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 using Sys = Cosmos.System;
 
 namespace PrismProject
@@ -22,7 +21,7 @@ namespace PrismProject
  / ____/ /  / (__  ) / / / / /  / /_/ /___/ / 
 /_/   /_/  /_/____/_/ /_/ /_/   \____//____/   
 ");
-            Utils.PlayJingle();
+            Utils.Playjingle();
             Utils.SetColor(ConsoleColor.Green);
             Console.WriteLine();
             Console.WriteLine("Powered by the Cosmos Kernel");
