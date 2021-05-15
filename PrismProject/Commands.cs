@@ -58,8 +58,9 @@ namespace PrismProject
             AddCommand("systime", "prints the system time", systime);
             AddCommand("clear", "clear entire console", clear);
             AddCommand("cursor", "testing a cursor for future GUI", cursor);
-            AddCommand("gingle", "plays the gingle from the beginning", jingle);
+            AddCommand("jingle", "plays the gingle from the beginning", jingle);
             AddCommand("sysinfo", "Prints system information", sysinfo);
+            AddCommand("tone", "used to make sounds in an app", tone);
         }
 
         #region Misc Commands
@@ -71,6 +72,21 @@ namespace PrismProject
             }
             string content = String.Join(" ", args);
             Console.WriteLine(content);
+        }
+
+        static void tone(string[] args)
+        {
+            if (args.Length < 2)
+            {
+                Utils.Error("Insufficient arguments.");
+            }
+            if (args.Length > 2)
+            {
+                Utils.Error("Insufficient arguments.");
+            }
+            int beep1 = int.Parse(args[0]);
+            int beep2 = int.Parse(args[1]);
+            Console.Beep(beep1, beep2);
         }
 
         static void help(string[] args)

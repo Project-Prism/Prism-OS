@@ -26,15 +26,15 @@ namespace PrismProject
 /_/   /_/  /_/____/_/ /_/ /_/   \____//____/   
 ");
             Utils.SetColor(ConsoleColor.Green);
+            Console.WriteLine();
+            Console.WriteLine("Powered by the Cosmos Kernel");
             Console.Beep(2000,100);
             Console.Beep(2500,100);
             Console.Beep(3000,100);
             Console.Beep(2500, 100);
-            Console.WriteLine();
-            Console.WriteLine("Powered by the Cosmos Kernel");
             Utils.SetColor(ConsoleColor.Gray);
             Cmds.Init();
-            Utils.Sleep(5); // instead of sleeping we could also initialize more stuff here when we need to
+            Utils.Sleep(2); // instead of sleeping we could also initialize more stuff here when we need to
             Console.Clear();
             Console.WriteLine("Prism OS (c) 2021, release 1.2.");
             Console.WriteLine("For a list of commands, type \"help\"");
