@@ -30,7 +30,7 @@ namespace PrismProject
             Utils.SetColor(ConsoleColor.Gray);
             Utils.Sleep(2); // instead of sleeping we could also initialize more stuff here when we need to
             Console.Clear();
-            Console.WriteLine("Prism OS (c) 2021, release 1.4.");
+            Console.WriteLine("Prism OS (c) 2021, CORE version 1.5.");
             Console.WriteLine("For a list of commands, type \"help\"");
             Console.WriteLine();
             //get user input
