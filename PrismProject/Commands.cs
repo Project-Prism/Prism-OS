@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using Sys = Cosmos.System;
+using Cosmos.System.Graphics;
 
 namespace PrismProject
 {
     public class Cmds
     {
+        public static Canvas canvas;
         public static string pfdir = "0:\\";
 
         #region stuff
@@ -60,6 +62,7 @@ namespace PrismProject
             AddCommand("jingle", "plays the gingle from the beginning", jingle);
             AddCommand("sysinfo", "Prints system information", sysinfo);
             AddCommand("tone", "used to make sounds in an app", tone);
+            AddCommand("start_GS", "draw a background, this is meant to be a test.", start_gs);
         }
 
         #region Misc Commands
@@ -186,6 +189,13 @@ _______________________________________________
         static void jingle(string[] args)
         {
             Utils.Playjingle();
+        }
+
+        static void start_gs(string[] args)
+        {
+            canvas = FullScreenCanvas.GetFullScreenCanvas();
+            canvas.Clear(System.Drawing.Color.Cyan);
+            Utils.syetem_message("Drew a background");
         }
         #endregion
     }
