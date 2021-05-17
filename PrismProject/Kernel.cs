@@ -12,7 +12,8 @@ namespace PrismProject
         
         protected override void Run()
         {
-            //display logo at boot
+            //display logo and play sound on boot
+            Utils.Playjingle();
             Utils.SetColor(ConsoleColor.Yellow);
             Console.WriteLine(@"
     ____       _                   ____  _____
@@ -21,7 +22,7 @@ namespace PrismProject
  / ____/ /  / (__  ) / / / / /  / /_/ /___/ / 
 /_/   /_/  /_/____/_/ /_/ /_/   \____//____/   
 ");
-            Utils.Playjingle();
+            
             Utils.SetColor(ConsoleColor.Green);
             Console.WriteLine();
             Console.WriteLine("Powered by the Cosmos Kernel");
