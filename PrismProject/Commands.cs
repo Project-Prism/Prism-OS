@@ -8,7 +8,6 @@ namespace PrismProject
     public class Cmds
     {
         public static string pfdir = "0:\\";
-        Sys.FileSystem.CosmosVFS fs;
 
         #region stuff
         public static int PixelHeight;
@@ -22,14 +21,6 @@ namespace PrismProject
         public static List<Command> cmds = new List<Command>();
         public delegate void function(string[] args);
         #endregion
-
-        public static void initfiles(Sys.FileSystem.CosmosVFS fs)
-        {
-            Utils.syetem_message("Initilizing FS...");
-            fs = new Sys.FileSystem.CosmosVFS();
-            Sys.FileSystem.VFS.VFSManager.RegisterVFS(fs);
-            Console.Clear();
-        }
 
         public static void Parse(string input)
         {
