@@ -35,7 +35,7 @@ namespace PrismProject
             //get user input
             while (true)
             {
-                Console.Write("> ");
+                Console.Write("prism-core> ");
                 string cmd = Console.ReadLine();
                 Cmds.Parse(cmd);               
             }
