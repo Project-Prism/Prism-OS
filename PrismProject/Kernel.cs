@@ -7,11 +7,12 @@ namespace PrismProject
     {
         protected override void BeforeRun()
         {
-            Console.Clear();
+
         }
         
         protected override void Run()
         {
+            Console.Clear();
             //display logo and play sound on boot
             Utils.Playjingle();
             Utils.SetColor(ConsoleColor.Yellow);
@@ -36,7 +37,7 @@ namespace PrismProject
             //get user input
             while (true)
             {
-                Console.Write("prism-core> ");
+                Console.Write(Cmds.pfdir + "> ");
                 string cmd = Console.ReadLine();
                 Cmds.Parse(cmd);               
             }
