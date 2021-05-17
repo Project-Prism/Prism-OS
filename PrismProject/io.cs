@@ -12,7 +12,7 @@ namespace PrismProject
             int posY;
             int height;
             int widht;
-            // is supposed to be something like this https://appliedgo.net/media/tui/dashboard.gif
+            // it is supposed to be something like this: https://appliedgo.net/media/tui/dashboard.gif
 
         }
         io()
