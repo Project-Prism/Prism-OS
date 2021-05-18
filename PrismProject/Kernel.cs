@@ -1,8 +1,5 @@
 using System;
 using Sys = Cosmos.System;
-using Cosmos.System.Network;
-using Cosmos.System.Network.IPv4;
-using Cosmos.HAL;
 
 namespace PrismProject
 {
