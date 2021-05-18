@@ -1,5 +1,5 @@
 # Prism OS
-Now with a GUI
+Now with a GUI,
 Prism OS is a small project maintained by two developers.
 This project is based off of Cosmos.
 
