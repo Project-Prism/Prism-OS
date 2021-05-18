@@ -3,12 +3,17 @@ using System;
 using System.Collections.Generic;
 using Sys = Cosmos.System;
 using Cosmos.System.Graphics;
+using System.Drawing;
 
 namespace PrismProject
 {
     public class Cmds
     {
         public static Canvas canvas;
+        private static int screenX = 800;
+        private static int screenY = 400;
+        private static Color[] pixelBuffer = new Color[(screenX * screenY) + screenX];
+        private static Color[] pixelBufferOld = new Color[(screenX * screenY) + screenX];
         public static string pfdir = "0:\\";
 
         #region stuff
@@ -62,7 +67,8 @@ namespace PrismProject
             AddCommand("jingle", "plays the gingle from the beginning", jingle);
             AddCommand("sysinfo", "Prints system information", sysinfo);
             AddCommand("tone", "used to make sounds in an app", tone);
-            AddCommand("start_GS", "draw a background, this is meant to be a test.", start_gs);
+            AddCommand("service.graphics", "draw a background, this is meant to be a test.", service_grapchics);
+            AddCommand("Debug", "Debug system, prints out all info about device and software.", debug);
         }
 
         #region Misc Commands
@@ -165,15 +171,18 @@ _______________________________________________
                 Console.WriteLine();
                 return;
             }
+            else if (args[0] == "-t")
+            {
+                Utils.Warn("shutting down in " + args[1] + " seconds");
+                int time = Convert.ToInt32(args[1]);
+                Utils.Sleep(time);
+                Cosmos.System.Power.Shutdown();
+            }
             return;
         }
         static void systime(string[] args)
         {
-            Console.Write(Cosmos.HAL.RTC.Hour);
-            Console.Write(":");
-            Console.Write(Cosmos.HAL.RTC.Minute);
-            Console.Write(":");
-            Console.WriteLine(Cosmos.HAL.RTC.Second);
+            Console.WriteLine("The time is " + Utils.time);
         }
         static void clear(string[] args)
         {
@@ -190,12 +199,18 @@ _______________________________________________
         {
             Utils.Playjingle();
         }
-
-        static void start_gs(string[] args)
+        static void service_grapchics(string[] args)
         {
             canvas = FullScreenCanvas.GetFullScreenCanvas();
-            canvas.Clear(System.Drawing.Color.Cyan);
-            Utils.syetem_message("Drew a background");
+            canvas.Mode = new Mode(screenX, screenY, ColorDepth.ColorDepth32);
+            canvas.Clear(System.Drawing.Color.Crimson);
+            Utils.Sleep(5);
+            canvas.Disable();
+            Utils.syetem_message("Finished graphics test.");
+        }
+        static void debug(string[] args)
+        {
+            Utils.debug(args);
         }
         #endregion
     }

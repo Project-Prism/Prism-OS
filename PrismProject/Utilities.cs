@@ -5,7 +5,10 @@ namespace PrismProject
 {
     public class Utils
     {
+        public static Random rnum = new System.Random();
+        public static string random = Convert.ToString(rnum.Next(0, 10));
         public static ConsoleColor colorCache;
+        public static string time = Cosmos.HAL.RTC.DayOfTheWeek + ", " + Cosmos.HAL.RTC.Hour + ", " + Cosmos.HAL.RTC.Minute + "," + Cosmos.HAL.RTC.Month + ", " + Cosmos.HAL.RTC.Year;
 
         public static void Sleep(int secNum)
         {
@@ -75,6 +78,18 @@ namespace PrismProject
             {
                 Utils.Error("too many arguments");
             }
+        }
+
+        public static void debug(string[] args)
+        {
+            Console.Write("CPU vendor: ");
+            Console.WriteLine(Cosmos.Core.ProcessorInformation.GetVendorName());
+            Console.Write("Uptime: ");
+            Console.WriteLine(Cosmos.Core.CPU.GetCPUUptime());
+            Console.Write("Kernel Interupts: ");
+            Console.WriteLine(Cosmos.System.Kernel.InterruptsEnabled);
+            Console.Write("Intel vendor ID: ");
+            Console.WriteLine(Cosmos.HAL.VendorID.Intel);
         }
 
         public static void SetColor(ConsoleColor color) { Console.ForegroundColor = color; }
