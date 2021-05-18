@@ -69,6 +69,8 @@ namespace PrismProject
             AddCommand("tone", "used to make sounds in an app", tone);
             AddCommand("service.graphics", "draw a background, this is meant to be a test.", service_grapchics);
             AddCommand("Debug", "Debug system, prints out all info about device and software.", debug);
+            AddCommand("horsify", "spam horse", horsify);
+            AddCommand("horsey", "start an argument with george", horsey);
         }
 
         #region Misc Commands
@@ -81,7 +83,6 @@ namespace PrismProject
             string content = String.Join(" ", args);
             Console.WriteLine(content);
         }
-
         static void tone(string[] args)
         {
             Utils.argcheck(args, 2, 2);
@@ -89,7 +90,6 @@ namespace PrismProject
             int beep2 = int.Parse(args[1]);
             Console.Beep(beep1, beep2);
         }
-
         static void help(string[] args)
         {
             if (args.Length < 1)
@@ -123,7 +123,6 @@ namespace PrismProject
                 }
             }
         }
-
         static void about(string[] args)
         {
             Utils.SetColor(ConsoleColor.Yellow);
@@ -212,6 +211,22 @@ _______________________________________________
         {
             Utils.debug(args);
         }
+        #region joke commands
+        static void horsify(string[] args)
+        {
+            while (true)
+            {
+                Console.Write("Horsey! ");
+                Utils.Sleep(1);
+                Console.Write("Twinkle toes! ");
+                Utils.Sleep(1);
+            }
+        }
+        static void horsey(string[] args)
+        {
+            Console.WriteLine("Twinkle toes!!!!");
+        }
+        #endregion
         #endregion
     }
 }

@@ -92,6 +92,12 @@ namespace PrismProject
             Console.WriteLine(Cosmos.HAL.VendorID.Intel);
         }
 
+        public static void success(string args)
+        {
+            Utils.SetColor(ConsoleColor.Green);
+            Console.WriteLine(args);
+        }
+
         public static void SetColor(ConsoleColor color) { Console.ForegroundColor = color; }
         public static void SetBackColor(ConsoleColor color) { Console.BackgroundColor = color; }
     }

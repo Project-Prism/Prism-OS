@@ -1,5 +1,8 @@
 using System;
 using Sys = Cosmos.System;
+using Cosmos.System.Network;
+using Cosmos.System.Network.IPv4;
+using Cosmos.HAL;
 
 namespace PrismProject
 {
@@ -12,9 +15,14 @@ namespace PrismProject
         
         protected override void Run()
         {
+            #region startup
+            Console.Write("Starting command parser...");
+            Cmds.Init();
+            Utils.success("[ok]");
             Console.Clear();
-            //display logo and play sound on boot
-            Utils.Playjingle();
+            #endregion
+
+            #region terminal
             Utils.SetColor(ConsoleColor.Yellow);
             Console.WriteLine(@"
     ____       _                   ____  _____
@@ -23,10 +31,10 @@ namespace PrismProject
  / ____/ /  / (__  ) / / / / /  / /_/ /___/ / 
 /_/   /_/  /_/____/_/ /_/ /_/   \____//____/   
 ");
-            
             Utils.SetColor(ConsoleColor.Green);
             Console.WriteLine();
             Console.WriteLine("Powered by the Cosmos Kernel");
+            Utils.Playjingle();
             Cmds.Init();
             Utils.SetColor(ConsoleColor.Gray);
             Utils.Sleep(2); // instead of sleeping we could also initialize more stuff here when we need to
@@ -41,6 +49,7 @@ namespace PrismProject
                 string cmd = Console.ReadLine();
                 Cmds.Parse(cmd);               
             }
+            #endregion
         }
     }
 }
