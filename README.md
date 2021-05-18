@@ -1,4 +1,5 @@
-# Prism OS
+# Prism OS (legacy)
+this was moved to logacy incase anyone wanted to still use it, the main branch has a full UI.
 Prism OS is a small project maintained by two developers.
 This project is based off of Cosmos.
 
