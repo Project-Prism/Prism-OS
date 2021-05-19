@@ -5,11 +5,9 @@ namespace PrismProject
 {
     public class Utils
     {
-        public static Random rnum = new System.Random();
-        public static string random = Convert.ToString(rnum.Next(0, 10));
         public static ConsoleColor colorCache;
-        public static string time = Cosmos.HAL.RTC.DayOfTheWeek + ", " + Cosmos.HAL.RTC.Hour + ", " + Cosmos.HAL.RTC.Minute + "," + Cosmos.HAL.RTC.Month + ", " + Cosmos.HAL.RTC.Year;
-
+        
+        //message based commands will be depricaeted soon, will be replaced with gui based messages.
         public static void Sleep(int secNum)
         {
             int StartSec = RTC.Second;
@@ -27,7 +25,7 @@ namespace PrismProject
                 // Loop round
             }
         }
-        
+
         public static void Error(string errorcontent)
         {
             colorCache = Console.ForegroundColor;
@@ -50,14 +48,6 @@ namespace PrismProject
             Utils.SetColor(ConsoleColor.Magenta);
             Console.WriteLine(message);
             Utils.SetColor(colorCache);
-        }
-
-        public static void cursor()
-        {
-            Utils.syetem_message("cursor is not finished, expect bugs!");
-            int mousex = Convert.ToInt32(Cosmos.System.MouseManager.X);
-            int mousey = Convert.ToInt32(Cosmos.System.MouseManager.Y);
-            Cosmos.System.MouseManager.HandleMouse(mousex, mousey, 1, 1);
         }
 
         public static void Playjingle()
