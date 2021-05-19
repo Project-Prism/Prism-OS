@@ -16,7 +16,7 @@ namespace PrismProject
         {
             Console.Clear();
             Cmds.Init();
-            Utils.Sleep(2);
+            tools.Sleep(2);
             bool optionForm = false;
             int seconds = 1;
 
@@ -48,10 +48,13 @@ namespace PrismProject
             }
             else
             {
-                PGUI.boot_screen();
+                Console.Clear();
+                gui.start();
+                gui.draw_taskbar();
+                gui.draw_menubtn();
                 while (true)
                 {
-                    Utils.Sleep(10);
+                    tools.Sleep(10);
                 }
             }
         }
