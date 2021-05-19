@@ -17,7 +17,6 @@ namespace PrismProject
             canvas.DrawFilledRectangle(new Pen(System.Drawing.Color.DarkGray), 0, 0, screenX, screenY / 8);
             while (true)
             {
-                int a = 1;
             }
         }
 
