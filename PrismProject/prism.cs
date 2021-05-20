@@ -5,8 +5,8 @@ using Cosmos.System.Graphics;
 
 namespace PrismProject
 {
-    //remember, you can compress the lined down by pressing the [-] button on a colapsable line, to make it neater.
-    //i just moves everything because this cs file is now the system core, everything lives here, instead of in chunks.
+    //remember, you can compress the line down by pressing the [-] button on a colapsable line, to make it neater.
+    //i just moved everything because this cs file is now the system core, everything lives here, instead of in chunks.
     //this also alows for a smaller size because we arent re-using the same code multiple times. the first few commits have theese comments so everybody knows whats going on, they will be removed later.
     //old size = 29 mb, new size = 28.1. it also feels a bit faster when using on a vm.
 
@@ -19,15 +19,20 @@ namespace PrismProject
         public static void start()
         {
             canvas = FullScreenCanvas.GetFullScreenCanvas();
-            canvas.Clear(System.Drawing.Color.AliceBlue);
+            canvas.Clear(System.Drawing.Color.DarkCyan);
         }
 
         public static void draw_taskbar()
         {
-            canvas.DrawFilledRectangle(new Pen(System.Drawing.Color.Blue), 0, 0, screenX, screenY / 10);
+            canvas.DrawFilledRectangle(new Pen(System.Drawing.Color.Purple), 0, 0, screenX, screenY / 10);
         }
 
         public static void draw_menubtn()
+        {
+
+        }
+
+        public static void draw_dialog()
         {
 
         }
@@ -124,7 +129,7 @@ namespace PrismProject
 
         public static void SetColor(ConsoleColor color) { Console.ForegroundColor = color; }
         public static void SetBackColor(ConsoleColor color) { Console.BackgroundColor = color; }
-    } //rename feom Utils, Still same functionality, just moved here so evrything is more tidy.
+    } //rename from Utils, Still same functionality, just moved here so evrything is more tidy.
 
     public class Cmds
     {
@@ -177,9 +182,22 @@ namespace PrismProject
             AddCommand("clear", "clear entire console", clear);
             AddCommand("sysinfo", "Prints system information", sysinfo);
             AddCommand("tone", "used to make sounds in an app", tone);
+            AddCommand("list", "List all files in the current directory", list);
+            AddCommand("create", "create a file/folder on the hard drive", create);
         }
 
         #region Misc Commands
+
+        static void list(string[] args)
+        {
+            var x = Kernel.fs.GetDirectoryListing(Kernel.root + args);
+            Console.WriteLine(x);
+        }
+        static void create(string[] args)
+        {
+            var x = Kernel.fs.CreateFile(Kernel.root + args);
+            Console.WriteLine("created " + Kernel.root + args);
+        }
         static void print(string[] args)
         {
             if (args.Length < 1)
@@ -301,8 +319,16 @@ _______________________________________________
 
     public class filesystem
     {
+        public static void lsdir(string args)
+        {
+            Kernel.fs.GetDirectoryListing("0:/" + args);
+        }
 
-    } //filesystem class, used for acessing files. comming soon.
+        public static void cdir(string args)
+        {
+            Kernel.fs.CreateDirectory("0:/" + args);
+        }
+    } //filesystem class, used for acessing files.
 
     public class networking
     {
