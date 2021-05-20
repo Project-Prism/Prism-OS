@@ -1,5 +1,7 @@
 using System;
 using Sys = Cosmos.System;
+using Cosmos.System.FileSystem;
+using Cosmos.System.FileSystem.VFS;
 
 namespace PrismProject
 {
@@ -9,9 +11,14 @@ namespace PrismProject
         public static string versionID = "2.0 (gui beta)";
         public static Random rnum = new System.Random();
         public static string random = Convert.ToString(rnum.Next(0, 10));
-        public static string pfdir = "Recovery:";
+        public static string root = "0:/";
+        public static CosmosVFS fs = new Cosmos.System.FileSystem.CosmosVFS();
         #endregion
 
+        protected override void BeforeRun()
+        {
+            Cosmos.System.FileSystem.VFS.VFSManager.RegisterVFS(fs);
+        }
         protected override void Run()
         {
             Console.Clear();
@@ -41,7 +48,7 @@ namespace PrismProject
                 Console.WriteLine("Type \"help\" for a list of commands");
                 while (true)
                 {
-                    Console.Write(pfdir + "> ");
+                    Console.Write(root + "> ");
                     string cmd = Console.ReadLine();
                     Cmds.Parse(cmd);
                 }
