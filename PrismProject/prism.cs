@@ -5,6 +5,7 @@ using Cosmos.System.Graphics;
 using System.Drawing;
 using Cosmos.System;
 using Console = System.Console;
+using Cosmos.System.Graphics.Fonts;
 
 namespace PrismProject
 {
@@ -40,6 +41,44 @@ namespace PrismProject
         public static void draw_menubtn()
         {
             canvas.DrawFilledRectangle(menubtn, 0, screenY - 15, 15, 15);
+        }
+
+        public static bool check_click(int x, int y, int width, int height)
+        {
+            return mouse.X <= x + width && mouse.X >= x
+                && mouse.Y <= y + height && mouse.Y >= y
+                    && MouseManager.MouseState == MouseState.Left;
+        }
+
+        public static void disable()
+        {
+            if (Kernel.enabled)
+            {
+                Kernel.enabled = false;
+
+                canvas.Disable();
+                PCScreenFont screenFont = PCScreenFont.Default;
+                VGAScreen.SetFont(screenFont.CreateVGAFont(), screenFont.Height);
+            }
+        }
+
+        public static void enable()
+        {
+            Console.Clear();
+
+            start();
+            mouse.start();
+
+            Kernel.enabled = true;
+            while (Kernel.enabled)
+            {
+                draw_taskbar();
+                draw_menubtn();
+                draw_mouse();
+
+                if (check_click(0, screenY - 15, 15, 15))
+                    disable();
+            }
         }
 
         public static void draw_dialog()
@@ -209,11 +248,14 @@ namespace PrismProject
             cd.Name = name;
             cd.HelpDesc = desc;
             cd.func = func;
+            
             cmds.Add(cd);
         }
 
         public static void Init()
         {
+            cmds.Clear();
+
             AddCommand("print", "Print any string of text, used for console applications.", print);
             AddCommand("about", "About prism OS", about);
             AddCommand("help", "List all available commands", help);
@@ -223,9 +265,30 @@ namespace PrismProject
             AddCommand("tone", "used to make sounds in an app", tone);
             AddCommand("list", "List all files in the current directory", list);
             AddCommand("create", "create a file/folder on the hard drive", create);
+            AddCommand("gui", "Loads the GUI.", guia);
+            AddCommand("keymap", "Change the keyboard layout.\nArguments\n==========\nfr for french layout, us for english layout and de for german layout", keymap);
         }
 
         #region Misc Commands
+
+        static void guia(string[] args)
+        {
+            gui.enable();
+        }
+
+        static void keymap(string[] args)
+        {
+            var layout = args[0];
+
+            if (layout == "fr")
+                KeyboardManager.SetKeyLayout(new Cosmos.System.ScanMaps.FR_Standard());
+            else if (layout == "us")
+                KeyboardManager.SetKeyLayout(new Cosmos.System.ScanMaps.US_Standard());
+            else if (layout == "de")
+                KeyboardManager.SetKeyLayout(new Cosmos.System.ScanMaps.DE_Standard());
+
+            Console.WriteLine("Successfully set the keyboard layout to " + layout + "!");
+        }
 
         static void list(string[] args)
         {
@@ -240,10 +303,9 @@ namespace PrismProject
         static void print(string[] args)
         {
             if (args.Length < 1)
-            {
                 tools.Error("Insufficient arguments.");
-            }
-            string content = String.Join(" ", args);
+
+            string content = string.Join(" ", args);
             Console.WriteLine(content);
         }
         static void tone(string[] args)
@@ -264,10 +326,10 @@ namespace PrismProject
                 Console.WriteLine("=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
                 Console.WriteLine();
                 tools.SetColor(ConsoleColor.Blue);
+
                 foreach (Command cmd in cmds)
-                {
                     Console.WriteLine(cmd.Name);
-                }
+
                 tools.SetColor(tools.colorCache);
                 Console.WriteLine();
                 Console.WriteLine("You can get more specific help for each command by using: HELP <COMMAND_NAME>");
@@ -350,7 +412,7 @@ _______________________________________________
         {
             var cspeed = Cosmos.Core.CPU.GetCPUCycleSpeed();
             var ram = Cosmos.Core.CPU.GetAmountOfRAM();
-            tools.syetem_message("CPU clock speed: " + cspeed + " Mhz");
+            tools.syetem_message("CPU clock speed: " + (cspeed / 1000 / 1000) + " Mhz");
             tools.syetem_message("Total ram: " + ram + " MB");
         }
         #endregion

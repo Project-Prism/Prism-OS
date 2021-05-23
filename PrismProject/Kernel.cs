@@ -16,6 +16,7 @@ namespace PrismProject
         #endregion
 
         public static bool Running = true;
+        public static bool enabled;
 
         protected override void BeforeRun()
         {
@@ -57,21 +58,7 @@ namespace PrismProject
                     string cmd = Console.ReadLine();
                     Cmds.Parse(cmd);
                 }
-            }
-            else
-            {
-                Console.Clear();
-
-                gui.start();
-                mouse.start();
-
-                while (Running)
-                {
-                    gui.draw_taskbar();
-                    gui.draw_menubtn();
-                    gui.draw_mouse();
-                }
-            }
+            } else gui.enable();
         }
     }
 }
