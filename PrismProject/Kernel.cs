@@ -9,15 +9,17 @@ namespace PrismProject
     {
         #region system info
         public static string versionID = "2.0 (gui beta)";
-        public static Random rnum = new System.Random();
+        public static Random rnum = new Random();
         public static string random = Convert.ToString(rnum.Next(0, 10));
         public static string root = "0:/";
-        public static CosmosVFS fs = new Cosmos.System.FileSystem.CosmosVFS();
+        public static CosmosVFS fs = new CosmosVFS();
         #endregion
+
+        public static bool Running = true;
 
         protected override void BeforeRun()
         {
-            Cosmos.System.FileSystem.VFS.VFSManager.RegisterVFS(fs);
+            VFSManager.RegisterVFS(fs);
         }
         protected override void Run()
         {
@@ -27,7 +29,8 @@ namespace PrismProject
             bool optionForm = false;
             int seconds = 1;
 
-            while (true)
+            // Using a variable instead of only true helps when debugging
+            while (Running)
             {
                 if (Console.KeyAvailable)
                 {
@@ -38,6 +41,7 @@ namespace PrismProject
                         break;
                     }
                 }
+
                 if (seconds++ > 2)
                     break;
             }
@@ -46,7 +50,8 @@ namespace PrismProject
             {
                 Console.WriteLine("Entering recovery mode...");
                 Console.WriteLine("Type \"help\" for a list of commands");
-                while (true)
+                
+                while (Running)
                 {
                     Console.Write(root + "> ");
                     string cmd = Console.ReadLine();
@@ -56,12 +61,15 @@ namespace PrismProject
             else
             {
                 Console.Clear();
+
                 gui.start();
-                gui.draw_taskbar();
-                gui.draw_menubtn();
-                while (true)
+                mouse.start();
+
+                while (Running)
                 {
-                    tools.Sleep(10);
+                    gui.draw_taskbar();
+                    gui.draw_menubtn();
+                    gui.draw_mouse();
                 }
             }
         }

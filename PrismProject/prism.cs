@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using Cosmos.HAL;
 using Cosmos.System.Graphics;
+using System.Drawing;
+using Cosmos.System;
+using Console = System.Console;
 
 namespace PrismProject
 {
@@ -14,22 +17,29 @@ namespace PrismProject
     {
         public static Canvas canvas;
         public static int screenX = 800;
-        public static int screenY = 800;
+        public static int screenY = 600;
+
+        public static Pen taskbar = new Pen(Color.Purple);
+        public static Pen menubtn = new Pen(Color.Orange);
+
+        public static Color backColor = Color.DarkCyan;
 
         public static void start()
         {
             canvas = FullScreenCanvas.GetFullScreenCanvas();
-            canvas.Clear(System.Drawing.Color.DarkCyan);
+            canvas.Mode = new Mode(screenX, screenY, ColorDepth.ColorDepth32);
+
+            canvas.Clear(backColor);
         }
 
         public static void draw_taskbar()
         {
-            canvas.DrawFilledRectangle(new Pen(System.Drawing.Color.Purple), 0, 0, screenX, screenY / 10);
+            canvas.DrawFilledRectangle(taskbar, 0, screenY - 15, screenX, 15);
         }
 
         public static void draw_menubtn()
         {
-
+            canvas.DrawFilledRectangle(menubtn, 0, screenY - 15, 15, 15);
         }
 
         public static void draw_dialog()
@@ -37,11 +47,44 @@ namespace PrismProject
 
         }
 
-        public static void mouse()
+        public static void draw_mouse()
         {
-
+            mouse.draw();
         }
     } //GUI class for drawing objects. contains functions for specific shapes and system popups/pages.
+
+    public class mouse
+    {
+        private static int lastX, lastY;
+
+        public static int X { get => (int) MouseManager.X; }
+
+        public static int Y { get => (int) MouseManager.Y; }
+
+        private static readonly Pen reset = new Pen(gui.backColor);
+        private static readonly Pen pen = new Pen(Color.Black);
+
+        public static void start()
+        {
+            MouseManager.ScreenWidth = (uint) gui.screenX;
+            MouseManager.ScreenHeight = (uint) gui.screenY;
+        }
+
+        public static void draw()
+        {
+            int x = X;
+            int y = Y;
+
+            if (reset.Color != gui.backColor)
+                reset.Color = gui.backColor;
+
+            gui.canvas.DrawFilledRectangle(reset, lastX, lastY, 10, 10);
+            gui.canvas.DrawFilledRectangle(pen, x, y, 10, 10);
+
+            lastX = x;
+            lastY = y;
+        }
+    } //mouse class for GUI
 
     public class tools
     {
@@ -50,42 +93,39 @@ namespace PrismProject
         {
             int StartSec = RTC.Second;
             int EndSec;
+
             if (StartSec + secNum > 59)
-            {
                 EndSec = 0;
-            }
             else
-            {
                 EndSec = StartSec + secNum;
-            }
-            while (RTC.Second != EndSec)
-            {
-                // Loop round
-            }
+
+            // Loop round
+            while (RTC.Second != EndSec) ;
         }
 
         public static void Error(string errorcontent)
         {
             colorCache = Console.ForegroundColor;
-            tools.SetColor(ConsoleColor.Red);
+            SetColor(ConsoleColor.Red);
+            
             Console.WriteLine("Error: " + errorcontent);
-            tools.SetColor(colorCache);
+            SetColor(colorCache);
         }
 
         public static void Warn(string warncontent)
         {
             colorCache = Console.ForegroundColor;
-            tools.SetColor(ConsoleColor.Yellow);
+            SetColor(ConsoleColor.Yellow);
             Console.WriteLine("Warning: " + warncontent);
-            tools.SetColor(colorCache);
+            SetColor(colorCache);
         }
 
         public static void syetem_message(string message)
         {
             colorCache = Console.ForegroundColor;
-            tools.SetColor(ConsoleColor.Magenta);
+            SetColor(ConsoleColor.Magenta);
             Console.WriteLine(message);
-            tools.SetColor(colorCache);
+            SetColor(colorCache);
         }
 
         //only works when in terminal mode, must find another way to play an audio file.
@@ -100,30 +140,29 @@ namespace PrismProject
         public static void argcheck(string[] args, int lessthan, int greaterthan)
         {
             if (args.Length < lessthan)
-            {
-                tools.Error("Insufficient arguments.");
-            }
-            if (args.Length > greaterthan)
-            {
-                tools.Error("too many arguments");
-            }
+                Error("Insufficient arguments.");
+            else if (args.Length > greaterthan)
+                Error("too many arguments");
         }
 
         public static void debug(string[] args)
         {
             Console.Write("CPU vendor: ");
-            Console.WriteLine(Cosmos.Core.ProcessorInformation.GetVendorName());
+            Console.WriteLine(Cosmos.Core.CPU.GetCPUVendorName());
+            
             Console.Write("Uptime: ");
             Console.WriteLine(Cosmos.Core.CPU.GetCPUUptime());
+            
             Console.Write("Kernel Interupts: ");
             Console.WriteLine(Cosmos.System.Kernel.InterruptsEnabled);
+            
             Console.Write("Intel vendor ID: ");
-            Console.WriteLine(Cosmos.HAL.VendorID.Intel);
+            Console.WriteLine(VendorID.Intel);
         }
 
         public static void success(string args)
         {
-            tools.SetColor(ConsoleColor.Green);
+            SetColor(ConsoleColor.Green);
             Console.WriteLine(args);
         }
 
