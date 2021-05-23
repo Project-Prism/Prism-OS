@@ -1,6 +1,6 @@
 # Prism OS
 <p>Now with a GUI (adding when its complete, legacy branch will stay the same as before)</p>
-Prism OS is a small project maintained by two developers.
+Prism OS is a small project maintained by three developers.
 This project is based off of Cosmos.
 
 <details>
