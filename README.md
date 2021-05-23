@@ -3,6 +3,9 @@
 Prism OS is a small project maintained by three developers.
 This project is based off of Cosmos.
 
+# Building
+Prism OS requires the latest Dev Kit to build properly.
+
 # Screenshots
 ![Capture1](https://user-images.githubusercontent.com/49339966/119268040-60c57d80-bbf1-11eb-8cc2-ed262d965841.PNG)
 ![Capture](https://user-images.githubusercontent.com/49339966/119268042-61f6aa80-bbf1-11eb-8cef-89380f3285b8.PNG)
