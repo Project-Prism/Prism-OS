@@ -382,13 +382,16 @@ _______________________________________________
             var action = "Shutdown";
             var time = 0;
 
-            if (args[0] == "-r")
-                action = "Reboot";
+            if (args.Length > 0)
+            {
+                if (args[0] == "-r")
+                    action = "Reboot";
 
-            if (args[0] == "-t")
-                time = int.Parse(args[1]);
-            else if (args[1] == "-t")
-                time = int.Parse(args[2]);
+                if (args[0] == "-t")
+                    time = int.Parse(args[1]);
+                else if (args.Length > 1 && args[1] == "-t")
+                    time = int.Parse(args[2]);
+            }
 
             Console.WriteLine(action + @" machine?
  ____       ____ 
