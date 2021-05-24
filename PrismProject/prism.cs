@@ -6,6 +6,12 @@ using System.Drawing;
 using Cosmos.System;
 using Console = System.Console;
 using Cosmos.System.Graphics.Fonts;
+using Cosmos.System.FileSystem.Listing;
+using Cosmos.System.Network;
+using Cosmos.System.Network.IPv4.UDP.DHCP;
+using Cosmos.System.Network.IPv4;
+using Cosmos.System.Network.IPv4.TCP;
+using System.Text;
 
 namespace PrismProject
 {
@@ -267,6 +273,9 @@ namespace PrismProject
             AddCommand("create", "create a file/folder on the hard drive", create);
             AddCommand("gui", "Loads the GUI.", guia);
             AddCommand("keymap", "Change the keyboard layout.\nArguments\n==========\nfr for french layout, us for english layout and de for german layout", keymap);
+            AddCommand("dhcp", "Sends a DHCP discover packet.", dhcp);
+            AddCommand("ping", "Sends an ICMP packet and returns the elapsed time.\nArguments\n==========\n<address>", ping);
+            AddCommand("tcp", "Sends a TCP packet and returns the response body as a UTF-8 string.\nArguments\n==========\n<address> <port> <timeout> <body>", tcp);
         }
 
         #region Misc Commands
@@ -370,39 +379,43 @@ _______________________________________________
         }
         static void shutdown(string[] args)
         {
-            if (args.Length < 1)
-            {
-                Console.WriteLine(@"Shutdown machine?
+            var action = "Shutdown";
+            var time = 0;
+
+            if (args[0] == "-r")
+                action = "Reboot";
+
+            if (args[0] == "-t")
+                time = int.Parse(args[1]);
+            else if (args[1] == "-t")
+                time = int.Parse(args[2]);
+
+            Console.WriteLine(action + @" machine?
  ____       ____ 
 ||y ||   / ||n ||
 ||__||  /  ||__||
 |/__\| /   |/__\|"
                 );
-                ConsoleKeyInfo input = Console.ReadKey(false);
-                if (input.KeyChar == 'Y' || input.KeyChar == 'y') { Cosmos.System.Power.Shutdown(); }
-                Console.WriteLine();
-                return;
-            }
-            else if (args[0] == "-r")
-            {
-                Console.WriteLine(@"Reboot machine?
- ____       ____ 
-||y ||   / ||n ||
-||__||  /  ||__||
-|/__\| /   |/__\|");
-                ConsoleKeyInfo input = Console.ReadKey(false);
-                if (input.KeyChar == 'Y' || input.KeyChar == 'y') { Cosmos.System.Power.Reboot(); }
-                Console.WriteLine();
-                return;
-            }
-            else if (args[0] == "-t")
-            {
-                tools.Warn("shutting down in " + args[1] + " seconds");
-                int time = Convert.ToInt32(args[1]);
-                tools.Sleep(time);
-                Cosmos.System.Power.Shutdown();
-            }
-            return;
+            ConsoleKeyInfo input = Console.ReadKey(false);
+
+            if (input.KeyChar == 'Y' || input.KeyChar == 'y')
+                if (time > 0)
+                {
+                    tools.Warn(action + " in " + time + " seconds");
+                    tools.Sleep(time);
+
+                    if (action == "Shutdown")
+                        Cosmos.System.Power.Shutdown();
+                    else
+                        Cosmos.System.Power.Reboot();
+                }
+                else
+                {
+                    if (action == "Shutdown")
+                        Cosmos.System.Power.Shutdown();
+                    else
+                        Cosmos.System.Power.Reboot();
+                }
         }
         static void clear(string[] args)
         {
@@ -415,14 +428,27 @@ _______________________________________________
             tools.syetem_message("CPU clock speed: " + (cspeed / 1000 / 1000) + " Mhz");
             tools.syetem_message("Total ram: " + ram + " MB");
         }
+        static void dhcp(string[] args)
+        {
+            networking.dhcp();
+            tools.syetem_message("Successfully set up DHCP!");
+        }
+        static void ping(string[] args)
+        {
+            tools.syetem_message(networking.ping(args[0]).ToString());
+        }
+        static void tcp(string[] args)
+        {
+            tools.syetem_message(Encoding.UTF8.GetString(networking.tcp(args[0], int.Parse(args[1]), int.Parse(args[2]), args[3])));
+        }
         #endregion
     } //Still same functionality, just moved here so evrything is more tidy.
 
     public class filesystem
     {
-        public static void lsdir(string args)
+        public static List<DirectoryEntry> lsdir(string args)
         {
-            Kernel.fs.GetDirectoryListing("0:/" + args);
+            return Kernel.fs.GetDirectoryListing("0:/" + args);
         }
 
         public static void cdir(string args)
@@ -433,6 +459,39 @@ _______________________________________________
 
     public class networking
     {
+        public static void dhcp()
+        {
+            using (var client = new DHCPClient())
+                client.SendDiscoverPacket();
+        }
 
+        public static int ping(string address, int timeout = 5000)
+        {
+            using (var client = new ICMPClient())
+            {
+                var point = new EndPoint(Address.Zero, 0);
+
+                client.Connect(Address.Parse(address));
+                client.SendEcho();
+
+                return client.Receive(ref point, timeout);
+            }
+        }
+
+        public static byte[] tcp(string address, int port, int timeout, string body)
+        {
+            using (var client = new TcpClient(port))
+            {
+                client.Connect(Address.Parse(address), port);
+                client.Send(Encoding.ASCII.GetBytes(body));
+
+                var endpoint = new EndPoint(Address.Zero, 0);
+
+                var data = client.Receive(ref endpoint);
+                var data2 = client.NonBlockingReceive(ref endpoint);
+
+                return data2;
+            }
+        }
     } //networking class, used for acessing the internet. comming soon.
 }
