@@ -1,9 +1,0 @@
-C:\Users\EvanLawrence\Source\Repos\Prism-OS\PrismProject\bin\Debug\netcoreapp2.0\cosmos\PrismProject.deps.json
-C:\Users\EvanLawrence\Source\Repos\Prism-OS\PrismProject\bin\Debug\netcoreapp2.0\cosmos\PrismProject.dll
-C:\Users\EvanLawrence\Source\Repos\Prism-OS\PrismProject\bin\Debug\netcoreapp2.0\cosmos\PrismProject.pdb
-C:\Users\EvanLawrence\Source\Repos\Prism-OS\PrismProject\obj\Debug\netcoreapp2.0\cosmos\PrismProject.csprojAssemblyReference.cache
-C:\Users\EvanLawrence\Source\Repos\Prism-OS\PrismProject\obj\Debug\netcoreapp2.0\cosmos\PrismProject.AssemblyInfoInputs.cache
-C:\Users\EvanLawrence\Source\Repos\Prism-OS\PrismProject\obj\Debug\netcoreapp2.0\cosmos\PrismProject.AssemblyInfo.cs
-C:\Users\EvanLawrence\Source\Repos\Prism-OS\PrismProject\obj\Debug\netcoreapp2.0\cosmos\PrismProject.csproj.CoreCompileInputs.cache
-C:\Users\EvanLawrence\Source\Repos\Prism-OS\PrismProject\obj\Debug\netcoreapp2.0\cosmos\PrismProject.dll
-C:\Users\EvanLawrence\Source\Repos\Prism-OS\PrismProject\obj\Debug\netcoreapp2.0\cosmos\PrismProject.pdb
