@@ -1,11 +1,11 @@
 # Prism OS
 <head><link rel="stylesheet" href="https://egkoppel.github.io/product-sans/google-fonts.css"></head>
-<p>Now with a GUI!</p>
-<p>Prism OS is a small project maintained by three developers. 
-This project is based off of Cosmos.</p>
+<p id="product-sans">Now with a GUI!</p>
+<p id="product-sans">Prism OS is a small project maintained by three developers. 
+<p id="product-sans">This project is based off of Cosmos.</p>
 
 # Building
-Prism OS requires the latest Dev Kit to build properly.
+<p id="product-sans">Prism OS requires the latest Dev Kit to build properly.</p>
 
 # Screenshots
 ![Capture1](https://user-images.githubusercontent.com/49339966/119268040-60c57d80-bbf1-11eb-8cc2-ed262d965841.PNG)
