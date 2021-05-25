@@ -1,7 +1,7 @@
 # Prism OS
-<p>Now with a GUI (adding when its complete, legacy branch will stay the same as before)</p>
-Prism OS is a small project maintained by three developers.
-This project is based off of Cosmos.
+<p style="font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif";>Now with a GUI!</p>
+<p>Prism OS is a small project maintained by three developers. 
+This project is based off of Cosmos.</p>
 
 # Building
 Prism OS requires the latest Dev Kit to build properly.
