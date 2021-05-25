@@ -12,20 +12,20 @@ using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Cosmos.System.Network.IPv4;
 using Cosmos.System.Network.IPv4.TCP;
 using System.Text;
-using getimg = System.Environment.SpecialFolder;
 
 namespace PrismProject
 {
-    //remember, you can compress any lines down by pressing the [-] button on a colapsable line to make it neater.
 
     public class Gui
     {
         public static Canvas canvas;
-        public static int screenX = 1280;
-        public static int screenY = 720;
+        public static int screenX = 800;
+        public static int screenY = 600;
 
         public static Pen taskbar = new Pen(Color.DarkSlateGray);
         public static Pen menubtn = new Pen(Color.Red);
+        public static Pen main_theme = new Pen(Color.White);
+        public static Pen main_theme_title = new Pen(Color.DarkSlateGray);
 
         public static Color backColor = Color.CornflowerBlue;
 
@@ -70,25 +70,33 @@ namespace PrismProject
         public static void enable()
         {
             Console.Clear();
-
             start();
             Mouse.start();
-
+            
+            //only update when the mouse moves, needs to be changed in the future, but should work for now.
             Kernel.enabled = true;
             while (Kernel.enabled)
             {
-                draw_taskbar();
-                draw_menubtn();
-                draw_mouse();
-
-                if (check_click(0, screenY - 30, 30, 30))
-                    disable();
+                int oldx = Mouse.X;
+                if(oldx != Mouse.X)
+                {
+                    draw_dialog();
+                    draw_taskbar();
+                    draw_menubtn();
+                    draw_mouse();
+                
+                    if (check_click(0, screenY - 30, 30, 30))
+                        Cosmos.System.Power.Reboot();
+                }
             }
-        }
+            
+                
+            }
 
         public static void draw_dialog()
         {
-
+            canvas.DrawFilledRectangle(main_theme, screenX / 4, screenY / 4, screenX / 4, screenY / 4);
+            canvas.DrawFilledRectangle(main_theme_title, screenX / 4, screenY / 4, screenX / 4, screenY / 20);
         }
 
         public static void draw_mouse()
