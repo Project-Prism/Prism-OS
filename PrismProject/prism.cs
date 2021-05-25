@@ -12,10 +12,11 @@ using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Cosmos.System.Network.IPv4;
 using Cosmos.System.Network.IPv4.TCP;
 using System.Text;
+using getimg = System.Environment.SpecialFolder;
 
 namespace PrismProject
 {
-    //remember, you can compress any lines down by pressing the [-] button on a colapsable line, to make it neater.
+    //remember, you can compress any lines down by pressing the [-] button on a colapsable line to make it neater.
 
     public class Gui
     {
@@ -24,9 +25,9 @@ namespace PrismProject
         public static int screenY = 720;
 
         public static Pen taskbar = new Pen(Color.DarkSlateGray);
-        public static Pen menubtn = new Pen(Color.AliceBlue);
+        public static Pen menubtn = new Pen(Color.Red);
 
-        public static Color backColor = Color.DarkCyan;
+        public static Color backColor = Color.CornflowerBlue;
 
         public static void start()
         {
@@ -38,12 +39,13 @@ namespace PrismProject
 
         public static void draw_taskbar()
         {
-            canvas.DrawFilledRectangle(taskbar, 0, screenY - 15, screenX, 15);
+            canvas.DrawFilledRectangle(taskbar, 0, screenY - 30, screenX, 30);
         }
 
         public static void draw_menubtn()
         {
-            canvas.DrawFilledRectangle(menubtn, 0, screenY - 15, 15, 15);
+            //canvas.DrawFilledRectangle(menubtn, 0, screenY - 30, 30, 30);
+            canvas.DrawFilledCircle(menubtn, 20, screenY - 15, 10);
         }
 
         public static bool check_click(int x, int y, int width, int height)
@@ -79,7 +81,7 @@ namespace PrismProject
                 draw_menubtn();
                 draw_mouse();
 
-                if (check_click(0, screenY - 15, 15, 15))
+                if (check_click(0, screenY - 30, 30, 30))
                     disable();
             }
         }
@@ -104,7 +106,7 @@ namespace PrismProject
         public static int Y { get => (int) MouseManager.Y; }
 
         private static readonly Pen reset = new Pen(Gui.backColor);
-        private static readonly Pen pen = new Pen(Color.Black);
+        private static readonly Pen pen = new Pen(Color.White);
 
         public static void start()
         {
@@ -122,6 +124,8 @@ namespace PrismProject
 
             Gui.canvas.DrawFilledRectangle(reset, lastX, lastY, 10, 10);
             Gui.canvas.DrawFilledRectangle(pen, x, y, 10, 10);
+            //Gui.canvas.DrawFilledCircle(reset, lastX, lastY, 10);
+            //Gui.canvas.DrawFilledCircle(pen, x, y, 10);
 
             lastX = x;
             lastY = y;
