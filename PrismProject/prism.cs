@@ -23,7 +23,7 @@ namespace PrismProject
         public static int screenX = 1280;
         public static int screenY = 720;
 
-        public static Pen taskbar = new Pen(Color.FromArgb(25, 25, 25));
+        public static Pen taskbar = new Pen(Color.DarkSlateGray);
         public static Pen menubtn = new Pen(Color.AliceBlue);
 
         public static Color backColor = Color.DarkCyan;
