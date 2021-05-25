@@ -26,7 +26,8 @@ namespace PrismProject
         {
             Console.Clear();
             Cmds.Init();
-            tools.Sleep(2);
+            Tools.Sleep(2);
+            Networking.dhcp();
             bool optionForm = false;
             int seconds = 1;
 
@@ -58,7 +59,7 @@ namespace PrismProject
                     string cmd = Console.ReadLine();
                     Cmds.Parse(cmd);
                 }
-            } else gui.enable();
+            } else Gui.enable();
         }
     }
 }

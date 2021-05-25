@@ -15,19 +15,16 @@ using System.Text;
 
 namespace PrismProject
 {
-    //remember, you can compress the line down by pressing the [-] button on a colapsable line, to make it neater.
-    //i just moved everything because this cs file is now the system core, everything lives here, instead of in chunks.
-    //this also alows for a smaller size because we arent re-using the same code multiple times. the first few commits have theese comments so everybody knows whats going on, they will be removed later.
-    //old size = 29 mb, new size = 28.1. it also feels a bit faster when using on a vm.
+    //remember, you can compress any lines down by pressing the [-] button on a colapsable line, to make it neater.
 
-    class gui
+    public class Gui
     {
         public static Canvas canvas;
-        public static int screenX = 800;
-        public static int screenY = 600;
+        public static int screenX = 1280;
+        public static int screenY = 720;
 
-        public static Pen taskbar = new Pen(Color.Purple);
-        public static Pen menubtn = new Pen(Color.Orange);
+        public static Pen taskbar = new Pen(Color.FromArgb(25, 25, 25));
+        public static Pen menubtn = new Pen(Color.AliceBlue);
 
         public static Color backColor = Color.DarkCyan;
 
@@ -51,8 +48,8 @@ namespace PrismProject
 
         public static bool check_click(int x, int y, int width, int height)
         {
-            return mouse.X <= x + width && mouse.X >= x
-                && mouse.Y <= y + height && mouse.Y >= y
+            return Mouse.X <= x + width && Mouse.X >= x
+                && Mouse.Y <= y + height && Mouse.Y >= y
                     && MouseManager.MouseState == MouseState.Left;
         }
 
@@ -73,7 +70,7 @@ namespace PrismProject
             Console.Clear();
 
             start();
-            mouse.start();
+            Mouse.start();
 
             Kernel.enabled = true;
             while (Kernel.enabled)
@@ -94,11 +91,11 @@ namespace PrismProject
 
         public static void draw_mouse()
         {
-            mouse.draw();
+            Mouse.draw();
         }
-    } //GUI class for drawing objects. contains functions for specific shapes and system popups/pages.
+    }
 
-    public class mouse
+    public class Mouse
     {
         private static int lastX, lastY;
 
@@ -106,13 +103,13 @@ namespace PrismProject
 
         public static int Y { get => (int) MouseManager.Y; }
 
-        private static readonly Pen reset = new Pen(gui.backColor);
+        private static readonly Pen reset = new Pen(Gui.backColor);
         private static readonly Pen pen = new Pen(Color.Black);
 
         public static void start()
         {
-            MouseManager.ScreenWidth = (uint) gui.screenX;
-            MouseManager.ScreenHeight = (uint) gui.screenY;
+            MouseManager.ScreenWidth = (uint) Gui.screenX;
+            MouseManager.ScreenHeight = (uint) Gui.screenY;
         }
 
         public static void draw()
@@ -120,18 +117,18 @@ namespace PrismProject
             int x = X;
             int y = Y;
 
-            if (reset.Color != gui.backColor)
-                reset.Color = gui.backColor;
+            if (reset.Color != Gui.backColor)
+                reset.Color = Gui.backColor;
 
-            gui.canvas.DrawFilledRectangle(reset, lastX, lastY, 10, 10);
-            gui.canvas.DrawFilledRectangle(pen, x, y, 10, 10);
+            Gui.canvas.DrawFilledRectangle(reset, lastX, lastY, 10, 10);
+            Gui.canvas.DrawFilledRectangle(pen, x, y, 10, 10);
 
             lastX = x;
             lastY = y;
         }
-    } //mouse class for GUI
+    }
 
-    public class tools
+    public class Tools
     {
         public static ConsoleColor colorCache;
         public static void Sleep(int secNum)
@@ -213,7 +210,7 @@ namespace PrismProject
 
         public static void SetColor(ConsoleColor color) { Console.ForegroundColor = color; }
         public static void SetBackColor(ConsoleColor color) { Console.BackgroundColor = color; }
-    } //rename from Utils, Still same functionality, just moved here so evrything is more tidy.
+    }
 
     public class Cmds
     {
@@ -245,7 +242,7 @@ namespace PrismProject
                 }
             }
 
-            tools.Error("Invalid command.");
+            Tools.Error("Invalid command.");
         }
 
         private static void AddCommand(string name, string desc, function func)
@@ -282,7 +279,7 @@ namespace PrismProject
 
         static void guia(string[] args)
         {
-            gui.enable();
+            Gui.enable();
         }
 
         static void keymap(string[] args)
@@ -312,14 +309,14 @@ namespace PrismProject
         static void print(string[] args)
         {
             if (args.Length < 1)
-                tools.Error("Insufficient arguments.");
+                Tools.Error("Insufficient arguments.");
 
             string content = string.Join(" ", args);
             Console.WriteLine(content);
         }
         static void tone(string[] args)
         {
-            tools.argcheck(args, 2, 2);
+            Tools.argcheck(args, 2, 2);
             int beep1 = int.Parse(args[0]);
             int beep2 = int.Parse(args[1]);
             Console.Beep(beep1, beep2);
@@ -328,18 +325,18 @@ namespace PrismProject
         {
             if (args.Length < 1)
             {
-                tools.colorCache = Console.ForegroundColor;
-                tools.SetColor(ConsoleColor.Cyan);
+                Tools.colorCache = Console.ForegroundColor;
+                Tools.SetColor(ConsoleColor.Cyan);
                 Console.WriteLine("________________________________________");
                 Console.WriteLine("---- List of all available commands ----");
                 Console.WriteLine("=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
                 Console.WriteLine();
-                tools.SetColor(ConsoleColor.Blue);
+                Tools.SetColor(ConsoleColor.Blue);
 
                 foreach (Command cmd in cmds)
                     Console.WriteLine(cmd.Name);
 
-                tools.SetColor(tools.colorCache);
+                Tools.SetColor(Tools.colorCache);
                 Console.WriteLine();
                 Console.WriteLine("You can get more specific help for each command by using: HELP <COMMAND_NAME>");
                 Console.WriteLine();
@@ -359,7 +356,7 @@ namespace PrismProject
         }
         static void about(string[] args)
         {
-            tools.SetColor(ConsoleColor.Yellow);
+            Tools.SetColor(ConsoleColor.Yellow);
             Console.WriteLine(@"
 _______________________________________________
     ____       _                   ____  _____
@@ -369,13 +366,13 @@ _______________________________________________
 /_/   /_/  /_/____/_/ /_/ /_/   \____//____/                                                
 _______________________________________________
 ");
-            tools.SetColor(ConsoleColor.Green);
+            Tools.SetColor(ConsoleColor.Green);
             Console.WriteLine("");
             Console.WriteLine("Prism OS (c) 2021, release " + Kernel.versionID);
             Console.WriteLine("Created by bad-codr and deadlocust");
-            tools.Warn("This is a closed beta version of Prism OS, we are not responsible for any damages caused by it.");
+            Tools.Warn("This is a closed beta version of Prism OS, we are not responsible for any damages caused by it.");
             Console.WriteLine();
-            tools.SetColor(ConsoleColor.White);
+            Tools.SetColor(ConsoleColor.White);
         }
         static void shutdown(string[] args)
         {
@@ -404,8 +401,8 @@ _______________________________________________
             if (input.KeyChar == 'Y' || input.KeyChar == 'y')
                 if (time > 0)
                 {
-                    tools.Warn(action + " in " + time + " seconds");
-                    tools.Sleep(time);
+                    Tools.Warn(action + " in " + time + " seconds");
+                    Tools.Sleep(time);
 
                     if (action == "Shutdown")
                         Cosmos.System.Power.Shutdown();
@@ -428,26 +425,26 @@ _______________________________________________
         {
             var cspeed = Cosmos.Core.CPU.GetCPUCycleSpeed();
             var ram = Cosmos.Core.CPU.GetAmountOfRAM();
-            tools.syetem_message("CPU clock speed: " + (cspeed / 1000 / 1000) + " Mhz");
-            tools.syetem_message("Total ram: " + ram + " MB");
+            Tools.syetem_message("CPU clock speed: " + (cspeed / 1000 / 1000) + " Mhz");
+            Tools.syetem_message("Total ram: " + ram + " MB");
         }
         static void dhcp(string[] args)
         {
-            networking.dhcp();
-            tools.syetem_message("Successfully set up DHCP!");
+            Networking.dhcp();
+            Tools.syetem_message("Successfully set up DHCP!");
         }
         static void ping(string[] args)
         {
-            tools.syetem_message(networking.ping(args[0]).ToString());
+            Tools.syetem_message(Networking.ping(args[0]).ToString());
         }
         static void tcp(string[] args)
         {
-            tools.syetem_message(Encoding.UTF8.GetString(networking.tcp(args[0], int.Parse(args[1]), int.Parse(args[2]), args[3])));
+            Tools.syetem_message(Encoding.UTF8.GetString(Networking.tcp(args[0], int.Parse(args[1]), int.Parse(args[2]), args[3])));
         }
         #endregion
-    } //Still same functionality, just moved here so evrything is more tidy.
+    }
 
-    public class filesystem
+    public class Filesystem
     {
         public static List<DirectoryEntry> lsdir(string args)
         {
@@ -458,9 +455,9 @@ _______________________________________________
         {
             Kernel.fs.CreateDirectory("0:/" + args);
         }
-    } //filesystem class, used for acessing files.
+    }
 
-    public class networking
+    public class Networking
     {
         public static void dhcp()
         {
@@ -496,5 +493,5 @@ _______________________________________________
                 return data2;
             }
         }
-    } //networking class, used for acessing the internet. comming soon.
+    }
 }
