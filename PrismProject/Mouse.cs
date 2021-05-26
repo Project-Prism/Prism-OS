@@ -31,8 +31,6 @@ namespace PrismProject
 
             Gui.canvas.DrawFilledRectangle(reset, lastX, lastY, 10, 10);
             Gui.canvas.DrawFilledRectangle(pen, x, y, 10, 10);
-            //Gui.canvas.DrawFilledCircle(reset, lastX, lastY, 10);
-            //Gui.canvas.DrawFilledCircle(pen, x, y, 10);
 
             lastX = x;
             lastY = y;
