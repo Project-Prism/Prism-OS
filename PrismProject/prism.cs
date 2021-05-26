@@ -84,9 +84,9 @@ namespace PrismProject
                     draw_taskbar();
                     draw_menubtn();
                     draw_mouse();
-                
+
                     if (check_click(0, screenY - 30, 30, 30))
-                        Cosmos.System.Power.Reboot();
+                    Cosmos.System.Power.Reboot();
                 }
             }
             
