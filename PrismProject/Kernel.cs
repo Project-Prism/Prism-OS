@@ -24,6 +24,7 @@ namespace PrismProject
         }
         protected override void Run()
         {
+            Tools.Sleep(1);
             Console.Clear();
             Cmds.Init();
             Networking.dhcp();
