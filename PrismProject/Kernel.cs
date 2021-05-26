@@ -26,40 +26,8 @@ namespace PrismProject
         {
             Console.Clear();
             Cmds.Init();
-            Tools.Sleep(2);
             Networking.dhcp();
-            bool optionForm = false;
-            int seconds = 1;
-
-            // Using a variable instead of only true helps when debugging
-            while (Running)
-            {
-                if (Console.KeyAvailable)
-                {
-                    ConsoleKeyInfo c = Console.ReadKey(true);
-                    if (c.Key == ConsoleKey.R)
-                    {
-                        optionForm = true;
-                        break;
-                    }
-                }
-
-                if (seconds++ > 2)
-                    break;
-            }
-
-            if (optionForm)
-            {
-                Console.WriteLine("Entering recovery mode...");
-                Console.WriteLine("Type \"help\" for a list of commands");
-                
-                while (Running)
-                {
-                    Console.Write(root + "> ");
-                    string cmd = Console.ReadLine();
-                    Cmds.Parse(cmd);
-                }
-            } else Gui.enable();
+            Gui.enable();
         }
     }
 }
