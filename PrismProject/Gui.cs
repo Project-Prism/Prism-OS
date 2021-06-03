@@ -57,13 +57,13 @@ namespace PrismProject
         {
             canvas = FullScreenCanvas.GetFullScreenCanvas();
             canvas.Mode = new Mode(screenX, screenY, ColorDepth.ColorDepth32);
-            Console.Clear();
+            canvas.Display();
             Mouse.start();
             Kernel.enabled = true;
             while (Kernel.enabled)
             {
                 if (check_click(0, screenY - 30, 30, 30))
-                    disable();
+
                 canvas.Clear(backColor);
                 Mouse.draw();
                 draw_dialog();

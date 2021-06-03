@@ -20,14 +20,14 @@ namespace PrismProject
 
         protected override void BeforeRun()
         {
-            VFSManager.RegisterVFS(fs);
+            
         }
         protected override void Run()
         {
-            Tools.Sleep(1);
-            Console.Clear();
+            VFSManager.RegisterVFS(fs);
             Cmds.Init();
             Networking.dhcp();
+            Console.Clear();
             Gui.enable();
         }
     }
