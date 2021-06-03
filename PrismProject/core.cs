@@ -236,5 +236,9 @@ _______________________________________________
             Tools.syetem_message(Encoding.UTF8.GetString(Networking.tcp(args[0], int.Parse(args[1]), int.Parse(args[2]), args[3])));
         }
         #endregion
+
+        #region fonts
+        public static string prismic = @"";
+        #endregion
     }
 }

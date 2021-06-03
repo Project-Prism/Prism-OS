@@ -37,6 +37,7 @@
         <HyperV_PxeInterface>192.168.0.8</HyperV_PxeInterface>
         <HyperV_EnableGDB>False</HyperV_EnableGDB>
         <HyperV_StartCosmosGDB>False</HyperV_StartCosmosGDB>
+        <ISOFile>bin\Debug\netcoreapp2.0\cosmos\PrismProject.iso</ISOFile>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -58,6 +59,7 @@
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
+        <PackageReference Include="Unofficial.Typography" Version="0.1.0" />
     </ItemGroup>
 
 </Project>
