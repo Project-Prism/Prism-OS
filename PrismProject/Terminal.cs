@@ -9,8 +9,6 @@ namespace PrismProject
     public class Cmds
     {
         #region stuff
-        public static int PixelHeight;
-        public static int PixelWidth;
         public struct Command
         {
             public string Name, HelpDesc;
@@ -36,7 +34,7 @@ namespace PrismProject
                 }
             }
 
-            Tools.Error("Invalid command.");
+            Tools.Message("Invalid command.");
         }
 
         private static void AddCommand(string name, string desc, function func)
@@ -70,12 +68,10 @@ namespace PrismProject
         }
 
         #region Misc Commands
-
         static void guia(string[] args)
         {
-            Gui.enable();
+            Graphics.Demo();
         }
-
         static void keymap(string[] args)
         {
             var layout = args[0];
@@ -89,21 +85,20 @@ namespace PrismProject
 
             Console.WriteLine("Successfully set the keyboard layout to " + layout + "!");
         }
-
         static void list(string[] args)
         {
-            var x = Kernel.fs.GetDirectoryListing(Kernel.root + args);
+            var x = Filesystem.fs.GetDirectoryListing(Filesystem.Root + args);
             Console.WriteLine(x);
         }
         static void create(string[] args)
         {
-            var x = Kernel.fs.CreateFile(Kernel.root + args);
-            Console.WriteLine("created " + Kernel.root + args);
+            var x = Filesystem.fs.CreateFile(Filesystem.Root + args);
+            Console.WriteLine("created " + Filesystem.Root + args);
         }
         static void print(string[] args)
         {
             if (args.Length < 1)
-                Tools.Error("Insufficient arguments.");
+                Tools.Message("Insufficient arguments.");
 
             string content = string.Join(" ", args);
             Console.WriteLine(content);
@@ -162,9 +157,9 @@ _______________________________________________
 ");
             Tools.SetColor(ConsoleColor.Green);
             Console.WriteLine("");
-            Console.WriteLine("Prism OS (c) 2021, release " + Kernel.versionID);
+            Console.WriteLine("Prism OS (c) 2021, release " + Kernel.Kernel_build);
             Console.WriteLine("Created by bad-codr and deadlocust");
-            Tools.Warn("This is a closed beta version of Prism OS, we are not responsible for any damages caused by it.");
+            Tools.Message("This is a closed beta version of Prism OS, we are not responsible for any damages caused by it.");
             Console.WriteLine();
             Tools.SetColor(ConsoleColor.White);
         }
@@ -195,7 +190,7 @@ _______________________________________________
             if (input.KeyChar == 'Y' || input.KeyChar == 'y')
                 if (time > 0)
                 {
-                    Tools.Warn(action + " in " + time + " seconds");
+                    Tools.Message(action + " in " + time + " seconds");
                     Tools.Sleep(time);
 
                     if (action == "Shutdown")
@@ -219,26 +214,22 @@ _______________________________________________
         {
             var cspeed = Cosmos.Core.CPU.GetCPUCycleSpeed();
             var ram = Cosmos.Core.CPU.GetAmountOfRAM();
-            Tools.syetem_message("CPU clock speed: " + (cspeed / 1000 / 1000) + " Mhz");
-            Tools.syetem_message("Total ram: " + ram + " MB");
+            Tools.Message("CPU clock speed: " + (cspeed / 1000 / 1000) + " Mhz");
+            Tools.Message("Total ram: " + ram + " MB");
         }
         static void dhcp(string[] args)
         {
-            Networking.dhcp();
-            Tools.syetem_message("Successfully set up DHCP!");
+            Networking.DHCP();
+            Tools.Message("Successfully set up DHCP!");
         }
         static void ping(string[] args)
         {
-            Tools.syetem_message(Networking.ping(args[0]).ToString());
+            Tools.Message(Networking.Ping(args[0]).ToString());
         }
         static void tcp(string[] args)
         {
-            Tools.syetem_message(Encoding.UTF8.GetString(Networking.tcp(args[0], int.Parse(args[1]), int.Parse(args[2]), args[3])));
+            Tools.Message(Encoding.UTF8.GetString(Networking.tcp(args[0], int.Parse(args[1]), int.Parse(args[2]), args[3])));
         }
-        #endregion
-
-        #region fonts
-        public static string prismic = @"";
         #endregion
     }
 }
