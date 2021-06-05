@@ -1,9 +1,6 @@
 ﻿using System;
 using Cosmos.HAL;
 using Console = System.Console;
-using Cosmos.System.Graphics;
-using System.Drawing;
-using Cosmos.System;
 
 namespace PrismProject
 {
