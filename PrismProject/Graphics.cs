@@ -24,7 +24,7 @@ namespace PrismProject
         public static Color Appbar = Color.DimGray;
         public static Color Window = Color.White;
         public static Color Windowbar = Color.DimGray;
-        public static Color Button = Color.Green;
+        public static Color Button = Color.DarkOliveGreen;
 
         public static void Mouse_init()
         {

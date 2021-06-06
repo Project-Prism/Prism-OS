@@ -4,7 +4,7 @@
         <TargetFramework>netcoreapp2.0</TargetFramework>
         <RuntimeIdentifier>cosmos</RuntimeIdentifier>
         <SelfContained>True</SelfContained>
-        <BinFormat>Bin</BinFormat>
+        <BinFormat>Elf</BinFormat>
         <StackCorruptionDetectionEnabled>True</StackCorruptionDetectionEnabled>
         <StackCorruptionDetectionLevel>MethodFooters</StackCorruptionDetectionLevel>
         <Deployment>ISO</Deployment>
