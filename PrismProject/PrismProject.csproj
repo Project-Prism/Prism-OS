@@ -4,7 +4,7 @@
         <TargetFramework>netcoreapp2.0</TargetFramework>
         <RuntimeIdentifier>cosmos</RuntimeIdentifier>
         <SelfContained>True</SelfContained>
-        <BinFormat>ELF</BinFormat>
+        <BinFormat>Bin</BinFormat>
         <StackCorruptionDetectionEnabled>True</StackCorruptionDetectionEnabled>
         <StackCorruptionDetectionLevel>MethodFooters</StackCorruptionDetectionLevel>
         <Deployment>ISO</Deployment>
@@ -16,7 +16,7 @@
         <VMware_Description>Use VMware Player or Workstation to deploy and debug.</VMware_Description>
         <VMware_Deployment>ISO</VMware_Deployment>
         <VMware_Launch>VMware</VMware_Launch>
-        <VMware_DebugEnabled>True</VMware_DebugEnabled>
+        <VMware_DebugEnabled>False</VMware_DebugEnabled>
         <VMware_DebugMode>Source</VMware_DebugMode>
         <VMware_IgnoreDebugStubAttribute>False</VMware_IgnoreDebugStubAttribute>
         <VMware_CosmosDebugPort>Serial: COM1</VMware_CosmosDebugPort>
@@ -38,6 +38,8 @@
         <HyperV_EnableGDB>False</HyperV_EnableGDB>
         <HyperV_StartCosmosGDB>False</HyperV_StartCosmosGDB>
         <ISOFile>bin\Debug\netcoreapp2.0\cosmos\PrismProject.iso</ISOFile>
+        <VMware_ISOFile>bin\Debug\netcoreapp2.0\cosmos\PrismProject.iso</VMware_ISOFile>
+        <HyperV_ISOFile>bin\Debug\netcoreapp2.0\cosmos\PrismProject.iso</HyperV_ISOFile>
     </PropertyGroup>
 
     <PropertyGroup>
