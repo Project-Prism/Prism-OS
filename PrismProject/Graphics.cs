@@ -18,13 +18,13 @@ namespace PrismProject
         #endregion
         //set fallback screen resolution if no resoultion is available.
         public static int screenX = 1024;
-        public static int screenY = 576;
+        public static int screenY = 768;
         //system theme colors
         public static Color Background = Color.CornflowerBlue;
         public static Color Appbar = Color.DimGray;
         public static Color Window = Color.White;
         public static Color Windowbar = Color.DimGray;
-        public static Color Button = Color.DarkOliveGreen;
+        public static Color Button = Color.Green;
 
         public static void Mouse_init()
         {
@@ -66,15 +66,16 @@ namespace PrismProject
             canvas = FullScreenCanvas.GetFullScreenCanvas();
             canvas.Mode = new Mode(screenX, screenY, ColorDepth.ColorDepth32);
             Mouse_init();
+            Clear(Background);
             Kernel.enabled = true;
             while (Kernel.enabled)
             {
-                Clear(Background);
                 Draw_box(Appbar, 0, screenY - 30, screenX, 30);
                 Draw_circle(Button, 20, screenY - 15, 10);
                 Draw_box(Window, screenX / 3, screenY / 4, screenX / 4, screenY / 4);
-                Draw_box(Windowbar, screenX / 4, screenY / 4, screenX / 3, screenY / 4);
+                Draw_box(Windowbar, screenX / 3, screenY / 4, screenX / 4, screenY / 20);
                 Draw_mouse();
+                Tools.Sleep(Convert.ToInt32(0.3));
             }
         }
         public static void Stop()
