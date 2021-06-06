@@ -17,8 +17,8 @@ namespace PrismProject
         private static Pen pen = new Pen(Color.White);
         #endregion
         //set fallback screen resolution if no resoultion is available.
-        public static int screenX = 1280;
-        public static int screenY = 1024;
+        public static int screenX = 1024;
+        public static int screenY = 576;
         //system theme colors
         public static Color Background = Color.CornflowerBlue;
         public static Color Appbar = Color.DimGray;
