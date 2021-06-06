@@ -24,7 +24,6 @@ namespace PrismProject
             string[] args = input.Split(new char[0]);
             string[] cmdargs = { };
             if (input.Contains(" ")) { cmdargs = input.Remove(0, input.IndexOf(' ') + 1).Split(new char[0]); }
-
             foreach (Command cmd in cmds)
             {
                 if (args[0].Equals(cmd.Name))
@@ -33,10 +32,8 @@ namespace PrismProject
                     return;
                 }
             }
-
             Tools.Message("Invalid command.");
         }
-
         private static void AddCommand(string name, string desc, function func)
         {
             Command cd = new Command();
@@ -46,7 +43,6 @@ namespace PrismProject
 
             cmds.Add(cd);
         }
-
         public static void Init()
         {
             cmds.Clear();

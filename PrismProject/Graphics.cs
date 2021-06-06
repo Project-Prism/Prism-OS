@@ -2,6 +2,7 @@ using Cosmos.System.Graphics;
 using System.Drawing;
 using Cosmos.System;
 using Cosmos.System.Graphics.Fonts;
+using System;
 
 namespace PrismProject
 {
@@ -52,6 +53,10 @@ namespace PrismProject
         {
             canvas.DrawFilledCircle(new Pen(color), fromX, fromY, radius);
         }
+        public static void Draw_triangle(Color color, Cosmos.System.Graphics.Point p1, Cosmos.System.Graphics.Point p2, Cosmos.System.Graphics.Point p3)
+        {
+            canvas.DrawTriangle(new Pen(color), p1, p2, p3);
+        }
         public static void Clear(Color color)
         {
             canvas.Clear(color);
@@ -70,6 +75,7 @@ namespace PrismProject
                 Draw_box(Window, screenX / 3, screenY / 4, screenX / 4, screenY / 4);
                 Draw_box(Windowbar, screenX / 4, screenY / 4, screenX / 3, screenY / 4);
                 Draw_mouse();
+                Tools.Sleep(Convert.ToInt32("0.3"));
             }
         }
         public static void Stop()
