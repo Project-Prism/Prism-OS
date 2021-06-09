@@ -9,7 +9,7 @@
 
 # Screenshots
 ![Capture1](https://user-images.githubusercontent.com/49339966/119268040-60c57d80-bbf1-11eb-8cc2-ed262d965841.PNG)
-![Capture](https://user-images.githubusercontent.com/49339966/119268042-61f6aa80-bbf1-11eb-8cef-89380f3285b8.PNG)
+![Capture](https://github.com/Project-Prism/Prism-OS/blob/main/Screenshot%202021-06-08%20224622.png)
 
 # Details
 <details>
