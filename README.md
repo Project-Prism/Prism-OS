@@ -9,7 +9,7 @@
 
 # Screenshots
 ![Capture1](https://user-images.githubusercontent.com/49339966/119268040-60c57d80-bbf1-11eb-8cc2-ed262d965841.PNG)
-![Capture](https://user-images.githubusercontent.com/49339966/119268042-61f6aa80-bbf1-11eb-8cef-89380f3285b8.PNG)
+![Capture](https://github.com/Project-Prism/Prism-OS/blob/main/Screenshot%202021-06-08%20224622.png)
 
 # Details
 <details>
@@ -26,7 +26,7 @@
         About Cosmos OS
     </Summary>
 <p>
-Cosmos is a program that allows you to create an entire operating system using c#, c++, and a few more.
+Cosmos is a program that allows you to create an entire operating system using c#, x#, and VB.net
 
 It allows for a file system, graphics, console, and hardware access, aswell as getting user input from a keyboard and a mouse.
 </p>
