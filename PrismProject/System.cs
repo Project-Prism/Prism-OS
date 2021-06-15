@@ -9,7 +9,6 @@ namespace PrismProject
         public static ConsoleColor colorCache;
         public static void SetColor(ConsoleColor color) { Console.ForegroundColor = color; }
         public static void SetBackColor(ConsoleColor color) { Console.BackgroundColor = color; }
-
         public static void Sleep(int secNum)
         {
             int StartSec = RTC.Second;

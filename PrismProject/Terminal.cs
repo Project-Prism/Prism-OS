@@ -62,7 +62,6 @@ namespace PrismProject
             AddCommand("ping", "Sends an ICMP packet and returns the elapsed time.\nArguments\n==========\n<address>", ping);
             AddCommand("tcp", "Sends a TCP packet and returns the response body as a UTF-8 string.\nArguments\n==========\n<address> <port> <timeout> <body>", tcp);
         }
-
         private static void Keyboard(string[] args)
         {
             throw new NotImplementedException();
