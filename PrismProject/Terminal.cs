@@ -106,7 +106,7 @@ namespace PrismProject
         }
         static void tone(string[] args)
         {
-            Tools.argcheck(args, 2, 2);
+            Tools.Length(args, 2, 2);
             int beep1 = int.Parse(args[0]);
             int beep2 = int.Parse(args[1]);
             Console.Beep(beep1, beep2);

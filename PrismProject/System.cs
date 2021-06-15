@@ -22,7 +22,7 @@ namespace PrismProject
             // Loop round
             while (RTC.Second != EndSec) ;
         }
-        public static void argcheck(string[] args, int lessthan, int greaterthan)
+        public static void Length(string[] args, int lessthan, int greaterthan)
         {
             if (args.Length < lessthan)
                 Message("Insufficient arguments.");

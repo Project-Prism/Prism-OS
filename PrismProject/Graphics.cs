@@ -22,13 +22,10 @@ namespace PrismProject
         public static int screenY = 768;
         //system theme colors
         public static Color Background = Color.CornflowerBlue;
-        public static Color Appbar = Color.DimGray;
+        public static Color Appbar = Color.FromArgb(24, 24, 24);
         public static Color Window = Color.White;
-        public static Color Windowbar = Color.DimGray;
-        public static Color Button = Color.Green;
-        //testing
-        private static Color[] pixelBuffer = new Color[(screenX * screenY) + screenX];
-        private static Color[] pixelBufferOld = new Color[(screenX * screenY) + screenX];
+        public static Color Windowbar = Color.FromArgb(30, 30, 30);
+        public static Color Button = Color.Aquamarine;
 
         public static void Mouse_init()
         {
@@ -81,9 +78,8 @@ namespace PrismProject
                 Draw_box(Appbar, 0, screenY - 30, screenX, 30);
                 Draw_circle(Button, 20, screenY - 15, 10);
                 Draw_box(Window, screenX / 3, screenY / 4, screenX / 4, screenY / 4);
-                Draw_box(Windowbar, screenX / 3, screenY / 4, screenX / 4, screenY / 20);
+                Draw_box(Windowbar, screenX / 3, screenY / 4, screenX / 4, screenY / 25);
                 Draw_mouse();
-                Tools.Sleep(Convert.ToInt32(0.3));
             }
         }
         public static void Stop()
