@@ -25,7 +25,7 @@ namespace PrismProject
         public static Color Appbar = Color.FromArgb(24, 24, 24);
         public static Color Window = Color.White;
         public static Color Windowbar = Color.FromArgb(30, 30, 30);
-        public static Color Button = Color.Aquamarine;
+        public static Color Button = Color.HotPink;
 
         public static void Mouse_init()
         {
