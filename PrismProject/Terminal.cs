@@ -54,39 +54,45 @@ namespace PrismProject
             AddCommand("clear", "clear entire console", clear);
             AddCommand("sysinfo", "Prints system information", sysinfo);
             AddCommand("tone", "used to make sounds in an app", tone);
-            AddCommand("list", "List all files in the current directory", list);
-            AddCommand("create", "create a file/folder on the hard drive", create);
-            AddCommand("gui", "Loads the GUI.", guia);
-            AddCommand("keymap", "Change the keyboard layout.\nArguments\n==========\nfr for french layout, us for english layout and de for german layout", keymap);
+            AddCommand("list", "List all files in the current directory", List_Directory);
+            AddCommand("create", "create a file/folder on the hard drive", Create_Directory);
+            AddCommand("gui", "Loads the GUI.", Gui);
+            AddCommand("keymap", "Change keyboard settings.\nArguments\n==========\nlayout\n==========\nfr for french layout, us for english layout and de for german layout", Keyboard);
             AddCommand("dhcp", "Sends a DHCP discover packet.", dhcp);
             AddCommand("ping", "Sends an ICMP packet and returns the elapsed time.\nArguments\n==========\n<address>", ping);
             AddCommand("tcp", "Sends a TCP packet and returns the response body as a UTF-8 string.\nArguments\n==========\n<address> <port> <timeout> <body>", tcp);
         }
 
+        private static void Keyboard(string[] args)
+        {
+            throw new NotImplementedException();
+        }
+
         #region Misc Commands
-        static void guia(string[] args)
+        static void Gui(string[] args)
         {
-            Graphics.Demo();
+            Graphics.Desktop();
         }
-        static void keymap(string[] args)
+        static void Keyboard(string type, string[] args)
         {
-            var layout = args[0];
-
-            if (layout == "fr")
-                KeyboardManager.SetKeyLayout(new Cosmos.System.ScanMaps.FR_Standard());
-            else if (layout == "us")
-                KeyboardManager.SetKeyLayout(new Cosmos.System.ScanMaps.US_Standard());
-            else if (layout == "de")
-                KeyboardManager.SetKeyLayout(new Cosmos.System.ScanMaps.DE_Standard());
-
-            Console.WriteLine("Successfully set the keyboard layout to " + layout + "!");
+            if (type == "layout")
+            {
+                var layout = args[0];
+                if (layout == "FR")
+                    KeyboardManager.SetKeyLayout(new Cosmos.System.ScanMaps.FR_Standard());
+                else if (layout == "US")
+                    KeyboardManager.SetKeyLayout(new Cosmos.System.ScanMaps.US_Standard());
+                else if (layout == "DE")
+                    KeyboardManager.SetKeyLayout(new Cosmos.System.ScanMaps.DE_Standard());
+                Console.WriteLine("Successfully set the keyboard layout to " + layout + "!");
+            }
         }
-        static void list(string[] args)
+        static void List_Directory(string[] args)
         {
             var x = Filesystem.fs.GetDirectoryListing(Filesystem.Root + args);
             Console.WriteLine(x);
         }
-        static void create(string[] args)
+        static void Create_Directory(string[] args)
         {
             var x = Filesystem.fs.CreateFile(Filesystem.Root + args);
             Console.WriteLine("created " + Filesystem.Root + args);

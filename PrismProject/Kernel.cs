@@ -6,7 +6,6 @@ namespace PrismProject
     public class Kernel : Sys.Kernel
     {
         public static string Kernel_build = "POSL Revision 2";
-
         public static bool Running = true;
         public static bool enabled;
         protected override void Run()
@@ -14,7 +13,7 @@ namespace PrismProject
             Cmds.Init();
             Networking.DHCP();
             Console.Clear();
-            Graphics.Demo();
+            Graphics.Desktop();
         }
     }
 }

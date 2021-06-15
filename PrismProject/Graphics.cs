@@ -3,6 +3,7 @@ using System.Drawing;
 using Cosmos.System;
 using Cosmos.System.Graphics.Fonts;
 using System;
+using System.Collections.Generic;
 
 namespace PrismProject
 {
@@ -25,6 +26,9 @@ namespace PrismProject
         public static Color Window = Color.White;
         public static Color Windowbar = Color.DimGray;
         public static Color Button = Color.Green;
+        //testing
+        private static Color[] pixelBuffer = new Color[(screenX * screenY) + screenX];
+        private static Color[] pixelBufferOld = new Color[(screenX * screenY) + screenX];
 
         public static void Mouse_init()
         {
@@ -53,15 +57,19 @@ namespace PrismProject
         {
             canvas.DrawFilledCircle(new Pen(color), fromX, fromY, radius);
         }
-        public static void Draw_triangle(Color color, Cosmos.System.Graphics.Point p1, Cosmos.System.Graphics.Point p2, Cosmos.System.Graphics.Point p3)
+        public static void Draw_triangle(Color color, int x1, int y1, int x2, int y2, int x3, int y3)
         {
-            canvas.DrawTriangle(new Pen(color), p1, p2, p3);
+            canvas.DrawTriangle(new Pen(color), x1, y1, x2, y2, x3, y3);
         }
         public static void Clear(Color color)
         {
             canvas.Clear(color);
         }
-        public static void Demo()
+        public static void Draw_back()
+        {
+
+        }
+        public static void Desktop()
         {
             canvas = FullScreenCanvas.GetFullScreenCanvas();
             canvas.Mode = new Mode(screenX, screenY, ColorDepth.ColorDepth32);

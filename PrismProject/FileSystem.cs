@@ -15,7 +15,7 @@ namespace PrismProject
         }
         public static List<DirectoryEntry> List_Directory(string args)
         {
-            return fs.GetDirectoryListing(Root + args);
+            return fs.GetDirectoryListing(args);
         }
         public static void Create_driectory(string args)
         {
