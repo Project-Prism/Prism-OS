@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PrismProject.resources
 {
-    class font_default
+    class Fonts
     {
         
     }
