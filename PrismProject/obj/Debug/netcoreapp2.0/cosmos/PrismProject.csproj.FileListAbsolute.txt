@@ -1,0 +1,9 @@
+C:\Users\evany\Desktop\folder80\Prism-OS-main\PrismProject\bin\Debug\netcoreapp2.0\cosmos\PrismProject.deps.json
+C:\Users\evany\Desktop\folder80\Prism-OS-main\PrismProject\bin\Debug\netcoreapp2.0\cosmos\PrismProject.dll
+C:\Users\evany\Desktop\folder80\Prism-OS-main\PrismProject\bin\Debug\netcoreapp2.0\cosmos\PrismProject.pdb
+C:\Users\evany\Desktop\folder80\Prism-OS-main\PrismProject\obj\Debug\netcoreapp2.0\cosmos\PrismProject.csproj.AssemblyReference.cache
+C:\Users\evany\Desktop\folder80\Prism-OS-main\PrismProject\obj\Debug\netcoreapp2.0\cosmos\PrismProject.AssemblyInfoInputs.cache
+C:\Users\evany\Desktop\folder80\Prism-OS-main\PrismProject\obj\Debug\netcoreapp2.0\cosmos\PrismProject.AssemblyInfo.cs
+C:\Users\evany\Desktop\folder80\Prism-OS-main\PrismProject\obj\Debug\netcoreapp2.0\cosmos\PrismProject.csproj.CoreCompileInputs.cache
+C:\Users\evany\Desktop\folder80\Prism-OS-main\PrismProject\obj\Debug\netcoreapp2.0\cosmos\PrismProject.dll
+C:\Users\evany\Desktop\folder80\Prism-OS-main\PrismProject\obj\Debug\netcoreapp2.0\cosmos\PrismProject.pdb
