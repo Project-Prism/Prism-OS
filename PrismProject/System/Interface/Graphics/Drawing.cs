@@ -1,9 +1,7 @@
 ﻿using Cosmos.System.Graphics;
 using Cosmos.System.Graphics.Fonts;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 
 namespace PrismProject
 {

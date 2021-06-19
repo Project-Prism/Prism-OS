@@ -70,6 +70,16 @@ namespace PrismProject
             throw new NotImplementedException();
         }
 
+        public static void Input()
+        {
+            while (true)
+            {
+                Console.Write("> ");
+                string cmd = Console.ReadLine();
+                Parse(cmd);
+            }
+        }
+
         #region Misc Commands
 
         static void Gui(string[] args)

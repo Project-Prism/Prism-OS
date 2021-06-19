@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 
 namespace PrismProject
 {
@@ -17,17 +15,17 @@ namespace PrismProject
         {
             Drawing draw = new Drawing();
             Cursor cursor = new Cursor();
-
+            //one percent for the load bar is 3.4
             draw.Clear(Color.Black);
             int Prg = 0;
-            while (Prg != 345)
+            while (Prg != 340)
             {
                 Prg++;
                 Prg++;
                 Prg++;
                 Prg++;
                 Prg++;
-                draw.Loadbar(Convert.ToInt32(Drawing.screenX / 3.1), Convert.ToInt32(Drawing.screenY / 1.3), Drawing.screenX / 3, Drawing.screenY / 50, Prg);
+                draw.Loadbar(Convert.ToInt32(Drawing.screenX / 3.1), Convert.ToInt32(Drawing.screenY / 1.3), Drawing.screenX / 3, Drawing.screenY / 65, Prg);
             }
             Tools.Sleep(3);
             draw.Clear(Color.Black);

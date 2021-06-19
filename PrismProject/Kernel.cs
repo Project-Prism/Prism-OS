@@ -11,10 +11,9 @@ namespace PrismProject
 
         protected override void Run()
         {
-            Console.Clear();
+            Interface.Start();
             Cmds.Init();
             Networking.DHCP();
-            Interface.Start();
         }
     }
 }
