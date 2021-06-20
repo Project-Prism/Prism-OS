@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cosmos.System.Graphics;
+using System;
 using System.Drawing;
 
 namespace PrismProject
@@ -10,6 +11,7 @@ namespace PrismProject
         public static Color Windowbar = Color.FromArgb(30, 30, 30);
         public static Color Button = Color.HotPink;
         public static Color Background = Color.CornflowerBlue;
+        public static Color Text = Color.White;
 
         public static void Start()
         {
@@ -30,7 +32,6 @@ namespace PrismProject
             Tools.Sleep(3);
             draw.Clear(Color.Black);
             draw.Clear(Background);
-            
             while (Kernel.canvasRunning)
             {
                 draw.Box(Appbar, 0, Drawing.screenY - 30, Drawing.screenX, 30);

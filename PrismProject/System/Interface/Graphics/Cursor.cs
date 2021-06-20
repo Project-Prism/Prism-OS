@@ -28,6 +28,7 @@ namespace PrismProject
             Drawing.canvas.DrawFilledRectangle(new Pen(Mouse_color), x, y, 10, 10);
             lastX = x;
             lastY = y;
+            
         }
     }
 }
