@@ -38,7 +38,6 @@ namespace PrismProject
                 Kernel.canvasRunning = false;
                 canvas.Disable();
                 PCScreenFont screenFont = PCScreenFont.Default;
-                VGAScreen.SetFont(screenFont.CreateVGAFont(), screenFont.Height);
             }
         }
     }

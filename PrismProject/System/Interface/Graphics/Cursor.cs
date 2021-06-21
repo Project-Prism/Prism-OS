@@ -1,9 +1,6 @@
 ﻿using Cosmos.System;
 using Cosmos.System.Graphics;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 
 namespace PrismProject
 {

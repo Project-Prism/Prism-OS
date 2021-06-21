@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Cosmos.System;
 using Console = System.Console;
 using System.Text;
-using PrismProject.System.core_apps;
 
 namespace PrismProject
 {
