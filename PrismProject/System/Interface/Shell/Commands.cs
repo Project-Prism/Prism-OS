@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cosmos.System;
 using Console = System.Console;
 using System.Text;
+using PrismProject.System.core_apps;
 
 namespace PrismProject
 {
@@ -18,7 +19,7 @@ namespace PrismProject
         public static List<Command> cmds = new List<Command>();
         public delegate void function(string[] args);
         #endregion
-
+        
         public static void Parse(string input)
         {
             string[] args = input.Split(new char[0]);
@@ -80,13 +81,14 @@ namespace PrismProject
             }
         }
 
+        
+
         #region Misc Commands
 
         static void Gui(string[] args)
         {
             Interface.Start();
         }
-
         static void Keyboard(string type, string[] args)
         {
             if (type == "layout")

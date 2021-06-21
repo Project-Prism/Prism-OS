@@ -64,8 +64,4 @@
         <PackageReference Include="Unofficial.Typography" Version="0.1.0" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="System\core-apps\" />
-    </ItemGroup>
-
 </Project>

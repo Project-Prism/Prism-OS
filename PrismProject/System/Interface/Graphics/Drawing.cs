@@ -7,14 +7,13 @@ namespace PrismProject
 {
     class Drawing
     {
-        public static Canvas canvas;
+
         public static int screenX = 1024;
         public static int screenY = 768;
+        public static VBECanvas canvas = new VBECanvas(new Mode(screenX, screenY, ColorDepth.ColorDepth32));
 
         public Drawing()
         {
-            canvas = FullScreenCanvas.GetFullScreenCanvas();
-            canvas.Mode = new Mode(screenX, screenY, ColorDepth.ColorDepth32);
             Kernel.canvasRunning = true;
         }
 

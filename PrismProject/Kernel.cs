@@ -12,10 +12,10 @@ namespace PrismProject
 
         protected override void Run()
         {
-            //Interface.Start();
+            Console.Clear();
+            Interface.Start();
             Cmds.Init();
             Networking.DHCP();
-            Cmds.Input();
         }
     }
 }
