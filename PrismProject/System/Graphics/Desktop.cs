@@ -39,6 +39,7 @@ namespace PrismProject
                 draw.Box(Window, screenX / 3, screenY / 4, screenX / 4, screenY / 4);
                 draw.Box(Windowbar, screenX / 3, screenY / 4, screenX / 4, screenY / 25);
                 cursor.Update();
+                Driver.update();
             }
         }
     }
