@@ -34,7 +34,6 @@ namespace PrismProject
             }
             Tools.Message("Invalid command.");
         }
-
         private static void AddCommand(string name, string desc, function func)
         {
             Command cd = new Command();
@@ -44,7 +43,6 @@ namespace PrismProject
 
             cmds.Add(cd);
         }
-
         public static void Init()
         {
             cmds.Clear();
@@ -64,12 +62,10 @@ namespace PrismProject
             AddCommand("ping", "Sends an ICMP packet and returns the elapsed time.\nArguments\n==========\n<address>", ping);
             AddCommand("tcp", "Sends a TCP packet and returns the response body as a UTF-8 string.\nArguments\n==========\n<address> <port> <timeout> <body>", tcp);
         }
-
         private static void Keyboard(string[] args)
         {
             throw new NotImplementedException();
         }
-
         public static void Input()
         {
             while (true)
@@ -80,13 +76,10 @@ namespace PrismProject
             }
         }
 
-        
-
         #region Misc Commands
-
         static void Gui(string[] args)
         {
-            Interface.Start();
+            Desktop.Start();
         }
         static void Keyboard(string type, string[] args)
         {
