@@ -12,6 +12,7 @@ manjarno## Ignore Visual Studio temporary files, build results, and
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+obj/
 
 # Mono auto generated files
 mono_crash.*

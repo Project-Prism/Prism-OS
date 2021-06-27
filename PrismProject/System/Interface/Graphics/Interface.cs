@@ -14,10 +14,10 @@ namespace PrismProject
 
         public static void Start()
         {
+            Drawing.Init();
             Drawing draw = new Drawing();
             Cursor cursor = new Cursor();
-            //one percent for the load bar is 3.4
-            draw.Clear(Color.Black);
+            Drawing.canvas.Display();
             int Prg = 0;
             while (Prg != 340)
             {
@@ -27,9 +27,7 @@ namespace PrismProject
                 Prg++;
                 Prg++;
                 draw.Loadbar(Convert.ToInt32(Drawing.screenX / 3.1), Convert.ToInt32(Drawing.screenY / 1.3), Drawing.screenX / 3, Drawing.screenY / 65, Prg);
-            }
-            Tools.Sleep(3);
-            draw.Clear(Color.Black);
+            }//one percent for the load bar is 3.4
             draw.Clear(Background);
             while (Kernel.canvasRunning)
             {

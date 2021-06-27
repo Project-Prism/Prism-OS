@@ -11,6 +11,7 @@ namespace PrismProject
         public static int Y { get => (int)MouseManager.Y; }
         public static Color Mouse_color = Color.White;
 
+
         public Cursor()
         {
             MouseManager.ScreenWidth = (uint)Drawing.screenX;
