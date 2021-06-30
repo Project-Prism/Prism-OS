@@ -27,12 +27,10 @@ namespace PrismProject
 
         public void Update()
         {
-            int x = X;
-            int y = Y;
             Draw.DrawFilledRectangle(new Pen(Desktop.Background), lastX, lastY, 10, 10);
-            Draw.DrawFilledRectangle(new Pen(Mouse_color), x, y, 10, 10);
-            lastX = x;
-            lastY = y;
+            Draw.DrawFilledRectangle(new Pen(Mouse_color), X, Y, 10, 10);
+            lastX = X;
+            lastY = Y;
             
         }
     }

@@ -8,7 +8,7 @@ namespace PrismProject
 {
     public class Cmds
     {
-        #region stuff
+        #region Variables
         public struct Command
         {
             public string Name, HelpDesc;
@@ -18,7 +18,6 @@ namespace PrismProject
         public static List<Command> cmds = new List<Command>();
         public delegate void function(string[] args);
         #endregion
-        
         public static void Parse(string input)
         {
             string[] args = input.Split(new char[0]);
@@ -32,7 +31,7 @@ namespace PrismProject
                     return;
                 }
             }
-            Tools.Message("Invalid command.");
+            Console.WriteLine("Invalid command.");
         }
         private static void AddCommand(string name, string desc, function func)
         {
@@ -71,7 +70,7 @@ namespace PrismProject
             while (true)
             {
                 Console.Write("> ");
-                string cmd = Console.ReadLine();
+                var cmd = Console.ReadLine();
                 Parse(cmd);
             }
         }
@@ -97,18 +96,18 @@ namespace PrismProject
         }
         static void List_Directory(string[] args)
         {
-            var x = Filesystem.fs.GetDirectoryListing(Filesystem.Root + args);
+            var x = Filesystem.fs.GetDirectoryListing(Filesystem.drive0 + args);
             Console.WriteLine(x);
         }
         static void Create_Directory(string[] args)
         {
-            var x = Filesystem.fs.CreateFile(Filesystem.Root + args);
-            Console.WriteLine("created " + Filesystem.Root + args);
+            var x = Filesystem.fs.CreateFile(Filesystem.drive0 + args);
+            Console.WriteLine("created " + Filesystem.drive0 + args);
         }
         static void print(string[] args)
         {
             if (args.Length < 1)
-                Tools.Message("Insufficient arguments.");
+                Console.WriteLine("Insufficient arguments.");
 
             string content = string.Join(" ", args);
             Console.WriteLine(content);
@@ -156,27 +155,19 @@ namespace PrismProject
         static void about(string[] args)
         {
             Tools.SetColor(ConsoleColor.Yellow);
-            Console.WriteLine(@"
-_______________________________________________
-    ____       _                   ____  _____
-   / __ \_____(_)________ ___     / __ \/ ___/
-  / /_/ / ___/ / ___/ __ `__ \   / / / /\__ \ 
- / ____/ /  / (__  ) / / / / /  / /_/ /___/ / 
-/_/   /_/  /_/____/_/ /_/ /_/   \____//____/                                                
-_______________________________________________
-");
+            Console.WriteLine(Images.art1);
             Tools.SetColor(ConsoleColor.Green);
             Console.WriteLine("");
             Console.WriteLine("Prism OS (c) 2021, release " + Kernel.Kernel_build);
             Console.WriteLine("Created by bad-codr and deadlocust");
-            Tools.Message("This is a closed beta version of Prism OS, we are not responsible for any damages caused by it.");
+            Console.WriteLine("This is a closed beta version of Prism OS, we are not responsible for any damages caused by it.");
             Console.WriteLine();
             Tools.SetColor(ConsoleColor.White);
         }
         static void shutdown(string[] args)
         {
-            var action = "Shutdown";
-            var time = 0;
+            string action = "Shutdown";
+            int time = 0;
 
             if (args.Length > 0)
             {
@@ -189,31 +180,19 @@ _______________________________________________
                     time = int.Parse(args[2]);
             }
 
-            Console.WriteLine(action + @" machine?
- ____       ____ 
-||y ||   / ||n ||
-||__||  /  ||__||
-|/__\| /   |/__\|"
-                );
+            Console.WriteLine(action + " machine? [Y/N]");
             ConsoleKeyInfo input = Console.ReadKey(false);
 
             if (input.KeyChar == 'Y' || input.KeyChar == 'y')
                 if (time > 0)
                 {
-                    Tools.Message(action + " in " + time + " seconds");
+                    Console.WriteLine(action + " in " + time + " seconds");
                     Tools.Sleep(time);
 
                     if (action == "Shutdown")
-                        Cosmos.System.Power.Shutdown();
+                        Power.Shutdown();
                     else
-                        Cosmos.System.Power.Reboot();
-                }
-                else
-                {
-                    if (action == "Shutdown")
-                        Cosmos.System.Power.Shutdown();
-                    else
-                        Cosmos.System.Power.Reboot();
+                        Power.Reboot();
                 }
         }
         static void clear(string[] args)
@@ -224,21 +203,20 @@ _______________________________________________
         {
             var cspeed = Cosmos.Core.CPU.GetCPUCycleSpeed();
             var ram = Cosmos.Core.CPU.GetAmountOfRAM();
-            Tools.Message("CPU clock speed: " + (cspeed / 1000 / 1000) + " Mhz");
-            Tools.Message("Total ram: " + ram + " MB");
+            Console.WriteLine("CPU clock speed: " + (cspeed / 1000 / 1000) + " Mhz");
+            Console.WriteLine("Total ram: " + ram + " MB");
         }
         static void dhcp(string[] args)
         {
             Networking.DHCP();
-            Tools.Message("Successfully set up DHCP!");
         }
         static void ping(string[] args)
         {
-            Tools.Message(Networking.Ping(args[0]).ToString());
+            Console.WriteLine(Networking.Ping(args[0]).ToString());
         }
         static void tcp(string[] args)
         {
-            Tools.Message(Encoding.UTF8.GetString(Networking.tcp(args[0], int.Parse(args[1]), int.Parse(args[2]), args[3])));
+            Console.WriteLine(Encoding.UTF8.GetString(Networking.tcp(args[0], int.Parse(args[1]), int.Parse(args[2]), args[3])));
         }
         #endregion
     }

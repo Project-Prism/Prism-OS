@@ -27,14 +27,9 @@ namespace PrismProject
         public static void Length(string[] args, int lessthan, int greaterthan)
         {
             if (args.Length < lessthan)
-                Message("Insufficient arguments.");
+                Console.WriteLine("Insufficient arguments.");
             else if (args.Length > greaterthan)
-                Message("too many arguments");
-        }
-
-        public static void Message(string Text)
-        {
-            Console.WriteLine(Text);
+                Console.WriteLine("too many arguments");
         }
     }
 }

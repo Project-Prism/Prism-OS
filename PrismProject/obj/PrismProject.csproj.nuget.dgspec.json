@@ -72,6 +72,10 @@
               "version": "[2.0.9, )",
               "autoReferenced": true
             },
+            "System.Console": {
+              "target": "Package",
+              "version": "[4.3.1, )"
+            },
             "Unofficial.Typography": {
               "target": "Package",
               "version": "[0.1.0, )"

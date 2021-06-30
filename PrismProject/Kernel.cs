@@ -12,10 +12,11 @@ namespace PrismProject
 
         protected override void Run()
         {
-            Driver.Init();
+            Desktop.Start();
             Cmds.Init();
             Networking.DHCP();
-            Desktop.Start();
+            Filesystem.Init();
+            //Cmds.Input();
         }
     }
 }

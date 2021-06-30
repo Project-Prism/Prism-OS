@@ -1,5 +1,6 @@
 ﻿using Cosmos.System.Graphics;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 
 namespace PrismProject
@@ -23,14 +24,15 @@ namespace PrismProject
 
         public static void Start()
         {
-            //Draw the desktop
+            Driver.Init();
             int Prg = 0;
-            while (Prg != 340)
+            while (Prg != screenY/2.5)
             {
                 //1 percent is 3.4
                 Prg++;
-                draw.Loadbar(Convert.ToInt32(screenX / 3.1), Convert.ToInt32(screenY / 1.3), screenX / 3, screenY / 65, Prg);
+                draw.Loadbar(screenX/4, Convert.ToInt32(screenY /1.6), Convert.ToInt32(screenX /1.6), screenY/65, Prg);
             }
+            Tools.Sleep(2);
             Draw.Clear(Background);
             while (Kernel.canvasRunning)
             {
@@ -39,7 +41,6 @@ namespace PrismProject
                 draw.Box(Window, screenX / 3, screenY / 4, screenX / 4, screenY / 4);
                 draw.Box(Windowbar, screenX / 3, screenY / 4, screenX / 4, screenY / 25);
                 cursor.Update();
-                Driver.update();
             }
         }
     }
