@@ -76,7 +76,12 @@ namespace PrismProject
         {
             Box(Desktop.Window, from_X, from_Y, Width, Height);
             Box(Desktop.Windowbar, from_X, from_Y, Width, screenY / 25);
-            Text(Title, Color.White, 15, from_X, from_Y);
+            Text(Title, Color.White, 15, from_X, from_Y+5);
+        }
+        public void Textbox(String text, Color Background, Color Foreground, int from_X, int from_Y, int Width)
+        {
+            draw.Box(Background, from_X, from_Y, Width, 15);
+            draw.Text(text, Foreground, 15, from_X, from_Y+1);
         }
         public void Clear(Color color)
         {

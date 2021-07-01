@@ -37,6 +37,13 @@ namespace PrismProject
             {
                 draw.Box(Appbar, 0, screenY-30, screenX, 30);
                 draw.Circle(Button, 20, screenY-15, 10);
+                draw.Textbox("Used memory: " + Memory.Used + "MB", Color.Black, Color.White, 0, 0, 250);
+                draw.Textbox("Total memory: " + Memory.Total + "MB", Color.Black, Color.White, 0, 15, 250);
+                draw.Textbox("Free memory: " + Memory.Free + "MB", Color.Black, Color.White, 0, 30, 250);
+                if (Memory.Free == 0)
+                {
+                    draw.Textbox("Out of memory!", Color.Black, Color.Red, 0, 0, 200);
+                }
                 draw.Window(screenX/4, screenY/4, screenX/2, screenX/2, "New Window");
                 cursor.Update();
             }
