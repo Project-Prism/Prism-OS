@@ -34,7 +34,7 @@ namespace PrismProject
         {
             canvas.DrawLine(new Pen(color), from_X, from_y, to_X, to_Y);
         }
-        public void Text(String text, Color color, int Width, int x, int y)
+        public void Text(String font, String text, Color color, int Width, int x, int y)
         {
             char[] Char_array = new char[text.Length];
             for (int i = 0; i < text.Length; i++)
@@ -45,17 +45,9 @@ namespace PrismProject
             foreach (char c in Char_array)
             {
                 int Margin = space + Width + 5;
-                canvas.DrawChar(c, Cosmos.System.Graphics.Fonts.PCScreenFont.Default, new Pen(color), x+Margin, y);
-                space++;
-                space++;
-                space++;
-                space++;
-                space++;
-                space++;
-                space++;
-                space++;
-                space++;
-                space++;
+                //canvas.DrawChar(c, Cosmos.System.Graphics.Fonts.PCScreenFont.Default, new Pen(color), x+Margin, y); <- old
+                canvas.DrawBitFontString(font, color, text, x, y);
+                space += 10;
             }
             
         }
@@ -72,16 +64,16 @@ namespace PrismProject
             Box(Color.DarkGray, Convert.ToInt32(fromX), Convert.ToInt32(fromY), length, height);
             Box(Color.White, Convert.ToInt32(fromX), Convert.ToInt32(fromY), percentage, height);
         }
-        public void Window(int from_X, int from_Y, int Width, int Height, string Title)
+        public void Window(string font, int from_X, int from_Y, int Width, int Height, string Title)
         {
             Box(Desktop.Window, from_X, from_Y, Width, Height);
             Box(Desktop.Windowbar, from_X, from_Y, Width, screenY / 25);
-            Text(Title, Color.White, 15, from_X, from_Y+5);
+            Text(font, Title, Color.White, 15, from_X, from_Y+5);
         }
-        public void Textbox(String text, Color Background, Color Foreground, int from_X, int from_Y, int Width)
+        public void Textbox(string font, String text, Color Background, Color Foreground, int from_X, int from_Y, int Width)
         {
             draw.Box(Background, from_X, from_Y, Width, 15);
-            draw.Text(text, Foreground, 15, from_X, from_Y+1);
+            draw.Text(font, text, Foreground, 15, from_X, from_Y+1);
         }
         public void Clear(Color color)
         {
