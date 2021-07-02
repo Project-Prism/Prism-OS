@@ -25,12 +25,11 @@ namespace PrismProject
 
         public void Update()
         {
-            draw.Box(Desktop.Background, lastX, lastY, 11, 11);
-            draw.Box(Mouse_color, X - 1, Y - 1, 11, 11);
-            draw.Box(Mouse_color, X, Y, 10, 10);
+            draw.Box(Desktop.Background, lastX - 1, lastY - 1, 9, 9);
+            draw.Box(Mouse_back, X, Y, 8, 8);
+            draw.Box(Mouse_color, X+1, Y+1, 6, 6);
             lastX = X;
             lastY = Y;
-            
         }
     }
 }
