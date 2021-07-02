@@ -14,7 +14,6 @@ namespace PrismProject
             public string Name, HelpDesc;
             public function func;
         }
-
         public static List<Command> cmds = new List<Command>();
         public delegate void function(string[] args);
         #endregion
@@ -46,17 +45,25 @@ namespace PrismProject
         {
             cmds.Clear();
 
+            //basic commands
             AddCommand("print", "Print any string of text, used for console applications.", print);
             AddCommand("about", "About prism OS", about);
             AddCommand("help", "List all available commands", help);
-            AddCommand("shutdown", "Shuts down the system.\nArguments\n==========\n-r restarts the system instead", shutdown);
+            AddCommand("shutdown", "Shuts down the system.\n    Arguments:\n       [ -r ] Restart\n       [ -t ] timed shutdown\n       [ -t TIME -r ] timed restart", shutdown);
             AddCommand("clear", "clear entire console", clear);
             AddCommand("sysinfo", "Prints system information", sysinfo);
             AddCommand("tone", "used to make sounds in an app", tone);
-            AddCommand("list", "List all files in the current directory", List_Directory);
-            AddCommand("create", "create a file/folder on the hard drive", Create_Directory);
+            //filesystem commands
+            AddCommand("makedir", "create a folder on the selected disk", Create_Directory);
+            AddCommand("listdir", "List all files in a directory", List_Directory);
+            AddCommand("read", "Read all text data from a file on the disk", Read_file);
+            AddCommand("write", "Write text to a file.\n    Arguments:\n        PATH: full path to file\n       CONTENTS: data to be written", Write_file);
+            AddCommand("format", "Format a drive to fat32\n    Arguments:\n        Drive id: specify the drive id\n        quick format: true or false", format);
+            //graphics
             AddCommand("gui", "Loads the GUI.", Gui);
+            //keyboard
             AddCommand("keymap", "Change keyboard settings.\nArguments\n==========\nlayout\n==========\nfr for french layout, us for english layout and de for german layout", Keyboard);
+            //networking commands
             AddCommand("dhcp", "Sends a DHCP discover packet.", dhcp);
             AddCommand("ping", "Sends an ICMP packet and returns the elapsed time.\nArguments\n==========\n<address>", ping);
             AddCommand("tcp", "Sends a TCP packet and returns the response body as a UTF-8 string.\nArguments\n==========\n<address> <port> <timeout> <body>", tcp);
@@ -67,10 +74,12 @@ namespace PrismProject
         }
         public static void Input()
         {
+            List<string> cmdlist = new List<string>();
             while (true)
             {
                 Console.Write("> ");
                 var cmd = Console.ReadLine();
+                cmdlist.Add(cmd);
                 Parse(cmd);
             }
         }
@@ -93,16 +102,6 @@ namespace PrismProject
                     KeyboardManager.SetKeyLayout(new Cosmos.System.ScanMaps.DE_Standard());
                 Console.WriteLine("Successfully set the keyboard layout to " + layout + "!");
             }
-        }
-        static void List_Directory(string[] args)
-        {
-            var x = Filesystem.fs.GetDirectoryListing(Filesystem.drive0 + args);
-            Console.WriteLine(x);
-        }
-        static void Create_Directory(string[] args)
-        {
-            var x = Filesystem.fs.CreateFile(Filesystem.drive0 + args);
-            Console.WriteLine("created " + Filesystem.drive0 + args);
         }
         static void print(string[] args)
         {
@@ -166,34 +165,24 @@ namespace PrismProject
         }
         static void shutdown(string[] args)
         {
-            string action = "Shutdown";
-            int time = 0;
-
             if (args.Length > 0)
             {
                 if (args[0] == "-r")
-                    action = "Reboot";
-
-                if (args[0] == "-t")
-                    time = int.Parse(args[1]);
-                else if (args.Length > 1 && args[1] == "-t")
-                    time = int.Parse(args[2]);
-            }
-
-            Console.WriteLine(action + " machine? [Y/N]");
-            ConsoleKeyInfo input = Console.ReadKey(false);
-
-            if (input.KeyChar == 'Y' || input.KeyChar == 'y')
-                if (time > 0)
                 {
-                    Console.WriteLine(action + " in " + time + " seconds");
-                    Tools.Sleep(time);
-
-                    if (action == "Shutdown")
-                        Power.Shutdown();
-                    else
-                        Power.Reboot();
+                    Power.Reboot();
                 }
+                else if (args[0] == "-t" && args[2] == "-r")
+                {
+                    Tools.Sleep(Convert.ToInt32(args[1]));
+                    Power.Reboot();
+                }
+                else if (args[0] == "-t")
+                {
+                    Tools.Sleep(Convert.ToInt32(args[1]));
+                    Power.Shutdown();
+                }
+
+            }
         }
         static void clear(string[] args)
         {
@@ -206,6 +195,30 @@ namespace PrismProject
             Console.WriteLine("CPU clock speed: " + (cspeed / 1000 / 1000) + " Mhz");
             Console.WriteLine("Total ram: " + ram + " MB");
         }
+
+        //filesystem commands
+        static void List_Directory(string[] path)
+        {
+            Console.WriteLine(Filesystem.List_Directory(path[0]));
+        }
+        static void Create_Directory(string[] path)
+        {
+            Filesystem.Create_driectory(path[0]);
+        }
+        static void Read_file(string[] path)
+        {
+            Console.WriteLine(Filesystem.Read_file(path[0]));
+        }
+        static void Write_file(string[] args)
+        {
+            Filesystem.Write(args[0], args[1]);
+        }
+        static void format(string[] args)
+        {
+            Filesystem.format(args[0], Convert.ToBoolean(args[1]));
+        }
+
+        //Network related commands
         static void dhcp(string[] args)
         {
             Networking.DHCP();
