@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Cosmos.System.FileSystem;
 using Cosmos.System.FileSystem.Listing;
-using Cosmos.System.FileSystem;
 using Cosmos.System.FileSystem.VFS;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace PrismProject
@@ -53,7 +53,7 @@ namespace PrismProject
                 return false;
             else
                 File.WriteAllText(path, contents);
-                return true;
+            return true;
         }
         public static string Format_type(string DriveID)
         {

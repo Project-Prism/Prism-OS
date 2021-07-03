@@ -1,5 +1,5 @@
-﻿using System;
-using Cosmos.HAL;
+﻿using Cosmos.HAL;
+using System;
 using Console = System.Console;
 
 namespace PrismProject

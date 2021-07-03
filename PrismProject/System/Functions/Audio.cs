@@ -4,7 +4,7 @@
     {
         public static void play()
         {
-            
+
         }
     }
 }

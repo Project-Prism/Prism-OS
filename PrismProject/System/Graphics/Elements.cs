@@ -49,7 +49,7 @@ namespace PrismProject
                 canvas.DrawBitFontString(font, color, text, x, y);
                 space += 10;
             }
-            
+
         }
         public void Arrow(Color color, int width, int x, int y)
         {
@@ -57,7 +57,7 @@ namespace PrismProject
         }
         public void Array(Color[] Colors_array, Cosmos.System.Graphics.Point point, int Width, int Height)
         {
-            canvas.DrawArray(Colors_array, point, Width, Height); 
+            canvas.DrawArray(Colors_array, point, Width, Height);
         }
         public void Loadbar(int fromX, int fromY, int length, int height, int percentage)
         {
@@ -68,12 +68,16 @@ namespace PrismProject
         {
             Box(Desktop.Window, from_X, from_Y, Width, Height);
             Box(Desktop.Windowbar, from_X, from_Y, Width, screenY / 25);
-            Text(font, Title, Color.White, 15, from_X, from_Y+5);
+            Text(font, Title, Color.White, 15, from_X, from_Y + 5);
         }
         public void Textbox(string font, String text, Color Background, Color Foreground, int from_X, int from_Y, int Width)
         {
             draw.Box(Background, from_X, from_Y, Width, 15);
-            draw.Text(font, text, Foreground, 15, from_X, from_Y+1);
+            draw.Text(font, text, Foreground, 15, from_X, from_Y + 1);
+        }
+        public void Image(Bitmap img, int x, int y)
+        {
+            canvas.DrawImageAlpha(img, x, y);
         }
         public void Clear(Color color)
         {

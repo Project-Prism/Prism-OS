@@ -1,6 +1,6 @@
-﻿using Cosmos.System.Network.IPv4.UDP.DHCP;
-using Cosmos.System.Network.IPv4;
+﻿using Cosmos.System.Network.IPv4;
 using Cosmos.System.Network.IPv4.TCP;
+using Cosmos.System.Network.IPv4.UDP.DHCP;
 using System.Text;
 
 namespace PrismProject

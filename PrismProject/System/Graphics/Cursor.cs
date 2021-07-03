@@ -16,6 +16,7 @@ namespace PrismProject
         public static int Y { get => (int)MouseManager.Y; }
         public static Color Mouse_color = Color.White;
         public static Color Mouse_back = Color.Black;
+        public static Color[] Cursor_colors = { Color.White, Color.Black };
 
         public Cursor()
         {
@@ -25,9 +26,10 @@ namespace PrismProject
 
         public void Update()
         {
-            draw.Box(Desktop.Background, lastX - 1, lastY - 1, 9, 9);
+            draw.Box(Desktop.Background, lastX, lastY, 10, 10);
+            //draw.Image(Images.cur1, X, Y);
             draw.Box(Mouse_back, X, Y, 8, 8);
-            draw.Box(Mouse_color, X+1, Y+1, 6, 6);
+            draw.Box(Mouse_color, X + 1, Y + 1, 6, 6);
             lastX = X;
             lastY = Y;
         }

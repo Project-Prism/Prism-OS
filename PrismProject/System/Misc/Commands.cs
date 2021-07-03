@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Cosmos.System;
+using System;
 using System.Collections.Generic;
-using Cosmos.System;
-using Console = System.Console;
 using System.Text;
+using Console = System.Console;
 
 namespace PrismProject
 {
