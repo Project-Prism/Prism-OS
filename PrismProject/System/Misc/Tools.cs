@@ -1,5 +1,6 @@
 ﻿using Cosmos.HAL;
 using System;
+using System.Net;
 using Console = System.Console;
 
 namespace PrismProject
@@ -30,6 +31,20 @@ namespace PrismProject
                 Console.WriteLine("Insufficient arguments.");
             else if (args.Length > greaterthan)
                 Console.WriteLine("too many arguments");
+        }
+        public static bool IsIPAddress(string ipAddress)
+        {
+            bool retVal = false;
+
+            try
+            {
+                IPAddress address;
+                retVal = IPAddress.TryParse(ipAddress, out address);
+            }
+            catch (Exception ex)
+            {
+            }
+            return retVal;
         }
     }
 }

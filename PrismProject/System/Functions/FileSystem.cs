@@ -10,11 +10,26 @@ namespace PrismProject
     public class Filesystem
     {
         public static CosmosVFS fs = new CosmosVFS();
-        public static string Drive_0 = @"0:\";
+        public static DriveInfo Drive_0 = new DriveInfo("0");
 
         public static void Init()
         { //initalise the filesystem, best to only trigger this on boot.
             VFSManager.RegisterVFS(fs);
+        }
+        public static string Get_Drive_label(string Drive_ID)
+        {
+            DriveInfo drive = new DriveInfo(Drive_ID);
+            return drive.Name;
+        }
+        public static void Set_Drive_letter(string Drive_ID, string Drive_name)
+        {
+            DriveInfo drive = new DriveInfo(Drive_ID);
+            drive.VolumeLabel = Drive_name;
+        }
+        public static string Drive_type(string Drive_ID)
+        {
+            DriveInfo drive = new DriveInfo(Drive_ID);
+            return drive.DriveType.ToString();
         }
         public static void format(string driveID, bool quickformat)
         {

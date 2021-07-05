@@ -2,9 +2,8 @@
 {
     class Audio
     {
-        public static void play()
+        public static void play(string file)
         {
-
         }
     }
 }

@@ -53,7 +53,9 @@ namespace PrismProject
             AddCommand("clear", "clear entire console", clear);
             AddCommand("sysinfo", "Prints system information", sysinfo);
             AddCommand("tone", "used to make sounds in an app", tone);
-            //filesystem commands
+            AddCommand("aboutmem", "Information about system memory", meminfo);
+            AddCommand("OOMtest", "A test for the OutOfMemory class", OOMtest);
+            //filesystem
             AddCommand("makedir", "create a folder on the selected disk", Create_Directory);
             AddCommand("listdir", "List all files in a directory", List_Directory);
             AddCommand("read", "Read all text data from a file on the disk", Read_file);
@@ -194,6 +196,16 @@ namespace PrismProject
             var ram = Cosmos.Core.CPU.GetAmountOfRAM();
             Console.WriteLine("CPU clock speed: " + (cspeed / 1000 / 1000) + " Mhz");
             Console.WriteLine("Total ram: " + ram + " MB");
+        }
+        static void meminfo(string[] args)
+        {
+            Console.WriteLine("Used memory: " + Memory.Used + "MB");
+            Console.WriteLine("Free memory: " + Memory.Free + "MB");
+            Console.WriteLine("Total memory: " + Memory.Total + "MB");
+        }
+        static void OOMtest(string[] args)
+        {
+            Memory.OutOfMemoryWarning();
         }
 
         //filesystem commands

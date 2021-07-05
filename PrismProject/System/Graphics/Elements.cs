@@ -45,8 +45,8 @@ namespace PrismProject
             foreach (char c in Char_array)
             {
                 int Margin = space + Width + 5;
-                //canvas.DrawChar(c, Cosmos.System.Graphics.Fonts.PCScreenFont.Default, new Pen(color), x+Margin, y);\
-                canvas.DrawBitFontString(font, color, text, x, y);
+                canvas.DrawChar(c, Cosmos.System.Graphics.Fonts.PCScreenFont.Default, new Pen(color), x+Margin, y);
+                //canvas.DrawBitFontString(font, color, text, x, y);
                 space += 10;
             }
 

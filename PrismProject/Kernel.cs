@@ -1,3 +1,4 @@
+using System;
 using Sys = Cosmos.System;
 
 namespace PrismProject
@@ -15,6 +16,7 @@ namespace PrismProject
             Cmds.Init();
             Networking.DHCP();
             Filesystem.Init();
+            Filesystem.Set_Drive_letter(Convert.ToString(Filesystem.Drive_0), Convert.ToString('X'));
             //Cmds.Input();
         }
     }

@@ -15,16 +15,18 @@ namespace PrismProject
         public static Color Text = Color.White;
 
         //Define the graphics method
+
         public static int screenX = Driver.screenX;
         public static int screenY = Driver.screenY;
-        public static Canvas canvas = Driver.canvas;
         public static Elements draw = new Elements();
+        public static Canvas canvas = Driver.canvas;
         public static Cursor cursor = new Cursor();
 
         public static void Start()
         {
             Driver.Init();
             int Prg = 0;
+            draw.Text("Microsoft Sans Serif", "Hold SHIFT to enter recovery mode", Color.White, 0, screenX/8, Convert.ToInt32(screenY /1.5));
             while (Prg != screenX / 2)
             {
                 Prg++;
@@ -37,16 +39,21 @@ namespace PrismProject
             {
                 draw.Box(Appbar, 0, screenY - 30, screenX, 30);
                 draw.Circle(Button, 20, screenY - 15, 10);
-                //draw.Textbox("Microsoft Sans Serif", "Used memory: " + Memory.Used + "MB", Color.Black, Color.White, 0, 0, 250);
-                //draw.Textbox("Microsoft Sans Serif", "Total memory: " + Memory.Total + "MB", Color.Black, Color.White, 0, 15, 250);
-                //draw.Textbox("Microsoft Sans Serif", "Free memory: " + Memory.Free + "MB", Color.Black, Color.White, 0, 30, 250);
+                draw.Textbox("Microsoft Sans Serif", "Used memory: " + Memory.Used + "MB", Color.Black, Color.White, 0, 0, 250);
+                draw.Textbox("Microsoft Sans Serif", "Total memory: " + Memory.Total + "MB", Color.Black, Color.White, 0, 15, 250);
+                draw.Textbox("Microsoft Sans Serif", "Free memory: " + Memory.Free + "MB", Color.Black, Color.White, 0, 30, 250);
                 if (Memory.Free == 0)
                 {
-                    draw.Clear(Color.Beige);
-                    draw.Textbox("Lucida Sans", "Out of memory!", Color.Black, Color.Red, screenX / 4, screenY / 4, 200);
+                    Memory.OutOfMemoryWarning();
                 }
-                //draw.Window("Lucida Sans", screenX / 4, screenY/4, screenX/2, screenX/2, "Empty Window");
+                draw.Window("Lucida Sans", screenX / 4, screenY / 4, screenX / 2, screenX / 2, "Empty Window");
                 cursor.Update();
+            }
+            if (!Kernel.canvasRunning)
+            {
+                Cmds.Init();
+                canvas.Disable();
+                Cmds.Input();
             }
         }
     }

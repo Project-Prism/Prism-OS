@@ -1,6 +1,9 @@
-﻿using Cosmos.System.Network.IPv4;
+﻿using Cosmos.HAL;
+using Cosmos.System.Network.Config;
+using Cosmos.System.Network.IPv4;
 using Cosmos.System.Network.IPv4.TCP;
 using Cosmos.System.Network.IPv4.UDP.DHCP;
+using Cosmos.System.Network.IPv4.UDP.DNS;
 using System.Text;
 
 namespace PrismProject
@@ -37,6 +40,22 @@ namespace PrismProject
                 var data2 = client.NonBlockingReceive(ref endpoint);
 
                 return data2;
+            }
+        }
+        public static Address DNS(string address)
+        {
+            if (!Tools.IsIPAddress(address))
+            {
+                using (var xClient = new DnsClient())
+                {
+                    xClient.Connect(new Address(192, 168, 1, 254));
+                    xClient.SendAsk(address);
+                    return xClient.Receive(10000);
+                }
+            }
+            else
+            {
+                return new Address(0, 0, 0, 0);
             }
         }
     }
