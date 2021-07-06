@@ -12,7 +12,7 @@
 | Add lock screen    | No progress      | Await faster canvas       |
 | Add sys update     | No progress      | needs extra networking    |
 | Fix ram counter    | Finding issue    | free ram part broken      |
-| Fix readme         | Working on       | only shows one name       |
+| Fix readme         | Fixed            | only shows one name       |
 
 
 
