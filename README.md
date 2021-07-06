@@ -14,7 +14,7 @@
 - [ ] Readme.md issue
 - [x] fix BitFont gibberish
 - [x] fix BitFont freeze
-[Request a feature]
+- [Request a feature]
 (GitHub.com)
 
 # Building Prism
