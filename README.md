@@ -16,11 +16,9 @@
 <p id="product-sans">Prism OS requires the latest "Developer kit" of Cosmos to build properly. If you use an old version,it may not function as intended</p>
 
 # Credits
-<p id="product-sans>
-Nifanfa - BitFont
-Terminal.cs - general developmen
-Deadlocust - general development
-</p>
+<p id="product-sans>Nifanfa - BitFont</p>
+<p id="product-sans>Terminal.cs - general development</p>
+<p id="product-sans>Deadlocust - general development</p>
 
 # Screenshots
 ![Capture1](https://user-images.githubusercontent.com/49339966/119268040-60c57d80-bbf1-11eb-8cc2-ed262d965841.PNG)
