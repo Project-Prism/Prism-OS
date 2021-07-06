@@ -7,12 +7,12 @@
 
 | To-DO list         | Current Status   | extra                     |
 |--------------------|------------------|---------------------------|
-| Add window manager | No progress      | Await faster canvas       |
-| Add OOBE setup     | No progress      | Await faster canvas       |
-| Add lock screen    | No progress      | Await faster canvas       |
-| Add sys update     | No progress      | needs extra networking    |
-| Fix ram counter    | Finding issue    | free ram part broken      |
-| Fix readme         | Fixed            | only shows one name       |
+| Add window manager | None [ ]         | Await faster canvas       |
+| Add OOBE setup     | None [ ]         | Await faster canvas       |
+| Add lock screen    | None [ ]         | Await faster canvas       |
+| Add sys update     | None [ ]         | needs extra networking    |
+| Fix ram counter    | In progress [ ]  | free ram part broken      |
+| Fix readme         | Done [ ]         | only shows one name       |
 
 
 
