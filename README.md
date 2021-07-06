@@ -14,7 +14,8 @@
 - [ ] Readme.md issue
 - [x] fix BitFont gibberish
 - [x] fix BitFont freeze
-<button>Request a feature</button>
+[Request a feature]
+(GitHub.com)
 
 # Building Prism
 <p id="product-sans">Prism OS requires the latest "Developer kit" of Cosmos to build properly. If you use an old version,it may not function as intended</p>
