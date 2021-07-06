@@ -7,13 +7,13 @@
 - [ ] Add an efficient window manager that takes up as little resources
 - [ ] Add a OOBE setup
 - [ ] Add a lock screen
-- [ ] Update system
-- [ ] Fix Bitfont text renderer
-- [ ] Fix used ram counter
+- [ ] Update system method, from internet
+- [x] Fix Bitfont text renderer
+- [ ] Fix free ram counter
 - [x] fix compile issue (broken from 5/7/21)
 - [ ] Readme.md issue
-- [ ] fix BitFont gibberish
-- [ ] fix BitFont freeze
+- [x] fix BitFont gibberish
+- [x] fix BitFont freeze
 <button>Request a feature</button>
 
 # Building Prism
