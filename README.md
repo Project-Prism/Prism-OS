@@ -15,6 +15,18 @@
 - [x] fix BitFont gibberish
 - [x] fix BitFont freeze
 
+| To-DO              | Current Status   | extra                     |
+|--------------------|------------------|---------------------------|
+| Fix readme         | in progress      |                           |
+| Add window manager | not started      | Await faster canvas       |
+| Add OOBE setup     | Not started      | Await faster canvas       |
+| Add lock screen    | not started      | Await faster canvas       |
+| Add sys update     | not started      | needs extra networking    |
+| Fix ram counter    | assessing issue  | free ram part broken      |
+| Fix readme         | assessing issue  | only shows one name       |
+
+
+
 # Building Prism
 <p id="product-sans">Prism OS requires the latest "Developer kit" of Cosmos to build properly. If you use an old version,it may not function as intended</p>
 
