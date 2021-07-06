@@ -10,7 +10,7 @@
 - [ ] Update system
 - [ ] Fix Bitfont text renderer
 - [ ] Fix used ram counter
-- [ ] fix compile issue (broken from 5/7/21)
+- [x] fix compile issue (broken from 5/7/21)
 
 # Building Prism
 <p id="product-sans">Prism OS requires the latest "Developer kit" of Cosmos to build properly. If you use an old version,it may not function as intended</p>
