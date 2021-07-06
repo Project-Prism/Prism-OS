@@ -12,7 +12,7 @@
 | Add OOBE setup     | None        | Await faster canvas       |
 | Add lock screen    | None        | Await faster canvas       |
 | Add sys update     | None        | needs extra networking    |
-| Fix ram counter    | In progress | free ram part broken      |
+| Fix ram counter    | Done        | free ram part broken      |
 | Fix readme         | Done        | only shows one name       |
 
 
