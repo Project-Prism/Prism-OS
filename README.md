@@ -3,16 +3,20 @@
 <p id="product-sans">Prism OS is a small project maintained by four developers, It is intended to become a widely used OS, the motivation behind this project is the fact most current operating systems are slow,and based off of old existing kernels, windows for example has not had a complete kernel rewrite in 20+ years.</p>
 <p id="product-sans">This project is based off of the Cosmos developer kit, it uses C# as its internal coding language</p>
 
+| Languages |
+|-----------|
+| <a src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="csharp" width="40" height="40"/>|
+
 # To-do list
 
-| To-DO list         | Current Status    | extra                     |
-|--------------------|-------------------|---------------------------|
-| Add window manager | None -[ ]         | Await faster canvas       |
-| Add OOBE setup     | None -[ ]         | Await faster canvas       |
-| Add lock screen    | None -[ ]         | Await faster canvas       |
-| Add sys update     | None -[ ]         | needs extra networking    |
-| Fix ram counter    | In progress -[ ]  | free ram part broken      |
-| Fix readme         | Done -[ ]         | only shows one name       |
+| To-DO list         | Current Status | extra                     |
+|--------------------|----------------|---------------------------|
+| Add window manager | None           | Await faster canvas       |
+| Add OOBE setup     | None           | Await faster canvas       |
+| Add lock screen    | None           | Await faster canvas       |
+| Add sys update     | None           | needs extra networking    |
+| Fix ram counter    | In progress    | free ram part broken      |
+| Fix readme         | Done           | only shows one name       |
 
 
 
