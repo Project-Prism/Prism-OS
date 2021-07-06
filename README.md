@@ -14,6 +14,7 @@
 | Fix ram counter    | Done        | free ram part broken      |
 | Fix readme         | Done        | only shows one name       |
 | add rounded cube   | None        |                           |
+| fix canvas         | none        | doesnt load               |
 
 
 
