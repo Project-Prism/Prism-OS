@@ -5,14 +5,14 @@
 
 # To-do list
 
-| To-DO list         | Current Status   | extra                     |
-|--------------------|------------------|---------------------------|
-| Add window manager | None [ ]         | Await faster canvas       |
-| Add OOBE setup     | None [ ]         | Await faster canvas       |
-| Add lock screen    | None [ ]         | Await faster canvas       |
-| Add sys update     | None [ ]         | needs extra networking    |
-| Fix ram counter    | In progress [ ]  | free ram part broken      |
-| Fix readme         | Done [ ]         | only shows one name       |
+| To-DO list         | Current Status    | extra                     |
+|--------------------|-------------------|---------------------------|
+| Add window manager | None -[ ]         | Await faster canvas       |
+| Add OOBE setup     | None -[ ]         | Await faster canvas       |
+| Add lock screen    | None -[ ]         | Await faster canvas       |
+| Add sys update     | None -[ ]         | needs extra networking    |
+| Fix ram counter    | In progress -[ ]  | free ram part broken      |
+| Fix readme         | Done -[ ]         | only shows one name       |
 
 
 
