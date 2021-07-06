@@ -1,18 +1,19 @@
-# About the project
+# About the project <IMG src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="csharp" width="40" height="40"/>
 <head><link rel="stylesheet" href="https://egkoppel.github.io/product-sans/google-fonts.css"></head>
 <p id="product-sans">Prism OS is a small project maintained by four developers, It is intended to become a widely used OS, the motivation behind this project is the fact most current operating systems are slow,and based off of old existing kernels, windows for example has not had a complete kernel rewrite in 20+ years.</p>
 <p id="product-sans">This project is based off of the Cosmos developer kit, it uses C# as its internal coding language</p>
 
 # To-do list
 
-| To-DO list         | Current Status   | extra                     |
-|--------------------|------------------|---------------------------|
-| Add window manager | No progress      | Await faster canvas       |
-| Add OOBE setup     | No progress      | Await faster canvas       |
-| Add lock screen    | No progress      | Await faster canvas       |
-| Add sys update     | No progress      | needs extra networking    |
-| Fix ram counter    | Finding issue    | free ram part broken      |
-| Fix readme         | Fixed            | only shows one name       |
+| To-DO list         | Status      | extra                     |
+|--------------------|-------------|---------------------------|
+| Add window manager | None        | Await faster canvas       |
+| Add OOBE setup     | None        | Await faster canvas       |
+| Add lock screen    | None        | Await faster canvas       |
+| Add sys update     | None        | needs extra networking    |
+| Fix ram counter    | Done        | free ram part broken      |
+| Fix readme         | Done        | only shows one name       |
+| add rounded cube   | None        |                           |
 
 
 
