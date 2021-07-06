@@ -7,11 +7,11 @@ namespace PrismProject
     class Desktop
     {
         //Default theme colors
-        public static Color Appbar = Color.FromArgb(75, 24, 24, 24);
+        public static Color Appbar = Color.FromArgb(24, 24, 24);
         public static Color Window = Color.White;
         public static Color Windowbar = Color.FromArgb(30, 30, 30);
-        public static Color Button = Color.LawnGreen;
-        public static Color Background = Color.CornflowerBlue;
+        public static Color Button = Color.White;
+        public static Color Background = Color.SteelBlue;
         public static Color Text = Color.White;
 
         //Define the graphics method
@@ -36,23 +36,18 @@ namespace PrismProject
             draw.Clear(Background);
             while (Kernel.canvasRunning)
             {
+                
                 draw.Box(Appbar, 0, screenY - 30, screenX, 30);
                 draw.Circle(Button, 20, screenY - 15, 10);
-                draw.Textbox("Century_Gothic", "Used memory: " + Memory.Used + "MB", Color.Black, Color.White, 0, 0, 250);
-                draw.Textbox("Century_Gothic", "Total memory: " + Memory.Total + "MB", Color.Black, Color.White, 0, 15, 250);
-                draw.Textbox("Century_Gothic", "Free memory: " + Memory.Free + "MB", Color.Black, Color.White, 0, 30, 250);
+                draw.Textbox("SegoeUI", "Used memory: " + Memory.Used + "MB", Color.Black, Text, 0, 0, 250);
+                draw.Textbox("SegoeUI", "Total memory: " + Memory.Total + "MB", Color.Black, Text, 0, 15, 250);
+                draw.Textbox("SegoeUI", "Free memory: " + Memory.Free + "MB", Color.Black, Text, 0, 30, 250);
                 if (Memory.Free == 0)
                 {
                     Memory.OutOfMemoryWarning();
                 }
-                draw.Window("Century_Gothic", screenX / 4, screenY / 4, screenX / 2, screenX / 2, "Empty Window");
+                draw.Window("SegoeUI", screenX / 4, screenY / 4, screenX / 2, screenX / 2, "Empty Window");
                 cursor.Update();
-            }
-            if (!Kernel.canvasRunning)
-            {
-                Cmds.Init();
-                canvas.Disable();
-                Cmds.Input();
             }
         }
     }

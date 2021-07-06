@@ -26,10 +26,11 @@ namespace PrismProject
 
         public void Update()
         {
-            draw.Box(Desktop.Background, lastX, lastY, 10, 10);
-            //draw.Image(Images.cur1, X, Y);
-            draw.Box(Mouse_back, X, Y, 8, 8);
-            draw.Box(Mouse_color, X + 1, Y + 1, 6, 6);
+            //draw.Box(Desktop.Background, lastX, lastY, 10, 10);
+            draw.Text("SegoeUI", "🡬", Desktop.Background, lastX, lastY);
+            draw.Text("SegoeUI", "🡬", Mouse_color, X, Y);
+            //draw.Box(Mouse_back, X, Y, 8, 8);
+            //draw.Box(Mouse_color, X + 1, Y + 1, 6, 6);
             lastX = X;
             lastY = Y;
         }

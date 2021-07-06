@@ -1,11 +1,10 @@
-using System;
 using Sys = Cosmos.System;
 
 namespace PrismProject
 {
     public class Kernel : Sys.Kernel
     {
-        public static string Kernel_build = "POSK Revision 2.2";
+        public static string Kernel_build = "POSK Revision 2.3";
         public static string Codename = "Box of crayons";
         public static bool Running = true;
         public static bool canvasRunning = true;
@@ -17,7 +16,6 @@ namespace PrismProject
             Networking.DHCP();
             Filesystem.Init();
             Filesystem.Set_Drive_letter(Filesystem.D0, "x");
-            //Cmds.Input();
         }
     }
 }
