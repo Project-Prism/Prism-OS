@@ -14,6 +14,7 @@
 | Add sys update     | None        | needs extra networking    |
 | Fix ram counter    | Done        | free ram part broken      |
 | Fix readme         | Done        | only shows one name       |
+| add rounded cube   | None        |                           |
 
 
 
