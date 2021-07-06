@@ -17,8 +17,8 @@
 
 | To-DO              | Current Status   | extra                     |
 |--------------------|------------------|---------------------------|
-| Fix readme         | in progress      |                           |
-| Add window manager | not started      | Await faster canvas       |
+| Fix readme         | in progress - [ ]  |                           |
+| Add window manager | not started - [ ]  | Await faster canvas       |
 | Add OOBE setup     | Not started      | Await faster canvas       |
 | Add lock screen    | not started      | Await faster canvas       |
 | Add sys update     | not started      | needs extra networking    |
