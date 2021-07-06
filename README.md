@@ -4,12 +4,12 @@
 <p id="product-sans">This project is based off of the Cosmos developer kit, it uses C# as its internal coding language</p>
 
 # To-do list
-[ ] Add an efficient window manager that takes up as little resources
-[ ] Add a OOBE setup
-[ ] Add a lock screen
-[ ] Update system
-[ ] Fix Bitfont text renderer
-[ ] Fix used ram counter
+- [ ] Add an efficient window manager that takes up as little resources
+- [ ] Add a OOBE setup
+- [ ] Add a lock screen
+- [ ] Update system
+- [ ] Fix Bitfont text renderer
+- [ ] Fix used ram counter
 
 # Building Prism
 <p id="product-sans">Prism OS requires the latest "Developer kit" of Cosmos to build properly. If you use an old version,it may not function as intended</p>
