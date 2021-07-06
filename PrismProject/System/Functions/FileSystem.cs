@@ -11,6 +11,7 @@ namespace PrismProject
     {
         public static CosmosVFS fs = new CosmosVFS();
         public static DriveInfo Drive_0 = new DriveInfo("0");
+        public static string D0 = "0:\\";
 
         public static void Init()
         { //initalise the filesystem, best to only trigger this on boot.

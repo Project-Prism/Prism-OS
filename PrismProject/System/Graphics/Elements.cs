@@ -34,21 +34,9 @@ namespace PrismProject
         {
             canvas.DrawLine(new Pen(color), from_X, from_y, to_X, to_Y);
         }
-        public void Text(String font, String text, Color color, int Width, int x, int y)
+        public void Text(String font, String text, Color color, int x, int y)
         {
-            char[] Char_array = new char[text.Length];
-            for (int i = 0; i < text.Length; i++)
-            {
-                Char_array[i] = text[i];
-            }
-            int space = 0;
-            foreach (char c in Char_array)
-            {
-                int Margin = space + Width + 5;
-                canvas.DrawChar(c, Cosmos.System.Graphics.Fonts.PCScreenFont.Default, new Pen(color), x+Margin, y);
-                //canvas.DrawBitFontString(font, color, text, x, y);
-                space += 10;
-            }
+            canvas.DrawBitFontString(font, color, text, x, y);
 
         }
         public void Arrow(Color color, int width, int x, int y)
@@ -68,12 +56,12 @@ namespace PrismProject
         {
             Box(Desktop.Window, from_X, from_Y, Width, Height);
             Box(Desktop.Windowbar, from_X, from_Y, Width, screenY / 25);
-            Text(font, Title, Color.White, 15, from_X, from_Y + 5);
+            Text(font, Title, Color.White, from_X, from_Y+5);
         }
         public void Textbox(string font, String text, Color Background, Color Foreground, int from_X, int from_Y, int Width)
         {
             draw.Box(Background, from_X, from_Y, Width, 15);
-            draw.Text(font, text, Foreground, 15, from_X, from_Y + 1);
+            draw.Text(font, text, Foreground, from_X, from_Y + 1);
         }
         public void Image(Bitmap img, int x, int y)
         {

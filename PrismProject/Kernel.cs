@@ -16,7 +16,7 @@ namespace PrismProject
             Cmds.Init();
             Networking.DHCP();
             Filesystem.Init();
-            Filesystem.Set_Drive_letter(Convert.ToString(Filesystem.Drive_0), Convert.ToString('X'));
+            Filesystem.Set_Drive_letter(Filesystem.D0, "x");
             //Cmds.Input();
         }
     }
