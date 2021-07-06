@@ -4,26 +4,15 @@
 <p id="product-sans">This project is based off of the Cosmos developer kit, it uses C# as its internal coding language</p>
 
 # To-do list
-- [ ] Add an efficient window manager that takes up as little resources
-- [ ] Add a OOBE setup
-- [ ] Add a lock screen
-- [ ] Update system method, from internet
-- [x] Fix Bitfont text renderer
-- [ ] Fix free ram counter
-- [x] fix compile issue (broken from 5/7/21)
-- [ ] Readme.md issue
-- [x] fix BitFont gibberish
-- [x] fix BitFont freeze
 
-| To-DO              | Current Status   | extra                     |
+| To-DO list         | Current Status   | extra                     |
 |--------------------|------------------|---------------------------|
-| Fix readme         | in progress - [ ]  |                           |
-| Add window manager | not started - [ ]  | Await faster canvas       |
-| Add OOBE setup     | Not started      | Await faster canvas       |
-| Add lock screen    | not started      | Await faster canvas       |
-| Add sys update     | not started      | needs extra networking    |
-| Fix ram counter    | assessing issue  | free ram part broken      |
-| Fix readme         | assessing issue  | only shows one name       |
+| Add window manager | No progress      | Await faster canvas       |
+| Add OOBE setup     | No progress      | Await faster canvas       |
+| Add lock screen    | No progress      | Await faster canvas       |
+| Add sys update     | No progress      | needs extra networking    |
+| Fix ram counter    | Finding issue    | free ram part broken      |
+| Fix readme         | Working on       | only shows one name       |
 
 
 
