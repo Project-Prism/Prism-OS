@@ -12,11 +12,10 @@ namespace PrismProject
 
         //mouse color and setup
         public static int lastX, lastY;
-        public static int X { get => (int)MouseManager.X; }
-        public static int Y { get => (int)MouseManager.Y; }
+        public static int X = (int)MouseManager.X;
+        public static int Y = (int)MouseManager.Y;
         public static Color Mouse_color = Color.White;
         public static Color Mouse_back = Color.Black;
-        public static Color[] Cursor_colors = { Color.White, Color.Black };
 
         public Cursor()
         {

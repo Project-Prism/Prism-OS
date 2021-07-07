@@ -5,15 +5,15 @@ namespace PrismProject
 {
     class Memory
     {
-        public static int Total = Convert.ToInt32(Cosmos.Core.CPU.GetAmountOfRAM());
-        public static int Used = Convert.ToInt32(Cosmos.Core.CPU.GetEndOfKernel() + 1024) / 1048576;
-        public static int Free = Total - Used;
-        public static Elements draw = new Elements();
-        public static int screenX = Driver.screenX;
-        public static int screenY = Driver.screenY;
+        public static uint Total = Cosmos.Core.CPU.GetAmountOfRAM();
+        public static uint Used = Cosmos.Core.CPU.GetEndOfKernel() + 1024 / 1048576;
+        public static uint Free = Total - Used;
 
         public static void OutOfMemoryWarning()
         {
+            Elements draw = new Elements();
+            int screenX = Driver.screenX;
+            int screenY = Driver.screenY;
             if (!Kernel.canvasRunning)
             {
                 Driver.Init();

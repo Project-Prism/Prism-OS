@@ -19,22 +19,27 @@ namespace PrismProject
         }
         public static string Get_Drive_label(string Drive_ID)
         {
-            DriveInfo drive = new DriveInfo(Drive_ID);
-            return drive.Name;
+            return new DriveInfo(Drive_ID).Name;
         }
         public static void Set_Drive_letter(string Drive_ID, string Drive_name)
         {
-            DriveInfo drive = new DriveInfo(Drive_ID);
-            drive.VolumeLabel = Drive_name;
+            new DriveInfo(Drive_ID).VolumeLabel = Drive_name;
         }
         public static string Drive_type(string Drive_ID)
         {
-            DriveInfo drive = new DriveInfo(Drive_ID);
-            return drive.DriveType.ToString();
+            return new DriveInfo(Drive_ID).DriveType.ToString();
         }
-        public static void format(string driveID, bool quickformat)
+        public static int format(string driveID, bool quickformat)
         {
-            fs.Format(driveID, "FAT32", quickformat);
+            try
+            {
+                fs.Format(driveID, "FAT32", quickformat);
+                return 1;
+            }
+            catch
+            {
+                return 0;
+            }
         }
         public static List<DirectoryEntry> List_Directory(string path)
         {

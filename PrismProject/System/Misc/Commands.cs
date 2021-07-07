@@ -197,6 +197,7 @@ namespace PrismProject
             Console.WriteLine("CPU clock speed: " + (cspeed / 1000 / 1000) + " Mhz");
             Console.WriteLine("Total ram: " + ram + " MB");
         }
+        //memory commands
         static void meminfo(string[] args)
         {
             Console.WriteLine("Used memory: " + Memory.Used + "MB");

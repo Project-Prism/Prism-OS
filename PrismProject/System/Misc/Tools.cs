@@ -11,20 +11,19 @@ namespace PrismProject
         public static void SetColor(ConsoleColor color) { Console.ForegroundColor = color; }
         public static void SetBackColor(ConsoleColor color) { Console.BackgroundColor = color; }
 
-        public static void Sleep(int secNum)
+        public static void Sleep(int Until)
         {
-            int StartSec = RTC.Second;
+            int Starton = RTC.Second;
             int EndSec;
 
-            if (StartSec + secNum > 59)
+            if (Starton + Until > 59)
                 EndSec = 0;
             else
-                EndSec = StartSec + secNum;
+                EndSec = Starton + Until;
 
             // Loop round
             while (RTC.Second != EndSec) ;
         }
-
         public static void Length(string[] args, int lessthan, int greaterthan)
         {
             if (args.Length < lessthan)
@@ -34,17 +33,15 @@ namespace PrismProject
         }
         public static bool IsIPAddress(string ipAddress)
         {
-            bool retVal = false;
-
             try
             {
                 IPAddress address;
-                retVal = IPAddress.TryParse(ipAddress, out address);
+                return IPAddress.TryParse(ipAddress, out address);
             }
             catch (Exception ex)
             {
+                return false;
             }
-            return retVal;
         }
     }
 }
