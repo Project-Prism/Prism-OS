@@ -7,10 +7,10 @@ namespace PrismProject
     class Elements
     {
         //Define the graphics method
-        private static int screenX = Driver.screenX, screenY = Driver.screenY;
+        private static int screenX = Driver.screenX;
+        private static int screenY = Driver.screenY;
         private static Canvas canvas = Driver.canvas;
         private static Elements draw = new Elements();
-        private static Cursor cursor = new Cursor();
 
         //Individual shapes
         public void Box(Color color, int from_X, int from_Y, int Width, int Height)

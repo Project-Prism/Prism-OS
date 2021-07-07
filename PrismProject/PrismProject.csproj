@@ -96,11 +96,12 @@
         <IntelEdison_EnableGDB>False</IntelEdison_EnableGDB>
         <IntelEdison_StartCosmosGDB>False</IntelEdison_StartCosmosGDB>
         <IntelEdison_ISOFile>bin\Debug\netcoreapp2.0\cosmos\PrismProject.iso</IntelEdison_ISOFile>
+        <VMwareEdition>Workstation</VMwareEdition>
     </PropertyGroup>
 
     <PropertyGroup>
-        <EnableGDB>True</EnableGDB>
-        <StartCosmosGDB>True</StartCosmosGDB>
+        <EnableGDB>False</EnableGDB>
+        <StartCosmosGDB>False</StartCosmosGDB>
         <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
         <CosmosDebugPort>Serial: COM1</CosmosDebugPort>
         <Launch>VMware</Launch>
@@ -118,7 +119,6 @@
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="System.Console" Version="4.3.1" />
-        <PackageReference Include="Unofficial.Typography" Version="0.1.0" />
     </ItemGroup>
 
 </Project>

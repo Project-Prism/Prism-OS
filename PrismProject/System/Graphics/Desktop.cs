@@ -1,5 +1,4 @@
-﻿using Cosmos.System.Graphics;
-using System;
+﻿using System;
 using System.Drawing;
 
 namespace PrismProject
@@ -7,16 +6,17 @@ namespace PrismProject
     class Desktop
     {
         //Default theme colors
-        public static Color Appbar = Color.FromArgb(24, 24, 24);
+        public static Color Appbar = Color.FromArgb(0,120,212);
         public static Color Window = Color.White;
-        public static Color Windowbar = Color.FromArgb(0, 120, 212);
+        public static Color Windowbar = Color.FromArgb(0,120,212);
         public static Color Button = Color.White;
-        public static Color Background = Color.Black;
+        public static Color Background = Color.FromArgb(40,40,40);
         public static Color Text = Color.White;
 
         //Define the graphics method
 
-        private static int screenX = Driver.screenX, screenY = Driver.screenY;
+        private static int screenX = Driver.screenX;
+        private static int screenY = Driver.screenY;
         private static Elements draw = new Elements();
         private static Cursor cursor = new Cursor();
 
@@ -27,7 +27,7 @@ namespace PrismProject
             while (Prg != screenX / 2)
             {
                 Prg++;
-                draw.Loadbar(screenX / 4, Convert.ToInt32(screenY / 1.5), screenX / 2, screenY / 70, Prg);
+                draw.Loadbar(screenX / 4, Convert.ToInt32(screenY / 1.5), screenX / 2, screenY / 90, Prg);
             }
             Tools.Sleep(2);
             draw.Clear(Background);

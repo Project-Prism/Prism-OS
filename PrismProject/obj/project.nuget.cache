@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "iFcgc/0gCI+vwhfuTEuRxDj323KjHPUWALGMKW4IxR0uQT+qsMMA79Etk9N9F0/NUVRhY1sx6sltE3gcMZr07g==",
+  "dgSpecHash": "ynnRFyxvaSdtgkGiA1ZOsb+Z7DSLsV0anDgEfBNaoNYOkmqCiVLWXhGtbeJrRno8Z6Lk4ptF/tk60juFosW/0Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\EvanLawrence\\Source\\Repos\\Prism-OS\\PrismProject\\PrismProject.csproj",
   "expectedPackageFiles": [
@@ -38,7 +38,6 @@
     "C:\\Users\\EvanLawrence\\.nuget\\packages\\system.globalization\\4.3.0\\system.globalization.4.3.0.nupkg.sha512",
     "C:\\Users\\EvanLawrence\\.nuget\\packages\\system.io\\4.3.0\\system.io.4.3.0.nupkg.sha512",
     "C:\\Users\\EvanLawrence\\.nuget\\packages\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
-    "C:\\Users\\EvanLawrence\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\EvanLawrence\\.nuget\\packages\\system.private.uri\\4.3.0\\system.private.uri.4.3.0.nupkg.sha512",
     "C:\\Users\\EvanLawrence\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
     "C:\\Users\\EvanLawrence\\.nuget\\packages\\system.reflection.primitives\\4.3.0\\system.reflection.primitives.4.3.0.nupkg.sha512",
@@ -49,8 +48,7 @@
     "C:\\Users\\EvanLawrence\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
     "C:\\Users\\EvanLawrence\\.nuget\\packages\\system.text.encoding.extensions\\4.3.0\\system.text.encoding.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\EvanLawrence\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
-    "C:\\Users\\EvanLawrence\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
-    "C:\\Users\\EvanLawrence\\.nuget\\packages\\unofficial.typography\\0.1.0\\unofficial.typography.0.1.0.nupkg.sha512"
+    "C:\\Users\\EvanLawrence\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }
