@@ -6,21 +6,20 @@ namespace PrismProject
     class Cursor
     {
         //Define the graphics method
-        public static int screenX = Driver.screenX;
-        public static int screenY = Driver.screenY;
-        public static Elements draw = new Elements();
+        private static int screenX = Driver.screenX, screenY = Driver.screenY;
+        private static Elements draw = new Elements();
 
         //mouse color and setup
-        public static int lastX, lastY;
-        public static int X = (int)MouseManager.X;
-        public static int Y = (int)MouseManager.Y;
+        private static int lastX, lastY;
+        private static int X = (int)MouseManager.X;
+        private static int Y = (int)MouseManager.Y;
         public static Color Mouse_color = Color.White;
         public static Color Mouse_back = Color.Black;
 
         public Cursor()
         {
-            MouseManager.ScreenWidth = (uint)Elements.screenX;
-            MouseManager.ScreenHeight = (uint)Elements.screenY;
+            MouseManager.ScreenWidth = (uint)screenX;
+            MouseManager.ScreenHeight = (uint)screenY;
         }
 
         public void Update()
