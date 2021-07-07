@@ -19,7 +19,7 @@ namespace PrismProject
                 Driver.Init();
             }
             draw.Clear(Color.DarkOrange);
-            draw.Textbox("SegoeUI", "Out of memory!", Color.Black, Color.Red, Convert.ToInt32(screenX / 1.3), screenY / 4, 200);
+            draw.Textbox(Driver.font, "Out of memory!", Color.Black, Color.Red, Convert.ToInt32(screenX / 1.3), screenY / 4, 200);
             Cosmos.Core.Bootstrap.CPU.Halt();
         }
     }

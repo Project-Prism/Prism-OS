@@ -37,14 +37,14 @@ namespace PrismProject
             {
                 draw.Box(Appbar, 0, screenY - 30, screenX, 30);
                 draw.Circle(Button, 20, screenY - 15, 10);
-                draw.Text("SegoeUI", "Used memory: " + Memory.Used + "MB", Text, 0, 0);
-                draw.Text("SegoeUI", "Total memory: " + Memory.Total + "MB", Text, 0, 15);
-                draw.Text("SegoeUI", "Free memory: " + Memory.Free + "MB", Text, 0, 30);
+                draw.Text(Driver.font, "Used memory: " + Memory.Used + "MB", Text, 0, 0);
+                draw.Text(Driver.font, "Total memory: " + Memory.Total + "MB", Text, 0, 15);
+                draw.Text(Driver.font, "Free memory: " + Memory.Free + "MB", Text, 0, 30);
                 if (Memory.Free == 0)
                 {
                     Memory.OutOfMemoryWarning();
                 }
-                draw.Window("SegoeUI", screenX / 4, screenY / 4, screenX / 2, screenX / 2, "Empty Window");
+                draw.Window(Driver.font, screenX / 4, screenY / 4, screenX / 2, screenX / 2, "Empty Window");
                 cursor.Update();
             }
         }
