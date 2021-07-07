@@ -32,8 +32,8 @@
 | DeadLocust    | General development          |
 
 # Screenshots
-![Capture1](https://user-images.githubusercontent.com/49339966/119268040-60c57d80-bbf1-11eb-8cc2-ed262d965841.PNG)
-![Capture](https://github.com/Project-Prism/Prism-OS/blob/main/ss1.png)
+<IMG src="https://user-images.githubusercontent.com/49339966/119268040-60c57d80-bbf1-11eb-8cc2-ed262d965841.PNG" width="256" height="256"/>
+<IMG src="https://github.com/Project-Prism/Prism-OS/blob/main/ss1.png" width="256" height="256"/>
 
 # Details
 <details>
