@@ -35,9 +35,9 @@ namespace PrismProject
             {
                 draw.Box(Appbar, 0, screenY - 30, screenX, 30);
                 draw.Circle(Button, 20, screenY - 15, 10);
-                draw.Text(Driver.font, "Used memory: " + Memory.Used + "MB", Text, 0, 0);
-                draw.Text(Driver.font, "Total memory: " + Memory.Total + "MB", Text, 0, 15);
-                draw.Text(Driver.font, "Free memory: " + Memory.Free + "MB", Text, 0, 30);
+                draw.Text(Driver.font, "Used memory: " + Memory.Used + " MB", Text, 0, 0);
+                draw.Text(Driver.font, "Total memory: " + Memory.Total + " MB", Text, 0, 15);
+                draw.Text(Driver.font, "Free memory: " + Memory.Free + " MB", Text, 0, 30);
                 draw.Window(Driver.font, screenX / 4, screenY / 4, screenX / 2, screenX / 2, "Empty Window");
                 cursor.Update();
             }

@@ -1,5 +1,4 @@
 ﻿using Cosmos.System;
-using System.Drawing;
 
 namespace PrismProject
 {
@@ -11,11 +10,9 @@ namespace PrismProject
         private static Elements draw = new Elements();
 
         //mouse color and setup
-        private static int lastX, lastY;
-        private static int X = (int)MouseManager.X;
-        private static int Y = (int)MouseManager.Y;
-        public static Color Mouse_color = Color.White;
-        public static Color Mouse_back = Color.Black;
+        public static int lastX, lastY;
+        public static int X { get => (int)MouseManager.X; }
+        public static int Y { get => (int)MouseManager.Y; }
 
         public Cursor()
         {
@@ -25,11 +22,8 @@ namespace PrismProject
 
         public void Update()
         {
-            //draw.Box(Desktop.Background, lastX, lastY, 10, 10);
-            draw.Text(Driver.font, "🡬", Desktop.Background, lastX, lastY);
-            draw.Text(Driver.font, "🡬", Mouse_color, X, Y);
-            //draw.Box(Mouse_back, X, Y, 8, 8);
-            //draw.Box(Mouse_color, X + 1, Y + 1, 6, 6);
+            draw.Box(Desktop.Background, lastX, lastY, 32, 32);
+            draw.Image(Images.mouse, X, Y);
             lastX = X;
             lastY = Y;
         }
