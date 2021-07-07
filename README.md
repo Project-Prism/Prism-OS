@@ -11,10 +11,8 @@
 | Add OOBE setup     | None        | Await faster canvas       |
 | Add lock screen    | None        | Await faster canvas       |
 | Add sys update     | None        | needs extra networking    |
-| Fix ram counter    | Done        | free ram part broken      |
-| Fix readme         | Done        | only shows one name       |
-| add rounded cube   | None        |                           |
-| fix canvas         | none        | doesnt load               |
+| add rounded cube   | None        | OS eyecandy               |
+| fix text draw      | In prog     | Freezes canavs            |
 
 
 
