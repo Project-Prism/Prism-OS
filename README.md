@@ -12,7 +12,10 @@
 | Add lock screen    | None        | Await faster canvas       |
 | Add sys update     | None        | needs extra networking    |
 | add rounded cube   | None        | OS eyecandy               |
-| fix text draw      | In prog     | Freezes canavs            |
+
+| Current bugs       | Status      | About bug          |
+|--------------------|-------------|--------------------|
+| Ram counters       | Unfixed     | Random numbers     |
 
 
 
