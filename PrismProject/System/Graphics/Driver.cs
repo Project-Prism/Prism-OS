@@ -6,8 +6,8 @@ namespace PrismProject
 {
     class Driver
     {
-        public static int screenY = 480;
-        public static int screenX = 720;
+        public static int screenY = 600;
+        public static int screenX = 800;
         public static SVGAIICanvas canvas = new SVGAIICanvas(new Mode(screenX, screenY, ColorDepth.ColorDepth32));
         public static string font = "YuGothicUI";
 
