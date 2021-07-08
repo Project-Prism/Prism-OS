@@ -5,7 +5,7 @@ namespace PrismProject
 {
     class CPU
     {
-        public static long Speed = Cosmos.Core.CPU.GetCPUCycleSpeed();
+        public static long Speed { get => Cosmos.Core.CPU.GetCPUCycleSpeed(); }
 
         static void shutdown(string[] args)
         {

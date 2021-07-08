@@ -35,6 +35,7 @@ namespace PrismProject
                 if (Memory.Free < 100)
                 {
                     Memory.OutOfMemoryWarning();
+                    Cosmos.Core.Bootstrap.CPU.Halt();
                 }
                 draw.Box(Appbar, 0, screenY - 30, screenX, 30);
                 draw.Circle(Button, 20, screenY - 15, 10);

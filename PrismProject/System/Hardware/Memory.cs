@@ -5,11 +5,11 @@ namespace PrismProject
 {
     class Memory
     {
-        public static uint Total = Cosmos.Core.CPU.GetAmountOfRAM();
-        public static uint Used = (Cosmos.Core.CPU.GetEndOfKernel() + 1024) / 1048576;
-        public static uint Free = Total - Used;
-        public static uint Used_percent = (Used * 100) / Total;
-        public static uint Free_percent = 100 - Used_percent;
+        public static uint Total { get => Cosmos.Core.CPU.GetAmountOfRAM(); }
+        public static uint Used { get => (Cosmos.Core.CPU.GetEndOfKernel() + 1024) / 1048576; }
+        public static uint Free { get => Total - Used; }
+        public static uint Used_percent { get => (Used * 100) / Total; }
+        public static uint Free_percent { get => 100 - Used_percent; }
 
         public static void OutOfMemoryWarning()
         {
@@ -22,7 +22,6 @@ namespace PrismProject
             }
             draw.Clear(Color.DarkOrange);
             draw.Textbox(Driver.font, "LOW MEMORY!", Color.Black, Color.Red, screenX / 4, screenY / 2, 200);
-            Cosmos.Core.Bootstrap.CPU.Halt();
         }
     }
 }
