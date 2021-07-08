@@ -25,6 +25,7 @@
 |--------------------|-------------|---------------------------------|
 | Ram counters       | Unfixed     | Random numbers                  |
 | Mouse clippings    | Unfixed     | can ez fix when canvas faster   |
+| Memory leaks       | Unfixed     | This is an issue with cosmos    |
 
 # Credits
 | Name          | Helped with                  |
