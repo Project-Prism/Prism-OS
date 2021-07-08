@@ -13,10 +13,6 @@
 | Add sys update     | None        | needs extra networking    |
 | add rounded cube   | None        | OS eyecandy               |
 
-| Current bugs       | Status      | About bug          |
-|--------------------|-------------|--------------------|
-| Ram counters       | Unfixed     | Random numbers     |
-
 
 
 # Building Prism
@@ -24,6 +20,10 @@
 <p id="product-sans">- Clone this repo in visual studio and open the solution file</p>
 <p id="product-sans">- Click "Build"</p>
 <p id="product-sans">You can modify the code to however you need it</p>
+
+| Current bugs       | Status      | About bug          |
+|--------------------|-------------|--------------------|
+| Ram counters       | Unfixed     | Random numbers     |
 
 # Credits
 | Name          | Helped with                  |
