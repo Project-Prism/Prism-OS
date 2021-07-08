@@ -11,11 +11,18 @@ namespace PrismProject
 
         protected override void Run()
         {
-            Desktop.Start();
-            Cmds.Init();
-            Networking.DHCP();
-            Filesystem.Init();
-            Filesystem.Set_Drive_letter(Filesystem.D0, "X");
+            try
+            {
+                Desktop.Start();
+                Cmds.Init();
+                Networking.DHCP();
+                Filesystem.Init();
+                Filesystem.Set_Drive_letter(Filesystem.D0, "X");
+            }
+            catch
+            {
+                Desktop.Start_rec();
+            }
         }
     }
 }

@@ -33,12 +33,27 @@ namespace PrismProject
             draw.Clear(Background);
             while (Kernel.canvasRunning)
             {
+                if (Memory.Free < 20)
+                {
+                    Memory.OutOfMemoryWarning();
+                }
                 draw.Box(Appbar, 0, screenY - 30, screenX, 30);
                 draw.Circle(Button, 20, screenY - 15, 10);
                 draw.Text(Driver.font, "Used memory: " + Memory.Used + " MB", Text, 0, 0);
                 draw.Text(Driver.font, "Total memory: " + Memory.Total + " MB", Text, 0, 15);
                 draw.Text(Driver.font, "Free memory: " + Memory.Free + " MB", Text, 0, 30);
                 draw.Window(Driver.font, screenX / 4, screenY / 4, screenX / 2, screenX / 2, "Empty Window");
+                cursor.Update();
+            }
+        }
+        public static void Start_rec()
+        {
+            Driver.Init();
+            draw.Clear(Color.Red);
+            while (Kernel.canvasRunning)
+            {
+                draw.Window(Driver.font, screenX / 4, screenY / 4, screenX / 2, screenX / 2, "SYSTEM FAILURE");
+                draw.Text(Driver.font, "System crashed! Unrecoverable error occured.", Text, screenX/4+75, screenY/4+75);
                 cursor.Update();
             }
         }
