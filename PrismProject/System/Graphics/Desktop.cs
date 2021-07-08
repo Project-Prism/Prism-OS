@@ -15,8 +15,7 @@ namespace PrismProject
 
         //Define the graphics method
 
-        private static int screenX = Driver.screenX;
-        private static int screenY = Driver.screenY;
+        private static int screenX = Driver.screenX, screenY = Driver.screenY;
         private static Elements draw = new Elements();
         private static Cursor cursor = new Cursor();
 
@@ -33,16 +32,16 @@ namespace PrismProject
             draw.Clear(Background);
             while (Kernel.canvasRunning)
             {
-                if (Memory.Free < 20)
+                if (Memory.Free < 100)
                 {
                     Memory.OutOfMemoryWarning();
                 }
                 draw.Box(Appbar, 0, screenY - 30, screenX, 30);
                 draw.Circle(Button, 20, screenY - 15, 10);
-                draw.Text(Driver.font, "Used memory: " + Memory.Used + " MB", Text, 0, 0);
+                draw.Text(Driver.font, "Used memory: " + Memory.Used + " MB (" + Memory.Used_percent + "%)", Text, 0, 0);
                 draw.Text(Driver.font, "Total memory: " + Memory.Total + " MB", Text, 0, 15);
-                draw.Text(Driver.font, "Free memory: " + Memory.Free + " MB", Text, 0, 30);
-                draw.Window(Driver.font, screenX / 4, screenY / 4, screenX / 2, screenX / 2, "Empty Window");
+                draw.Text(Driver.font, "Free memory: " + Memory.Free + " MB (" + Memory.Free_percent + "%)", Text, 0, 30);
+                draw.Window(Driver.font, screenX/4,screenY/4,screenX/2,screenX/2, "Empty Window");
                 cursor.Update();
             }
         }
