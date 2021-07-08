@@ -21,9 +21,10 @@
 <p id="product-sans">- Click "Build"</p>
 <p id="product-sans">You can modify the code to however you need it</p>
 
-| Current bugs       | Status      | About bug          |
-|--------------------|-------------|--------------------|
-| Ram counters       | Unfixed     | Random numbers     |
+| Current bugs       | Status      | About bug                       |
+|--------------------|-------------|---------------------------------|
+| Ram counters       | Unfixed     | Random numbers                  |
+| Mouse clippings    | Unfixed     | can ez fix when canvas faster   |
 
 # Credits
 | Name          | Helped with                  |
