@@ -38,7 +38,7 @@
 
 # Screenshots
 <IMG src="https://user-images.githubusercontent.com/49339966/119268040-60c57d80-bbf1-11eb-8cc2-ed262d965841.PNG"/>
-<IMG src="https://github.com/Project-Prism/Prism-OS/blob/main/ss1.png"/>
+<IMG src="https://github.com/Project-Prism/Prism-OS/blob/main/Screenshot%202021-07-09%20135051.png"/>
 
 # Details
 <details>
