@@ -11,7 +11,7 @@
 | Add OOBE setup     | None        | Await faster canvas       |
 | Add lock screen    | None        | Await faster canvas       |
 | Add sys update     | None        | needs extra networking    |
-| add rounded cube   | None        | OS eyecandy               |
+| add rounded cube   | Done        | OS eyecandy               |
 
 
 
