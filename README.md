@@ -12,6 +12,7 @@
 | Add lock screen    | N/A         | Await faster canvas       |
 | Add sys update     | N/A         | needs extra networking    |
 | add rounded cube   | Done        | OS eyecandy               |
+| add ui gravity     | N/A         | E.X. center, left, top    |
 
 
 
