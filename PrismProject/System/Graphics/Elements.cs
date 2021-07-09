@@ -17,6 +17,21 @@ namespace PrismProject
         {
             canvas.DrawFilledRectangle(new Pen(color), from_X, from_Y, Width, Height);
         }
+        public void Rounded_Box(Color color, int x, int y, int Width, int Height, int radius = 6)
+        {
+            int x2 = x+Width, y2 = y+Height, r2 = radius+radius;
+            // Draw Outside circles
+            draw.Circle(color, x+radius, y+radius, radius);
+            draw.Circle(color, x2-radius-1, y+radius, radius);
+            draw.Circle(color, x+radius, y2-radius-1, radius);
+            draw.Circle(color, x2-radius-1, y2-radius-1, radius);
+
+            // Draw Main Rectangle
+            draw.Box(color, x, y+radius, Width, Height-r2);
+            // Draw Outside Rectangles
+            draw.Box(color, x+radius, y, Width-r2, radius);
+            draw.Box(color, x+radius, y2-radius, Width-r2, radius);
+        }
         public void Empty_Box(Color color, int from_X, int from_Y, int to_X, int to_Y)
         {
             canvas.DrawRectangle(new Pen(color), from_X, from_Y, to_X, to_Y);
@@ -39,7 +54,7 @@ namespace PrismProject
         }
 
         //UI elements
-        public void Text(String font, String text, Color color, int x, int y)
+        public void Text(Color color, String font, String text, int x, int y)
         {
             canvas.DrawBitFontString(font, color, text, x, y);
 
@@ -55,14 +70,14 @@ namespace PrismProject
         }
         public void Window(string font, int from_X, int from_Y, int Width, int Height, string Title)
         {
-            Box(Desktop.Window, from_X, from_Y, Width, Height);
-            Box(Desktop.Windowbar, from_X, from_Y, Width, screenY / 25);
-            Text(font, Title, Color.White, from_X, from_Y+5);
+            Rounded_Box(Desktop.Window, from_X, from_Y, Width, Height);
+            Rounded_Box(Desktop.Windowbar, from_X, from_Y, Width, screenY / 25);
+            Text(Color.White, font, Title, from_X, from_Y+4);
         }
-        public void Textbox(string font, String text, Color Background, Color Foreground, int from_X, int from_Y, int Width)
+        public void Textbox(string font, string text, Color Background, Color Foreground, int from_X, int from_Y, int Width)
         {
             draw.Box(Background, from_X, from_Y, Width, 15);
-            draw.Text(font, text, Foreground, from_X, from_Y + 1);
+            draw.Text(Foreground, font, text, from_X, from_Y + 1);
         }
         public void Image(Bitmap img, int x, int y)
         {

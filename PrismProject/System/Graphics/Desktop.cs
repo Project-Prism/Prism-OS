@@ -22,13 +22,6 @@ namespace PrismProject
         public static void Start()
         {
             Driver.Init();
-            int Prg = 0;
-            while (Prg != screenX / 2)
-            {
-                Prg++;
-                draw.Loadbar(screenX / 4, Convert.ToInt32(screenY / 1.5), screenX / 2, screenY / 90, Prg);
-            }
-            Tools.Sleep(2);
             draw.Clear(Background);
             while (Kernel.canvasRunning)
             {
@@ -39,9 +32,9 @@ namespace PrismProject
                 }
                 draw.Box(Appbar, 0, screenY - 30, screenX, 30);
                 draw.Circle(Button, 20, screenY - 15, 10);
-                draw.Text(Driver.font, "Used memory: " + Memory.Used + " MB (" + Memory.Used_percent + "%)", Text, 0, 0);
-                draw.Text(Driver.font, "Total memory: " + Memory.Total + " MB", Text, 0, 15);
-                draw.Text(Driver.font, "Free memory: " + Memory.Free + " MB (" + Memory.Free_percent + "%)", Text, 0, 30);
+                draw.Text(Text, Driver.font, "Used memory: " + Memory.Used + " MB (" + Memory.Used_percent + "%)", 0, 0);
+                draw.Text(Text, Driver.font, "Total memory: " + Memory.Total + " MB", 0, 15);
+                draw.Text(Text, Driver.font, "Free memory: " + Memory.Free + " MB (" + Memory.Free_percent + "%)", 0, 30);
                 draw.Window(Driver.font, screenX/4,screenY/4,screenX/2,screenX/2, "Empty Window");
                 cursor.Update();
             }
@@ -53,7 +46,7 @@ namespace PrismProject
             while (Kernel.canvasRunning)
             {
                 draw.Window(Driver.font, screenX / 4, screenY / 4, screenX / 2, screenX / 2, "SYSTEM FAILURE");
-                draw.Text(Driver.font, "System crashed! Unrecoverable error occured.", Text, screenX/4+75, screenY/4+75);
+                draw.Text(Text, Driver.font, "System crashed! Unrecoverable error occured.", screenX/4+75, screenY/4+75);
                 cursor.Update();
             }
         }
