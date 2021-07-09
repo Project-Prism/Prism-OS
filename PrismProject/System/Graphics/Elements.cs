@@ -68,10 +68,10 @@ namespace PrismProject
             Rounded_Box(Color.SlateGray, fromX, fromY, length, height);
             Rounded_Box(Color.White, fromX, fromY, percentage, height);
         }
-        public void Window(string font, int from_X, int from_Y, int Width, int Height, string Title)
+        public void Window(string font, int from_X, int from_Y, int Width, int Height, string Title, bool showtitlebar)
         {
             Rounded_Box(Desktop.Window, from_X, from_Y, Width, Height);
-            Rounded_Box(Desktop.Windowbar, from_X, from_Y, Width, screenY / 25);
+            if (showtitlebar) { Rounded_Box(Desktop.Windowbar, from_X, from_Y, Width, screenY / 25); }
             Text(Color.White, font, Title, from_X, from_Y + 4);
         }
         public void Textbox(string font, string text, Color Background, Color Foreground, int from_X, int from_Y, int Width)

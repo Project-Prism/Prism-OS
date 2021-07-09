@@ -22,7 +22,7 @@ namespace PrismProject
 
         public void Update()
         {
-            draw.Box(Desktop.Background, lastX, lastY, 32, 32);
+            draw.Box(Desktop.Background, lastX+16, lastY+16, 32, 32);
             draw.Image(Images.mouse, X, Y);
             lastX = X;
             lastY = Y;

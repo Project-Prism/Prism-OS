@@ -4,22 +4,25 @@ namespace PrismProject
 {
     public class Kernel : Sys.Kernel
     {
-        public static string Kernel_build = "POSK Revision 2.4", Codename = "Box of crayons";
+        public static string Kernel_build = "POSK Revision 2.5", Codename = "Box of crayons";
         public static bool Running = true, canvasRunning = true;
 
         protected override void Run()
         {
-            try
+            //dont change any code to try and fix, when threadding gets implemented it will work flawlesly with a small edit
+            Driver.Init();
+            Lock.Start();
+            Cmds.Init();
+            Networking.DHCP();
+            Filesystem.Init();
+            Filesystem.Set_Drive_letter(Filesystem.D0, "X");
+            while (Running)
             {
-                Desktop.Start();
-                Cmds.Init();
-                Networking.DHCP();
-                Filesystem.Init();
-                Filesystem.Set_Drive_letter(Filesystem.D0, "X");
-            }
-            catch
-            {
-                Desktop.Start_rec();
+                if (Memory.Free < 100)
+                {
+                    Memory.OutOfMemoryWarning();
+                    Cosmos.Core.Bootstrap.CPU.Halt();
+                }
             }
         }
     }

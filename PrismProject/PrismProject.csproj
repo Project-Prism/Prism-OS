@@ -121,4 +121,8 @@
         <PackageReference Include="System.Console" Version="4.3.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="System\Software\Test-Apps\" />
+    </ItemGroup>
+
 </Project>
