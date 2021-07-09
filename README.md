@@ -33,6 +33,7 @@
 | Nifanfa       | Bitfont                      |
 | Terminal.cs   | General development, logo    |
 | DeadLocust    | General development          |
+| CrisisSDK     | Graphics, window manager     |
 
 # Screenshots
 <IMG src="https://user-images.githubusercontent.com/49339966/119268040-60c57d80-bbf1-11eb-8cc2-ed262d965841.PNG"/>
