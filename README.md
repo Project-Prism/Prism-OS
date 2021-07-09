@@ -7,10 +7,10 @@
 
 | To-DO list         | Status      | extra                     |
 |--------------------|-------------|---------------------------|
-| Add window manager | None        | Await faster canvas       |
-| Add OOBE setup     | None        | Await faster canvas       |
-| Add lock screen    | None        | Await faster canvas       |
-| Add sys update     | None        | needs extra networking    |
+| Add window manager | N/A         | Await faster canvas       |
+| Add OOBE setup     | N/A         | Await faster canvas       |
+| Add lock screen    | N/A         | Await faster canvas       |
+| Add sys update     | N/A         | needs extra networking    |
 | add rounded cube   | Done        | OS eyecandy               |
 
 
