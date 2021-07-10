@@ -31,9 +31,9 @@
 # Credits
 | Name          | Helped with                  |
 |---------------|------------------------------|
-| Nifanfa       | Bitfont                      |
 | Terminal.cs   | General development, logo    |
-| DeadLocust    | General development          |
+| deadlocust    | General development          |
+| Nifanfa       | Bitfont                      |
 | CrisisSDK     | Graphics, window manager     |
 
 # Screenshots
