@@ -7,7 +7,7 @@ namespace PrismProject
         //Define the graphics method
         private static int screenX = Driver.screenX;
         private static int screenY = Driver.screenY;
-        private static Elements draw = new Elements();
+        private static drawable draw = new drawable();
 
         //mouse color and setup
         public static int lastX, lastY;
@@ -22,7 +22,7 @@ namespace PrismProject
 
         public void Update()
         {
-            draw.Box(Desktop.Background, lastX+16, lastY+16, 32, 32);
+            draw.Box(Desktop.Background, lastX-8, lastY-8, 32, 32);
             draw.Image(Images.mouse, X, Y);
             lastX = X;
             lastY = Y;

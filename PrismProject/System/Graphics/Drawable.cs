@@ -4,13 +4,13 @@ using System.Drawing;
 
 namespace PrismProject
 {
-    class Elements
+    class drawable
     {
         //Define the graphics method
         private static int screenX = Driver.screenX;
         private static int screenY = Driver.screenY;
         private static Canvas canvas = Driver.canvas;
-        private static Elements draw = new Elements();
+        private static drawable draw = new drawable();
 
         //Individual shapes
         public void Box(Color color, int from_X, int from_Y, int Width, int Height)

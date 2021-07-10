@@ -15,7 +15,7 @@ namespace PrismProject
         //Define the graphics method
 
         private static int screenX = Driver.screenX, screenY = Driver.screenY;
-        private static Elements draw = new Elements();
+        private static drawable draw = new drawable();
         private static Cursor cursor = new Cursor();
 
         public static void Start()
@@ -30,7 +30,7 @@ namespace PrismProject
                 draw.Text(Text, Driver.font, "Used memory: " + Memory.Used + " MB (" + Memory.Used_percent + "%)", 15, 15);
                 draw.Text(Text, Driver.font, "Total memory: " + Memory.Total + " MB", 15, 30);
                 draw.Text(Text, Driver.font, "Free memory: " + Memory.Free + " MB (" + Memory.Free_percent + "%)", 15, 45);
-                draw.Window(Driver.font, screenX / 4, screenY / 4, screenX / 2, screenY / 2, "Empty Window");
+                draw.Window(Driver.font, screenX / 4, screenY / 4, screenX / 2, screenY / 2, "Empty Window", true);
                 cursor.Update();
             }
         }
@@ -40,7 +40,7 @@ namespace PrismProject
             draw.Clear(Color.Red);
             while (Kernel.canvasRunning)
             {
-                draw.Window(Driver.font, screenX / 4, screenY / 4, screenX / 2, screenX / 2, "SYSTEM FAILURE");
+                draw.Window(Driver.font, screenX / 4, screenY / 4, screenX / 2, screenX / 2, "SYSTEM FAILURE", true);
                 draw.Text(Text, Driver.font, "System crashed! Unrecoverable error occured.", screenX / 4 + 75, screenY / 4 + 75);
                 cursor.Update();
             }

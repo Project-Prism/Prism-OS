@@ -12,7 +12,7 @@ namespace PrismProject
 
             //Define the graphics method
             private static int screenX = Driver.screenX, screenY = Driver.screenY;
-            private static Elements draw = new Elements();
+            private static drawable draw = new drawable();
             private static Cursor cursor = new Cursor();
 
         public static void Start()
