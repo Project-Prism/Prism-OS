@@ -76,8 +76,9 @@ namespace PrismProject
         }
         public void Textbox(string font, string text, Color Background, Color Foreground, int from_X, int from_Y, int Width)
         {
-            draw.Box(Background, from_X, from_Y, Width, 15);
-            draw.Text(Foreground, font, text, from_X, from_Y + 1);
+            Box(Background, from_X, from_Y, Width, 15);
+            Empty_Box(Foreground, from_X, from_Y, Width, 15);
+            Text(Foreground, font, text, from_X, from_Y + 1);
         }
         public void Image(Bitmap img, int x, int y)
         {
