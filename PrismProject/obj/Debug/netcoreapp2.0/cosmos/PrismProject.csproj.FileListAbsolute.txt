@@ -16,3 +16,11 @@ C:\Users\EvanLawrence\Source\Repos\Prism-OS\PrismProject\bin\Debug\netcoreapp2.0
 C:\Users\EvanLawrence\Source\Repos\Prism-OS\PrismProject\bin\Debug\netcoreapp2.0\cosmos\PrismProject.pdb
 C:\Users\EvanLawrence\Source\Repos\Prism-OS\PrismProject\obj\Debug\netcoreapp2.0\cosmos\PrismProject.dll
 C:\Users\EvanLawrence\Source\Repos\Prism-OS\PrismProject\obj\Debug\netcoreapp2.0\cosmos\PrismProject.pdb
+D:\source\repos\Prism-OS\PrismProject\obj\Debug\netcoreapp2.0\cosmos\PrismProject.AssemblyInfoInputs.cache
+D:\source\repos\Prism-OS\PrismProject\obj\Debug\netcoreapp2.0\cosmos\PrismProject.AssemblyInfo.cs
+D:\source\repos\Prism-OS\PrismProject\obj\Debug\netcoreapp2.0\cosmos\PrismProject.csproj.CoreCompileInputs.cache
+D:\source\repos\Prism-OS\PrismProject\obj\Debug\netcoreapp2.0\cosmos\PrismProject.dll
+D:\source\repos\Prism-OS\PrismProject\obj\Debug\netcoreapp2.0\cosmos\PrismProject.pdb
+D:\source\repos\Prism-OS\PrismProject\bin\Debug\netcoreapp2.0\cosmos\PrismProject.deps.json
+D:\source\repos\Prism-OS\PrismProject\bin\Debug\netcoreapp2.0\cosmos\PrismProject.dll
+D:\source\repos\Prism-OS\PrismProject\bin\Debug\netcoreapp2.0\cosmos\PrismProject.pdb
