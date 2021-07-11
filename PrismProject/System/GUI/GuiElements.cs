@@ -21,7 +21,7 @@ namespace PrismProject
             Parent = parent;
         }
 
-        internal abstract void Render(Elements draw, int offset_x, int offset_y);
+        internal abstract void Render(drawable draw, int offset_x, int offset_y);
         internal virtual bool Click(int x, int y, int btn)
         {
             Desktop.ActiveElement = this;
@@ -90,7 +90,7 @@ namespace PrismProject
             Y += dy * 2;
         }
 
-        internal override void Render(Elements draw, int offset_x = 0, int offset_y = 0)
+        internal override void Render(drawable draw, int offset_x = 0, int offset_y = 0)
         {
             if (lastX != X || lastY != Y) // we moved
             {
@@ -98,7 +98,7 @@ namespace PrismProject
                 lastX = X;
                 lastY = Y;
             }
-            draw.Window(Driver.font, X, Y, Width, Height, Title);
+            draw.Window(Driver.font, X, Y, Width, Height, Title, true);
 
             foreach (var child in Children)
             {
@@ -118,7 +118,7 @@ namespace PrismProject
             TextColour = Desktop.Text;
         }
 
-        internal override void Render(Elements draw, int offset_x, int offset_y)
+        internal override void Render(drawable draw, int offset_x, int offset_y)
         {
             draw.Text(TextColour, Driver.font, Value, X + offset_x, Y + offset_y);
         }
@@ -162,7 +162,7 @@ namespace PrismProject
             return true;
         }
 
-        internal override void Render(Elements draw, int offset_x, int offset_y)
+        internal override void Render(drawable draw, int offset_x, int offset_y)
         {
             string txt = Value + (Desktop.ActiveElement == this ? "|" : "");
             draw.Textbox(Driver.font, txt, Background, TextColour, X + offset_x, Y + offset_y, Width);
@@ -186,7 +186,7 @@ namespace PrismProject
             OnClick = onClick;
         }
 
-        internal override void Render(Elements draw, int offset_x, int offset_y)
+        internal override void Render(drawable draw, int offset_x, int offset_y)
         {
             //int mx = X + (Width / 2) - (Value.Length * 8);
             int mx = X + 4;

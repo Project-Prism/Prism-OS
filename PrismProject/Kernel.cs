@@ -11,7 +11,8 @@ namespace PrismProject
         {
             //dont change any code to try and fix, when threadding gets implemented it will work flawlesly with a small edit
             Driver.Init();
-            info_screen.Start();
+            //info_screen.Start();
+            Desktop.Start();
             Cmds.Init();
             Networking.DHCP();
             Filesystem.Init();
