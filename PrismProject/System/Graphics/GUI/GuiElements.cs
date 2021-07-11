@@ -1,4 +1,5 @@
 ﻿using Cosmos.System;
+using Cosmos.System.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -199,6 +200,25 @@ namespace PrismProject
         {
             OnClick(this);
             return base.Click(x, y, btn);
+        }
+    }
+    class GuiImage : BaseGuiElement
+    {
+        public Color Background;
+        public Bitmap img;
+        public bool showborder;
+        public int to_x, to_y;
+
+        public GuiImage(Bitmap img, int x, int y, int w, int h = 16, bool showborder = false, int to_X = 0, int to_y = 0) : base(x, y, w, h)
+        {
+            X = x;
+            Y = y;
+        }
+
+        internal override void Render(drawable draw, int offset_x, int offset_y)
+        {
+            draw.Image(img, X, Y);
+            if (showborder) { draw.Empty_Box(Color.Black, X, Y, to_x, to_y); }
         }
     }
 }

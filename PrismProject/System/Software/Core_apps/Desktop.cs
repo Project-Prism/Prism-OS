@@ -13,6 +13,7 @@ namespace PrismProject
         public static Color Button = Color.LightGray;
         public static Color Background = Color.FromArgb(40,40,40);
         public static Color Text = Color.Black;
+        public static Random rnd = new Random();
 
         //Define the graphics method
 
@@ -28,15 +29,12 @@ namespace PrismProject
         {
             draw.Clear(Background);
 
-            var sysinfoWindow = new GuiWindow("System Information", 15, 15, 300, 96);
-            sysinfoWindow.AddChild(new GuiSysInfo(5, 5));
-            Windows.Add(sysinfoWindow);
-
-            var testWindow = new GuiWindow("Test Window", screenX / 4, screenY / 4, screenX / 2, screenX / 2);
-            testWindow.AddChild(new GuiText("Hello, world!", 8, 8));
-            testWindow.AddChild(new GuiButton("Click me!", (self) => { self.Value = "Clicked!"; }, 8, 32, 96));
-            testWindow.AddChild(new GuiText("Textbox:", 8, 128));
-            testWindow.AddChild(new GuiTextBox(96, 128));
+            var testWindow = new GuiWindow("App menu", screenX / 4, screenY / 4, screenX / 2, screenX / 2);
+            testWindow.AddChild(new GuiText("List of demo applications", 8, 8));
+            testWindow.AddChild(new GuiButton("Color me blue!", (self) => { var newcolor = Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256)); self.Background = newcolor; self.Value = "Yay im a color!"; self.TextColour = Color.FromArgb(newcolor.ToArgb() ^ 0xffffff); }, 8, 32, 150));
+            testWindow.AddChild(new GuiButton("Click to reboot", (self) => { Cosmos.System.Power.Reboot(); }, 8, 64, 150));
+            testWindow.AddChild(new GuiButton("Change window bar", (self) => { Windowbar = Color.Black; }, 8, 96, 150));
+            testWindow.AddChild(new GuiButton("Click for an extra mouse!", (self) => { testWindow.AddChild(new GuiImage(Images.mouse, 158, 160, 16, 16, true, 16, 16)); }, 8, 160, 32));
             Windows.Add(testWindow);
 
 
