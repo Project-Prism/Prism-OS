@@ -1,4 +1,5 @@
 ﻿using Cosmos.System;
+using System;
 
 namespace PrismProject
 {
@@ -14,6 +15,8 @@ namespace PrismProject
         public static int X { get => (int)MouseManager.X; }
         public static int Y { get => (int)MouseManager.Y; }
 
+        public static MouseState State { get => MouseManager.MouseState; }
+
         public Cursor()
         {
             MouseManager.ScreenWidth = (uint)screenX;
@@ -22,7 +25,7 @@ namespace PrismProject
 
         public void Update()
         {
-            draw.Box(Desktop.Background, lastX-8, lastY-8, 32, 32);
+            draw.Box(Desktop.Background, Math.Max(0, lastX-8), Math.Max(0, lastY-8), 32, 32);
             draw.Image(Images.mouse, X, Y);
             lastX = X;
             lastY = Y;
