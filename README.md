@@ -7,9 +7,9 @@
 
 | To-DO list         | Status      | extra                     |
 |--------------------|-------------|---------------------------|
-| Add window manager | Started     | Await faster canvas       |
-| Add OOBE setup     | N/A         | Await faster canvas       |
-| Add lock screen    | Started     | Await faster canvas       |
+| Add window manager | Done        | N/A                       |
+| Add OOBE setup     | N/A         | Needs alot of stuff       |
+| Add lock screen    | Started     | Needs better filesystem   |
 | Add sys update     | N/A         | needs extra networking    |
 | add rounded cube   | Done        | OS eyecandy               |
 | add ui gravity     | N/A         | E.X. center, left, top    |
@@ -37,7 +37,6 @@
 | CrisisSDK     | Graphics, window manager     |
 
 # Screenshots
-<IMG src="https://user-images.githubusercontent.com/49339966/119268040-60c57d80-bbf1-11eb-8cc2-ed262d965841.PNG"/>
 <IMG src="https://github.com/Project-Prism/Prism-OS/blob/main/Screenshot%202021-07-11%20003430.png"/>
 
 # Details
