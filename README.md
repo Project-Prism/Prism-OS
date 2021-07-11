@@ -7,9 +7,9 @@
 
 | To-DO list         | Status      | extra                     |
 |--------------------|-------------|---------------------------|
-| Add window manager | N/A         | Await faster canvas       |
+| Add window manager | Started     | Await faster canvas       |
 | Add OOBE setup     | N/A         | Await faster canvas       |
-| Add lock screen    | N/A         | Await faster canvas       |
+| Add lock screen    | Started     | Await faster canvas       |
 | Add sys update     | N/A         | needs extra networking    |
 | add rounded cube   | Done        | OS eyecandy               |
 | add ui gravity     | N/A         | E.X. center, left, top    |
