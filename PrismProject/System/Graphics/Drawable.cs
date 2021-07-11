@@ -4,13 +4,13 @@ using System.Drawing;
 
 namespace PrismProject
 {
-    class Elements
+    class drawable
     {
         //Define the graphics method
         private static int screenX = Driver.screenX;
         private static int screenY = Driver.screenY;
         private static Canvas canvas = Driver.canvas;
-        private static Elements draw = new Elements();
+        private static drawable draw = new drawable();
 
         //Individual shapes
         public void Box(Color color, int from_X, int from_Y, int Width, int Height)
@@ -19,18 +19,18 @@ namespace PrismProject
         }
         public void Rounded_Box(Color color, int x, int y, int Width, int Height, int radius = 6)
         {
-            int x2 = x+Width, y2 = y+Height, r2 = radius+radius;
+            int x2 = x + Width, y2 = y + Height, r2 = radius + radius;
             // Draw Outside circles
-            draw.Circle(color, x+radius, y+radius, radius);
-            draw.Circle(color, x2-radius-1, y+radius, radius);
-            draw.Circle(color, x+radius, y2-radius-1, radius);
-            draw.Circle(color, x2-radius-1, y2-radius-1, radius);
+            draw.Circle(color, x + radius, y + radius, radius);
+            draw.Circle(color, x2 - radius - 1, y + radius, radius);
+            draw.Circle(color, x + radius, y2 - radius - 1, radius);
+            draw.Circle(color, x2 - radius - 1, y2 - radius - 1, radius);
 
             // Draw Main Rectangle
-            draw.Box(color, x, y+radius, Width, Height-r2);
+            draw.Box(color, x, y + radius, Width, Height - r2);
             // Draw Outside Rectangles
-            draw.Box(color, x+radius, y, Width-r2, radius);
-            draw.Box(color, x+radius, y2-radius, Width-r2, radius);
+            draw.Box(color, x + radius, y, Width - r2, radius);
+            draw.Box(color, x + radius, y2 - radius, Width - r2, radius);
         }
         public void Empty_Box(Color color, int from_X, int from_Y, int to_X, int to_Y)
         {
@@ -65,14 +65,14 @@ namespace PrismProject
         }
         public void Loadbar(int fromX, int fromY, int length, int height, int percentage)
         {
-            Box(Color.SlateGray, Convert.ToInt32(fromX), Convert.ToInt32(fromY), length, height);
-            Box(Color.White, Convert.ToInt32(fromX), Convert.ToInt32(fromY), percentage, height);
+            Rounded_Box(Color.SlateGray, fromX, fromY, length, height);
+            Rounded_Box(Color.White, fromX, fromY, percentage, height);
         }
-        public void Window(string font, int from_X, int from_Y, int Width, int Height, string Title)
+        public void Window(string font, int from_X, int from_Y, int Width, int Height, string Title, bool showtitlebar)
         {
             Rounded_Box(Desktop.Window, from_X, from_Y, Width, Height);
-            Rounded_Box(Desktop.Windowbar, from_X, from_Y, Width, screenY / 25);
-            Text(Color.White, font, Title, from_X, from_Y+4);
+            if (showtitlebar) { Rounded_Box(Desktop.Windowbar, from_X, from_Y, Width, screenY / 25); }
+            Text(Color.White, font, Title, from_X, from_Y + 4);
         }
         public void Textbox(string font, string text, Color Background, Color Foreground, int from_X, int from_Y, int Width)
         {

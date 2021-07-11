@@ -1,6 +1,4 @@
-﻿using Cosmos.HAL;
-using Cosmos.System.Network.Config;
-using Cosmos.System.Network.IPv4;
+﻿using Cosmos.System.Network.IPv4;
 using Cosmos.System.Network.IPv4.TCP;
 using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Cosmos.System.Network.IPv4.UDP.DNS;

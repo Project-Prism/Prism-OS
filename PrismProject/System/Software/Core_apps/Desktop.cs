@@ -42,16 +42,12 @@ namespace PrismProject
 
             while (Kernel.canvasRunning)
             {
-                if (Memory.Free < 100)
-                {
-                    Memory.OutOfMemoryWarning();
-                    Cosmos.Core.Bootstrap.CPU.Halt();
-                }
                 draw.Box(Appbar, 0, screenY - 30, screenX, 30);
                 draw.Circle(Button, 20, screenY - 15, 10);
-                draw.Text(Text, Driver.font, "Used memory: " + Memory.Used + " MB (" + Memory.Used_percent + "%)", 0, 0);
-                draw.Text(Text, Driver.font, "Total memory: " + Memory.Total + " MB", 0, 15);
-                draw.Text(Text, Driver.font, "Free memory: " + Memory.Free + " MB (" + Memory.Free_percent + "%)", 0, 30);
+                draw.Rounded_Box(Color.Violet, 15, 15, 250, 45);
+                draw.Text(Text, Driver.font, "Used memory: " + Memory.Used + " MB (" + Memory.Used_percent + "%)", 15, 15);
+                draw.Text(Text, Driver.font, "Total memory: " + Memory.Total + " MB", 15, 30);
+                draw.Text(Text, Driver.font, "Free memory: " + Memory.Free + " MB (" + Memory.Free_percent + "%)", 15, 45);
 
                 foreach (var window in Windows)
                 {

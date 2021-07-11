@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace PrismProject
 {
@@ -13,7 +12,7 @@ namespace PrismProject
 
         public static void OutOfMemoryWarning()
         {
-            Elements draw = new Elements();
+            drawable draw = new drawable();
             int screenX = Driver.screenX;
             int screenY = Driver.screenY;
             if (!Kernel.canvasRunning)
