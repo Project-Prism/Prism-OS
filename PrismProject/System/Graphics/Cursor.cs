@@ -25,7 +25,7 @@ namespace PrismProject
 
         public void Update()
         {
-            draw.Box(Desktop.Background, Math.Max(0, lastX-8), Math.Max(0, lastY-8), 32, 32);
+            if (X != lastX & Y != lastY) { draw.Box(Desktop.Background, Math.Max(0, lastX - 8), Math.Max(0, lastY - 8), 32, 32); }
             draw.Image(Images.mouse, X, Y);
             lastX = X;
             lastY = Y;

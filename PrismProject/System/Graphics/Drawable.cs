@@ -32,6 +32,30 @@ namespace PrismProject
             draw.Box(color, x + radius, y, Width - r2, radius);
             draw.Box(color, x + radius, y2 - radius, Width - r2, radius);
         }
+        public void Top_Rounded_Box(Color color, int x, int y, int Width, int Height, int radius = 6)
+        {
+            int x2 = x + Width, y2 = y + Height, r2 = radius + radius;
+            // Draw Outside circles
+            draw.Circle(color, x + radius, y + radius, radius);
+            draw.Circle(color, x2 - radius - 1, y + radius, radius);
+
+            // Draw Main Rectangle
+            draw.Box(color, x, y + radius, Width, Height - r2);
+            // Draw Outside Rectangles
+            draw.Box(color, x + radius, y, Width - r2, radius+3);
+        }
+        public void Bottom_Rounded_Box(Color color, int x, int y, int Width, int Height, int radius = 6)
+        {
+            int x2 = x + Width, y2 = y + Height, r2 = radius + radius;
+            // Draw Outside circles
+            draw.Circle(color, x + radius, y2 - radius - 1, radius);
+            draw.Circle(color, x2 - radius - 1, y2 - radius - 1, radius);
+
+            // Draw Main Rectangle
+            draw.Box(color, x, y + radius, Width, Height - r2);
+            // Draw Outside Rectangles
+            draw.Box(color, x + radius, y2 - radius, Width - r2, radius);
+        }
         public void Empty_Box(Color color, int from_X, int from_Y, int to_X, int to_Y)
         {
             canvas.DrawRectangle(new Pen(color), from_X, from_Y, to_X, to_Y);
@@ -70,8 +94,8 @@ namespace PrismProject
         }
         public void Window(string font, int from_X, int from_Y, int Width, int Height, string Title, bool showtitlebar)
         {
-            Rounded_Box(Desktop.Window, from_X, from_Y, Width, Height);
-            if (showtitlebar) { Rounded_Box(Desktop.Windowbar, from_X, from_Y, Width, screenY / 25); }
+            Bottom_Rounded_Box(Desktop.Window, from_X, from_Y, Width, Height);
+            if (showtitlebar) { Top_Rounded_Box(Desktop.Windowbar, from_X, from_Y, Width, screenY / 25); }
             Text(Color.White, font, Title, from_X, from_Y + 4);
         }
         public void Textbox(string font, string text, Color Background, Color Foreground, int from_X, int from_Y, int Width)
