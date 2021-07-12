@@ -1,9 +1,7 @@
 ﻿using Cosmos.System;
 using Cosmos.System.Graphics;
-using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 
 namespace PrismProject
 {
@@ -42,7 +40,6 @@ namespace PrismProject
             return false;
         }
     }
-
     class GuiWindow : BaseGuiElement
     {
         public string Title = "";
@@ -107,7 +104,6 @@ namespace PrismProject
             }
         }
     }
-
     class GuiText : BaseGuiElement
     {
         public string Value;
@@ -124,7 +120,6 @@ namespace PrismProject
             draw.Text(TextColour, Driver.font, Value, X + offset_x, Y + offset_y);
         }
     }
-
     class GuiTextBox : BaseGuiElement
     {
         public string Value;
@@ -169,7 +164,6 @@ namespace PrismProject
             draw.Textbox(Driver.font, txt, Background, TextColour, X + offset_x, Y + offset_y, Width);
         }
     }
-
     class GuiButton : BaseGuiElement
     {
         public string Value;

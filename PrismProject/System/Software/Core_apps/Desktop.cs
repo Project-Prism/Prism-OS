@@ -7,21 +7,18 @@ namespace PrismProject
     class Desktop
     {
         //Default theme colors
-        public static Color Appbar = Color.FromArgb(0,120,212);
-        public static Color Window = Color.White;
-        public static Color Windowbar = Color.FromArgb(0,120,212);
-        public static Color Button = Color.LightGray;
-        public static Color Background = Color.FromArgb(40,40,40);
-        public static Color Text = Color.Black;
-        public static Random rnd = new Random();
+        public static Color Title_bar = Color.FromArgb(0,120,212);
+        public static Color Title_text = Color.White;
+        public static Color Window_main = Color.White;
+        public static Color Task_bar = Color.FromArgb(0,120,212);
+        public static Color Button = Color.FromArgb(0, 0, 55, 255);
+        public static Color Background = Color.FromArgb(100, 30, 35, 40);
+        public static Color Text = Color.White;
 
-        //Define the graphics method
-
+        //Define graphics variables
         private static int screenX = Driver.screenX, screenY = Driver.screenY;
         private static drawable draw = new drawable();
         private static Cursor cursor = new Cursor();
-
-        // GUI Elements
         public static List<GuiWindow> Windows = new List<GuiWindow>();
         public static BaseGuiElement ActiveElement = null;
 
@@ -30,11 +27,20 @@ namespace PrismProject
             draw.Clear(Background);
 
             var testWindow = new GuiWindow("App menu", screenX / 4, screenY / 4, screenX / 2, screenX / 2);
-            testWindow.AddChild(new GuiText("List of demo applications", 8, 8));
-            testWindow.AddChild(new GuiButton("Color me blue!", (self) => { var newcolor = Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256)); self.Background = newcolor; self.Value = "Yay im a color!"; self.TextColour = Color.FromArgb(newcolor.ToArgb() ^ 0xffffff); }, 8, 32, 150));
-            testWindow.AddChild(new GuiButton("Click to reboot", (self) => { Cosmos.System.Power.Reboot(); }, 8, 64, 150));
-            testWindow.AddChild(new GuiButton("Change window bar", (self) => { Windowbar = Color.Black; }, 8, 96, 150));
-            testWindow.AddChild(new GuiButton("Click for an extra mouse!", (self) => { testWindow.AddChild(new GuiImage(Images.mouse, 158, 160, 16, 16, true, 16, 16)); }, 8, 160, 32));
+            testWindow.AddChild(new GuiButton("Get random color", (self) => { 
+                self.Background = Color.FromArgb(Driver.randomcolor); self.Value = "Yay im a color!"; self.TextColour = Color.FromArgb(Driver.randomcolor); }, 8, 32, 170, 20));
+            testWindow.AddChild(new GuiButton("Click to reboot", (self) => { 
+                Cosmos.System.Power.Reboot(); }, 8, 64, 170, 20));
+            testWindow.AddChild(new GuiButton("Change window bar", (self) => { 
+                Title_bar = Color.Black; }, 8, 96, 170, 20));
+            testWindow.AddChild(new GuiButton("Open system info", (self) => {
+            var Infoscreen = new GuiWindow("System infomation", 8, 8, screenX / 2, screenY / 3);
+                Infoscreen.AddChild(new GuiText("CPU name: " + Cosmos.Core.CPU.GetCPUBrandString(), 8, 32));
+                Infoscreen.AddChild(new GuiText("CPU vendor: " + Cosmos.Core.CPU.GetCPUVendorName(), 8, 64));
+                Infoscreen.AddChild(new GuiText("Build/codename: Prism OS " + Kernel.Codename + " (" + Kernel.Kernel_build + ")", 8, 96));
+                Windows.Add(Infoscreen);
+            }, 8, 128, 170, 20));
+            testWindow.AddChild(new GuiButton("Install to drive", (self) => { Installer.Start(); }, 8, 160, 170, 20));
             Windows.Add(testWindow);
 
 
@@ -43,9 +49,8 @@ namespace PrismProject
 
             while (Kernel.canvasRunning)
             {
-                draw.Box(Appbar, 0, screenY - 30, screenX, 30);
+                draw.Box(Task_bar, 0, screenY - 30, screenX, 30);
                 draw.Circle(Button, 20, screenY - 15, 10);
-
                 foreach (var window in Windows)
                 {
                     if (clickDown && clickX > window.X && clickX < window.X + window.Width && clickY > window.Y && clickY < window.Y + screenY / 25)
@@ -58,7 +63,6 @@ namespace PrismProject
 
                     window.Render(draw);
                 }
-
                 if ((Cursor.State & Cosmos.System.MouseState.Left) == Cosmos.System.MouseState.Left)
                 {
                     if (!clickDown)
@@ -71,7 +75,6 @@ namespace PrismProject
                 }
                 else if (clickDown)
                 {
-                    clickDown = false;
                     if (Math.Abs(clickX - Cursor.X) < 4 && Math.Abs(clickY - Cursor.Y) < 4)
                     {
                         ActiveElement = null;
@@ -86,7 +89,6 @@ namespace PrismProject
                     clickX = -100;
                     clickY = -100;
                 }
-
                 if (ActiveElement != null)
                 {
                     Cosmos.System.KeyEvent key;
@@ -95,11 +97,9 @@ namespace PrismProject
                         ActiveElement.Key(key);
                     }
                 }
-
                 cursor.Update();
             }
         }
-
         public static void Start_rec()
         {
             Driver.Init();
