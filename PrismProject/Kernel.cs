@@ -1,3 +1,4 @@
+//using System.Threading.Tasks;
 using Sys = Cosmos.System;
 
 namespace PrismProject
@@ -9,13 +10,16 @@ namespace PrismProject
 
         protected override void Run()
         {
-            //dont change any code to try and fix, when threadding gets implemented it will work flawlesly with a small edit
+            // uncomment when threading is a thing
+            //Task Boottask = Task.Run(() =>
+            //{
+            //    Networking.DHCP();
+            //    Filesystem.Init();
+            //    Filesystem.Set_Drive_letter(Filesystem.D0, "X");
+            //    Cmds.Init();
+            //});
             Driver.Init();
             Desktop.Start();
-            Cmds.Init();
-            Networking.DHCP();
-            Filesystem.Init();
-            Filesystem.Set_Drive_letter(Filesystem.D0, "X");
             while (Running)
             {
                 if (Memory.Free < 100)

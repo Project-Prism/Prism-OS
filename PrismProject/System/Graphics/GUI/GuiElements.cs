@@ -169,11 +169,12 @@ namespace PrismProject
         public string Value;
         public Color Background;
         public Color TextColour;
+        public bool Rounded;
 
         public delegate void ClickDelegate(GuiButton self);
         public ClickDelegate OnClick;
 
-        public GuiButton(string text, ClickDelegate onClick, int x, int y, int w, int h = 16) : base(x, y, w, h)
+        public GuiButton(string text, ClickDelegate onClick, bool Rounded, int x, int y, int w, int h = 16) : base(x, y, w, h)
         {
             Value = text;
             Background = Desktop.Button;
@@ -186,7 +187,8 @@ namespace PrismProject
             //int mx = X + (Width / 2) - (Value.Length * 8);
             int mx = X + 4;
             int my = Y + (Height / 2) - 8;
-            draw.Rounded_Box(Background, X + offset_x, Y + offset_y, Width, Height, 4);
+            if (Rounded) {draw.Rounded_Box(Background, X + offset_x, Y + offset_y, Width, Height, 4);}
+            else {draw.Box(Background, X + offset_x, Y + offset_y, Width, Height);}
             draw.Text(TextColour, Driver.font, Value, mx + offset_x, my + offset_y);
         }
 
