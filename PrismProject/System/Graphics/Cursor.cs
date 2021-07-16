@@ -8,7 +8,7 @@ namespace PrismProject
         //Define the graphics method
         private static int screenX = Driver.screenX;
         private static int screenY = Driver.screenY;
-        private static drawable draw = new drawable();
+        private static G_lib draw = new G_lib();
 
         //mouse color and setup
         public static int lastX, lastY;

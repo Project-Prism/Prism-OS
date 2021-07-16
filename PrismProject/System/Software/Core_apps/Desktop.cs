@@ -17,7 +17,7 @@ namespace PrismProject
 
         //Define graphics variables
         private static int screenX = Driver.screenX, screenY = Driver.screenY;
-        private static drawable draw = new drawable();
+        private static G_lib draw = new G_lib();
         private static Cursor cursor = new Cursor();
         public static List<GuiWindow> Windows = new List<GuiWindow>();
         public static BaseGuiElement ActiveElement = null;
@@ -36,7 +36,7 @@ namespace PrismProject
 
             int clickX = -100, clickY = -100;
             bool clickDown = false;
-            draw.Clear(Background);
+            Driver.clear(Background);
 
             while (Kernel.canvasRunning)
             {
@@ -90,32 +90,6 @@ namespace PrismProject
                 cursor.Update();
                 #endregion
             }
-        }
-        public static void Start_rec()
-        {
-            Driver.Init();
-            draw.Clear(Color.Red);
-            int clickX = -100, clickY = -100;
-            bool clickDown = false;
-            while (Kernel.canvasRunning)
-            {
-                var testWindow = new GuiWindow("System crash", screenX / 4, screenY / 4, screenX / 2, screenX / 2);
-                testWindow.AddChild(new GuiText("Unfortunatley, the system has crashed!", 8, 8));
-                Windows.Add(testWindow);
-                foreach (var window in Windows)
-                {
-                    if (clickDown && clickX > window.X && clickX < window.X + window.Width && clickY > window.Y && clickY < window.Y + screenY / 25)
-                    {
-                        if (Math.Abs(clickX - Cursor.X) > 4 || Math.Abs(clickY - Cursor.Y) > 4)
-                        {
-                            window.Dragging(Cursor.X - Cursor.lastX, Cursor.Y - Cursor.lastY);
-                        }
-                    }
-
-                    window.Render(draw);
-                }
-            }
-            
         }
     }
 }

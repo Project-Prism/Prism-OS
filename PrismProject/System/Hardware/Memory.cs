@@ -12,14 +12,14 @@ namespace PrismProject
 
         public static void OutOfMemoryWarning()
         {
-            drawable draw = new drawable();
+            G_lib draw = new G_lib();
             int screenX = Driver.screenX;
             int screenY = Driver.screenY;
             if (!Kernel.canvasRunning)
             {
                 Driver.Init();
             }
-            draw.Clear(Color.DarkOrange);
+            Driver.clear(Color.DarkOrange);
             draw.Textbox(Driver.font, "LOW MEMORY!", Color.Black, Color.Red, screenX / 4, screenY / 2, 200);
         }
     }

@@ -17,14 +17,14 @@ namespace PrismProject
 
         //Define graphics variables
         private static int screenX = Driver.screenX, screenY = Driver.screenY;
-        private static drawable draw = new drawable();
+        private static G_lib draw = new G_lib();
         private static Cursor cursor = new Cursor();
         public static List<GuiWindow> Windows = new List<GuiWindow>();
         public static BaseGuiElement ActiveElement = null;
 
         public static void Start()
         {
-            draw.Clear(Background);
+            Driver.clear(Background);
 
             var testWindow = new GuiWindow("Prism setup", screenX / 4, screenY / 4, screenX / 2, screenX / 2);
             testWindow.AddChild(new GuiButton("Install now", (self) => { install(); }, true, screenX/3, 500, Convert.ToInt32(screenX/1.5), 32));
@@ -86,7 +86,7 @@ namespace PrismProject
         }
         public static void install()
         {
-            draw.Clear(Background);
+            Driver.clear(Background);
 
             var testWindow = new GuiWindow("Prism setup", screenX / 4, screenY / 4, screenX / 2, screenX / 2);
             Windows.Add(testWindow);

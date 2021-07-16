@@ -5,6 +5,107 @@ using System.Drawing;
 
 namespace PrismProject
 {
+    class G_lib
+        {
+            //Define the graphics method
+            private static int screenY = Driver.screenY;
+            private static Canvas canvas = Driver.canvas;
+            private static G_lib draw = new G_lib();
+
+            //Individual shapes
+            public void Box(Color color, int from_X, int from_Y, int Width, int Height)
+            {
+                canvas.DrawFilledRectangle(new Pen(color), from_X, from_Y, Width, Height);
+            }
+            public void Rounded_Box(Color color, int x, int y, int Width, int Height, int radius = 6)
+            {
+                int x2 = x + Width, y2 = y + Height, r2 = radius + radius;
+                // Draw Outside circles
+                draw.Circle(color, x + radius, y + radius, radius);
+                draw.Circle(color, x2 - radius - 1, y + radius, radius);
+                draw.Circle(color, x + radius, y2 - radius - 1, radius);
+                draw.Circle(color, x2 - radius - 1, y2 - radius - 1, radius);
+
+                // Draw Main Rectangle
+                draw.Box(color, x, y + radius, Width, Height - r2);
+                // Draw Outside Rectangles
+                draw.Box(color, x + radius, y, Width - r2, radius);
+                draw.Box(color, x + radius, y2 - radius, Width - r2, radius);
+            }
+            public void Top_Rounded_Box(Color color, int x, int y, int Width, int Height, int radius = 6)
+            {
+                int x2 = x + Width, y2 = y + Height, r2 = radius + radius;
+                // Draw Outside circles
+                draw.Circle(color, x + radius, y + radius, radius);
+                draw.Circle(color, x2 - radius - 1, y + radius, radius);
+
+                // Draw Main Rectangle
+                draw.Box(color, x, y + radius, Width, Height - radius);
+                // Draw Outside Rectangles
+                draw.Box(color, x + radius, y, Width - r2, radius + 3);
+            }
+            public void Bottom_Rounded_Box(Color color, int x, int y, int Width, int Height, int radius = 6)
+            {
+                int x2 = x + Width, y2 = y + Height, r2 = radius + radius;
+                // Draw Outside circles
+                draw.Circle(color, x + radius, y2 - radius - 1, radius);
+                draw.Circle(color, x2 - radius - 1, y2 - radius - 1, radius);
+
+                // Draw Main Rectangle
+                draw.Box(color, x, y + radius, Width, Height - r2);
+                // Draw Outside Rectangles
+                draw.Box(color, x + radius, y2 - radius, Width - r2, radius);
+            }
+            public void Empty_Box(Color color, int from_X, int from_Y, int to_X, int to_Y)
+            {
+                canvas.DrawRectangle(new Pen(color), from_X, from_Y, to_X, to_Y);
+            }
+            public void Circle(Color color, int from_X, int from_Y, int radius)
+            {
+                canvas.DrawFilledCircle(new Pen(color), from_X, from_Y, radius);
+            }
+            public void Triangle(Color color, int x1, int y1, int x2, int y2, int x3, int y3)
+            {
+                canvas.DrawTriangle(new Pen(color), x1, y1, x2, y2, x3, y3);
+            }
+            public void Arrow(Color color, int width, int x, int y)
+            {
+                canvas.DrawPoint(new Pen(color, width), x, y);
+            }
+            public void Line(Color color, int from_X, int from_y, int to_X, int to_Y)
+            {
+                canvas.DrawLine(new Pen(color), from_X, from_y, to_X, to_Y);
+            }
+
+            //UI elements
+            public void Text(Color color, string font, string text, int x, int y)
+            {
+                canvas.DrawBitFontString(font, color, text, x, y);
+
+            }
+            public void Loadbar(int fromX, int fromY, int length, int height, int percentage)
+            {
+                Rounded_Box(Color.SlateGray, fromX, fromY, length, height);
+                Rounded_Box(Color.White, fromX, fromY, percentage, height);
+            }
+            public void Window(string font, int from_X, int from_Y, int Width, int Height, string Title, bool showtitlebar)
+            {
+                Rounded_Box(Color.White, from_X - 1, from_Y - 1, Width + 2, Height + 2, 10);
+                Bottom_Rounded_Box(Desktop.Window, from_X, from_Y, Width, Height, 10);
+                if (showtitlebar) { Top_Rounded_Box(Desktop.Accent, from_X, from_Y, Width, screenY / 23, 10); }
+                Text(Color.White, font, Title, from_X + 10, from_Y + 4);
+            }
+            public void Textbox(string font, string text, Color Background, Color Foreground, int from_X, int from_Y, int Width)
+            {
+                Box(Background, from_X, from_Y, Width, 15);
+                Empty_Box(Foreground, from_X, from_Y, Width, 15);
+                Text(Foreground, font, text, from_X, from_Y + 1);
+            }
+            public void Image(Bitmap img, int x, int y)
+            {
+                canvas.DrawImageAlpha(img, x, y);
+            }
+        }
     abstract class BaseGuiElement
     {
         public int X, Y, Width, Height;
@@ -20,7 +121,7 @@ namespace PrismProject
             Parent = parent;
         }
 
-        internal abstract void Render(drawable draw, int offset_x, int offset_y);
+        internal abstract void Render(G_lib draw, int offset_x, int offset_y);
         internal virtual bool Click(int x, int y, int btn)
         {
             Desktop.ActiveElement = this;
@@ -88,7 +189,7 @@ namespace PrismProject
             Y += dy * 2;
         }
 
-        internal override void Render(drawable draw, int offset_x = 0, int offset_y = 0)
+        internal override void Render(G_lib draw, int offset_x = 0, int offset_y = 0)
         {
             if (lastX != X || lastY != Y) // we moved
             {
@@ -115,7 +216,7 @@ namespace PrismProject
             TextColour = Desktop.Text;
         }
 
-        internal override void Render(drawable draw, int offset_x, int offset_y)
+        internal override void Render(G_lib draw, int offset_x, int offset_y)
         {
             draw.Text(TextColour, Driver.font, Value, X + offset_x, Y + offset_y);
         }
@@ -158,7 +259,7 @@ namespace PrismProject
             return true;
         }
 
-        internal override void Render(drawable draw, int offset_x, int offset_y)
+        internal override void Render(G_lib draw, int offset_x, int offset_y)
         {
             string txt = Value + (Desktop.ActiveElement == this ? "|" : "");
             draw.Textbox(Driver.font, txt, Background, TextColour, X + offset_x, Y + offset_y, Width);
@@ -183,7 +284,7 @@ namespace PrismProject
             OnClick = onClick;
         }
 
-        internal override void Render(drawable draw, int offset_x, int offset_y)
+        internal override void Render(G_lib draw, int offset_x, int offset_y)
         {
             //int mx = X + (Width / 2) - (Value.Length * 8);
             int mx = X + 4;
@@ -212,7 +313,7 @@ namespace PrismProject
             Y = y;
         }
 
-        internal override void Render(drawable draw, int offset_x, int offset_y)
+        internal override void Render(G_lib draw, int offset_x, int offset_y)
         {
             draw.Image(img, X, Y);
             if (showborder) { draw.Empty_Box(Color.Black, X, Y, to_x, to_y); }
@@ -235,7 +336,7 @@ namespace PrismProject
             OnClick = onClick;
         }
 
-        internal override void Render(drawable draw, int offset_x, int offset_y)
+        internal override void Render(G_lib draw, int offset_x, int offset_y)
         {
             draw.Rounded_Box(Fore, offset_x + X-1, offset_y + Y-1, 39, 22, 7);
             draw.Rounded_Box(Back, offset_x+X, offset_y+Y, 37, 20, 7);
@@ -262,7 +363,7 @@ namespace PrismProject
             OnClick = onClick;
         }
 
-        internal override void Render(drawable draw, int offset_x, int offset_y)
+        internal override void Render(G_lib draw, int offset_x, int offset_y)
         {
             draw.Line(Fore, offset_x+X, offset_y+Y, Width, offset_y+Y+1);
             draw.Line(Fore, offset_x+X, offset_y+Y+Height, Width, offset_y+Y+1);
