@@ -94,8 +94,8 @@ namespace PrismProject
         }
         public void Window(string font, int from_X, int from_Y, int Width, int Height, string Title, bool showtitlebar)
         {
-            Bottom_Rounded_Box(Desktop.Window_main, from_X, from_Y, Width, Height);
-            if (showtitlebar) { Top_Rounded_Box(Desktop.Title_bar, from_X, from_Y, Width, screenY / 25); }
+            Bottom_Rounded_Box(Desktop.Window, from_X, from_Y, Width, Height);
+            if (showtitlebar) { Top_Rounded_Box(Desktop.Accent, from_X, from_Y, Width, screenY / 25); }
             Text(Color.White, font, Title, from_X, from_Y + 4);
         }
         public void Textbox(string font, string text, Color Background, Color Foreground, int from_X, int from_Y, int Width)

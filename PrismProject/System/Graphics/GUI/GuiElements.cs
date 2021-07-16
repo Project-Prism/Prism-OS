@@ -174,11 +174,12 @@ namespace PrismProject
         public delegate void ClickDelegate(GuiButton self);
         public ClickDelegate OnClick;
 
-        public GuiButton(string text, ClickDelegate onClick, bool Rounded, int x, int y, int w, int h = 16) : base(x, y, w, h)
+        public GuiButton(string text, ClickDelegate onClick, bool round, int x, int y, int w, int h = 16) : base(x, y, w, h)
         {
             Value = text;
-            Background = Desktop.Button;
-            TextColour = Desktop.Text;
+            Background = Desktop.Accent;
+            TextColour = Desktop.Accent_Text;
+            Rounded = round;
             OnClick = onClick;
         }
 
@@ -215,6 +216,36 @@ namespace PrismProject
         {
             draw.Image(img, X, Y);
             if (showborder) { draw.Empty_Box(Color.Black, X, Y, to_x, to_y); }
+        }
+    }
+    class GuiSwitch : BaseGuiElement
+    {
+        public Color Back;
+        public Color Fore;
+        public bool status;
+
+        public delegate void ClickDelegate(GuiSwitch self);
+        public ClickDelegate OnClick;
+
+        public GuiSwitch(ClickDelegate onClick, Color Background, Color Foreground, bool enabled, int x, int y, int w, int h = 16) : base(x, y, w, h)
+        {
+            Back = Background;
+            Fore = Foreground;
+            status = enabled;
+            OnClick = onClick;
+        }
+
+        internal override void Render(drawable draw, int offset_x, int offset_y)
+        {
+            draw.Rounded_Box(Fore, offset_x + X-1, offset_y + Y-1, 46, 21, 7);
+            draw.Rounded_Box(Back, offset_x+X, offset_y+Y, 45, 20, 7);
+            draw.Circle(Fore, offset_x + X + 9, offset_y + Y + 10, 7);
+        }
+
+        internal override bool Click(int x, int y, int btn)
+        {
+            OnClick(this);
+            return base.Click(x, y, btn);
         }
     }
 }
