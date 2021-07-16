@@ -6,6 +6,7 @@ namespace PrismProject
 {
     class Desktop
     {
+        #region Themes and GUI vars
         //Default theme colors
         public static Color Window = Color.FromArgb(23, 23, 37);
         public static Color Background = Color.FromArgb(23,23,27);
@@ -21,7 +22,7 @@ namespace PrismProject
         private static Cursor cursor = new Cursor();
         public static List<GuiWindow> Windows = new List<GuiWindow>();
         public static BaseGuiElement ActiveElement = null;
-
+        #endregion
         public static void Start()
         {
             var testWindow = new GuiWindow("App menu", screenX / 4, screenY / 4, screenX / 2, screenX / 2);
