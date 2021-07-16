@@ -148,8 +148,9 @@ namespace PrismProject
 
         private int lastX, lastY;
         private int titleHeight;
+        private int radius;
 
-        public GuiWindow(string title, int x, int y, int w, int h) : base(x, y, w, h)
+        public GuiWindow(string title, int x, int y, int w, int h, int rad) : base(x, y, w, h)
         {
             Title = title;
             Children = new List<BaseGuiElement>();
@@ -193,7 +194,7 @@ namespace PrismProject
         {
             if (lastX != X || lastY != Y) // we moved
             {
-                draw.Rounded_Box(Desktop.Background, lastX, lastY, Width, Height);
+                draw.Rounded_Box(Desktop.Background, lastX, lastY, Width, Height, radius);
                 lastX = X;
                 lastY = Y;
             }
@@ -352,27 +353,18 @@ namespace PrismProject
     class GuiDiv : BaseGuiElement
     {
         public Color Fore;
-        public delegate void ClickDelegate(GuiDiv self);
-        public ClickDelegate OnClick;
 
-        public GuiDiv(ClickDelegate onClick, Color Foreground, int x, int y, int h, int w) : base(x, y, h, w)
+        public GuiDiv(int x, int y, int h, int w, Color Foreground) : base(x, y, h, w)
         {
             Fore = Foreground;
             Height = h;
             Width = w;
-            OnClick = onClick;
         }
 
         internal override void Render(G_lib draw, int offset_x, int offset_y)
         {
-            draw.Line(Fore, offset_x+X, offset_y+Y, Width, offset_y+Y+1);
-            draw.Line(Fore, offset_x+X, offset_y+Y+Height, Width, offset_y+Y+1);
-        }
-
-        internal override bool Click(int x, int y, int btn)
-        {
-            OnClick(this);
-            return base.Click(x, y, btn);
+            draw.Line(Fore, offset_x +X, offset_y+Y, Width, offset_y+Y);
+            draw.Line(Fore, offset_x+X, offset_y+Y+Height, Width, offset_y+Y+Height);
         }
     }
 }
