@@ -14,16 +14,19 @@ namespace PrismProject
                 if (args[0] == "-r")
                 {
                     Power.Reboot();
+                    return;
                 }
-                else if (args[0] == "-t" && args[2] == "-r")
+                if (args[0] == "-t" && args[2] == "-r")
                 {
                     Tools.Sleep(Convert.ToInt32(args[1]));
                     Power.Reboot();
+                    return;
                 }
-                else if (args[0] == "-t")
+                if (args[0] == "-t")
                 {
                     Tools.Sleep(Convert.ToInt32(args[1]));
                     Power.Shutdown();
+                    return;
                 }
 
             }
