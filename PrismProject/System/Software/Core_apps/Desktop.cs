@@ -7,12 +7,14 @@ namespace PrismProject
     class Desktop
     {
         //Default theme colors
-        public static Color Window = Color.White;
-        public static Color Background = Color.FromArgb(23,23,34);
+        public static Color Window = Color.FromArgb(23, 23, 37);
+        public static Color Background = Color.FromArgb(23,23,27);
         public static Color Text = Color.White;
         public static Color Accent_Text = Color.Black;
         public static Color Accent = Color.FromArgb(0,120,212);
-        
+        public static Color Accent_Dark = Color.FromArgb(23, 23, 37);
+        public static Color Accent_Medium = Color.FromArgb(33, 33, 47);
+
         //Define graphics variables
         private static int screenX = Driver.screenX, screenY = Driver.screenY;
         private static drawable draw = new drawable();
@@ -24,18 +26,11 @@ namespace PrismProject
         {
             var testWindow = new GuiWindow("App menu", screenX / 4, screenY / 4, screenX / 2, screenX / 2);
             testWindow.AddChild(new GuiButton("Get random color", (self) => { 
-                self.Background = Color.FromArgb(Driver.randomcolor); self.Value = "Yay im a color!"; self.TextColour = Color.FromArgb(Driver.randomcolor); }, true, 8, 32, 170, 20));
+                self.Background = Color.FromArgb(Driver.randomcolor); self.Value = "Yay im a color!"; self.TextColour = Color.FromArgb(Driver.randomcolor); }, true, 16, 32, 170, 20));
             testWindow.AddChild(new GuiButton("Click to reboot", (self) => { 
-                Cosmos.System.Power.Reboot(); }, true, 8, 64, 170, 20));
-            testWindow.AddChild(new GuiButton("Open system info", (self) => {
-            var Infoscreen = new GuiWindow("System infomation", 8, 8, screenX / 2, screenY / 3);
-                Infoscreen.AddChild(new GuiText("CPU name: " + Cosmos.Core.CPU.GetCPUBrandString(), 8, 32));
-                Infoscreen.AddChild(new GuiText("CPU vendor: " + Cosmos.Core.CPU.GetCPUVendorName(), 8, 64));
-                Infoscreen.AddChild(new GuiText("Build/codename: Prism OS " + Kernel.Codename + " (" + Kernel.Kernel_build + ")", 8, 96));
-                Windows.Add(Infoscreen);
-            }, true, 8, 128, 170, 20));
-            testWindow.AddChild(new GuiButton("Install to drive", (self)=>{Installer.Start();}, true, 8, 160, 170, 20));
-            testWindow.AddChild(new GuiSwitch((self) => { self.status = true; }, Background, Accent, false, 185, 160, 0));
+                Cosmos.System.Power.Reboot(); }, true, 16, 64, 170, 20));
+            testWindow.AddChild(new GuiButton("Install to drive", (self) => { Installer.Start(); }, true, 16, 96, 170, 20));
+            testWindow.AddChild(new GuiSwitch((self) => { self.status = true; }, Accent_Medium, Accent, false, 200, 160));
             Windows.Add(testWindow);
 
 

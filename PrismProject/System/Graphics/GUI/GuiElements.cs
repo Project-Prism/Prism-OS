@@ -227,7 +227,7 @@ namespace PrismProject
         public delegate void ClickDelegate(GuiSwitch self);
         public ClickDelegate OnClick;
 
-        public GuiSwitch(ClickDelegate onClick, Color Background, Color Foreground, bool enabled, int x, int y, int w, int h = 16) : base(x, y, w, h)
+        public GuiSwitch(ClickDelegate onClick, Color Background, Color Foreground, bool enabled, int x, int y) : base(x, y, 45, 20)
         {
             Back = Background;
             Fore = Foreground;
@@ -237,9 +237,35 @@ namespace PrismProject
 
         internal override void Render(drawable draw, int offset_x, int offset_y)
         {
-            draw.Rounded_Box(Fore, offset_x + X-1, offset_y + Y-1, 46, 21, 7);
-            draw.Rounded_Box(Back, offset_x+X, offset_y+Y, 45, 20, 7);
-            draw.Circle(Fore, offset_x + X + 9, offset_y + Y + 10, 7);
+            draw.Rounded_Box(Fore, offset_x + X-1, offset_y + Y-1, 39, 22, 7);
+            draw.Rounded_Box(Back, offset_x+X, offset_y+Y, 37, 20, 7);
+            draw.Circle(Fore, offset_x + X + 9, offset_y + Y + 9, 7);
+        }
+
+        internal override bool Click(int x, int y, int btn)
+        {
+            OnClick(this);
+            return base.Click(x, y, btn);
+        }
+    }
+    class GuiDiv : BaseGuiElement
+    {
+        public Color Fore;
+        public delegate void ClickDelegate(GuiDiv self);
+        public ClickDelegate OnClick;
+
+        public GuiDiv(ClickDelegate onClick, Color Foreground, int x, int y, int h, int w) : base(x, y, h, w)
+        {
+            Fore = Foreground;
+            Height = h;
+            Width = w;
+            OnClick = onClick;
+        }
+
+        internal override void Render(drawable draw, int offset_x, int offset_y)
+        {
+            draw.Line(Fore, offset_x+X, offset_y+Y, Width, offset_y+Y+1);
+            draw.Line(Fore, offset_x+X, offset_y+Y+Height, Width, offset_y+Y+1);
         }
 
         internal override bool Click(int x, int y, int btn)
