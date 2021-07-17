@@ -28,8 +28,8 @@ namespace PrismProject
         {
             Driver.Clear(Background);
 
-            var testWindow = new GuiWindow("Prism setup", screenX / 4, screenY / 4, screenX / 2, screenX / 2);
-            testWindow.AddChild(new GuiButton("Install now", (self) => { Install(); }, true, screenX / 3, 500, Convert.ToInt32(screenX / 1.5), 32));
+            var testWindow = new GuiWindow(screenX / 4, screenY / 4, screenX / 2, screenX / 2, "Prism setup", 2);
+            testWindow.AddChild(new GuiButton(screenX / 3, 500, Convert.ToInt32(screenX / 1.5), 32, "Install now", true, (self) => { Install(); }));
             Windows.Add(testWindow);
             int clickX = -100, clickY = -100;
             bool clickDown = false;
@@ -90,7 +90,7 @@ namespace PrismProject
         {
             Driver.Clear(Background);
 
-            var testWindow = new GuiWindow("Prism setup", screenX / 4, screenY / 4, screenX / 2, screenX / 2);
+            var testWindow = new GuiWindow(screenX / 4, screenY / 4, screenX / 2, screenX / 2, "Prism Setup", 2);
             Windows.Add(testWindow);
             int clickX = -100, clickY = -100;
             bool clickDown = false;

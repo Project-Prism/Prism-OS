@@ -18,7 +18,7 @@ namespace PrismProject
             canvas.DrawFilledRectangle(new Pen(color), from_X, from_Y, Width, Height);
         }
 
-        public void Rounded_Box(Color color, int x, int y, int Width, int Height, int radius = 6)
+        public void Rounded_Box(Color color, int x, int y, int Width, int Height, int radius)
         {
             int x2 = x + Width, y2 = y + Height, r2 = radius + radius;
             // Draw Outside circles
@@ -93,8 +93,8 @@ namespace PrismProject
 
         public void Loadbar(int fromX, int fromY, int length, int height, int percentage)
         {
-            Rounded_Box(Color.SlateGray, fromX, fromY, length, height);
-            Rounded_Box(Color.White, fromX, fromY, percentage, height);
+            Rounded_Box(Color.SlateGray, fromX, fromY, length, height, 50);
+            Rounded_Box(Color.White, fromX-1, fromY-1, percentage+2, height+2, 50);
         }
 
         public void Window(string font, int from_X, int from_Y, int Width, int Height, string Title, bool showtitlebar)
@@ -159,16 +159,17 @@ namespace PrismProject
 
     internal class GuiWindow : BaseGuiElement
     {
-        public string Title = "";
+        public string Title;
         public List<BaseGuiElement> Children;
 
         private int lastX, lastY;
         private readonly int titleHeight;
-        private readonly int radius;
+        private readonly int Radius;
 
-        public GuiWindow(string title, int x, int y, int w, int h) : base(x, y, w, h)
+        public GuiWindow(int x, int y, int w, int h, string title, int Rad) : base(x, y, w, h)
         {
             Title = title;
+            Radius = Rad;
             Children = new List<BaseGuiElement>();
             lastX = x;
             lastY = y;
@@ -210,7 +211,7 @@ namespace PrismProject
         {
             if (lastX != X || lastY != Y) // we moved
             {
-                draw.Rounded_Box(Desktop.Background, lastX, lastY, Width, Height, radius);
+                draw.Rounded_Box(Desktop.Background, lastX, lastY, Width, Height, Radius);
                 lastX = X;
                 lastY = Y;
             }
@@ -228,7 +229,7 @@ namespace PrismProject
         public string Value;
         public Color TextColour;
 
-        public GuiText(string text, int x, int y) : base(x, y, 0, 0)
+        public GuiText(int x, int y, string text) : base(x, y, 0, 0)
         {
             Value = text;
             TextColour = Desktop.Text;
@@ -297,7 +298,7 @@ namespace PrismProject
 
         public ClickDelegate OnClick;
 
-        public GuiButton(string text, ClickDelegate onClick, bool round, int x, int y, int w, int h = 16) : base(x, y, w, h)
+        public GuiButton(int x, int y, int w, int h, string text, bool round, ClickDelegate onClick) : base(x, y, w, h)
         {
             Value = text;
             Background = Desktop.Accent;
@@ -325,21 +326,24 @@ namespace PrismProject
 
     internal class GuiImage : BaseGuiElement
     {
-        public Color Background;
         public Bitmap img;
         public bool showborder;
-        public int to_x, to_y;
+        public int Height, Width;
 
-        public GuiImage(int x, int y, int w, int h = 16) : base(x, y, w, h)
+        public GuiImage(int x, int y, int w, int h, Bitmap image, bool border) : base(x, y, w, h)
         {
             X = x;
             Y = y;
+            img = image;
+            showborder = border;
+            Height = h;
+            Width = w;
         }
 
         internal override void Render(G_lib draw, int offset_x, int offset_y)
         {
-            draw.Image(img, X, Y);
-            if (showborder) { draw.Empty_Box(Color.Black, X, Y, to_x, to_y); }
+            draw.Image(img, offset_x+X, offset_y+Y);
+            if (showborder) { draw.Empty_Box(Color.Black, X, Y, Width, Height); }
         }
     }
 
@@ -353,7 +357,7 @@ namespace PrismProject
 
         public ClickDelegate OnClick;
 
-        public GuiSwitch(ClickDelegate onClick, Color Background, Color Foreground, bool enabled, int x, int y) : base(x, y, 45, 20)
+        public GuiSwitch(int x, int y, Color Background, Color Foreground, bool enabled, ClickDelegate onClick) : base(x, y, 45, 20)
         {
             Back = Background;
             Fore = Foreground;
@@ -363,9 +367,10 @@ namespace PrismProject
 
         internal override void Render(G_lib draw, int offset_x, int offset_y)
         {
-            draw.Rounded_Box(Fore, offset_x + X - 1, offset_y + Y - 1, 39, 22, 7);
-            draw.Rounded_Box(Back, offset_x + X, offset_y + Y, 37, 20, 7);
-            draw.Circle(Fore, offset_x + X + 9, offset_y + Y + 9, 7);
+            draw.Rounded_Box(Fore, offset_x + X - 1, offset_y + Y - 1, 39, 22, 6);
+            draw.Rounded_Box(Back, offset_x + X, offset_y + Y, 37, 20, 6);
+            if (status) { draw.Circle(Fore, offset_x + X + 9, offset_y + Y + 9, 6); }
+            if (!status) { draw.Circle(Fore, offset_x + X + 18, offset_y + Y + 9, 6); }
         }
 
         internal override bool Click(int x, int y, int btn)

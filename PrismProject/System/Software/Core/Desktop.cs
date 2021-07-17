@@ -29,23 +29,23 @@ namespace PrismProject
 
         public static void Start()
         {
-            var testWindow = new GuiWindow("App menu", screenX / 4, screenY / 4, screenX / 2, screenX / 2);
+            var testWindow = new GuiWindow(screenX / 4, screenY / 4, screenX / 2, screenX / 2, "App menu", 5);
 
-            testWindow.AddChild(new GuiButton("random accent color", (self) =>
+            testWindow.AddChild(new GuiButton(16, 32, 170, 20, "random accent color", true, (self) =>
             {
                 Accent = Color.FromArgb(Driver.randomcolor);
-            }, true, 16, 32, 170, 20));
-            testWindow.AddChild(new GuiButton("Click to reboot", (self) =>
+            }));
+            testWindow.AddChild(new GuiButton(16, 64, 170, 20, "Click to reboot", true, (self) =>
             {
                 Cosmos.System.Power.Reboot();
-            }, true, 16, 64, 170, 20));
-            testWindow.AddChild(new GuiText("Wi-Fi", 32, 162));
-            testWindow.AddChild(new GuiSwitch((self) =>
+            }));
+            testWindow.AddChild(new GuiText(110, 162, "Wi-Fi"));
+            testWindow.AddChild(new GuiSwitch(150, 160, Accent_Dark, Accent, true, (self) =>
             {
                 if (self.status) { self.status = false; }
                 if (!self.status) { self.status = true; }
-            }, Accent_Medium, Accent, false, 150, 160));
-            testWindow.AddChild(new GuiDiv(0, 150, 40, testWindow.Width, Accent));
+            }));
+            testWindow.AddChild(new GuiDiv(100, 150, 40, testWindow.Width, Accent));
 
             Windows.Add(testWindow);
 
