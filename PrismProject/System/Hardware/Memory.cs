@@ -2,7 +2,7 @@
 
 namespace PrismProject
 {
-    class Memory
+    internal class Memory
     {
         public static uint Total { get => Cosmos.Core.CPU.GetAmountOfRAM(); }
         public static uint Used { get => (Cosmos.Core.CPU.GetEndOfKernel() + 1024) / 1048576; }
@@ -19,8 +19,20 @@ namespace PrismProject
             {
                 Driver.Init();
             }
-            Driver.clear(Color.DarkOrange);
+            Driver.Clear(Color.DarkOrange);
             draw.Textbox(Driver.font, "LOW MEMORY!", Color.Black, Color.Red, screenX / 4, screenY / 2, 200);
+        }
+
+        public static void Memcheck()
+        {
+            while (Kernel.Running)
+            {
+                if (Memory.Free < 100)
+                {
+                    Memory.OutOfMemoryWarning();
+                    Cosmos.Core.Bootstrap.CPU.Halt();
+                }
+            }
         }
     }
 }

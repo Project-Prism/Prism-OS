@@ -1,4 +1,4 @@
-//using System.Threading.Tasks;
+//using System.Threading;
 using Sys = Cosmos.System;
 
 namespace PrismProject
@@ -10,24 +10,13 @@ namespace PrismProject
 
         protected override void Run()
         {
-            // uncomment when threading is a thing
-            //Task Boottask = Task.Run(() =>
-            //{
-            //    Networking.DHCP();
-            //    Filesystem.Init();
-            //    Filesystem.Set_Drive_letter(Filesystem.D0, "X");
-            //    Cmds.Init();
-            //});
+            //uncomment when threading is a thing
+            //new Thread(Networking.DHCP).Start();
+            //new Thread(Filesystem.Init).Start();
+            //new Thread(Cmds.Init).Start();
+            //new Thread(Memory.memcheck).Start();
             Driver.Init();
             Desktop.Start();
-            while (Running)
-            {
-                if (Memory.Free < 100)
-                {
-                    Memory.OutOfMemoryWarning();
-                    Cosmos.Core.Bootstrap.CPU.Halt();
-                }
-            }
         }
     }
 }

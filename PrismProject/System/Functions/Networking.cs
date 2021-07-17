@@ -13,6 +13,7 @@ namespace PrismProject
             using (var client = new DHCPClient())
                 client.SendDiscoverPacket();
         }
+
         public static int Ping(string address, int timeout = 5000)
         {
             using (var client = new ICMPClient())
@@ -25,7 +26,8 @@ namespace PrismProject
                 return client.Receive(ref point, timeout);
             }
         }
-        public static byte[] tcp(string address, int port, int timeout, string body)
+
+        public static byte[] Tcp(string address, int port, string body)
         {
             using (var client = new TcpClient(port))
             {
@@ -40,6 +42,7 @@ namespace PrismProject
                 return data2;
             }
         }
+
         public static Address DNS(string address)
         {
             if (!Tools.IsIPAddress(address))

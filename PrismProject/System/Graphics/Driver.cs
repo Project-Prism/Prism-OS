@@ -5,7 +5,7 @@ using System.IO;
 
 namespace PrismProject
 {
-    class Driver
+    internal class Driver
     {
         public static int screenY = 600;
         public static int screenX = 800;
@@ -13,7 +13,7 @@ namespace PrismProject
         public static string font = "YuGothicUI";
         public static string Clock = "YuGothicUI";
         public static string clock_large = "bigclock";
-        private static Random rnd = new Random();
+        private static readonly Random rnd = new Random();
         public static int randomcolor = rnd.Next(256) + rnd.Next(256) + rnd.Next(256);
 
         public static void Init()
@@ -25,7 +25,8 @@ namespace PrismProject
             MemoryStream MSReferenceSansSerifCustomCharset16 = new MemoryStream(Convert.FromBase64String("AAAAAAAAAAAAAAQAHAAEAAQABAAEAAQAHwAAAAAAAAAAAAAAAAAAAAAADgARAAEAAgAEAAgAEAAfAAAAAAAAAAAAAAAAAAAAAAAOABEAAQAGAAEAAQARAA4AAAAAAAAAAAAAAAAAAAAAAAIABgAKABIAIgA/AAIAAgAAAAAAAAAAAAAAAAAAAAAAHwAQABAAHgABAAEAEQAOAAAAAAAAAAAAAAAAAAAAAAAGAAgAEAAeABEAEQARAA4AAAAAAAAAAAAAAAAAAAAAAB8AAQACAAIABAAEAAgACAAAAAAAAAAAAAAAAAAAAAAADgARABEADgARABEAEQAOAAAAAAAAAAAAAAAAAAAAAAAOABEAEQARAA8AAQACAAwAAAAAAAAAAAAAAAAAAAAAAA4AEQARABEAEQARABEADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAgACAAAAAAACAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAADgABAA8AEQARAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAeABEAEQARABEAHgAQABAAAAAAAAAAAAAAAAAAAAAAAB7gERAREBEQERAREAAAAAAAAA=="));
             BitFont.RegisterBitFont("bigclock", new BitFontDescriptor(clock, MSReferenceSansSerifCustomCharset16, 16));
         }
-        public static void clear(Color clr)
+
+        public static void Clear(Color clr)
         {
             canvas.Clear(clr);
         }

@@ -2,7 +2,7 @@
 
 namespace PrismProject
 {
-    class Keyboard
+    internal class Keyboard
     {
         public static void keyboard(string type, string[] args)
         {

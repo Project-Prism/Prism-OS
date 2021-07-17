@@ -11,25 +11,30 @@ namespace PrismProject
     {
         public static CosmosVFS fs = new CosmosVFS();
         public static DriveInfo Drive_0 = new DriveInfo("0");
-        public static string D0 = "0:\\";
+        public static string D0 = @"0:\";
 
         public static void Init()
         { //initalise the filesystem, best to only trigger this on boot.
             VFSManager.RegisterVFS(fs);
+            Set_Drive_letter(Filesystem.D0, "X");
         }
+
         public static string Get_Drive_label(string Drive_ID)
         {
             return new DriveInfo(Drive_ID).Name;
         }
+
         public static void Set_Drive_letter(string Drive_ID, string Drive_name)
         {
             new DriveInfo(Drive_ID).VolumeLabel = Drive_name;
         }
+
         public static string Drive_type(string Drive_ID)
         {
             return new DriveInfo(Drive_ID).DriveType.ToString();
         }
-        public static int format(string driveID, bool quickformat)
+
+        public static int Format(string driveID, bool quickformat)
         {
             try
             {
@@ -41,26 +46,32 @@ namespace PrismProject
                 return 0;
             }
         }
+
         public static List<DirectoryEntry> List_Directory(string path)
         {
             return fs.GetDirectoryListing(Convert.ToString(path));
         }
-        public static long free_space(string args)
+
+        public static long Free_space(string args)
         {
             return fs.GetAvailableFreeSpace(args);
         }
+
         public static void Create_driectory(string path)
         {
             fs.CreateDirectory(Convert.ToString(path));
         }
+
         public static void Create_file(string path)
         {
             File.Create(path);
         }
+
         public static string Read_file(string path)
         {
             return File.ReadAllText(path);
         }
+
         public static bool Check_exists(string path)
         {
             if (File.Exists(path))
@@ -68,6 +79,7 @@ namespace PrismProject
             else
                 return false;
         }
+
         public static bool Write(string path, string contents)
         {
             if (Check_exists(path))
@@ -76,6 +88,7 @@ namespace PrismProject
                 File.WriteAllText(path, contents);
             return true;
         }
+
         public static string Format_type(string DriveID)
         {
             return fs.GetFileSystemType(DriveID);

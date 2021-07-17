@@ -8,8 +8,16 @@ namespace PrismProject
     public class Tools
     {
         public static ConsoleColor colorCache;
-        public static void SetColor(ConsoleColor color) { Console.ForegroundColor = color; }
-        public static void SetBackColor(ConsoleColor color) { Console.BackgroundColor = color; }
+
+        public static void SetColor(ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+        }
+
+        public static void SetBackColor(ConsoleColor color)
+        {
+            Console.BackgroundColor = color;
+        }
 
         public static void Sleep(int Until)
         {
@@ -24,6 +32,7 @@ namespace PrismProject
             // Loop round
             while (RTC.Second != EndSec) ;
         }
+
         public static void Length(string[] args, int lessthan, int greaterthan)
         {
             if (args.Length < lessthan)
@@ -31,14 +40,14 @@ namespace PrismProject
             else if (args.Length > greaterthan)
                 Console.WriteLine("too many arguments");
         }
+
         public static bool IsIPAddress(string ipAddress)
         {
             try
             {
-                IPAddress address;
-                return IPAddress.TryParse(ipAddress, out address);
+                return IPAddress.TryParse(ipAddress, out IPAddress address);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

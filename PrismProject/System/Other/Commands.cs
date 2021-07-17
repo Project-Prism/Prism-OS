@@ -7,14 +7,19 @@ namespace PrismProject
     public class Cmds
     {
         #region Variables
+
         public struct Command
         {
             public string Name, HelpDesc;
             public function func;
         }
+
         public static List<Command> cmds = new List<Command>();
+
         public delegate void function(string[] args);
-        #endregion
+
+        #endregion Variables
+
         public static void Parse(string input)
         {
             string[] args = input.Split(new char[0]);
@@ -30,38 +35,39 @@ namespace PrismProject
             }
             Console.WriteLine("Invalid command.");
         }
+
         private static void AddCommand(string name, string desc, function func)
         {
-            Command cd = new Command();
+            Command cd;
             cd.Name = name;
             cd.HelpDesc = desc;
             cd.func = func;
 
             cmds.Add(cd);
         }
+
         public static void Init()
         {
             cmds.Clear();
 
-
-            AddCommand("about", "About prism OS", about);
-            AddCommand("help", "List all available commands", help);
+            AddCommand("about", "About prism OS", About);
+            AddCommand("help", "List all available commands", Help);
             //filesystem
             AddCommand("makedir", "create a folder on the selected disk", Create_Directory);
             AddCommand("listdir", "List all files in a directory", List_Directory);
             AddCommand("read", "Read all text data from a file on the disk", Read_file);
             AddCommand("write", "Write text to a file.\n    Arguments:\n        PATH: full path to file\n       CONTENTS: data to be written", Write_file);
-            AddCommand("format", "Format a drive to fat32\n    Arguments:\n        Drive id: specify the drive id\n        quick format: true or false", format);
+            AddCommand("format", "Format a drive to fat32\n    Arguments:\n        Drive id: specify the drive id\n        quick format: true or false", Format);
             //graphics
             AddCommand("gui", "Loads the GUI.", Gui);
         }
 
-        #region Misc Commands
-        static void Gui(string[] args)
+        private static void Gui(string[] args)
         {
             Desktop.Start();
         }
-        static void help(string[] args)
+
+        private static void Help(string[] args)
         {
             if (args.Length < 1)
             {
@@ -94,7 +100,8 @@ namespace PrismProject
                 }
             }
         }
-        static void about(string[] args)
+
+        private static void About(string[] args)
         {
             Tools.SetColor(ConsoleColor.Yellow);
             Console.WriteLine(Images.art1);
@@ -106,26 +113,30 @@ namespace PrismProject
             Console.WriteLine();
             Tools.SetColor(ConsoleColor.White);
         }
-        static void List_Directory(string[] path)
+
+        private static void List_Directory(string[] path)
         {
             Console.WriteLine(Filesystem.List_Directory(path[0]));
         }
-        static void Create_Directory(string[] path)
+
+        private static void Create_Directory(string[] path)
         {
             Filesystem.Create_driectory(path[0]);
         }
-        static void Read_file(string[] path)
+
+        private static void Read_file(string[] path)
         {
             Console.WriteLine(Filesystem.Read_file(path[0]));
         }
-        static void Write_file(string[] args)
+
+        private static void Write_file(string[] args)
         {
             Filesystem.Write(args[0], args[1]);
         }
-        static void format(string[] args)
+
+        private static void Format(string[] args)
         {
-            Filesystem.format(args[0], Convert.ToBoolean(args[1]));
+            Filesystem.Format(args[0], Convert.ToBoolean(args[1]));
         }
-        #endregion
     }
 }

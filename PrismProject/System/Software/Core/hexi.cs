@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace hexi
+﻿namespace hexi
 {
-    class hexi
+    internal class Hexi
     {
     }
 }

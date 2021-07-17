@@ -2,22 +2,22 @@ using Cosmos.System.Network.IPv4;
 using Cosmos.System.Network.IPv4.TCP;
 using Cosmos.System.Network.IPv4.UDP.DNS;
 using System;
-using System.Collections.Generic;
 using System.Text;
-
 
 namespace PrismProject
 {
-    class HTTPClient
+    internal class HTTPClient
     {
         private static string request = string.Empty;
-        private static TcpClient tcpc = new TcpClient(80);
-        private static Address dns = new Address(8, 8, 8, 8);
-        private static EndPoint endPoint = new EndPoint(dns,80);
+        private static readonly TcpClient tcpc = new TcpClient(80);
+        private static readonly Address dns = new Address(8, 8, 8, 8);
+        private static EndPoint endPoint = new EndPoint(dns, 80);
+
         public static bool ParseHeader()
         {
             return false;
         }
+
         public static string Get(string url)
         {
             request +=
@@ -36,14 +36,14 @@ namespace PrismProject
                 Address destination = xClient.Receive(); //can set a timeout value
 
                 xClient.Close();
-                tcpc.Connect(destination,80);
+                tcpc.Connect(destination, 80);
                 tcpc.Send(Encoding.ASCII.GetBytes(request));
                 endPoint.address = destination;
                 endPoint.port = 80;
                 return Encoding.ASCII.GetString(tcpc.Receive(ref endPoint));
             }
-            
         }
+
         public static string GetHost(string url)
         {
             string newurl = url;
@@ -58,6 +58,7 @@ namespace PrismProject
             string[] spliturl = newurl.Split("/");
             return spliturl[0];
         }
+
         public static string GetResource(string url)
         {
             string newurl = url;
@@ -77,8 +78,9 @@ namespace PrismProject
             return newurl;
         }
     }
-    enum HTTPRequest
-    { 
+
+    internal enum HTTPRequest
+    {
         GET = 0,
         POST = 1,
     }

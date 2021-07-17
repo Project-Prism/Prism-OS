@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Drawing;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace PrismProject
 {
-    class Installer
+    internal class Installer
     {
         //Default theme colors
         public static Color Title_bar = Color.FromArgb(0, 120, 212);
+
         public static Color Title_text = Color.White;
         public static Color Window_main = Color.FromArgb(0, 25, 30, 35);
         public static Color Task_bar = Color.FromArgb(0, 120, 212);
@@ -16,18 +17,19 @@ namespace PrismProject
         public static Color Text = Color.White;
 
         //Define graphics variables
-        private static int screenX = Driver.screenX, screenY = Driver.screenY;
-        private static G_lib draw = new G_lib();
-        private static Cursor cursor = new Cursor();
+        private static readonly int screenX = Driver.screenX, screenY = Driver.screenY;
+
+        private static readonly G_lib draw = new G_lib();
+        private static readonly Cursor cursor = new Cursor();
         public static List<GuiWindow> Windows = new List<GuiWindow>();
         public static BaseGuiElement ActiveElement = null;
 
         public static void Start()
         {
-            Driver.clear(Background);
+            Driver.Clear(Background);
 
-            var testWindow = new GuiWindow("Prism setup", screenX / 4, screenY / 4, screenX / 2, screenX / 2, 2);
-            testWindow.AddChild(new GuiButton("Install now", (self) => { install(); }, true, screenX/3, 500, Convert.ToInt32(screenX/1.5), 32));
+            var testWindow = new GuiWindow("Prism setup", screenX / 4, screenY / 4, screenX / 2, screenX / 2);
+            testWindow.AddChild(new GuiButton("Install now", (self) => { Install(); }, true, screenX / 3, 500, Convert.ToInt32(screenX / 1.5), 32));
             Windows.Add(testWindow);
             int clickX = -100, clickY = -100;
             bool clickDown = false;
@@ -54,7 +56,6 @@ namespace PrismProject
                         clickY = Cursor.Y;
                         clickDown = true;
                     }
-
                 }
                 else if (clickDown)
                 {
@@ -75,8 +76,8 @@ namespace PrismProject
                 }
                 if (ActiveElement != null)
                 {
-                    Cosmos.System.KeyEvent key;
-                    if (Cosmos.System.KeyboardManager.TryReadKey(out key))
+                    
+                    if (Cosmos.System.KeyboardManager.TryReadKey(out Cosmos.System.KeyEvent key))
                     {
                         ActiveElement.Key(key);
                     }
@@ -84,11 +85,12 @@ namespace PrismProject
                 cursor.Update();
             }
         }
-        public static void install()
-        {
-            Driver.clear(Background);
 
-            var testWindow = new GuiWindow("Prism setup", screenX / 4, screenY / 4, screenX / 2, screenX / 2, 2);
+        public static void Install()
+        {
+            Driver.Clear(Background);
+
+            var testWindow = new GuiWindow("Prism setup", screenX / 4, screenY / 4, screenX / 2, screenX / 2);
             Windows.Add(testWindow);
             int clickX = -100, clickY = -100;
             bool clickDown = false;
@@ -115,7 +117,6 @@ namespace PrismProject
                         clickY = Cursor.Y;
                         clickDown = true;
                     }
-
                 }
                 else if (clickDown)
                 {
@@ -136,8 +137,8 @@ namespace PrismProject
                 }
                 if (ActiveElement != null)
                 {
-                    Cosmos.System.KeyEvent key;
-                    if (Cosmos.System.KeyboardManager.TryReadKey(out key))
+                    
+                    if (Cosmos.System.KeyboardManager.TryReadKey(out Cosmos.System.KeyEvent key))
                     {
                         ActiveElement.Key(key);
                     }

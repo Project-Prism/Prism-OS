@@ -3,11 +3,11 @@ using System;
 
 namespace PrismProject
 {
-    class CPU
+    internal class CPU
     {
         public static long Speed { get => Cosmos.Core.CPU.GetCPUCycleSpeed(); }
 
-        static void shutdown(string[] args)
+        public static void Shutdown(string[] args)
         {
             if (args.Length > 0)
             {
@@ -28,7 +28,6 @@ namespace PrismProject
                     Power.Shutdown();
                     return;
                 }
-
             }
         }
     }

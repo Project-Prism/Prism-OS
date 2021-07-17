@@ -5,108 +5,120 @@ using System.Drawing;
 
 namespace PrismProject
 {
-    class G_lib
+    internal class G_lib
+    {
+        //Define the graphics method
+        private static readonly int screenY = Driver.screenY;
+        private static readonly Canvas canvas = Driver.canvas;
+        private static readonly G_lib draw = new G_lib();
+
+        //Individual shapes
+        public void Box(Color color, int from_X, int from_Y, int Width, int Height)
         {
-            //Define the graphics method
-            private static int screenY = Driver.screenY;
-            private static Canvas canvas = Driver.canvas;
-            private static G_lib draw = new G_lib();
-
-            //Individual shapes
-            public void Box(Color color, int from_X, int from_Y, int Width, int Height)
-            {
-                canvas.DrawFilledRectangle(new Pen(color), from_X, from_Y, Width, Height);
-            }
-            public void Rounded_Box(Color color, int x, int y, int Width, int Height, int radius = 6)
-            {
-                int x2 = x + Width, y2 = y + Height, r2 = radius + radius;
-                // Draw Outside circles
-                draw.Circle(color, x + radius, y + radius, radius);
-                draw.Circle(color, x2 - radius - 1, y + radius, radius);
-                draw.Circle(color, x + radius, y2 - radius - 1, radius);
-                draw.Circle(color, x2 - radius - 1, y2 - radius - 1, radius);
-
-                // Draw Main Rectangle
-                draw.Box(color, x, y + radius, Width, Height - r2);
-                // Draw Outside Rectangles
-                draw.Box(color, x + radius, y, Width - r2, radius);
-                draw.Box(color, x + radius, y2 - radius, Width - r2, radius);
-            }
-            public void Top_Rounded_Box(Color color, int x, int y, int Width, int Height, int radius = 6)
-            {
-                int x2 = x + Width, y2 = y + Height, r2 = radius + radius;
-                // Draw Outside circles
-                draw.Circle(color, x + radius, y + radius, radius);
-                draw.Circle(color, x2 - radius - 1, y + radius, radius);
-
-                // Draw Main Rectangle
-                draw.Box(color, x, y + radius, Width, Height - radius);
-                // Draw Outside Rectangles
-                draw.Box(color, x + radius, y, Width - r2, radius + 3);
-            }
-            public void Bottom_Rounded_Box(Color color, int x, int y, int Width, int Height, int radius = 6)
-            {
-                int x2 = x + Width, y2 = y + Height, r2 = radius + radius;
-                // Draw Outside circles
-                draw.Circle(color, x + radius, y2 - radius - 1, radius);
-                draw.Circle(color, x2 - radius - 1, y2 - radius - 1, radius);
-
-                // Draw Main Rectangle
-                draw.Box(color, x, y + radius, Width, Height - r2);
-                // Draw Outside Rectangles
-                draw.Box(color, x + radius, y2 - radius, Width - r2, radius);
-            }
-            public void Empty_Box(Color color, int from_X, int from_Y, int to_X, int to_Y)
-            {
-                canvas.DrawRectangle(new Pen(color), from_X, from_Y, to_X, to_Y);
-            }
-            public void Circle(Color color, int from_X, int from_Y, int radius)
-            {
-                canvas.DrawFilledCircle(new Pen(color), from_X, from_Y, radius);
-            }
-            public void Triangle(Color color, int x1, int y1, int x2, int y2, int x3, int y3)
-            {
-                canvas.DrawTriangle(new Pen(color), x1, y1, x2, y2, x3, y3);
-            }
-            public void Arrow(Color color, int width, int x, int y)
-            {
-                canvas.DrawPoint(new Pen(color, width), x, y);
-            }
-            public void Line(Color color, int from_X, int from_y, int to_X, int to_Y)
-            {
-                canvas.DrawLine(new Pen(color), from_X, from_y, to_X, to_Y);
-            }
-
-            //UI elements
-            public void Text(Color color, string font, string text, int x, int y)
-            {
-                canvas.DrawBitFontString(font, color, text, x, y);
-
-            }
-            public void Loadbar(int fromX, int fromY, int length, int height, int percentage)
-            {
-                Rounded_Box(Color.SlateGray, fromX, fromY, length, height);
-                Rounded_Box(Color.White, fromX, fromY, percentage, height);
-            }
-            public void Window(string font, int from_X, int from_Y, int Width, int Height, string Title, bool showtitlebar)
-            {
-                Rounded_Box(Color.White, from_X - 1, from_Y - 1, Width + 2, Height + 2, 10);
-                Bottom_Rounded_Box(Desktop.Window, from_X, from_Y, Width, Height, 10);
-                if (showtitlebar) { Top_Rounded_Box(Desktop.Accent, from_X, from_Y, Width, screenY / 23, 10); }
-                Text(Color.White, font, Title, from_X + 10, from_Y + 4);
-            }
-            public void Textbox(string font, string text, Color Background, Color Foreground, int from_X, int from_Y, int Width)
-            {
-                Box(Background, from_X, from_Y, Width, 15);
-                Empty_Box(Foreground, from_X, from_Y, Width, 15);
-                Text(Foreground, font, text, from_X, from_Y + 1);
-            }
-            public void Image(Bitmap img, int x, int y)
-            {
-                canvas.DrawImageAlpha(img, x, y);
-            }
+            canvas.DrawFilledRectangle(new Pen(color), from_X, from_Y, Width, Height);
         }
-    abstract class BaseGuiElement
+
+        public void Rounded_Box(Color color, int x, int y, int Width, int Height, int radius = 6)
+        {
+            int x2 = x + Width, y2 = y + Height, r2 = radius + radius;
+            // Draw Outside circles
+            draw.Circle(color, x + radius, y + radius, radius);
+            draw.Circle(color, x2 - radius - 1, y + radius, radius);
+            draw.Circle(color, x + radius, y2 - radius - 1, radius);
+            draw.Circle(color, x2 - radius - 1, y2 - radius - 1, radius);
+
+            // Draw Main Rectangle
+            draw.Box(color, x, y + radius, Width, Height - r2);
+            // Draw Outside Rectangles
+            draw.Box(color, x + radius, y, Width - r2, radius);
+            draw.Box(color, x + radius, y2 - radius, Width - r2, radius);
+        }
+
+        public void Top_Rounded_Box(Color color, int x, int y, int Width, int Height, int radius = 6)
+        {
+            int x2 = x + Width, r2 = radius + radius;
+            // Draw Outside circles
+            draw.Circle(color, x + radius, y + radius, radius);
+            draw.Circle(color, x2 - radius - 1, y + radius, radius);
+
+            // Draw Main Rectangle
+            draw.Box(color, x, y + radius, Width, Height - radius);
+            // Draw Outside Rectangles
+            draw.Box(color, x + radius, y, Width - r2, radius + 3);
+        }
+
+        public void Bottom_Rounded_Box(Color color, int x, int y, int Width, int Height, int radius = 6)
+        {
+            int x2 = x + Width, y2 = y + Height, r2 = radius + radius;
+            // Draw Outside circles
+            draw.Circle(color, x + radius, y2 - radius - 1, radius);
+            draw.Circle(color, x2 - radius - 1, y2 - radius - 1, radius);
+
+            // Draw Main Rectangle
+            draw.Box(color, x, y + radius, Width, Height - r2);
+            // Draw Outside Rectangles
+            draw.Box(color, x + radius, y2 - radius, Width - r2, radius);
+        }
+
+        public void Empty_Box(Color color, int from_X, int from_Y, int to_X, int to_Y)
+        {
+            canvas.DrawRectangle(new Pen(color), from_X, from_Y, to_X, to_Y);
+        }
+
+        public void Circle(Color color, int from_X, int from_Y, int radius)
+        {
+            canvas.DrawFilledCircle(new Pen(color), from_X, from_Y, radius);
+        }
+
+        public void Triangle(Color color, int x1, int y1, int x2, int y2, int x3, int y3)
+        {
+            canvas.DrawTriangle(new Pen(color), x1, y1, x2, y2, x3, y3);
+        }
+
+        public void Arrow(Color color, int width, int x, int y)
+        {
+            canvas.DrawPoint(new Pen(color, width), x, y);
+        }
+
+        public void Line(Color color, int from_X, int from_y, int to_X, int to_Y)
+        {
+            canvas.DrawLine(new Pen(color), from_X, from_y, to_X, to_Y);
+        }
+
+        //UI elements
+        public void Text(Color color, string font, string text, int x, int y)
+        {
+            canvas.DrawBitFontString(font, color, text, x, y);
+        }
+
+        public void Loadbar(int fromX, int fromY, int length, int height, int percentage)
+        {
+            Rounded_Box(Color.SlateGray, fromX, fromY, length, height);
+            Rounded_Box(Color.White, fromX, fromY, percentage, height);
+        }
+
+        public void Window(string font, int from_X, int from_Y, int Width, int Height, string Title, bool showtitlebar)
+        {
+            Rounded_Box(Color.White, from_X - 1, from_Y - 1, Width + 2, Height + 2, 10);
+            Bottom_Rounded_Box(Desktop.Window, from_X, from_Y, Width, Height, 10);
+            if (showtitlebar) { Top_Rounded_Box(Desktop.Accent, from_X, from_Y, Width, screenY / 23, 10); }
+            Text(Color.White, font, Title, from_X + 10, from_Y + 4);
+        }
+
+        public void Textbox(string font, string text, Color Background, Color Foreground, int from_X, int from_Y, int Width)
+        {
+            Box(Background, from_X, from_Y, Width, 15);
+            Empty_Box(Foreground, from_X, from_Y, Width, 15);
+            Text(Foreground, font, text, from_X, from_Y + 1);
+        }
+
+        public void Image(Bitmap img, int x, int y)
+        {
+            canvas.DrawImageAlpha(img, x, y);
+        }
+    }
+
+    internal abstract class BaseGuiElement
     {
         public int X, Y, Width, Height;
 
@@ -122,15 +134,18 @@ namespace PrismProject
         }
 
         internal abstract void Render(G_lib draw, int offset_x, int offset_y);
+
         internal virtual bool Click(int x, int y, int btn)
         {
             Desktop.ActiveElement = this;
             return true;
         }
+
         internal virtual bool MouseDown(int x, int y, int btn)
         {
             return true;
         }
+
         internal virtual bool MouseUp(int x, int y, int btn)
         {
             return true;
@@ -141,16 +156,17 @@ namespace PrismProject
             return false;
         }
     }
-    class GuiWindow : BaseGuiElement
+
+    internal class GuiWindow : BaseGuiElement
     {
         public string Title = "";
         public List<BaseGuiElement> Children;
 
         private int lastX, lastY;
-        private int titleHeight;
-        private int radius;
+        private readonly int titleHeight;
+        private readonly int radius;
 
-        public GuiWindow(string title, int x, int y, int w, int h, int rad) : base(x, y, w, h)
+        public GuiWindow(string title, int x, int y, int w, int h) : base(x, y, w, h)
         {
             Title = title;
             Children = new List<BaseGuiElement>();
@@ -206,7 +222,8 @@ namespace PrismProject
             }
         }
     }
-    class GuiText : BaseGuiElement
+
+    internal class GuiText : BaseGuiElement
     {
         public string Value;
         public Color TextColour;
@@ -222,7 +239,8 @@ namespace PrismProject
             draw.Text(TextColour, Driver.font, Value, X + offset_x, Y + offset_y);
         }
     }
-    class GuiTextBox : BaseGuiElement
+
+    internal class GuiTextBox : BaseGuiElement
     {
         public string Value;
         public Color Background;
@@ -250,6 +268,7 @@ namespace PrismProject
                         Value = Value.Substring(0, Value.Length - 1);
                     }
                     break;
+
                 default:
                     if (!KeyboardManager.ControlPressed && keyInfo.KeyChar > (char)0)
                     {
@@ -266,7 +285,8 @@ namespace PrismProject
             draw.Textbox(Driver.font, txt, Background, TextColour, X + offset_x, Y + offset_y, Width);
         }
     }
-    class GuiButton : BaseGuiElement
+
+    internal class GuiButton : BaseGuiElement
     {
         public string Value;
         public Color Background;
@@ -274,6 +294,7 @@ namespace PrismProject
         public bool Rounded;
 
         public delegate void ClickDelegate(GuiButton self);
+
         public ClickDelegate OnClick;
 
         public GuiButton(string text, ClickDelegate onClick, bool round, int x, int y, int w, int h = 16) : base(x, y, w, h)
@@ -290,8 +311,8 @@ namespace PrismProject
             //int mx = X + (Width / 2) - (Value.Length * 8);
             int mx = X + 4;
             int my = Y + (Height / 2) - 8;
-            if (Rounded) {draw.Rounded_Box(Background, X + offset_x, Y + offset_y, Width, Height, 4);}
-            else {draw.Box(Background, X + offset_x, Y + offset_y, Width, Height);}
+            if (Rounded) { draw.Rounded_Box(Background, X + offset_x, Y + offset_y, Width, Height, 4); }
+            else { draw.Box(Background, X + offset_x, Y + offset_y, Width, Height); }
             draw.Text(TextColour, Driver.font, Value, mx + offset_x, my + offset_y);
         }
 
@@ -301,14 +322,15 @@ namespace PrismProject
             return base.Click(x, y, btn);
         }
     }
-    class GuiImage : BaseGuiElement
+
+    internal class GuiImage : BaseGuiElement
     {
         public Color Background;
         public Bitmap img;
         public bool showborder;
         public int to_x, to_y;
 
-        public GuiImage(Bitmap img, int x, int y, int w, int h = 16, bool showborder = false, int to_X = 0, int to_y = 0) : base(x, y, w, h)
+        public GuiImage(int x, int y, int w, int h = 16) : base(x, y, w, h)
         {
             X = x;
             Y = y;
@@ -320,13 +342,15 @@ namespace PrismProject
             if (showborder) { draw.Empty_Box(Color.Black, X, Y, to_x, to_y); }
         }
     }
-    class GuiSwitch : BaseGuiElement
+
+    internal class GuiSwitch : BaseGuiElement
     {
         public Color Back;
         public Color Fore;
         public bool status;
 
         public delegate void ClickDelegate(GuiSwitch self);
+
         public ClickDelegate OnClick;
 
         public GuiSwitch(ClickDelegate onClick, Color Background, Color Foreground, bool enabled, int x, int y) : base(x, y, 45, 20)
@@ -339,8 +363,8 @@ namespace PrismProject
 
         internal override void Render(G_lib draw, int offset_x, int offset_y)
         {
-            draw.Rounded_Box(Fore, offset_x + X-1, offset_y + Y-1, 39, 22, 7);
-            draw.Rounded_Box(Back, offset_x+X, offset_y+Y, 37, 20, 7);
+            draw.Rounded_Box(Fore, offset_x + X - 1, offset_y + Y - 1, 39, 22, 7);
+            draw.Rounded_Box(Back, offset_x + X, offset_y + Y, 37, 20, 7);
             draw.Circle(Fore, offset_x + X + 9, offset_y + Y + 9, 7);
         }
 
@@ -350,7 +374,8 @@ namespace PrismProject
             return base.Click(x, y, btn);
         }
     }
-    class GuiDiv : BaseGuiElement
+
+    internal class GuiDiv : BaseGuiElement
     {
         public Color Fore;
 
@@ -363,8 +388,8 @@ namespace PrismProject
 
         internal override void Render(G_lib draw, int offset_x, int offset_y)
         {
-            draw.Line(Fore, offset_x +X, offset_y+Y, Width, offset_y+Y);
-            draw.Line(Fore, offset_x+X, offset_y+Y+Height, Width, offset_y+Y+Height);
+            draw.Line(Fore, offset_x + X, offset_y + Y, Width, offset_y + Y);
+            draw.Line(Fore, offset_x + X, offset_y + Y + Height, Width, offset_y + Y + Height);
         }
     }
 }

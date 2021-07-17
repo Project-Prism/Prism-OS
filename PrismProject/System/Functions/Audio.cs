@@ -1,9 +1,11 @@
 ﻿namespace PrismProject
 {
-    class Audio
+    internal class Audio
     {
-        public static void play(string file)
+        public static void Play(string file)
         {
+            //placeholder to remove compiler message
+            Audio.Play(file);
         }
     }
 }

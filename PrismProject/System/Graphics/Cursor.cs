@@ -3,15 +3,15 @@ using System;
 
 namespace PrismProject
 {
-    class Cursor
+    internal class Cursor
     {
         //Define the graphics method
-        private static int screenX = Driver.screenX;
-        private static int screenY = Driver.screenY;
-        private static G_lib draw = new G_lib();
+        private static readonly int screenX = Driver.screenX, screenY = Driver.screenY;
+        private static readonly G_lib draw = new G_lib();
 
         //mouse color and setup
         public static int lastX, lastY;
+
         public static int X { get => (int)MouseManager.X; }
         public static int Y { get => (int)MouseManager.Y; }
 

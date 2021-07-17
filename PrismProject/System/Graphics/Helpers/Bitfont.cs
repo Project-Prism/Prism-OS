@@ -11,6 +11,7 @@ namespace PrismProject
         public string Charset;
         public MemoryStream MS;
         public int Size;
+
         public BitFontDescriptor(string aCharset, MemoryStream aMS, int aSize)
         {
             this.Charset = aCharset;
@@ -18,7 +19,8 @@ namespace PrismProject
             this.Size = aSize;
         }
     }
-    static class BitFont
+
+    internal static class BitFont
     {
         public static Dictionary<string, BitFontDescriptor> RegisteredBitFont = new Dictionary<string, BitFontDescriptor>();
 
@@ -104,7 +106,6 @@ namespace PrismProject
             {
                 for (int aw = 0; aw < Size / 8; aw++)
                 {
-
                     for (int ww = 0; ww < 8; ww++)
                     {
                         if ((Font[(h * (Size / 8)) + aw] & (0x80 >> ww)) != 0)
