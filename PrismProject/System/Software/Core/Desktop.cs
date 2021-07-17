@@ -46,8 +46,8 @@ namespace PrismProject
 
             int clickX = -100, clickY = -100;
             bool clickDown = false;
+            
             Driver.Clear(Background);
-
             while (Kernel.canvasRunning)
             {
                 draw.Box(Accent_unfocus, 0, screenY - 30, screenX, 30);
