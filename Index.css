@@ -1,0 +1,22 @@
+header {
+    font-size: 50px;
+}
+
+.OptionButtons button {
+    border: black;
+    border-radius: 10px;
+    border-width: 2px;
+    width: 170px;
+    height: 40px;
+    font-size: 17px;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+ }
