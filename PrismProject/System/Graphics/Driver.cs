@@ -9,7 +9,7 @@ namespace PrismProject
     {
         public static int screenY = 600;
         public static int screenX = 800;
-        public static SVGAIICanvas canvas = new SVGAIICanvas(new Mode(screenX, screenY, ColorDepth.ColorDepth32));
+        public static VBECanvas canvas = new VBECanvas(new Mode(screenX, screenY, ColorDepth.ColorDepth32));
         public static string font = "YuGothicUI";
         public static string Clock = "YuGothicUI";
         public static string clock_large = "bigclock";

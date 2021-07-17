@@ -97,6 +97,27 @@
         <IntelEdison_StartCosmosGDB>False</IntelEdison_StartCosmosGDB>
         <IntelEdison_ISOFile>bin\Debug\netcoreapp2.0\cosmos\PrismProject.iso</IntelEdison_ISOFile>
         <VMwareEdition>Workstation</VMwareEdition>
+        <VMware_VMwareEdition>Workstation</VMware_VMwareEdition>
+        <USB_VMwareEdition>Workstation</USB_VMwareEdition>
+        <PXE_VMwareEdition>Workstation</PXE_VMwareEdition>
+        <ISO_VMwareEdition>Workstation</ISO_VMwareEdition>
+        <IntelEdison_VMwareEdition>Workstation</IntelEdison_VMwareEdition>
+        <HyperV_VMwareEdition>Workstation</HyperV_VMwareEdition>
+        <Bochs_StackCorruptionDetectionEnabled>True</Bochs_StackCorruptionDetectionEnabled>
+        <Bochs_StackCorruptionDetectionLevel>MethodFooters</Bochs_StackCorruptionDetectionLevel>
+        <Bochs_Description>Use Bochs emulator to deploy and debug.</Bochs_Description>
+        <Bochs_Deployment>ISO</Bochs_Deployment>
+        <Bochs_Launch>Bochs</Bochs_Launch>
+        <Bochs_DebugEnabled>False</Bochs_DebugEnabled>
+        <Bochs_DebugMode>Source</Bochs_DebugMode>
+        <Bochs_IgnoreDebugStubAttribute>False</Bochs_IgnoreDebugStubAttribute>
+        <Bochs_CosmosDebugPort>Serial: COM1</Bochs_CosmosDebugPort>
+        <Bochs_VisualStudioDebugPort>Pipe: Cosmos\Serial</Bochs_VisualStudioDebugPort>
+        <Bochs_PxeInterface>192.168.0.8</Bochs_PxeInterface>
+        <Bochs_VMwareEdition>Workstation</Bochs_VMwareEdition>
+        <Bochs_EnableGDB>False</Bochs_EnableGDB>
+        <Bochs_StartCosmosGDB>False</Bochs_StartCosmosGDB>
+        <Bochs_ISOFile>bin\Debug\netcoreapp2.0\cosmos\PrismProject.iso</Bochs_ISOFile>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -104,9 +125,9 @@
         <StartCosmosGDB>False</StartCosmosGDB>
         <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
         <CosmosDebugPort>Serial: COM1</CosmosDebugPort>
-        <Launch>VMware</Launch>
-        <Profile>VMware</Profile>
-        <Description>Use VMware Player or Workstation to deploy and debug.</Description>
+        <Launch>None</Launch>
+        <Profile>ISO</Profile>
+        <Description>Creates a bootable ISO image which can be burned to a DVD. After running the selected project, an explorer window will open containing the ISO file. The ISO file can then be burned to a CD or DVD and used to boot a physical or virtual system.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
     </PropertyGroup>
 
