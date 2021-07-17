@@ -21,6 +21,7 @@
 <p id="product-sans">- Clone this repo in visual studio and open the solution file</p>
 <p id="product-sans">- Click "Build"</p>
 <p id="product-sans">You can modify the code to however you need it</p>
+<p id="product-sans">Note: you cannot use prism with VMware, it only works on real hardware or qemu. Use the qemulaunch file to open it once you have built prism</p>
 
 | Current bugs       | Status      | About bug                       |
 |--------------------|-------------|---------------------------------|
