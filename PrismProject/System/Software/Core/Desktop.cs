@@ -9,13 +9,12 @@ namespace PrismProject
         #region Themes and GUI vars
 
         //Default theme colors
-        public static Color Window = Color.FromArgb(23, 23, 37);
-        public static Color Background = Color.FromArgb(23, 23, 27);
+        public static Color Window = Color.FromArgb(25, 25, 45);
+        public static Color Background = Color.FromArgb(15, 52, 96);
         public static Color Text = Color.White;
-        public static Color Accent_Text = Color.Black;
-        public static Color Accent = Color.FromArgb(0, 120, 212);
-        public static Color Accent_Dark = Color.FromArgb(23, 23, 37);
-        public static Color Accent_Medium = Color.FromArgb(33, 33, 47);
+        public static Color Text_invert = Color.Black;
+        public static Color Accent = Color.FromArgb(255, 82, 0);
+        public static Color Accent_unfocus = Color.FromArgb(68, 68, 68);
 
         //Define graphics variables
         private static readonly int screenX = Driver.screenX, screenY = Driver.screenY;
@@ -29,24 +28,20 @@ namespace PrismProject
 
         public static void Start()
         {
-            var testWindow = new GuiWindow(screenX / 4, screenY / 4, screenX / 2, screenX / 2, "App menu", 5);
+            var testWindow = new GuiWindow(screenX / 5, screenY / 5, screenX / 2, screenX / 2, "App menu", 5);
 
-            testWindow.AddChild(new GuiButton(16, 32, 170, 20, "random accent color", true, (self) =>
-            {
-                Accent = Color.FromArgb(Driver.randomcolor);
-            }));
-            testWindow.AddChild(new GuiButton(16, 64, 170, 20, "Click to reboot", true, (self) =>
+            testWindow.AddChild(new GuiButton(16, 64, 180, 30, "Click to reboot now", true, Text, Accent, (self) =>
             {
                 Cosmos.System.Power.Reboot();
             }));
-            testWindow.AddChild(new GuiText(110, 162, "Wi-Fi"));
-            testWindow.AddChild(new GuiSwitch(150, 160, Accent_Dark, Accent, true, (self) =>
+            testWindow.AddChild(new GuiText(30, 162, "Wi-Fi"));
+            testWindow.AddChild(new GuiSwitch(90, 160, Accent_unfocus, Accent, true, (self) =>
             {
                 if (self.status) { self.status = false; }
                 if (!self.status) { self.status = true; }
             }));
-            testWindow.AddChild(new GuiDiv(100, 150, 40, testWindow.Width, Accent));
-
+            testWindow.AddChild(new GuiDiv(20, 150, 40, 150, Accent));
+            
             Windows.Add(testWindow);
 
             int clickX = -100, clickY = -100;
@@ -55,7 +50,7 @@ namespace PrismProject
 
             while (Kernel.canvasRunning)
             {
-                draw.Box(Accent, 0, screenY - 30, screenX, 30);
+                draw.Box(Accent_unfocus, 0, screenY - 30, screenX, 30);
                 draw.Circle(Color.White, 16, screenY - 15, 10);
                 foreach (var window in Windows)
                 {
