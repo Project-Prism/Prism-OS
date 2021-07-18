@@ -7,6 +7,22 @@ header {
     font-size: 50px;
 }
 
+.ProjectInfo {
+    font-size: 20px;
+    margin-top: 2cm;
+}
+
+.Info2 {
+    font-size: 20px;
+}
+
+.center {
+    width: 35%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .OptionButtons button {
     border: black;
     border-radius: 10px;
@@ -17,6 +33,8 @@ header {
     font-family: Arial;
     font-weight: bold;
     transition-duration: 0.4s;
+    margin-top: 1cm;
+    margin-left: 20px;
 }
 
 .OptionButtons button:hover {
