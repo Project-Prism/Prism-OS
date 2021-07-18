@@ -1,3 +1,8 @@
+body {
+    background-color: rgb(56, 60, 65);
+    color: white
+}
+
 header {
     font-size: 50px;
 }
@@ -11,6 +16,12 @@ header {
     font-size: 17px;
     font-family: Arial;
     font-weight: bold;
+    transition-duration: 0.4s;
+}
+
+.OptionButtons button:hover {
+    background-color: powderblue;
+    cursor: pointer;
 }
 
 .footer {
@@ -19,4 +30,8 @@ header {
     bottom: 0;
     width: 100%;
     text-align: center;
- }
+}
+
+.footerLink {
+    color:orangered;
+}
