@@ -37,7 +37,7 @@
 | CrisisSDK     | Graphics, window manager     |
 
 # Screenshots
-<IMG src="https://github.com/Project-Prism/Prism-OS/blob/main/Images/Prism-OS_21_7_18"/>
+<IMG src="https://github.com/Project-Prism/Prism-OS/blob/main/PrismProject/Images/Prism-OS_21_7_18.png"/>
 
 # Details
 <details>
