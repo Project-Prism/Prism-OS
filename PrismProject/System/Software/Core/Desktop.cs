@@ -28,19 +28,39 @@ namespace PrismProject
 
         public static void Start()
         {
-            var testWindow = new GuiWindow(screenX / 5, screenY / 5, screenX / 2, screenX / 2, "App menu", 5);
+            var testWindow = new GuiWindow(screenX / 5, screenY / 5, screenX / 2, screenY / 2, "App menu", 5);
 
-            testWindow.AddChild(new GuiButton(16, 64, 180, 30, "Click to reboot now", true, Text, Accent, (self) =>
+            //test power commands
+            testWindow.AddChild(new GuiDiv(30, 54, 70, 144, Accent));
+            testWindow.AddChild(new GuiButton(32, 64, 95, 30, "Reboot", Text, Accent, (self) =>
             {
                 Cosmos.System.Power.Reboot();
             }));
+            testWindow.AddChild(new GuiButton(135, 64, 95, 30, "Shut down", Text, Accent, (self => {  })));
+
+            //Text box
+            testWindow.AddChild(new GuiText(32, 118, "Enter into textbox"));
+            testWindow.AddChild(new GuiTextBox(32, 138, 150));
+
+            //GuiToggle switches
             testWindow.AddChild(new GuiText(30, 162, "Wi-Fi"));
             testWindow.AddChild(new GuiSwitch(90, 160, Accent_unfocus, Accent, true, (self) =>
             {
                 if (self.status) { self.status = false; }
                 if (!self.status) { self.status = true; }
             }));
-            testWindow.AddChild(new GuiDiv(20, 150, 40, 150, Accent));
+            testWindow.AddChild(new GuiText(30, 190, "radio button!"));
+            testWindow.AddChild(new GuiToggle(150, 190, Accent, Accent_unfocus, true, (self) =>
+            {
+                if (self.enable)
+                {
+                    self.enable = false;
+                }
+                else if (!self.enable)
+                {
+                    self.enable = true;
+                }
+            }));
             
             Windows.Add(testWindow);
 
@@ -50,7 +70,7 @@ namespace PrismProject
             Driver.Clear(Background);
             while (Kernel.canvasRunning)
             {
-                draw.Box(Accent_unfocus, 0, screenY - 30, screenX, 30);
+                draw.Box(Accent_unfocus, 0, screenY - 30, screenX, screenY/24);
                 draw.Circle(Color.White, 16, screenY - 15, 10);
                 foreach (var window in Windows)
                 {

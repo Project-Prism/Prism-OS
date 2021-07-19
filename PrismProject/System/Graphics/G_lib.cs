@@ -101,13 +101,13 @@ namespace PrismProject
         {
             Rounded_Box(Desktop.Accent, from_X - 1, from_Y - 1, Width + 2, Height + 2, radius);
             Bottom_Rounded_Box(Desktop.Window, from_X, from_Y, Width, Height, radius);
-            if (showtitlebar) { Top_Rounded_Box(Desktop.Accent, from_X, from_Y, Width, screenY / 23, radius); }
+            if (showtitlebar) { Top_Rounded_Box(Desktop.Accent, from_X, from_Y, Width, screenY / 26, radius); }
             Text(Color.White, font, Title, from_X + 10, from_Y + 4);
         }
 
         public void Textbox(string font, string text, Color Background, Color Foreground, int from_X, int from_Y, int Width)
         {
-            Box(Background, from_X, from_Y, Width, 15);
+            Rounded_Box(Background, from_X, from_Y, Width, 15, 2);
             Empty_Box(Foreground, from_X, from_Y, Width, 15);
             Text(Foreground, font, text, from_X, from_Y + 1);
         }
@@ -124,7 +124,7 @@ namespace PrismProject
 
         public BaseGuiElement Parent;
 
-        public BaseGuiElement(int x, int y, int w, int h, BaseGuiElement parent = null)
+        public BaseGuiElement(int x, int y, int w=0, int h=0, BaseGuiElement parent = null)
         {
             X = x;
             Y = y;
@@ -292,28 +292,25 @@ namespace PrismProject
         public string Value;
         public Color Background;
         public Color TextColour;
-        public bool Rounded;
 
         public delegate void ClickDelegate(GuiButton self);
 
         public ClickDelegate OnClick;
 
-        public GuiButton(int x, int y, int w, int h, string text, bool round, Color Textclr, Color Backcolor, ClickDelegate onClick) : base(x, y, w, h)
+        public GuiButton(int x, int y, int w, int h, string text, Color Textclr, Color Backcolor, ClickDelegate onClick) : base(x, y, w, h)
         {
             Value = text;
             Background = Backcolor;
             TextColour = Textclr;
-            Rounded = round;
             OnClick = onClick;
         }
 
         internal override void Render(G_lib draw, int offset_x, int offset_y)
         {
-            //int mx = X + (Width / 2) - (Value.Length * 8);
             int mx = X + 4;
             int my = Y + (Height / 2) - 8;
-            if (Rounded) { draw.Rounded_Box(Background, X + offset_x, Y + offset_y, Width, Height, 6); }
-            else { draw.Box(Background, X + offset_x, Y + offset_y, Width, Height); }
+            draw.Rounded_Box(Background, X + offset_x-1, Y + offset_y-1, Width+2, Height+2, 2);
+            draw.Rounded_Box(Desktop.Accent_unfocus, X + offset_x, Y + offset_y, Width, Height, 2);
             draw.Text(TextColour, Driver.font, Value, mx + offset_x, my + offset_y);
         }
 
@@ -328,7 +325,8 @@ namespace PrismProject
     {
         public Bitmap img;
         public bool showborder;
-        public int Height, Width;
+        public int xHeight;
+        public int xWidth;
 
         public GuiImage(int x, int y, int w, int h, Bitmap image, bool border) : base(x, y, w, h)
         {
@@ -336,14 +334,14 @@ namespace PrismProject
             Y = y;
             img = image;
             showborder = border;
-            Height = h;
-            Width = w;
+            xHeight = h;
+            xWidth = w;
         }
 
         internal override void Render(G_lib draw, int offset_x, int offset_y)
         {
             draw.Image(img, offset_x+X, offset_y+Y);
-            if (showborder) { draw.Empty_Box(Color.Black, X, Y, Width, Height); }
+            if (showborder) { draw.Empty_Box(Color.Black, X, Y, xWidth, xHeight); }
         }
     }
 
@@ -369,8 +367,8 @@ namespace PrismProject
         {
             draw.Rounded_Box(Fore, offset_x + X - 1, offset_y + Y - 1, 39, 23, 9);
             draw.Rounded_Box(Back, offset_x + X, offset_y + Y, 37, 21, 9);
-            if (status) { draw.Circle(Color.White, offset_x + X + 9, offset_y + Y + 10, 8); }
-            if (!status) { draw.Circle(Color.White, offset_x + X + 16, offset_y + Y + 10, 8); }
+            if (status) { draw.Circle(Color.White, offset_x + X + 9, offset_y + Y + 10, 9); }
+            if (!status) { draw.Circle(Color.White, offset_x + X + 16, offset_y + Y + 10, 9); }
         }
 
         internal override bool Click(int x, int y, int btn)
@@ -395,6 +393,36 @@ namespace PrismProject
         {
             draw.Line(Fore, offset_x + X, offset_y + Y, Width, offset_y + Y);
             draw.Line(Fore, offset_x + X, offset_y + Y + Height, Width, offset_y + Y + Height);
+        }
+    }
+
+    internal class GuiToggle : BaseGuiElement
+    {
+        public Color Fore;
+        public Color Back;
+        public bool enable;
+        public delegate void ClickDelegate(GuiToggle self);
+        public ClickDelegate OnClick;
+
+        public GuiToggle(int x, int y, Color Foreground, Color Background, bool state, ClickDelegate onClick) : base(x, y)
+        {
+            OnClick = onClick;
+            Fore = Foreground;
+            Back = Background;
+            enable = state;
+        }
+
+        internal override void Render(G_lib draw, int offset_x, int offset_y)
+        {
+            draw.Rounded_Box(Fore, offset_x+X-1, offset_y+Y-1, Driver.screenX/80+2, Driver.screenY/45+2, 2);
+            draw.Rounded_Box(Back, offset_x + X, offset_y + Y, Driver.screenX/80, Driver.screenY/45, 2);
+            if (enable) { draw.Rounded_Box(Fore, offset_x+X+2, offset_y+Y+2, Driver.screenX/80-4, Driver.screenY/45-4, 2); }
+        }
+
+        internal override bool Click(int x, int y, int btn)
+        {
+            OnClick(this);
+            return base.Click(x, y, btn);
         }
     }
 }
