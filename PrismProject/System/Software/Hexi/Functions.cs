@@ -1,26 +1,94 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Text;
+using System.Threading.Tasks;
+using static Hexi_Language.Parser;
 
-namespace PrismProject
+namespace Hexi_Language
 {
     class Functions
     {
-        public static void consoleout(dynamic[] args)
+        public static List<Types.Variable> variables = new List<Types.Variable>();
+
+        private static dynamic GetRealValue(dynamic arg)
         {
+            if (arg is Types.Variable)
+            {
+                foreach (Types.Variable variable in variables)
+                {
+                    if (variable.name == arg.name)
+                    {
+                        return variable.property;
+                    }
+                }
+                return null;
+            }
+            if (arg is Types.MathOp)
+            {
+                string operation = arg.operation;
+                DataTable table = new DataTable();
+                table.Columns.Add("expression", typeof(string), operation);
+                DataRow row = table.NewRow();
+                table.Rows.Add(row);
+                return double.Parse((string)row["expression"]);
+            }
+            return arg;
+        }
+
+        public static void print(dynamic[] args)
+        {
+            string text = Convert.ToString(GetRealValue(args[0]));
             if (args.Length > 1)
             {
-                switch (args[1])
+                if (!args[1]) // no newline
                 {
-                    case true:
-                        Console.WriteLine(args[0]);
-                        break;
-                    case false:
-                        Console.Write(args[0]);
-                        break;
+                    Console.Write(text);
+                    return;
                 }
             }
-            else
+            Console.WriteLine(text);
+        }
+
+        public static void var(dynamic[] args)
+        {
+            dynamic property = GetRealValue(args[1]);
+            Types.Variable var = new Types.Variable();
+            var.name = args[0];
+            var.property = property;
+            int i = 0;
+            while (i < variables.Count)
             {
-                Console.WriteLine(args[0]);
+                if (args[0] == variables[i].name) // check if variable exists
+                {
+                    variables[i] = var;
+                    return;
+                }
+                i++;
+            }
+            variables.Add(var);
+        }
+
+        public static void if_(dynamic[] args)
+        {
+            dynamic comp1 = GetRealValue(args[1]);
+            dynamic comp2 = GetRealValue(args[3]);
+            string op = args[2];
+
+            switch (op)
+            {
+                case "==":
+                    if (comp1 == comp2)
+                    {
+                        Parse(args[0], false);
+                    }
+                    break;
+                case "!=":
+                    if (comp1 != comp2)
+                    {
+                        Parse(args[0], false);
+                    }
+                    break;
             }
         }
     }
