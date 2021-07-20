@@ -14,6 +14,7 @@ namespace PrismProject
         private static readonly Random rnd = new Random();
         public static int randomcolor = rnd.Next(256) + rnd.Next(256) + rnd.Next(256);
 
+        ///<summary>Initalises the font system</summary>
         public static void Init()
         {
             string CustomCharset = "🡬abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()~`\"\':;?/>.<,{[}]\\|+=_-";

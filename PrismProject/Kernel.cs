@@ -8,6 +8,7 @@ namespace PrismProject
         public static string Kernel_build = "POSK Revision 2.5", Codename = "glass";
         public static bool Running = true, canvasRunning = true;
 
+        ///<summary>Dont call this function unless absolutly needed</summary>
         protected override void Run()
         {
             //uncomment when threading is a thing

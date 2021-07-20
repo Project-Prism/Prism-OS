@@ -37,6 +37,7 @@ namespace PrismProject
                 Cosmos.System.Power.Reboot();
             }));
             testWindow.AddChild(new GuiButton(135, 64, 95, 30, "Shut down", Text, Accent, (self => {  })));
+            
 
             //Text box
             testWindow.AddChild(new GuiText(32, 118, "Enter into textbox"));

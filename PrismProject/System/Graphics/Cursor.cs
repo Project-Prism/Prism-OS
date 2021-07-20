@@ -1,4 +1,5 @@
 ﻿using Cosmos.System;
+using Cosmos.System.Graphics;
 using System;
 
 namespace PrismProject
@@ -7,6 +8,7 @@ namespace PrismProject
     {
         //Define the graphics method
         private static readonly int screenX = Driver.screenX, screenY = Driver.screenY;
+
         private static readonly G_lib draw = new G_lib();
 
         //mouse color and setup

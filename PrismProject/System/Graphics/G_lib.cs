@@ -9,15 +9,18 @@ namespace PrismProject
     {
         //Define the graphics method
         private static readonly int screenY = Driver.screenY;
+
         private static readonly Canvas canvas = Driver.canvas;
         private static readonly G_lib draw = new G_lib();
 
         //Individual shapes
+        ///<summary>Draws a simple box</summary>
         public void Box(Color color, int from_X, int from_Y, int Width, int Height)
         {
             canvas.DrawFilledRectangle(new Pen(color), from_X, from_Y, Width, Height);
         }
 
+        ///<summary>Draws a rounded box</summary>
         public void Rounded_Box(Color color, int x, int y, int Width, int Height, int radius)
         {
             int x2 = x + Width, y2 = y + Height, r2 = radius + radius;
@@ -34,6 +37,7 @@ namespace PrismProject
             draw.Box(color, x + radius, y2 - radius, Width - r2, radius);
         }
 
+        ///<summary>Draws a rounded box (top)</summary>
         public void Top_Rounded_Box(Color color, int x, int y, int Width, int Height, int radius = 6)
         {
             int x2 = x + Width, r2 = radius + radius;
@@ -47,6 +51,7 @@ namespace PrismProject
             draw.Box(color, x + radius, y, Width - r2, radius + 3);
         }
 
+        ///<summary>Draws a rounded box (bottom)</summary>
         public void Bottom_Rounded_Box(Color color, int x, int y, int Width, int Height, int radius = 6)
         {
             int x2 = x + Width, y2 = y + Height, r2 = radius + radius;
@@ -60,43 +65,52 @@ namespace PrismProject
             draw.Box(color, x + radius, y2 - radius, Width - r2, radius);
         }
 
+        ///<summary>Draws an empty box</summary>
         public void Empty_Box(Color color, int from_X, int from_Y, int to_X, int to_Y)
         {
             canvas.DrawRectangle(new Pen(color), from_X, from_Y, to_X, to_Y);
         }
 
+        ///<summary>Draws a circle</summary>
         public void Circle(Color color, int from_X, int from_Y, int radius)
         {
             canvas.DrawFilledCircle(new Pen(color), from_X, from_Y, radius);
         }
 
+        ///<summary>Draws a circle.</summary>
+        ///<param name="name">description</param>
         public void Triangle(Color color, int x1, int y1, int x2, int y2, int x3, int y3)
         {
             canvas.DrawTriangle(new Pen(color), x1, y1, x2, y2, x3, y3);
         }
 
+        ///<summary>Draws an arrow</summary>
         public void Arrow(Color color, int width, int x, int y)
         {
             canvas.DrawPoint(new Pen(color, width), x, y);
         }
 
+        ///<summary>Draws a line from one point to another</summary>
         public void Line(Color color, int from_X, int from_y, int to_X, int to_Y)
         {
             canvas.DrawLine(new Pen(color), from_X, from_y, to_X, to_Y);
         }
 
         //UI elements
+        ///<summary>Draws a text string with an app defined font</summary>
         public void Text(Color color, string font, string text, int x, int y)
         {
             canvas.DrawBitFontString(font, color, text, x, y);
         }
 
+        ///<summary>(wip) Draw a loading bar with a specified amout of progress filled</summary>
         public void Loadbar(int fromX, int fromY, int length, int height, int percentage)
         {
             Rounded_Box(Color.SlateGray, fromX, fromY, length, height, 50);
-            Rounded_Box(Color.White, fromX-1, fromY-1, percentage+2, height+2, 50);
+            Rounded_Box(Color.White, fromX - 1, fromY - 1, percentage + 2, height + 2, 50);
         }
 
+        ///<summary>Draws a few boxes to get a window</summary>
         public void Window(string font, int from_X, int from_Y, int Width, int Height, string Title, bool showtitlebar, int radius)
         {
             Rounded_Box(Desktop.Accent, from_X - 1, from_Y - 1, Width + 2, Height + 2, radius);
@@ -105,6 +119,7 @@ namespace PrismProject
             Text(Color.White, font, Title, from_X + 10, from_Y + 4);
         }
 
+        ///<summary>Draws a text string with a block behind it</summary>
         public void Textbox(string font, string text, Color Background, Color Foreground, int from_X, int from_Y, int Width)
         {
             Rounded_Box(Background, from_X, from_Y, Width, 15, 2);
@@ -112,6 +127,7 @@ namespace PrismProject
             Text(Foreground, font, text, from_X, from_Y + 1);
         }
 
+        ///<summary>Draws a bitmap image</summary>
         public void Image(Bitmap img, int x, int y)
         {
             canvas.DrawImageAlpha(img, x, y);
@@ -124,7 +140,7 @@ namespace PrismProject
 
         public BaseGuiElement Parent;
 
-        public BaseGuiElement(int x, int y, int w=0, int h=0, BaseGuiElement parent = null)
+        public BaseGuiElement(int x, int y, int w = 0, int h = 0, BaseGuiElement parent = null)
         {
             X = x;
             Y = y;
@@ -309,7 +325,7 @@ namespace PrismProject
         {
             int mx = X + 4;
             int my = Y + (Height / 2) - 8;
-            draw.Rounded_Box(Background, X + offset_x-1, Y + offset_y-1, Width+2, Height+2, 2);
+            draw.Rounded_Box(Background, X + offset_x - 1, Y + offset_y - 1, Width + 2, Height + 2, 2);
             draw.Rounded_Box(Desktop.Accent_unfocus, X + offset_x, Y + offset_y, Width, Height, 2);
             draw.Text(TextColour, Driver.font, Value, mx + offset_x, my + offset_y);
         }
@@ -340,7 +356,7 @@ namespace PrismProject
 
         internal override void Render(G_lib draw, int offset_x, int offset_y)
         {
-            draw.Image(img, offset_x+X, offset_y+Y);
+            draw.Image(img, offset_x + X, offset_y + Y);
             if (showborder) { draw.Empty_Box(Color.Black, X, Y, xWidth, xHeight); }
         }
     }
@@ -401,7 +417,9 @@ namespace PrismProject
         public Color Fore;
         public Color Back;
         public bool enable;
+
         public delegate void ClickDelegate(GuiToggle self);
+
         public ClickDelegate OnClick;
 
         public GuiToggle(int x, int y, Color Foreground, Color Background, bool state, ClickDelegate onClick) : base(x, y)
@@ -414,9 +432,9 @@ namespace PrismProject
 
         internal override void Render(G_lib draw, int offset_x, int offset_y)
         {
-            draw.Rounded_Box(Fore, offset_x+X-1, offset_y+Y-1, Driver.screenX/80+2, Driver.screenY/45+2, 2);
-            draw.Rounded_Box(Back, offset_x + X, offset_y + Y, Driver.screenX/80, Driver.screenY/45, 2);
-            if (enable) { draw.Rounded_Box(Fore, offset_x+X+2, offset_y+Y+2, Driver.screenX/80-4, Driver.screenY/45-4, 2); }
+            draw.Rounded_Box(Fore, offset_x + X - 1, offset_y + Y - 1, Driver.screenX / 80 + 2, Driver.screenY / 45 + 2, 2);
+            draw.Rounded_Box(Back, offset_x + X, offset_y + Y, Driver.screenX / 80, Driver.screenY / 45, 2);
+            if (enable) { draw.Rounded_Box(Fore, offset_x + X + 2, offset_y + Y + 2, Driver.screenX / 80 - 4, Driver.screenY / 45 - 4, 2); }
         }
 
         internal override bool Click(int x, int y, int btn)
