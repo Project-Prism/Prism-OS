@@ -113,9 +113,9 @@ namespace PrismProject
         ///<summary>Draws a few boxes to get a window</summary>
         public void Window(string font, int from_X, int from_Y, int Width, int Height, string Title, bool showtitlebar, int radius)
         {
-            Rounded_Box(Desktop.Accent, from_X - 1, from_Y - 1, Width + 2, Height + 2, radius);
-            Bottom_Rounded_Box(Desktop.Window, from_X, from_Y, Width, Height, radius);
-            if (showtitlebar) { Top_Rounded_Box(Desktop.Accent, from_X, from_Y, Width, screenY / 26, radius); }
+            Rounded_Box(Desktop.UIcolors.Accent_color, from_X - 1, from_Y - 1, Width + 2, Height + 2, radius);
+            Bottom_Rounded_Box(Desktop.UIcolors.Window_main, from_X, from_Y, Width, Height, radius);
+            if (showtitlebar) { Top_Rounded_Box(Desktop.UIcolors.Accent_color, from_X, from_Y, Width, screenY / 26, radius); }
             Text(Color.White, font, Title, from_X + 10, from_Y + 4);
         }
 
@@ -180,12 +180,10 @@ namespace PrismProject
 
         private int lastX, lastY;
         private readonly int titleHeight;
-        private readonly int Radius;
 
-        public GuiWindow(int x, int y, int w, int h, string title, int Rad) : base(x, y, w, h)
+        public GuiWindow(int x, int y, int w, int h, string title) : base(x, y, w, h)
         {
             Title = title;
-            Radius = Rad;
             Children = new List<BaseGuiElement>();
             lastX = x;
             lastY = y;
@@ -227,11 +225,11 @@ namespace PrismProject
         {
             if (lastX != X || lastY != Y) // we moved
             {
-                draw.Rounded_Box(Desktop.Background, lastX, lastY, Width, Height, Radius);
+                draw.Rounded_Box(Desktop.UIcolors.Desktop_main, lastX, lastY, Width, Height, 5);
                 lastX = X;
                 lastY = Y;
             }
-            draw.Window(Driver.font, X, Y, Width, Height, Title, true, Radius);
+            draw.Window(Driver.font, X, Y, Width, Height, Title, true, 5);
 
             foreach (var child in Children)
             {
@@ -248,7 +246,7 @@ namespace PrismProject
         public GuiText(int x, int y, string text) : base(x, y, 0, 0)
         {
             Value = text;
-            TextColour = Desktop.Text;
+            TextColour = Desktop.UIcolors.Text;
         }
 
         internal override void Render(G_lib draw, int offset_x, int offset_y)
@@ -266,7 +264,7 @@ namespace PrismProject
         public GuiTextBox(int x, int y, int w = 150) : base(x, y, w, 15)
         {
             Background = Color.White;
-            TextColour = Desktop.Text;
+            TextColour = Desktop.UIcolors.Text;
         }
 
         internal override bool Click(int x, int y, int btn)
@@ -325,8 +323,8 @@ namespace PrismProject
         {
             int mx = X + 4;
             int my = Y + (Height / 2) - 8;
-            draw.Rounded_Box(Background, X + offset_x - 1, Y + offset_y - 1, Width + 2, Height + 2, 2);
-            draw.Rounded_Box(Desktop.Accent_unfocus, X + offset_x, Y + offset_y, Width, Height, 2);
+            draw.Rounded_Box(Background, X + offset_x - 1, Y + offset_y - 1, Width + 2, Height + 2, 3);
+            draw.Rounded_Box(Desktop.UIcolors.Element_dark, X + offset_x, Y + offset_y, Width, Height, 3);
             draw.Text(TextColour, Driver.font, Value, mx + offset_x, my + offset_y);
         }
 
@@ -383,8 +381,8 @@ namespace PrismProject
         {
             draw.Rounded_Box(Fore, offset_x + X - 1, offset_y + Y - 1, 39, 23, 9);
             draw.Rounded_Box(Back, offset_x + X, offset_y + Y, 37, 21, 9);
-            if (status) { draw.Circle(Color.White, offset_x + X + 9, offset_y + Y + 10, 9); }
-            if (!status) { draw.Circle(Color.White, offset_x + X + 16, offset_y + Y + 10, 9); }
+            if (status) { draw.Circle(Color.White, offset_x + X + 10, offset_y + Y + 10, 9); }
+            if (!status) { draw.Circle(Color.White, offset_x + X + 47, offset_y + Y + 10, 9); }
         }
 
         internal override bool Click(int x, int y, int btn)
@@ -432,9 +430,9 @@ namespace PrismProject
 
         internal override void Render(G_lib draw, int offset_x, int offset_y)
         {
-            draw.Rounded_Box(Fore, offset_x + X - 1, offset_y + Y - 1, Driver.screenX / 80 + 2, Driver.screenY / 45 + 2, 2);
-            draw.Rounded_Box(Back, offset_x + X, offset_y + Y, Driver.screenX / 80, Driver.screenY / 45, 2);
-            if (enable) { draw.Rounded_Box(Fore, offset_x + X + 2, offset_y + Y + 2, Driver.screenX / 80 - 4, Driver.screenY / 45 - 4, 2); }
+            draw.Rounded_Box(Fore, offset_x + X - 1, offset_y + Y - 1, Driver.screenX / 80 + 2, Driver.screenY / 45 + 2, 6);
+            draw.Rounded_Box(Back, offset_x + X, offset_y + Y, Driver.screenX / 80, Driver.screenY / 45, 6);
+            if (enable) { draw.Rounded_Box(Fore, offset_x + X + 2, offset_y + Y + 2, Driver.screenX / 80 - 4, Driver.screenY / 45 - 4, 6); }
         }
 
         internal override bool Click(int x, int y, int btn)

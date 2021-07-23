@@ -24,9 +24,7 @@ namespace PrismProject
     {
         public static Dictionary<string, BitFontDescriptor> RegisteredBitFont = new Dictionary<string, BitFontDescriptor>();
 
-        /// <summary>
-        /// The BitFont Should Be Left Aligned
-        /// </summary>
+        /// <summary>The BitFont Should Be Left Aligned</summary>
         /// <param name="Name"></param>
         /// <param name="bitFontDescriptor"></param>
         public static void RegisterBitFont(string Name, BitFontDescriptor bitFontDescriptor)
@@ -34,9 +32,7 @@ namespace PrismProject
             RegisteredBitFont.Add(Name, bitFontDescriptor);
         }
 
-        /// <summary>
-        /// Draw String With BitFont
-        /// </summary>
+        /// <summary>Draw String With BitFont</summary>
         /// <exception cref="KeyNotFoundException"></exception>
         /// <param name="canvas"></param>
         /// <param name="FontName"></param>
@@ -78,9 +74,7 @@ namespace PrismProject
             return -1;
         }
 
-        /// <summary>
-        /// Return Font Used Width
-        /// </summary>
+        /// <summary>Return Font Used Width</summary>
         /// <param name="canvas"></param>
         /// <param name="MemoryStream"></param>
         /// <param name="Size"></param>

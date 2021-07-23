@@ -2,9 +2,9 @@
 
 namespace PrismProject
 {
-    internal class Keyboard
+    internal class Km
     {
-        public static void keyboard(string type, string[] args)
+        public static void Keyboard(string type, string[] args)
         {
             if (type == "layout")
             {

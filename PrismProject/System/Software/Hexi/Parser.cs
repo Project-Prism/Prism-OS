@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Hexi_Language
 {
-    class Parser
+    internal class Parser
     {
         public static void Parse(string code, bool clear = true)
         {
@@ -32,9 +30,11 @@ namespace Hexi_Language
                     case '(':
                         stopsc = true;
                         break;
+
                     case ')':
                         stopsc = false;
                         break;
+
                     case ';':
                         if (!stopsc)
                         {
@@ -64,13 +64,15 @@ namespace Hexi_Language
                 switch (function)
                 {
                     case "print":
-                        Functions.print(GetArguments(withoutfunction));
+                        Functions.Print(GetArguments(withoutfunction));
                         break;
+
                     case "var":
-                        Functions.var(GetArguments(withoutfunction));
+                        Functions.Var(GetArguments(withoutfunction));
                         break;
+
                     case "if":
-                        Functions.if_(GetIfArguments(withoutfunction)); // get special arguments for if statement
+                        Functions.If_(GetIfArguments(withoutfunction)); // get special arguments for if statement
                         break;
                 }
             }
@@ -123,27 +125,26 @@ namespace Hexi_Language
                 {
                     case "true":
                         return true;
+
                     case "false":
                         return false;
                 }
             }
             else if (Types.TYPE_VAR(arg)) // if variable
             {
-                string newarg = arg.Remove(0, 1);
                 Types.Variable var = new Types.Variable();
-                var.name = newarg;
+                var.name = arg.Remove(0, 1);
                 return var;
             }
             else if (Types.TYPE_INTEGER(arg)) // if integer
             {
-                double number;
-                double.TryParse(arg, out number);
+                double.TryParse(arg, out double number);
                 return number;
             }
             else if (Types.TYPE_MATH(arg)) // if math operation
             {
                 Types.MathOp mathop = new Types.MathOp();
-                mathop.operation = GetWithin(arg, "{", "}");
+                new Types.MathOp(); mathop.operation = GetWithin(arg, "{", "}");
                 return mathop;
             }
             else

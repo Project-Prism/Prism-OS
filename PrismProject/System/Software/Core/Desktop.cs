@@ -6,38 +6,32 @@ namespace PrismProject
 {
     internal class Desktop
     {
-        #region Themes and GUI vars
+        public struct UIcolors
+        {
+            public static Color Window_main = Color.FromArgb(25, 25, 45);
+            public static Color Desktop_main = Color.FromArgb(30, 30, 50);
+            public static Color Accent_color = Color.FromArgb(0, 202, 78);
+            public static Color Element_dark = Color.FromArgb(60, 60, 60);
+            public static Color Text = Color.White;
+        }
 
-        //Default theme colors
-        public static Color Window = Color.FromArgb(25, 25, 45);
-        public static Color Background = Color.FromArgb(15, 52, 96);
-        public static Color Text = Color.White;
-        public static Color Text_invert = Color.Black;
-        public static Color Accent = Color.FromArgb(255, 82, 0);
-        public static Color Accent_unfocus = Color.FromArgb(68, 68, 68);
-
-        //Define graphics variables
         private static readonly int screenX = Driver.screenX, screenY = Driver.screenY;
-
         private static readonly G_lib draw = new G_lib();
         private static readonly Cursor cursor = new Cursor();
         public static List<GuiWindow> Windows = new List<GuiWindow>();
         public static BaseGuiElement ActiveElement = null;
 
-        #endregion Themes and GUI vars
-
         public static void Start()
         {
-            var testWindow = new GuiWindow(screenX / 5, screenY / 5, screenX / 2, screenY / 2, "App menu", 5);
+            var testWindow = new GuiWindow(screenX / 5, screenY / 5, screenX / 2, screenY / 2, "App menu");
 
             //test power commands
-            testWindow.AddChild(new GuiDiv(30, 54, 70, 144, Accent));
-            testWindow.AddChild(new GuiButton(32, 64, 95, 30, "Reboot", Text, Accent, (self) =>
+            testWindow.AddChild(new GuiDiv(30, 54, 70, 144, UIcolors.Accent_color));
+            testWindow.AddChild(new GuiButton(35, 64, 95, 30, "Reboot", UIcolors.Text, UIcolors.Accent_color, (self) =>
             {
                 Cosmos.System.Power.Reboot();
             }));
-            testWindow.AddChild(new GuiButton(135, 64, 95, 30, "Shut down", Text, Accent, (self => {  })));
-            
+            testWindow.AddChild(new GuiButton(135, 64, 95, 30, "Shut down", UIcolors.Text, UIcolors.Accent_color, (self => { Cosmos.System.Power.Shutdown(); })));
 
             //Text box
             testWindow.AddChild(new GuiText(32, 118, "Enter into textbox"));
@@ -45,13 +39,13 @@ namespace PrismProject
 
             //GuiToggle switches
             testWindow.AddChild(new GuiText(30, 162, "Wi-Fi"));
-            testWindow.AddChild(new GuiSwitch(90, 160, Accent_unfocus, Accent, true, (self) =>
+            testWindow.AddChild(new GuiSwitch(90, 160, UIcolors.Element_dark, UIcolors.Accent_color, true, (self) =>
             {
                 if (self.status) { self.status = false; }
                 if (!self.status) { self.status = true; }
             }));
             testWindow.AddChild(new GuiText(30, 190, "radio button!"));
-            testWindow.AddChild(new GuiToggle(150, 190, Accent, Accent_unfocus, true, (self) =>
+            testWindow.AddChild(new GuiToggle(150, 190, UIcolors.Accent_color, UIcolors.Element_dark, true, (self) =>
             {
                 if (self.enable)
                 {
@@ -62,16 +56,16 @@ namespace PrismProject
                     self.enable = true;
                 }
             }));
-            
+
             Windows.Add(testWindow);
 
             int clickX = -100, clickY = -100;
             bool clickDown = false;
-            
-            Driver.Clear(Background);
+
+            Driver.Clear(UIcolors.Desktop_main);
             while (Kernel.canvasRunning)
             {
-                draw.Box(Accent_unfocus, 0, screenY - 30, screenX, screenY/24);
+                draw.Box(UIcolors.Element_dark, 0, screenY - 30, screenX, screenY / 24);
                 draw.Circle(Color.White, 16, screenY - 15, 10);
                 foreach (var window in Windows)
                 {
@@ -115,7 +109,6 @@ namespace PrismProject
                 }
                 if (ActiveElement != null)
                 {
-                    
                     if (Cosmos.System.KeyboardManager.TryReadKey(out Cosmos.System.KeyEvent key))
                     { ActiveElement.Key(key); }
                 }

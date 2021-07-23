@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Hexi_Language
+﻿namespace Hexi_Language
 {
-    class Types
+    internal class Types
     {
         public struct Variable
         {

@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
-using System.Threading.Tasks;
 using static Hexi_Language.Parser;
 
 namespace Hexi_Language
 {
-    class Functions
+    internal class Functions
     {
         public static List<Types.Variable> variables = new List<Types.Variable>();
 
@@ -36,7 +34,7 @@ namespace Hexi_Language
             return arg;
         }
 
-        public static void print(dynamic[] args)
+        public static void Print(dynamic[] args)
         {
             string text = Convert.ToString(GetRealValue(args[0]));
             if (args.Length > 1)
@@ -50,12 +48,11 @@ namespace Hexi_Language
             Console.WriteLine(text);
         }
 
-        public static void var(dynamic[] args)
+        public static void Var(dynamic[] args)
         {
-            dynamic property = GetRealValue(args[1]);
             Types.Variable var = new Types.Variable();
             var.name = args[0];
-            var.property = property;
+            var.property = GetRealValue(args[1]);
             int i = 0;
             while (i < variables.Count)
             {
@@ -69,7 +66,7 @@ namespace Hexi_Language
             variables.Add(var);
         }
 
-        public static void if_(dynamic[] args)
+        public static void If_(dynamic[] args)
         {
             dynamic comp1 = GetRealValue(args[1]);
             dynamic comp2 = GetRealValue(args[3]);
@@ -83,6 +80,7 @@ namespace Hexi_Language
                         Parse(args[0], false);
                     }
                     break;
+
                 case "!=":
                     if (comp1 != comp2)
                     {

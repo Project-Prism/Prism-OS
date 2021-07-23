@@ -1,5 +1,4 @@
 ﻿using Cosmos.System;
-using Cosmos.System.Graphics;
 using System;
 
 namespace PrismProject
@@ -27,7 +26,7 @@ namespace PrismProject
 
         public void Update()
         {
-            if (X != lastX & Y != lastY) { draw.Box(Desktop.Background, Math.Max(0, lastX - 8), Math.Max(0, lastY - 8), 32, 32); }
+            if (X != lastX & Y != lastY) { draw.Box(Desktop.UIcolors.Desktop_main, Math.Max(0, lastX - 8), Math.Max(0, lastY - 8), 32, 32); }
             draw.Image(Images.mouse, X, Y);
             lastX = X;
             lastY = Y;
