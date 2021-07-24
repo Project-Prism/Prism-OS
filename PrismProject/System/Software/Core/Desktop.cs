@@ -6,18 +6,8 @@ namespace PrismProject
 {
     internal class Desktop
     {
-        public struct UIcolors
-        {
-            public static Color Window_main = Color.FromArgb(25, 25, 45);
-            public static Color Desktop_main = Color.FromArgb(30, 30, 50);
-            public static Color Accent_color = Color.FromArgb(0, 202, 78);
-            public static Color Element_dark = Color.FromArgb(60, 60, 60);
-            public static Color Text = Color.White;
-        }
-
         private static readonly int screenX = Driver.screenX, screenY = Driver.screenY;
         private static readonly G_lib draw = new G_lib();
-        private static readonly Cursor cursor = new Cursor();
         public static List<GuiWindow> Windows = new List<GuiWindow>();
         public static BaseGuiElement ActiveElement = null;
 
@@ -26,26 +16,95 @@ namespace PrismProject
             var testWindow = new GuiWindow(screenX / 5, screenY / 5, screenX / 2, screenY / 2, "App menu");
 
             //test power commands
-            testWindow.AddChild(new GuiDiv(30, 54, 70, 144, UIcolors.Accent_color));
-            testWindow.AddChild(new GuiButton(35, 64, 95, 30, "Reboot", UIcolors.Text, UIcolors.Accent_color, (self) =>
+            testWindow.AddChild(new GuiDiv
+            #region Element properties
+            (
+                30, 54, 70, 144,
+                Themes.Divider.Div_Theme)
+            );
+            #endregion
+            testWindow.AddChild(new GuiButton
+            #region Element properties
+            (
+                35, 64, 95, 30,
+                "Reboot",
+                Themes.Button.Button_Text,
+                Themes.Button.Button_Theme,
+                (self) =>
             {
                 Cosmos.System.Power.Reboot();
-            }));
-            testWindow.AddChild(new GuiButton(135, 64, 95, 30, "Shut down", UIcolors.Text, UIcolors.Accent_color, (self => { Cosmos.System.Power.Shutdown(); })));
+            })
+            );
+            #endregion
+            testWindow.AddChild(new GuiButton
+            #region Element properties
+            (
+                135, 64, 95, 30,
+                "Shut down",
+                Themes.Button.Button_Text,
+                Themes.Button.Button_Theme,
+                (self) => { Cosmos.System.Power.Shutdown(); })
+            );
+            #endregion
 
             //Text box
-            testWindow.AddChild(new GuiText(32, 118, "Enter into textbox"));
-            testWindow.AddChild(new GuiTextBox(32, 138, 150));
+            testWindow.AddChild(new GuiText
+            #region Element properties
+            (
+                32, 118,
+                "Enter into textbox",
+                Color.White
+            ));
+            #endregion
+            testWindow.AddChild(new GuiTextBox
+           #region Element properties
+            (
+                32, 138, 150, 20,
+                Themes.Textbox.TB_Border,
+                Themes.Textbox.YB_Inner,
+                Themes.Window.Window_Title_Text
+            ));
+            #endregion
 
             //GuiToggle switches
-            testWindow.AddChild(new GuiText(30, 162, "Wi-Fi"));
-            testWindow.AddChild(new GuiSwitch(90, 160, UIcolors.Element_dark, UIcolors.Accent_color, true, (self) =>
+            testWindow.AddChild(new GuiText
+            #region Element properties
+            (
+                30, 162,
+                "Wi-Fi",
+                Color.White
+            ));
+            #endregion
+            testWindow.AddChild(new GuiSwitch
+            #region Element properties
+            (
+                90, 160,
+                Themes.Switch.Switch_Theme_Inner,
+                Themes.Switch.Switch_Theme,
+                true,
+                (self) =>
             {
                 if (self.status) { self.status = false; }
                 if (!self.status) { self.status = true; }
-            }));
-            testWindow.AddChild(new GuiText(30, 190, "radio button!"));
-            testWindow.AddChild(new GuiToggle(150, 190, UIcolors.Accent_color, UIcolors.Element_dark, true, (self) =>
+            })
+            );
+            #endregion
+            testWindow.AddChild(new GuiText
+            #region Element properties
+            (
+                30, 190,
+                "radio button!",
+                Color.White
+            ));
+            #endregion
+            testWindow.AddChild(new GuiToggle
+            #region Element properties
+            (
+                150, 190,
+                Themes.R_Button.R_Button_Theme,
+                Themes.R_Button.R_Button_Theme_Inner,
+                true,
+                (self) =>
             {
                 if (self.enable)
                 {
@@ -55,17 +114,18 @@ namespace PrismProject
                 {
                     self.enable = true;
                 }
-            }));
+            })
+            );
+            #endregion
 
+            #region Rendering & mouse functions
             Windows.Add(testWindow);
-
             int clickX = -100, clickY = -100;
             bool clickDown = false;
-
-            Driver.Clear(UIcolors.Desktop_main);
+            Driver.Clear(Themes.Desktop_main);
             while (Kernel.canvasRunning)
             {
-                draw.Box(UIcolors.Element_dark, 0, screenY - 30, screenX, screenY / 24);
+                draw.Box(Themes.Window.Window_Theme_Inner, 0, screenY - 30, screenX, screenY / 24);
                 draw.Circle(Color.White, 16, screenY - 15, 10);
                 foreach (var window in Windows)
                 {
@@ -112,10 +172,11 @@ namespace PrismProject
                     if (Cosmos.System.KeyboardManager.TryReadKey(out Cosmos.System.KeyEvent key))
                     { ActiveElement.Key(key); }
                 }
-                cursor.Update();
+                Cursor.Update();
 
                 #endregion Mouse stuff
             }
+            #endregion
         }
     }
 }

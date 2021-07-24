@@ -20,7 +20,7 @@ namespace PrismProject
                 Driver.Init();
             }
             Driver.Clear(Color.DarkOrange);
-            draw.Textbox(Driver.font, "LOW MEMORY!", Color.Black, Color.Red, screenX / 4, screenY / 2, 200);
+            draw.Textbox(Driver.font, "LOW MEMORY!", Themes.Textbox.TB_Border, Themes.Textbox.YB_Inner, Color.Red, screenX / 4, screenY / 2, 200);
         }
 
         public static void Memcheck()

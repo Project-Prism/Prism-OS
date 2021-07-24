@@ -5,6 +5,49 @@ using System.Drawing;
 
 namespace PrismProject
 {
+    internal class Themes
+    {
+        public struct Window
+        {
+            public static Color Window_Theme = Color.FromArgb(0, 202, 78); //Default color
+            public static Color Window_Theme_Disable = Color.FromArgb(0, 152, 28); //color to use instead when not focused
+            public static Color Window_Theme_Inner = Color.FromArgb(60, 60, 65); //inner background color
+            public static Color Window_Title_Text = Color.White; //Text color
+        }
+        public struct Button
+        {//button colors
+            public static Color Button_Theme = Color.FromArgb(0, 202, 78); //Default color
+            public static Color Button_Theme_Disable = Color.FromArgb(0, 152, 28); //color to use instead when disabled
+            public static Color Button_Theme_Inner = Color.FromArgb(40, 40, 45); //inner background color
+            public static Color Button_Text = Color.White; //text color
+        }
+        public struct R_Button
+        {//radio button colors
+            public static Color R_Button_Theme = Color.FromArgb(0, 202, 78); //Default color
+            public static Color R_Button_Theme_Disable = Color.FromArgb(0, 152, 28); //color to use instead when disabled
+            public static Color R_Button_Theme_Inner = Color.FromArgb(40, 40, 45); //inner background color
+        }
+        public struct Switch
+        {//switch colors
+            public static Color Switch_Theme = Color.FromArgb(0, 202, 78); //Default color
+            public static Color Switch_Theme_Disable = Color.FromArgb(0, 152, 28); //color to use instead when disabled
+            public static Color Switch_Theme_Inner = Color.FromArgb(40, 40, 45); //inner background color
+            public static Color Switch_Nub = Color.White; //switch nub color
+        }
+        public struct Divider
+        {//divider colors
+            public static Color Div_Theme = Color.FromArgb(0, 202, 78); //Default color
+        }
+        public struct Textbox
+        {//text box colors
+            public static Color TB_Border = Color.FromArgb(0, 202, 78); //Default color
+            public static Color TB_Border_Disable = Color.FromArgb(0, 152, 28); //color to use instead when disabled
+            public static Color YB_Inner = Color.FromArgb(40, 40, 45); //inner background color
+        }
+
+        public static Color Desktop_main = Color.FromArgb(30, 30, 50);
+    }
+
     internal class G_lib
     {
         //Define the graphics method
@@ -113,17 +156,17 @@ namespace PrismProject
         ///<summary>Draws a few boxes to get a window</summary>
         public void Window(string font, int from_X, int from_Y, int Width, int Height, string Title, bool showtitlebar, int radius)
         {
-            Rounded_Box(Desktop.UIcolors.Accent_color, from_X - 1, from_Y - 1, Width + 2, Height + 2, radius);
-            Bottom_Rounded_Box(Desktop.UIcolors.Window_main, from_X, from_Y, Width, Height, radius);
-            if (showtitlebar) { Top_Rounded_Box(Desktop.UIcolors.Accent_color, from_X, from_Y, Width, screenY / 26, radius); }
+            Rounded_Box(Themes.Window.Window_Theme, from_X - 1, from_Y - 1, Width + 2, Height + 2, radius);
+            Bottom_Rounded_Box(Themes.Window.Window_Theme_Inner, from_X, from_Y, Width, Height, radius);
+            if (showtitlebar) { Top_Rounded_Box(Themes.Window.Window_Theme, from_X, from_Y, Width, screenY / 26, radius); }
             Text(Color.White, font, Title, from_X + 10, from_Y + 4);
         }
 
         ///<summary>Draws a text string with a block behind it</summary>
-        public void Textbox(string font, string text, Color Background, Color Foreground, int from_X, int from_Y, int Width)
+        public void Textbox(string font, string text, Color Background, Color Foreground, Color accent, int from_X, int from_Y, int Width)
         {
+            Rounded_Box(accent, from_X-1, from_Y-1, Width+2, 17, 2);
             Rounded_Box(Background, from_X, from_Y, Width, 15, 2);
-            Empty_Box(Foreground, from_X, from_Y, Width, 15);
             Text(Foreground, font, text, from_X, from_Y + 1);
         }
 
@@ -225,7 +268,7 @@ namespace PrismProject
         {
             if (lastX != X || lastY != Y) // we moved
             {
-                draw.Rounded_Box(Desktop.UIcolors.Desktop_main, lastX, lastY, Width, Height, 5);
+                draw.Rounded_Box(Themes.Desktop_main, lastX, lastY, Width, Height, 5);
                 lastX = X;
                 lastY = Y;
             }
@@ -243,10 +286,10 @@ namespace PrismProject
         public string Value;
         public Color TextColour;
 
-        public GuiText(int x, int y, string text) : base(x, y, 0, 0)
+        public GuiText(int x, int y, string text, Color textcolor) : base(x, y, 0, 0)
         {
             Value = text;
-            TextColour = Desktop.UIcolors.Text;
+            TextColour = textcolor;
         }
 
         internal override void Render(G_lib draw, int offset_x, int offset_y)
@@ -260,11 +303,13 @@ namespace PrismProject
         public string Value;
         public Color Background;
         public Color TextColour;
+        public Color Accent;
 
-        public GuiTextBox(int x, int y, int w = 150) : base(x, y, w, 15)
+        public GuiTextBox(int x, int y, int w, int h, Color Theme, Color Inner, Color Text) : base(x, y, w, h)
         {
-            Background = Color.White;
-            TextColour = Desktop.UIcolors.Text;
+            Background = Inner;
+            TextColour = Text;
+            Accent = Theme;
         }
 
         internal override bool Click(int x, int y, int btn)
@@ -297,7 +342,7 @@ namespace PrismProject
         internal override void Render(G_lib draw, int offset_x, int offset_y)
         {
             string txt = Value + (Desktop.ActiveElement == this ? "|" : "");
-            draw.Textbox(Driver.font, txt, Background, TextColour, X + offset_x, Y + offset_y, Width);
+            draw.Textbox(Driver.font, txt, Background, TextColour, Accent, X + offset_x, Y + offset_y, Width);
         }
     }
 
@@ -324,7 +369,7 @@ namespace PrismProject
             int mx = X + 4;
             int my = Y + (Height / 2) - 8;
             draw.Rounded_Box(Background, X + offset_x - 1, Y + offset_y - 1, Width + 2, Height + 2, 3);
-            draw.Rounded_Box(Desktop.UIcolors.Element_dark, X + offset_x, Y + offset_y, Width, Height, 3);
+            draw.Rounded_Box(Themes.Button.Button_Theme_Inner, X + offset_x, Y + offset_y, Width, Height, 3);
             draw.Text(TextColour, Driver.font, Value, mx + offset_x, my + offset_y);
         }
 

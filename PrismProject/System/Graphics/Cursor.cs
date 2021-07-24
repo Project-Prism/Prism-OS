@@ -24,9 +24,9 @@ namespace PrismProject
             MouseManager.ScreenHeight = (uint)screenY;
         }
 
-        public void Update()
+        public static void Update()
         {
-            if (X != lastX & Y != lastY) { draw.Box(Desktop.UIcolors.Desktop_main, Math.Max(0, lastX - 8), Math.Max(0, lastY - 8), 32, 32); }
+            if (X != lastX & Y != lastY) { draw.Box(Themes.Desktop_main, Math.Max(0, lastX - 8), Math.Max(0, lastY - 8), 32, 32); }
             draw.Image(Images.mouse, X, Y);
             lastX = X;
             lastY = Y;
