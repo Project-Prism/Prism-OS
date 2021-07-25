@@ -50,7 +50,7 @@ namespace Hexi_Language
 
         public static void Var(dynamic[] args)
         {
-            Types.Variable var = new Types.Variable();
+            Types.Variable var;
             var.name = args[0];
             var.property = GetRealValue(args[1]);
             int i = 0;

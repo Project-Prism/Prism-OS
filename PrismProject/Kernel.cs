@@ -1,4 +1,3 @@
-//using System.Threading;
 using Sys = Cosmos.System;
 
 namespace PrismProject
@@ -7,6 +6,7 @@ namespace PrismProject
     {
         public static string Kernel_build = "POSK Revision 2.5", Codename = "glass";
         public static bool Running = true, canvasRunning = true;
+
         protected override void Run()
         {
             //uncomment when threading is a thing

@@ -1,6 +1,6 @@
 ﻿namespace PrismProject
 {
-    class INIT
+    internal class INIT
     {
         public static void Run()
         {

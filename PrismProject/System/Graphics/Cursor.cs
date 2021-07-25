@@ -1,5 +1,4 @@
 ﻿using Cosmos.System;
-using System;
 
 namespace PrismProject
 {
@@ -8,7 +7,7 @@ namespace PrismProject
         //Define the graphics method
         private static readonly int screenX = Driver.screenX, screenY = Driver.screenY;
 
-        private static readonly G_lib draw = new G_lib();
+        private static readonly G_lib Gcore;
 
         //mouse color and setup
         public static int lastX, lastY;
@@ -26,10 +25,11 @@ namespace PrismProject
 
         public static void Update()
         {
-            if (X != lastX & Y != lastY) { draw.Box(Themes.Desktop_main, Math.Max(0, lastX - 8), Math.Max(0, lastY - 8), 32, 32); }
-            draw.Image(Images.mouse, X, Y);
-            lastX = X;
-            lastY = Y;
+            //draw.DrawFillRectangle((uint)Math.Max(0, lastX - 8), (uint)Math.Max(0, lastY - 8), 32, 32, (uint)Themes.Desktop_main.ToArgb());
+            //draw.Image(Images.mouse, X, Y);
+            Gcore.Image(Images.mouse, X, Y);
+            //lastX = X;
+            //lastY = Y;
         }
     }
 }

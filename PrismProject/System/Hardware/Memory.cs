@@ -4,6 +4,8 @@ namespace PrismProject
 {
     internal class Memory
     {
+        private static readonly VMD VMDcore;
+        private static readonly G_lib Gcore;
         public static uint Total { get => Cosmos.Core.CPU.GetAmountOfRAM(); }
         public static uint Used { get => (Cosmos.Core.CPU.GetEndOfKernel() + 1024) / 1048576; }
         public static uint Free { get => Total - Used; }
@@ -12,15 +14,14 @@ namespace PrismProject
 
         public static void OutOfMemoryWarning()
         {
-            G_lib draw = new G_lib();
             int screenX = Driver.screenX;
             int screenY = Driver.screenY;
             if (!Kernel.canvasRunning)
             {
                 Driver.Init();
             }
-            Driver.Clear(Color.DarkOrange);
-            draw.Textbox(Driver.font, "LOW MEMORY!", Themes.Textbox.TB_Border, Themes.Textbox.YB_Inner, Color.Red, screenX / 4, screenY / 2, 200);
+            VMDcore.Clear(Color.DarkOrange);
+            Gcore.Textbox(Driver.font, "LOW MEMORY!", Themes.Textbox.TB_Border, Themes.Textbox.YB_Inner, Color.Red, screenX / 4, screenY / 2, 200);
         }
 
         public static void Memcheck()

@@ -14,6 +14,7 @@ namespace PrismProject
             public static Color Window_Theme_Inner = Color.FromArgb(60, 60, 65); //inner background color
             public static Color Window_Title_Text = Color.White; //Text color
         }
+
         public struct Button
         {//button colors
             public static Color Button_Theme = Color.FromArgb(0, 202, 78); //Default color
@@ -21,12 +22,14 @@ namespace PrismProject
             public static Color Button_Theme_Inner = Color.FromArgb(40, 40, 45); //inner background color
             public static Color Button_Text = Color.White; //text color
         }
+
         public struct R_Button
         {//radio button colors
             public static Color R_Button_Theme = Color.FromArgb(0, 202, 78); //Default color
             public static Color R_Button_Theme_Disable = Color.FromArgb(0, 152, 28); //color to use instead when disabled
             public static Color R_Button_Theme_Inner = Color.FromArgb(40, 40, 45); //inner background color
         }
+
         public struct Switch
         {//switch colors
             public static Color Switch_Theme = Color.FromArgb(0, 202, 78); //Default color
@@ -34,10 +37,12 @@ namespace PrismProject
             public static Color Switch_Theme_Inner = Color.FromArgb(40, 40, 45); //inner background color
             public static Color Switch_Nub = Color.White; //switch nub color
         }
+
         public struct Divider
         {//divider colors
             public static Color Div_Theme = Color.FromArgb(0, 202, 78); //Default color
         }
+
         public struct Textbox
         {//text box colors
             public static Color TB_Border = Color.FromArgb(0, 202, 78); //Default color
@@ -51,33 +56,25 @@ namespace PrismProject
     internal class G_lib
     {
         //Define the graphics method
-        private static readonly int screenY = Driver.screenY;
+        private readonly int screenY = Driver.screenY;
 
-        private static readonly Canvas canvas = Driver.canvas;
-        private static readonly G_lib draw = new G_lib();
-
-        //Individual shapes
-        ///<summary>Draws a simple box</summary>
-        public void Box(Color color, int from_X, int from_Y, int Width, int Height)
-        {
-            canvas.DrawFilledRectangle(new Pen(color), from_X, from_Y, Width, Height);
-        }
+        private static VMD VMDcore;
 
         ///<summary>Draws a rounded box</summary>
         public void Rounded_Box(Color color, int x, int y, int Width, int Height, int radius)
         {
             int x2 = x + Width, y2 = y + Height, r2 = radius + radius;
             // Draw Outside circles
-            draw.Circle(color, x + radius, y + radius, radius);
-            draw.Circle(color, x2 - radius - 1, y + radius, radius);
-            draw.Circle(color, x + radius, y2 - radius - 1, radius);
-            draw.Circle(color, x2 - radius - 1, y2 - radius - 1, radius);
+            VMDcore.DrawFilledCircle(x + radius, y + radius, radius, color);
+            VMDcore.DrawFilledCircle(x2 - radius - 1, y + radius, radius, color);
+            VMDcore.DrawFilledCircle(x + radius, y2 - radius - 1, radius, color);
+            VMDcore.DrawFilledCircle(x2 - radius - 1, y2 - radius - 1, radius, color);
 
             // Draw Main Rectangle
-            draw.Box(color, x, y + radius, Width, Height - r2);
+            VMDcore.DrawFilledRectangle(x, y + radius, Width, Height - r2, color);
             // Draw Outside Rectangles
-            draw.Box(color, x + radius, y, Width - r2, radius);
-            draw.Box(color, x + radius, y2 - radius, Width - r2, radius);
+            VMDcore.DrawFilledRectangle(x + radius, y, Width - r2, radius, color);
+            VMDcore.DrawFilledRectangle(x + radius, y2 - radius, Width - r2, radius, color);
         }
 
         ///<summary>Draws a rounded box (top)</summary>
@@ -85,13 +82,13 @@ namespace PrismProject
         {
             int x2 = x + Width, r2 = radius + radius;
             // Draw Outside circles
-            draw.Circle(color, x + radius, y + radius, radius);
-            draw.Circle(color, x2 - radius - 1, y + radius, radius);
+            VMDcore.DrawFilledCircle(x + radius, y + radius, radius, color);
+            VMDcore.DrawFilledCircle(x2 - radius - 1, y + radius, radius, color);
 
             // Draw Main Rectangle
-            draw.Box(color, x, y + radius, Width, Height - radius);
+            VMDcore.DrawFilledRectangle(x, y + radius, Width, Height - radius, color);
             // Draw Outside Rectangles
-            draw.Box(color, x + radius, y, Width - r2, radius + 3);
+            VMDcore.DrawFilledRectangle(x + radius, y, Width - r2, radius + 3, color);
         }
 
         ///<summary>Draws a rounded box (bottom)</summary>
@@ -99,51 +96,19 @@ namespace PrismProject
         {
             int x2 = x + Width, y2 = y + Height, r2 = radius + radius;
             // Draw Outside circles
-            draw.Circle(color, x + radius, y2 - radius - 1, radius);
-            draw.Circle(color, x2 - radius - 1, y2 - radius - 1, radius);
+            VMDcore.DrawFilledCircle(x + radius, y2 - radius - 1, radius, color);
+            VMDcore.DrawFilledCircle(x2 - radius - 1, y2 - radius - 1, radius, color);
 
             // Draw Main Rectangle
-            draw.Box(color, x, y + radius, Width, Height - r2);
+            VMDcore.DrawFilledRectangle(x, y + radius, Width, Height - r2, color);
             // Draw Outside Rectangles
-            draw.Box(color, x + radius, y2 - radius, Width - r2, radius);
+            VMDcore.DrawFilledRectangle(x + radius, y2 - radius, Width - r2, radius, color);
         }
 
-        ///<summary>Draws an empty box</summary>
-        public void Empty_Box(Color color, int from_X, int from_Y, int to_X, int to_Y)
-        {
-            canvas.DrawRectangle(new Pen(color), from_X, from_Y, to_X, to_Y);
-        }
-
-        ///<summary>Draws a circle</summary>
-        public void Circle(Color color, int from_X, int from_Y, int radius)
-        {
-            canvas.DrawFilledCircle(new Pen(color), from_X, from_Y, radius);
-        }
-
-        ///<summary>Draws a circle.</summary>
-        ///<param name="name">description</param>
-        public void Triangle(Color color, int x1, int y1, int x2, int y2, int x3, int y3)
-        {
-            canvas.DrawTriangle(new Pen(color), x1, y1, x2, y2, x3, y3);
-        }
-
-        ///<summary>Draws an arrow</summary>
-        public void Arrow(Color color, int width, int x, int y)
-        {
-            canvas.DrawPoint(new Pen(color, width), x, y);
-        }
-
-        ///<summary>Draws a line from one point to another</summary>
-        public void Line(Color color, int from_X, int from_y, int to_X, int to_Y)
-        {
-            canvas.DrawLine(new Pen(color), from_X, from_y, to_X, to_Y);
-        }
-
-        //UI elements
         ///<summary>Draws a text string with an app defined font</summary>
         public void Text(Color color, string font, string text, int x, int y)
         {
-            canvas.DrawBitFontString(font, color, text, x, y);
+            //VMDcore.DrawBitFontString(font, color, text, x, y);
         }
 
         ///<summary>(wip) Draw a loading bar with a specified amout of progress filled</summary>
@@ -165,7 +130,7 @@ namespace PrismProject
         ///<summary>Draws a text string with a block behind it</summary>
         public void Textbox(string font, string text, Color Background, Color Foreground, Color accent, int from_X, int from_Y, int Width)
         {
-            Rounded_Box(accent, from_X-1, from_Y-1, Width+2, 17, 2);
+            Rounded_Box(accent, from_X - 1, from_Y - 1, Width + 2, 17, 2);
             Rounded_Box(Background, from_X, from_Y, Width, 15, 2);
             Text(Foreground, font, text, from_X, from_Y + 1);
         }
@@ -173,7 +138,7 @@ namespace PrismProject
         ///<summary>Draws a bitmap image</summary>
         public void Image(Bitmap img, int x, int y)
         {
-            canvas.DrawImageAlpha(img, x, y);
+            VMDcore.DrawImage(img, x, y);
         }
     }
 
@@ -192,7 +157,7 @@ namespace PrismProject
             Parent = parent;
         }
 
-        internal abstract void Render(G_lib draw, int offset_x, int offset_y);
+        internal abstract void Render(G_lib Gcore, VMD VMDcore, int offset_x, int offset_y);
 
         internal virtual bool Click(int x, int y, int btn)
         {
@@ -264,19 +229,19 @@ namespace PrismProject
             Y += dy * 2;
         }
 
-        internal override void Render(G_lib draw, int offset_x = 0, int offset_y = 0)
+        internal override void Render(G_lib Gcore, VMD VMDcore, int offset_x = 0, int offset_y = 0)
         {
             if (lastX != X || lastY != Y) // we moved
             {
-                draw.Rounded_Box(Themes.Desktop_main, lastX, lastY, Width, Height, 5);
+                Gcore.Rounded_Box(Themes.Desktop_main, lastX, lastY, Width, Height, 5);
                 lastX = X;
                 lastY = Y;
             }
-            draw.Window(Driver.font, X, Y, Width, Height, Title, true, 5);
+            Gcore.Window(Driver.font, X, Y, Width, Height, Title, true, 5);
 
             foreach (var child in Children)
             {
-                child.Render(draw, X, Y + titleHeight);
+                child.Render(Gcore, VMDcore, X, Y + titleHeight);
             }
         }
     }
@@ -292,9 +257,9 @@ namespace PrismProject
             TextColour = textcolor;
         }
 
-        internal override void Render(G_lib draw, int offset_x, int offset_y)
+        internal override void Render(G_lib Gcore, VMD VMDcore, int offset_x, int offset_y)
         {
-            draw.Text(TextColour, Driver.font, Value, X + offset_x, Y + offset_y);
+            Gcore.Text(TextColour, Driver.font, Value, X + offset_x, Y + offset_y);
         }
     }
 
@@ -339,10 +304,10 @@ namespace PrismProject
             return true;
         }
 
-        internal override void Render(G_lib draw, int offset_x, int offset_y)
+        internal override void Render(G_lib Gcore, VMD VMDcore, int offset_x, int offset_y)
         {
             string txt = Value + (Desktop.ActiveElement == this ? "|" : "");
-            draw.Textbox(Driver.font, txt, Background, TextColour, Accent, X + offset_x, Y + offset_y, Width);
+            Gcore.Textbox(Driver.font, txt, Background, TextColour, Accent, X + offset_x, Y + offset_y, Width);
         }
     }
 
@@ -364,13 +329,13 @@ namespace PrismProject
             OnClick = onClick;
         }
 
-        internal override void Render(G_lib draw, int offset_x, int offset_y)
+        internal override void Render(G_lib Gcore, VMD VMDcore, int offset_x, int offset_y)
         {
             int mx = X + 4;
             int my = Y + (Height / 2) - 8;
-            draw.Rounded_Box(Background, X + offset_x - 1, Y + offset_y - 1, Width + 2, Height + 2, 3);
-            draw.Rounded_Box(Themes.Button.Button_Theme_Inner, X + offset_x, Y + offset_y, Width, Height, 3);
-            draw.Text(TextColour, Driver.font, Value, mx + offset_x, my + offset_y);
+            Gcore.Rounded_Box(Background, X + offset_x - 1, Y + offset_y - 1, Width + 2, Height + 2, 3);
+            Gcore.Rounded_Box(Themes.Button.Button_Theme_Inner, X + offset_x, Y + offset_y, Width, Height, 3);
+            Gcore.Text(TextColour, Driver.font, Value, mx + offset_x, my + offset_y);
         }
 
         internal override bool Click(int x, int y, int btn)
@@ -397,10 +362,10 @@ namespace PrismProject
             xWidth = w;
         }
 
-        internal override void Render(G_lib draw, int offset_x, int offset_y)
+        internal override void Render(G_lib Gcore, VMD VMDcore, int offset_x, int offset_y)
         {
-            draw.Image(img, offset_x + X, offset_y + Y);
-            if (showborder) { draw.Empty_Box(Color.Black, X, Y, xWidth, xHeight); }
+            Gcore.Image(img, offset_x + X, offset_y + Y);
+            if (showborder) { VMDcore.DrawRectangle(Color.Black, X, Y, xWidth, xHeight); }
         }
     }
 
@@ -422,12 +387,12 @@ namespace PrismProject
             OnClick = onClick;
         }
 
-        internal override void Render(G_lib draw, int offset_x, int offset_y)
+        internal override void Render(G_lib Gcore, VMD VMDcore, int offset_x, int offset_y)
         {
-            draw.Rounded_Box(Fore, offset_x + X - 1, offset_y + Y - 1, 39, 23, 9);
-            draw.Rounded_Box(Back, offset_x + X, offset_y + Y, 37, 21, 9);
-            if (status) { draw.Circle(Color.White, offset_x + X + 10, offset_y + Y + 10, 9); }
-            if (!status) { draw.Circle(Color.White, offset_x + X + 47, offset_y + Y + 10, 9); }
+            Gcore.Rounded_Box(Fore, offset_x + X - 1, offset_y + Y - 1, 39, 23, 9);
+            Gcore.Rounded_Box(Back, offset_x + X, offset_y + Y, 37, 21, 9);
+            if (status) { VMDcore.DrawFilledCircle(offset_x + X + 10, offset_y + Y + 10, 9, Color.White); }
+            if (!status) { VMDcore.DrawFilledCircle(offset_x + X + 47, offset_y + Y + 10, 9, Color.White); }
         }
 
         internal override bool Click(int x, int y, int btn)
@@ -448,10 +413,10 @@ namespace PrismProject
             Width = w;
         }
 
-        internal override void Render(G_lib draw, int offset_x, int offset_y)
+        internal override void Render(G_lib Gcore, VMD VMDcore, int offset_x, int offset_y)
         {
-            draw.Line(Fore, offset_x + X, offset_y + Y, Width, offset_y + Y);
-            draw.Line(Fore, offset_x + X, offset_y + Y + Height, Width, offset_y + Y + Height);
+            VMDcore.DrawLine(offset_x + X, offset_y + Y, Width, offset_y + Y, Fore);
+            VMDcore.DrawLine(offset_x + X, offset_y + Y + Height, Width, offset_y + Y + Height, Fore);
         }
     }
 
@@ -473,11 +438,11 @@ namespace PrismProject
             enable = state;
         }
 
-        internal override void Render(G_lib draw, int offset_x, int offset_y)
+        internal override void Render(G_lib Gcore, VMD VMDcore, int offset_x, int offset_y)
         {
-            draw.Rounded_Box(Fore, offset_x + X - 1, offset_y + Y - 1, Driver.screenX / 80 + 2, Driver.screenY / 45 + 2, 6);
-            draw.Rounded_Box(Back, offset_x + X, offset_y + Y, Driver.screenX / 80, Driver.screenY / 45, 6);
-            if (enable) { draw.Rounded_Box(Fore, offset_x + X + 2, offset_y + Y + 2, Driver.screenX / 80 - 4, Driver.screenY / 45 - 4, 6); }
+            Gcore.Rounded_Box(Fore, offset_x + X - 1, offset_y + Y - 1, Driver.screenX / 80 + 2, Driver.screenY / 45 + 2, 6);
+            Gcore.Rounded_Box(Back, offset_x + X, offset_y + Y, Driver.screenX / 80, Driver.screenY / 45, 6);
+            if (enable) { Gcore.Rounded_Box(Fore, offset_x + X + 2, offset_y + Y + 2, Driver.screenX / 80 - 4, Driver.screenY / 45 - 4, 6); }
         }
 
         internal override bool Click(int x, int y, int btn)

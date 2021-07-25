@@ -6,25 +6,39 @@ namespace PrismProject
 {
     internal class Desktop
     {
+        //graphics stuff
         private static readonly int screenX = Driver.screenX, screenY = Driver.screenY;
-        private static readonly G_lib draw = new G_lib();
+
+        private static readonly VMD VMDcore;
+        private static readonly G_lib Gcore;
+
+        //window manager
         public static List<GuiWindow> Windows = new List<GuiWindow>();
+
         public static BaseGuiElement ActiveElement = null;
 
         public static void Start()
         {
+            VMDcore.SetMode((uint)screenX, (uint)screenY);
+            VMDcore.Clear(Color.Black);
             var testWindow = new GuiWindow(screenX / 5, screenY / 5, screenX / 2, screenY / 2, "App menu");
 
             //test power commands
             testWindow.AddChild(new GuiDiv
+
             #region Element properties
+
             (
                 30, 54, 70, 144,
                 Themes.Divider.Div_Theme)
             );
-            #endregion
+
+            #endregion Element properties
+
             testWindow.AddChild(new GuiButton
+
             #region Element properties
+
             (
                 35, 64, 95, 30,
                 "Reboot",
@@ -35,9 +49,13 @@ namespace PrismProject
                 Cosmos.System.Power.Reboot();
             })
             );
-            #endregion
+
+            #endregion Element properties
+
             testWindow.AddChild(new GuiButton
+
             #region Element properties
+
             (
                 135, 64, 95, 30,
                 "Shut down",
@@ -45,38 +63,52 @@ namespace PrismProject
                 Themes.Button.Button_Theme,
                 (self) => { Cosmos.System.Power.Shutdown(); })
             );
-            #endregion
+
+            #endregion Element properties
 
             //Text box
             testWindow.AddChild(new GuiText
+
             #region Element properties
+
             (
                 32, 118,
                 "Enter into textbox",
                 Color.White
             ));
-            #endregion
+
+            #endregion Element properties
+
             testWindow.AddChild(new GuiTextBox
-           #region Element properties
+
+            #region Element properties
+
             (
                 32, 138, 150, 20,
                 Themes.Textbox.TB_Border,
                 Themes.Textbox.YB_Inner,
                 Themes.Window.Window_Title_Text
             ));
-            #endregion
+
+            #endregion Element properties
 
             //GuiToggle switches
             testWindow.AddChild(new GuiText
+
             #region Element properties
+
             (
                 30, 162,
                 "Wi-Fi",
                 Color.White
             ));
-            #endregion
+
+            #endregion Element properties
+
             testWindow.AddChild(new GuiSwitch
+
             #region Element properties
+
             (
                 90, 160,
                 Themes.Switch.Switch_Theme_Inner,
@@ -88,17 +120,25 @@ namespace PrismProject
                 if (!self.status) { self.status = true; }
             })
             );
-            #endregion
+
+            #endregion Element properties
+
             testWindow.AddChild(new GuiText
+
             #region Element properties
+
             (
                 30, 190,
                 "radio button!",
                 Color.White
             ));
-            #endregion
+
+            #endregion Element properties
+
             testWindow.AddChild(new GuiToggle
+
             #region Element properties
+
             (
                 150, 190,
                 Themes.R_Button.R_Button_Theme,
@@ -116,17 +156,18 @@ namespace PrismProject
                 }
             })
             );
-            #endregion
+
+            #endregion Element properties
 
             #region Rendering & mouse functions
+
             Windows.Add(testWindow);
             int clickX = -100, clickY = -100;
             bool clickDown = false;
-            Driver.Clear(Themes.Desktop_main);
+            VMDcore.Clear(Themes.Desktop_main);
+
             while (Kernel.canvasRunning)
             {
-                draw.Box(Themes.Window.Window_Theme_Inner, 0, screenY - 30, screenX, screenY / 24);
-                draw.Circle(Color.White, 16, screenY - 15, 10);
                 foreach (var window in Windows)
                 {
                     if (clickDown && clickX > window.X && clickX < window.X + window.Width && clickY > window.Y && clickY < window.Y + screenY / 25)
@@ -137,7 +178,7 @@ namespace PrismProject
                         }
                     }
 
-                    window.Render(draw);
+                    window.Render(Gcore, VMDcore);
                 }
 
                 #region Mouse stuff
@@ -176,7 +217,10 @@ namespace PrismProject
 
                 #endregion Mouse stuff
             }
-            #endregion
+
+            #endregion Rendering & mouse functions
+
+            VMDcore.Update();
         }
     }
 }
