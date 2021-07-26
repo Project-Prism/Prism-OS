@@ -1,13 +1,14 @@
 ﻿using Cosmos.System;
+using Cosmos.System.Graphics;
+using System;
 
 namespace PrismProject
 {
     internal class Cursor
     {
-        //Define the graphics method
-        private static readonly int screenX = Driver.screenX, screenY = Driver.screenY;
-
-        private static readonly G_lib Gcore;
+        private static readonly Glib_core Gcore;
+        private static readonly SVGAIICanvas Function = Driver.Function;
+        private static readonly int Sx = Driver.Width, Sy = Driver.Height;
 
         //mouse color and setup
         public static int lastX, lastY;
@@ -19,17 +20,16 @@ namespace PrismProject
 
         public Cursor()
         {
-            MouseManager.ScreenWidth = (uint)screenX;
-            MouseManager.ScreenHeight = (uint)screenY;
+            MouseManager.ScreenWidth = (uint)Sx;
+            MouseManager.ScreenHeight = (uint)Sy;
         }
 
         public static void Update()
         {
-            //draw.DrawFillRectangle((uint)Math.Max(0, lastX - 8), (uint)Math.Max(0, lastY - 8), 32, 32, (uint)Themes.Desktop_main.ToArgb());
-            //draw.Image(Images.mouse, X, Y);
-            Gcore.Image(Images.mouse, X, Y);
-            //lastX = X;
-            //lastY = Y;
+            Function.DrawFilledRectangle(new Pen(Themes.Desktop_main), Math.Max(0, lastX - 8), Math.Max(0, lastY - 8), 32, 32);
+            Function.DrawImageAlpha(Images.mouse, X, Y);
+            lastX = X;
+            lastY = Y;
         }
     }
 }

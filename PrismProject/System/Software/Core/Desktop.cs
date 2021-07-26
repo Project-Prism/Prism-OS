@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cosmos.System.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -6,26 +7,20 @@ namespace PrismProject
 {
     internal class Desktop
     {
-        //graphics stuff
-        private static readonly int screenX = Driver.screenX, screenY = Driver.screenY;
-
-        private static readonly VMD VMDcore;
-        private static readonly G_lib Gcore;
+        private static readonly Glib_core Gcore;
+        private static readonly SVGAIICanvas Function = Driver.Function;
+        private static readonly int Sx = Driver.Width, Sy = Driver.Height;
 
         //window manager
         public static List<GuiWindow> Windows = new List<GuiWindow>();
-
         public static BaseGuiElement ActiveElement = null;
 
         public static void Start()
         {
-            VMDcore.SetMode((uint)screenX, (uint)screenY);
-            VMDcore.Clear(Color.Black);
-            var testWindow = new GuiWindow(screenX / 5, screenY / 5, screenX / 2, screenY / 2, "App menu");
+            var testWindow = new GuiWindow(Sx / 5, Sy / 5, Sx / 2, Sy / 2, "App menu");
 
             //test power commands
             testWindow.AddChild(new GuiDiv
-
             #region Element properties
 
             (
@@ -36,7 +31,6 @@ namespace PrismProject
             #endregion Element properties
 
             testWindow.AddChild(new GuiButton
-
             #region Element properties
 
             (
@@ -53,7 +47,6 @@ namespace PrismProject
             #endregion Element properties
 
             testWindow.AddChild(new GuiButton
-
             #region Element properties
 
             (
@@ -68,7 +61,6 @@ namespace PrismProject
 
             //Text box
             testWindow.AddChild(new GuiText
-
             #region Element properties
 
             (
@@ -80,7 +72,6 @@ namespace PrismProject
             #endregion Element properties
 
             testWindow.AddChild(new GuiTextBox
-
             #region Element properties
 
             (
@@ -94,7 +85,6 @@ namespace PrismProject
 
             //GuiToggle switches
             testWindow.AddChild(new GuiText
-
             #region Element properties
 
             (
@@ -106,7 +96,6 @@ namespace PrismProject
             #endregion Element properties
 
             testWindow.AddChild(new GuiSwitch
-
             #region Element properties
 
             (
@@ -124,7 +113,6 @@ namespace PrismProject
             #endregion Element properties
 
             testWindow.AddChild(new GuiText
-
             #region Element properties
 
             (
@@ -136,7 +124,6 @@ namespace PrismProject
             #endregion Element properties
 
             testWindow.AddChild(new GuiToggle
-
             #region Element properties
 
             (
@@ -164,13 +151,13 @@ namespace PrismProject
             Windows.Add(testWindow);
             int clickX = -100, clickY = -100;
             bool clickDown = false;
-            VMDcore.Clear(Themes.Desktop_main);
+            Function.Clear(Themes.Desktop_main);
 
             while (Kernel.canvasRunning)
             {
                 foreach (var window in Windows)
                 {
-                    if (clickDown && clickX > window.X && clickX < window.X + window.Width && clickY > window.Y && clickY < window.Y + screenY / 25)
+                    if (clickDown && clickX > window.X && clickX < window.X + window.Width && clickY > window.Y && clickY < window.Y + Sy / 25)
                     {
                         if (Math.Abs(clickX - Cursor.X) > 4 || Math.Abs(clickY - Cursor.Y) > 4)
                         {
@@ -178,7 +165,7 @@ namespace PrismProject
                         }
                     }
 
-                    window.Render(Gcore, VMDcore);
+                    window.Render(Gcore, Function);
                 }
 
                 #region Mouse stuff
@@ -201,7 +188,7 @@ namespace PrismProject
                         {
                             if (clickX > window.X && clickX < window.X + window.Width && clickY > window.Y && clickY < window.Y + window.Height)
                             {
-                                window.Click(clickX - window.X, clickY - window.Y - (screenY / 25), 1);
+                                window.Click(clickX - window.X, clickY - window.Y - (Sy / 25), 1);
                             }
                         }
                     }
@@ -219,8 +206,6 @@ namespace PrismProject
             }
 
             #endregion Rendering & mouse functions
-
-            VMDcore.Update();
         }
     }
 }

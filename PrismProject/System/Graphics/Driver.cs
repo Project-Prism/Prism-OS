@@ -1,19 +1,16 @@
-﻿using System;
+﻿using Cosmos.System.Graphics;
+using System;
 using System.IO;
 
 namespace PrismProject
 {
     internal class Driver
     {
-        //other data
-        public static int screenY = 720;
+        public static int Width = 1280;
+        public static int Height = 720;
+        public static SVGAIICanvas Function = new SVGAIICanvas(new Mode(Width, Height, ColorDepth.ColorDepth32));
+        public static string Font = "YuGothicUI";
 
-        public static int screenX = 1280;
-        public static string font = "YuGothicUI";
-
-        //used for testing ui some times
-        private static readonly Random rnd = new Random();
-        public static int randomcolor = rnd.Next(256) + rnd.Next(256) + rnd.Next(256);
         public static void Init()
         {
             string CustomCharset = "🡬abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()~`\"\':;?/>.<,{[}]\\|+=_-";
