@@ -7,6 +7,7 @@
             Networking.DHCP();
             Filesystem.Init();
             Cmds.Init();
+            Driver.Function.CreateCursor();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Cosmos.System.Graphics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -8,7 +7,6 @@ namespace PrismProject
     internal class Desktop
     {
         private static readonly Glib_core Gcore;
-        private static readonly SVGAIICanvas Function = Driver.Function;
         private static readonly int Sx = Driver.Width, Sy = Driver.Height;
 
         //window manager
@@ -34,7 +32,7 @@ namespace PrismProject
             #region Element properties
 
             (
-                35, 64, 95, 30,
+                35, 64, 75, 23,
                 "Reboot",
                 Themes.Button.Button_Text,
                 Themes.Button.Button_Theme,
@@ -50,8 +48,8 @@ namespace PrismProject
             #region Element properties
 
             (
-                135, 64, 95, 30,
-                "Shut down",
+                145, 64, 75, 23,
+                "prw-off",
                 Themes.Button.Button_Text,
                 Themes.Button.Button_Theme,
                 (self) => { Cosmos.System.Power.Shutdown(); })
@@ -151,7 +149,7 @@ namespace PrismProject
             Windows.Add(testWindow);
             int clickX = -100, clickY = -100;
             bool clickDown = false;
-            Function.Clear(Themes.Desktop_main);
+            Gcore.Clear(Themes.Desktop_main);
 
             while (Kernel.canvasRunning)
             {
@@ -165,7 +163,7 @@ namespace PrismProject
                         }
                     }
 
-                    window.Render(Gcore, Function);
+                    window.Render(Gcore);
                 }
 
                 #region Mouse stuff

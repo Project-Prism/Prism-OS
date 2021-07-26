@@ -59,6 +59,12 @@ namespace PrismProject
         private static readonly SVGAIICanvas Function = Driver.Function;
         private static readonly int Sx = Driver.Width, Sy = Driver.Height;
 
+        ///<summary>Clear screen</summary>
+        public void Clear(Color color)
+        {
+            Driver.Function.Clear(color);
+        }
+
         ///<summary>Draws a rounded box</summary>
         public void Rounded_Box(Color color, int x, int y, int Width, int Height, int radius)
         {
@@ -156,7 +162,7 @@ namespace PrismProject
             Parent = parent;
         }
 
-        internal abstract void Render(Glib_core Gcore, Driver Function, int offset_x, int offset_y);
+        internal abstract void Render(Glib_core Gcore, int offset_x, int offset_y);
 
         internal virtual bool Click(int x, int y, int btn)
         {
@@ -228,7 +234,7 @@ namespace PrismProject
             Y += dy * 2;
         }
 
-        internal override void Render(Glib_core Gcore, Driver Function, int offset_x = 0, int offset_y = 0)
+        internal override void Render(Glib_core Gcore, int offset_x = 0, int offset_y = 0)
         {
             if (lastX != X || lastY != Y) // we moved
             {
@@ -240,7 +246,7 @@ namespace PrismProject
 
             foreach (var child in Children)
             {
-                child.Render(Gcore, Function, X, Y + titleHeight);
+                child.Render(Gcore, X, Y + titleHeight);
             }
         }
     }
@@ -256,7 +262,7 @@ namespace PrismProject
             TextColour = textcolor;
         }
 
-        internal override void Render(Glib_core Gcore, Driver Function, int offset_x, int offset_y)
+        internal override void Render(Glib_core Gcore, int offset_x, int offset_y)
         {
             Gcore.Text(TextColour, Driver.Font, Value, X + offset_x, Y + offset_y);
         }
@@ -303,7 +309,7 @@ namespace PrismProject
             return true;
         }
 
-        internal override void Render(Glib_core Gcore, Driver Function, int offset_x, int offset_y)
+        internal override void Render(Glib_core Gcore, int offset_x, int offset_y)
         {
             string txt = Value + (Desktop.ActiveElement == this ? "|" : "");
             Gcore.Textbox(Driver.Font, txt, Background, TextColour, Accent, X + offset_x, Y + offset_y, Width);
@@ -328,7 +334,7 @@ namespace PrismProject
             OnClick = onClick;
         }
 
-        internal override void Render(Glib_core Gcore, Driver Function, int offset_x, int offset_y)
+        internal override void Render(Glib_core Gcore, int offset_x, int offset_y)
         {
             int mx = X + 4;
             int my = Y + (Height / 2) - 8;
@@ -361,7 +367,7 @@ namespace PrismProject
             xWidth = w;
         }
 
-        internal override void Render(Glib_core Gcore, Driver Function, int offset_x, int offset_y)
+        internal override void Render(Glib_core Gcore, int offset_x, int offset_y)
         {
             Gcore.Image(img, offset_x + X, offset_y + Y);
             if (showborder) { Driver.Function.DrawRectangle(new Pen(Color.Black), X, Y, xWidth, xHeight); }
@@ -386,7 +392,7 @@ namespace PrismProject
             OnClick = onClick;
         }
 
-        internal override void Render(Glib_core Gcore, Driver Function, int offset_x, int offset_y)
+        internal override void Render(Glib_core Gcore, int offset_x, int offset_y)
         {
             Gcore.Rounded_Box(Fore, offset_x + X - 1, offset_y + Y - 1, 39, 23, 9);
             Gcore.Rounded_Box(Back, offset_x + X, offset_y + Y, 37, 21, 9);
@@ -412,7 +418,7 @@ namespace PrismProject
             Width = w;
         }
 
-        internal override void Render(Glib_core Gcore, Driver Function, int offset_x, int offset_y)
+        internal override void Render(Glib_core Gcore, int offset_x, int offset_y)
         {
             Driver.Function.DrawLine(new Pen(Fore), offset_x + X, offset_y + Y, Width, offset_y + Y);
             Driver.Function.DrawLine(new Pen(Fore), offset_x + X, offset_y + Y + Height, Width, offset_y + Y + Height);
@@ -437,7 +443,7 @@ namespace PrismProject
             enable = state;
         }
 
-        internal override void Render(Glib_core Gcore, Driver Function, int offset_x, int offset_y)
+        internal override void Render(Glib_core Gcore, int offset_x, int offset_y)
         {
             Gcore.Rounded_Box(Fore, offset_x + X - 1, offset_y + Y - 1, Driver.Width / 80 + 2, Driver.Height / 45 + 2, 6);
             Gcore.Rounded_Box(Back, offset_x + X, offset_y + Y, Driver.Width / 80, Driver.Height / 45, 6);

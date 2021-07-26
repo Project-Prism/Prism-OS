@@ -26,10 +26,11 @@ namespace PrismProject
 
         public static void Update()
         {
-            Function.DrawFilledRectangle(new Pen(Themes.Desktop_main), Math.Max(0, lastX - 8), Math.Max(0, lastY - 8), 32, 32);
-            Function.DrawImageAlpha(Images.mouse, X, Y);
-            lastX = X;
-            lastY = Y;
+            //Function.DrawFilledRectangle(new Pen(Themes.Desktop_main), Math.Max(0, lastX - 8), Math.Max(0, lastY - 8), 32, 32);
+            //Function.DrawImageAlpha(Images.mouse, X, Y);
+            //lastX = X;
+            //lastY = Y;
+            Driver.Function.SetCursor(true, X, Y);
         }
     }
 }
