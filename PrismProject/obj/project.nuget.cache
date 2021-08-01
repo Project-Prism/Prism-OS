@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ynnRFyxvaSdtgkGiA1ZOsb+Z7DSLsV0anDgEfBNaoNYOkmqCiVLWXhGtbeJrRno8Z6Lk4ptF/tk60juFosW/0Q==",
+  "dgSpecHash": "ftSrOW1nKPEYA0fhTS+6UTPOxW30ShGxh2u3GeImOnHVk1ufCe6z+7eDm/VnEcCnQN1N0lpAKKKDdiDnoVXsQQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\EvanLawrence\\Source\\Repos\\Prism-OS\\PrismProject\\PrismProject.csproj",
+  "projectFilePath": "D:\\VS-projects\\Prism-OS\\PrismProject\\PrismProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\EvanLawrence\\.nuget\\packages\\cosmos.build\\0.1.0-localbuild20210524110605\\cosmos.build.0.1.0-localbuild20210524110605.nupkg.sha512",
     "C:\\Users\\EvanLawrence\\.nuget\\packages\\cosmos.common\\0.1.0-localbuild20210524110605\\cosmos.common.0.1.0-localbuild20210524110605.nupkg.sha512",

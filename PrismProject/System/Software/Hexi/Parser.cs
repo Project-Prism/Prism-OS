@@ -12,7 +12,7 @@ namespace Hexi_Language
             {
                 Functions.variables.Clear();
             }
-            string mini = code.Replace(System.Environment.NewLine, "").Replace("\t", ""); // remove newlines and tab space
+            string mini = code.Replace(Environment.NewLine, "").Replace("\t", ""); // remove newlines and tab space
 
             /* Split at semicolon
              * Doesn't use string.Split so we can specify to stop splitting at ( )

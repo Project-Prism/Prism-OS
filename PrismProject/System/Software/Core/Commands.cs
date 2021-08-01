@@ -53,13 +53,27 @@ namespace PrismProject
             AddCommand("about", "About prism OS", About);
             AddCommand("help", "List all available commands", Help);
             //filesystem
-            AddCommand("makedir", "create a folder on the selected disk", Create_Directory);
-            AddCommand("listdir", "List all files in a directory", List_Directory);
-            AddCommand("read", "Read all text data from a file on the disk", Read_file);
-            AddCommand("write", "Write text to a file.\n    Arguments:\n        PATH: full path to file\n       CONTENTS: data to be written", Write_file);
+            AddCommand("makedir", "create a folder on the selected disk", Make);
+            AddCommand("listdir", "List all files in a directory", List);
+            AddCommand("read", "Read all text data from a file on the disk", Read);
+            AddCommand("write", "Write text to a file.\n    Arguments:\n        PATH: full path to file\n       CONTENTS: data to be written", Write);
             AddCommand("format", "Format a drive to fat32\n    Arguments:\n        Drive id: specify the drive id\n        quick format: true or false", Format);
             //graphics
             AddCommand("gui", "Loads the GUI.", Gui);
+            //hexi code
+            AddCommand("Hexi", "A custom programing language made specificly for Prism OS.", Hexi);
+            AddCommand("Color", "Color the terminal!", Setcolor);
+        }
+
+        public static void Start()
+        {
+            Console.Clear();
+            Networking.DHCP();
+            Filesystem.Init();
+            Cmds.Init();
+            Console.Write("Prism-OS > ");
+            dynamic input = Console.ReadLine();
+            Cmds.Parse(input);
         }
 
         private static void Gui(string[] args)
@@ -114,22 +128,22 @@ namespace PrismProject
             Tools.SetColor(ConsoleColor.White);
         }
 
-        private static void List_Directory(string[] path)
+        private static void List(string[] path)
         {
             Console.WriteLine(Filesystem.List_Directory(path[0]));
         }
 
-        private static void Create_Directory(string[] path)
+        private static void Make(string[] path)
         {
             Filesystem.Create_driectory(path[0]);
         }
 
-        private static void Read_file(string[] path)
+        private static void Read(string[] path)
         {
             Console.WriteLine(Filesystem.Read_file(path[0]));
         }
 
-        private static void Write_file(string[] args)
+        private static void Write(string[] args)
         {
             Filesystem.Write(args[0], args[1]);
         }
@@ -137,6 +151,69 @@ namespace PrismProject
         private static void Format(string[] args)
         {
             Filesystem.Format(args[0], Convert.ToBoolean(args[1]));
+        }
+
+        private static void Hexi(string[] args)
+        {
+            Hexi_Language.Parser.Parse(args[0], true);
+        }
+
+        private static void Get(string[] args)
+        {
+            switch (args[0])
+            {
+                case "CPU.speed":
+                    Console.WriteLine(CPU.Speed + " MHZ");
+                    break;
+                case "Memory.free":
+                    Console.WriteLine(Memory.Free + " MB");
+                    break;
+                case "Memory.total":
+                    Console.WriteLine(Memory.Total + " MB");
+                    break;
+
+            }
+        }
+
+        private static void Setcolor(string[] args)
+        {
+            switch (args.Length)
+            {
+                case 2:
+                    switch (Convert.ToInt32(args[0]))
+                    {
+                        case 0: Console.BackgroundColor = ConsoleColor.Black;
+                            break;
+                        case 1: Console.BackgroundColor = ConsoleColor.White;
+                            break;
+                        case 3: Console.BackgroundColor = ConsoleColor.DarkGray;
+                            break;
+                        case 4: Console.BackgroundColor = ConsoleColor.DarkCyan;
+                            break;
+                        case 5: Console.BackgroundColor = ConsoleColor.Green;
+                            break;
+                    }
+                    switch (Convert.ToInt32(args[1]))
+                    {
+                        case 0:
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            break;
+                        case 1:
+                            Console.ForegroundColor = ConsoleColor.White;
+                            break;
+                        case 3:
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            break;
+                        case 4:
+                            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                            break;
+                        case 5:
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            break;
+                    }
+                    break;
+            }
+            
         }
     }
 }

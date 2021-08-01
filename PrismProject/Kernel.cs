@@ -11,8 +11,9 @@ namespace PrismProject
         {
             //uncomment when threading is a thing
             //new Thread(INIT.Run).Start();
-            Driver.Init();
-            Desktop.Start();
+            //Driver.Init();
+            //Desktop.Start();
+            Cmds.Start();
         }
     }
 }

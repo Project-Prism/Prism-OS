@@ -55,9 +55,8 @@ namespace PrismProject
 
     internal class Glib_core
     {
-        private static readonly Glib_core Gcore;
         private static readonly SVGAIICanvas Function = Driver.Function;
-        private static readonly int Sx = Driver.Width, Sy = Driver.Height;
+        private static readonly int Sy = Driver.Height;
 
         ///<summary>Clear screen</summary>
         public void Clear(Color color)
@@ -147,6 +146,7 @@ namespace PrismProject
         }
     }
 
+    #region Window manager, made by CrisisSDK
     internal abstract class BaseGuiElement
     {
         public int X, Y, Width, Height;
@@ -185,7 +185,6 @@ namespace PrismProject
             return false;
         }
     }
-
     internal class GuiWindow : BaseGuiElement
     {
         public string Title;
@@ -250,7 +249,6 @@ namespace PrismProject
             }
         }
     }
-
     internal class GuiText : BaseGuiElement
     {
         public string Value;
@@ -267,7 +265,6 @@ namespace PrismProject
             Gcore.Text(TextColour, Driver.Font, Value, X + offset_x, Y + offset_y);
         }
     }
-
     internal class GuiTextBox : BaseGuiElement
     {
         public string Value;
@@ -315,7 +312,6 @@ namespace PrismProject
             Gcore.Textbox(Driver.Font, txt, Background, TextColour, Accent, X + offset_x, Y + offset_y, Width);
         }
     }
-
     internal class GuiButton : BaseGuiElement
     {
         public string Value;
@@ -349,7 +345,6 @@ namespace PrismProject
             return base.Click(x, y, btn);
         }
     }
-
     internal class GuiImage : BaseGuiElement
     {
         public Bitmap img;
@@ -373,7 +368,6 @@ namespace PrismProject
             if (showborder) { Driver.Function.DrawRectangle(new Pen(Color.Black), X, Y, xWidth, xHeight); }
         }
     }
-
     internal class GuiSwitch : BaseGuiElement
     {
         public Color Back;
@@ -406,7 +400,6 @@ namespace PrismProject
             return base.Click(x, y, btn);
         }
     }
-
     internal class GuiDiv : BaseGuiElement
     {
         public Color Fore;
@@ -424,7 +417,6 @@ namespace PrismProject
             Driver.Function.DrawLine(new Pen(Fore), offset_x + X, offset_y + Y + Height, Width, offset_y + Y + Height);
         }
     }
-
     internal class GuiToggle : BaseGuiElement
     {
         public Color Fore;
@@ -456,4 +448,5 @@ namespace PrismProject
             return base.Click(x, y, btn);
         }
     }
+    #endregion
 }

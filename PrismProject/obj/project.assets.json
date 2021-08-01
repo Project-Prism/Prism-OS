@@ -3349,11 +3349,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\EvanLawrence\\Source\\Repos\\Prism-OS\\PrismProject\\PrismProject.csproj",
+      "projectUniqueName": "D:\\VS-projects\\Prism-OS\\PrismProject\\PrismProject.csproj",
       "projectName": "PrismProject",
-      "projectPath": "C:\\Users\\EvanLawrence\\Source\\Repos\\Prism-OS\\PrismProject\\PrismProject.csproj",
+      "projectPath": "D:\\VS-projects\\Prism-OS\\PrismProject\\PrismProject.csproj",
       "packagesPath": "C:\\Users\\EvanLawrence\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\EvanLawrence\\Source\\Repos\\Prism-OS\\PrismProject\\obj\\",
+      "outputPath": "D:\\VS-projects\\Prism-OS\\PrismProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\EvanLawrence\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3425,7 +3425,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
