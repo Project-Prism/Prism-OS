@@ -4,7 +4,7 @@ namespace PrismProject
     {
         protected override void Run()
         {
-            Cmds.Start();
+            Software.Cmds.Start();
         }
     }
 }

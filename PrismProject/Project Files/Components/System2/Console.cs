@@ -19,5 +19,13 @@ namespace PrismProject.System2
             System.Console.Write(text);
             System.Console.ForegroundColor = color1;
         }
+
+        public static void CheckTextLength(string text, int MinLength, int MaxLength)
+        {
+            if (text.Length < MinLength)
+                System.Console.WriteLine("Insufficient arguments.");
+            else if (text.Length > MaxLength)
+                System.Console.WriteLine("too many arguments");
+        }
     }
 }
