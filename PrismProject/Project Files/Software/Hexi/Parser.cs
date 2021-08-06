@@ -78,7 +78,7 @@ namespace Hexi_Language
             }
         }
 
-        private static dynamic[] GetArguments(string argsunsplit)
+        private static dynamic GetArguments(string argsunsplit)
         {
             List<dynamic> argret = new List<dynamic>();
 
@@ -91,7 +91,7 @@ namespace Hexi_Language
             return argret.ToArray(); // return arguments as array
         } //using dynamic on arrays might be the issue, as seen il2cpu msg
 
-        private static dynamic[] GetIfArguments(string argsunsplit)
+        private static dynamic GetIfArguments(string argsunsplit)
         {
             List<dynamic> argret = new List<dynamic>();
 

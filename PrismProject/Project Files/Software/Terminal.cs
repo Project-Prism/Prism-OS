@@ -11,8 +11,11 @@ namespace PrismProject
             public string Name, HelpDesc;
             public function func;
         }
+
         public static List<Command> cmds = new List<Command>();
+
         public delegate void function(string[] args);
+
         public static void Parse(string input)
         {
             string[] args = input.Split(new char[0]);
@@ -28,6 +31,7 @@ namespace PrismProject
             }
             Console.WriteLine("Invalid command.");
         }
+
         private static void AddCommand(string name, string desc, function func)
         {
             Command cd;
@@ -37,6 +41,7 @@ namespace PrismProject
 
             cmds.Add(cd);
         }
+
         public static void Init()
         {
             cmds.Clear();
@@ -64,6 +69,7 @@ namespace PrismProject
             string input = Console.ReadLine();
             Cmds.Parse(input);
         }
+
         private static void Help(string[] args)
         {
             if (args.Length < 1)
@@ -84,12 +90,13 @@ namespace PrismProject
                 {
                     if (args[0] == cmd.Name)
                     {
-                        Console.WriteLine(cmd.HelpDesc+"\n");
+                        Console.WriteLine(cmd.HelpDesc + "\n");
                         return;
                     }
                 }
             }
         }
+
         private static void About(string[] args)
         {
             System2.Console.WriteColoredLine
@@ -105,14 +112,17 @@ namespace PrismProject
         {
             Console.WriteLine(System2.FileSystem.LD(path[0]));
         }
+
         private static void Make(string[] path)
         {
             System2.FileSystem.MD(path[0]);
         }
+
         private static void Read(string[] path)
         {
             Console.WriteLine(System2.FileSystem.Read(path[0]));
         }
+
         private static void Write(string[] args)
         {
             System2.FileSystem.Write(args[0], args[1]);
@@ -120,6 +130,7 @@ namespace PrismProject
             System2.Console.WriteColored(args[0], ConsoleColor.Cyan);
             Console.WriteLine(" (" + args[1].Length + "Bytes)");
         }
+
         private static void Format(string[] args)
         {
             System2.FileSystem.Format(args[0], Convert.ToBoolean(args[1]));
@@ -137,15 +148,24 @@ namespace PrismProject
                 case 2:
                     switch (Convert.ToInt32(args[0]))
                     {
-                        case 0: Console.BackgroundColor = ConsoleColor.Black;
+                        case 0:
+                            Console.BackgroundColor = ConsoleColor.Black;
                             break;
-                        case 1: Console.BackgroundColor = ConsoleColor.White;
+
+                        case 1:
+                            Console.BackgroundColor = ConsoleColor.White;
                             break;
-                        case 3: Console.BackgroundColor = ConsoleColor.DarkGray;
+
+                        case 3:
+                            Console.BackgroundColor = ConsoleColor.DarkGray;
                             break;
-                        case 4: Console.BackgroundColor = ConsoleColor.DarkCyan;
+
+                        case 4:
+                            Console.BackgroundColor = ConsoleColor.DarkCyan;
                             break;
-                        case 5: Console.BackgroundColor = ConsoleColor.Green;
+
+                        case 5:
+                            Console.BackgroundColor = ConsoleColor.Green;
                             break;
                     }
                     switch (Convert.ToInt32(args[1]))
@@ -153,22 +173,25 @@ namespace PrismProject
                         case 0:
                             Console.ForegroundColor = ConsoleColor.Black;
                             break;
+
                         case 1:
                             Console.ForegroundColor = ConsoleColor.White;
                             break;
+
                         case 3:
                             Console.ForegroundColor = ConsoleColor.DarkGray;
                             break;
+
                         case 4:
                             Console.ForegroundColor = ConsoleColor.DarkCyan;
                             break;
+
                         case 5:
                             Console.ForegroundColor = ConsoleColor.Green;
                             break;
                     }
                     break;
             }
-            
         }
     }
 }

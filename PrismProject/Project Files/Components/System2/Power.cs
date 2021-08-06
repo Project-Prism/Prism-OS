@@ -6,6 +6,7 @@
         {
             Cosmos.System.Power.Shutdown();
         }
+
         public static void Reboot()
         {
             Cosmos.System.Power.Reboot();

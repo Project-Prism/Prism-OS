@@ -22,11 +22,13 @@ namespace PrismProject.System2
                 return false;
             }
         }
+
         public static void DHCP()
         {
             using (var client = new DHCPClient())
                 client.SendDiscoverPacket();
         }
+
         public static int Ping(string address, int timeout = 5000)
         {
             using (var client = new ICMPClient())
@@ -39,6 +41,7 @@ namespace PrismProject.System2
                 return client.Receive(ref point, timeout);
             }
         }
+
         public static byte[] GetTcp(string address, int port, string body)
         {
             using (var client = new TcpClient(port))
@@ -54,6 +57,7 @@ namespace PrismProject.System2
                 return data2;
             }
         }
+
         public static Address DNS(string address)
         {
             if (!IsIPAddress(address))

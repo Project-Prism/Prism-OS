@@ -7,20 +7,17 @@ using System.IO;
 
 namespace PrismProject.System2
 {
-    public class FileSystem
+    internal class FileSystem
     {
         private static readonly CosmosVFS fs = new CosmosVFS();
         public static string D0 = @"0:\";
 
         public static void StartService()
-        { //initalise the filesystem, best to only trigger this on boot.
+        {
             VFSManager.RegisterVFS(fs);
-            SDL(FileSystem.D0, "X");
         }
 
-        /// <summary>
-        /// Get a drives assigned letter, if it has one.
-        /// </summary>
+        /// <summary>Get a drives assigned letter, if it has one.</summary>
         /// <param name="Drive_ID"></param>
         /// <returns>string</returns>
         public static string GDL(string Drive_ID)
@@ -28,9 +25,7 @@ namespace PrismProject.System2
             return new DriveInfo(Drive_ID).Name;
         }
 
-        /// <summary>
-        /// Assigns a mounted drive a letter.
-        /// </summary>
+        /// <summary>Assigns a mounted drive a letter.</summary>
         /// <param name="Drive_ID"></param>
         /// <param name="Drive_name"></param>
         public static void SDL(string Drive_ID, string Drive_name)
@@ -38,9 +33,7 @@ namespace PrismProject.System2
             new DriveInfo(Drive_ID).VolumeLabel = Drive_name;
         }
 
-        /// <summary>
-        /// Get a drive's type.
-        /// </summary>
+        /// <summary>Get a drive's type.</summary>
         /// <param name="Drive_ID"></param>
         /// <returns>string</returns>
         public static string GDT(string Drive_ID)
@@ -48,9 +41,7 @@ namespace PrismProject.System2
             return new DriveInfo(Drive_ID).DriveType.ToString();
         }
 
-        /// <summary>
-        /// Format a specified drive.
-        /// </summary>
+        /// <summary>Format a specified drive.</summary>
         /// <param name="driveID"></param>
         /// <param name="quickformat"></param>
         /// <returns>Nothing</returns>
@@ -67,9 +58,7 @@ namespace PrismProject.System2
             }
         }
 
-        /// <summary>
-        /// List the contents of a specified drive.
-        /// </summary>
+        /// <summary>List the contents of a specified drive.</summary>
         /// <param name="path"></param>
         /// <returns>String array</returns>
         public static List<DirectoryEntry> LD(string path)
@@ -77,47 +66,37 @@ namespace PrismProject.System2
             return fs.GetDirectoryListing(Convert.ToString(path));
         }
 
-        /// <summary>
-        /// Get available free space of a drive (in bytes)
-        /// </summary>
+        /// <summary>Get available free space of a drive (in bytes)</summary>
         /// <param name="args"></param>
         /// <returns>long</returns>
         public static long GFS(string args)
         {
             return fs.GetAvailableFreeSpace(args);
         }
-        
-        /// <summary>
-        /// Make a directory on a drive.
-        /// </summary>
+
+        /// <summary>Make a directory on a drive.</summary>
         /// <param name="path"></param>
         public static void MD(string path)
         {
             fs.CreateDirectory(Convert.ToString(path));
         }
 
-        /// <summary>
-        /// Make a file (not folder) on a drive.
-        /// </summary>
+        /// <summary>Make a file (not folder) on a drive.</summary>
         /// <param name="path"></param>
         public static void MF(string path)
         {
             File.Create(path);
         }
 
-        /// <summary>
-        /// Read a file's contents
-        /// </summary>
+        /// <summary>Read a file's contents</summary>
         /// <param name="path"></param>
         /// <returns>File's contents.</returns>
         public static string Read(string path)
         {
-            return File.ReadAllText(path);
+            return File.ReadAllText(path).ToString();
         }
 
-        /// <summary>
-        /// Write to a file.
-        /// </summary>
+        /// <summary>Write to a file.</summary>
         /// <param name="path"></param>
         /// <param name="contents"></param>
         public static void Write(string path, string contents)
@@ -127,9 +106,7 @@ namespace PrismProject.System2
             File.WriteAllText(path, contents);
         }
 
-        /// <summary>
-        /// Check if a file exists.
-        /// </summary>
+        /// <summary>Check if a file exists.</summary>
         /// <param name="path"></param>
         /// <returns>bool</returns>
         public static bool CE(string path)
@@ -140,9 +117,7 @@ namespace PrismProject.System2
                 return false;
         }
 
-        /// <summary>
-        /// Returns the drive's format type.
-        /// </summary>
+        /// <summary>Returns the drive's format type.</summary>
         /// <param name="DriveID"></param>
         /// <returns>format type</returns>
         public static string FT(string DriveID)

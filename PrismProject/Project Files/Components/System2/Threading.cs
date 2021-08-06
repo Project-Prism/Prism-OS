@@ -2,21 +2,20 @@
 
 namespace PrismProject.System2
 {
-        internal class Threading
+    internal class Threading
+    {
+        public static void Sleep(int sec)
         {
-            public static void Sleep(int sec)
-            {
-                int Starton = RTC.Second;
-                int EndSec;
+            int Starton = RTC.Second;
+            int EndSec;
 
-                if (Starton + sec > 59)
-                    EndSec = 0;
-                else
-                    EndSec = Starton + sec;
+            if (Starton + sec > 59)
+                EndSec = 0;
+            else
+                EndSec = Starton + sec;
 
-                // Loop round
-                while (RTC.Second != EndSec) ;
-            }
+            // Loop round
+            while (RTC.Second != EndSec) ;
         }
+    }
 }
-
