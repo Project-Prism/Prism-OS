@@ -9,7 +9,7 @@ using EndPoint = Cosmos.System.Network.IPv4.EndPoint;
 
 namespace PrismProject.System2
 {
-    internal class Net
+    internal class Network
     {
         public static bool IsIPAddress(string ipAddress)
         {

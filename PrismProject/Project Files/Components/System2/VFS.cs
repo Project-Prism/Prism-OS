@@ -7,7 +7,7 @@ using System.IO;
 
 namespace PrismProject.System2
 {
-    internal class FileSystem
+    internal class VFS
     {
         private static readonly CosmosVFS fs = new CosmosVFS();
         public static string D0 = @"0:\";
