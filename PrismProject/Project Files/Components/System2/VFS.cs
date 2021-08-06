@@ -1,8 +1,6 @@
 ﻿using Cosmos.System.FileSystem;
-using Cosmos.System.FileSystem.Listing;
 using Cosmos.System.FileSystem.VFS;
 using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace PrismProject.System2
@@ -10,7 +8,7 @@ namespace PrismProject.System2
     internal class VFS
     {
         private static readonly CosmosVFS fs = new CosmosVFS();
-        public static string D0 = @"0:\";
+        public static string D0 = "0";
 
         public static void StartService()
         {
@@ -61,9 +59,9 @@ namespace PrismProject.System2
         /// <summary>List the contents of a specified drive.</summary>
         /// <param name="path"></param>
         /// <returns>String array</returns>
-        public static List<DirectoryEntry> LD(string path)
+        public static string[] LD(string path)
         {
-            return fs.GetDirectoryListing(Convert.ToString(path));
+            return Directory.GetFiles(path);
         }
 
         /// <summary>Get available free space of a drive (in bytes)</summary>

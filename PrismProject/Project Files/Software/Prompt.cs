@@ -110,7 +110,11 @@ namespace PrismProject.Software
 
         private static void List(string[] path)
         {
-            Console.WriteLine(System2.VFS.LD(path[0]));
+            Console.WriteLine("List of files for directory " + path);
+            foreach (var File in System2.VFS.LD(path[0]))
+            {
+                Console.WriteLine(File);
+            }
         }
 
         private static void Make(string[] path)
