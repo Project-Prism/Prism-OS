@@ -2,18 +2,31 @@
 using Cosmos.System.Network.IPv4.TCP;
 using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Cosmos.System.Network.IPv4.UDP.DNS;
+using System;
+using System.Net;
 using System.Text;
+using EndPoint = Cosmos.System.Network.IPv4.EndPoint;
 
-namespace PrismProject
+namespace PrismProject.System2
 {
-    public class Networking
+    internal class Net
     {
+        public static bool IsIPAddress(string ipAddress)
+        {
+            try
+            {
+                return IPAddress.TryParse(ipAddress, out IPAddress address);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
         public static void DHCP()
         {
             using (var client = new DHCPClient())
                 client.SendDiscoverPacket();
         }
-
         public static int Ping(string address, int timeout = 5000)
         {
             using (var client = new ICMPClient())
@@ -26,8 +39,7 @@ namespace PrismProject
                 return client.Receive(ref point, timeout);
             }
         }
-
-        public static byte[] Tcp(string address, int port, string body)
+        public static byte[] GetTcp(string address, int port, string body)
         {
             using (var client = new TcpClient(port))
             {
@@ -42,10 +54,9 @@ namespace PrismProject
                 return data2;
             }
         }
-
         public static Address DNS(string address)
         {
-            if (!Tools.IsIPAddress(address))
+            if (!IsIPAddress(address))
             {
                 using (var xClient = new DnsClient())
                 {

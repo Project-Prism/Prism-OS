@@ -2,7 +2,7 @@
 
 namespace PrismProject
 {
-    internal class Km
+    internal class SetLayout
     {
         public static void Keyboard(string type, string[] args)
         {
