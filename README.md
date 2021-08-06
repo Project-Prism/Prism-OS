@@ -5,14 +5,10 @@
 
 # To-do list
 
-| To-DO list         | Status      | extra                     |
-|--------------------|-------------|---------------------------|
-| Add window manager | Done        | N/A                       |
-| Add OOBE setup     | N/A         | Needs alot of stuff       |
-| Add lock screen    | Started     | Needs better filesystem   |
-| Add sys update     | N/A         | needs extra networking    |
-| add rounded cube   | Done        | OS eyecandy               |
-| add ui gravity     | N/A         | E.X. center, left, top    |
+| To-DO list         | Status      | extra                         |
+|--------------------|-------------|-------------------------------|
+| Add sys update     | N/A         | needs extra networking        |
+| Fix compiler crash | Could fix   | hexi parser, line 92 comment  |
 
 
 
@@ -24,10 +20,7 @@
 
 | Current bugs       | Status      | About bug                       |
 |--------------------|-------------|---------------------------------|
-| Ram counters       | fixed       | Random numbers                  |
-| Mouse clippings    | Unfixed     | can ez fix when canvas faster   |
-| Memory leaks       | Unfixed     | This is an issue with cosmos    |
-
+| N/A                |             |                                 |
 # Credits
 | Name          | Helped with                  |
 |---------------|------------------------------|
@@ -35,9 +28,6 @@
 | deadlocust    | General development          |
 | Nifanfa       | Bitfont                      |
 | CrisisSDK     | Graphics, window manager     |
-
-# Screenshots
-<IMG src="https://github.com/Project-Prism/Prism-OS/blob/main/PrismProject/Images/prism.png"/>
 
 # Details
 <details>
