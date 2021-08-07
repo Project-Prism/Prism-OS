@@ -82,7 +82,7 @@ namespace PrismProject.System2
         /// <param name="path"></param>
         public static void MD(string path)
         {
-            fs.CreateDirectory(Convert.ToString(path));
+            fs.CreateDirectory(System.Convert.ToString(path));
         }
 
         /// <summary>Make a file (not folder) on a drive.</summary>

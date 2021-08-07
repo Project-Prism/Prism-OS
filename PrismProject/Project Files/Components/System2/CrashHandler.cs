@@ -19,7 +19,7 @@ namespace PrismProject.System2
                 "| 2 | Restart (ram wipe)   |\n" +
                 "| 3 | Restart to terminal  |\n" +
                 "============================");
-            switch (Convert.ToInt32(System.Console.ReadLine()))
+            switch (System.Convert.ToInt32(System.Console.ReadLine()))
             {
                 case 1:
                     Software.Cmds.Start();

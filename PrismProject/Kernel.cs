@@ -2,7 +2,7 @@ using System;
 
 namespace PrismProject
 {
-    internal class Kernel : Cosmos.System.Kernel
+    public class Kernel : Cosmos.System.Kernel
     {
         protected override void Run()
         {
