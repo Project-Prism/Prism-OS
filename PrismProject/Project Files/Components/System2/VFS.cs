@@ -5,11 +5,17 @@ using System.IO;
 
 namespace PrismProject.System2
 {
+    /// <summary>
+    /// VFS file system
+    /// </summary>
     internal class VFS
     {
         private static readonly CosmosVFS fs = new CosmosVFS();
         public static string D0 = "0";
 
+        /// <summary>
+        /// Initilise VFS, must be done on boot.
+        /// </summary>
         public static void StartService()
         {
             VFSManager.RegisterVFS(fs);

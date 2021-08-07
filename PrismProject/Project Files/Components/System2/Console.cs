@@ -2,6 +2,9 @@
 
 namespace PrismProject.System2
 {
+    /// <summary>
+    /// system2 console patches.
+    /// </summary>
     internal class Console
     {
         public static void WriteColoredLine(string text, ConsoleColor color)

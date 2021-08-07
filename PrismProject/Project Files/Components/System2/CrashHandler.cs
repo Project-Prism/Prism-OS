@@ -4,6 +4,10 @@ namespace PrismProject.System2
 {
     internal class CrashHandler
     {
+        /// <summary>
+        /// Shows a crash screen.
+        /// </summary>
+        /// <param name="e"></param>
         public static void ShowCrashScreen(Exception e)
         {
             Console.WriteColoredLine("A critical error has ocurred and the system crashed.\nAditional information:\n", ConsoleColor.Red);

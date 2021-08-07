@@ -18,8 +18,14 @@
 
         internal class CPU
         {
+            /// <summary>
+            /// CPU speed in MHZ.
+            /// </summary>
             public static long CPU_Speed { get => Cosmos.Core.CPU.GetCPUCycleSpeed(); }
 
+            /// <summary>
+            /// System power controls.
+            /// </summary>
             internal class Power
             {
                 public static void Shutdown()

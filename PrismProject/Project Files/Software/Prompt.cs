@@ -142,7 +142,8 @@ namespace PrismProject.Software
 
         private static void Hexi(string[] args)
         {
-            Hexi_Language.Parser.Parse(args[0], true);
+            //Hexi_Language.Parser.Parse(args[0], true);
+            Console.WriteLine("Hexi is not implemented yet!");
         }
 
         private static void Setcolor(string[] args)

@@ -5,6 +5,9 @@ using System.IO;
 
 namespace PrismProject.System2.proprietary
 {
+    /// <summary>
+    /// Bitfont method made by nifanfa.
+    /// </summary>
     internal static class BitFont
     {
         //thanks nifanfa :)

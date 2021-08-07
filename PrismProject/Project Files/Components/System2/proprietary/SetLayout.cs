@@ -4,6 +4,11 @@ namespace PrismProject.System2.proprietary
 {
     internal class SetLayout
     {
+        /// <summary>
+        /// Sets a keyboard layout.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="args"></param>
         public static void Keyboard(string type, string[] args)
         {
             if (type == "layout")

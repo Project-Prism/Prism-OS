@@ -6,6 +6,9 @@ namespace PrismProject.System2.Drawing
 {
     internal class Drivers
     {
+        /// <summary>
+        /// Video functions.
+        /// </summary>
         internal class Video
         {
             public static int SW = 1024;

@@ -9,6 +9,7 @@ using System.Text;
 using EndPoint = Cosmos.System.Network.IPv4.EndPoint;
 using Cosmos.System.Network.IPv4.UDP;
 using Cosmos.System.Network.Config;
+using System.Text.RegularExpressions;
 
 namespace PrismProject.System2
 {
@@ -18,28 +19,34 @@ namespace PrismProject.System2
         /// Get local address for current machine.
         /// </summary>
         /// <returns>IP adress (as string)</returns>
-        public static string GetLocalAdress()
+        public static string GetLoaclAddress()
         {
             return NetworkConfig.CurrentConfig.Value.IPAddress.ToString();
         }
 
-        /// <summary>
-        /// Check if a string is a valid IP adress
-        /// </summary>
-        /// <param name="ipAddress"></param>
-        /// <returns>True or false</returns>
-        public static bool IsIPAddress(string ipAddress)
+        public static dynamic GetTCP(string serverIP)
         {
-            try
-            {
-                return IPAddress.TryParse(ipAddress, out IPAddress address);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            if (IPAddress.TryParse(serverIP, out IPAddress address))
+                using (var xClient = new TcpClient(80))
+                {
+                    byte IP0 = Convert.ToByte(Regex.Split(serverIP, ".")[0]);
+                    byte IP1 = Convert.ToByte(Regex.Split(serverIP, ".")[1]);
+                    byte IP2 = Convert.ToByte(Regex.Split(serverIP, ".")[2]);
+                    byte IP3 = Convert.ToByte(Regex.Split(serverIP, ".")[3]);
+
+                    xClient.Connect(new Address(IP0, IP1, IP2, IP3), 80);
+                    
+                    var endpoint = new EndPoint(Address.Zero, 0);
+                    var data = xClient.Receive(ref endpoint);  //set endpoint to remote machine IP:port
+                    var data2 = xClient.NonBlockingReceive(ref endpoint); //retrieve receive buffer without waiting
+                    return data2;
+                }
+            return null;
         }
 
+        /// <summary>
+        /// Obtain a useable IP adress from a router, if connected.
+        /// </summary>
         public static void DHCP()
         {
             using (var xClient = new DHCPClient())
@@ -48,6 +55,11 @@ namespace PrismProject.System2
                 xClient.SendDiscoverPacket();
             }
         }
+
+        /// <summary>
+        /// Basic TPC server. not working yet.
+        /// </summary>
+        /// 
 
         public static void TCPServer()
         {
@@ -68,23 +80,9 @@ namespace PrismProject.System2
             }
         }
 
-        public static void TCPClient()
-        {
-            using (var xClient = new TcpClient(4242))
-            {
-                var message = "1, success!, client sent";
-                xClient.Connect(new Address(192, 168, 1, 70), 4242);
-
-                /** Send data **/
-                xClient.Send(Encoding.ASCII.GetBytes(message));
-
-                /** Receive data **/
-                var endpoint = new EndPoint(Address.Zero, 0);
-                var data = xClient.Receive(ref endpoint);  //set endpoint to remote machine IP:port
-                var data2 = xClient.NonBlockingReceive(ref endpoint); //retrieve receive buffer without waiting
-            }
-        }
-
+        /// <summary>
+        /// Basic UDP client. not working yet.
+        /// </summary>
         public static void UDP()
         {
             using (var xClient = new UdpClient(4242))
@@ -101,6 +99,12 @@ namespace PrismProject.System2
             }
         }
 
+        /// <summary>
+        /// Ping a specified IP address or hostname.
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="timeout"></param>
+        /// <returns></returns>
         public static int Ping(string address, int timeout = 5000)
         {
             using (var client = new ICMPClient())
@@ -114,22 +118,11 @@ namespace PrismProject.System2
             }
         }
 
-        public static byte[] GetTcp(string address, int port, string body)
-        {
-            using (var client = new TcpClient(port))
-            {
-                client.Connect(Address.Parse(address), port);
-                client.Send(Encoding.ASCII.GetBytes(body));
-
-                var endpoint = new EndPoint(Address.Zero, 0);
-
-                var data = client.Receive(ref endpoint);
-                var data2 = client.NonBlockingReceive(ref endpoint);
-
-                return data2;
-            }
-        }
-
+        /// <summary>
+        /// resolve a domain name if it is not an IP.
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns></returns>
         public static Address DNS(string address)
         {
             if (!IsIPAddress(address))
