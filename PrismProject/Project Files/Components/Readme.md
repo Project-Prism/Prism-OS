@@ -13,4 +13,6 @@ Hexi is a component because we plan to have it as another part of the core funct
 it will allow easy app creation, it will be able to interface with a prompt, GUI, and real hardware.
 
 ### Ideas for Compoents/System2
-we will put ideas we have here.
+| Idea            | Complexety     | Started?|
+|-----------------|----------------|---------|
+| TUI interface   | Medium         | No      |
