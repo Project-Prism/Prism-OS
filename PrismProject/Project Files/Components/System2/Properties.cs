@@ -40,7 +40,7 @@ namespace PrismProject.System2
         }
         public static bool IsFreshBoot()
         {
-            return VFS.CE("0:" + SystemPath);
+            return VFS.CE("0:" + SystemPath());
         }
     }
 }
