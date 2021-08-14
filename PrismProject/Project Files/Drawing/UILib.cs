@@ -1,12 +1,13 @@
 ﻿using Cosmos.System.Graphics;
 using PrismProject.System2.proprietary;
 using System.Drawing;
+using PrismProject.System2.Drivers;
 
 namespace PrismProject.System2.Drawing
 {
-    class GLib
+    class UILib
     {
-            private static readonly SVGAIICanvas Screen = Drivers.Video.Screen;
+            private static readonly SVGAIICanvas Screen = Video.Screen;
 
             ///<summary>Clear screen</summary>
             public void ClearScreen(Color color)
@@ -72,7 +73,7 @@ namespace PrismProject.System2.Drawing
             {
                 DrawRoundedBox(X-1, Y-1, W-2, H-2, R, Themes.Window.WindowSplash, true, true);
                 DrawRoundedBox(X, Y, W, H, R, Themes.Window.WindowSplash, false, true);
-                DrawText(X+10, Y+10, Color.White, Drivers.Video.Font, Title);
+                DrawText(X+10, Y+10, Color.White, Video.Font, Title);
             }
 
             ///<summary>Draws a text string with a block behind it</summary>
@@ -91,8 +92,8 @@ namespace PrismProject.System2.Drawing
 
             public void DrawLine(int X, int Y, int Width, int Spacing, Color color)
             {
-            GLib.Screen.DrawLine(new Pen(color), X, Y, Width, X);
-            GLib.Screen.DrawLine(new Pen(color), X+Spacing, Y, Width, X+Spacing);
+            UILib.Screen.DrawLine(new Pen(color), X, Y, Width, X);
+            UILib.Screen.DrawLine(new Pen(color), X+Spacing, Y, Width, X+Spacing);
         }
         }
 }

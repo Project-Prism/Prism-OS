@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PrismProject.System2
+namespace PrismProject.System2.Extentions
 {
     internal class CrashHandler
     {

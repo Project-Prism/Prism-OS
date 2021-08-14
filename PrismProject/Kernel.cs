@@ -8,8 +8,8 @@ namespace PrismProject
         {
             try
             {
-                System2.VFS.Format("0", true);
-                System2.VFS.StartService();
+                System2.FileSystem.Format.FormatDisk("0", true);
+                System2.FileSystem.Config.StartService();
                 Software.Cmds.Start();
             }
             catch (Exception e)

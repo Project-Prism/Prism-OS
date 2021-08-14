@@ -61,8 +61,6 @@ namespace PrismProject.Software
 
         public static void Start()
         {
-            System2.Network.DHCP();
-            System2.VFS.StartService();
             Cmds.Init();
             Console.Clear();
             Console.Write("Prism-OS > ");
@@ -74,14 +72,14 @@ namespace PrismProject.Software
         {
             if (args.Length < 1)
             {
-                System2.Console.WriteColoredLine(
+                System2.Extentions.Console.WriteColoredLine(
                     "=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n" +
                     "---- List of all available commands ----\n" +
                     "=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n",
                     ConsoleColor.Cyan);
 
                 foreach (Command cmd in cmds)
-                    System2.Console.WriteColoredLine(cmd.Name, ConsoleColor.Blue);
+                    System2.Extentions.Console.WriteColoredLine(cmd.Name, ConsoleColor.Blue);
                 Console.WriteLine("\nYou can get more specific help for each command by using: HELP <COMMAND_NAME>\n");
             }
             else
@@ -99,9 +97,9 @@ namespace PrismProject.Software
 
         private static void About(string[] args)
         {
-            System2.Console.WriteColoredLine
+            System2.Extentions.Console.WriteColoredLine
                 (
-                    "\nPrism OS (c) 2021, release " + System2.Hardware.KernelInfo.Kernel_build + "\n" +
+                    "\nPrism OS (c) 2021, release " + System2.Extentions.Hardware.KernelInfo.Kernel_build + "\n" +
                     "Created by Terminal.cs and deadlocust\n" +
                     "This is a closed beta version of Prism OS, we are not responsible for any damages caused by it.\n",
                     ConsoleColor.DarkMagenta
@@ -111,7 +109,7 @@ namespace PrismProject.Software
         private static void List(string[] path)
         {
             Console.WriteLine("List of files for directory " + path);
-            foreach (var File in System2.VFS.LD(path[0]))
+            foreach (var File in System2.FileSystem.Explore.ListPath(path[0]))
             {
                 Console.WriteLine(File);
             }
@@ -119,25 +117,25 @@ namespace PrismProject.Software
 
         private static void Make(string[] path)
         {
-            System2.VFS.MD(path[0]);
+            System2.FileSystem.Explore.MakeFile(path[0], path[1]);
         }
 
         private static void Read(string[] path)
         {
-            Console.WriteLine(System2.VFS.Read(path[0]));
+            Console.WriteLine(System2.FileSystem.Explore.Read(path[0]));
         }
 
         private static void Write(string[] args)
         {
-            System2.VFS.Write(args[0], args[1]);
+            PrismProject.System2.FileSystem.Explore.Write(args[0], args[1], args[2]);
             Console.Write("Wrote to file ");
-            System2.Console.WriteColored(args[0], ConsoleColor.Cyan);
+            System2.Extentions.Console.WriteColored(args[0], ConsoleColor.Cyan);
             Console.WriteLine(" (" + args[1].Length + "Bytes)");
         }
 
         private static void Format(string[] args)
         {
-            System2.VFS.Format(args[0], Convert.ToBoolean(args[1]));
+            System2.FileSystem.Format.FormatDisk(args[0], Convert.ToBoolean(args[1]));
         }
 
         private static void Hexi(string[] args)

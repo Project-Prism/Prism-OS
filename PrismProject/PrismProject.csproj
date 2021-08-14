@@ -144,7 +144,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Project Files\Components\System2\Drawing\" />
+      <Folder Include="Project Files\Sound\" />
     </ItemGroup>
 
 </Project>

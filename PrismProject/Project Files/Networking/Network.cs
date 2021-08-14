@@ -1,15 +1,13 @@
-﻿using Cosmos.System.Network.IPv4.TCP;
-using Cosmos.System.Network.IPv4.UDP.DHCP;
+﻿using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Cosmos.System.Network.IPv4.UDP.DNS;
 using Cosmos.System.Network.IPv4;
 using System.Net;
-using System.Text;
 using EndPoint = Cosmos.System.Network.IPv4.EndPoint;
 using Cosmos.System.Network.Config;
 
-namespace PrismProject.System2
+namespace PrismProject.System2.Networking
 {
-    internal class Network
+    internal class Networking
     {
         /// <summary>
         /// Get local address for current machine.
@@ -42,24 +40,6 @@ namespace PrismProject.System2
             else
                 return false;
             }
-
-        /// <summary>
-        /// get method using TCP
-        /// </summary>
-        /// <param name="serverIP"></param>
-        /// <returns></returns>
-        public static string GetTCP(string serverIP)
-        {
-            Address loc = Network.ParseURL(serverIP);
-            using (var xClient = new TcpClient(80))
-                {
-                    xClient.Connect(loc, 80);
-                    var endpoint = new EndPoint(loc, 80);
-                    var data = xClient.Receive(ref endpoint);  //set endpoint to remote machine IP:port
-                    var data2 = xClient.NonBlockingReceive(ref endpoint); //retrieve receive buffer without waiting
-                    return data2.ToString();
-                }
-        }
 
         /// <summary>
         /// Obtain a useable IP adress from a router, if connected.

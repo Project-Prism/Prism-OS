@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PrismProject.System2
+namespace PrismProject.System2.Extentions
 {
     internal class Convert
     {

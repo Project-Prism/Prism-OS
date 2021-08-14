@@ -2,13 +2,14 @@
 using Cosmos.System.Graphics;
 using System.Collections.Generic;
 using System.Drawing;
+using PrismProject.System2.Drivers;
 
 namespace PrismProject.System2.Drawing
 {
     /// <summary>
-    /// UIGen window manager, made by CrisisSDK.
+    /// WinLib window manager, made by CrisisSDK.
     /// </summary>
-    internal abstract class UIGen
+    internal abstract class WinLib
     {
         internal abstract class BaseGuiElement
         {
@@ -25,7 +26,7 @@ namespace PrismProject.System2.Drawing
                 Parent = parent;
             }
 
-            internal abstract void Render(GLib drawing, int offset_x, int offset_y);
+            internal abstract void Render(UILib drawing, int offset_x, int offset_y);
 
             internal virtual bool Click(int x, int y, int btn)
             {
@@ -62,7 +63,7 @@ namespace PrismProject.System2.Drawing
                 Children = new List<BaseGuiElement>();
                 lastX = x;
                 lastY = y;
-                titleHeight = Drivers.Video.SH / 25;
+                titleHeight = Video.SH / 25;
             }
 
             public void AddChild(BaseGuiElement guiElement)
@@ -96,7 +97,7 @@ namespace PrismProject.System2.Drawing
                 Y += dy * 2;
             }
 
-            internal override void Render(GLib drawing, int offset_x = 0, int offset_y = 0)
+            internal override void Render(UILib drawing, int offset_x = 0, int offset_y = 0)
             {
                 if (lastX != X || lastY != Y) // we moved
                 {
@@ -123,9 +124,9 @@ namespace PrismProject.System2.Drawing
                 TextColour = textcolor;
             }
 
-            internal override void Render(GLib drawing, int offset_x, int offset_y)
+            internal override void Render(UILib drawing, int offset_x, int offset_y)
             {
-                drawing.DrawText(offset_x+X, offset_y+Y, TextColour, Drivers.Video.Font, Value);
+                drawing.DrawText(offset_x+X, offset_y+Y, TextColour, Video.Font, Value);
             }
         }
         internal class GuiTextBox : BaseGuiElement
@@ -169,10 +170,10 @@ namespace PrismProject.System2.Drawing
                 return true;
             }
 
-            internal override void Render(GLib drawing, int offset_x, int offset_y)
+            internal override void Render(UILib drawing, int offset_x, int offset_y)
             {
                 string txt = Value + (Software.Desktop.ActiveElement == this ? "|" : "");
-                drawing.DrawTextbox(offset_x+X, offset_y+Y, Width, 4, Drivers.Video.Font, txt, Themes.Textbox.YB_Inner, Themes.Textbox.TB_Border, Themes.Window.WindowTextColor);
+                drawing.DrawTextbox(offset_x+X, offset_y+Y, Width, 4, Video.Font, txt, Themes.Textbox.YB_Inner, Themes.Textbox.TB_Border, Themes.Window.WindowTextColor);
             }
         }
         internal class GuiButton : BaseGuiElement
@@ -193,13 +194,13 @@ namespace PrismProject.System2.Drawing
                 OnClick = onClick;
             }
 
-            internal override void Render(GLib drawing, int offset_x, int offset_y)
+            internal override void Render(UILib drawing, int offset_x, int offset_y)
             {
                 int mx = X + 4;
                 int my = Y + (Height / 2) - 8;
                 drawing.DrawRoundedBox(offset_x+X-1, offset_y+Y-1, Width+2, Height+2, 3, Background, true, true);
                 drawing.DrawRoundedBox(offset_x+X, offset_y+Y, Width, Height, 3, Themes.Button.Button_Theme_Inner, true, true);
-                drawing.DrawText(mx+offset_x, my+offset_y, TextColour, Drivers.Video.Font, Value);
+                drawing.DrawText(mx+offset_x, my+offset_y, TextColour, Video.Font, Value);
             }
 
             internal override bool Click(int x, int y, int btn)
@@ -225,10 +226,10 @@ namespace PrismProject.System2.Drawing
                 xWidth = w;
             }
 
-            internal override void Render(GLib drawing, int offset_x, int offset_y)
+            internal override void Render(UILib drawing, int offset_x, int offset_y)
             {
                 drawing.DrawImage(img, offset_x + X, offset_y + Y);
-                if (showborder) { Drivers.Video.Screen.DrawRectangle(new Pen(Color.Black), X, Y, xWidth, xHeight); }
+                if (showborder) { Video.Screen.DrawRectangle(new Pen(Color.Black), X, Y, xWidth, xHeight); }
             }
         }
         internal class GuiSwitch : BaseGuiElement
@@ -249,12 +250,12 @@ namespace PrismProject.System2.Drawing
                 OnClick = onClick;
             }
 
-            internal override void Render(GLib drawing, int offset_x, int offset_y)
+            internal override void Render(UILib drawing, int offset_x, int offset_y)
             {
                 drawing.DrawRoundedBox(offset_x+X-1, offset_y+Y-1, 39, 23, 9, Themes.Switch.Switch_Theme, true, true);
                 drawing.DrawRoundedBox(offset_x+X, offset_y+Y, 37, 21, 9, Back, true, true);
-                if (status) { Drivers.Video.Screen.DrawFilledCircle(new Pen(Color.White), offset_x + X + 10, offset_y + Y + 10, 9); }
-                if (!status) { Drivers.Video.Screen.DrawFilledCircle(new Pen(Color.White), offset_x + X + 47, offset_y + Y + 10, 9); }
+                if (status) { Video.Screen.DrawFilledCircle(new Pen(Color.White), offset_x + X + 10, offset_y + Y + 10, 9); }
+                if (!status) { Video.Screen.DrawFilledCircle(new Pen(Color.White), offset_x + X + 47, offset_y + Y + 10, 9); }
             }
 
             internal override bool Click(int x, int y, int btn)
@@ -274,7 +275,7 @@ namespace PrismProject.System2.Drawing
                 Width = w;
             }
 
-            internal override void Render(GLib drawing, int offset_x, int offset_y)
+            internal override void Render(UILib drawing, int offset_x, int offset_y)
             {
                 drawing.DrawLine(offset_x+X, offset_y+Y, Width, 5, Fore);
                 drawing.DrawLine(offset_x+X, offset_y+Y+Height, Width, 5, Fore);
@@ -298,11 +299,11 @@ namespace PrismProject.System2.Drawing
                 enable = state;
             }
 
-            internal override void Render(GLib drawing, int offset_x, int offset_y)
+            internal override void Render(UILib drawing, int offset_x, int offset_y)
             {
-                drawing.DrawRoundedBox(offset_x+X-1, offset_y+Y-1, Drivers.Video.SW/80+2, Drivers.Video.SH/45+2, 6, Fore, true, true);
-                drawing.DrawRoundedBox(offset_x+X, offset_y+Y, Drivers.Video.SW/80, Drivers.Video.SH/45, 6, Back, true, true);
-                if (enable) { drawing.DrawRoundedBox(offset_x+X+2, offset_y+Y+2, Drivers.Video.SW/80-4, Drivers.Video.SH/45-4, 6, Fore, true, true); }
+                drawing.DrawRoundedBox(offset_x+X-1, offset_y+Y-1, Video.SW/80+2, Video.SH/45+2, 6, Fore, true, true);
+                drawing.DrawRoundedBox(offset_x+X, offset_y+Y, Video.SW/80, Video.SH/45, 6, Back, true, true);
+                if (enable) { drawing.DrawRoundedBox(offset_x+X+2, offset_y+Y+2, Video.SW/80-4, Video.SH/45-4, 6, Fore, true, true); }
             }
 
             internal override bool Click(int x, int y, int btn)
