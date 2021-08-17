@@ -1,6 +1,7 @@
 body {
     background-color: rgb(56, 60, 65);
     color: white
+    
 }
 
 header {
@@ -9,11 +10,8 @@ header {
 
 .ProjectInfo {
     font-size: 20px;
+    border-radius: 2px; width: fit-content;
     margin-top: 2cm;
-}
-
-.Info2 {
-    font-size: 20px;
 }
 
 .center {
@@ -25,20 +23,23 @@ header {
 
 .OptionButtons button {
     border: black;
+    background-color: orangered;
+    color: white;
     border-radius: 10px;
     border-width: 2px;
-    width: 170px;
+    width: 210px;
     height: 40px;
     font-size: 17px;
     font-family: Arial;
     font-weight: bold;
     transition-duration: 0.4s;
+    text-align: center;
     margin-top: 1cm;
-    margin-left: 20px;
+    display: inline-block;
 }
 
 .OptionButtons button:hover {
-    background-color: powderblue;
+    background-color: lightcoral;
     cursor: pointer;
 }
 
@@ -48,6 +49,8 @@ header {
     bottom: 0;
     width: 100%;
     text-align: center;
+    background-color: black;
+    padding: 5px;
 }
 
 .footerLink {
