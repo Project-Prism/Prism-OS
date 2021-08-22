@@ -1,60 +1,58 @@
 body {
-    background-color: rgb(56, 60, 65);
-    color: white
+    background-color: rgb(50, 54, 58);
+    color: white;
 }
 
-header {
-    font-size: 50px;
-    background-color: grey;
+.header {
+    background: rgb(48, 126, 204);
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    padding: 5px;
+}
+
+.PrismOSSaying {
+    margin-top: -1cm;
+    font-size: 20px;
+}
+
+.OptionButtons button {
+    transition-duration: 0.4s;
+    border-color: black;
+    border-radius: 10px;
+    font-family: Arial;
+    font-weight: bold;
+    margin-left: 30px;
+    border-width: 2px;
+    margin-top: 20px;
+    font-size: 17px;
+    padding: 15px;
+    width: 200px;
+    height: 50px;
+}
+
+.OptionButtons button:hover {
+    background-color: lightsteelblue;
+    cursor: pointer;
 }
 
 .ProjectInfo {
     font-size: 20px;
-    margin-top: 2cm;
-}
-
-.Info2 {
-    margin-bottom: 1cm;
-    font-size: 20px;
-}
-
-.center {
-    width: 30%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.OptionButtons button {
-    border: black;
-    border-radius: 10px;
-    border-width: 2px;
-    width: 170px;
-    height: 40px;
-    font-size: 17px;
-    font-family: Arial;
-    font-weight: bold;
-    transition-duration: 0.4s;
     margin-top: 1cm;
-    margin-left: 20px;
 }
 
-.OptionButtons button:hover {
-    background-color: powderblue;
-    cursor: pointer;
+.CosmosInfoLink {
+    color: white;
 }
 
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
     text-align: center;
-    border: 1px;
-    border-style: solid;
-    border-color: powderblue;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
 }
 
 .footerLink {
-    color:orangered;
+    color:lightblue;
 }
