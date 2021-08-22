@@ -5,6 +5,7 @@ body {
 
 header {
     font-size: 50px;
+    background-color: grey;
 }
 
 .ProjectInfo {
@@ -13,11 +14,12 @@ header {
 }
 
 .Info2 {
+    margin-bottom: 1cm;
     font-size: 20px;
 }
 
 .center {
-    width: 35%;
+    width: 30%;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -48,6 +50,9 @@ header {
     bottom: 0;
     width: 100%;
     text-align: center;
+    border: 1px;
+    border-style: solid;
+    border-color: powderblue;
 }
 
 .footerLink {
