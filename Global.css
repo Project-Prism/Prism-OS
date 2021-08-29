@@ -1,0 +1,20 @@
+body {
+    background-color: rgb(50, 54, 58);
+    color: white;
+}
+
+.header {
+    background: linear-gradient(to bottom, #3366cc 0%, #66ccff 100%);
+}
+
+.footer {
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+.footerLink {
+    color:lightblue;
+}

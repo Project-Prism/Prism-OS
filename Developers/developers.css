@@ -4,22 +4,15 @@
     padding: 5px;
 }
 
-.PrismOSSaying {
-    text-align: center;
-    margin-top: -1cm;
-    font-size: 20px;
-}
-
 .OptionButtons button {
     transition-duration: 0.4s;
     border-color: black;
     border-radius: 10px;
     font-family: Arial;
-    margin-bottom: 1cm;
     font-weight: bold;
     margin-left: 30px;
     border-width: 2px;
-    margin-top: 3cm;
+    margin-top: 20px;
     font-size: 17px;
     padding: 15px;
     width: 200px;
@@ -31,11 +24,11 @@
     cursor: pointer;
 }
 
-.ProjectInfo {
-    font-size: 20px;
-    margin-top: 1cm;
+h1 {
+    text-align: center;
 }
 
-.CosmosInfoLink {
-    color: white;
+.BioInfo {
+    font-size: 20px;
+    text-align: center;
 }
