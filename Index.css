@@ -1,8 +1,3 @@
-body {
-    background-color: rgb(50, 54, 58);
-    color: white;
-}
-
 .header {
     background: rgb(48, 126, 204);
     text-align: center;
@@ -43,16 +38,4 @@ body {
 
 .CosmosInfoLink {
     color: white;
-}
-
-.footer {
-    text-align: center;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-}
-
-.footerLink {
-    color:lightblue;
 }
