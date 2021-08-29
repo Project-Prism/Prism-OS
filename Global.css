@@ -3,6 +3,10 @@ body {
     color: white;
 }
 
+.header {
+    background: linear-gradient(to bottom, #3366cc 0%, #66ccff 100%);
+}
+
 .footer {
     text-align: center;
     position: fixed;
