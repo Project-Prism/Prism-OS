@@ -1,4 +1,4 @@
-﻿namespace PrismProject.System2.Extentions
+﻿namespace PrismProject.System2.Extra
 {
     /// <summary>
     /// System properties
@@ -11,7 +11,7 @@
         /// <returns>Version (String)</returns>
         public static string Version()
         {
-            return "21.7.8"; //always set to the current date when commiting/releasing (YY.MM.DD)
+            return "21.8.28"; //always set to the current date when commiting/releasing (YY.MM.DD)
         }
 
         /// <summary>
@@ -29,7 +29,7 @@
         /// <returns>Default name (String)</returns>
         public static string Default_Name()
         {
-            return "User-PC";
+            return "Prism-PC";
         }
 
         /// <summary>
@@ -56,7 +56,7 @@
         /// <returns>System configs path (String)</returns>
         public static string SystemSettingsPath()
         {
-            return "System2\\Options\\Global\\";
+            return "System2\\GlobalSettings\\";
         }
 
         /// <summary>
@@ -84,6 +84,26 @@
         public static bool IsFreshBoot()
         {
             return System2.FileSystem.Explore.Exists("0:" + SystemPath());
+        }
+
+        /// <summary>
+        /// all the default configs for the window manager
+        /// </summary>
+        internal class WMProperties
+        {
+            /// <summary>
+            /// Default icon scale for when none is specified.
+            /// </summary>
+            /// <returns>scale number</returns>
+            public static int DefaultIconScale()
+            {
+                return 32;
+            }
+
+            public static int DefaultRadius()
+            {
+                return 4;
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Cosmos.System;
 
-namespace PrismProject.System2.proprietary
+namespace PrismProject.System2.Extended
 {
     internal class SetLayout
     {

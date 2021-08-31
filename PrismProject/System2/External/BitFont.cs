@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 
-namespace PrismProject.System2.proprietary
+namespace PrismProject.System2.External
 {
     /// <summary>
     /// Bitfont method made by nifanfa.

@@ -1,5 +1,5 @@
 ﻿using Cosmos.System.Graphics;
-using PrismProject.System2.proprietary;
+using PrismProject.System2.External;
 using System.Drawing;
 using PrismProject.System2.Drivers;
 
@@ -71,8 +71,9 @@ namespace PrismProject.System2.Drawing
             ///<summary>Draws a few boxes to get a window</summary>
             public void DrawBlankWindow(int X, int Y, int W, int H, string Title, int R)
             {
-                DrawRoundedBox(X-1, Y-1, W-2, H-2, R, Themes.Window.WindowSplash, true, true);
+                DrawRoundedBox(X-1, Y-1, W+2, H+2, R, Themes.Window.WindowShadow, true, true);
                 DrawRoundedBox(X, Y, W, H, R, Themes.Window.WindowSplash, false, true);
+                DrawRoundedBox(X, Y, W, H/70, R, Themes.Window.WindowTitleColor, true, false);
                 DrawText(X+10, Y+10, Color.White, Video.Font, Title);
             }
 

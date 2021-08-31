@@ -1,6 +1,7 @@
 ﻿using Cosmos.System;
 using Cosmos.System.Graphics;
 using PrismProject.System2.Drivers;
+using System.Drawing;
 
 namespace PrismProject.System2.Drawing
 {
@@ -9,7 +10,6 @@ namespace PrismProject.System2.Drawing
     /// </summary>
     internal class Mouse
     {
-            private static readonly SVGAIICanvas Screen = Video.Screen;
             private static readonly int SW = Video.SW, SH = Video.SH;
             public static int lastX, lastY;
             public static int X { get => (int)MouseManager.X; }
@@ -24,7 +24,7 @@ namespace PrismProject.System2.Drawing
 
             public static void Update()
             {
-                Screen.DrawImageAlpha(Images.mouse, X, Y);
+            Icons.Icons.DrawIcon(X, Y, 12, 12, Color.White, "arrow");
                 lastX = X;
                 lastY = Y;
             }

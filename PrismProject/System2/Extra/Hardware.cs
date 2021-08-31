@@ -1,12 +1,7 @@
-﻿namespace PrismProject.System2.Extentions
+﻿namespace PrismProject.System2.Extra
 {
     internal class Hardware
     {
-        internal class KernelInfo
-        {
-            public static string Kernel_build = "POSK Revision 2.5", Codename = "Plug";
-        }
-
         internal class Memory
         {
             public static uint Total { get => Cosmos.Core.CPU.GetAmountOfRAM(); }

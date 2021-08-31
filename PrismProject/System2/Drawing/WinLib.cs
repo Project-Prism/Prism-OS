@@ -3,6 +3,8 @@ using Cosmos.System.Graphics;
 using System.Collections.Generic;
 using System.Drawing;
 using PrismProject.System2.Drivers;
+using PrismProject.System2.Extra;
+using System;
 
 namespace PrismProject.System2.Drawing
 {
@@ -11,6 +13,7 @@ namespace PrismProject.System2.Drawing
     /// </summary>
     internal abstract class WinLib
     {
+        //UI elements
         internal abstract class BaseGuiElement
         {
             public int X, Y, Width, Height;
@@ -30,7 +33,7 @@ namespace PrismProject.System2.Drawing
 
             internal virtual bool Click(int x, int y, int btn)
             {
-                Software.Desktop.ActiveElement = this;
+                Software.Screen0.ActiveElement = this;
                 return true;
             }
 
@@ -74,7 +77,7 @@ namespace PrismProject.System2.Drawing
 
             internal override bool Click(int x, int y, int btn)
             {
-                Software.Desktop.ActiveElement = this;
+                Software.Screen0.ActiveElement = this;
                 foreach (var child in Children)
                 {
                     int x1 = child.X;
@@ -101,7 +104,7 @@ namespace PrismProject.System2.Drawing
             {
                 if (lastX != X || lastY != Y) // we moved
                 {
-                    drawing.DrawRoundedBox(lastX, lastY, Width, Height, 4, Themes.Window.WindowUnfocusColor, true, true);
+                    drawing.DrawRoundedBox(lastX, lastY, Width, Height, Properties.WMProperties.DefaultRadius(), Themes.desktop, true, true);
                     lastX = X;
                     lastY = Y;
                 }
@@ -172,7 +175,7 @@ namespace PrismProject.System2.Drawing
 
             internal override void Render(UILib drawing, int offset_x, int offset_y)
             {
-                string txt = Value + (Software.Desktop.ActiveElement == this ? "|" : "");
+                string txt = Value + (Software.Screen0.ActiveElement == this ? "|" : "");
                 drawing.DrawTextbox(offset_x+X, offset_y+Y, Width, 4, Video.Font, txt, Themes.Textbox.YB_Inner, Themes.Textbox.TB_Border, Themes.Window.WindowTextColor);
             }
         }
@@ -183,7 +186,6 @@ namespace PrismProject.System2.Drawing
             public Color TextColour;
 
             public delegate void ClickDelegate(GuiButton self);
-
             public ClickDelegate OnClick;
 
             public GuiButton(int x, int y, int w, int h, string text, Color Textclr, Color Backcolor, ClickDelegate onClick) : base(x, y, w, h)
@@ -196,11 +198,9 @@ namespace PrismProject.System2.Drawing
 
             internal override void Render(UILib drawing, int offset_x, int offset_y)
             {
-                int mx = X + 4;
-                int my = Y + (Height / 2) - 8;
                 drawing.DrawRoundedBox(offset_x+X-1, offset_y+Y-1, Width+2, Height+2, 3, Background, true, true);
-                drawing.DrawRoundedBox(offset_x+X, offset_y+Y, Width, Height, 3, Themes.Button.Button_Theme_Inner, true, true);
-                drawing.DrawText(mx+offset_x, my+offset_y, TextColour, Video.Font, Value);
+                drawing.DrawRoundedBox(offset_x+X, offset_y+Y, Width, Height, 3, Themes.Button.Button_Color, true, true);
+                drawing.DrawText(X+4+offset_x, Y+(Height/2)-8+offset_y, TextColour, Video.Font, Value);
             }
 
             internal override bool Click(int x, int y, int btn)
@@ -310,6 +310,29 @@ namespace PrismProject.System2.Drawing
             {
                 OnClick(this);
                 return base.Click(x, y, btn);
+            }
+        }
+
+        //Icons drawing
+        internal class GuiIcon : BaseGuiElement
+        {
+            public Color clr;
+            public string nme;
+            public int W, H;
+
+            public GuiIcon(int x, int y, int w, int h, string name, Color color) : base(x, y, w, h)
+            {
+                nme = name;
+                clr = color;
+                X = x;
+                Y = y;
+                H = h;
+                W = w;
+            }
+
+            internal override void Render(UILib drawing, int offset_x, int offset_y)
+            {
+                Icons.Icons.DrawIcon(X+offset_x, Y+offset_y, W, H, clr, nme);
             }
         }
     }

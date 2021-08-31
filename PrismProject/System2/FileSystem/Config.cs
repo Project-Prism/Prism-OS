@@ -7,7 +7,7 @@ namespace PrismProject.System2.FileSystem
     /// <summary>VFS file system</summary>
     internal class Config
     {
-        public static readonly CosmosVFS fs = new CosmosVFS();
+        public static CosmosVFS fs = new CosmosVFS();
 
         /// <summary>Initilise VFS, must be done on boot.</summary>
         public static void StartService()

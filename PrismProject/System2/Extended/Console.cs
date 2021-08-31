@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PrismProject.System2.Extentions
+namespace PrismProject.System2.Extended
 {
     /// <summary>
     /// system2 console patches.

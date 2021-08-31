@@ -1,6 +1,6 @@
 ﻿using Cosmos.HAL;
 
-namespace PrismProject.System2.Extentions
+namespace PrismProject.System2.Extended
 {
     internal class Threading
     {

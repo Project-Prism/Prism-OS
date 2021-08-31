@@ -25,7 +25,7 @@ namespace PrismProject.System2.Networking
         /// <returns>ip address or error</returns>
         public static dynamic ParseURL(string serverIP)
         {
-            byte[] newIP = Convert.ToByteArray(serverIP);
+            byte[] newIP = Extended.Convert.ToByteArray(serverIP);
             if (IPAddress.TryParse(serverIP, out IPAddress addr))
                 return new Address(newIP[0], newIP[1], newIP[2], newIP[3]);
 

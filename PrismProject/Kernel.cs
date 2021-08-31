@@ -10,11 +10,11 @@ namespace PrismProject
             {
                 System2.FileSystem.Format.FormatDisk("0", true);
                 System2.FileSystem.Config.StartService();
-                Software.Cmds.Start();
+                Software.Screen0.Start();
             }
             catch (Exception e)
             {
-                System2.CrashHandler.ShowCrashScreen(e);
+                System2.Extra.CrashHandler.ShowCrashScreen(e);
             }
         }
     }

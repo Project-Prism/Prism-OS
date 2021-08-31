@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 
-namespace PrismProject.System2.Extentions
+namespace PrismProject.System2.Extended
 {
     internal class Convert
     {
