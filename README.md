@@ -1,13 +1,6 @@
 ## <IMG src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="csharp" width="40" height="40"/> About the project
 ###### <small>Last updated 9/8/2021</small>
 
-<x-markdown>
-<div style="Background-Color: grey; Padding: 7px; Padding-Top: 10px; Padding-Bottom: 10px; Border-Radius: 5px;">
-<a style="Background-color: Blue; Color: white; padding: 5px; Border-Radius: 4px;" href="https://github.com/Project-Prism/Prism-OS/releases/tag/V2.5">Download latest release</a>
-<a style="Background-color: Blue; Color: white; padding: 5px; Border-Radius: 4px;" href="https://github.com/Project-Prism/Prism-OS/tree/main/PrismProject">View Source code</a>
-</div>
-</x-markdown>
-
 <head><link rel="stylesheet" href="https://egkoppel.github.io/product-sans/google-fonts.css"></head>
 <p id="product-sans">Prism OS is a small project maintained by four developers, It is intended to become a widely used OS, the motivation behind this project is the fact most current operating systems are slow,and based off of old existing kernels, windows for example has not had a complete kernel rewrite in 20+ years.</p>
 <p id="product-sans">This project is based off of the Cosmos developer kit, it uses C# as its internal coding language</p>
