@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 
-namespace Bitfont
+namespace PrismProject.Source.Libraries
 {
     public struct BitFontDescriptor
     {

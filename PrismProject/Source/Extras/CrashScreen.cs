@@ -8,7 +8,7 @@ namespace PrismProject.Source.Extras
     {
         public static void Main(string msg)
         {
-
+            msg.ToLowerInvariant();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace PrismProject.Source.FileSystem
         /// <summary> Get a disk's file system type </summary>
         public static string GetFs(string DiskID) { return fs.GetFileSystemType(DiskID + @":"); }
         /// <summary> Get a file list in a directory </summary>
-        public static string[] GetFileList(string DiskID, string Path) { return Directory.GetFiles(DiskID + @":" + Path); }
+        public static List<DirectoryEntry> GetFileList(string DiskID, string Path) { return fs.GetDirectoryListing(Getcd()); }
         /// <summary> Create a new file in a path </summary>
         public static void CreateFile(string DiskID, string Path) { try { fs.CreateFile(DiskID + @":" + Path); }
             catch (Exception e) { e.ToString(); }}
@@ -31,5 +31,7 @@ namespace PrismProject.Source.FileSystem
         public static string ReadFile(string DiskID, string Path) { return File.ReadAllText(DiskID + @":" + Path); }
         /// <summary> List all detected disks </summary>
         public static List<DirectoryEntry> GetDisks() { return fs.GetVolumes(); }
+        /// <summary> Get current directory </summary>
+        public static string Getcd() { return Directory.GetCurrentDirectory(); }
     }
 }
