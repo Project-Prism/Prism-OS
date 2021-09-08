@@ -1,9 +1,11 @@
 ﻿using Cosmos.System.Graphics;
 using System.Drawing;
+using System;
 using Cosmos.System.Graphics.Fonts;
 
 namespace PrismProject.Source.Graphics
 {
+    /// <summary> Stuff for drawing </summary>
     class Drawables
     {
         public static int Width=800,Height=600;
@@ -97,8 +99,40 @@ namespace PrismProject.Source.Graphics
         }
         public static void DrawText(int X, int Y, int Scale, string str, Color color)
         { Screen.DrawString(str, PCScreenFont.Default, new Pen(color), X, Y); }
+        public static void TransparencyTest()
+        {
+            Screen.DrawCircle(new Pen(Screen.AlphaBlend(Color.FromArgb(24, 24, 24), Color.Red, 50)), 0, 0, 5);
+        }
+        public static void DrawAngle(SVGAIICanvas SCR, Color color, int X, int Y, int angle, int radius)
+        {
+                int[] sine = new int[16] { 0, 27, 54, 79, 104, 128, 150, 171, 190, 201, 221, 233, 243, 250, 254, 255 };
+                int xEnd, yEnd, quadrant, x_flip, y_flip;
+                quadrant = angle / 15;
+                switch (quadrant)
+                {
+                    case 0: x_flip = 1; y_flip = -1; break;
+                    case 1: angle = Math.Abs(angle - 30); x_flip = y_flip = 1; break;
+                    case 2: angle = angle - 30; x_flip = -1; y_flip = 1; break;
+                    case 3: angle = Math.Abs(angle - 60); x_flip = y_flip = -1; break;
+                    default: x_flip = y_flip = 1; break;
+                }
+                xEnd = X;
+                yEnd = Y;
+                if (angle > sine.Length) return;
+                xEnd += (x_flip * ((sine[angle] * radius) >> 8));
+                yEnd += (y_flip * ((sine[15 - angle] * radius) >> 8));
+
+                SCR.DrawLine(new Pen(color), X, Y, xEnd, yEnd);
+            }
+        public static void tst()
+        {
+            DrawRoundedRectangle(Width/2-100, Height/2-100, Width/2+100, Height/2+100, 2, Color.White, new int[]{1,1,1,1});
+            DrawAngle(Screen, Color.Black, Width/2, Height/2, DateTime.Now.Hour, 40);
+            DrawAngle(Screen, Color.Black, Width/2, Height/2, DateTime.Now.Minute, 60);
+            DrawAngle(Screen, Color.Red, Width/2, Height/2, DateTime.Now.Second, 80);
+        }
     }
-    class Manager
+    class CoalWM
     {
         
     }

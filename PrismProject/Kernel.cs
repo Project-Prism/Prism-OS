@@ -6,7 +6,7 @@ namespace PrismProject
     {
         protected override void Run()
         {
-            try { }
+            try { Source.Graphics.Drawables.tst(); }
             catch (Exception e) { Console.WriteLine("[ERROR] " + e); }
         }
     }
