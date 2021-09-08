@@ -137,10 +137,23 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Source\Extras\Bitmap1.bmp" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Source\Extras\Bitmap1.bmp" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="System.Console" Version="4.3.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Source\Audio\" />
+      <Folder Include="Source\Tests\" />
     </ItemGroup>
 
 </Project>
