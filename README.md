@@ -25,16 +25,16 @@
 | N/A                |             |                                 |
 
 
-## Credits
+### Credits
 | Name          | Helped with                  |
 |---------------|------------------------------|
 | Terminal.cs   | General development, logo    |
 | deadlocust    | General development          |
 | Nifanfa       | Bitfont                      |
 | CrisisSDK     | Graphics, window manager     |
-| GamingFrame   | Cosmos canvas fix            |
+| GamingFrame   | Cosmos canvas fix (soon)     |
 
-# Details
+### Details
 <details>
     <Summary>
         About Prism OS

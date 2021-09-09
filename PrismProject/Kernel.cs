@@ -9,8 +9,7 @@ namespace PrismProject
         {
             try
             {
-                Source.Graphics.Drawables.Clear(Color.FromArgb(24,24,24));
-                Source.Graphics.Drawables.Tst();
+                Source.Graphics.Drawables.TestScreen();
             }
             catch (Exception e) { Console.WriteLine("[ERROR] " + e); }
         }
