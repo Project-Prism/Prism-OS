@@ -1,5 +1,4 @@
-﻿using Cosmos.System.Graphics;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace PrismProject.Source.Graphics
 {
@@ -11,16 +10,12 @@ namespace PrismProject.Source.Graphics
             /// [2] = Window color
             /// [3] = Window text color
             /// [4] = shadow color
-            /// </summary>
-        public static Pen[] Window = { new Pen(Color.FromArgb(25, 25, 25)), new Pen(Color.White), new Pen(Color.AntiqueWhite), new Pen(Color.Black), new Pen(Color.Black) };
+        /// </summary>
+        public static Color[] Window = { Color.FromArgb(25, 25, 25), Color.White, Color.AntiqueWhite, Color.Black, Color.Black };
         /// <summary>
-            /// [0] = White
-            /// [1] = Black
-            /// [2] = Red
-            /// [3] = Green
-            /// [4] = Blue
-            /// [5] = Grey
-            /// </summary>
-        public static Pen[] Common = { new Pen(Color.White), new Pen(Color.Black), new Pen(Color.Red), new Pen(Color.Green), new Pen(Color.Blue), new Pen(Color.DarkSlateGray) };
+            ///  [0] = Background
+            ///  [1] = Foreground
+        /// </summary>
+        public static Color[] ProgBar = { Color.DimGray, Color.White };
     }
 }

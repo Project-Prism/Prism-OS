@@ -10,28 +10,59 @@ namespace PrismProject.Source.FileSystem
     class Disk
     {
         private static readonly CosmosVFS fs = new CosmosVFS();
+        private static readonly FolderStructure PFS = new FolderStructure();
 
         /// <summary> Start the VFS service. </summary>
-        public static void Start() { VFSManager.RegisterVFS(fs); }
-        /// <summary> Format a disk </summary>
-        public static void Format(string DiskID) { fs.Format(DiskID, "FAT32", true); }
-        /// <summary> Get free disk space in bytes </summary>
-        public static int GetSpace(string DiskID) { return (int)fs.GetAvailableFreeSpace(DiskID + @":"); }
-        /// <summary> Get a disk's file system type </summary>
-        public static string GetFs(string DiskID) { return fs.GetFileSystemType(DiskID + @":"); }
-        /// <summary> Get a file list in a directory </summary>
-        public static List<DirectoryEntry> GetFileList(string DiskID, string Path) { return fs.GetDirectoryListing(Getcd()); }
-        /// <summary> Create a new file in a path </summary>
-        public static void CreateFile(string DiskID, string Path) { try { fs.CreateFile(DiskID + @":" + Path); }
-            catch (Exception e) { e.ToString(); }}
-        /// <summary> Write to a file in a path </summary>
-        public static void WriteFile(string DiskID, string Path, string Contents) { try { File.WriteAllText(DiskID + @":" + Path, Contents); }
-            catch (Exception e) { e.ToString(); }}
-        /// <summary> Read a File </summary>
-        public static string ReadFile(string DiskID, string Path) { return File.ReadAllText(DiskID + @":" + Path); }
-        /// <summary> List all detected disks </summary>
-        public static List<DirectoryEntry> GetDisks() { return fs.GetVolumes(); }
-        /// <summary> Get current directory </summary>
-        public static string Getcd() { return Directory.GetCurrentDirectory(); }
+        public static void Start()
+        {
+            VFSManager.RegisterVFS(fs);
+            fs.Initialize();
+            Console.WriteLine("Starting disk service...  [done]");
+            if (!FileExists(PFS.System))
+            { CreateFolder(PFS.System); WriteFile(PFS.SystemLog, "", false); }
+            WriteFile(PFS.SystemLog, "Started disk service sucessfully [ " + Cosmos.HAL.RTC.Hour + ":" + Cosmos.HAL.RTC.Minute + " ]", true);
+        }
+        private static string ParseFullPath(string FullPath)
+        {
+            return FullPath.Replace("/", @"\");
+        }
+        public static void Format(int DiskID)
+        { fs.Format(DiskID.ToString(), "FAT32", true); }
+        public static int GetSpace(int DiskID)
+        { return (int)fs.GetAvailableFreeSpace(DiskID + ":"); }
+        public static string GetFSType(int DiskID)
+        { return fs.GetFileSystemType(DiskID.ToString()); }
+        public static List<DirectoryEntry> GetFolderList(string FullPath)
+        { return fs.GetDirectoryListing(ParseFullPath(FullPath)); }
+        public static void CreateFolder(string FullPath)
+        {
+            try
+            { fs.CreateDirectory(ParseFullPath(FullPath)); }
+            catch (Exception e)
+            { WriteFile(@"0:\System2\Crash.log", "\n[Error] "+e, true); }
+        }
+        public static void WriteFile(string FullPath, string Contents, bool Append)
+        {
+            try
+            { switch (Append)
+                {
+                    case true: File.WriteAllText(ParseFullPath(FullPath), File.ReadAllText(ParseFullPath(FullPath))+Contents); break;
+                    case false: File.WriteAllText(ParseFullPath(FullPath), Contents); break;
+                } }
+            catch (Exception e)
+            { WriteFile(@"0:\System2\Crash.log", "\n[Error] Failed to write to "+ParseFullPath(FullPath)+"\n"+e.ToString(), true); }
+        }
+        public static string ReadFile(string FullPath)
+        { return File.ReadAllText(ParseFullPath(FullPath)); }
+        public static List<DirectoryEntry> GetDisks()
+        { return fs.GetVolumes(); }
+        public static void DeleteEntry(string FullPath)
+        {
+            File.Delete(ParseFullPath(FullPath));
+        }
+        public static bool FileExists(string FullPath)
+        {
+            return File.Exists(ParseFullPath(FullPath));
+        }
     }
 }

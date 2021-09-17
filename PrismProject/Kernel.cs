@@ -1,5 +1,4 @@
-using System;
-using System.Drawing;
+using System;using PrismProject.Source.Graphics;
 
 namespace PrismProject
 {
@@ -8,10 +7,9 @@ namespace PrismProject
         protected override void Run()
         {
             try
-            {
-                Source.Graphics.Drawables.TestScreen();
-            }
-            catch (Exception e) { Console.WriteLine("[ERROR] " + e); }
+            { Source.Sequence.Boot.DisplayScreen.Main(); }
+            catch (Exception e)
+            { Drawables.Screen.Disable(); Console.WriteLine(e.Message); Stop(); }
         }
     }
 }
