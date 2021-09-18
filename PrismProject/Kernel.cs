@@ -1,5 +1,3 @@
-using System;using PrismProject.Source.Graphics;
-
 namespace PrismProject
 {
     public class Kernel : Cosmos.System.Kernel
@@ -7,9 +5,13 @@ namespace PrismProject
         protected override void Run()
         {
             try
-            { Source.Sequence.Boot.DisplayScreen.Main(); }
-            catch (Exception e)
-            { Drawables.Screen.Disable(); Console.WriteLine(e.Message); Stop(); }
+            {
+                Source.Sequence.Boot.ShowScreen.Main();
+            }
+            catch (System.Exception CMSG)
+            {
+                Source.Sequence.Crash.ShowScreen.Main(CMSG);
+            }
         }
     }
 }

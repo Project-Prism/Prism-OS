@@ -9,14 +9,26 @@ using System.Text;
 
 namespace PrismProject.Source.Network
 {
-    class Network
+    internal class Interface
     {
-        public static Address Local = new Address(127,0,0,1);
-        public static Address Subnet = new Address(255,255,255,0);
-        /// <summary> Type 1 for 192.168.x.x type routers </summary>
-        public static Address Gateway1 = new Address(192,168,1,1);
-        /// <summary> Type 2 for 10.0.0.x type routers </summary>
-        public static Address Gateway2 = new Address(10,0,0,1);
+        /// <summary>Type 1 for 192.168.x.x type routers</summary>
+        public static Address Gateway1 = new Address(192, 168, 1, 1);
+
+        /// <summary>Type 2 for 10.0.0.x type routers</summary>
+        public static Address Gateway2 = new Address(10, 0, 0, 1);
+
+        public static Address Local = new Address(127, 0, 0, 1);
+        public static Address Subnet = new Address(255, 255, 255, 0);
+
+        public static Address DNS(Address GateWay, string Domain)
+        {
+            using (DnsClient xClient = new DnsClient())
+            {
+                xClient.Connect(GateWay);
+                xClient.SendAsk(Domain);
+                return xClient.Receive();
+            }
+        }
 
         public static void NetStart(Address LocalIP, Address SubNet, Address GateWay)
         {
@@ -25,6 +37,7 @@ namespace PrismProject.Source.Network
             using (DHCPClient xClient = new DHCPClient()) { xClient.SendDiscoverPacket(); }
             Console.WriteLine(" [done]");
         }
+
         public static void TCPClient(byte[] IP, int Port, string Contents)
         {
             using (TcpClient xClient = new TcpClient(Port))
@@ -36,13 +49,14 @@ namespace PrismProject.Source.Network
                 byte[] data2 = xClient.NonBlockingReceive(ref endpoint);
             }
         }
+
         public static void TCPServer(int port)
         {
             /*
             using (var xServer = new TcpListener(port))
             {
                 xServer.Start();
-                
+
                 while (true) // one client at a time until threading is implemented.
                 {
                     var OutClient = xServer.AcceptTcpClient();
@@ -53,15 +67,6 @@ namespace PrismProject.Source.Network
                 }
             }
             */
-        }
-        public static Address DNS(Address GateWay, string Domain)
-        {
-            using (DnsClient xClient = new DnsClient())
-            {
-                xClient.Connect(GateWay);
-                xClient.SendAsk(Domain);
-                return xClient.Receive();
-            }
         }
     }
 }
