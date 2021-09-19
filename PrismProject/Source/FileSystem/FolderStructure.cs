@@ -11,5 +11,6 @@
         public readonly string SystemImages = @"0:\System2\Data\Images\";
         public readonly string SystemLog = @"0:\System2\LOG.txt";
         public readonly string SystemTmp = @"0:\System2\TEMPORARY\";
+        public readonly string SystemFonts = @"0:\System2\Fonts";
     }
 }

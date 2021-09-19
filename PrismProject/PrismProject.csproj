@@ -137,7 +137,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Source\Assets\Comfortaa.BFont" />
+      <None Remove="Source\Assets\Default.Chars" />
+    </ItemGroup>
+
+    <ItemGroup>
       <EmbeddedResource Include="Source\Assets\Boot.bmp" />
+      <EmbeddedResource Include="Source\Assets\Comfortaa.BFont" />
+      <EmbeddedResource Include="Source\Assets\Default.Chars" />
     </ItemGroup>
 
     <ItemGroup>

@@ -14,10 +14,17 @@ namespace PrismProject.Source.Graphics
         public static readonly int Width = 800, Height = 600;
         public static int[] UI_Set = new int[] { Width / 2, Height / 2 };
 
-        public static int CalculateTextCenter(int x, int leters)
+        /// <summary>
+        /// Testing centered text
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="leters"></param>
+        /// <returns></returns>
+        public static int TextXCenter(int leters)
         {
-            return x - (Cosmos.System.Graphics.Fonts.PCScreenFont.Default.Width / leters);
+            return UI_Set[0] - (BitFont.RegisteredBitFont["Comfortaa"].Size / leters);
         }
+
         public static void Clear(Color color)
         {
             Screen.Clear(color);
@@ -72,8 +79,12 @@ namespace PrismProject.Source.Graphics
         {
             switch (filled)
             {
-                case true: Screen.DrawFilledRectangle(new Pen(color), X, Y, X2, Y2); break;
-                case false: Screen.DrawRectangle(new Pen(color), X, Y, X2, Y2); break;
+                case true:
+                    Screen.DrawFilledRectangle(new Pen(color), X, Y, X2, Y2);
+                    break;
+                case false:
+                    Screen.DrawRectangle(new Pen(color), X, Y, X2, Y2);
+                    break;
 
                 default:
                     FileSystem.Disk.WriteFile(@"\System2\crash.log", "\n[Warning] Illegal attempt to draw rectangle, \"" + filled + "\" is not valid for this statment.", true);
@@ -102,9 +113,9 @@ namespace PrismProject.Source.Graphics
             else { } //Bottom Right
         }
 
-        public static void DrawText(int X, int Y, string str, Color color)
+        public static void DrawText(int X, int Y, string str, string Font, Color color)
         {
-            Screen.DrawString(str, Cosmos.System.Graphics.Fonts.PCScreenFont.Default, new Pen(color), X, Y);
+            Screen.DrawBitFontString(Font, color, str, X, Y);
         }
 
         public static void DrawTriangle(int X, int Y, int X2, int Y2, int X3, int Y3, Color color)

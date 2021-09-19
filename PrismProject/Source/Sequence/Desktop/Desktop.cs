@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace PrismProject.Source.Sequence.Desktop
 {
-    internal class ShowScreen
+    internal class Desktop
     {
         public static void Main()
         {
