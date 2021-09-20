@@ -137,14 +137,24 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Source\Assets\Comfortaa.BFont" />
-      <None Remove="Source\Assets\Default.Chars" />
+      <Compile Remove="Source\Assets\**" />
+      <Compile Remove="Source\Libraries\**" />
+      <EmbeddedResource Remove="Source\Assets\**" />
+      <EmbeddedResource Remove="Source\Libraries\**" />
+      <None Remove="Source\Assets\**" />
+      <None Remove="Source\Libraries\**" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Source\Assets\Boot.bmp" />
-      <EmbeddedResource Include="Source\Assets\Comfortaa.BFont" />
-      <EmbeddedResource Include="Source\Assets\Default.Chars" />
+      <None Remove="Source\Resources\Boot.bmp" />
+      <None Remove="Source\Resources\Comfortaa.BFont" />
+      <None Remove="Source\Resources\Default.Chars" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Source\Resources\Boot.bmp" />
+      <EmbeddedResource Include="Source\Resources\Comfortaa.BFont" />
+      <EmbeddedResource Include="Source\Resources\Default.Chars" />
     </ItemGroup>
 
     <ItemGroup>
@@ -153,10 +163,6 @@
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="System.Console" Version="4.3.1" />
         <PackageReference Include="System.Runtime" Version="4.3.1" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Source\Libraries\" />
     </ItemGroup>
 
 </Project>

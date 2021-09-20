@@ -7,8 +7,11 @@ namespace PrismProject.Source.Sequence.Desktop
     {
         public static void Main()
         {
-            Drawables.Clear(Color.Green);
-            Drawables.DrawWindowBase(200, 100, 400, 400, 4, Themes.Window);
+            while (true)
+            {
+                Drawables.Clear(Color.Green);
+                Drawables.DrawWindowBase(200, 100, 400, 400, 4, Themes.Window);
+            }
         }
     }
 }

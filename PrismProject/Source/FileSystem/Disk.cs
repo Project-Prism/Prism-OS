@@ -48,7 +48,7 @@ namespace PrismProject.Source.FileSystem
         public static string ReadFile(string FullPath)
         { return File.ReadAllText(ParseFullPath(FullPath)); }
 
-        /// <summary>Start the VFS service.</summary>
+        /// <summary> Start the VFS service. </summary>
         public static void Start()
         {
             VFSManager.RegisterVFS(fs);

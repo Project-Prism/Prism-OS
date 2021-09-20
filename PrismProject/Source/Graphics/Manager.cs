@@ -10,16 +10,11 @@ namespace PrismProject.Source.Graphics
 
     internal class Drawables
     {
+        public static readonly int Width = 800;
+        public static readonly int Height = 600;
         public static readonly SVGAIICanvas Screen = new SVGAIICanvas(new Mode(Width, Height, ColorDepth.ColorDepth32));
-        public static readonly int Width = 800, Height = 600;
         public static int[] UI_Set = new int[] { Width / 2, Height / 2 };
 
-        /// <summary>
-        /// Testing centered text
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="leters"></param>
-        /// <returns></returns>
         public static int TextXCenter(int leters)
         {
             return UI_Set[0] - (BitFont.RegisteredBitFont["Comfortaa"].Size / leters);
@@ -38,16 +33,12 @@ namespace PrismProject.Source.Graphics
             Screen.DrawLine(new Pen(color), X, Y, X + (int)(Math.Round(angleX * 100) / 100), Y - (int)(Math.Round(angleY * 100) / 100));
         }
 
-        public static void DrawCircle(int X, int Y, int Radius, Color color, bool filled)
+        public static void DrawCirc(int X, int Y, int Radius, Color color, bool filled)
         {
             switch (filled)
             {
                 case true: Screen.DrawFilledCircle(new Pen(color), X, Y, Radius); break;
                 case false: Screen.DrawCircle(new Pen(color), X, Y, Radius); break;
-
-                default:
-                    FileSystem.Disk.WriteFile(@"0:\System2\crash.log", "\n[Warning] Illegal attempt to draw circle, \"" + filled + "\" is not valid for this statment.", true);
-                    break;
             }
         }
 
@@ -57,25 +48,21 @@ namespace PrismProject.Source.Graphics
             {
                 case true: Screen.DrawFilledEllipse(new Pen(color), X, Y, X2, Y2); break;
                 case false: Screen.DrawEllipse(new Pen(color), X, Y, X2, Y2); break;
-
-                default:
-                    FileSystem.Disk.WriteFile(@"\System2\crash.log", "\n[Warning] Illegal attempt to draw circle, \"" + filled + "\" is not valid for this statment.", true);
-                    break;
             }
         }
 
-        public static void DrawImage(int X, int Y, Bitmap image)
+        public static void DrawBMP(int X, int Y, Bitmap image)
         {
             Screen.DrawImageAlpha(image, X, Y);
         }
 
-        public static void DrawProgressBar(int X, int Y, int X2, int Y2, int Percent)
+        public static void DrawProgBar(int X, int Y, int X2, int Y2, int Percent)
         {
-            DrawRoundedRectangle(X, Y, X2, Y2, 50, Themes.ProgBar[0], new int[] { 1, 1, 1, 1 });
-            DrawRoundedRectangle(X, Y, X2 / Percent, Y2, 50, Themes.ProgBar[1], new int[] { 1, 1, 1, 1 });
+            DrawRoundRect(X, Y, X2, Y2, 50, Themes.ProgBar[0], new int[] { 1, 1, 1, 1 });
+            DrawRoundRect(X, Y, X2 / Percent, Y2, 50, Themes.ProgBar[1], new int[] { 1, 1, 1, 1 });
         }
 
-        public static void DrawRectangle(int X, int Y, int X2, int Y2, Color color, bool filled)
+        public static void DrawRect(int X, int Y, int X2, int Y2, Color color, bool filled)
         {
             switch (filled)
             {
@@ -85,14 +72,10 @@ namespace PrismProject.Source.Graphics
                 case false:
                     Screen.DrawRectangle(new Pen(color), X, Y, X2, Y2);
                     break;
-
-                default:
-                    FileSystem.Disk.WriteFile(@"\System2\crash.log", "\n[Warning] Illegal attempt to draw rectangle, \"" + filled + "\" is not valid for this statment.", true);
-                    break;
             }
         }
 
-        public static void DrawRoundedRectangle(int X, int Y, int X2, int Y2, int R, Color color, int[] Sides)
+        public static void DrawRoundRect(int X, int Y, int X2, int Y2, int R, Color color, int[] Sides)
         {
             int x2 = X + X2, y2 = Y + Y2, r2 = R + R;
             Screen.DrawFilledRectangle(new Pen(color), X, Y + R, X2, Y2 - r2); // Left Right
@@ -125,9 +108,9 @@ namespace PrismProject.Source.Graphics
 
         public static void DrawWindowBase(int X, int Y, int X2, int Y2, int R, Color[] Theme)
         {
-            DrawRoundedRectangle(X - 1, Y - 1, X2 + 2, Y2 + 2 + (Y2 / 20), R, Theme[4], new int[] { 1, 1, 1, 1 }); //shadow
-            DrawRoundedRectangle(X, Y + (Y2 / 20), X2, Y2, R, Theme[2], new int[] { 1, 1, 1, 1 }); //window
-            DrawRoundedRectangle(X, Y, X2, Y2 / 20, R, Theme[0], new int[] { 1, 1, 1, 1 }); //title bar
+            DrawRoundRect(X - 1, Y - 1, X2 + 2, Y2 + 2 + (Y2 / 20), R, Theme[4], new int[] { 1, 1, 1, 1 }); //shadow
+            DrawRoundRect(X, Y + (Y2 / 20), X2, Y2, R, Theme[2], new int[] { 1, 1, 1, 1 }); //window
+            DrawRoundRect(X, Y, X2, Y2 / 20, R, Theme[0], new int[] { 1, 1, 1, 1 }); //title bar
         }
     }
 }

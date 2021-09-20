@@ -1,5 +1,5 @@
 ﻿using static PrismProject.Source.Network.Interface;
-using static PrismProject.Source.Assets.AssetList;
+using static PrismProject.Source.Resources.ResourceList;
 using PrismProject.Source.FileSystem;
 using Cosmos.System;
 
