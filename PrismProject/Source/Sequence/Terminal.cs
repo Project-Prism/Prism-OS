@@ -3,7 +3,7 @@ using System;
 using static PrismProject.Source.FileSystem.Disk;
 using static PrismProject.Source.Network.Interface;
 
-namespace PrismProject.Source.Sequence.Terminal
+namespace PrismProject.Source.Sequence
 {
     class Terminal
     {
@@ -82,7 +82,7 @@ namespace PrismProject.Source.Sequence.Terminal
                         switch (input[1].ToLower())
                         {
                             case "start":
-                                Boot.ShowScreen.Main();
+                                Boot.Main();
                                 break;
                         }
                         break;

@@ -137,24 +137,24 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Remove="Source\Assets\**" />
       <Compile Remove="Source\Libraries\**" />
-      <EmbeddedResource Remove="Source\Assets\**" />
+      <Compile Remove="Source\Resources\**" />
       <EmbeddedResource Remove="Source\Libraries\**" />
-      <None Remove="Source\Assets\**" />
+      <EmbeddedResource Remove="Source\Resources\**" />
       <None Remove="Source\Libraries\**" />
+      <None Remove="Source\Resources\**" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Source\Resources\Boot.bmp" />
-      <None Remove="Source\Resources\Comfortaa.BFont" />
-      <None Remove="Source\Resources\Default.Chars" />
+      <None Remove="Source\Assets\Boot.bmp" />
+      <None Remove="Source\Assets\Comfortaa.BFont" />
+      <None Remove="Source\Assets\Default.Chars" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Source\Resources\Boot.bmp" />
-      <EmbeddedResource Include="Source\Resources\Comfortaa.BFont" />
-      <EmbeddedResource Include="Source\Resources\Default.Chars" />
+      <EmbeddedResource Include="Source\Assets\Boot.bmp" />
+      <EmbeddedResource Include="Source\Assets\Comfortaa.BFont" />
+      <EmbeddedResource Include="Source\Assets\Default.Chars" />
     </ItemGroup>
 
     <ItemGroup>

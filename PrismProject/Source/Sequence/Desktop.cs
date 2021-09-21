@@ -9,8 +9,8 @@ namespace PrismProject.Source.Sequence.Desktop
         {
             while (true)
             {
-                Drawables.Clear(Color.Green);
-                Drawables.DrawWindowBase(200, 100, 400, 400, 4, Themes.Window);
+                ExtendedCanvas.EXTCanvas.Clear(Color.Green);
+                ExtendedCanvas.DrawPage(200, 100, 400, 400, 4, Themes.Window);
             }
         }
     }

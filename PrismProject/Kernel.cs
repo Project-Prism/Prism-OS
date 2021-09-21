@@ -1,4 +1,4 @@
-using static PrismProject.Source.Sequence.Boot.ShowScreen;
+using System;
 
 namespace PrismProject
 {
@@ -6,7 +6,7 @@ namespace PrismProject
     {
         protected override void Run()
         {
-            Main();
+            Source.Sequence.Boot.Main();
         }
     }
 }
