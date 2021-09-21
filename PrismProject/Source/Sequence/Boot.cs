@@ -12,7 +12,7 @@ namespace PrismProject.Source.Sequence
         public static void Main()
         {
             EXTInit();
-            DrawTXT(TextXCenter(14), 450, "Please wait...", Color.White);
+            //DrawTXT(TextXCenter(14), 450, "Please wait...", Color.White);
             DrawBMP((Width / 2) - (int)BootLogo.Width, (Height / 2) - (int)BootLogo.Height, BootLogo);
             Work();
             Desktop.Desktop.Main();
@@ -23,7 +23,6 @@ namespace PrismProject.Source.Sequence
             Beep();
             Disk.Start();
             NetStart(Local, Subnet, Gateway2);
-            InitFont();
         }
     }
 }

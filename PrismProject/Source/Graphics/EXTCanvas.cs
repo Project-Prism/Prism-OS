@@ -14,6 +14,8 @@ namespace PrismProject.Source.Graphics
         public static void EXTInit()
         {
             EXTCanvas = new SVGAIICanvas(new Mode(Width, Height, ColorDepth32));
+            Assets.AssetList.InitFont();
+            
         }
 
         public static void DrawRect(int X1, int Y1, int X2, int Y2, Color C, bool filled)
@@ -52,43 +54,25 @@ namespace PrismProject.Source.Graphics
             EXTCanvas.DrawImageAlpha(BMP, X1, Y1);
         }
 
-        public static void DrawRoundRect(int X1, int Y1, int X2, int Y2, int R, Color C, int[] sides)
+        public static void DrawRoundRect(int X1, int Y1, int X2, int Y2, int R, Color C, int[] Sides)
         {
-            DrawRect(X1 + R, Y1, X2 - R, Y2, C, true);
-            DrawRect(X1, Y1 + R, X2, Y2 - R, C, true);
+            int x2 = X1 + X2, y2 = Y1 + Y2, r2 = R + R;
+            DrawRect(X1, Y1 + R, X2, Y2 - r2, C, true); // Left Right
+            DrawRect(X1 + R, Y1, X2 - r2, R, C, true); //Bottom Bar
+            DrawRect(X1 + R, y2 - R, X2 - r2, R, C, true); //Top Bar
 
-            if (sides[0] == 1)
-            {
-                DrawCirc(X1, Y1, R, C, true);
-            }
-            else
-            {
-                DrawRect(X1, Y1, X1 + R, Y1 + R, C, true);
-            }
-            if (sides[1] == 1)
-            {
-                DrawCirc(X2, Y1, R, C, true);
-            }
-            else
-            {
-                DrawRect(X2, Y2, X2 - R, Y2 + R, C, true);
-            }
-            if (sides[2] == 1)
-            {
-                DrawCirc(X1, Y2, R, C, true);
-            }
-            else
-            {
-                DrawRect(X1, Y2, X1 + R, Y2 - R, C, true);
-            }
-            if (sides[3] == 1)
-            {
-                DrawCirc(X2, Y2, R, C, true);
-            }
-            else
-            {
-                DrawRect(X2, Y2, X2 - R, Y2 - R, C, true);
-            }
+            if (Sides[0] == 1)
+            { DrawCirc(X1 + R, Y1 + R, R, C, true); }
+            else { } //Top Left
+            if (Sides[1] == 1)
+            { DrawCirc(x2 - R - 1, Y1 + R, R, C, true); }
+            else { } //Top Right
+            if (Sides[2] == 1)
+            { DrawCirc(X1 + R, y2 - R - 1, R, C, true); }
+            else { } //Bottom Left
+            if (Sides[3] == 1)
+            { DrawCirc(x2 - R - 1, y2 - R - 1, R, C, true); }
+            else { } //Bottom Right
         }
 
         public static void DrawPage(int X1, int Y1, int X2, int Y2, int R, Color[] Theme)
