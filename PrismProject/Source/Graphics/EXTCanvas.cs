@@ -14,8 +14,6 @@ namespace PrismProject.Source.Graphics
         public static void EXTInit()
         {
             EXTCanvas = new SVGAIICanvas(new Mode(Width, Height, ColorDepth32));
-            EXTCanvas.Disable();
-            EXTCanvas.Display();
         }
 
         public static void DrawRect(int X1, int Y1, int X2, int Y2, Color C, bool filled)
