@@ -146,15 +146,17 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Remove="Source\Assets\Arrow.bmp" />
       <None Remove="Source\Assets\Boot.bmp" />
       <None Remove="Source\Assets\Comfortaa.BFont" />
       <None Remove="Source\Assets\Default.Chars" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Source\Assets\Boot.bmp" />
-      <EmbeddedResource Include="Source\Assets\Comfortaa.BFont" />
-      <EmbeddedResource Include="Source\Assets\Default.Chars" />
+      <EmbeddedResource Include="Source\Assets\Images\Arrow.bmp" />
+      <EmbeddedResource Include="Source\Assets\Images\Boot.bmp" />
+      <EmbeddedResource Include="Source\Assets\Fonts\Comfortaa.BFD" />
+      <EmbeddedResource Include="Source\Assets\Fonts\Charset.BCS" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,20 +1,25 @@
 ﻿using Cosmos.System.Graphics;
 using IL2CPU.API.Attribs;
+using System.IO;
+using PrismProject.Source.Graphics;
 
 namespace PrismProject.Source.Assets
 {
     class AssetList
     {
-        [ManifestResourceStream(ResourceName = "PrismProject.Source.Assets.Boot.bmp")] public static byte[] Prism;
-        //[ManifestResourceStream(ResourceName = "PrismProject.Source.Assets.Comfortaa.BFont")] public static byte[] ComfortaaFont;
-        //[ManifestResourceStream(ResourceName = "PrismProject.Source.Assets.Default.Chars")] public static byte[] FontCharSet;
+        [ManifestResourceStream(ResourceName = "PrismProject.Source.Assets.Images.Boot.bmp")] private static byte[] PrismIcon;
+        [ManifestResourceStream(ResourceName = "PrismProject.Source.Assets.Images.Arrow.bmp")] private static byte[] MouseIcon;
+        [ManifestResourceStream(ResourceName = "PrismProject.Source.Assets.Fonts.Comfortaa.bitfont")] private static byte[] ComfortaaData;
+        [ManifestResourceStream(ResourceName = "PrismProject.Source.Assets.Fonts.Charset.BCS")] private static byte[] CharSet;
+        [ManifestResourceStream(ResourceName = "PrismProject.Source.Assets.Themes.Default.theme")] private static byte[] Theme_prism;
 
-        public static string Font0 = "Comfortaa";
-        public static Bitmap BootLogo = new Bitmap(Prism);
+        public static string Comfortaa = "Comfortaa";
+        public static Bitmap BootLogo = new Bitmap(PrismIcon);
+        public static Bitmap MouseArrow = new Bitmap(MouseIcon);
 
         public static void InitFont()
         {
-            //Graphics.BitFont.RegisterBitFont(Font0, new Graphics.BitFontDescriptor(FontCharSet.ToString(), new MemoryStream(ComfortaaFont), 16));
+            BitFont.RegisterBitFont(Comfortaa, new BitFontDescriptor(CharSet.ToString(), new MemoryStream(ComfortaaData), 16));
         }
     }
 }

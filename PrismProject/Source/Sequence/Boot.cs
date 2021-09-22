@@ -12,8 +12,8 @@ namespace PrismProject.Source.Sequence
         public static void Main()
         {
             EXTInit();
-            //DrawTXT(TextXCenter(14), 450, "Please wait...", Color.White);
-            DrawBMP((Width / 2) - (int)BootLogo.Width, (Height / 2) - (int)BootLogo.Height, BootLogo);
+            DrawTXT(200, 450, "Please wait...", Color.White);
+            DrawBMP((Width / 2) - ((int)BootLogo.Width/2), (Height / 2) - ((int)BootLogo.Height/2), BootLogo);
             Work();
             Desktop.Desktop.Main();
         }

@@ -1,7 +1,9 @@
-﻿using Cosmos.System.Graphics;
+﻿using Cosmos.System;
+using Cosmos.System.Graphics;
 using System;
 using System.Drawing;
 using static Cosmos.System.Graphics.ColorDepth;
+using static PrismProject.Source.Assets.AssetList;
 
 namespace PrismProject.Source.Graphics
 {
@@ -14,8 +16,9 @@ namespace PrismProject.Source.Graphics
         public static void EXTInit()
         {
             EXTCanvas = new SVGAIICanvas(new Mode(Width, Height, ColorDepth32));
-            Assets.AssetList.InitFont();
-            
+            MouseManager.ScreenWidth = (uint)Width;
+            MouseManager.ScreenHeight = (uint)Height;
+            InitFont();
         }
 
         public static void DrawRect(int X1, int Y1, int X2, int Y2, Color C, bool filled)
@@ -77,9 +80,9 @@ namespace PrismProject.Source.Graphics
 
         public static void DrawPage(int X1, int Y1, int X2, int Y2, int R, Color[] Theme)
         {
-            DrawRoundRect(X1 - 1, Y1 - 1, X2 + 2, Y2 + 2 + (Y2 / 20), R, Theme[4], new int[] { 1, 1, 1, 1 }); //shadow
-            DrawRoundRect(X1, Y1 + (Y2 / 20), X2, Y2, R, Theme[2], new int[] { 1, 1, 1, 1 }); //window
-            DrawRoundRect(X1, Y1, X2, Y2 / 20, R, Theme[0], new int[] { 1, 1, 1, 1 }); //title bar
+            DrawRoundRect(X1 - 1, Y1 - 1, X2 + 2, Y2 + 2 + (Y2 / 15), R, Theme[4], new int[] { 1, 1, 1, 1 }); //shadow
+            DrawRoundRect(X1, Y1 + (Y2 / 15), X2, Y2, R, Theme[2], new int[] { 1, 1, 1, 1 }); //window
+            DrawRoundRect(X1, Y1, X2, Y2 / 15, R, Theme[0], new int[] { 1, 1, 1, 1 }); //title bar
         }
 
         public static void DrawAngle(int X, int Y, int Angle, int Radius, Color color)
@@ -92,18 +95,23 @@ namespace PrismProject.Source.Graphics
 
         public static void DrawProgBar(int X1, int Y1, int X2, int Y2, int Percent)
         {
-            DrawRoundRect(X1, Y1, X2, Y2, 50, Themes.ProgBar[0], new int[] { 1, 1, 1, 1 });
-            DrawRoundRect(X1, Y1, X2 / Percent, Y2, 50, Themes.ProgBar[1], new int[] { 1, 1, 1, 1 });
+            DrawRoundRect(X1, Y1, X2, Y2, 50, ThemesEngine.ProgBar[0], new int[] { 1, 1, 1, 1 });
+            DrawRoundRect(X1, Y1, X2 / Percent, Y2, 50, ThemesEngine.ProgBar[1], new int[] { 1, 1, 1, 1 });
         }
 
         public static void DrawTXT(int X1, int Y1, string TXT, Color C)
         {
-            EXTCanvas.DrawBitFontString(Assets.AssetList.Font0, C, TXT, X1, Y1);
+            EXTCanvas.DrawBitFontString(Comfortaa, C, TXT, X1, Y1);
+        }
+
+        public static void UpdateMouse()
+        {
+            DrawBMP((int)MouseManager.X, (int)MouseManager.Y, MouseArrow);
         }
 
         public static int TextXCenter(int leters)
         {
-            return (Width / 2) - (BitFont.RegisteredBitFont["Comfortaa"].Size / leters);
+            return (Width / 2) - (BitFont.RegisteredBitFont["Comfortaa"].Size * leters);
         }
     }
 }

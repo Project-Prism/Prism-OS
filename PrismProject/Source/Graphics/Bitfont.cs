@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 
-namespace PrismProject.Source.Graphics
+namespace PrismProject
 {
+    //thanks nifanfa :)
     public struct BitFontDescriptor
     {
         public string Charset;
@@ -17,10 +18,6 @@ namespace PrismProject.Source.Graphics
             this.Size = aSize;
         }
     }
-
-    /// <summary>
-    /// For More https://github.com/nifanfa/BitFont
-    /// </summary>
     static class BitFont
     {
         public static Dictionary<string, BitFontDescriptor> RegisteredBitFont = new Dictionary<string, BitFontDescriptor>();
@@ -36,7 +33,7 @@ namespace PrismProject.Source.Graphics
         }
 
         /// <summary>
-        /// Draw BitFont String
+        /// Draw String With BitFont
         /// </summary>
         /// <exception cref="KeyNotFoundException"></exception>
         /// <param name="canvas"></param>
