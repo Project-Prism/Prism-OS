@@ -10,7 +10,7 @@ namespace PrismProject.Source.Sequence.Desktop
             while (true)
             {
                 ExtendedCanvas.EXTCanvas.Clear(Color.Green);
-                ExtendedCanvas.DrawPage(200, 100, 400, 200, 4, ThemesEngine.Window);
+                ExtendedCanvas.DrawPage(200, 100, 400, 200, 4);
             }
         }
     }

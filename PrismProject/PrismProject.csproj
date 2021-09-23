@@ -146,17 +146,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Source\Assets\Arrow.bmp" />
-      <None Remove="Source\Assets\Boot.bmp" />
-      <None Remove="Source\Assets\Comfortaa.BFont" />
-      <None Remove="Source\Assets\Default.Chars" />
+      <None Remove="Source\System2\Comfortaa.BFont" />
+      <None Remove="Source\System2\Default.Chars" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Source\Assets\Images\Arrow.bmp" />
-      <EmbeddedResource Include="Source\Assets\Images\Boot.bmp" />
-      <EmbeddedResource Include="Source\Assets\Fonts\Comfortaa.BFD" />
-      <EmbeddedResource Include="Source\Assets\Fonts\Charset.BCS" />
+      <EmbeddedResource Include="Source\System2\Images\Arrow.bmp" />
+      <EmbeddedResource Include="Source\System2\Images\Boot.bmp" />
     </ItemGroup>
 
     <ItemGroup>
@@ -165,6 +161,39 @@
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="System.Console" Version="4.3.1" />
         <PackageReference Include="System.Runtime" Version="4.3.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Source\System2\Assets.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Assets.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Source\FileSystem\FolderStruct.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>FolderStruct.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Source\System2\Theme.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Theme.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Source\System2\Assets.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Assets.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Source\FileSystem\FolderStruct.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>FolderStruct.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Source\System2\Theme.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Theme.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
     </ItemGroup>
 
 </Project>

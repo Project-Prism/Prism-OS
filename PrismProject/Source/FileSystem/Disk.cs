@@ -10,7 +10,6 @@ namespace PrismProject.Source.FileSystem
     internal class Disk
     {
         private static readonly CosmosVFS fs = new CosmosVFS();
-        private static readonly FolderStructure PFS = new FolderStructure();
 
         public static void CreateFolder(string FullPath)
         {
@@ -54,9 +53,9 @@ namespace PrismProject.Source.FileSystem
             VFSManager.RegisterVFS(fs);
             fs.Initialize();
             Console.WriteLine("Starting disk service...  [done]");
-            if (!FileExists(PFS.System))
-            { CreateFolder(PFS.System); WriteFile(PFS.SystemLog, "", false); }
-            WriteFile(PFS.SystemLog, "Started disk service sucessfully [ " + Cosmos.HAL.RTC.Hour + ":" + Cosmos.HAL.RTC.Minute + " ]", true);
+            if (!FileExists(FolderStruct.System))
+            { CreateFolder(FolderStruct.System); WriteFile(FolderStruct.System_log, "", false); }
+            WriteFile(FolderStruct.System_log, "Started disk service sucessfully [ " + Cosmos.HAL.RTC.Hour + ":" + Cosmos.HAL.RTC.Minute + " ]", true);
         }
 
         public static void WriteFile(string FullPath, string Contents, bool Append)
