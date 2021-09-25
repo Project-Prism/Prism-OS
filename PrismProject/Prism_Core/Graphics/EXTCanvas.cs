@@ -2,13 +2,11 @@
 using Cosmos.System.Graphics;
 using System;
 using System.Drawing;
-using static PrismProject.Source.General.Convert;
 using static Cosmos.System.Graphics.ColorDepth;
-using static PrismProject.Source.Assets.Config;
-using static PrismProject.Source.Assets.Theme;
+using static PrismProject.Prism_Core.Internal.Files;
 using System.IO;
 
-namespace PrismProject.Source.Graphics
+namespace PrismProject.Prism_Core.Graphics
 {
     class ExtendedCanvas
     {
@@ -21,7 +19,7 @@ namespace PrismProject.Source.Graphics
             EXTCanvas = new SVGAIICanvas(new Mode(Width, Height, ColorDepth32));
             MouseManager.ScreenWidth = (uint)Width;
             MouseManager.ScreenHeight = (uint)Height;
-            BitFont.RegisterBitFont(ComfortaaName, new BitFontDescriptor(CharSet, new MemoryStream(ToByteArray(Comfortaa)), 16));
+            BitFont.RegisterBitFont(Comfortaa_Name, new BitFontDescriptor(Charset, new MemoryStream(Comfortaa_Data), 16));
         }
 
         public static void DrawRect(int X1, int Y1, int X2, int Y2, Color C, bool filled)
@@ -83,9 +81,9 @@ namespace PrismProject.Source.Graphics
 
         public static void DrawPage(int X1, int Y1, int X2, int Y2, int R)
         {
-            DrawRoundRect(X1 - 1, Y1 - 1, X2 + 2, Y2 + 2 + (Y2 / 15), R, ToColor(WindowShadow), new int[] { 1, 1, 1, 1 }); //shadow
-            DrawRoundRect(X1, Y1 + (Y2 / 15), X2, Y2, R, ToColor(WindowPage), new int[] { 1, 1, 1, 1 }); //window
-            DrawRoundRect(X1, Y1, X2, Y2 / 15, R, ToColor(WindowBar), new int[] { 1, 1, 1, 1 }); //title bar
+            DrawRoundRect(X1 - 1, Y1 - 1, X2 + 2, Y2 + 2 + (Y2 / 15), R, WindowTheme[0], new int[] { 1, 1, 1, 1 }); //shadow
+            DrawRoundRect(X1, Y1 + (Y2 / 15), X2, Y2, R, WindowTheme[2], new int[] { 1, 1, 1, 1 }); //window
+            DrawRoundRect(X1, Y1, X2, Y2 / 15, R, WindowTheme[3], new int[] { 1, 1, 1, 1 }); //title bar
         }
 
         public static void DrawAngle(int X, int Y, int Angle, int Radius, Color color)
@@ -98,18 +96,18 @@ namespace PrismProject.Source.Graphics
 
         public static void DrawProgBar(int X1, int Y1, int X2, int Y2, int Percent)
         {
-            DrawRoundRect(X1, Y1, X2, Y2, 50, ToColor(ProgressBarBackground), new int[] { 1, 1, 1, 1 });
-            DrawRoundRect(X1, Y1, X2 / Percent, Y2, 50, ToColor(ProgressBarForeground), new int[] { 1, 1, 1, 1 });
+            DrawRoundRect(X1, Y1, X2, Y2, 50, ProgBarTheme[0], new int[] { 1, 1, 1, 1 });
+            DrawRoundRect(X1, Y1, X2 / Percent, Y2, 50, ProgBarTheme[1], new int[] { 1, 1, 1, 1 });
         }
 
         public static void DrawTXT(int X1, int Y1, string TXT, Color C)
         {
-            EXTCanvas.DrawBitFontString(Comfortaa, C, TXT, X1, Y1);
+            EXTCanvas.DrawBitFontString(Comfortaa_Name, C, TXT, X1, Y1);
         }
 
         public static void UpdateMouse()
         {
-            DrawBMP((int)MouseManager.X, (int)MouseManager.Y, Assets.Converted.Mouse);
+            DrawBMP((int)MouseManager.X, (int)MouseManager.Y, Arrow_bmp);
         }
 
         public static int TextXCenter(int leters)

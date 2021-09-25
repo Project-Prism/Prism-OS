@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 
-namespace PrismProject
+namespace PrismProject.Prism_Core.Graphics
 {
     //thanks nifanfa :)
     public struct BitFontDescriptor

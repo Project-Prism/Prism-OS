@@ -134,25 +134,23 @@
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
       <DebugEnabled>False</DebugEnabled>
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Remove="Source\Libraries\**" />
-      <Compile Remove="Source\Resources\**" />
-      <EmbeddedResource Remove="Source\Libraries\**" />
-      <EmbeddedResource Remove="Source\Resources\**" />
-      <None Remove="Source\Libraries\**" />
-      <None Remove="Source\Resources\**" />
+      <None Remove="Prism_Core\Internal\Embeded\Comfortaa.font" />
+      <None Remove="Prism_Core\Internal\Embeded\Default.theme" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Source\System2\Comfortaa.BFont" />
-      <None Remove="Source\System2\Default.Chars" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Include="Source\System2\Images\Arrow.bmp" />
-      <EmbeddedResource Include="Source\System2\Images\Boot.bmp" />
+      <EmbeddedResource Include="Prism_Core\Internal\Embeded\Comfortaa.font" />
+      <EmbeddedResource Include="Prism_Core\Internal\Embeded\Default.theme" />
+      <EmbeddedResource Include="Prism_Core\Internal\Embeded\Images\Arrow.bmp" />
+      <EmbeddedResource Include="Prism_Core\Internal\Embeded\Images\Boot.bmp" />
     </ItemGroup>
 
     <ItemGroup>
@@ -164,36 +162,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Source\System2\Assets.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Assets.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Source\FileSystem\FolderStruct.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>FolderStruct.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Source\System2\Theme.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Theme.resx</DependentUpon>
-      </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Update="Source\System2\Assets.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Assets.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Source\FileSystem\FolderStruct.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>FolderStruct.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Source\System2\Theme.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Theme.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
+      <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
     </ItemGroup>
 
 </Project>

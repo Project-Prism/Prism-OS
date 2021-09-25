@@ -1,9 +1,9 @@
 ﻿using Cosmos.System.FileSystem.Listing;
 using System;
-using static PrismProject.Source.FileSystem.Disk;
-using static PrismProject.Source.Network.Interface;
+using static PrismProject.Prism_Core.IO.Disk;
+using static PrismProject.Prism_Core.Net.Core;
 
-namespace PrismProject.Source.Sequence
+namespace PrismProject.Prism_Core.Sequence.Terminal
 {
     class Terminal
     {
@@ -82,7 +82,7 @@ namespace PrismProject.Source.Sequence
                         switch (input[1].ToLower())
                         {
                             case "start":
-                                Boot.Main();
+                                Boot.Boot.Main();
                                 break;
                         }
                         break;

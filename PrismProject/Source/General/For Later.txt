@@ -1,9 +1,0 @@
-﻿        public static void DrawCoreImage()
-        {
-            //Screen.DrawImageAlpha(new Bitmap(Assembly.GetExecutingAssembly().GetManifestResourceNames()[0]), 0, 0);
-        }
-
-        string.lastindexof("\\");
-
-        bat parser
-        custom canvas

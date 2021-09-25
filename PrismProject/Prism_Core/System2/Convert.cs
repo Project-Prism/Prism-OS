@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
+﻿using System.Drawing;
 
-namespace PrismProject.Source.General
+namespace PrismProject.Prism_Core.System2
 {
     abstract class Convert
     {
@@ -42,6 +39,25 @@ namespace PrismProject.Source.General
         public static Color ToColor(string Input)
         {
             return Color.FromArgb(System.Convert.ToInt32(Input));
+        }
+
+        public abstract Color[] ToColorArray();
+
+        public static Color[] ToColorArray(string[] Input)
+        {
+            Color[] ColorArray = new Color[] { };
+            int place = 0;
+            foreach (string RGB in Input)
+            {
+                ColorArray[place++] = Color.FromArgb(System.Convert.ToInt32(RGB));
+            }
+            return ColorArray;
+        }
+
+
+        public static int KMtoMile(int KM)
+        {
+            return KM / (int)1.609344;
         }
     }
 }

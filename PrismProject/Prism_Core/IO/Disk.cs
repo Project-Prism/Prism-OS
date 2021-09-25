@@ -4,8 +4,9 @@ using Cosmos.System.FileSystem.VFS;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using static PrismProject.Prism_Core.Internal.Files;
 
-namespace PrismProject.Source.FileSystem
+namespace PrismProject.Prism_Core.IO
 {
     internal class Disk
     {
@@ -53,9 +54,9 @@ namespace PrismProject.Source.FileSystem
             VFSManager.RegisterVFS(fs);
             fs.Initialize();
             Console.WriteLine("Starting disk service...  [done]");
-            if (!FileExists(FolderStruct.System))
-            { CreateFolder(FolderStruct.System); WriteFile(FolderStruct.System_log, "", false); }
-            WriteFile(FolderStruct.System_log, "Started disk service sucessfully [ " + Cosmos.HAL.RTC.Hour + ":" + Cosmos.HAL.RTC.Minute + " ]", true);
+            if (!FileExists(System_Folder))
+            { CreateFolder(System_Folder); WriteFile(System_log, "", false); }
+            WriteFile(System_log, "Started disk service sucessfully [ " + Cosmos.HAL.RTC.Hour + ":" + Cosmos.HAL.RTC.Minute + " ]", true);
         }
 
         public static void WriteFile(string FullPath, string Contents, bool Append)

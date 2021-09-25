@@ -7,7 +7,7 @@ namespace PrismProject
     {
         protected override void Run()
         {
-            Source.Sequence.Boot.Main();
+            Prism_Core.Sequence.Boot.Boot.Main();
         }
     }
 }

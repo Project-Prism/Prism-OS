@@ -1,7 +1,7 @@
-﻿using PrismProject.Source.Graphics;
+﻿using PrismProject.Prism_Core.Graphics;
 using System.Drawing;
 
-namespace PrismProject.Source.Sequence.Desktop
+namespace PrismProject.Prism_Core.Sequence.Desktop
 {
     internal class Desktop
     {

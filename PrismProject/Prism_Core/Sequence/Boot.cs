@@ -1,11 +1,11 @@
-﻿using static PrismProject.Source.Network.Interface;
-using static PrismProject.Source.Graphics.ExtendedCanvas;
-using static PrismProject.Source.Assets.Converted;
+﻿using static PrismProject.Prism_Core.Net.Core;
+using static PrismProject.Prism_Core.Graphics.ExtendedCanvas;
+using static PrismProject.Prism_Core.Internal.Files;
 using static Cosmos.System.PCSpeaker;
-using PrismProject.Source.FileSystem;
+using PrismProject.Prism_Core.IO;
 using System.Drawing;
 
-namespace PrismProject.Source.Sequence
+namespace PrismProject.Prism_Core.Sequence.Boot
 {
     class Boot
     {
@@ -13,7 +13,7 @@ namespace PrismProject.Source.Sequence
         {
             EXTInit();
             DrawTXT(200, 450, "Please wait...", Color.White);
-            DrawBMP((Width / 2) - ((int)BootLogo.Width/2), (Height / 2) - ((int)BootLogo.Height/2), BootLogo);
+            DrawBMP((Width / 2) - ((int)Boot_bmp.Width/2), (Height / 2) - ((int)Boot_bmp.Height/2), Boot_bmp);
             Work();
             Desktop.Desktop.Main();
         }
