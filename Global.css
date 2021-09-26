@@ -1,10 +1,36 @@
 body {
-    background-color: rgb(50, 54, 58);
+    background-color: rgb(40, 40, 54);
     color: white;
 }
 
 .header {
-    background: linear-gradient(to bottom, #3366cc 0%, #66ccff 100%);
+    background: linear-gradient(to right, #77216f, #3f42e7 100%);
+}
+
+.LightMode {
+    background-color: white;
+    color: black;
+}
+
+.SettingsButton button {
+    transition-duration: 0.4s;
+    border-color: black;
+    border-radius: 15px;
+    margin-right: 10px;
+    border-width: 2px;
+    font-weight: bold;
+    line-height: 5px;
+    margin-top: 20px;
+    font-size: 15px;
+    padding: 15px;
+    width: 200px;
+    height: 10px;
+}
+
+.SettingsButton button:hover {
+    background-color:rgb(215, 236, 240);
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .footer {

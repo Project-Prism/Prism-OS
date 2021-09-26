@@ -20,7 +20,8 @@
 }
 
 .OptionButtons button:hover {
-    background-color: lightsteelblue;
+    background-color:rgb(215, 236, 240);
+    transform: scale(1.25);
     cursor: pointer;
 }
 
