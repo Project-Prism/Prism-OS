@@ -1,6 +1,3 @@
-using Cosmos.System.FileSystem.Listing;
-using System;
-
 namespace PrismProject
 {
     public class Kernel : Cosmos.System.Kernel

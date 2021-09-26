@@ -142,15 +142,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Prism_Core\Internal\Embeded\Comfortaa.font" />
-      <None Remove="Prism_Core\Internal\Embeded\Default.theme" />
+      <None Remove="System2\Embeded\Default.theme" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Prism_Core\Internal\Embeded\Comfortaa.font" />
-      <EmbeddedResource Include="Prism_Core\Internal\Embeded\Default.theme" />
-      <EmbeddedResource Include="Prism_Core\Internal\Embeded\Images\Arrow.bmp" />
-      <EmbeddedResource Include="Prism_Core\Internal\Embeded\Images\Boot.bmp" />
+      <EmbeddedResource Include="System2\Embeded\Default.theme" />
+      <EmbeddedResource Include="System2\Embeded\Images\Arrow.bmp" />
+      <EmbeddedResource Include="System2\Embeded\Images\Boot.bmp" />
     </ItemGroup>
 
     <ItemGroup>

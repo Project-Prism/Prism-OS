@@ -4,9 +4,9 @@ using Cosmos.System.FileSystem.VFS;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using static PrismProject.Prism_Core.Internal.Files;
+using static PrismProject.System2.Files;
 
-namespace PrismProject.Prism_Core.IO
+namespace PrismProject.IO
 {
     internal class Disk
     {

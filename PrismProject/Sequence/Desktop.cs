@@ -1,4 +1,4 @@
-﻿using PrismProject.Prism_Core.Graphics;
+﻿using static PrismProject.Prism_Core.Graphics.Canvas2;
 using System.Drawing;
 
 namespace PrismProject.Prism_Core.Sequence.Desktop
@@ -9,8 +9,8 @@ namespace PrismProject.Prism_Core.Sequence.Desktop
         {
             while (true)
             {
-                ExtendedCanvas.EXTCanvas.Clear(Color.Green);
-                ExtendedCanvas.DrawPage(200, 100, 400, 200, 4);
+                Canvas.Clear(Color.Green);
+                Advanced.DrawPage(200, 100, 400, 200, 4);
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace PrismProject.Prism_Core.System2
+namespace PrismProject.System2
 {
     abstract class Convert
     {

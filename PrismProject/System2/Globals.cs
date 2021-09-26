@@ -1,4 +1,4 @@
-﻿namespace PrismProject.Prism_Core.System2
+﻿namespace PrismProject.System2
 {
     class Globals
     {
