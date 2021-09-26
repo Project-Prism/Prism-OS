@@ -4,11 +4,11 @@ using Cosmos.System.FileSystem.VFS;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using static PrismProject.System2.Files;
+using static PrismProject.Functions.IO.SystemFiles;
 
-namespace PrismProject.IO
+namespace PrismProject.Functions.IO
 {
-    internal class Disk
+    internal class FileSystem
     {
         private static readonly CosmosVFS fs = new CosmosVFS();
 
@@ -49,14 +49,14 @@ namespace PrismProject.IO
         { return File.ReadAllText(ParseFullPath(FullPath)); }
 
         /// <summary> Start the VFS service. </summary>
-        public static void Start()
+        public static void StartDisk()
         {
             VFSManager.RegisterVFS(fs);
             fs.Initialize();
-            Console.WriteLine("Starting disk service...  [done]");
-            if (!FileExists(System_Folder))
-            { CreateFolder(System_Folder); WriteFile(System_log, "", false); }
-            WriteFile(System_log, "Started disk service sucessfully [ " + Cosmos.HAL.RTC.Hour + ":" + Cosmos.HAL.RTC.Minute + " ]", true);
+            foreach (string path in Folders)
+            {
+                CreateFolder(path);
+            }
         }
 
         public static void WriteFile(string FullPath, string Contents, bool Append)

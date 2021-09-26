@@ -1,6 +1,7 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
-namespace PrismProject.System2
+namespace PrismProject.Functions.System2
 {
     abstract class Convert
     {
@@ -29,6 +30,19 @@ namespace PrismProject.System2
             return ByteArray;
         }
 
+        public abstract string[] ToStringArray();
+
+        public static string[] ToStringArray(byte[] Input)
+        {
+            string[] NewStringArray = new string[] { };
+            int place = 0;
+            foreach(byte Set in Input)
+            {
+                NewStringArray[place++] = Set.ToString();
+            }
+            return NewStringArray;
+        }
+
         public abstract Color ToColor();
 
         public static Color ToColor(int Input)
@@ -49,6 +63,7 @@ namespace PrismProject.System2
             int place = 0;
             foreach (string RGB in Input)
             {
+                Console.WriteLine("changing " + RGB + " to color");
                 ColorArray[place++] = Color.FromArgb(System.Convert.ToInt32(RGB));
             }
             return ColorArray;

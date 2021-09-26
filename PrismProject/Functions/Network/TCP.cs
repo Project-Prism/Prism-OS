@@ -2,7 +2,7 @@
 using Cosmos.System.Network.IPv4.TCP;
 using System.Text;
 
-namespace PrismProject.Prism_Core.Net
+namespace PrismProject.Functions.Network
 {
     class TCP
     {

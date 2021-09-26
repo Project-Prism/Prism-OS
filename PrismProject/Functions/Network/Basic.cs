@@ -3,11 +3,10 @@ using Cosmos.System.Network.Config;
 using Cosmos.System.Network.IPv4;
 using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Cosmos.System.Network.IPv4.UDP.DNS;
-using System;
 
-namespace PrismProject.Prism_Core.Net
+namespace PrismProject.Functions.Network
 {
-    internal class Core
+    internal class Basic
     {
         /// <summary>Type 1 for 192.168.x.x type routers</summary>
         public static Address Gateway1 = new Address(192, 168, 1, 1);
@@ -30,10 +29,8 @@ namespace PrismProject.Prism_Core.Net
 
         public static void NetStart(Address LocalIP, Address SubNet, Address GateWay)
         {
-            Console.Write("Starting network service...");
             IPConfig.Enable(NetworkDevice.GetDeviceByName("eth0"), LocalIP, SubNet, GateWay);
             using (DHCPClient xClient = new DHCPClient()) { xClient.SendDiscoverPacket(); }
-            Console.WriteLine(" [done]");
         }
     }
 }

@@ -3,9 +3,10 @@ using Cosmos.System.Graphics;
 using System;
 using System.Drawing;
 using static Cosmos.System.Graphics.ColorDepth;
-using static PrismProject.Prism_Core.Internal.Files;
+using static PrismProject.Functions.IO.SystemFiles;
+using static PrismProject.Functions.Graphics.ThemeSystem;
 
-namespace PrismProject.Prism_Core.Graphics
+namespace PrismProject.Functions.Graphics
 {
     class Canvas2
     {
@@ -85,20 +86,20 @@ namespace PrismProject.Prism_Core.Graphics
 
             public static void DrawPage(int X1, int Y1, int X2, int Y2, int R)
             {
-                Shapes.DrawRoundRect(X1 - 1, Y1 - 1, X2 + 2, Y2 + 2 + (Y2 / 15), R, WindowTheme[0], new int[] { 1, 1, 1, 1 }); //shadow
-                Shapes.DrawRoundRect(X1, Y1 + (Y2 / 15), X2, Y2, R, WindowTheme[2], new int[] { 1, 1, 1, 1 }); //window
-                Shapes.DrawRoundRect(X1, Y1, X2, Y2 / 15, R, WindowTheme[3], new int[] { 1, 1, 1, 1 }); //title bar
+                Shapes.DrawRoundRect(X1 - 1, Y1 - 1, X2 + 2, Y2 + 2 + (Y2 / 15), R, Placeholder_Window[0], new int[] { 1, 1, 1, 1 }); //shadow
+                Shapes.DrawRoundRect(X1, Y1 + (Y2 / 15), X2, Y2, R, Placeholder_Window[2], new int[] { 1, 1, 1, 1 }); //window
+                Shapes.DrawRoundRect(X1, Y1, X2, Y2 / 15, R, Placeholder_Window[3], new int[] { 1, 1, 1, 1 }); //title bar
             }
 
             public static void DrawProgBar(int X1, int Y1, int X2, int Y2, int Percent)
             {
-                Shapes.DrawRoundRect(X1, Y1, X2, Y2, 50, ProgBarTheme[0], new int[] { 1, 1, 1, 1 });
-                Shapes.DrawRoundRect(X1, Y1, X2 / Percent, Y2, 50, ProgBarTheme[1], new int[] { 1, 1, 1, 1 });
+                Shapes.DrawRoundRect(X1, Y1, X2, Y2, 50, Placeholder_Progbar[0], new int[] { 1, 1, 1, 1 });
+                Shapes.DrawRoundRect(X1, Y1, X2 / Percent, Y2, 50, Placeholder_Progbar[1], new int[] { 1, 1, 1, 1 });
             }
 
             public static void DrawTXT(int X1, int Y1, string TXT, Color C)
             {
-                //BitFont.DrawBitFontString(X1, Y1, "Comfortaa", Canvas, C, TXT);
+
             }
         }
 

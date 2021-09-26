@@ -1,6 +1,6 @@
 ﻿using Cosmos.HAL;
 
-namespace PrismProject.System2
+namespace PrismProject.Functions.System2
 {
     class Time
     {

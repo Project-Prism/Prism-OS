@@ -142,13 +142,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="System2\Embeded\Default.theme" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Include="System2\Embeded\Default.theme" />
-      <EmbeddedResource Include="System2\Embeded\Images\Arrow.bmp" />
-      <EmbeddedResource Include="System2\Embeded\Images\Boot.bmp" />
+      <EmbeddedResource Include="Functions\IO\Embeded\Images\Arrow.bmp" />
+      <EmbeddedResource Include="Functions\IO\Embeded\Images\Boot.bmp" />
     </ItemGroup>
 
     <ItemGroup>
