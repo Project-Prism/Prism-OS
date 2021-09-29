@@ -1,4 +1,5 @@
-Powered by <IMG src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="csharp" width="40" height="40"/> 
+<IMG style="Background-color: black;" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="csharp" width="40" height="40"/> 
+
 ###### <small>Last updated 9/8/2021</small>
 ###### <small>Project started sometime in May 2021</small>
 ## About the project
