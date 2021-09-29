@@ -142,6 +142,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Functions\IO\Embeded\back.bmp" />
+      <None Remove="Functions\IO\Embeded\Images\Arrow.bmp" />
+    </ItemGroup>
+
+    <ItemGroup>
       <EmbeddedResource Include="Functions\IO\Embeded\Images\Arrow.bmp" />
       <EmbeddedResource Include="Functions\IO\Embeded\Images\Boot.bmp" />
     </ItemGroup>

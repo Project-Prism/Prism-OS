@@ -8,7 +8,6 @@ namespace PrismProject.Functions.IO
     {
         [ManifestResourceStream(ResourceName = "PrismProject.Functions.IO.Embeded.Images.Boot.bmp")] public static byte[] Byte_Prism;
         [ManifestResourceStream(ResourceName = "PrismProject.Functions.IO.Embeded.Images.Arrow.bmp")] public static byte[] Byte_Arrow;
-        [ManifestResourceStream(ResourceName = "PrismProject.Functions.IO.Embeded.Default.theme")] public static byte[] ThemeFile;
 
 
 

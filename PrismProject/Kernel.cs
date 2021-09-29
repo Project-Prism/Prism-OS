@@ -6,7 +6,7 @@ namespace PrismProject
     {
         protected override void Run()
         {
-            StartLoader();
+            LoadSys();
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Drawing;
 using static Cosmos.System.Graphics.ColorDepth;
 using static PrismProject.Functions.IO.SystemFiles;
 using static PrismProject.Functions.Graphics.ThemeSystem;
+using Cosmos.System.Graphics.Fonts;
 
 namespace PrismProject.Functions.Graphics
 {
@@ -99,7 +100,7 @@ namespace PrismProject.Functions.Graphics
 
             public static void DrawTXT(int X1, int Y1, string TXT, Color C)
             {
-
+                Canvas.DrawString(TXT, PCScreenFont.Default, new Pen(C), X1, Y1);
             }
         }
 
