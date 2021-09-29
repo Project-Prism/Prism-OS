@@ -1,3 +1,4 @@
+using System;
 using static PrismProject.Functions.Loader;
 
 namespace PrismProject

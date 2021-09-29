@@ -10,6 +10,7 @@ namespace PrismProject.Functions.IO
 {
     internal class FileSystem
     {
+
         private static readonly CosmosVFS fs = new CosmosVFS();
 
         public static void CreateFolder(string FullPath)
