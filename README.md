@@ -13,8 +13,8 @@ This project is made possible by Cosmos and the comunity around it, We give huge
 Our motivation for this project is the fact most current operating systems are slow, insecure, bloated, have spyware, And the fact that some are still based off of their old kernels written 20+ years ago.
 
 ### Screenshots
-
-
+![](https://github.com/Project-Prism/Prism-OS/blob/main/Screenshots/Prism%20OS%20(21.9.28).png?raw=true)
+![](https://github.com/Project-Prism/Prism-OS/blob/main/Screenshots/Prism%20OS%20(21.9.8).png?raw=true)
 
 ### Meet the developers
 | Name                                             | Helped with                  |
