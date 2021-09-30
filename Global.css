@@ -4,7 +4,9 @@ body {
 }
 
 .header {
-    background: linear-gradient(to right, #77216f, #3f42e7 100%);
+    background: linear-gradient(to right, #880E4F, #C62828 100%);
+    border-radius: 12px;
+    padding-bottom: 100px;
 }
 
 .LightMode {
@@ -13,6 +15,7 @@ body {
 }
 
 .SettingsButton button {
+    text-align: center;
     transition-duration: 0.4s;
     border-color: black;
     border-radius: 15px;
@@ -39,6 +42,7 @@ body {
     width: 100%;
     bottom: 0;
     left: 0;
+    background-color: black;
 }
 
 .footerLink {

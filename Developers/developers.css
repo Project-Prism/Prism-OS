@@ -1,7 +1,6 @@
 .header {
     text-align: center;
     font-size: 30px;
-    padding: 5px;
 }
 
 .OptionButtons button {
@@ -30,6 +29,12 @@ h1 {
 }
 
 .BioInfo {
-    font-size: 20px;
+    font-size: 13px;
     text-align: center;
+    width: 45%;
+    background-color: #FAFAFA;
+    border-radius: 15px;
+    text-align: center;
+    padding: 5px;
+    margin: 0 auto;
 }

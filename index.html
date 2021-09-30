@@ -1,41 +1,49 @@
 <!DOCTYPE html>
 <!--Website redesigned by theopcoder-->
 <html>
-    <link rel="stylesheet" href="Global.css">
-    <link rel="stylesheet" href="Index.css">
-<head>
-    <title>Prism OS - Home</title>
-    <link rel="icon" href="./Images/Favicon.png">
-</head>
-<body>
+     <head>
+        <link rel="stylesheet" href="Global.css">
+        <link rel="stylesheet" href="Index.css">
+        <title>Prism OS - Home</title>
+        <link rel="icon" href="./Images/Favicon.png">
+    </head>
 
-    <div class="header">
-        <a href="https://github.com/Project-Prism/Prism-OS"><img align="left" src="./Images/New_Logo.png" width="74"></a>
-        <details align="right" class="SettingsButton"><summary>Settings</summary>
-            <button onclick="myFunction()">Toggle light mode</button>
-            <script>
-              function myFunction() {
-                    var element = document.body;
-                    element.classList.toggle("LightMode");
-                }
-            </script>
-        </details>
-        <h1>Prism OS</h1>
-        <p class="PrismOSSaying">The future of computers.</p>
-        <div align="center" class="OptionButtons">
-            <a href="https://github.com/Project-Prism/Prism-OS"><button><img align="left" src="./Images/GitHubLogo.png" width="30">PrismOS GitHub</button></a>
-            <a href="https://github.com/Project-Prism/Prism-OS/releases"><button><img align="left" src="./Images/DownloadsImage.png" width="30">Download</button></a>
-            <a href="./Developers/developers.html"><button><img align="left" src="./Images/DevelopersImage.png" width="30">Developers</button></a>
+    <body> 
+        <div class="header">
+            
+            <details align="right" class="SettingsButton"><summary>Settings</summary>
+                <button onclick="myFunction()">Toggle light mode</button>
+                <script>
+                  function myFunction() {
+                        var element = document.body;
+                        element.classList.toggle("LightMode");
+                    }
+                </script>
+            </details>
+
+            <!--Header content-->
+            <h1>
+                <a href="https://github.com/Project-Prism/Prism-OS"><img src="./Images/logo.bmp" width="74"></a>
+                Prism OS
+            </h1>
+            <p class="Saying">The future of computers.</p>
+
+            <!--Buttons-->
+            <div align="center" class="OptionButtons">
+                <button onclick="window.location.href='https://github.com/Project-Prism/Prism-OS'"><img align="left" src="./Images/GitHubLogo.png" width="30">View our GitHub</button>
+                <button onclick="window.location.href='https://github.com/Project-Prism/Prism-OS/releases'"><img align="left" src="./Images/DownloadsImage.png" width="30">Download</button>
+                <button onclick="window.location.href='./Developers/developers.html'"><img align="left" src="./Images/DevelopersImage.png" width="30">Developers</button>
+</div>
+
         </div>
-    </div>
 
-    <p class="ProjectInfo" align="center">
-        PrismOS is a small project maintained by four developers. It is intended to become a widely used OS with the motivation behind this project being the fact most current operating system are slow, and based off the old existing kernels. Windows for example, has not had a complete kernel rewrite in 20+ years. This project is based off the <a class="CosmosInfoLink" href="https://github.com/CosmosOS/Cosmos">Cosmos</a> developer kit, which uses C# as its internal coding language.
-    </p>
+        <p class="ProjectInfo" align="center">
+            PrismOS is a small project maintained by four developers. It is intended to become a widely used OS with the motivation behind this project being the fact most current operating system are slow, and based off the old existing kernels. Windows for example, has not had a complete kernel rewrite in 20+ years. This project is based off the <a class="CosmosInfoLink" href="https://github.com/CosmosOS/Cosmos">Cosmos</a> developer kit, which uses C# as its internal coding language.
+        </p>
 
-    <div class="footer">
-        <hr><p><a class="footerLink" href="https://github.com/Project-Prism/Prism-OS">PrismOS</a> is maintained by Terminal.cs, Deadlocust, Shininglea, and corpserdefg. Website designed by theopcoder.</p>
-    </div>
+        <div class="footer">
+            <hr><p><a class="footerLink" href="https://github.com/Project-Prism/Prism-OS">PrismOS</a> is maintained by Terminal.cs, Deadlocust, Shininglea, and corpserdefg. Website designed by theopcoder.</p>
+        </div>
 
-</body>
+    </body>
 </html>
