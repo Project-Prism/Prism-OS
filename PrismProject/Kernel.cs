@@ -1,4 +1,4 @@
-using System;
+using static PrismProject.Functions.Graphics.Canvas2.Advanced;
 using static PrismProject.Functions.Loader;
 
 namespace PrismProject
@@ -11,9 +11,9 @@ namespace PrismProject
             {
                 InitCore();
             }
-            catch (Exception EX)
+            catch
             {
-                Crash(EX.Message);
+                Reload();
             }
         }
     }

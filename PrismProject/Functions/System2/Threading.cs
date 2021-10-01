@@ -4,7 +4,7 @@ namespace PrismProject.Functions.System2
 {
     class Threading
     {
-        static class Thread
+        public class Thread
         {
             public static void Sleep(int S)
             {
