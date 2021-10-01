@@ -1,44 +1,48 @@
-<IMG src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="csharp" width="40" height="40"/> 
+# Prism OS
+###### <small>Last updated 9/8/2021  |  Project started sometime in May 2021</small>
+Have any problems? Found a bug? Just want to chat? [Join the discord](https://discord.gg/DdERgtGmF6)!
 
-###### <small>Last updated 9/8/2021</small>
-###### <small>Project started sometime in May 2021</small>
-## About the project
+Prism OS is a [Cosmos](https://github.com/CosmosOS/Cosmos) based operating system developed with C#. The operating system is wrapped around an easy to navigate graphical user interface and includes core functionalities such as a filesystem and networking. Prism OS also comes with a [custom scripting language](https://github.com/Project-Prism/Hexi) that allows for easier interaction with the system within the OS itself*.
 
-Prism OS is intended to become a widely used OS that is both fast and safe.
+This project is made possible by Cosmos and the community around it, and we give a huge thanks to all of the developers that contribute to it.
 
-Prism OS uses C# for system functions, like for the filesystem, networking, video, ETC, But We plan to add our very own programing language inspired by many of the currently exising languages.
-
-This project is made possible by Cosmos and the comunity around it, We give huge thanks to all of the developers and contributors that work on cosmos.
+##### *The scripting language is still under heavy development.
 
 ## Why?
-Our motivation for this project is the fact most current operating systems are slow, insecure, bloated, have spyware, And the fact that some are still based off of their old kernels written 20+ years ago.
+Here are some reasons provided by our developers:
+
+[terminal-cs](https://github.com/terminal-cs): Our motivation for this project is the fact most current operating systems are slow, insecure, bloated, have spyware, And the fact that some are still based off of their old kernels written 20+ years ago.
+
+[deadlocust](https://github.com/deaddlocust): Idk man I was just bored.
 
 ## Screenshots
 ![](https://github.com/Project-Prism/Prism-OS/blob/main/Screenshots/Prism%20OS%20(21.9.28).png?raw=true)
 ![](https://github.com/Project-Prism/Prism-OS/blob/main/Screenshots/Prism%20OS%20(21.9.8).png?raw=true)
 
-## Meet the developers
-| Name                                             | Helped with                  |
+## Notable contributors
+| Name                                             | Contributions                |
 |--------------------------------------------------|------------------------------|
 | [Terminal.cs](https://github.com/terminal-cs)    | General development, logo    |
-| [DeadLocust](https://github.com/deaddlocust)     | General development          |
+| [deadlocust](https://github.com/deaddlocust)     | General development          |
 | [Nifanfa](https://github.com/nifanfa)            | Bitfont                      |
 | [CrisisSDK](https://github.com/CrisisSDK)        | Graphics, window manager     |
 | [GamingFrame](https://github.com/ThomasBeHappy/) | Cosmos canvas fix (soon)     |
-| [TheOpCoder](https://github.com/theopcoder)      | Website                     |
+| [TheOpCoder](https://github.com/theopcoder)      | Website                      |
 
 ## To-do list
 
-| Topic                | Dificulty | Notes                        |
+| Topic                | Difficulty | Notes                        |
 |----------------------|-----------|------------------------------|
-| Get YASM into cosmos |   Easy    | start work soon              |
-| Add Hexi into prism  |   Hard    | Needs threading              |
-| Drivers              |   Hard    | Need someone with knowlege   |
-| Canvas speedup       |   N/A     | Someone aparently knows how  |
+|Implement YASM into Cosmos|Easy|Starting soon|
+|Implement Hexi|Hard|Requires threading|
+|Drivers|Hard|-|
+|Canvas speedup|-| Someone aparently knows how|
 
 
 ## Building Prism
-Prism OS requires that you are using the latest devkit version of cosmos in order to sucessfuly compile.
+Prism OS requires that you are using the latest devkit version of cosmos in order to successfully compile.
+
+###### <small>It is not recommended to distribute modified copies of Prism OS. Instead, you should do a PR to get whatever features you want implemented. It will most likely be accepted.</small>
 
 ### Step 1: 
 Open visual studio and click "clone repo"
@@ -51,8 +55,3 @@ Wait for the clone process to finish and then open the solution file (PrismProje
 
 ### Step 4:
 At the top of the screen, you should see an option called "build", click that and the prism will compile!
-
-### Note:
-It is recomended not to distribute modified copies that tamper with security and the look, but you can if you really want to.
-
-Instead, you should do a PR to get whatever feature you want implemented, and you will probably get accepted!
