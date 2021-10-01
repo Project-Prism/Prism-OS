@@ -7,7 +7,14 @@ namespace PrismProject
     {
         protected override void Run()
         {
-            LoadSys();
+            try
+            {
+                InitCore();
+            }
+            catch (Exception EX)
+            {
+                Crash(EX.Message);
+            }
         }
     }
 }

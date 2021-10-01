@@ -102,6 +102,12 @@ namespace PrismProject.Functions.Graphics
             {
                 Canvas.DrawString(TXT, PCScreenFont.Default, new Pen(C), X1, Y1);
             }
+
+            public static void Reload()
+            {
+                Canvas.Disable();
+                Canvas.Display();
+            }
         }
 
         public class Mouse
