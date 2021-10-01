@@ -1,24 +1,3 @@
 # Prism OS (legacy)
-this was moved to logacy incase anyone wanted to still use it, the main branch has a full UI.
-Prism OS is a small project maintained by two developers.
-This project is based off of Cosmos.
 
-<details>
-    <Summary>
-        About Prism OS
-    </Summary>
-<p>
-     Prism OS is an open source project started in 2021. More coming soon.
-</p>
-</details>
-
-<details>
-    <Summary>
-        About Cosmos OS
-    </Summary>
-<p>
-Cosmos is a program that allows you to create an entire operating system using c#, c++, and a few more.
-
-It allows for a file system, graphics, console, and hardware access, aswell as getting user input from a keyboard and a mouse.
-</p>
-</details>
+This is the legacy branch of Prism OS. This has no graphical interface. And also a lot of messy bad code.
