@@ -13,7 +13,7 @@ namespace PrismProject.Functions.Graphics
     {
         public static int Width = 800;
         public static int Height = 600;
-        public static SVGAIICanvas Canvas= new SVGAIICanvas(new Mode(Width, Height, ColorDepth32));
+        public static Canvas Canvas = FullScreenCanvas.GetFullScreenCanvas(new Mode(Width, Height, ColorDepth32));
 
         public class Shapes
         {

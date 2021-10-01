@@ -125,9 +125,9 @@
         <StartCosmosGDB>False</StartCosmosGDB>
         <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
         <CosmosDebugPort>Serial: COM1</CosmosDebugPort>
-        <Launch>VMware</Launch>
-        <Profile>VMware</Profile>
-        <Description>Use VMware Player or Workstation to deploy and debug.</Description>
+        <Launch>None</Launch>
+        <Profile>ISO</Profile>
+        <Description>Creates a bootable ISO image which can be burned to a DVD. After running the selected project, an explorer window will open containing the ISO file. The ISO file can then be burned to a CD or DVD and used to boot a physical or virtual system.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
         <AppDesignerFolder>Components</AppDesignerFolder>
     </PropertyGroup>
@@ -135,10 +135,13 @@
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
       <DebugEnabled>False</DebugEnabled>
       <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+      <Optimize>true</Optimize>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
       <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+      <IgnoreDebugStubAttribute>False</IgnoreDebugStubAttribute>
+      <Optimize>true</Optimize>
     </PropertyGroup>
 
     <ItemGroup>

@@ -12,6 +12,7 @@ namespace PrismProject.Functions
     {
         public static void InitCore()
         {
+            Canvas.Clear();
             int[] All = new int[] { 1, 1, 1, 1 };
             Shapes.DrawRoundRect(Width / 4 - 1, Height / 4 - 1, Width / 2 + 2, Height / 2 + 2, 10, Color.White, All);
             Shapes.DrawRoundRect(Width / 4, Height / 4, Width / 2, Height / 2, 10, Color.FromArgb(35, 35, 55), All);
