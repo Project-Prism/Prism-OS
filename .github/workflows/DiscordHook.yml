@@ -12,7 +12,7 @@ jobs:
     - name: Run Discord Webhook
       uses: johnnyhuy/discord-webhook@main
       with:
-        webhook_url: ${{ secrets.https://discord.com/api/webhooks/893407054717419543/907cH3T_lhupUTulBicYBLd5WzmJcqf8mMWOaueaV4aG1aP0XYRsHDE-E0AR6Fhgxf45 }}
+        webhook_url: https://discord.com/api/webhooks/893407054717419543/907cH3T_lhupUTulBicYBLd5WzmJcqf8mMWOaueaV4aG1aP0XYRsHDE-E0AR6Fhgxf45
 
     # Disable URL links to the repository
     # 
