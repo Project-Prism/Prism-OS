@@ -10,7 +10,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Run Discord Webhook
-      uses: johnnyhuy/actions-discord-git-webhook @main
+      uses: johnnyhuy/actions-discord-git-webhook@main
       with:
         webhook_url: https://discord.com/api/webhooks/893407054717419543/907cH3T_lhupUTulBicYBLd5WzmJcqf8mMWOaueaV4aG1aP0XYRsHDE-E0AR6Fhgxf45
 
