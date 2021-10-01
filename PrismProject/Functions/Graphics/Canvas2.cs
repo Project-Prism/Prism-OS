@@ -56,7 +56,7 @@ namespace PrismProject.Functions.Graphics
                 switch (filled)
                 {
                     case true:
-                        Canvas.DrawFilledCircle(new Pen(C), X1, Y1, R);
+                        //Canvas.DrawFilledCircle(new Pen(C), X1, Y1, R);
                         break;
                     case false:
                         Canvas.DrawCircle(new Pen(C), X1, Y1, R);
@@ -82,25 +82,27 @@ namespace PrismProject.Functions.Graphics
         {
             public static void DrawBMP(int X1, int Y1, Bitmap BMP)
             {
-                Canvas.DrawImageAlpha(BMP, X1, Y1);
+                //Canvas.DrawImageAlpha(BMP, X1, Y1);
             }
 
-            public static void DrawPage(int X1, int Y1, int X2, int Y2, int R)
+            public static void DrawPage(int X1, int Y1, int X2, int Y2, int R, string title)
             {
-                Shapes.DrawRoundRect(X1 - 1, Y1 - 1, X2 + 2, Y2 + 2 + (Y2 / 15), R, Placeholder_Window[0], new int[] { 1, 1, 1, 1 }); //shadow
-                Shapes.DrawRoundRect(X1, Y1 + (Y2 / 15), X2, Y2, R, Placeholder_Window[2], new int[] { 1, 1, 1, 1 }); //window
-                Shapes.DrawRoundRect(X1, Y1, X2, Y2 / 15, R, Placeholder_Window[3], new int[] { 1, 1, 1, 1 }); //title bar
+                int TextX = (X2 / 2) - (PCScreenFont.Default.Width * title.Length);
+                Shapes.DrawRoundRect(X1 - 1, Y1 - 1, X2 + 2, Y2 + 2 + (Y2 / 15), R, Window[0], new int[] { 1, 1, 1, 1 }); //shadow
+                Shapes.DrawRoundRect(X1, Y1 + (Y2 / 15), X2, Y2, R, Window[2], new int[] { 1, 1, 1, 1 }); //window
+                Shapes.DrawRoundRect(X1, Y1, X2, Y2 / 15, R, Window[3], new int[] { 1, 1, 1, 1 }); //title bar
+                DrawTXT(TextX, Y2 / 15 + 5, title, Color.White);
             }
 
             public static void DrawProgBar(int X1, int Y1, int X2, int Y2, int Percent)
             {
-                Shapes.DrawRoundRect(X1, Y1, X2, Y2, 50, Placeholder_Progbar[0], new int[] { 1, 1, 1, 1 });
-                Shapes.DrawRoundRect(X1, Y1, X2 / Percent, Y2, 50, Placeholder_Progbar[1], new int[] { 1, 1, 1, 1 });
+                Shapes.DrawRoundRect(X1, Y1, X2, Y2, 50, Progbar[0], new int[] { 1, 1, 1, 1 });
+                Shapes.DrawRoundRect(X1, Y1, X2 / Percent, Y2, 50, Progbar[1], new int[] { 1, 1, 1, 1 });
             }
 
             public static void DrawTXT(int X1, int Y1, string TXT, Color C)
             {
-                Canvas.DrawString(TXT, PCScreenFont.Default, new Pen(C), X1, Y1);
+                //Canvas.DrawString(TXT, PCScreenFont.Default, new Pen(C), X1, Y1);
             }
 
             public static void Reload()
