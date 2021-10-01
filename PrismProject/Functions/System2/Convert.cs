@@ -5,29 +5,9 @@ namespace PrismProject.Functions.System2
 {
     abstract class Convert
     {
-        public abstract byte[] ToByteArray();
-
-        public static byte[] ToByteArray(string Input)
+        public static byte[] ToByteArray(dynamic Input)
         {
-            byte[] ByteArray = new byte[] { };
-            int place = 0;
-            foreach (string Char in Input.Split(""))
-            {
-                ByteArray[place++] = System.Convert.ToByte(Char);
-
-            }
-            return ByteArray;
-        }
-
-        public static byte[] ToByteArray(int[] Input)
-        {
-            byte[] ByteArray = new byte[] { };
-            int place = 0;
-            foreach (int Char in Input)
-            {
-                ByteArray[place++] = System.Convert.ToByte(Char);
-            }
-            return ByteArray;
+            return System.Text.Encoding.UTF8.GetBytes(Input);
         }
 
         public abstract string[] ToStringArray();
