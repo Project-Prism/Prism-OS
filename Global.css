@@ -5,8 +5,8 @@ body {
 
 .header {
     background: linear-gradient(to right, #880E4F, #C62828 100%);
-    border-radius: 12px;
     padding-bottom: 100px;
+    border-radius: 12px;
 }
 
 .LightMode {
@@ -37,13 +37,13 @@ body {
 }
 
 .footer {
+    background-color: rgb(25, 25, 34);
     text-align: center;
     position: fixed;
+    color:white;
     width: 100%;
     bottom: 0;
     left: 0;
-    background-color: black;
-    color:white;
 }
 
 .footerLink {
