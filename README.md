@@ -27,7 +27,7 @@ Here are some reasons provided by our developers:
 | [Nifanfa](https://github.com/nifanfa)            | Bitfont                      |
 | [CrisisSDK](https://github.com/CrisisSDK)        | Graphics, window manager     |
 | [GamingFrame](https://github.com/ThomasBeHappy/) | Cosmos canvas fix (soon)     |
-| [TheOpCoder](https://github.com/theopcoder)      | Website                      |
+| [theopcoder](https://github.com/theopcoder)      | Website                      |
 
 ## To-do list
 
