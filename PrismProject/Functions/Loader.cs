@@ -13,12 +13,19 @@ namespace PrismProject.Functions
         
         public static void InitCore()
         {
+            // Cosmos.System.Graphics.Fonts.PCScreenFont.LoadFont(Convert.FromBase64String(""));
             Canvas.Clear();
             int[] All = new int[] { 1, 1, 1, 1 };
             Shapes.DrawRoundRect(Width / 4 - 1, Height / 4 - 1, Width / 2 + 2, Height / 2 + 2, 10, Color.White, All);
             Shapes.DrawRoundRect(Width / 4, Height / 4, Width / 2, Height / 2, 10, Color.FromArgb(35, 35, 55), All);
             Advanced.DrawBMP((Width / 2) - ((int)Boot_bmp.Width / 2), (Height / 2) - ((int)Boot_bmp.Height / 2), Boot_bmp);
             Advanced.DrawTXT((Width / 2) - (PCScreenFont.Default.Width * 18 / 2), 425, "Prism OS (21.9.28)", Color.White);
+            int prg = 0;
+            while (prg != 100)
+            {
+                Advanced.DrawProgBar(200, 500, 600, 525, prg);
+                prg++;
+            }
             Beep();
             //StartDisk();
             NetStart(Local, Subnet, Gateway2);

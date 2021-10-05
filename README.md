@@ -20,23 +20,25 @@ Here are some reasons provided by our developers:
 ![](https://github.com/Project-Prism/Prism-OS/blob/main/Screenshots/Prism%20OS%20(21.9.8).png?raw=true)
 
 ## Notable contributors
-| Name                                             | Contributions                |
-|--------------------------------------------------|------------------------------|
-| [Terminal.cs](https://github.com/terminal-cs)    | General development, logo    |
-| [deadlocust](https://github.com/deaddlocust)     | General development          |
-| [Nifanfa](https://github.com/nifanfa)            | Bitfont                      |
-| [CrisisSDK](https://github.com/CrisisSDK)        | Graphics, window manager     |
-| [GamingFrame](https://github.com/ThomasBeHappy/) | Cosmos canvas fix (soon)     |
-| [TheOpCoder](https://github.com/theopcoder)      | Website                      |
+| Name                                              | Contributions                |
+|---------------------------------------------------|------------------------------|
+| [Cosmos team](https://github.com/CosmosOS/Cosmos) | Cosmos, helping out          |
+| [Terminal.cs](https://github.com/terminal-cs)     | General development, logo    |
+| [deadlocust](https://github.com/deaddlocust)      | General development, hexi    |
+| [Nifanfa](https://github.com/nifanfa)             | Bitfont                      |
+| [CrisisSDK](https://github.com/CrisisSDK)         | Rouned cube, coal v1 & v2    |
+| [TheOpCoder](https://github.com/theopcoder)       | Website developer            |
 
 ## To-do list
 
-| Topic                | Difficulty | Notes                        |
-|----------------------|-----------|------------------------------|
-|Implement YASM into Cosmos|Easy|Starting soon|
-|Implement Hexi|Hard|Requires threading|
-|Drivers|Hard|-|
-|Canvas speedup|-| Someone aparently knows how|
+| Topic                      |  Difficulty  | Notes                         |
+|----------------------------|--------------|-------------------------------|
+| Implement YASM into Cosmos |     Easy     | Starting soon                 |
+| Implement Hexi             |     Hard     | Requires threading            |
+| Drivers                    |  very Hard   | -                             |
+| Fix vbe circle & image     | Easy/Medium  | (in cosmos) should be ez      |
+| Re-Implement mouse         |     Easy     | -                             |
+| implement resx files       | -            | better for managment (cosmos) |
 
 
 ## Building Prism

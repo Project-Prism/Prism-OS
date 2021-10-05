@@ -147,11 +147,13 @@
     <ItemGroup>
       <None Remove="Functions\IO\Embeded\back.bmp" />
       <None Remove="Functions\IO\Embeded\Images\Arrow.bmp" />
+      <None Remove="Functions\thm.thm" />
     </ItemGroup>
 
     <ItemGroup>
       <EmbeddedResource Include="Functions\IO\Embeded\Images\Arrow.bmp" />
       <EmbeddedResource Include="Functions\IO\Embeded\Images\Boot.bmp" />
+      <EmbeddedResource Include="Functions\Tests\thm.thm" />
     </ItemGroup>
 
     <ItemGroup>

@@ -56,7 +56,7 @@ namespace PrismProject.Functions.Graphics
                 switch (filled)
                 {
                     case true:
-                        //Canvas.DrawFilledCircle(new Pen(C), X1, Y1, R);
+                        Canvas.DrawFilledCircle(new Pen(C), X1, Y1, R);
                         break;
                     case false:
                         Canvas.DrawCircle(new Pen(C), X1, Y1, R);
@@ -82,7 +82,7 @@ namespace PrismProject.Functions.Graphics
         {
             public static void DrawBMP(int X1, int Y1, Bitmap BMP)
             {
-                //Canvas.DrawImageAlpha(BMP, X1, Y1);
+                Canvas.DrawImageAlpha(BMP, X1, Y1);
             }
 
             public static void DrawPage(int X1, int Y1, int X2, int Y2, int R, string title)
@@ -102,7 +102,7 @@ namespace PrismProject.Functions.Graphics
 
             public static void DrawTXT(int X1, int Y1, string TXT, Color C)
             {
-                //Canvas.DrawString(TXT, PCScreenFont.Default, new Pen(C), X1, Y1);
+                Canvas.DrawString(TXT, PCScreenFont.Default, new Pen(C), X1, Y1);
             }
 
             public static void Reload()

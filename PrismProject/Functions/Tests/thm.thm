@@ -1,0 +1,5 @@
+﻿[H]1.0, Default, The default theme for prism[/H]
+[THEME]
+FromArgb[ 24, 24, 24; 25, 25, 25; ]
+Color.White;
+[/THEME]
