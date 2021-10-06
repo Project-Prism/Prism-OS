@@ -12,7 +12,7 @@
         }
         public static void AppendLog(Type Err_type, string error)
         {
-            IO.FileSystem.WriteFile("0:\\Log.txt", "\n[" + Err_type.ToString() + "] " + error, true);
+            IO.Disk.WriteFile("0:\\Log.txt", "\n[" + Err_type.ToString() + "] " + error, true);
         }
     }
 }

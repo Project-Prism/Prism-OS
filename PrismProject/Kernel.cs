@@ -9,11 +9,12 @@ namespace PrismProject
         {
             try
             {
-                InitCore();
+                Functions.Tests.Terminal.Main();
+                //InitCore();
             }
             catch
             {
-                Reload();
+                //Reload();
             }
         }
     }

@@ -8,7 +8,7 @@ using static PrismProject.Functions.IO.SystemFiles;
 
 namespace PrismProject.Functions.IO
 {
-    internal class FileSystem
+    internal class Disk
     {
 
         private static readonly CosmosVFS fs = new CosmosVFS();

@@ -1,7 +1,7 @@
 ﻿using Cosmos.System.Graphics.Fonts;
 using System.Drawing;
 using static PrismProject.Functions.Graphics.Canvas2;
-using static PrismProject.Functions.IO.FileSystem;
+using static PrismProject.Functions.IO.Disk;
 using static PrismProject.Functions.IO.SystemFiles;
 using static PrismProject.Functions.Network.Basic;
 using static System.Console;

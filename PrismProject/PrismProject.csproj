@@ -160,6 +160,7 @@
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
+        <PackageReference Include="SharpZipLib" Version="1.3.3" />
         <PackageReference Include="System.Console" Version="4.3.1" />
         <PackageReference Include="System.Runtime" Version="4.3.1" />
     </ItemGroup>
