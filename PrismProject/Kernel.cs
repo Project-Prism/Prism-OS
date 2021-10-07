@@ -5,11 +5,12 @@ namespace PrismProject
 {
     public class Kernel : Cosmos.System.Kernel
     {
+        
         protected override void Run()
         {
             try
             {
-                Functions.Tests.Terminal.Main();
+                Functions.System2.Terminal.Main();
                 //InitCore();
             }
             catch

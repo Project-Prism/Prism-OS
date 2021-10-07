@@ -1,9 +1,11 @@
 ﻿using Cosmos.HAL;
 using Cosmos.System.Network.Config;
 using Cosmos.System.Network.IPv4;
+using Cosmos.System.Network.IPv4.TCP;
 using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Cosmos.System.Network.IPv4.UDP.DNS;
-using static System.Convert;
+using static System.Text.Encoding;
+using static System.Console;
 
 namespace PrismProject.Functions.Network
 {
@@ -37,17 +39,37 @@ namespace PrismProject.Functions.Network
             }
         }
 
-        public static Address NewAddress(string IP)
+        public static void TCPClient(Address IP, int Port)
         {
-            var IP2 = IP.Split(".");
-            byte[] bytes = new byte[] { };
-            int place = 0;
-
-            foreach (string bit in IP.Split("."))
+            try
             {
-                bytes[place++] = ToByte(bit);
+                using (TcpClient xClient = new TcpClient(Port))
+                {
+                    xClient.Connect(IP, Port);
+                    while (true)
+                    {
+                        EndPoint endpoint = new EndPoint(IP, (ushort)Port);
+                        Write(ASCII.GetString(xClient.Receive(ref endpoint)));
+                        xClient.Send(ASCII.GetBytes(ReadLine() + "\n"));
+                    }
+                }
             }
-            return new Address(bytes[0], bytes[1], bytes[2], bytes[3]);
+            catch { return; }
+        }
+
+        public static void Download(string IP, int Port, string SaveTo)
+        {
+            using (TcpClient xClient = new TcpClient(Port))
+            {
+                var IP2 = DNS(Gateway1, IP);
+                xClient.Connect(IP2, Port);
+                while (true)
+                {
+                    EndPoint endpoint = new EndPoint(IP2, (ushort)Port);
+                    IO.Disk.WriteFile(SaveTo, ASCII.GetString(xClient.Receive(ref endpoint)), false);
+                    xClient.Dispose();
+                }
+            }
         }
     }
 }

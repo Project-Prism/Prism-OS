@@ -54,10 +54,6 @@ namespace PrismProject.Functions.IO
         {
             VFSManager.RegisterVFS(fs);
             fs.Initialize();
-            foreach (string path in Folders)
-            {
-                CreateFolder(path);
-            }
         }
 
         public static void WriteFile(string FullPath, string Contents, bool Append)
