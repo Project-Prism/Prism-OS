@@ -1,0 +1,16 @@
+﻿
+        public static void TCPClient(byte[] IP, int Port, string Contents)
+        {
+            using (TcpClient xClient = new TcpClient(Port))
+            {
+                xClient.Connect(new Address(IP[0], IP[1], IP[2], IP[3]), Port);
+                xClient.Send(ASCII.GetBytes(Contents));
+
+                while (true)
+                {
+                    EndPoint endpoint = new EndPoint(new Address(IP[0], IP[1], IP[2], IP[3]), (ushort)Port);
+                    WriteLine(ASCII.GetString(xClient.Receive(ref endpoint)));
+                    xClient.Send(ASCII.GetBytes(ReadLine()));
+                }
+            }
+        }

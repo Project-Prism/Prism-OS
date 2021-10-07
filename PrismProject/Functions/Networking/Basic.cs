@@ -3,6 +3,7 @@ using Cosmos.System.Network.Config;
 using Cosmos.System.Network.IPv4;
 using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Cosmos.System.Network.IPv4.UDP.DNS;
+using static System.Convert;
 
 namespace PrismProject.Functions.Network
 {
@@ -30,7 +31,23 @@ namespace PrismProject.Functions.Network
         public static void NetStart(Address LocalIP, Address SubNet, Address GateWay)
         {
             IPConfig.Enable(NetworkDevice.GetDeviceByName("eth0"), LocalIP, SubNet, GateWay);
-            using (DHCPClient xClient = new DHCPClient()) { xClient.SendDiscoverPacket(); }
+            using (DHCPClient xClient = new DHCPClient())
+            {
+                xClient.SendDiscoverPacket();
+            }
+        }
+
+        public static Address NewAddress(string IP)
+        {
+            var IP2 = IP.Split(".");
+            byte[] bytes = new byte[] { };
+            int place = 0;
+
+            foreach (string bit in IP.Split("."))
+            {
+                bytes[place++] = ToByte(bit);
+            }
+            return new Address(bytes[0], bytes[1], bytes[2], bytes[3]);
         }
     }
 }

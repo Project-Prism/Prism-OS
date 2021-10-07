@@ -1,6 +1,7 @@
 ﻿using Cosmos.System.FileSystem.Listing;
 using System;
 using static PrismProject.Functions.IO.Disk;
+using static PrismProject.Functions.Network.Basic;
 
 namespace PrismProject.Functions.Tests
 {
@@ -9,9 +10,12 @@ namespace PrismProject.Functions.Tests
         public static void Main()
         {
             Console.Clear();
+            
+            //Network.DebugServer.TCPServer();
             Console.WriteLine("Terminal.cs, V1");
             while (true)
             {
+                //Network.DebugServer.Send("It worked!");
                 Console.Write("> ");
                 string[] input = Console.ReadLine().Split(".");
                 switch (input[0])
@@ -63,8 +67,15 @@ namespace PrismProject.Functions.Tests
                                 break;
                         }
                         break;
+                    case "net":
+                        Console.WriteLine("Starting network...");
+                        NetStart(Local, Subnet, Gateway1);
+                        Console.WriteLine("Connecting...");
+                        Networking.BasicTCPClient.TCPClient("127.0.0.1", 2323, "Conected?\n");
+                        break;
                     default:
                         Console.WriteLine("[!] No command");
+                        //Network.DebugServer.Send("no cmd");
                         break;
                 }
             }

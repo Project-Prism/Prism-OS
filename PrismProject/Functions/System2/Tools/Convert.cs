@@ -23,7 +23,7 @@ namespace PrismProject.Functions.System2
 
         public static byte[] ToByteArray(dynamic Input)
         {
-            return System.Text.Encoding.UTF8.GetBytes(Input);
+            return Encoding.UTF8.GetBytes(Input);
         }
 
         public abstract string[] ToStringArray();

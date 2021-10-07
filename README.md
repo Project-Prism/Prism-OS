@@ -8,13 +8,6 @@ This project is made possible by Cosmos and the community around it, and we give
 
 ##### *The scripting language is still under heavy development.
 
-## Why?
-Here are some reasons provided by our developers:
-
-[terminal-cs](https://github.com/terminal-cs): Our motivation for this project is the fact most current operating systems are slow, insecure, bloated, have spyware, And the fact that some are still based off of their old kernels written 20+ years ago.
-
-[deadlocust](https://github.com/deaddlocust): Idk man I was just bored.
-
 ## Screenshots
 ![](https://github.com/Project-Prism/Prism-OS/blob/main/Screenshots/Prism%20OS%20(21.9.28).png?raw=true)
 ![](https://github.com/Project-Prism/Prism-OS/blob/main/Screenshots/Prism%20OS%20(21.9.8).png?raw=true)

@@ -9,12 +9,10 @@ namespace PrismProject.Functions.Tests
     {
         public static void Extract(string ZipPath, string Password, string OutputFolder)
         { // Password is optional
-            ZipFile file = null;
+            FileStream fs = File.OpenRead(ZipPath);
+            ZipFile file = new ZipFile(fs);
             try
             {
-                FileStream fs = File.OpenRead(ZipPath);
-                file = new ZipFile(fs);
-
                 if (!string.IsNullOrEmpty(Password))
                 {
                     file.Password = Password;
@@ -28,13 +26,11 @@ namespace PrismProject.Functions.Tests
                         continue;
                     }
 
-                    string entryFileName = zipEntry.Name;
-
                     // 4K is optimum
                     byte[] buffer = new byte[4096];
                     Stream zipStream = file.GetInputStream(zipEntry);
 
-                    string fullZipToPath = Path.Combine(OutputFolder, entryFileName);
+                    string fullZipToPath = Path.Combine(OutputFolder, zipEntry.Name);
                     string directoryName = Path.GetDirectoryName(fullZipToPath);
 
                     if (directoryName.Length > 0)
