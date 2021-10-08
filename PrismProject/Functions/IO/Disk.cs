@@ -67,7 +67,7 @@ namespace PrismProject.Functions.IO
                 }
             }
             catch (Exception e)
-            { WriteFile(@"0:\System2\Crash.log", "\n[Error] Failed to write to " + ParseFullPath(FullPath) + "\n" + e.ToString(), true); }
+            { }
         }
 
         private static string ParseFullPath(string FullPath)

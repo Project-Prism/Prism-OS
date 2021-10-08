@@ -11,45 +11,47 @@ namespace PrismProject.Functions.System2
         public static void Main()
         {
             NetStart(Local, Subnet, Gateway1);
-            IO.Disk.StartDisk();
+            StartDisk();
             Console.Clear();
             Console.WriteLine("Terminal.cs, V1");
             while (true)
             {
                 Console.Write("> ");
-                string[] input = Console.ReadLine().Split(" ");
-                switch (input[0])
+                string line = Console.ReadLine();
+                string input = line.Split("(")[0];
+                string[] Args = line.Replace(");", "").Split("(")[1].Split(", ");
+                switch (input)
                 {
                     case "fm":
-                        switch (input[1].ToLower())
+                        switch (Args[0])
                         {
                             case "create":
-                                switch (input[2])
+                                switch (Args[1])
                                 {
                                     case "folder":
-                                        CreateFolder(input[3]);
+                                        CreateFolder(Args[2]);
                                         Console.WriteLine("[ Done ]");
                                         break;
                                     case "file":
-                                        WriteFile(input[3], "", false);
+                                        WriteFile(Args[2], "", false);
                                         Console.WriteLine("[ Done ]");
                                         break;
                                 }
                                 break;
                             case "delete":
-                                DeleteEntry(input[2]);
+                                DeleteEntry(Args[1]);
                                 Console.WriteLine("[ Done ]");
                                 break;
                             case "write":
-                                WriteFile(input[2], input[3], false);
+                                WriteFile(Args[1], Args[2], false);
                                 Console.WriteLine("[ Done ]");
                                 break;
                             case "echofile":
-                                Console.WriteLine(ReadFile(input[2]));
+                                Console.WriteLine(ReadFile(Args[1]));
                                 Console.WriteLine("[ Done ]");
                                 break;
                             case "list":
-                                foreach (DirectoryEntry item in GetFolderList(input[2]))
+                                foreach (DirectoryEntry item in GetFolderList(Args[1]))
                                 {
                                     Console.WriteLine(item.mName);
                                 }
@@ -57,7 +59,7 @@ namespace PrismProject.Functions.System2
                         }
                         break;
                     case "system":
-                        switch (input[1].ToLower())
+                        switch (Args[0])
                         {
                             case "shutdown":
                                 Cosmos.System.Power.Shutdown();
@@ -71,12 +73,12 @@ namespace PrismProject.Functions.System2
                         TCPClient(new Address(127, 0, 0, 1), 2323);
                         break;
                     case "dl":
-                        Download("http://www.github.com/index.html", 80, @"0:\index.html");
+                        Download(Args[0], 80, @"0:\index.html");
                         break;
                     default:
                         Console.WriteLine("[!] No command");
                         break;
-                }
+                } // Cmd looks like: fm(write (the action), contents here, 0:\path\to\file);
             }
         }
     }
