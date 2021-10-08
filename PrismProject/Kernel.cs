@@ -15,7 +15,7 @@ namespace PrismProject
             }
             catch
             {
-                //Reload();
+                Reload();
             }
         }
     }
