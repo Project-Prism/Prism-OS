@@ -2,11 +2,9 @@
 ###### <small>Last updated 10/6/2021  |  Project started sometime in May 2021</small>
 Have any problems? Found a bug? Just want to chat? [Join the discord](https://discord.gg/DdERgtGmF6)!
 
-Prism OS is a [Cosmos](https://github.com/CosmosOS/Cosmos) based operating system developed with C#. The operating system is wrapped around an easy to navigate graphical user interface and includes core functionalities such as a filesystem and networking. Prism OS also comes with a [custom scripting language](https://github.com/Project-Prism/Hexi) that allows for easier interaction with the system within the OS itself*.
+Prism OS is a [Cosmos](https://github.com/CosmosOS/Cosmos) based operating system developed with C#. The operating system is wrapped around an easy to navigate graphical user interface and includes core functionalities such as a filesystem and networking.
 
 This project is made possible by Cosmos and the community around it, and we give a huge thanks to all of the developers that contribute to it.
-
-##### *The scripting language is still under heavy development.
 
 ## Screenshots
 ![](https://github.com/Project-Prism/Prism-OS/blob/main/Screenshots/Prism%20OS%20(21.9.28).png?raw=true)
