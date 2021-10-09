@@ -1,8 +1,6 @@
-﻿using Cosmos.System;
-using Cosmos.System.Graphics;
+﻿using Cosmos.System.Graphics;
 using System;
 using System.Drawing;
-using static PrismProject.Functions.IO.SystemFiles;
 using static PrismProject.Functions.Graphics.ThemeSystem;
 using Cosmos.System.Graphics.Fonts;
 
@@ -12,9 +10,9 @@ namespace PrismProject.Functions.Graphics
     {
         public static int Width = 800;
         public static int Height = 600;
-        public static Canvas Canvas = FullScreenCanvas.GetFullScreenCanvas(new Mode(800, 600, ColorDepth.ColorDepth32));
+        public static Canvas Canvas = FullScreenCanvas.GetFullScreenCanvas(new Mode(Width, Height, ColorDepth.ColorDepth32));
 
-        public class Shapes
+        public class Basic
         {
             public static void DrawRect(int X1, int Y1, int X2, int Y2, Color C, bool Filled)
             {
@@ -75,29 +73,6 @@ namespace PrismProject.Functions.Graphics
                 angleX = Radius * Math.Sin(Math.PI * 2 * Angle / 360);
                 DrawLine(X, Y, X + (int)(Math.Round(angleX * 100) / 100), Y - (int)(Math.Round(angleY * 100) / 100), color);
             }
-        }
-
-        public class Advanced
-        {
-            public static void DrawBMP(int X1, int Y1, Bitmap BMP)
-            {
-                Canvas.DrawImageAlpha(BMP, X1, Y1);
-            }
-
-            public static void DrawPage(int X1, int Y1, int X2, int Y2, int R, string title)
-            {
-                int TextX = (X2 / 2) - (PCScreenFont.Default.Width * title.Length);
-                Shapes.DrawRoundRect(X1 - 1, Y1 - 1, X2 + 2, Y2 + 2 + (Y2 / 15), R, Window[0], new int[] { 1, 1, 1, 1 }); //shadow
-                Shapes.DrawRoundRect(X1, Y1 + (Y2 / 15), X2, Y2, R, Window[2], new int[] { 1, 1, 1, 1 }); //window
-                Shapes.DrawRoundRect(X1, Y1, X2, Y2 / 15, R, Window[3], new int[] { 1, 1, 1, 1 }); //title bar
-                DrawString(title, PCScreenFont.Default, Color.White, X2 / 2, Y2 / 15 + 5);
-            }
-
-            public static void DrawProgBar(int X1, int Y1, int X2, int Y2, int Percent)
-            {
-                Shapes.DrawRoundRect(X1, Y1, X2, Y2, 50, Progbar[0], new int[] { 1, 1, 1, 1 });
-                Shapes.DrawRoundRect(X1, Y1, X2 / Percent, Y2, 50, Progbar[1], new int[] { 1, 1, 1, 1 });
-            }
 
             public static void DrawString(string Text, PCScreenFont Font, Color c, int X, int Y)
             {
@@ -110,13 +85,30 @@ namespace PrismProject.Functions.Graphics
                     Space += Font.Height + 5;
                 }
             }
+
+            public static void DrawBMP(int X1, int Y1, Bitmap BMP)
+            {
+                int X = X1 - (int)BMP.Width / 2;
+                int Y = Y1 - (int)BMP.Height / 2;
+                Canvas.DrawImageAlpha(BMP, X, Y);
+            }
         }
 
-        public class Mouse
+        public class Advanced
         {
-            public static void UpdateMouse()
+            public static void DrawPage(int X1, int Y1, int X2, int Y2, int R, string title)
             {
-                Advanced.DrawBMP((int)MouseManager.X, (int)MouseManager.Y, Arrow_bmp);
+                int TextX = (X2 / 2) - (PCScreenFont.Default.Width * title.Length);
+                Basic.DrawRoundRect(X1 - 1, Y1 - 1, X2 + 2, Y2 + 2 + (Y2 / 15), R, Window[0], new int[] { 1, 1, 1, 1 }); //shadow
+                Basic.DrawRoundRect(X1, Y1 + (Y2 / 15), X2, Y2, R, Window[2], new int[] { 1, 1, 1, 1 }); //window
+                Basic.DrawRoundRect(X1, Y1, X2, Y2 / 15, R, Window[3], new int[] { 1, 1, 1, 1 }); //title bar
+                Basic.DrawString(title, PCScreenFont.Default, Color.White, X2 / 2, Y2 / 15 + 5);
+            }
+
+            public static void DrawProgBar(int X1, int Y1, int X2, int Y2, int Percent)
+            {
+                Basic.DrawRoundRect(X1, Y1, X2, Y2, 50, Progbar[0], new int[] { 1, 1, 1, 1 });
+                Basic.DrawRoundRect(X1, Y1, X2 / Percent, Y2, 50, Progbar[1], new int[] { 1, 1, 1, 1 });
             }
         }
     }

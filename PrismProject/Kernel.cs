@@ -1,4 +1,3 @@
-using static PrismProject.Functions.Graphics.Canvas2.Advanced;
 using static PrismProject.Functions.Loader;
 
 namespace PrismProject

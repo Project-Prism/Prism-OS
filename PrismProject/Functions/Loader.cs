@@ -10,15 +10,16 @@ namespace PrismProject.Functions
 {
     class Loader
     {
-        
+
         public static void InitCore()
         {
             // Cosmos.System.Graphics.Fonts.PCScreenFont.LoadFont(Convert.FromBase64String(""));
             int[] All = new int[] { 1, 1, 1, 1 };
-            Shapes.DrawRoundRect(Width / 4 - 1, Height / 4 - 1, Width / 2 + 2, Height / 2 + 2, 10, Color.White, All);
-            Shapes.DrawRoundRect(Width / 4, Height / 4, Width / 2, Height / 2, 10, Color.FromArgb(35, 35, 55), All);
-            Advanced.DrawBMP(Width / 2, Height / 2, Boot_bmp);
-            Advanced.DrawString("Prism OS (21.9.28)", PCScreenFont.Default, Color.White, Width / 2, 425);
+            Basic.DrawRoundRect(Width / 4 - 1, Height / 4 - 1, Width / 2 + 2, Height / 2 + 2, 10, Color.White, All);
+            Basic.DrawRoundRect(Width / 4, Height / 4, Width / 2, Height / 2, 10, Color.FromArgb(35, 35, 55), All);
+            Basic.DrawBMP(Width / 2, Height / 2, Boot_bmp);
+            Basic.DrawString("Prism OS (21.9.28)", PCScreenFont.Default, Color.White, Width / 2, 425);
+
             Beep();
             StartDisk();
             NetStart(Local, Subnet, Gateway2);
