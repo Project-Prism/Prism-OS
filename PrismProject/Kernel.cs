@@ -10,12 +10,12 @@ namespace PrismProject
         {
             try
             {
-                Functions.System2.Terminal.Main();
-                //InitCore();
+                //Functions.System2.Terminal.Main();
+                InitCore();
             }
             catch
             {
-                Reload();
+
             }
         }
     }

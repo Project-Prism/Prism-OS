@@ -2,7 +2,6 @@
 using Cosmos.System.Graphics;
 using System;
 using System.Drawing;
-using static Cosmos.System.Graphics.ColorDepth;
 using static PrismProject.Functions.IO.SystemFiles;
 using static PrismProject.Functions.Graphics.ThemeSystem;
 using Cosmos.System.Graphics.Fonts;
@@ -13,7 +12,7 @@ namespace PrismProject.Functions.Graphics
     {
         public static int Width = 800;
         public static int Height = 600;
-        public static Canvas Canvas = FullScreenCanvas.GetFullScreenCanvas(new Mode(Width, Height, ColorDepth32));
+        public static Canvas Canvas = FullScreenCanvas.GetFullScreenCanvas(new Mode(800, 600, ColorDepth.ColorDepth32));
 
         public class Shapes
         {
@@ -74,7 +73,7 @@ namespace PrismProject.Functions.Graphics
                 Double angleX, angleY;
                 angleY = Radius * Math.Cos(Math.PI * 2 * Angle / 360);
                 angleX = Radius * Math.Sin(Math.PI * 2 * Angle / 360);
-                Shapes.DrawLine(X, Y, X + (int)(Math.Round(angleX * 100) / 100), Y - (int)(Math.Round(angleY * 100) / 100), color);
+                DrawLine(X, Y, X + (int)(Math.Round(angleX * 100) / 100), Y - (int)(Math.Round(angleY * 100) / 100), color);
             }
         }
 
@@ -91,7 +90,7 @@ namespace PrismProject.Functions.Graphics
                 Shapes.DrawRoundRect(X1 - 1, Y1 - 1, X2 + 2, Y2 + 2 + (Y2 / 15), R, Window[0], new int[] { 1, 1, 1, 1 }); //shadow
                 Shapes.DrawRoundRect(X1, Y1 + (Y2 / 15), X2, Y2, R, Window[2], new int[] { 1, 1, 1, 1 }); //window
                 Shapes.DrawRoundRect(X1, Y1, X2, Y2 / 15, R, Window[3], new int[] { 1, 1, 1, 1 }); //title bar
-                DrawTXT(TextX, Y2 / 15 + 5, title, Color.White);
+                DrawString(title, PCScreenFont.Default, Color.White, X2 / 2, Y2 / 15 + 5);
             }
 
             public static void DrawProgBar(int X1, int Y1, int X2, int Y2, int Percent)
@@ -100,15 +99,16 @@ namespace PrismProject.Functions.Graphics
                 Shapes.DrawRoundRect(X1, Y1, X2 / Percent, Y2, 50, Progbar[1], new int[] { 1, 1, 1, 1 });
             }
 
-            public static void DrawTXT(int X1, int Y1, string TXT, Color C)
+            public static void DrawString(string Text, PCScreenFont Font, Color c, int X, int Y)
             {
-                Canvas.DrawString(TXT, PCScreenFont.Default, new Pen(C), X1, Y1);
-            }
-
-            public static void Reload()
-            {
-                Canvas.Disable();
-                Canvas.Display();
+                int NewX = X / (Font.Width / 2 * Text.Length);
+                int NewY = Y / (Font.Height / 2 * Text.Split("\n").Length);
+                int Space = 0;
+                foreach (string line in Text.Split("\n"))
+                {
+                    Canvas.DrawString(Text, Font, new Pen(c), NewX, NewY + Space);
+                    Space += Font.Height + 5;
+                }
             }
         }
 
