@@ -13,6 +13,21 @@ namespace PrismProject.Functions
 
         public static void InitCore()
         {
+            var scene = new graf3d.Engine.Component.Scene();
+            var cam = new graf3d.Engine.Component.Camera();
+            var t = new graf3d.Engine.Structure.Cube();
+            t.Position = new graf3d.Engine.Structure.Vector3(0, 0, 0);
+            t.Scaling = new graf3d.Engine.Structure.Vector3(45, 45, 45);
+
+
+            scene.Camera = cam;
+            scene.Camera.Position = new graf3d.Engine.Structure.Vector3(60, 60, 60);
+            scene.Lights.Add(new graf3d.Engine.Oświetlenie.Light());
+            scene.Lights[0].AttenuationOn = true;
+            cam.FieldOfView = 80;
+
+            System2.Threading.Thread.Sleep(5);
+
             // Cosmos.System.Graphics.Fonts.PCScreenFont.LoadFont(Convert.FromBase64String(""));
             int[] All = new int[] { 1, 1, 1, 1 };
             Basic.DrawRoundRect(Width / 4 - 1, Height / 4 - 1, Width / 2 + 2, Height / 2 + 2, 10, Color.White, All);
