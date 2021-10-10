@@ -145,14 +145,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Functions\IO\Embeded\back.bmp" />
-      <None Remove="Functions\IO\Embeded\Images\Arrow.bmp" />
+      <None Remove="Functions\Services\Files\back.bmp" />
+      <None Remove="Functions\Services\Files\polyfish_lines.gif" />
       <None Remove="Functions\thm.thm" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Functions\IO\Embeded\Images\Arrow.bmp" />
-      <EmbeddedResource Include="Functions\IO\Embeded\Images\Boot.bmp" />
+      <EmbeddedResource Include="Functions\Services\Files\Arrow.bmp" />
+      <EmbeddedResource Include="Functions\Services\Files\Boot.bmp" />
+      <EmbeddedResource Include="Functions\Services\Files\polyfish_lines.gif" />
     </ItemGroup>
 
     <ItemGroup>

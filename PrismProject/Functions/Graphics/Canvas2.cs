@@ -76,12 +76,13 @@ namespace PrismProject.Functions.Graphics
 
             public static void DrawString(string Text, PCScreenFont Font, Color c, int X, int Y)
             {
-                int NewX = X / (Font.Width / 2 * Text.Length);
-                int NewY = Y / (Font.Height / 2 * Text.Split("\n").Length);
+                string[] Txt = Text.Split("\n");
                 int Space = 0;
-                foreach (string line in Text.Split("\n"))
+                foreach (string line in Txt)
                 {
-                    Canvas.DrawString(Text, Font, new Pen(c), NewX, NewY + Space);
+                    int NewX = X - (Font.Width / 2 * line.Length);
+                    int NewY = Y - (Font.Height / 2 * Txt.Length);
+                    Canvas.DrawString(line, Font, new Pen(c), NewX, NewY + Space);
                     Space += Font.Height + 5;
                 }
             }
@@ -98,7 +99,6 @@ namespace PrismProject.Functions.Graphics
         {
             public static void DrawPage(int X1, int Y1, int X2, int Y2, int R, string title)
             {
-                int TextX = (X2 / 2) - (PCScreenFont.Default.Width * title.Length);
                 Basic.DrawRoundRect(X1 - 1, Y1 - 1, X2 + 2, Y2 + 2 + (Y2 / 15), R, Window[0], new int[] { 1, 1, 1, 1 }); //shadow
                 Basic.DrawRoundRect(X1, Y1 + (Y2 / 15), X2, Y2, R, Window[2], new int[] { 1, 1, 1, 1 }); //window
                 Basic.DrawRoundRect(X1, Y1, X2, Y2 / 15, R, Window[3], new int[] { 1, 1, 1, 1 }); //title bar

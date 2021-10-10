@@ -19,7 +19,7 @@
                     }
                     break;
             }
-            Logging.AppendLog(Logging.Type.Error, "Incorect language was specified, Changing back to default...");
+            Services.LoggingService.AppendLog(Services.LoggingService.Type.Error, "Incorect language was specified, Changing back to default...");
             Locale = "EN_US";
             return "LANG_ERR.";
         }

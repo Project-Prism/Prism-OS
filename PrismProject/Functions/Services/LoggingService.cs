@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace PrismProject.Functions.System2
+namespace PrismProject.Functions.Services
 {
-    class Logging
+    class LoggingService
     {
         public static List<string> Log = new List<string>();
 
@@ -26,7 +26,7 @@ namespace PrismProject.Functions.System2
             {
                 Data = "\n" + line;
             }
-            IO.Disk.WriteFile("0:\\Log.txt", Data, true);
+            Core.FileSystem.WriteFile("0:\\Log.txt", Data, true);
         }
     }
 }

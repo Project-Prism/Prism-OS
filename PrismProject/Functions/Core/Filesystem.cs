@@ -4,11 +4,10 @@ using Cosmos.System.FileSystem.VFS;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using static PrismProject.Functions.IO.SystemFiles;
 
-namespace PrismProject.Functions.IO
+namespace PrismProject.Functions.Core
 {
-    internal class Disk
+    internal class FileSystem
     {
 
         private static readonly CosmosVFS fs = new CosmosVFS();

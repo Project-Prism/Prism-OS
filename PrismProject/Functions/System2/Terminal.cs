@@ -1,7 +1,8 @@
 ﻿using Cosmos.System.FileSystem.Listing;
 using System;
-using static PrismProject.Functions.IO.Disk;
-using static PrismProject.Functions.Network.Basic;
+using static PrismProject.Functions.Core.FileSystem;
+using static PrismProject.Functions.Services.NetoworkService;
+using static PrismProject.Functions.Core.TCPClient;
 using Cosmos.System.Network.IPv4;
 
 namespace PrismProject.Functions.System2
@@ -70,7 +71,7 @@ namespace PrismProject.Functions.System2
                         }
                         break;
                     case "net":
-                        TCPClient(new Address(127, 0, 0, 1), 2323);
+                        TCPC(new Address(127, 0, 0, 1), 2323);
                         break;
                     case "dl":
                         Download(Args[0], 80, @"0:\index.html");
