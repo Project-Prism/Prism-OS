@@ -6,7 +6,7 @@ using Cosmos.System.Network.IPv4.UDP.DNS;
 
 namespace PrismProject.Functions.Services
 {
-    internal class NetoworkService
+    internal class Network_Service
     {
         /// <summary>Type 1 for 192.168.x.x type routers</summary>
         public static Address Gateway1 = new Address(192, 168, 1, 1);

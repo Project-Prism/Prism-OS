@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PrismProject.Functions.System2
+namespace PrismProject.Core.Methods
 {
-    public class LZWDecoder
+    class LZWDecoder
     {
         /// <summary>
         /// Decode data stored in the byte array
@@ -35,7 +35,7 @@ namespace PrismProject.Functions.System2
                 LSB = true;
             }
 
-            BinaryStream input = new BinaryStream(data, data.Length) { LSB = LSB };
+            Types.BinaryStream input = new Types.BinaryStream(data, data.Length) { LSB = LSB };
             if (isGIF)
             {
                 input.Position += indexSize;

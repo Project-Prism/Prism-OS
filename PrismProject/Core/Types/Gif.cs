@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PrismProject.Functions.System2.Types
+namespace PrismProject.Core.Types
 {
     public class Gif
     {
@@ -244,7 +244,7 @@ namespace PrismProject.Functions.System2.Types
                     //decompress it
                     if (localColorTableFlag)
                     {
-                        byte[] decompressed = LZWDecoder.Decode(compressedData, dictionarySize: localColorTableSize, minIndexSize: minimumCodeSize, isGIF: true);
+                        byte[] decompressed = Methods.LZWDecoder.Decode(compressedData, dictionarySize: localColorTableSize, minIndexSize: minimumCodeSize, isGIF: true);
                         for (int i = 0; i < decompressed.Length; i++)
                         {
                             image.imageData[compressPos++] = localColorTable[decompressed[i]];
@@ -252,7 +252,7 @@ namespace PrismProject.Functions.System2.Types
                     }
                     else
                     {
-                        byte[] decompressed = LZWDecoder.Decode(compressedData, dictionarySize: sizeGlobalColorTable, minIndexSize: minimumCodeSize, isGIF: true);
+                        byte[] decompressed = Methods.LZWDecoder.Decode(compressedData, dictionarySize: sizeGlobalColorTable, minIndexSize: minimumCodeSize, isGIF: true);
                         for (int i = 0; i < decompressed.Length; i++)
                         {
                             image.imageData[compressPos] = colorTable[decompressed[i]];

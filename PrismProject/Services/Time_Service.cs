@@ -2,7 +2,7 @@
 
 namespace PrismProject.Functions.Services
 {
-    class TimeService
+    class Time_Service
     {
         public static string Year { get; } = RTC.Year.ToString();
         public static string Month { get; } = RTC.Month.ToString();

@@ -1,6 +1,6 @@
 ﻿namespace PrismProject.Functions.Services
 {
-    class AppBarService
+    class AppBar_Service
     {
         public static void Draw()
         {

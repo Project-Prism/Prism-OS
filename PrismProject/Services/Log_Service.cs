@@ -2,7 +2,7 @@
 
 namespace PrismProject.Functions.Services
 {
-    class LoggingService
+    class Log_Service
     {
         public static List<string> Log = new List<string>();
 

@@ -1,11 +1,11 @@
 ﻿using Cosmos.System.FileSystem.Listing;
 using System;
 using static PrismProject.Functions.Core.FileSystem;
-using static PrismProject.Functions.Services.NetoworkService;
+using static PrismProject.Functions.Services.Network_Service;
 using static PrismProject.Functions.Core.TCPClient;
 using Cosmos.System.Network.IPv4;
 
-namespace PrismProject.Functions.System2
+namespace PrismProject
 {
     class Terminal
     {

@@ -3,6 +3,10 @@ using Cosmos.System;
 
 namespace PrismProject.Functions.Services
 {
+    class KeyboardService
+    {
+
+    }
     class MouseService
     {
         public MouseService()

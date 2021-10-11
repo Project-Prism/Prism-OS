@@ -16,6 +16,7 @@ namespace PrismProject.Functions.Graphics
         {
             public static void DrawRect(int X1, int Y1, int X2, int Y2, Color C, bool Filled)
             {
+                
                 switch (Filled)
                 {
                     case true:

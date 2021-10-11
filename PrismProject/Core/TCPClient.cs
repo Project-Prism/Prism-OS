@@ -1,4 +1,4 @@
-﻿using static PrismProject.Functions.Services.NetoworkService;
+﻿using static PrismProject.Functions.Services.Network_Service;
 using Cosmos.System.Network.IPv4.TCP;
 using static System.Text.Encoding;
 using static System.Console;

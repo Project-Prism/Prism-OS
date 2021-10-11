@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PrismProject.Functions.Services
 {
-    class AppService
+    class App_Service
     {
         public static Dictionary<string, App> AppList = new Dictionary<string, App>();
         public struct App
