@@ -8,10 +8,10 @@ namespace PrismProject.Core.Types
     /// </summary>
     public class BinaryStream : Stream
     {
-        private byte[] data;
+        private readonly byte[] data;
         private long bytePos;
         private byte bitPos;
-        private int length = -1;
+        private readonly int length = -1;
         /// <summary>
         /// If bytes are parsed from Right -> Left (MSB standard) or Left -> Right (LSB)
         /// </summary>

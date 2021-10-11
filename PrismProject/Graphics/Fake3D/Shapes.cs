@@ -2,7 +2,7 @@
 using System;
 using System.Drawing;
 
-namespace PrismProject.Functions.Graphics.Fake3D
+namespace PrismProject.Graphics.Fake3D
 {
     class Shapes
     {

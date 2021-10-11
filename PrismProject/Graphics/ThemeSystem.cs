@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace PrismProject.Functions.Graphics
+namespace PrismProject.Graphics
 {
     class ThemeSystem
     {

@@ -1,15 +1,15 @@
-﻿using static PrismProject.Functions.Graphics.Canvas2;
+﻿using static PrismProject.Graphics.Canvas2;
 using Cosmos.System;
 
-namespace PrismProject.Functions.Services
+namespace PrismProject.Services
 {
-    class KeyboardService
+    class Keyboard_Service
     {
 
     }
-    class MouseService
+    class Mouse_Service
     {
-        public MouseService()
+        public Mouse_Service()
         {
             MouseManager.ScreenWidth = (uint)Width;
             MouseManager.ScreenHeight = (uint)Height;

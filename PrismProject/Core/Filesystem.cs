@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace PrismProject.Functions.Core
+namespace PrismProject.Core
 {
     internal class FileSystem
     {
@@ -17,7 +17,7 @@ namespace PrismProject.Functions.Core
             try
             { fs.CreateDirectory(ParseFullPath(FullPath)); }
             catch (Exception e)
-            { WriteFile(@"0:\System2\Crash.log", "\n[Error] " + e, true); }
+            { Services.SystemException_Service.Main(e); }
         }
 
         public static void DeleteEntry(string FullPath)
@@ -66,7 +66,9 @@ namespace PrismProject.Functions.Core
                 }
             }
             catch (Exception e)
-            { }
+            {
+                Services.SystemException_Service.Main(e);
+            }
         }
 
         private static string ParseFullPath(string FullPath)

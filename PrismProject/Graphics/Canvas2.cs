@@ -1,13 +1,18 @@
 ﻿using Cosmos.System.Graphics;
 using System;
 using System.Drawing;
-using static PrismProject.Functions.Graphics.ThemeSystem;
+using static PrismProject.Graphics.ThemeSystem;
 using Cosmos.System.Graphics.Fonts;
 
-namespace PrismProject.Functions.Graphics
+namespace PrismProject.Graphics
 {
     class Canvas2
     {
+        public enum AnchorPoint
+        {
+            TopLeft,
+            Center
+        }
         public static int Width = 800;
         public static int Height = 600;
         public static Canvas Canvas = FullScreenCanvas.GetFullScreenCanvas(new Mode(Width, Height, ColorDepth.ColorDepth32));
@@ -75,24 +80,46 @@ namespace PrismProject.Functions.Graphics
                 DrawLine(X, Y, X + (int)(Math.Round(angleX * 100) / 100), Y - (int)(Math.Round(angleY * 100) / 100), color);
             }
 
-            public static void DrawString(string Text, PCScreenFont Font, Color c, int X, int Y)
+            public static void DrawString(string Text, PCScreenFont Font, Color c, int X, int Y, AnchorPoint anc)
             {
                 string[] Txt = Text.Split("\n");
                 int Space = 0;
+                int NewX = 0;
+                int NewY = 0;
                 foreach (string line in Txt)
                 {
-                    int NewX = X - (Font.Width / 2 * line.Length);
-                    int NewY = Y - (Font.Height / 2 * Txt.Length);
+                    if (anc == AnchorPoint.TopLeft)
+                    {
+                        NewX = X;
+                        NewY = Y;
+                    }
+                    if (anc == AnchorPoint.Center)
+                    {
+                        NewX = X - (Font.Width / 2 * line.Length);
+                        NewY = Y - (Font.Height / 2 * Txt.Length);
+                    }
+
                     Canvas.DrawString(line, Font, new Pen(c), NewX, NewY + Space);
                     Space += Font.Height + 5;
                 }
             }
 
-            public static void DrawBMP(int X1, int Y1, Bitmap BMP)
+            public static void DrawBMP(int X, int Y, Bitmap BMP, AnchorPoint anc)
             {
-                int X = X1 - (int)BMP.Width / 2;
-                int Y = Y1 - (int)BMP.Height / 2;
-                Canvas.DrawImageAlpha(BMP, X, Y);
+                int NewX = 0;
+                int NewY = 0;
+                if (anc == AnchorPoint.Center)
+                {
+                    NewX = X - (int)BMP.Width / 2;
+                    NewY = Y - (int)BMP.Height / 2;
+                }
+                if (anc == AnchorPoint.TopLeft)
+                {
+                    NewX = X;
+                    NewY = Y;
+                }
+                
+                Canvas.DrawImageAlpha(BMP, NewX, NewY);
             }
         }
 
@@ -103,7 +130,7 @@ namespace PrismProject.Functions.Graphics
                 Basic.DrawRoundRect(X1 - 1, Y1 - 1, X2 + 2, Y2 + 2 + (Y2 / 15), R, Window[0], new int[] { 1, 1, 1, 1 }); //shadow
                 Basic.DrawRoundRect(X1, Y1 + (Y2 / 15), X2, Y2, R, Window[2], new int[] { 1, 1, 1, 1 }); //window
                 Basic.DrawRoundRect(X1, Y1, X2, Y2 / 15, R, Window[3], new int[] { 1, 1, 1, 1 }); //title bar
-                Basic.DrawString(title, PCScreenFont.Default, Color.White, X2 / 2, Y2 / 15 + 5);
+                Basic.DrawString(title, PCScreenFont.Default, Color.White, X2 / 2, Y2 / 15 + 5, AnchorPoint.Center);
             }
 
             public static void DrawProgBar(int X1, int Y1, int X2, int Y2, int Percent)

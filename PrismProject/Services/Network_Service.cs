@@ -4,7 +4,7 @@ using Cosmos.System.Network.IPv4;
 using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Cosmos.System.Network.IPv4.UDP.DNS;
 
-namespace PrismProject.Functions.Services
+namespace PrismProject.Services
 {
     internal class Network_Service
     {

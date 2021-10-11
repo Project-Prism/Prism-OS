@@ -1,4 +1,4 @@
-﻿namespace PrismProject.Functions.Services
+﻿namespace PrismProject.Services
 {
     class AppBar_Service
     {

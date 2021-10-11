@@ -1,7 +1,7 @@
 ﻿using Cosmos.System.Graphics;
 using System.Collections.Generic;
 
-namespace PrismProject.Functions.Services
+namespace PrismProject.Services
 {
     class App_Service
     {

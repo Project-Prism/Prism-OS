@@ -1,10 +1,10 @@
-﻿using static PrismProject.Functions.Services.Network_Service;
+﻿using static PrismProject.Services.Network_Service;
 using Cosmos.System.Network.IPv4.TCP;
 using static System.Text.Encoding;
 using static System.Console;
 using Cosmos.System.Network.IPv4;
 
-namespace PrismProject.Functions.Core
+namespace PrismProject.Core
 {
     class TCPClient
     {

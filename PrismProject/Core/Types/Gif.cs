@@ -184,8 +184,10 @@ namespace PrismProject.Core.Types
                 if (data[pos] == 0x2c)
                 {
                     pos++;
-                    Bitmap image = new Bitmap();
-                    image.x = BitConverter.ToUInt16(data, pos);
+                    Bitmap image = new Bitmap
+                    {
+                        x = BitConverter.ToUInt16(data, pos)
+                    };
                     pos += 2;
                     image.y = BitConverter.ToUInt16(data, pos);
                     pos += 2;
