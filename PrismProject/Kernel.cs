@@ -1,4 +1,4 @@
-using Cosmos.System.Graphics.Fonts;
+using static PrismProject.Services.FontManager_Service;
 using System.Drawing;
 using static Cosmos.Core.CPU;
 using static PrismProject.Graphics.Canvas2;
@@ -17,7 +17,7 @@ namespace PrismProject
             try
             {
                 Basic.DrawBMP(Width / 2, Height / 2, Prism, AnchorPoint.Center);
-                Basic.DrawString("Prism OS\nDate: " + Day + "/" + Month + "/" + Year + "\nInstalled ram: " + GetAmountOfRAM() + " MB\n\nSystem starting...", PCScreenFont.Default, Color.White, Width / 2, Height / 2 + (int)Prism.Height + 16, AnchorPoint.Center);
+                Basic.DrawString("Prism OS\nDate: " + Day + "/" + Month + "/" + Year + "\nInstalled ram: " + GetAmountOfRAM() + " MB\n\nSystem starting...", SystemDefault, Color.White, Width / 2, Height / 2 + (int)Prism.Height + 16, AnchorPoint.Center);
                 StartDisk();
                 NetStart(Local, Subnet, Gateway2);
             }

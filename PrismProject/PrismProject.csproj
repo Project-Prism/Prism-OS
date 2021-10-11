@@ -146,10 +146,12 @@
 
     <ItemGroup>
       <None Remove="Files\back.bmp" />
+      <None Remove="Files\Fonts\CaviarDreams_Bold.psf" />
       <None Remove="Files\Icons\warning.bmp" />
     </ItemGroup>
 
     <ItemGroup>
+      <EmbeddedResource Include="Files\Fonts\CaviarDreams_Bold.psf" />
       <EmbeddedResource Include="Files\Icons\Mouse.bmp" />
       <EmbeddedResource Include="Files\Icons\Prism.bmp" />
       <EmbeddedResource Include="Files\Icons\Warning.bmp" />
