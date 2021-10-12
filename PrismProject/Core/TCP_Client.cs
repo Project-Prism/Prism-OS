@@ -6,7 +6,7 @@ using Cosmos.System.Network.IPv4;
 
 namespace PrismProject.Core
 {
-    class TCPClient
+    class TCP_Client
     {
         public static void TCPC(Address IP, int Port)
         {
