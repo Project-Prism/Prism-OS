@@ -6,6 +6,7 @@ using static PrismProject.Core.FileSystem;
 using static PrismProject.Services.Resource_Service;
 using static PrismProject.Services.Network_Service;
 using static PrismProject.Services.Time_Service;
+using PrismProject.Services;
 using System;
 
 namespace PrismProject
@@ -18,12 +19,13 @@ namespace PrismProject
             {
                 Basic.DrawBMP(Width / 2, Height / 2, Prism, AnchorPoint.Center);
                 Basic.DrawString("Prism OS\nDate: " + Day + "/" + Month + "/" + Year + "\nInstalled ram: " + GetAmountOfRAM() + " MB\n\nSystem starting...", SystemDefault, Color.White, Width / 2, Height / 2 + (int)Prism.Height + 16, AnchorPoint.Center);
+
                 StartDisk();
                 NetStart(Local, Subnet, Gateway2);
             }
             catch (Exception exc)
             {
-                Services.SystemException_Service.Main(exc);
+                SystemException_Service.Main(exc);
             }
         }
     }

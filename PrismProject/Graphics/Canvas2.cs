@@ -1,7 +1,6 @@
 ﻿using Cosmos.System.Graphics;
 using System;
 using System.Drawing;
-using static PrismProject.Graphics.ThemeSystem;
 using Cosmos.System.Graphics.Fonts;
 
 namespace PrismProject.Graphics
@@ -33,26 +32,17 @@ namespace PrismProject.Graphics
                 }
             }
 
-            public static void DrawRoundRect(int X1, int Y1, int X2, int Y2, int R, Color C, int[] Sides)
+            public static void DrawRoundRect(int X1, int Y1, int X2, int Y2, int R, Color C)
             {
                 int x2 = X1 + X2, y2 = Y1 + Y2, r2 = R + R;
                 DrawRect(X1, Y1 + R, X2, Y2 - r2, C, true); // Left Right
                 DrawRect(X1 + R, Y1, X2 - r2, R, C, true); //Bottom Bar
                 DrawRect(X1 + R, y2 - R, X2 - r2, R, C, true); //Top Bar
-
-                if (Sides[0] == 1)
-                { DrawCirc(X1 + R, Y1 + R, R, C, true); }
-                else { } //Top Left
-                if (Sides[1] == 1)
-                { DrawCirc(x2 - R - 1, Y1 + R, R, C, true); }
-                else { } //Top Right
-                if (Sides[2] == 1)
-                { DrawCirc(X1 + R, y2 - R - 1, R, C, true); }
-                else { } //Bottom Left
-                if (Sides[3] == 1)
-                { DrawCirc(x2 - R - 1, y2 - R - 1, R, C, true); }
-                else { } //Bottom Right
-            }
+                
+                DrawCirc(X1 + R, Y1 + R, R, C, true); // Top left
+                DrawCirc(x2 - R - 1, Y1 + R, R, C, true); // Top Right
+                DrawCirc(X1 + R, y2 - R - 1, R, C, true); // Bottom Left
+                DrawCirc(x2 - R - 1, y2 - R - 1, R, C, true); } // Bottom Right
 
             public static void DrawCirc(int X1, int Y1, int R, Color C, bool filled)
             {
@@ -118,25 +108,132 @@ namespace PrismProject.Graphics
                     NewX = X;
                     NewY = Y;
                 }
-                
+
                 Canvas.DrawImageAlpha(BMP, NewX, NewY);
             }
         }
 
-        public class Advanced
+        public class Elements
         {
-            public static void DrawPage(int X1, int Y1, int X2, int Y2, int R, string title)
+            public struct ObjectLook
             {
-                Basic.DrawRoundRect(X1 - 1, Y1 - 1, X2 + 2, Y2 + 2 + (Y2 / 15), R, Window[0], new int[] { 1, 1, 1, 1 }); //shadow
-                Basic.DrawRoundRect(X1, Y1 + (Y2 / 15), X2, Y2, R, Window[2], new int[] { 1, 1, 1, 1 }); //window
-                Basic.DrawRoundRect(X1, Y1, X2, Y2 / 15, R, Window[3], new int[] { 1, 1, 1, 1 }); //title bar
-                Basic.DrawString(title, PCScreenFont.Default, Color.White, X2 / 2, Y2 / 15 + 5, AnchorPoint.Center);
+                public bool Rounded;
+                public Color[] Theme;
+                public int BorderWidth;
+                public int BorderRadius;
+                public string[] Extra;
+                public PCScreenFont Font;
+
+                public ObjectLook(bool aRounded, int aBorderWidth, int aBorderRadius, string[] aExtra, Color[] aTheme, PCScreenFont aFont)
+                {
+                    if (!aRounded && aBorderRadius > 0)
+                    {
+                        throw new Exception("Object cannot have a border radius if it does not have curvature.");
+                    }
+                    Rounded = aRounded;
+                    Theme = aTheme;
+                    BorderWidth = aBorderWidth;
+                    BorderRadius = aBorderRadius;
+                    Extra = aExtra;
+                    Font = aFont;
+                }
+            } // Look config for new object
+            public struct Object // Make new object for each element
+            {
+                public int X;
+                public int Y;
+                public int Width;
+                public int Height;
+                public ObjectLook Look;
+                public AnchorPoint Anchor;
+
+                public Object(int aX, int aY, int aWidth, int aHeight, ObjectLook aLook, AnchorPoint aAnchor)
+                {
+                    X = aX;
+                    Y = aY;
+                    Width = aWidth;
+                    Height = aHeight;
+                    Look = aLook;
+                    Anchor = aAnchor;
+                }
             }
 
-            public static void DrawProgBar(int X1, int Y1, int X2, int Y2, int Percent)
+            public static void DrawButton(Object @object)
             {
-                Basic.DrawRoundRect(X1, Y1, X2, Y2, 50, Progbar[0], new int[] { 1, 1, 1, 1 });
-                Basic.DrawRoundRect(X1, Y1, X2 / Percent, Y2, 50, Progbar[1], new int[] { 1, 1, 1, 1 });
+                int X = @object.X - (@object.Width / 2);
+                int Y = @object.Y - (@object.Height / 2);
+                int Width = (@object.Width);
+                int Height = (@object.Height);
+                int Border = @object.Look.BorderWidth;
+                if (Width < (@object.Look.Font.Width * @object.Look.Extra[0].Length)) // Check if text is longer than button
+                {
+                    // Set button length to be longer than text
+                    Width += (@object.Look.Font.Width * @object.Look.Extra[0].Length) + 10;
+                }
+
+                Basic.DrawRoundRect(
+                    X1: X - Border,
+                    Y1: Y - Border,
+                    X2: Width + Border * 2,
+                    Y2: Height + Border * 2,
+                    R: @object.Look.BorderRadius,
+                    C: @object.Look.Theme[0]);
+
+                Basic.DrawRoundRect(
+                    X1: X,
+                    Y1: Y,
+                    X2: Width,
+                    Y2: Height,
+                    R: @object.Look.BorderRadius,
+                    C: @object.Look.Theme[1]);
+
+                Basic.DrawString(
+                    Text: @object.Look.Extra[0],
+                    Font: PCScreenFont.Default,
+                    c: @object.Look.Theme[2],
+                    X: @object.X,
+                    Y: @object.Y,
+                    anc: @object.Anchor);
+            }
+
+            public static void DrawWindow(Object @object)
+            {
+                int X = @object.X - (@object.Width / 2);
+                int Y = @object.Y - (@object.Height / 2);
+                int Width = @object.Width;
+                int Height = @object.Height;
+                int Border = @object.Look.BorderWidth;
+                
+
+                Basic.DrawRoundRect(
+                    X1: X - Border,
+                    Y1: Y - Border,
+                    X2: Width + Border,
+                    Y2: Height + Border,
+                    R: @object.Look.BorderRadius,
+                    C: @object.Look.Theme[0]);
+
+                Basic.DrawRoundRect(
+                    X1: X,
+                    Y1: Y + @object.Look.Font.Height + 4,
+                    X2: Width,
+                    Y2: Height,
+                    R: @object.Look.BorderRadius,
+                    C: @object.Look.Theme[1]);
+                Basic.DrawRoundRect(
+                    X1: X - Border,
+                    Y1: Y - Border,
+                    X2: Width + Border,
+                    Y2: @object.Look.Font.Height + 4,
+                    R: @object.Look.BorderRadius,
+                    C: @object.Look.Theme[2]);
+                Basic.DrawString(
+                    Text: @object.Look.Extra[0],
+                    Font: @object.Look.Font,
+                    c: @object.Look.Theme[3],
+                    X: @object.X,
+                    Y: Y + (@object.Look.Font.Height / 2), 
+                    anc: @object.Anchor);
             }
         }
     }

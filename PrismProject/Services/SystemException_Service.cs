@@ -11,9 +11,17 @@ namespace PrismProject.Services
         public static void Main(Exception exc)
         {
             Canvas.Clear(Color.Chocolate);
-            Basic.DrawBMP(Width / 2, Height / 2, Warning, AnchorPoint.Center);
-            Basic.DrawString("A critical error occured and cannot be recovered.\nPrism OS will now shut down.\n\nAditional info\n==============\n" + exc.Message, SystemDefault, Color.Black, Width / 2, Height / 2 + (int)Prism.Height + 16, AnchorPoint.Center);
-            Core.Threading.Thread.Sleep(10);
+            Basic.DrawBMP(Width / 2, Height / 2 - (int)Warning.Height, Warning, AnchorPoint.Center);
+
+            Basic.DrawString(
+                Text: Locales.EN_US.CrashMSG + exc.Message,
+                Font: SystemDefault,
+                c: Color.Black,
+                X: Width / 2,
+                Y: Height / 2 + (int)Prism.Height + 32 - (int)Warning.Height, AnchorPoint.Center);
+
+            Core.Threading.Thread.Sleep(100);
+            
             Cosmos.System.Power.Shutdown();
         }
     }
