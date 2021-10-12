@@ -51,7 +51,7 @@ namespace PrismProject.Core
         /// <summary> Start the VFS service. </summary>
         public static void StartDisk()
         {
-            VFSManager.RegisterVFS(fs, false);
+            VFSManager.RegisterVFS(fs);
             fs.Initialize();
         }
 
