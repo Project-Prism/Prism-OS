@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PrismProject.Core.Methods
+namespace PrismProject._System.Methods
 {
     class LZWDecoder
     {

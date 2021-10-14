@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PrismProject.Core.Types
+namespace PrismProject._System.Types
 {
     public class Gif
     {

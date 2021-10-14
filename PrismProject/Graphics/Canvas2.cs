@@ -115,45 +115,31 @@ namespace PrismProject.Graphics
 
         public class Elements
         {
-            public struct ObjectLook
-            {
-                public bool Rounded;
-                public Color[] Theme;
-                public int BorderWidth;
-                public int BorderRadius;
-                public string[] Extra;
-                public PCScreenFont Font;
-
-                public ObjectLook(bool aRounded, int aBorderWidth, int aBorderRadius, string[] aExtra, Color[] aTheme, PCScreenFont aFont)
-                {
-                    if (!aRounded && aBorderRadius > 0)
-                    {
-                        throw new Exception("Object cannot have a border radius if it does not have curvature.");
-                    }
-                    Rounded = aRounded;
-                    Theme = aTheme;
-                    BorderWidth = aBorderWidth;
-                    BorderRadius = aBorderRadius;
-                    Extra = aExtra;
-                    Font = aFont;
-                }
-            } // Look config for new object
             public struct Object // Make new object for each element
             {
                 public int X;
                 public int Y;
                 public int Width;
                 public int Height;
-                public ObjectLook Look;
+
+                public string[] Extra;
+                public int BorderWidth;
+                public int BorderRadius;
+                public PCScreenFont Font;
+                public Color[] Theme;
                 public AnchorPoint Anchor;
 
-                public Object(int aX, int aY, int aWidth, int aHeight, ObjectLook aLook, AnchorPoint aAnchor)
+                public Object(int aX, int aY, int aWidth, int aHeight, string[] aExtra, int aBorderWidth, int aBorderRadius, Color[] aTheme, PCScreenFont aFont, AnchorPoint aAnchor)
                 {
                     X = aX;
                     Y = aY;
                     Width = aWidth;
                     Height = aHeight;
-                    Look = aLook;
+                    Extra = aExtra;
+                    BorderRadius = aBorderRadius;
+                    BorderWidth = aBorderWidth;
+                    Theme = aTheme;
+                    Font = aFont;
                     Anchor = aAnchor;
                 }
             }
@@ -164,11 +150,11 @@ namespace PrismProject.Graphics
                 int Y = @object.Y - (@object.Height / 2);
                 int Width = (@object.Width);
                 int Height = (@object.Height);
-                int Border = @object.Look.BorderWidth;
-                if (Width < (@object.Look.Font.Width * @object.Look.Extra[0].Length)) // Check if text is longer than button
+                int Border = @object.BorderWidth;
+                if (Width < (@object.Font.Width * @object.Extra[0].Length)) // Check if text is longer than button
                 {
                     // Set button length to be longer than text
-                    Width += (@object.Look.Font.Width * @object.Look.Extra[0].Length) + 10;
+                    Width += (@object.Font.Width * @object.Extra[0].Length) + 10;
                 }
 
                 Basic.DrawRoundRect(
@@ -176,21 +162,21 @@ namespace PrismProject.Graphics
                     Y1: Y - Border,
                     X2: Width + Border * 2,
                     Y2: Height + Border * 2,
-                    R: @object.Look.BorderRadius,
-                    C: @object.Look.Theme[0]);
+                    R: @object.BorderRadius,
+                    C: @object.Theme[0]);
 
                 Basic.DrawRoundRect(
                     X1: X,
                     Y1: Y,
                     X2: Width,
                     Y2: Height,
-                    R: @object.Look.BorderRadius,
-                    C: @object.Look.Theme[1]);
+                    R: @object.BorderRadius,
+                    C: @object.Theme[1]);
 
                 Basic.DrawString(
-                    Text: @object.Look.Extra[0],
+                    Text: @object.Extra[0],
                     Font: PCScreenFont.Default,
-                    c: @object.Look.Theme[2],
+                    c: @object.Theme[2],
                     X: @object.X,
                     Y: @object.Y,
                     anc: @object.Anchor);
@@ -202,38 +188,63 @@ namespace PrismProject.Graphics
                 int Y = @object.Y - (@object.Height / 2);
                 int Width = @object.Width;
                 int Height = @object.Height;
-                int Border = @object.Look.BorderWidth;
+                int Border = @object.BorderWidth;
                 
 
-                Basic.DrawRoundRect(
+                Basic.DrawRoundRect( // title bar and border
                     X1: X - Border,
-                    Y1: Y - Border,
+                    Y1: Y - Border - @object.Font.Height + 2,
                     X2: Width + Border,
                     Y2: Height + Border,
-                    R: @object.Look.BorderRadius,
-                    C: @object.Look.Theme[0]);
+                    R: @object.BorderRadius,
+                    C: @object.Theme[0]);
 
-                Basic.DrawRoundRect(
+                Basic.DrawRoundRect( // Content area
                     X1: X,
-                    Y1: Y + @object.Look.Font.Height + 4,
+                    Y1: Y,
                     X2: Width,
                     Y2: Height,
-                    R: @object.Look.BorderRadius,
-                    C: @object.Look.Theme[1]);
+                    R: @object.BorderRadius,
+                    C: @object.Theme[1]);
+                Basic.DrawString(
+                    Text: @object.Extra[0],
+                    Font: @object.Font,
+                    c: @object.Theme[3],
+                    X: @object.X,
+                    Y: Y + (@object.Font.Height / 2), 
+                    anc: @object.Anchor);
+            }
+
+            public static void DrawMessageBox(Object @object)
+            {
+                int X = @object.X - (@object.Width / 2);
+                int Y = @object.Y - (@object.Height / 2);
+                int Width = @object.Width;
+                int Height = @object.Height;
+                int Border = @object.BorderWidth;
+
                 Basic.DrawRoundRect(
                     X1: X - Border,
-                    Y1: Y - Border,
+                    Y1: Y - (Border + @object.Font.Height),
                     X2: Width + Border,
-                    Y2: @object.Look.Font.Height + 4,
-                    R: @object.Look.BorderRadius,
-                    C: @object.Look.Theme[2]);
+                    Y2: Height + Border,
+                    R: @object.BorderRadius,
+                    C: @object.Theme[0]); // Border
+                Basic.DrawRoundRect(
+                    X1: X,
+                    Y1: Y,
+                    X2: Width,
+                    Y2: Height,
+                    R: @object.BorderRadius,
+                    C: @object.Theme[1]); // Content
                 Basic.DrawString(
-                    Text: @object.Look.Extra[0],
-                    Font: @object.Look.Font,
-                    c: @object.Look.Theme[3],
+                    Text: @object.Extra[0], // Title text
+                    Font: @object.Font,
+                    c: @object.Theme[3], // Title text theme
                     X: @object.X,
-                    Y: Y + (@object.Look.Font.Height / 2), 
-                    anc: @object.Anchor);
+                    Y: Y + (@object.Font.Height / 2) + 2,
+                    anc: AnchorPoint.Center);
+
             }
         }
     }

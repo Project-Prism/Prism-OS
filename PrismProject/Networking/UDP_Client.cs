@@ -1,7 +1,7 @@
 ﻿using Cosmos.System.Network.IPv4;
 using System;
 
-namespace PrismProject.Core
+namespace PrismProject.Networking
 {
     class UDP_Client
     {

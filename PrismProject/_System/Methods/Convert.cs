@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace PrismProject.Core.Methods
+namespace PrismProject._System.Methods
 {
     abstract class Convert
     {

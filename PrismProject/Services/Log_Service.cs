@@ -26,7 +26,7 @@ namespace PrismProject.Services
             {
                 Data = "\n" + line;
             }
-            Core.FileSystem.WriteFile("0:\\Log.txt", Data, true);
+            Filesystem.Functions.WriteFile("0:\\Log.txt", Data, true);
         }
     }
 }

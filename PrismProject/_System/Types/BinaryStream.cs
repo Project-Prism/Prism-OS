@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace PrismProject.Core.Types
+namespace PrismProject._System.Types
 {
     /// <summary>
     /// This class allows reading from a byte array single bits

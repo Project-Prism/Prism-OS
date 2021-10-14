@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace PrismProject.Core
+namespace PrismProject.Filesystem
 {
-    internal class FileSystem
+    internal class Functions
     {
 
         private static readonly CosmosVFS fs = new CosmosVFS();

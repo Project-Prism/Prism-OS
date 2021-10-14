@@ -4,7 +4,7 @@ using static System.Text.Encoding;
 using static System.Console;
 using Cosmos.System.Network.IPv4;
 
-namespace PrismProject.Core
+namespace PrismProject.Networking
 {
     class TCP_Client
     {
@@ -35,7 +35,7 @@ namespace PrismProject.Core
                 while (true)
                 {
                     EndPoint endpoint = new EndPoint(IP2, (ushort)Port);
-                    FileSystem.WriteFile(SaveTo, ASCII.GetString(xClient.Receive(ref endpoint)), false);
+                    Filesystem.Functions.WriteFile(SaveTo, ASCII.GetString(xClient.Receive(ref endpoint)), false);
                     xClient.Dispose();
                 }
             }

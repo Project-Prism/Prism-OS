@@ -20,7 +20,7 @@ namespace PrismProject.Services
                 X: Width / 2,
                 Y: Height / 2 + (int)Prism.Height + 32 - (int)Warning.Height, AnchorPoint.Center);
 
-            Core.Threading.Thread.Sleep(5);
+            _System.Threading.Thread.Sleep(5);
             
             Cosmos.System.Power.Shutdown();
         }
