@@ -73,9 +73,6 @@ namespace PrismProject
                     case "net":
                         TCPC(new Address(127, 0, 0, 1), 2323);
                         break;
-                    case "dl":
-                        Download(Args[0], 80, @"0:\index.html");
-                        break;
                     default:
                         Console.WriteLine("[!] No command");
                         break;

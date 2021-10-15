@@ -20,10 +20,13 @@ namespace PrismProject
 
                 StartDisk();
                 NetStart(Local, Subnet, Gateway2);
+
+                // end of kernel
+                throw new Exception("Reached the end of the kernel, code execution can no longer continue.");
             }
             catch (Exception exc)
             {
-                Services.ReliabilityService.CompleteFail(exc);
+                Services.ReliabilityService.CompleteFail(new Exception(exc.Message));
             }
         }
     }

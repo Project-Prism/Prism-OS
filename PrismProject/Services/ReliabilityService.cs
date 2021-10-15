@@ -3,7 +3,6 @@ using System.Drawing;
 using static PrismProject.Display.Visual2D.Canvas2;
 using static PrismProject.Services.Resources;
 using static Cosmos.System.Graphics.Fonts.PCScreenFont;
-using System.Collections.Generic;
 
 namespace PrismProject.Services
 {

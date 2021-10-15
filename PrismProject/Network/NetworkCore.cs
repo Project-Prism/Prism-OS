@@ -23,7 +23,9 @@ namespace PrismProject.Network
             {
                 xClient.Connect(GateWay);
                 xClient.SendAsk(Domain);
-                return xClient.Receive();
+                Address ret = xClient.Receive();
+                xClient.Dispose();
+                return ret;
             }
         }
 
@@ -33,6 +35,7 @@ namespace PrismProject.Network
             using (DHCPClient xClient = new DHCPClient())
             {
                 xClient.SendDiscoverPacket();
+                xClient.Dispose();
             }
         }
     }

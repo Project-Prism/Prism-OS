@@ -21,7 +21,6 @@ namespace PrismProject.Display.Visual2D
         {
             public static void DrawRect(int X1, int Y1, int X2, int Y2, Color C, bool Filled)
             {
-                
                 switch (Filled)
                 {
                     case true:
@@ -39,11 +38,12 @@ namespace PrismProject.Display.Visual2D
                 DrawRect(X1, Y1 + R, X2, Y2 - r2, C, true); // Left Right
                 DrawRect(X1 + R, Y1, X2 - r2, R, C, true); //Bottom Bar
                 DrawRect(X1 + R, y2 - R, X2 - r2, R, C, true); //Top Bar
-                
+
                 DrawCirc(X1 + R, Y1 + R, R, C, true); // Top left
                 DrawCirc(x2 - R - 1, Y1 + R, R, C, true); // Top Right
                 DrawCirc(X1 + R, y2 - R - 1, R, C, true); // Bottom Left
-                DrawCirc(x2 - R - 1, y2 - R - 1, R, C, true); } // Bottom Right
+                DrawCirc(x2 - R - 1, y2 - R - 1, R, C, true);
+            } // Bottom Right
 
             public static void DrawCirc(int X1, int Y1, int R, Color C, bool filled)
             {
@@ -190,7 +190,7 @@ namespace PrismProject.Display.Visual2D
                 int Width = @object.Width;
                 int Height = @object.Height;
                 int Border = @object.BorderWidth;
-                
+
 
                 Basic.DrawRoundRect( // title bar and border
                     X1: X - Border,
@@ -212,7 +212,7 @@ namespace PrismProject.Display.Visual2D
                     Font: @object.Font,
                     c: @object.Theme[3],
                     X: @object.X,
-                    Y: Y + (@object.Font.Height / 2), 
+                    Y: Y + (@object.Font.Height / 2),
                     anc: @object.Anchor);
             }
 
