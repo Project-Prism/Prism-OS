@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace PrismProject.Services
+namespace PrismProject.Display.Visual2D
 {
     class Theme
     {

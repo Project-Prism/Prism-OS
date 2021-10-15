@@ -1,8 +1,8 @@
 ﻿using Cosmos.System.FileSystem.Listing;
 using System;
-using static PrismProject.Filesystem.Functions;
-using static PrismProject.Services.Network_Service;
-using static PrismProject.Networking.TCP_Client;
+using static PrismProject.Filesystem.FSCore;
+using static PrismProject.Network.NetworkCore;
+using static PrismProject.Network.TCP_Client;
 using Cosmos.System.Network.IPv4;
 
 namespace PrismProject

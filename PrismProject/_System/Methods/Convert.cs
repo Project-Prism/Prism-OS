@@ -2,7 +2,7 @@
 
 namespace PrismProject._System.Methods
 {
-    abstract class Convert
+    static class Convert
     {
         public static byte[] ToByteArray(string Input) => Encoding.UTF8.GetBytes(Input);
 

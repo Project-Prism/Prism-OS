@@ -110,7 +110,7 @@ namespace graf3d.Engine.Component
                         if (ClippingAlgorithm.ClipLine(ref p1, ref p2))
                         {
                             // Rysuje linie siatki między wierzchołkami trójkątów.
-                            LineDrawingAlgorithm.DrawLine(p1, p2, (x, y) => PrismProject.Graphics.Canvas2.Canvas.DrawPoint(new Cosmos.System.Graphics.Pen(System.Drawing.Color.FromArgb(color32.A, color32.R, color32.G, color32.B)), x, y));
+                            LineDrawingAlgorithm.DrawLine(p1, p2, (x, y) => PrismProject.Display.Visual2D.Canvas2.Canvas.DrawPoint(new Cosmos.System.Graphics.Pen(System.Drawing.Color.FromArgb(color32.A, color32.R, color32.G, color32.B)), x, y));
                         }
                     });
                 }

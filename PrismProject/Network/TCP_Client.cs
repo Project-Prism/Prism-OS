@@ -1,10 +1,10 @@
-﻿using static PrismProject.Services.Network_Service;
+﻿using static PrismProject.Network.NetworkCore;
 using Cosmos.System.Network.IPv4.TCP;
 using static System.Text.Encoding;
 using static System.Console;
 using Cosmos.System.Network.IPv4;
 
-namespace PrismProject.Networking
+namespace PrismProject.Network
 {
     class TCP_Client
     {
@@ -35,7 +35,7 @@ namespace PrismProject.Networking
                 while (true)
                 {
                     EndPoint endpoint = new EndPoint(IP2, (ushort)Port);
-                    Filesystem.Functions.WriteFile(SaveTo, ASCII.GetString(xClient.Receive(ref endpoint)), false);
+                    Filesystem.FSCore.WriteFile(SaveTo, ASCII.GetString(xClient.Receive(ref endpoint)), false);
                     xClient.Dispose();
                 }
             }

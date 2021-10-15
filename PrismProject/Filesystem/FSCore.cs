@@ -1,23 +1,19 @@
 ﻿using Cosmos.System.FileSystem;
 using Cosmos.System.FileSystem.Listing;
 using Cosmos.System.FileSystem.VFS;
-using System;
 using System.Collections.Generic;
 using System.IO;
 
 namespace PrismProject.Filesystem
 {
-    internal class Functions
+    class FSCore
     {
 
         private static readonly CosmosVFS fs = new CosmosVFS();
 
         public static void CreateFolder(string FullPath)
         {
-            try
-            { fs.CreateDirectory(ParseFullPath(FullPath)); }
-            catch (Exception e)
-            { Services.SystemException_Service.Main(e); }
+            fs.CreateDirectory(ParseFullPath(FullPath));
         }
 
         public static void DeleteEntry(string FullPath)
@@ -57,17 +53,10 @@ namespace PrismProject.Filesystem
 
         public static void WriteFile(string FullPath, string Contents, bool Append)
         {
-            try
+            switch (Append)
             {
-                switch (Append)
-                {
-                    case true: File.WriteAllText(ParseFullPath(FullPath), File.ReadAllText(ParseFullPath(FullPath)) + Contents); break;
-                    case false: File.WriteAllText(ParseFullPath(FullPath), Contents); break;
-                }
-            }
-            catch (Exception e)
-            {
-                Services.SystemException_Service.Main(e);
+                case true: File.WriteAllText(ParseFullPath(FullPath), File.ReadAllText(ParseFullPath(FullPath)) + Contents); break;
+                case false: File.WriteAllText(ParseFullPath(FullPath), Contents); break;
             }
         }
 

@@ -1,13 +1,10 @@
 ﻿using Cosmos.System.Graphics;
 using IL2CPU.API.Attribs;
-using static System.Convert;
-using Cosmos.System.Graphics.Fonts;
-using static System.Text.Encoding;
 
 
 namespace PrismProject.Services
 {
-    class Resource_Service
+    class Resources
     {
         [ManifestResourceStream(ResourceName = "PrismProject.Files.Icons.Prism.bmp")] static readonly byte[] Byte_Prism;
         [ManifestResourceStream(ResourceName = "PrismProject.Files.Icons.Mouse.bmp")] static readonly byte[] Byte_Mouse;

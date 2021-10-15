@@ -3,7 +3,7 @@ using System;
 using System.Drawing;
 using Cosmos.System.Graphics.Fonts;
 
-namespace PrismProject.Graphics
+namespace PrismProject.Display.Visual2D
 {
     class Canvas2
     {
@@ -12,6 +12,7 @@ namespace PrismProject.Graphics
             TopLeft,
             Center
         }
+
         public static int Width = 800;
         public static int Height = 600;
         public static Canvas Canvas = FullScreenCanvas.GetFullScreenCanvas(new Mode(Width, Height, ColorDepth.ColorDepth32));

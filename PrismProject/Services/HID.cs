@@ -1,4 +1,4 @@
-﻿using static PrismProject.Graphics.Canvas2;
+﻿using static PrismProject.Display.Visual2D.Canvas2;
 using Cosmos.System;
 
 namespace PrismProject.Services
@@ -21,7 +21,7 @@ namespace PrismProject.Services
 
         public static void TickForward()
         {
-            Basic.DrawBMP(MouseX, Mousey, Resource_Service.Mouse, AnchorPoint.TopLeft);
+            Basic.DrawBMP(MouseX, Mousey, Resources.Mouse, AnchorPoint.TopLeft);
         }
     }
 }

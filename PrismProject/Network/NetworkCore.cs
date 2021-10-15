@@ -4,9 +4,9 @@ using Cosmos.System.Network.IPv4;
 using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Cosmos.System.Network.IPv4.UDP.DNS;
 
-namespace PrismProject.Services
+namespace PrismProject.Network
 {
-    internal class Network_Service
+    internal class NetworkCore
     {
         /// <summary>Type 1 for 192.168.x.x type routers</summary>
         public static Address Gateway1 = new Address(192, 168, 1, 1);

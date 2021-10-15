@@ -73,7 +73,7 @@ namespace graf3d.Engine.Oświetlenie
 
         public void Illuminate(Scene scene)
         {
-            PrismProject.Graphics.Canvas2.Canvas.Clear(System.Drawing.Color.Black);
+            PrismProject.Display.Visual2D.Canvas2.Canvas.Clear(System.Drawing.Color.Black);
 
             var normal = Vector3.Zero;
             var surfacePos = Vector3.Zero;
@@ -100,7 +100,7 @@ namespace graf3d.Engine.Oświetlenie
                         finalColor += IlluminatePixel(surfacePos, normal, lookDirection, light, scene.Material);
                     }
 
-                    PrismProject.Graphics.Canvas2.Canvas.DrawPoint(new Cosmos.System.Graphics.Pen(System.Drawing.Color.FromArgb((int)finalColor.A, (int)finalColor.R, (int)finalColor.G, (int)finalColor.B)), x, y);
+                    PrismProject.Display.Visual2D.Canvas2.Canvas.DrawPoint(new Cosmos.System.Graphics.Pen(System.Drawing.Color.FromArgb((int)finalColor.A, (int)finalColor.R, (int)finalColor.G, (int)finalColor.B)), x, y);
                 }
             }
 
