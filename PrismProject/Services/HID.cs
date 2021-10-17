@@ -1,4 +1,5 @@
-﻿using static PrismProject.Display.Visual2D.Canvas2;
+﻿using static PrismProject.Display.Visual2D.Display;
+using static PrismProject.Display.Visual2D.DisplayConfig;
 using Cosmos.System;
 
 namespace PrismProject.Services

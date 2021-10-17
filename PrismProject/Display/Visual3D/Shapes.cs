@@ -30,7 +30,7 @@ namespace PrismProject.Display.Visual3D
             {
                 if (i < 100)
                 {
-                    Visual2D.Canvas2.Canvas.Clear(Color.Black);
+                    Visual2D.DisplayConfig.Controler.Clear(Color.Black);
                     aX++;
                     bX++;
                     cX--;
@@ -52,25 +52,25 @@ namespace PrismProject.Display.Visual3D
                     gX = cX;
                     hX = dX;
 
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, eX, eY, aX, aY);
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, fX, fY, bX, bY);
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, gX, gY, cX, cY);
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, hX, hY, dX, dY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, eX, eY, aX, aY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, fX, fY, bX, bY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, gX, gY, cX, cY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, hX, hY, dX, dY);
 
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, eX, eY, fX, fY);
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, fX, fY, gX, gY);
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, gX, gY, hX, hY);
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, hX, hY, eX, eY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, eX, eY, fX, fY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, fX, fY, gX, gY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, gX, gY, hX, hY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, hX, hY, eX, eY);
 
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, bX, bY, aX, aY);
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, cX, cY, bX, bY);
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, dX, dY, cX, cY);
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, aX, aY, dX, dY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, bX, bY, aX, aY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, cX, cY, bX, bY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, dX, dY, cX, cY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, aX, aY, dX, dY);
                 }
 
                 else if (i >= 100)
                 {
-                    Visual2D.Canvas2.Canvas.Clear(Color.Black);
+                    Visual2D.DisplayConfig.Controler.Clear(Color.Black);
                     aX--;
                     bX--;
                     cX++;
@@ -92,20 +92,20 @@ namespace PrismProject.Display.Visual3D
                     gX = cX;
                     hX = dX;
 
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, eX, eY, aX, aY);
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, fX, fY, bX, bY);
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, gX, gY, cX, cY);
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, hX, hY, dX, dY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, eX, eY, aX, aY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, fX, fY, bX, bY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, gX, gY, cX, cY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, hX, hY, dX, dY);
 
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, eX, eY, fX, fY);
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, fX, fY, gX, gY);
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, gX, gY, hX, hY);
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, hX, hY, eX, eY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, eX, eY, fX, fY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, fX, fY, gX, gY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, gX, gY, hX, hY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, hX, hY, eX, eY);
 
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, bX, bY, aX, aY);
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, cX, cY, bX, bY);
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, dX, dY, cX, cY);
-                    Visual2D.Canvas2.Canvas.DrawLine(pen, aX, aY, dX, dY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, bX, bY, aX, aY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, cX, cY, bX, bY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, dX, dY, cX, cY);
+                    Visual2D.DisplayConfig.Controler.DrawLine(pen, aX, aY, dX, dY);
                 }
             }
 

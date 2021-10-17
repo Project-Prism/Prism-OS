@@ -1,22 +1,14 @@
-﻿using Cosmos.System.Graphics;
-using System;
+﻿using System;
 using System.Drawing;
+using Cosmos.System.Graphics;
 using Cosmos.System.Graphics.Fonts;
+using static PrismProject.Display.Visual2D.DisplayConfig;
+
 
 namespace PrismProject.Display.Visual2D
 {
-    class Canvas2
+    class Display
     {
-        public enum AnchorPoint
-        {
-            TopLeft,
-            Center
-        }
-
-        public static int Width = 800;
-        public static int Height = 600;
-        public static Canvas Canvas = FullScreenCanvas.GetFullScreenCanvas(new Mode(Width, Height, ColorDepth.ColorDepth32));
-
         public class Basic
         {
             public static void DrawRect(int X1, int Y1, int X2, int Y2, Color C, bool Filled)
@@ -24,10 +16,10 @@ namespace PrismProject.Display.Visual2D
                 switch (Filled)
                 {
                     case true:
-                        Canvas.DrawFilledRectangle(new Pen(C), X1, Y1, X2, Y2);
+                        Controler.DrawFilledRectangle(new Pen(C), X1, Y1, X2, Y2);
                         break;
                     case false:
-                        Canvas.DrawRectangle(new Pen(C), X1, Y1, X2, Y2);
+                        Controler.DrawRectangle(new Pen(C), X1, Y1, X2, Y2);
                         break;
                 }
             }
@@ -50,17 +42,17 @@ namespace PrismProject.Display.Visual2D
                 switch (filled)
                 {
                     case true:
-                        Canvas.DrawFilledCircle(new Pen(C), X1, Y1, R);
+                        Controler.DrawFilledCircle(new Pen(C), X1, Y1, R);
                         break;
                     case false:
-                        Canvas.DrawCircle(new Pen(C), X1, Y1, R);
+                        Controler.DrawCircle(new Pen(C), X1, Y1, R);
                         break;
                 }
             }
 
             public static void DrawLine(int X1, int Y1, int X2, int Y2, Color C)
             {
-                Canvas.DrawLine(new Pen(C), X1, Y1, X2, Y2);
+                Controler.DrawLine(new Pen(C), X1, Y1, X2, Y2);
             }
 
             public static void DrawAngle(int X, int Y, int Angle, int Radius, Color color)
@@ -90,7 +82,7 @@ namespace PrismProject.Display.Visual2D
                         NewY = Y - (Font.Height / 2 * Txt.Length);
                     }
 
-                    Canvas.DrawString(line, Font, new Pen(c), NewX, NewY + Space);
+                    Controler.DrawString(line, Font, new Pen(c), NewX, NewY + Space);
                     Space += Font.Height + 5;
                 }
             }
@@ -110,7 +102,7 @@ namespace PrismProject.Display.Visual2D
                     NewY = Y;
                 }
 
-                Canvas.DrawImageAlpha(BMP, NewX, NewY);
+                Controler.DrawImageAlpha(BMP, NewX, NewY);
             }
         }
 
@@ -122,13 +114,25 @@ namespace PrismProject.Display.Visual2D
                 public int Y;
                 public int Width;
                 public int Height;
-
                 public string[] Extra;
                 public int BorderWidth;
                 public int BorderRadius;
                 public PCScreenFont Font;
                 public Color[] Theme;
                 public AnchorPoint Anchor;
+
+                public void Dispose()
+                {
+                    X = 0;
+                    Y = 0;
+                    Width = 0;
+                    Height = 0;
+                    Extra = null;
+                    BorderWidth = 0;
+                    BorderRadius = 0;
+                    Font = null;
+                    Theme = null;
+                }
 
                 public Object(int aX, int aY, int aWidth, int aHeight, string[] aExtra, int aBorderWidth, int aBorderRadius, Color[] aTheme, PCScreenFont aFont, AnchorPoint aAnchor)
                 {

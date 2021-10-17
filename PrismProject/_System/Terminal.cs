@@ -1,18 +1,15 @@
 ﻿using Cosmos.System.FileSystem.Listing;
 using System;
 using static PrismProject.Filesystem.FSCore;
-using static PrismProject.Network.NetworkCore;
-using static PrismProject.Network.TCP_Client;
 using Cosmos.System.Network.IPv4;
 
-namespace PrismProject
+namespace PrismProject._System
 {
     class Terminal
     {
         public static void Main()
         {
-            NetStart(Local, Subnet, Gateway1);
-            StartDisk();
+            Display.Visual2D.DisplayConfig.Controler.Disable();
             Console.Clear();
             Console.WriteLine("Terminal.cs, V1");
             while (true)
@@ -69,9 +66,6 @@ namespace PrismProject
                                 Cosmos.System.Power.Reboot();
                                 break;
                         }
-                        break;
-                    case "net":
-                        TCPC(new Address(127, 0, 0, 1), 2323);
                         break;
                     default:
                         Console.WriteLine("[!] No command");

@@ -3,35 +3,49 @@ using Cosmos.System.Network.Config;
 using Cosmos.System.Network.IPv4;
 using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Cosmos.System.Network.IPv4.UDP.DNS;
+using System;
 
 namespace PrismProject.Network
 {
     internal class NetworkCore
     {
-        /// <summary>Type 1 for 192.168.x.x type routers</summary>
-        public static Address Gateway1 = new Address(192, 168, 1, 1);
-
-        /// <summary>Type 2 for 10.0.0.x type routers</summary>
-        public static Address Gateway2 = new Address(10, 0, 0, 1);
-
+        public static Address GateWay = new Address(10, 0, 0, 1);
         public static Address Local = new Address(127, 0, 0, 1);
         public static Address Subnet = new Address(255, 255, 255, 0);
 
+        public static Address GetLocalAddress()
+        {
+            return DHCPClient.DHCPServerAddress(GetNetworkDevice("eth0"));
+        }
+
+        public static NetworkDevice GetNetworkDevice(string DeviceName)
+        {
+            return NetworkDevice.GetDeviceByName(DeviceName);
+        }
+
         public static Address DNS(Address GateWay, string Domain)
         {
-            using (DnsClient xClient = new DnsClient())
+            try
             {
-                xClient.Connect(GateWay);
-                xClient.SendAsk(Domain);
-                Address ret = xClient.Receive();
-                xClient.Dispose();
-                return ret;
+                using (DnsClient xClient = new DnsClient())
+                {
+                    xClient.Connect(GateWay);
+                    xClient.SendAsk(Domain);
+                    Address ret = xClient.Receive();
+                    xClient.Dispose();
+                    return ret;
+                }
+            }
+            catch (Exception aException)
+            {
+                throw new Exception("DNS failure exception (" + aException.Message + ")");
             }
         }
 
-        public static void NetStart(Address LocalIP, Address SubNet, Address GateWay)
+        public static void NetStart(Address LocalIP, Address SubNet)
         {
-            IPConfig.Enable(NetworkDevice.GetDeviceByName("eth0"), LocalIP, SubNet, GateWay);
+            IPConfig.Enable(GetNetworkDevice("eth0"), LocalIP, SubNet, GateWay);
+
             using (DHCPClient xClient = new DHCPClient())
             {
                 xClient.SendDiscoverPacket();
