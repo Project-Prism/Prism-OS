@@ -10,8 +10,9 @@ namespace PrismProject
             {
                 while (true)
                 {
-                    Display.Visual2D.Display.Basic.DrawRect(0, 0, 800, 600, System.Drawing.Color.Bisque, false);
+                    Display.Visual2D.DisplayConfig.Controler.Clear();
                     Services.Mouse_Service.TickForward();
+
                 }
             }
             catch (Exception exc)
