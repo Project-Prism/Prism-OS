@@ -22,7 +22,8 @@ namespace PrismProject.Services
 
         public static void TickForward()
         {
-            Basic.DrawBMP(MouseX, Mousey, Resources.Mouse, AnchorPoint.TopLeft);
+            //Basic.DrawBMP(MouseX, Mousey, Resources.Mouse, AnchorPoint.TopLeft); Slow right now
+            Basic.DrawRect(MouseX, Mousey, 32, 32, System.Drawing.Color.AliceBlue, true);
         }
     }
 }
