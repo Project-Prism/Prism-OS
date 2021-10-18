@@ -8,11 +8,11 @@ namespace PrismProject
         {
             try
             {
-                Filesystem.FSCore.StartDisk();
-                Filesystem.FSCore.WriteFile("0:\\test.json", System.Text.Encoding.ASCII.GetString(Services.Resources.JsonFile), false);
-                _System.Threading.Thread.Sleep(1);
-                JSONParser.Program.Main();
-                _System.Threading.Thread.Sleep(900);
+                while (true)
+                {
+                    Display.Visual2D.Display.Basic.DrawRect(0, 0, 800, 600, System.Drawing.Color.Bisque, false);
+                    Services.Mouse_Service.TickForward();
+                }
             }
             catch (Exception exc)
             {
