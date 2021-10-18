@@ -15,9 +15,9 @@ This project is made possible by Cosmos and the community around it, and we give
 |---------------------------------------------------|------------------------------|
 | [Cosmos team](https://github.com/CosmosOS/Cosmos) | Cosmos, helping out          |
 | [Terminal.cs](https://github.com/terminal-cs)     | General development, logo    |
-| [deadlocust](https://github.com/deaddlocust)      | General development, hexi    |
+| [deadlocust](https://github.com/deaddlocust)      | General development          |
 | [Nifanfa](https://github.com/nifanfa)             | Bitfont                      |
-| [CrisisSDK](https://github.com/CrisisSDK)         | Rouned cube, coal v1 & v2    |
+| [CrisisSDK](https://github.com/CrisisSDK)         | Rounded cube, coal v1 & v2    |
 | [TheOpCoder](https://github.com/theopcoder)       | Website developer            |
 
 ## To-do list
@@ -25,11 +25,11 @@ This project is made possible by Cosmos and the community around it, and we give
 | Topic                      |  Difficulty  | Notes                         |
 |----------------------------|--------------|-------------------------------|
 | Implement YASM into Cosmos |     Easy     | Starting soon                 |
-| Implement Hexi             |     Hard     | Requires threading            |
-| Drivers                    |  very Hard   | -                             |
+| Drivers                    |  Very Hard   | -                             |
 | Fix vbe circle & image     | Easy/Medium  | (in cosmos) should be ez      |
 | Re-Implement mouse         |     Easy     | -                             |
-| implement resx files       | -            | better for managment (cosmos) |
+| Implement resource files   | -            | better for managment (cosmos) |
+| Implement Hexi             |     -        | Hexi unfinished               |
 
 
 ## Building Prism
