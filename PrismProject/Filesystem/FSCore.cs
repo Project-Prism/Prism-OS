@@ -10,7 +10,7 @@ namespace PrismProject.Filesystem
     class FSCore
     {
 
-        private static readonly CosmosVFS fs = new CosmosVFS();
+        public static readonly CosmosVFS fs = new CosmosVFS();
 
         public static void CreateFolder(string FullPath)
         {

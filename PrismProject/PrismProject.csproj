@@ -148,6 +148,7 @@
       <None Remove="Files\back.bmp" />
       <None Remove="Files\Fonts\CaviarDreams_Bold.b64" />
       <None Remove="Files\Icons\warning.bmp" />
+      <None Remove="Files\test.json" />
     </ItemGroup>
 
     <ItemGroup>
@@ -155,6 +156,7 @@
       <EmbeddedResource Include="Files\Icons\Mouse.bmp" />
       <EmbeddedResource Include="Files\Icons\Prism.bmp" />
       <EmbeddedResource Include="Files\Icons\Warning.bmp" />
+      <EmbeddedResource Include="Files\test.json" />
     </ItemGroup>
 
     <ItemGroup>

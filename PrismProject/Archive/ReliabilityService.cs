@@ -5,15 +5,13 @@ using static PrismProject.Display.Visual2D.DisplayConfig;
 using static PrismProject.Services.Resources;
 using static Cosmos.System.Graphics.Fonts.PCScreenFont;
 
-namespace PrismProject.Services
+/// <summary>
+/// Archive for old stuff
+/// </summary>
+namespace PrismProject.Archive
 {
     class ReliabilityService
     {
-        public static void Check_FS_Integrity()
-        {
-            throw new NotImplementedException();
-        }
-
         public static void ReportException(Exception exception)
         {
             // Not implemented yet
