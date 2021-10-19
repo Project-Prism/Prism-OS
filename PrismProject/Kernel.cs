@@ -12,7 +12,6 @@ namespace PrismProject
                 {
                     Display.Visual2D.DisplayConfig.Controler.Clear();
                     Services.Mouse_Service.TickForward();
-
                 }
             }
             catch (Exception exc)

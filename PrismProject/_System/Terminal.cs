@@ -15,49 +15,59 @@ namespace PrismProject._System
             while (true)
             {
                 Console.Write("> ");
-                string line = Console.ReadLine();
-                string input = line.Split("(")[0];
-                string[] Args = line.Replace(");", "").Split("(")[1].Split(", ");
-                switch (input)
+                string[] input = Console.ReadLine().Split("<>");
+                switch (input[0])
                 {
                     case "fm":
-                        switch (Args[0])
+                        switch (input[1])
                         {
                             case "create":
-                                switch (Args[1])
+                                switch (input[2])
                                 {
                                     case "folder":
-                                        CreateFolder(Args[2]);
+                                        CreateFolder(input[3]);
                                         Console.WriteLine("[ Done ]");
                                         break;
                                     case "file":
-                                        WriteFile(Args[2], "", false);
+                                        WriteFile(input[3], "", false);
                                         Console.WriteLine("[ Done ]");
                                         break;
                                 }
                                 break;
                             case "delete":
-                                DeleteEntry(Args[1]);
+                                DeleteEntry(input[2]);
                                 Console.WriteLine("[ Done ]");
                                 break;
                             case "write":
-                                WriteFile(Args[1], Args[2], false);
+                                WriteFile(input[2], input[3], false);
                                 Console.WriteLine("[ Done ]");
                                 break;
                             case "echofile":
-                                Console.WriteLine(ReadFile(Args[1]));
+                                Console.WriteLine(ReadFile(input[2]));
                                 Console.WriteLine("[ Done ]");
                                 break;
                             case "list":
-                                foreach (DirectoryEntry item in GetFolderList(Args[1]))
+                                foreach (DirectoryEntry item in GetFolderList(input[2]))
                                 {
                                     Console.WriteLine(item.mName);
+                                }
+                                break;
+                            case "mkfs":
+                                Console.Write("This will erase all data and write a new fs base. Continue? (Y/N) > ");
+                                string a = Console.ReadLine();
+                                switch (a.ToLower())
+                                {
+                                    case "y":
+                                        Services.FTSE.MakeFs();
+                                        break;
+                                    case "n":
+                                        break;
                                 }
                                 break;
                         }
                         break;
                     case "system":
-                        switch (Args[0])
+                        switch (input[1])
                         {
                             case "shutdown":
                                 Cosmos.System.Power.Shutdown();
