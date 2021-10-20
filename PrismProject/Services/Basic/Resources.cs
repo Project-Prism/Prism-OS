@@ -2,14 +2,13 @@
 using IL2CPU.API.Attribs;
 
 
-namespace PrismProject.Services
+namespace PrismProject.Services.Basic
 {
     class Resources
     {
         [ManifestResourceStream(ResourceName = "PrismProject.Files.Icons.Prism.bmp")] static readonly byte[] Byte_Prism;
         [ManifestResourceStream(ResourceName = "PrismProject.Files.Icons.Mouse.bmp")] static readonly byte[] Byte_Mouse;
         [ManifestResourceStream(ResourceName = "PrismProject.Files.Icons.Warning.bmp")] static readonly byte[] Byte_Warning;
-        [ManifestResourceStream(ResourceName = "PrismProject.Files.test.json")] public static readonly byte[] JsonFile;
 
         // Images
         public static Bitmap Prism = new Bitmap(Byte_Prism);

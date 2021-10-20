@@ -1,8 +1,9 @@
-﻿using static PrismProject.Display.Visual2D.Display;
-using static PrismProject.Display.Visual2D.DisplayConfig;
+﻿using PrismProject.Graphics;
 using Cosmos.System;
+using System.Drawing;
+using Cosmos.System.Graphics;
 
-namespace PrismProject.Services
+namespace PrismProject.Services.Basic
 {
     class Keyboard_Service
     {
@@ -12,8 +13,8 @@ namespace PrismProject.Services
     {
         public Mouse_Service()
         {
-            MouseManager.ScreenWidth = (uint)Width;
-            MouseManager.ScreenHeight = (uint)Height;
+            MouseManager.ScreenWidth = (uint)Canvas2.Width;
+            MouseManager.ScreenHeight = (uint)Canvas2.Height;
         }
         public static int MouseX;
         public static int Mousey;
@@ -24,8 +25,8 @@ namespace PrismProject.Services
         {
             MouseX = (int)MouseManager.X;
             Mousey = (int)MouseManager.Y;
-            //Basic.DrawBMP(MouseX, Mousey, Resources.Mouse, AnchorPoint.TopLeft); Slow right now
-            Basic.DrawRect(MouseX, Mousey, MouseX + 32, Mousey + 32, System.Drawing.Color.AliceBlue, true);
+            //Basic.DrawBMP(MouseX, Mousey, Resources.Mouse, AnchorPoint.TopLeft);
+            Canvas2.Screen.DrawFilledRectangle(new Pen(Color.White), MouseX, Mousey, 16, 16);
         }
 
     }

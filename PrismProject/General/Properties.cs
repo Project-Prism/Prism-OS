@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PrismProject._System
+namespace PrismProject.General
 {
     abstract class Environment
     {

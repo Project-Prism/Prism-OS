@@ -1,7 +1,7 @@
 ﻿using Cosmos.System.Graphics.Fonts;
 using System.Collections.Generic;
 
-namespace PrismProject.Services
+namespace PrismProject.Services.Basic
 {
     class FontManager
     {

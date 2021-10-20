@@ -1,4 +1,6 @@
 using System;
+using static PrismProject.Graphics.WindowManager;
+using static PrismProject.Services.Basic.Mouse_Service;
 
 namespace PrismProject
 {
@@ -8,16 +10,19 @@ namespace PrismProject
         {
             try
             {
+                var x = new Window(30, 30, 500, 500, "test!");
+                x.AddChild(new Image(50, 50, Services.Basic.Resources.Warning));
+                
+
                 while (true)
                 {
-                    Display.Visual2D.DisplayConfig.Controler.Clear();
-                    Services.Mouse_Service.TickForward();
+                    x.Update();
+                    TickForward();
                 }
             }
             catch (Exception exc)
             {
-                // ToDo: create new error dialog with window manager
-                Console.WriteLine(exc.Message);
+                new Window(400, 300, 200, 50, "Error! " + exc.Message);
             }
         }
     }
