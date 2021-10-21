@@ -9,8 +9,7 @@ namespace PrismProject.Graphics
         public static int Width = 800;
         public static int Height = 600;
         public static Canvas Screen = FullScreenCanvas.GetFullScreenCanvas(new Mode(Width, Height, ColorDepth.ColorDepth32));
-        public static string SelectedMode = "FullScreenDisplay @" + Screen.Mode.Rows + "x" + Screen.Mode.Columns + " (" + Screen.Mode.ColorDepth + ")";
-
+        
         public static void DrawAngle(int X, int Y, int Angle, int Radius, Color color)
         {
             Double angleX, angleY;

@@ -11,18 +11,20 @@ namespace PrismProject
             try
             {
                 var x = new Window(30, 30, 500, 500, "test!");
-                x.AddChild(new Image(50, 50, Services.Basic.Resources.Warning));
+                x.AddChild(new Image(50, 50, Services.Basic.Resources.Warning, (self) => { self.X = 0; }));
+                x.AddChild(new Button(100, 100, 50, 50, "Click me pls", (self) => { self.Label = "Clicked!"; }));
                 
 
                 while (true)
                 {
-                    x.Update();
+                    x.Render();
                     TickForward();
                 }
             }
             catch (Exception exc)
             {
-                new Window(400, 300, 200, 50, "Error! " + exc.Message);
+                Graphics.Canvas2.Screen.Disable();
+                Console.WriteLine("Exception: " + exc.Message);
             }
         }
     }

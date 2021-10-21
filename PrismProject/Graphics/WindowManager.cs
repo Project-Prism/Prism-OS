@@ -28,12 +28,15 @@ namespace PrismProject.Graphics
                 Title = aTitle;
             }
 
-            public void Update()
+            public void Render()
             {
-                Render();
+                int HalfX = Width / 2;
+                int HalfY = Height / 2;
+                DrawRoundRect(X - HalfX, Y - HalfY - PCScreenFont.Default.Height + 4, X + HalfX, Y + HalfY, 4, Color.DimGray);
+                DrawRoundRect(X - HalfX, Y - HalfY, X + HalfX, Y + HalfY, 4, Color.White);
+
                 foreach (Element Child in Children)
                 {
-                    Child.OnClickAction();
                     Child.Render(X, Y);
                 }
             }
@@ -43,152 +46,120 @@ namespace PrismProject.Graphics
                 Children.Add(aChild);
             }
 
-            public void Dispose()
+            public void RemoveChild(Element aChild)
             {
-                throw new NotImplementedException("Disposing of windows is not implemented.");
-            }
-
-            public void Render()
-            {
-                int HalfX = Width / 2;
-                int HalfY = Height / 2;
-                DrawRoundRect(X - HalfX, Y - HalfY - PCScreenFont.Default.Height + 4, X + HalfX, Y + HalfY, 4, Color.DimGray);
-                DrawRoundRect(X - HalfX, Y - HalfY, X + HalfX, Y + HalfY, 4, Color.White);
+                Children.Remove(aChild);
             }
         }
 
         public class Element
         {
+            public delegate void ClickDelegate(Element self);
+            public ClickDelegate OnClick;
+
             public virtual void Render(int Offset_X, int Offset_Y)
             {
 
             }
-            public virtual bool IsClicked()
+            public virtual bool Click(int x, int y, int btn)
             {
                 return false;
-            }
-            public virtual void OnClickAction()
-            {
-                throw new NotImplementedException("Element actions are not yet implemented.");
             }
         }
 
         public class Button : Element
         {
-            public static int X;
-            public static int Y;
-            public static int Width;
-            public static int Height;
+            #region Variables
+            public int X;
+            public int Y;
+            public int Width;
+            public int Height;
+            public string Label;
+            public new delegate void ClickDelegate(Button self);
+            public new ClickDelegate OnClick;
+            public bool CanClick = true;
+            #endregion Variables
 
-            public Button(int aX, int aY, int aWidth, int aHeight)
+            public Button(int aX, int aY, int aWidth, int aHeight, string aLabel, ClickDelegate aOnClick)
             {
                 X = aX;
                 Y = aY;
                 Width = aWidth;
                 Height = aHeight;
+                Label = aLabel;
+                OnClick = aOnClick;
             }
 
             public override void Render(int Offset_X, int Offset_Y)
             {
 
             }
-            public override bool IsClicked()
+            public override bool Click(int x, int y, int btn)
             {
-                if (IsLeftClicked)
-                {
-                    if (MouseX < X && MouseX > Width)
-                    {
-                        if (Mousey < X && Mousey > Height)
-                        {
-                            return true;
-                        }
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-
-            }
-            public override void OnClickAction()
-            {
-                if (IsClicked())
-                {
-                    base.OnClickAction();
-                }
+                OnClick(this);
+                return base.Click(x, y, btn);
             }
         }
 
         public class Image : Element
         {
-            public static Bitmap Bmp;
-            public static int X;
-            public static int Y;
-            public Image(int aX, int aY, Bitmap aBmp)
+            #region Variables
+            public Bitmap Bmp;
+            public int X;
+            public int Y;
+            public new delegate void ClickDelegate(Image self);
+            public new ClickDelegate OnClick;
+            #endregion Variables
+
+            public Image(int aX, int aY, Bitmap aBmp, ClickDelegate aOnClick)
             {
                 X = aX - ((int)aBmp.Width / 2);
                 Y = aY - ((int)aBmp.Height / 2);
                 Bmp = aBmp;
+                OnClick = aOnClick;
             }
+
             public override void Render(int Offset_X, int Offset_Y)
             {
                 Screen.DrawImageAlpha(Bmp, Offset_X + X, Offset_Y + Y);
             }
-            public override bool IsClicked()
+            public override bool Click(int x, int y, int btn)
             {
-                if (IsLeftClicked)
-                {
-                    if (MouseX < X && MouseX > Bmp.Width)
-                    {
-                        if (Mousey < X && Mousey > Bmp.Height)
-                        {
-                            return true;
-                        }
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-                
-            }
-            public override void OnClickAction()
-            {
-                if (IsClicked())
-                {
-                    base.OnClickAction();
-                }
+                OnClick(this);
+                return base.Click(x, y, btn);
             }
         }
 
         public class Text : Element
         {
+            #region Variables
             public int X;
             public int Y;
             public string TextString;
-            public  Color color;
+            public Color color;
             public PCScreenFont Font;
+            public new delegate void ClickDelegate(Text self);
+            public new ClickDelegate OnClick;
+            #endregion Variables
 
-            public Text(int aX, int aY, string aTextString, Color aColor, PCScreenFont aFont)
+            public Text(int aX, int aY, string aTextString, Color aColor, PCScreenFont aFont, ClickDelegate aOnClick)
             {
                 X = aX;
                 Y = aY;
                 TextString = aTextString;
                 color = aColor;
                 Font = aFont;
+                OnClick = aOnClick;
             }
+
             public override void Render(int Offset_X, int Offset_Y)
             {
                 Screen.DrawString(TextString, Font, new Pen(color), Offset_X + X - (Font.Width * TextString.Length), Offset_Y + Y);
             }
-            public override bool IsClicked()
+            public override bool Click(int x, int y, int btn)
             {
-                return false;
-            }
-            public override void OnClickAction()
-            {
-                if (IsClicked())
-                {
-                    base.OnClickAction();
-                }
+                OnClick(this);
+                return base.Click(x, y, btn);
             }
         }
     }

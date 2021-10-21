@@ -6,6 +6,7 @@
         public WebService(string RootDir, int Port)
         {
             StartServer(RootDir, Port);
+            StopServer();
         }
 
         void StartServer(string aRootDir, int aPort)
