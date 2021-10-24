@@ -1,9 +1,9 @@
-﻿using PrismProject.Graphics;
+﻿using Prism.Graphics;
 using Cosmos.System;
 using System.Drawing;
 using Cosmos.System.Graphics;
 
-namespace PrismProject.Services.Basic
+namespace Prism.Services.Basic
 {
     class Keyboard_Service
     {

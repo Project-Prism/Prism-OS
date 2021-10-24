@@ -1,12 +1,10 @@
 ﻿using Cosmos.System.Graphics;
-using System;
 using System.Collections.Generic;
 using System.Drawing;
-using static PrismProject.Graphics.Canvas2;
-using static PrismProject.Services.Basic.Mouse_Service;
+using static Prism.Graphics.DBACanvas;
 using Cosmos.System.Graphics.Fonts;
 
-namespace PrismProject.Graphics
+namespace Prism.Graphics
 {
     class WindowManager
     {
@@ -17,7 +15,7 @@ namespace PrismProject.Graphics
             public int Width;
             public int Height;
             public string Title;
-            public List<Element> Children = new List<Element>();
+            public List<Element> Children = new();
 
             public Window(int aX, int aY, int aWidth, int aHeight, string aTitle)
             {
@@ -104,24 +102,24 @@ namespace PrismProject.Graphics
         public class Image : Element
         {
             #region Variables
-            public Bitmap Bmp;
+            public Bitmap xImage;
             public int X;
             public int Y;
             public new delegate void ClickDelegate(Image self);
             public new ClickDelegate OnClick;
             #endregion Variables
 
-            public Image(int aX, int aY, Bitmap aBmp, ClickDelegate aOnClick)
+            public Image(int aX, int aY, Bitmap aImage, ClickDelegate aOnClick)
             {
-                X = aX - ((int)aBmp.Width / 2);
-                Y = aY - ((int)aBmp.Height / 2);
-                Bmp = aBmp;
+                X = aX - ((int)aImage.Width / 2);
+                Y = aY - ((int)aImage.Height / 2);
+                xImage = aImage;
                 OnClick = aOnClick;
             }
 
             public override void Render(int Offset_X, int Offset_Y)
             {
-                Screen.DrawImageAlpha(Bmp, Offset_X + X, Offset_Y + Y);
+                DrawImageAlpha(Offset_X + X, Offset_Y + Y, xImage);
             }
             public override bool Click(int x, int y, int btn)
             {
@@ -154,7 +152,7 @@ namespace PrismProject.Graphics
 
             public override void Render(int Offset_X, int Offset_Y)
             {
-                Screen.DrawString(TextString, Font, new Pen(color), Offset_X + X - (Font.Width * TextString.Length), Offset_Y + Y);
+                DrawString(Offset_X + X - (Font.Width * TextString.Length), Offset_Y + Y, Font, TextString, color);
             }
             public override bool Click(int x, int y, int btn)
             {

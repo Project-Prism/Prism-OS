@@ -5,12 +5,17 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace PrismProject.Filesystem
+namespace Prism.FileSystem
 {
     class FSCore
     {
+        public FSCore()
+        {
+            VFSManager.RegisterVFS(fs);
+            fs.Initialize(true);
+        }
 
-        public static readonly CosmosVFS fs = new CosmosVFS();
+        public static readonly CosmosVFS fs = new();
 
         public static void CreateFolder(string FullPath)
         {
@@ -117,20 +122,6 @@ namespace PrismProject.Filesystem
             catch (Exception aException)
             {
                 throw new Exception(aException.Message);
-            }
-        }
-
-        /// <summary> Start the VFS service. </summary>
-        public static void StartDisk()
-        {
-            try
-            {
-                VFSManager.RegisterVFS(fs);
-                fs.Initialize();
-            }
-            catch (Exception aException)
-            {
-                throw new Exception("An error occured while starting the filesystem. (" + aException.Message + ")");
             }
         }
 

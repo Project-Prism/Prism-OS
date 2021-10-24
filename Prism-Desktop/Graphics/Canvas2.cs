@@ -2,7 +2,7 @@
 using System;
 using System.Drawing;
 
-namespace PrismProject.Graphics
+namespace Prism.Graphics
 {
     class Canvas2
     {
@@ -28,7 +28,7 @@ namespace PrismProject.Graphics
             Screen.DrawFilledCircle(new Pen(C), X1 + R, Y1 + R, R); // Top left
             Screen.DrawFilledCircle(new Pen(C), x2 - R - 1, Y1 + R, R); // Top Right
             Screen.DrawFilledCircle(new Pen(C), 1 + R, y2 - R - 1, R); // Bottom Left
-            Screen.DrawFilledCircle(new Pen(C), x2 - R - 1, y2 - R - 1, R);
-        } // Bottom Right
+            Screen.DrawFilledCircle(new Pen(C), x2 - R - 1, y2 - R - 1, R); // Bottom Right
+        }
     }
 }
