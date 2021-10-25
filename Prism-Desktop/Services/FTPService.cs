@@ -3,7 +3,7 @@ using Prism.FileSystem;
 
 namespace Prism.Services
 {
-    class FTPService
+    internal static class FTPService
     {
         public static void Start()
         {

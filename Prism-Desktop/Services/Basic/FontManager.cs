@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Prism.Services.Basic
 {
-    class FontManager
+    internal static class FontManager
     {
         public static Dictionary<string, PCScreenFont> FontList = new();
         public static PCScreenFont Default = PCScreenFont.Default;

@@ -1,10 +1,9 @@
 ﻿using Cosmos.System.Graphics;
 using IL2CPU.API.Attribs;
 
-
 namespace Prism.Services.Basic
 {
-    class Resources
+    internal static class Resources
     {
         [ManifestResourceStream(ResourceName = "Prism.Files.Icons.Prism.bmp")] static readonly byte[] Byte_Prism;
         [ManifestResourceStream(ResourceName = "Prism.Files.Icons.Mouse.bmp")] static readonly byte[] Byte_Mouse;

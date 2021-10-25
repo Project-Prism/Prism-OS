@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Cosmos.System.FileSystem.Listing;
+using System;
 using System.Collections.Generic;
-using Cosmos.System.FileSystem.Listing;
 
 namespace Prism.FileSystem.Compressed
 {

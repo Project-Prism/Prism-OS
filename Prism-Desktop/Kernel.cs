@@ -15,7 +15,6 @@ namespace Prism
                 DBACanvas.DrawFilledCircle(50, 50, 49, Color.Black);
                 BitmapCanvas x = new(Services.Basic.Resources.Warning);
                 x.DrawString(20, 20, Cosmos.System.Graphics.Fonts.PCScreenFont.Default, "Testing!", Color.Red);
-                x.Dispose();
 
                 while (true)
                 {

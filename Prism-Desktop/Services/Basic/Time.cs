@@ -2,7 +2,7 @@
 
 namespace Prism.Services.Basic
 {
-    class Time
+    internal static class Time
     {
         public static string Year { get; } = RTC.Year.ToString();
         public static string Month { get; } = RTC.Month.ToString();

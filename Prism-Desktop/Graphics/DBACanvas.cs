@@ -9,7 +9,7 @@ namespace Prism.Graphics
     /// <summary>
     /// Doubble buffered array canvas
     /// </summary>
-    static class DBACanvas
+    internal static class DBACanvas
     {
         public static int Width = 800;
         public static int Height = 600;

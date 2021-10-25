@@ -8,18 +8,13 @@ namespace Prism.Graphics
     /// <summary>
     /// Doubble buffered array canvas
     /// </summary>
-    class BitmapCanvas
+    internal class BitmapCanvas
     {
         public Bitmap Canvas;
 
         public BitmapCanvas(Bitmap aImage)
         {
             Canvas = aImage;
-        }
-
-        public void SetPixel(int X, int Y, Color aColor)
-        {
-            Canvas.rawData[X + Y * Canvas.Width] = aColor.ToArgb();
         }
 
         public Color GetPixel(int X, int Y)
@@ -29,9 +24,9 @@ namespace Prism.Graphics
 
         public void Clear()
         {
-            for (int X = 0; X < Width; X++)
+            for (int X = 0; X < Canvas.Width; X++)
             {
-                for (int Y = 0; Y < Height; Y++)
+                for (int Y = 0; Y < Canvas.Height; Y++)
                 {
                     Canvas.rawData[X + Y * Canvas.Width] = Color.Black.ToArgb();
                 }

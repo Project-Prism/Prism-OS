@@ -4,12 +4,12 @@ using System.Drawing;
 
 namespace Prism.Graphics
 {
-    class Canvas2
+    static class Canvas2
     {
         public static int Width = 800;
         public static int Height = 600;
         public static Canvas Screen = FullScreenCanvas.GetFullScreenCanvas(new Mode(Width, Height, ColorDepth.ColorDepth32));
-        
+
         public static void DrawAngle(int X, int Y, int Angle, int Radius, Color color)
         {
             Double angleX, angleY;

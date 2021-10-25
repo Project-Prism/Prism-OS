@@ -4,13 +4,13 @@ using System.Text;
 
 namespace Prism.Services
 {
-    class WebService
+    internal static class WebService
     {
         public static void StartServer()
         {
             using TcpListener xServer = new(80);
             xServer.Start();
-            while(true)
+            while (true)
             {
                 var x = xServer.AcceptTcpClient();
                 var a = x.RemoteEndPoint;
