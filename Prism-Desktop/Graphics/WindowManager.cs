@@ -1,12 +1,12 @@
 ﻿using Cosmos.System.Graphics;
+using Cosmos.System.Graphics.Fonts;
 using System.Collections.Generic;
 using System.Drawing;
 using static Prism.Graphics.DBACanvas;
-using Cosmos.System.Graphics.Fonts;
 
 namespace Prism.Graphics
 {
-    class WindowManager
+    internal static class WindowManager
     {
         public class Window
         {
@@ -15,7 +15,7 @@ namespace Prism.Graphics
             public int Width;
             public int Height;
             public string Title;
-            
+
             private List<Element> Children = new();
             public void AddChild(Element aChild) => Children.Add(aChild);
             public void RemoveChild(Element aChild) => Children.Remove(aChild);
@@ -155,5 +155,5 @@ namespace Prism.Graphics
             }
         }
     }
-    
+
 }

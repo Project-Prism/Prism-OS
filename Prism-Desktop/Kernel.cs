@@ -1,3 +1,4 @@
+using Prism.Graphics;
 using System;
 using System.Drawing;
 
@@ -10,10 +11,11 @@ namespace Prism
             try
             {
                 Services.WebService.StartServer();
-                Graphics.DBACanvas.DrawFilledCircle(50, 50, 50, Color.White);
-                Graphics.DBACanvas.DrawFilledCircle(50, 50, 49, Color.Black);
-                var x = new Graphics.BitmapCanvas(Services.Basic.Resources.Warning);
+                DBACanvas.DrawFilledCircle(50, 50, 50, Color.White);
+                DBACanvas.DrawFilledCircle(50, 50, 49, Color.Black);
+                BitmapCanvas x = new(Services.Basic.Resources.Warning);
                 x.DrawString(20, 20, Cosmos.System.Graphics.Fonts.PCScreenFont.Default, "Testing!", Color.Red);
+                x.Dispose();
 
                 while (true)
                 {
@@ -22,7 +24,7 @@ namespace Prism
             }
             catch (Exception exc)
             {
-                Graphics.DBACanvas.Display.Disable();
+                DBACanvas.Display.Disable();
                 Console.WriteLine("Exception: " + exc.Message);
                 while (true)
                 {

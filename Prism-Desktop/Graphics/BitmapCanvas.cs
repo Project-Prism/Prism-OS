@@ -10,8 +10,6 @@ namespace Prism.Graphics
     /// </summary>
     class BitmapCanvas
     {
-        public int Width = 800;
-        public int Height = 600;
         public Bitmap Canvas;
 
         public BitmapCanvas(Bitmap aImage)
@@ -132,6 +130,11 @@ namespace Prism.Graphics
             DrawFilledCircle(Width - aR - 1, Y + aR, aR, aColor); // Top Right
             DrawFilledCircle(1 + aR, Height - aR - 1, aR, aColor); // Bottom Left
             DrawFilledCircle(Width - aR - 1, Height - aR - 1, aR, aColor); // Bottom Right
+        }
+
+        public void Dispose()
+        {
+            Canvas = null;
         }
     }
 }
