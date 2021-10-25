@@ -9,10 +9,12 @@ namespace Prism
         {
             try
             {
-                //Services.WebService.StartServer();
+                Services.WebService.StartServer();
                 Graphics.DBACanvas.DrawFilledCircle(50, 50, 50, Color.White);
                 Graphics.DBACanvas.DrawFilledCircle(50, 50, 49, Color.Black);
-                
+                var x = new Graphics.BitmapCanvas(Services.Basic.Resources.Warning);
+                x.DrawString(20, 20, Cosmos.System.Graphics.Fonts.PCScreenFont.Default, "Testing!", Color.Red);
+
                 while (true)
                 {
 

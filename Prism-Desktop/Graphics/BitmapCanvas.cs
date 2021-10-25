@@ -1,7 +1,6 @@
 ﻿using Cosmos.System.Graphics;
 using Cosmos.System.Graphics.Fonts;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 
 namespace Prism.Graphics
@@ -9,52 +8,50 @@ namespace Prism.Graphics
     /// <summary>
     /// Doubble buffered array canvas
     /// </summary>
-    static class DBACanvas
+    class BitmapCanvas
     {
-        public static int Width = 800;
-        public static int Height = 600;
-        private static readonly List<List<Color>> Buffer = new();
-        public static Canvas Display = FullScreenCanvas.GetFullScreenCanvas(new Mode(Width, Height, ColorDepth.ColorDepth32));
+        public int Width = 800;
+        public int Height = 600;
+        public Bitmap Canvas;
 
-        public static void Update()
+        public BitmapCanvas(Bitmap aImage)
         {
-            for (int x = 0; x < Width; x++)
-            {
-                for (int y = 0; y < Height; y++)
-                {
-                    Display.DrawPoint(new Pen(Buffer[x][y]), x, y);
-                }
-            }
+            Canvas = aImage;
         }
 
-        public static Color GetPixel(int X, int Y)
+        public void SetPixel(int X, int Y, Color aColor)
         {
-            return Buffer[X][Y];
+            Canvas.rawData[X + Y * Canvas.Width] = aColor.ToArgb();
         }
 
-        public static void Clear()
+        public Color GetPixel(int X, int Y)
+        {
+            return Color.FromArgb(Canvas.rawData[X + Y * Canvas.Width]);
+        }
+
+        public void Clear()
         {
             for (int X = 0; X < Width; X++)
             {
                 for (int Y = 0; Y < Height; Y++)
                 {
-                    Buffer[X][Y] = Color.Black;
+                    Canvas.rawData[X + Y * Canvas.Width] = Color.Black.ToArgb();
                 }
             }
         }
 
-        public static void DrawFilledRectangle(int X, int Y, int Width, int Height, Color aColor)
+        public void DrawFilledRectangle(int X, int Y, int Width, int Height, Color aColor)
         {
             for (int aX = X; X < Width; X++)
             {
                 for (int aY = Y; Y < Height; Y++)
                 {
-                    Buffer[aX][aY] = aColor;
+                    Canvas.rawData[X + Y * Canvas.Width] = aColor.ToArgb();
                 }
             }
         }
 
-        public static void DrawFilledCircle(int X, int Y, int aR, Color aColor)
+        public void DrawFilledCircle(int X, int Y, int aR, Color aColor)
         {
             int r2 = aR * aR;
             int area = r2 << 2;
@@ -67,12 +64,12 @@ namespace Prism.Graphics
 
                 if (tx * tx + ty * ty <= r2)
                 {
-                    Buffer[X + tx][Y + ty] = aColor;
+                    Canvas.rawData[X + Y * Canvas.Width] = aColor.ToArgb();
                 }
             }
         }
 
-        public static void DrawImageAlpha(int X, int Y, Image aImage)
+        public void DrawImageAlpha(int X, int Y, Image aImage)
         {
             X -= (int)(aImage.Width / 2);
             Y -= (int)(aImage.Height / 2);
@@ -81,12 +78,12 @@ namespace Prism.Graphics
             {
                 for (int _y = 0; _y < aImage.Height; _y++)
                 {
-                    Buffer[X + _x][Y + _y] = Color.FromArgb(aImage.rawData[_x + _y * aImage.Width]);
+                    Canvas.rawData[X + Y * Canvas.Width] = aImage.rawData[_x + _y * aImage.Width];
                 }
             }
         }
 
-        public static void DrawString(int X, int Y, Font aFont, string Text, Color aColor)
+        public void DrawString(int X, int Y, Font aFont, string Text, Color aColor)
         {
             foreach (char aChar in Text)
             {
@@ -95,7 +92,7 @@ namespace Prism.Graphics
             }
         }
 
-        public static void DrawChar(int X, int Y, char aChar, Font aFont, Color aColor)
+        public void DrawChar(int X, int Y, char aChar, Font aFont, Color aColor)
         {
             int p = aFont.Height * (byte)aChar;
 
@@ -103,12 +100,12 @@ namespace Prism.Graphics
             {
                 for (int aY = 0; aY < aFont.Height; aY++)
                 {
-                    Buffer[X + aX][Y + aY] = Color.FromArgb(aFont.Data[p + aY]);
+                    Canvas.rawData[X + Y * Canvas.Width] = aFont.Data[p + aY];
                 }
             }
         }
 
-        public static void DrawAngledLine(int X, int Y, int Angle, int Radius, Color color)
+        public void DrawAngledLine(int X, int Y, int Angle, int Radius, Color color)
         {
             // still needs testing
 
@@ -116,10 +113,10 @@ namespace Prism.Graphics
             angleY = Radius * Math.Cos(Math.PI * 2 * Angle / 360);
             angleX = Radius * Math.Sin(Math.PI * 2 * Angle / 360);
 
-            Display.DrawLine(new Pen(color), X, Y, X + (int)(Math.Round(angleX * 100) / 100), Y - (int)(Math.Round(angleY * 100) / 100));
+            //Display.DrawLine(new Pen(color), X, Y, X + (int)(Math.Round(angleX * 100) / 100), Y - (int)(Math.Round(angleY * 100) / 100));
         }
 
-        public static void DrawRoundRect(int X, int Y, int Width, int Height, int aR, Color aColor)
+        public void DrawRoundRect(int X, int Y, int Width, int Height, int aR, Color aColor)
         {
             // Still needs testing
 
