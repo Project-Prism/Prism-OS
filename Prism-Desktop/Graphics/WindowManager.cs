@@ -15,7 +15,11 @@ namespace Prism.Graphics
             public int Width;
             public int Height;
             public string Title;
-            public List<Element> Children = new();
+            
+            private List<Element> Children = new();
+            public void AddChild(Element aChild) => Children.Add(aChild);
+            public void RemoveChild(Element aChild) => Children.Remove(aChild);
+            public List<Element> GetChildren() => Children;
 
             public Window(int aX, int aY, int aWidth, int aHeight, string aTitle)
             {
@@ -37,16 +41,6 @@ namespace Prism.Graphics
                 {
                     Child.Render(X, Y);
                 }
-            }
-
-            public void AddChild(Element aChild)
-            {
-                Children.Add(aChild);
-            }
-
-            public void RemoveChild(Element aChild)
-            {
-                Children.Remove(aChild);
             }
         }
 
