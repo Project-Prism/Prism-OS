@@ -16,7 +16,7 @@ namespace Prism.Graphics
             public int Height;
             public string Title;
 
-            private List<Element> Children = new();
+            private readonly List<Element> Children = new();
             public void AddChild(Element aChild) => Children.Add(aChild);
             public void RemoveChild(Element aChild) => Children.Remove(aChild);
             public List<Element> GetChildren() => Children;
@@ -51,7 +51,6 @@ namespace Prism.Graphics
 
             public virtual void Render(int Offset_X, int Offset_Y)
             {
-
             }
             public virtual bool Click(int x, int y, int btn)
             {
@@ -84,7 +83,6 @@ namespace Prism.Graphics
 
             public override void Render(int Offset_X, int Offset_Y)
             {
-
             }
             public override bool Click(int x, int y, int btn)
             {
@@ -155,5 +153,4 @@ namespace Prism.Graphics
             }
         }
     }
-
 }

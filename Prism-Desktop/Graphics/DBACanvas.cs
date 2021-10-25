@@ -65,7 +65,7 @@ namespace Prism.Graphics
                 int tx = (i % rr) - aR;
                 int ty = (i / rr) - aR;
 
-                if (tx * tx + ty * ty <= r2)
+                if ((tx * tx) + (ty * ty) <= r2)
                 {
                     Buffer[X + tx][Y + ty] = aColor;
                 }
@@ -81,7 +81,7 @@ namespace Prism.Graphics
             {
                 for (int _y = 0; _y < aImage.Height; _y++)
                 {
-                    Buffer[X + _x][Y + _y] = Color.FromArgb(aImage.rawData[_x + _y * aImage.Width]);
+                    Buffer[X + _x][Y + _y] = Color.FromArgb(aImage.rawData[_x + (_y * aImage.Width)]);
                 }
             }
         }
@@ -97,6 +97,7 @@ namespace Prism.Graphics
 
         public static void DrawChar(int X, int Y, char aChar, Font aFont, Color aColor)
         {
+            // not correct, just a placeholder
             int p = aFont.Height * (byte)aChar;
 
             for (int aX = 0; aX < aFont.Width; aX++)

@@ -18,7 +18,6 @@ namespace Prism
 
                 while (true)
                 {
-
                 }
             }
             catch (Exception exc)
@@ -27,7 +26,6 @@ namespace Prism
                 Console.WriteLine("Exception: " + exc.Message);
                 while (true)
                 {
-
                 }
             }
         }

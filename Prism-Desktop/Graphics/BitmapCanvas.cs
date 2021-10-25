@@ -19,7 +19,7 @@ namespace Prism.Graphics
 
         public Color GetPixel(int X, int Y)
         {
-            return Color.FromArgb(Canvas.rawData[X + Y * Canvas.Width]);
+            return Color.FromArgb(Canvas.rawData[X + (Y * Canvas.Width)]);
         }
 
         public void Clear()
@@ -28,7 +28,7 @@ namespace Prism.Graphics
             {
                 for (int Y = 0; Y < Canvas.Height; Y++)
                 {
-                    Canvas.rawData[X + Y * Canvas.Width] = Color.Black.ToArgb();
+                    Canvas.rawData[X + (Y * Canvas.Width)] = Color.Black.ToArgb();
                 }
             }
         }
@@ -39,7 +39,7 @@ namespace Prism.Graphics
             {
                 for (int aY = Y; Y < Height; Y++)
                 {
-                    Canvas.rawData[X + Y * Canvas.Width] = aColor.ToArgb();
+                    Canvas.rawData[X + aX + ((Y + aY) * Canvas.Width)] = aColor.ToArgb();
                 }
             }
         }
@@ -55,9 +55,9 @@ namespace Prism.Graphics
                 int tx = (i % rr) - aR;
                 int ty = (i / rr) - aR;
 
-                if (tx * tx + ty * ty <= r2)
+                if ((tx * tx) + (ty * ty) <= r2)
                 {
-                    Canvas.rawData[X + Y * Canvas.Width] = aColor.ToArgb();
+                    Canvas.rawData[X + (Y * Canvas.Width)] = aColor.ToArgb();
                 }
             }
         }
@@ -71,7 +71,7 @@ namespace Prism.Graphics
             {
                 for (int _y = 0; _y < aImage.Height; _y++)
                 {
-                    Canvas.rawData[X + Y * Canvas.Width] = aImage.rawData[_x + _y * aImage.Width];
+                    Canvas.rawData[X + (Y * Canvas.Width)] = aImage.rawData[_x + (_y * aImage.Width)];
                 }
             }
         }
@@ -93,7 +93,7 @@ namespace Prism.Graphics
             {
                 for (int aY = 0; aY < aFont.Height; aY++)
                 {
-                    Canvas.rawData[X + Y * Canvas.Width] = aFont.Data[p + aY];
+                    Canvas.rawData[X + (Y * Canvas.Width)] = aFont.Data[p + aY];
                 }
             }
         }
