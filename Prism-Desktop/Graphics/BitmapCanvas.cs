@@ -6,7 +6,7 @@ using System.Drawing;
 namespace Prism.Graphics
 {
     /// <summary>
-    /// Doubble buffered array canvas
+    /// old method, but keep it for now
     /// </summary>
     internal class BitmapCanvas
     {
