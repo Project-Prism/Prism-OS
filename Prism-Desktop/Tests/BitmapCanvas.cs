@@ -1,9 +1,7 @@
 ﻿using Cosmos.System.Graphics;
-using Cosmos.System.Graphics.Fonts;
-using System;
 using System.Drawing;
 
-namespace Prism.Graphics
+namespace Prism.Tests
 {
     /// <summary>
     /// old method, but keep it for now
@@ -74,39 +72,6 @@ namespace Prism.Graphics
                     Canvas.rawData[X + (Y * Canvas.Width)] = aImage.rawData[_x + (_y * aImage.Width)];
                 }
             }
-        }
-
-        public void DrawString(int X, int Y, Font aFont, string Text, Color aColor)
-        {
-            foreach (char aChar in Text)
-            {
-                DrawChar(X, Y, aChar, aFont, aColor);
-                X += aFont.Width;
-            }
-        }
-
-        public void DrawChar(int X, int Y, char aChar, Font aFont, Color aColor)
-        {
-            int p = aFont.Height * (byte)aChar;
-
-            for (int aX = 0; aX < aFont.Width; aX++)
-            {
-                for (int aY = 0; aY < aFont.Height; aY++)
-                {
-                    Canvas.rawData[X + (Y * Canvas.Width)] = aFont.Data[p + aY];
-                }
-            }
-        }
-
-        public void DrawAngledLine(int X, int Y, int Angle, int Radius, Color color)
-        {
-            // still needs testing
-
-            double angleX, angleY;
-            angleY = Radius * Math.Cos(Math.PI * 2 * Angle / 360);
-            angleX = Radius * Math.Sin(Math.PI * 2 * Angle / 360);
-
-            //Display.DrawLine(new Pen(color), X, Y, X + (int)(Math.Round(angleX * 100) / 100), Y - (int)(Math.Round(angleY * 100) / 100));
         }
 
         public void DrawRoundRect(int X, int Y, int Width, int Height, int aR, Color aColor)

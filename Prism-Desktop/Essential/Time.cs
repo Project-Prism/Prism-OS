@@ -1,6 +1,6 @@
 ﻿using Cosmos.HAL;
 
-namespace Prism.Services.Basic
+namespace Prism.Essential
 {
     internal static class Time
     {

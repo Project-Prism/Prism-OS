@@ -2,9 +2,9 @@
 using Cosmos.System.Graphics.Fonts;
 using System.Collections.Generic;
 using System.Drawing;
-using static Prism.Graphics.DBACanvas;
+using static Prism.Tests.DBACanvas;
 
-namespace Prism.Graphics
+namespace Prism.Tests
 {
     internal static class WindowManager
     {

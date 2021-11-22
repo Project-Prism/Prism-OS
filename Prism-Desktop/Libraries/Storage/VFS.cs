@@ -1,27 +1,17 @@
-﻿using Cosmos.System.FileSystem;
-using Cosmos.System.FileSystem.Listing;
-using Cosmos.System.FileSystem.VFS;
+﻿using Cosmos.System.FileSystem.Listing;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Prism.FileSystem
+namespace Prism.Libraries.Storage
 {
-    class FSCore
+    public static class VFS
     {
-        public FSCore()
-        {
-            VFSManager.RegisterVFS(fs);
-            fs.Initialize(true);
-        }
-
-        public static readonly CosmosVFS fs = new();
-
         public static void CreateFolder(string FullPath)
         {
             try
             {
-                fs.CreateDirectory(ParseFullPath(FullPath));
+                Filesystem.VFS.CreateDirectory(ParseFullPath(FullPath));
             }
             catch (Exception aException)
             {
@@ -57,7 +47,7 @@ namespace Prism.FileSystem
         {
             try
             {
-                fs.Format(DiskID.ToString(), "FAT32", true);
+                Filesystem.VFS.Format(DiskID.ToString(), "FAT32", true);
             }
             catch (Exception aException)
             {
@@ -69,7 +59,7 @@ namespace Prism.FileSystem
         {
             try
             {
-                return fs.GetVolumes();
+                return Filesystem.VFS.GetVolumes();
             }
             catch (Exception aException)
             {
@@ -81,7 +71,7 @@ namespace Prism.FileSystem
         {
             try
             {
-                return fs.GetDirectoryListing(ParseFullPath(FullPath));
+                return Filesystem.VFS.GetDirectoryListing(ParseFullPath(FullPath));
             }
             catch (Exception aException)
             {
@@ -93,7 +83,7 @@ namespace Prism.FileSystem
         {
             try
             {
-                return fs.GetFileSystemType(DiskID.ToString());
+                return Filesystem.VFS.GetFileSystemType(DiskID.ToString());
             }
             catch (Exception aException)
             {
@@ -105,7 +95,7 @@ namespace Prism.FileSystem
         {
             try
             {
-                return (int)fs.GetAvailableFreeSpace(DiskID + ":");
+                return (int)Filesystem.VFS.GetAvailableFreeSpace(DiskID + ":");
             }
             catch (Exception aException)
             {
