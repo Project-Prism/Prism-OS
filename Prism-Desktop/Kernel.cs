@@ -6,7 +6,7 @@ namespace Prism
     {
         protected override void Run()
         {
-            Prism.Libraries.UI.Framework.Draw_Text_Button(400, 400, 400, 50);
+            Prism.Libraries.UI.Framework.Draw_Text_Button(400, 400, 400, 50, "This is a test");
         }
     }
 }
