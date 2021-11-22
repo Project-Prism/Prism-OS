@@ -2,7 +2,7 @@
 
 namespace Prism.Libraries.UI
 {
-    public static class Theme
+    public static class Colorizer
     {
         public static void Load(int[] Theme)
         {

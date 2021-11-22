@@ -3,7 +3,7 @@ using Cosmos.System.Graphics;
 
 namespace Prism.Libraries.UI
 {
-    public static class Primitives
+    public static class Managment
     {
         public static int Width { get; set; } = 800;
         public static int Height { get; set; } = 600;
