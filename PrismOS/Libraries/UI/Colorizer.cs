@@ -14,6 +14,10 @@ namespace Prism.Libraries.UI
             Label.Background = Color.FromArgb(Theme[4]);
         }
 
+        public static class Window
+        {
+            public static Color Main { get; set; } = Color.White;
+        }
         public static class Button
         {
             public static Color Background { get; set; } = Color.FromArgb(25, 25, 45);
