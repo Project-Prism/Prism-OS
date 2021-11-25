@@ -28,15 +28,15 @@ namespace Prism.Libraries.UI
 
         public static class UI
         {
-            public abstract class Component
+            public class Component
             {
                 public int X, Y, Width, Height, Radius;
                 public string Text;
-                public string[] Texts;
                 public Bitmap Icon;
-                public Bitmap[] Icons;
                 public Component Parent;
                 public List<Component> Children;
+                public delegate void OnClick();
+                public delegate void OnCreate();
 
                 public void Draw()
                 {
@@ -45,34 +45,23 @@ namespace Prism.Libraries.UI
                         aComp.Draw();
                     }
                 }
-
-                public void OnClick()
-                {
-                }
-
-                public void OnCreate()
-                {
-
-                }
             }
 
-            public class Window : Component
+            public class Panel : Component
             {
                 public new int X, Y, Width, Height;
-                public new string Text;
-                public new Bitmap Icon;
+                public new Component Parent;
                 public new List<Component> Children;
+                public new delegate void OnClick();
+                public new delegate void OnCreate();
 
-                public Window(int aX, int aY, int aWidth, int aHeight, string aTitle, Bitmap aIcon)
+                public Panel(int aX, int aY, int aWidth, int aHeight, Component aParent)
                 {
                     X = aX;
                     Y = aY;
                     Width = aWidth;
                     Height = aHeight;
-                    Text = aTitle;
-                    Icon = aIcon;
-
-                    OnCreate();
+                    Parent = aParent;
                 }
 
                 public new void Draw()
@@ -84,21 +73,15 @@ namespace Prism.Libraries.UI
                         Child.Draw();
                     }
                 }
-
-                public new void OnClick()
-                {
-                }
-
-                public new void OnCreate()
-                {
-                }
             }
 
             public class Button : Component
             {
                 public new int X, Y, Radius;
-                public new Bitmap Icon;
                 public new Component Parent;
+                public new List<Component> Children;
+                public new delegate void OnClick();
+                public new delegate void OnCreate();
 
                 public Button(int aX, int aY, int R, Component aParent)
                 {
@@ -106,23 +89,40 @@ namespace Prism.Libraries.UI
                     Y = aY;
                     Radius = R;
                     Parent = aParent;
-
-                    OnCreate();
                 }
 
                 public new void Draw()
                 {
                     Canvas.DrawFilledCircle(new Pen(Colorizer.Button.Background), Parent.X + X, Parent.Y + Y, Radius);
                     Canvas.DrawCircle(new Pen(Colorizer.Button.Foreground), Parent.X + X, Parent.Y + Y, Radius + 2);
-                    Canvas.DrawImageAlpha(Icon, Parent.X + X - ((int)Icon.Width / 2), Parent.Y + Y - ((int)Icon.Height / 2));
+                    
+                    foreach (Component Comp in Children)
+                    {
+                        Comp.Draw();
+                    }
+
+                }
+            }
+
+            public class Image : Component
+            {
+                public new int X, Y, Radius;
+                public new Bitmap Icon;
+                public new Component Parent;
+                public new delegate void OnClick();
+                public new delegate void OnCreate();
+
+                public Image(int aX, int aY, Bitmap aImage, Component aParent)
+                {
+                    X = aX;
+                    Y = aY;
+                    Icon = aImage;
+                    Parent = aParent;
                 }
 
-                public new void OnClick()
+                public new void Draw()
                 {
-                }
-
-                public new void OnCreate()
-                {
+                    Canvas.DrawImageAlpha(Icon, X - ((int)Icon.Width / 2), Y - ((int)Icon.Height / 2));
                 }
             }
         }

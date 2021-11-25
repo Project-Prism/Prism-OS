@@ -1,4 +1,5 @@
-using System.Diagnostics;
+using System;
+using static Prism.Libraries.UI.Framework;
 
 namespace Prism
 {
@@ -6,13 +7,25 @@ namespace Prism
     {
         protected override void Run()
         {
-            Libraries.UI.Framework.UI.Window X = new(Libraries.UI.Framework.Width / 2, Libraries.UI.Framework.Height / 2, 400, 400, "", null);
-            X.Children.Add(new Libraries.UI.Framework.UI.Button(50, 50, 7, X));
-            while (true)
+            try
             {
-                X.Width++;
-                X.Height++;
-                X.Draw();
+                UI.Image Boot = new(Width / 2, Height / 2, Essential.Resources.Prism, null);
+                Boot.Draw();
+
+                UI.Panel X = new(Width / 2, Height / 2, 400, 400, null);
+                X.Children.Add(new UI.Image(Width / 2, Height / 2, Essential.Resources.Warning, X));
+
+                while (true)
+                {
+                    X.Width++;
+                    X.Height++;
+                    X.Draw();
+                }
+            }
+            catch(Exception exc)
+            {
+                Canvas.Disable();
+                Console.WriteLine("Error! " + exc);
             }
         }
     }
