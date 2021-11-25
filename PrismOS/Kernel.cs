@@ -13,7 +13,7 @@ namespace Prism
                 Boot.Draw();
 
                 UI.Panel X = new(Width / 2, Height / 2, 400, 400, null);
-                X.Children.Add(new UI.Image(Width / 2, Height / 2, Essential.Resources.Warning, X));
+                X.Children.Add(new UI.Label(400, 400, "Hello, World!", X));
 
                 while (true)
                 {

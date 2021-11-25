@@ -1,6 +1,7 @@
 ﻿using Cosmos.System;
 using Cosmos.System.Graphics;
 using System.Collections.Generic;
+using Cosmos.System.Graphics.Fonts;
 
 namespace Prism.Libraries.UI
 {
@@ -33,6 +34,7 @@ namespace Prism.Libraries.UI
                 public int X, Y, Width, Height, Radius;
                 public string Text;
                 public Bitmap Icon;
+                public PCScreenFont Font;
                 public Component Parent;
                 public List<Component> Children;
                 public delegate void OnClick();
@@ -123,6 +125,31 @@ namespace Prism.Libraries.UI
                 public new void Draw()
                 {
                     Canvas.DrawImageAlpha(Icon, X - ((int)Icon.Width / 2), Y - ((int)Icon.Height / 2));
+                }
+            }
+
+            public class Label : Component
+            {
+                public new int X, Y, Radius;
+                public new string Text;
+                public new PCScreenFont Font;
+                public new Component Parent;
+                public new delegate void OnClick();
+                public new delegate void OnCreate();
+
+                public Label(int aX, int aY, string aText, Component aParent)
+                {
+                    X = aX;
+                    Y = aY;
+                    Text = aText;
+                    Parent = aParent;
+                    Font = PCScreenFont.Default;
+            }
+
+                public new void Draw()
+                {
+                    Canvas.DrawFilledRectangle(new Pen(Colorizer.Label.Background), X - (Font.Width * Text.Length), Y, Width, Height);
+                    Canvas.DrawString(Text, Font, new Pen(Colorizer.Label.Text), X - (Font.Width * Text.Length), Y);
                 }
             }
         }
