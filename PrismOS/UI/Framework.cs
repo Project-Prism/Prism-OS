@@ -1,35 +1,73 @@
-﻿using Cosmos.System.Graphics;
+﻿using System.Collections.Generic;
+using System.Drawing;
+using Cosmos.System.Graphics;
 using Cosmos.System.Graphics.Fonts;
-using static PrismOS.Libraries.Extras;
+using static PrismOS.UI.Extras;
 
-namespace PrismOS.Libraries.UI
+namespace PrismOS.UI
 {
-    public static class Components
+    public static class Framework
     {
         public abstract class Component
         {
+            public int X, Y, Width, Height, Radius;
             public string Text;
             public Bitmap Icon;
-            public PCScreenFont Font;
-            public Containers.Window Parent;
-            public int X, Y, Width, Height, Radius;
+            public Component Parent;
 
-            public void Draw()
+            public abstract void Draw();
+        }
+
+        public class Window : Component
+        {
+            public new int X, Y, Width, Height, Radius;
+            public new string Text;
+            public new Bitmap Icon;
+            public new Component Parent;
+
+            #region Window specific
+            public List<Component> Children = new();
+            public bool IsVisible, IsFullScreen;
+            #endregion Window specific
+
+            public Window(int aX, int aY, int aWidth, int aHeight, int aRadius, string aText, Bitmap aIcon)
             {
-                // Threw in some random junk so there arent stupid warnings.
-                _ = X;
+                X = aX;
+                Y = aY;
+                Width = aWidth;
+                Height = aHeight;
+                Radius = aRadius;
+                Text = aText;
+                Icon = aIcon;
+                Parent = null;
+            }
+
+            public override void Draw()
+            {
+                if (IsFullScreen)
+                {
+                    Extras.Canvas.DrawFilledRectangle(new Pen(Color.Black), 0, 0, Extras.Width, Extras.Height);
+                }
+                else
+                {
+                    Extras.Canvas.DrawFilledRectangle(new Pen(Color.White), X, Y, Width, Height);
+                }
+
+                foreach (Component Comp in Children)
+                {
+                    Comp.Draw();
+                }
             }
         }
 
         public class Button : Component
         {
+            public new int X, Y, Width, Height, Radius;
             public new string Text;
             public new Bitmap Icon;
-            public new PCScreenFont Font;
-            public new Containers.Window Parent;
-            public new int X, Y, Width, Height, Radius;
+            public new Component Parent;
 
-            public Button(int aX, int aY, int aWidth, int aHeight, int aRadius, Containers.Window aParent)
+            public Button(int aX, int aY, int aWidth, int aHeight, int aRadius, Window aParent)
             {
                 X = aX;
                 Y = aY;
@@ -42,9 +80,7 @@ namespace PrismOS.Libraries.UI
             /// <summary>
             /// Draw the component.
             /// </summary>
-            /// <param name="OX">The X offset for drawing.</param>
-            /// <param name="OY">The Y offset for drawing.</param>
-            public new void Draw()
+            public override void Draw()
             {
                 Extras.Canvas.DrawFilledRectangle(
                     pen: new Pen(Colorizer.Button.Background),
@@ -69,7 +105,7 @@ namespace PrismOS.Libraries.UI
                 Parent = aParent;
             }
 
-            public new void Draw()
+            public override void Draw()
             {
                 Extras.Canvas.DrawImageAlpha(
                     image: Icon,
@@ -82,23 +118,21 @@ namespace PrismOS.Libraries.UI
         {
             public new int X, Y, Radius;
             public new string Text;
-            public new PCScreenFont Font;
-            public new Containers.Window Parent;
+            public new Component Parent;
 
-            public Label(int aX, int aY, string aText, Containers.Window aParent)
+            public Label(int aX, int aY, string aText, Window aParent)
             {
                 X = aX;
                 Y = aY;
                 Text = aText;
                 Parent = aParent;
-                Font = PCScreenFont.Default;
             }
 
-            public new void Draw()
+            public override void Draw()
             {
                 Extras.Canvas.DrawString(
                     str: Text,
-                    aFont: Font,
+                    aFont: PCScreenFont.Default,
                     pen: new Pen(Colorizer.Label.Text),
                     x: Parent.X + X,
                     y: Parent.Y + Y);

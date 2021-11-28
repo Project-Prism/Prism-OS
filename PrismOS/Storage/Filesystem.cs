@@ -1,7 +1,7 @@
 ﻿using Cosmos.System.FileSystem;
 using Cosmos.System.FileSystem.VFS;
 
-namespace PrismOS.Libraries.Storage
+namespace PrismOS.Storage
 {
     public static class Filesystem
     {

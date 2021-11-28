@@ -1,4 +1,6 @@
 using System;
+using static PrismOS.UI.Framework;
+using Cosmos.System.Graphics;
 
 namespace PrismOS
 {
@@ -8,9 +10,9 @@ namespace PrismOS
         {
             try
             {
-                var X = new Libraries.UI.Containers.Window(100, 100, 500, 500, 5, 5, false);
-                X.Children.Add(new Libraries.UI.Components.Button(50, 50, 15, 35, 0, X));
-                X.Children.Add(new Libraries.UI.Components.Label(100, 100, "Some Text goes here", X));
+                var X = new Window(100, 100, 500, 500, 5, "Title1", null);
+                var Z = new UI.Framework.Image(75, 75, Essential.Assets.Warning, X);
+                X.Children.Add(Z);
 
                 while (true)
                 {

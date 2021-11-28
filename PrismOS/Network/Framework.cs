@@ -5,15 +5,16 @@ using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Cosmos.System.Network.IPv4.UDP.DNS;
 using System;
 
-namespace PrismOS.Libraries.Network
+namespace PrismOS.Network
 {
-    internal class Primitives
+    public static class Framework
     {
         public static Address GateWay = new(10, 0, 0, 1);
         public static Address Local = new(127, 0, 0, 1);
         public static Address Subnet = new(255, 255, 255, 0);
+        public static Address DNS = new(1, 1, 1, 1);
 
-        public Primitives()
+        public static void Init()
         {
             IPConfig.Enable(GetNetworkDevice("eth0"), Local, Subnet, GateWay);
 
@@ -32,16 +33,14 @@ namespace PrismOS.Libraries.Network
             return NetworkDevice.GetDeviceByName(DeviceName);
         }
 
-        public static Address DNS(Address GateWay, string Domain)
+        public static Address AskFor(string Domain)
         {
             try
             {
                 using DnsClient xClient = new();
-                xClient.Connect(GateWay);
+                xClient.Connect(DNS);
                 xClient.SendAsk(Domain);
-                Address ret = xClient.Receive();
-                xClient.Dispose();
-                return ret;
+                return xClient.Receive();
             }
             catch (Exception aException)
             {

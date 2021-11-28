@@ -2,7 +2,7 @@
 using Cosmos.System.Graphics;
 using System.Drawing;
 
-namespace PrismOS.Libraries
+namespace PrismOS.UI
 {
     public static class Extras
     {

@@ -31,17 +31,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Essential\Resources\Mouse.bmp" />
-      <None Remove="Essential\Resources\Prism.bmp" />
-      <None Remove="Essential\Resources\Warning.bmp" />
+      <None Remove="Essential\Assets\Mouse.bmp" />
+      <None Remove="Essential\Assets\Prism.bmp" />
+      <None Remove="Essential\Assets\Warning.bmp" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Essential\Resources\Mouse.bmp">
+      <EmbeddedResource Include="Essential\Assets\Mouse.bmp">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </EmbeddedResource>
-      <EmbeddedResource Include="Essential\Resources\Prism.bmp" />
-      <EmbeddedResource Include="Essential\Resources\Warning.bmp" />
+      <EmbeddedResource Include="Essential\Assets\Prism.bmp" />
+      <EmbeddedResource Include="Essential\Assets\Warning.bmp" />
     </ItemGroup>
 
     <ItemGroup>
