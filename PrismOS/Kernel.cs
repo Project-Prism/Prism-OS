@@ -1,7 +1,6 @@
 using System;
-using static Prism.Libraries.UI.Framework;
 
-namespace Prism
+namespace PrismOS
 {
     public class Kernel : Cosmos.System.Kernel
     {
@@ -9,22 +8,17 @@ namespace Prism
         {
             try
             {
-                UI.Image Boot = new(Width / 2, Height / 2, Essential.Resources.Prism, null);
-                Boot.Draw();
-
-                UI.Panel X = new(Width / 2, Height / 2, 400, 400, null);
-                X.Children.Add(new UI.Label(400, 400, "Hello, World!", X));
+                var X = new Libraries.UI.Containers.Window(100, 100, 500, 500, 5, 5, false);
+                X.Children.Add(new Libraries.UI.Components.Button(50, 50, 15, 35, 0, X));
+                X.Children.Add(new Libraries.UI.Components.Label(100, 100, "Some Text goes here", X));
 
                 while (true)
                 {
-                    X.Width++;
-                    X.Height++;
                     X.Draw();
                 }
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
-                Canvas.Disable();
                 Console.WriteLine("Error! " + exc);
             }
         }

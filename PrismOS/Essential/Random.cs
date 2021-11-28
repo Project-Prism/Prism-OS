@@ -1,4 +1,4 @@
-﻿namespace Prism.Essential
+﻿namespace PrismOS.Essential
 {
     public static class Random
     {

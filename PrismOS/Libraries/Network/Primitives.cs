@@ -5,7 +5,7 @@ using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Cosmos.System.Network.IPv4.UDP.DNS;
 using System;
 
-namespace Prism.Libraries.Network
+namespace PrismOS.Libraries.Network
 {
     internal class Primitives
     {

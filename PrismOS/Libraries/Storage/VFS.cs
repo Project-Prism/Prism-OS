@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Prism.Libraries.Storage
+namespace PrismOS.Libraries.Storage
 {
     public static class VFS
     {

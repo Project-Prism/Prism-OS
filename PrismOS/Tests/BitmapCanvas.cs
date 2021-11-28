@@ -1,12 +1,9 @@
 ﻿using Cosmos.System.Graphics;
 using System.Drawing;
 
-namespace Prism.Tests
+namespace PrismOS.Tests
 {
-    /// <summary>
-    /// old method, but keep it for now
-    /// </summary>
-    internal class BitmapCanvas
+    public class BitmapCanvas
     {
         public Bitmap Canvas;
 
