@@ -9,10 +9,10 @@ namespace PrismOS.Network
 {
     public static class Framework
     {
-        public static Address GateWay = new(10, 0, 0, 1);
-        public static Address Local = new(127, 0, 0, 1);
-        public static Address Subnet = new(255, 255, 255, 0);
-        public static Address DNS = new(1, 1, 1, 1);
+        public static Address GateWay { get; } = new(10, 0, 0, 1);
+        public static Address Local { get; } = new(127, 0, 0, 1);
+        public static Address Subnet { get; } = new(255, 255, 255, 0);
+        public static Address DNS { get; } = new(1, 1, 1, 1);
 
         public static void Init()
         {

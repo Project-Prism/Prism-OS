@@ -1,37 +1,22 @@
-using System;
-using static PrismOS.UI.Framework;
-using static PrismOS.Storage.Extras;
-using System.IO;
-using Cosmos.System.Graphics;
 using Arc;
+using System;
+using static PrismOS.Storage.Framework;
+using Cosmos.System.Graphics;
 
 namespace PrismOS
 {
     public class Kernel : Cosmos.System.Kernel
     {
+        public static ArcFile Config { get; } = new(Drives.CD_Drive + ":\\Config.arc");
         protected override void Run()
         {
-            try
-            {
-                Initiate();
 
-                //var A = new UI.Framework.Image(0, 0, new Bitmap(File.ReadAllBytes(CD_Drive + ":\\img.bmp")), null);
-                var B = new LoadBar(400, 500, 512, 0);
+            new UI.Framework.Image(
+                400, 300,
+                new Bitmap(Read(Drives.CD_Drive + Config.Read("Logo"), DataTypes.Bytes)), null).Draw();
 
-                while (true)
-                {
-                    //A.Draw();
-                    B.Draw();
-                    B.Percent++;
-                }
-            }
-            catch (Exception exc)
+            while (true)
             {
-                UI.Extras.Canvas.Disable();
-                Console.WriteLine("Error! " + exc);
-                while (true)
-                {
-                }
             }
         }
     }

@@ -1,12 +1,26 @@
-﻿using Cosmos.System.FileSystem.Listing;
+﻿using Cosmos.System.FileSystem;
+using Cosmos.System.FileSystem.Listing;
+using Cosmos.System.FileSystem.VFS;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
 namespace PrismOS.Storage
 {
-    public static class Framework
+    public class Framework
     {
+        public Framework()
+        {
+            VFSManager.RegisterVFS(VFS);
+            VFS.Initialize(true);
+        }
+
+        public static readonly CosmosVFS VFS = new();
+
+        public struct Drives
+        {
+            public static int CD_Drive { get => VFS.GetVolumes().Count - 1; }
+        }
         public enum DataTypes
         {
             Text,
@@ -31,10 +45,11 @@ namespace PrismOS.Storage
             {
                 case DataTypes.Text: File.WriteAllText(Path, Contents); break;
                 case DataTypes.Lines: File.WriteAllLines(Path, Contents); break;
-                case DataTypes.Bytes: File.WriteAllBytes(Path, Contents); break;
+                case DataTypes.Bytes:
+                    File.WriteAllBytes(Path, Contents); break;
 
-                // Throw an exception if the data type is not correct
-                throw new Exception("This data type has either not been added yet or does not exist.");
+                    // Throw an exception if the data type is not correct
+                    throw new Exception("This data type has either not been added yet or does not exist.");
             }
         }
 

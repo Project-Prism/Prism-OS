@@ -40,7 +40,7 @@
       <EmbeddedResource Include="isoFiles\Icons\Mouse.bmp">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </EmbeddedResource>
-      <EmbeddedResource Include="isoFiles\Icons\Prism.bmp" />
+      <EmbeddedResource Include="isoFiles\Icons\Logo.bmp" />
       <EmbeddedResource Include="isoFiles\Icons\Warning.bmp" />
     </ItemGroup>
 
