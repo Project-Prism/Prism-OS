@@ -138,5 +138,29 @@ namespace PrismOS.UI
                     y: Parent.Y + Y);
             }
         }
+
+        public class LoadBar : Component
+        {
+            public new int X, Y, Width;
+            public new Component Parent;
+
+            #region Loadbar specific
+            public int Percent;
+            #endregion Loadbar specific
+
+            public LoadBar(int aX, int aY, int aWidth, int aPercent)
+            {
+                X = aX - (Width / 2);
+                Y = aY - (Height / 2);
+                Width = aWidth;
+                Percent = aPercent;
+            }
+
+            public override void Draw()
+            {
+                Extras.Canvas.DrawFilledRectangle(new Pen(Color.DimGray), X, Y, Width, 50);
+                Extras.Canvas.DrawFilledRectangle(new Pen(Color.DimGray), X, Y, Percent / Percent, 50);
+            }
+        }
     }
 }

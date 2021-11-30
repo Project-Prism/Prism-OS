@@ -1,6 +1,9 @@
 using System;
 using static PrismOS.UI.Framework;
+using static PrismOS.Storage.Extras;
+using System.IO;
 using Cosmos.System.Graphics;
+using Arc;
 
 namespace PrismOS
 {
@@ -10,18 +13,25 @@ namespace PrismOS
         {
             try
             {
-                var X = new Window(100, 100, 500, 500, 5, "Title1", null);
-                var Z = new UI.Framework.Image(75, 75, Essential.Assets.Warning, X);
-                X.Children.Add(Z);
+                Initiate();
+
+                //var A = new UI.Framework.Image(0, 0, new Bitmap(File.ReadAllBytes(CD_Drive + ":\\img.bmp")), null);
+                var B = new LoadBar(400, 500, 512, 0);
 
                 while (true)
                 {
-                    X.Draw();
+                    //A.Draw();
+                    B.Draw();
+                    B.Percent++;
                 }
             }
             catch (Exception exc)
             {
+                UI.Extras.Canvas.Disable();
                 Console.WriteLine("Error! " + exc);
+                while (true)
+                {
+                }
             }
         }
     }
