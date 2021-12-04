@@ -31,20 +31,19 @@ This project is made possible by Cosmos and the community around it, and we give
 | Implement resource files   | -            | better for managment (cosmos) |
 | Implement Hexi             |     -        | Hexi unfinished               |
 
-
 ## Building Prism
-Prism OS requires that you are using the latest devkit version of cosmos in order to successfully compile.
+Prism OS requires that you are using the latest devkit version of Cosmos in order to successfully compile.
 
-###### <small>It is not recommended to distribute modified copies of Prism OS. Instead, you should do a PR to get whatever features you want implemented. It will most likely be accepted.</small>
+###### <small>It is not recommended to distribute modified copies of Prism OS. Instead, you should create a pull request to get whatever features you want implemented. It will most likely be accepted.</small>
 
 ### Step 1: 
-Open visual studio and click "clone repo"
+Open Visual Studio and click "clone repo"
 
 ### Step 2:
-Copy the URL for this github page and copy it into the "clone repo" text box and click "clone"
+Copy the URL for this GitHub page and copy it into the "clone repo" text box and click "clone"
 
 ### Step 3:
-Wait for the clone process to finish and then open the solution file (PrismProject.sln) from the solution explorer
+Wait for the clone process to finish and then open the solution file (PrismOS.sln) from the solution explorer
 
 ### Step 4:
 At the top of the screen, you should see an option called "build", click that and the prism will compile!
