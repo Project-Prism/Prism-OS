@@ -1,22 +1,34 @@
 using Arc;
 using System;
 using static PrismOS.Storage.Framework;
-using Cosmos.System.Graphics;
-
 namespace PrismOS
 {
     public class Kernel : Cosmos.System.Kernel
     {
-        public static ArcFile Config { get; } = new(Drives.CD_Drive + ":\\Config.arc");
         protected override void Run()
         {
-
-            new UI.Framework.Image(
-                400, 300,
-                new Bitmap(Read(Drives.CD_Drive + Config.Read("Logo"), DataTypes.Bytes)), null).Draw();
+            int X = 200;
+            int Y = 200;
+            int deg = 0;
+            
 
             while (true)
             {
+                if (deg != 360)
+                {
+                    deg++;
+                }
+                else
+                {
+                    deg = 0;
+                }
+                UI.Extras.Canvas.DrawLine(
+                    pen: new Cosmos.System.Graphics.Pen(System.Drawing.Color.White),
+                    x1: X,
+                    y1: Y,
+                    x2: (int)Math.Cos(X + (deg * (Math.PI / 180))),
+                    y2: (int)Math.Cos(Y + (deg * (Math.PI / 180))));
+                
             }
         }
     }

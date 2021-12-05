@@ -7,14 +7,8 @@ using System.IO;
 
 namespace PrismOS.Storage
 {
-    public class Framework
+    public static class Framework
     {
-        public Framework()
-        {
-            VFSManager.RegisterVFS(VFS);
-            VFS.Initialize(true);
-        }
-
         public static readonly CosmosVFS VFS = new();
 
         public struct Drives
@@ -26,6 +20,12 @@ namespace PrismOS.Storage
             Text,
             Lines,
             Bytes
+        }
+
+        public static void Init()
+        {
+            VFSManager.RegisterVFS(VFS);
+            VFS.Initialize(true);
         }
 
         public static dynamic Read(string Path, DataTypes Type)
@@ -57,7 +57,7 @@ namespace PrismOS.Storage
         {
             if (Path.EndsWith("\\"))
             {
-                return Extras.VFS.GetDirectoryListing(Path);
+                return VFS.GetDirectoryListing(Path);
             }
             else
             {

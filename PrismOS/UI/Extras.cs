@@ -1,7 +1,6 @@
 ﻿using Cosmos.System;
 using Cosmos.System.Graphics;
 using System.Drawing;
-using Arc;
 using static PrismOS.Storage.Framework;
 
 namespace PrismOS.UI
@@ -10,17 +9,19 @@ namespace PrismOS.UI
     {
         public struct Icons
         {
-            public static Bitmap Logo { get; } = new Bitmap(Read(Drives.CD_Drive + ":\\Icons\\Logo.bmp", DataTypes.Bytes));
-            public static Bitmap Warning { get; } = new Bitmap(Read(Drives.CD_Drive + ":\\Icons\\Warning.bmp", DataTypes.Bytes));
-            public static Bitmap Mouse { get; } = new Bitmap(Read(Drives.CD_Drive + ":\\Icons\\Mouse.bmp", DataTypes.Bytes));
+            public static Bitmap Logo { get => new(Drives.CD_Drive + ":\\Icons\\Logo.bmp"); }
+            public static Bitmap Warning { get => new(Drives.CD_Drive + ":\\Icons\\Warning.bmp"); }
+            public static Bitmap Mouse { get => new(Drives.CD_Drive + ":\\Icons\\Mouse.bmp"); }
         }
 
+        #region Configuration
         public static int Width { get; set; } = 800;
         public static int Height { get; set; } = 600;
         public static int MouseX { get; } = (int)MouseManager.X;
         public static int MouseY { get; } = (int)MouseManager.Y;
         public static Mode Mode { get; set; } = new(Width, Height, ColorDepth.ColorDepth32);
         public static Canvas Canvas { get; } = FullScreenCanvas.GetFullScreenCanvas(Mode);
+        #endregion Configuration
 
         public static bool MouseIsWithin(int X1, int Y1, int X2, int Y2)
         {
