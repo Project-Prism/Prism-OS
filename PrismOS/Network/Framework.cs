@@ -1,6 +1,7 @@
 ﻿using Cosmos.HAL;
 using Cosmos.System.Network.Config;
 using Cosmos.System.Network.IPv4;
+using Cosmos.System.Network.IPv4.TCP;
 using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Cosmos.System.Network.IPv4.UDP.DNS;
 using System;
@@ -45,6 +46,20 @@ namespace PrismOS.Network
             catch (Exception aException)
             {
                 throw new Exception("An error occured in the DNS system.\n(" + aException.Message + ")");
+            }
+        }
+
+        public static void ByteShark(Address IP, int Port)
+        {
+            EndPoint end = new(IP, (ushort)Port);
+
+            using TcpClient clnt = new(IP, Port);
+
+            while (true)
+            {
+                clnt.Send(System.Text.Encoding.UTF8.GetBytes("Hey, if you can read this, i am just testing shtuff. no need to be worried."));
+                TCPPacket pack = new(clnt.Receive(ref end));
+                Console.WriteLine("Raw Data: " + pack.RawData + " : " + pack.TCP_DataLength);
             }
         }
     }

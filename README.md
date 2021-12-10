@@ -7,8 +7,8 @@ Prism OS is a [Cosmos](https://github.com/CosmosOS/Cosmos) based operating syste
 This project is made possible by Cosmos and the community around it, and we give a huge thanks to all of the developers that contribute to it.
 
 ## Screenshots
-![](https://github.com/Project-Prism/Prism-OS/blob/main/Screenshots/Prism%20OS%20(21.9.28).png?raw=true)
-![](https://github.com/Project-Prism/Prism-OS/blob/main/Screenshots/Prism%20OS%20(21.9.8).png?raw=true)
+![](https://github.com/Project-Prism/Prism-OS/blob/main/PrismOS/Screenshots/Prism%20OS%20(21.9.28).png?raw=true)
+![](https://github.com/Project-Prism/Prism-OS/blob/main/PrismOS/Screenshots/Prism%20OS%20(21.9.8).png?raw=true)
 
 ## Notable contributors
 | Name                                              | Contributions                |

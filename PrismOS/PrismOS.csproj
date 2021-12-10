@@ -31,23 +31,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Remove="isoFiles\Icons\Mouse\**" />
-      <EmbeddedResource Remove="isoFiles\Icons\Mouse\**" />
-      <None Remove="isoFiles\Icons\Mouse\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Include="isoFiles\Icons\Mouse.bmp">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </EmbeddedResource>
-      <EmbeddedResource Include="isoFiles\Icons\Logo.bmp" />
-      <EmbeddedResource Include="isoFiles\Icons\Warning.bmp" />
+      <Compile Remove="isoFiles\Icons\**" />
+      <EmbeddedResource Remove="isoFiles\Icons\**" />
+      <None Remove="isoFiles\Icons\**" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
+        <PackageReference Include="DotNetParser" Version="0.5.9" />
     </ItemGroup>
 
     <ItemGroup>

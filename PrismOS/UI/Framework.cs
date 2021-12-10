@@ -3,182 +3,141 @@ using System.Drawing;
 using static PrismOS.UI.Extras;
 using Cosmos.System.Graphics;
 using Cosmos.System.Graphics.Fonts;
-using System;
 
 namespace PrismOS.UI
 {
     public static class Framework
     {
-        public abstract class Component
+        public class Window
         {
-            public struct Properties
+            public Window(int aX, int aY, int aWidth, int aHeight, int aRadius)
             {
-                public static Component Parent { get; set; }
-                public static List<Component> Children { get; set; }
-                public static int X { get; set; }
-                public static int Y { get; set; }
-                public static int Width { get; set; }
-                public static int Height { get; set; }
-                public static int Radius { get; set; }
-                public static string Text { get; set; }
-                public static Bitmap Icon { get; set; }
-                public static bool FullScreen { get; set; }
+                X = aX;
+                Y = aY;
+                Width = aWidth;
+                Height = aHeight;
+                Radius = aRadius;
+                Children = new List<Component>();
             }
 
-            public abstract void Draw();
-        }
+            public List<Component> Children;
+            public int X;
+            public int Y;
+            public int Width;
+            public int Height;
+            public int Radius;
 
-        public class Window : Component
-        {
-            public Window(int X, int Y, int Width, int Height, int Radius, bool FullScreen, string Text, Bitmap Icon)
+            public void Draw()
             {
-                Properties.X = X;
-                Properties.Y = Y;
-                Properties.Width = Width;
-                Properties.Height = Height;
-                Properties.Radius = Radius;
-                Properties.Text = Text;
-                Properties.Icon = Icon;
-                Properties.FullScreen = FullScreen;
-            }
+                Extras.Canvas.DrawFilledRectangle(new Pen(Color.DarkGray), X, Y, Width, Height);
 
-            public new struct Properties
-            {
-                public static Component Parent { get; set; }
-                public static List<Component> Children { get; set; }
-                public static int X { get; set; }
-                public static int Y { get; set; }
-                public static int Width { get; set; }
-                public static int Height { get; set; }
-                public static int Radius { get; set; }
-                public static string Text { get; set; }
-                public static Bitmap Icon { get; set; }
-                public static bool FullScreen { get; set; }
-            }
-
-            public override void Draw()
-            {
-                if (Properties.FullScreen)
-                {
-                    Extras.Canvas.DrawFilledRectangle(new Pen(Color.Black), 0, 0, Extras.Width, Extras.Height);
-                }
-                else
-                {
-                    Extras.Canvas.DrawFilledRectangle(new Pen(Color.White), Properties.X, Properties.Y, Properties.Width, Properties.Height);
-                }
-
-                foreach (Component Comp in Properties.Children)
+                foreach (Component Comp in Children)
                 {
                     Comp.Draw();
                 }
             }
         }
 
-        public class Clickable : Component
+        public abstract class Component
         {
-            public Clickable(int X, int Y, int Width, int Height, int Radius, Component Parent)
+            public int X;
+            public int Y;
+            public int Width;
+            public int Height;
+            public int Radius;
+            public string Text;
+            public Window Parent;
+
+            public abstract void Draw();
+        }
+
+        public class Button : Component
+        {
+            public Button(int aX, int aY, int aWidth, int aHeight, int aRadius, Window aParent)
             {
-                Properties.Parent = Parent;
-                Properties.Children = new List<Component>();
-                Properties.X = X;
-                Properties.Y = Y;
-                Properties.Width = Width;
-                Properties.Height = Height;
-                Properties.Radius = Radius;
+                Parent = aParent;
+                X = aX;
+                Y = aY;
+                Width = aWidth;
+                Height = aHeight;
+                Radius = aRadius;
             }
 
-            public new struct Properties
-            {
-                public static Component Parent { get; set; }
-                public static List<Component> Children { get; set; }
-                public static int X { get; set; }
-                public static int Y { get; set; }
-                public static int Width { get; set; }
-                public static int Height { get; set; }
-                public static int Radius { get; set; }
-            }
+            public new int X;
+            public new int Y;
+            public new int Width;
+            public new int Height;
+            public new int Radius;
+            public new string Text;
+            public new Window Parent;
 
             public override void Draw()
             {
                 Extras.Canvas.DrawFilledRectangle(
                     pen: new Pen(Colorizer.Button.Background),
-                    x_start: Properties.Parent.X + Properties.X - (Properties.Width / 2),
-                    y_start: Properties.Parent.Y + Properties.Y,
-                    width: Properties.Parent.X + Properties.Width - (Properties.Width / 2),
-                    height: Properties.Parent.Y + Properties.Height - (Properties.Height / 2));
-            }
-        }
-
-        // below here needs fixing
-        public class Image : Component
-        {
-            public new int X, Y, Radius;
-            public new Bitmap Icon;
-            public new Component Parent;
-
-            public Image(int aX, int aY, Bitmap aImage, Component aParent)
-            {
-                X = aX;
-                Y = aY;
-                Icon = aImage;
-                Parent = aParent;
-            }
-
-            public override void Draw()
-            {
-                Extras.Canvas.DrawImageAlpha(
-                    image: Icon,
-                    x: Parent.X + X - ((int)Icon.Width / 2),
-                    y: Parent.Y + Y - ((int)Icon.Height / 2));
+                    x_start: Parent.X + (X - (Width / 2)),
+                    y_start: Parent.Y + (Y - (Height / 2)),
+                    width: Width,
+                    height: Height);
             }
         }
 
         public class Label : Component
         {
-            public new int X, Y, Radius;
-            public new string Text;
-            public new Component Parent;
-
-            public Label(int aX, int aY, string aText, Window aParent)
+            public Label(int aX, int aY, Window aParent)
             {
+                Parent = aParent;
                 X = aX;
                 Y = aY;
-                Text = aText;
-                Parent = aParent;
             }
+
+            public new int X;
+            public new int Y;
+            public new string Text;
+            public new Window Parent;
 
             public override void Draw()
             {
                 Extras.Canvas.DrawString(
-                    str: Text,
+                    str: "",
                     aFont: PCScreenFont.Default,
-                    pen: new Pen(Colorizer.Label.Text),
-                    x: Parent.X + X,
+                    pen: new Pen(Color.White),
+                    x: Parent.X + X - (PCScreenFont.Default.Width * Text.Length / 2),
                     y: Parent.Y + Y);
             }
         }
 
-        public class LoadBar : Component
+        public class Test : Component
         {
-            public new int X, Y, Width;
-            public new Component Parent;
-
-            #region Loadbar specific
-            public int Percent;
-            #endregion Loadbar specific
-
-            public LoadBar(int aX, int aY, int aWidth, int aPercent)
+            public Test(int aX, int aY, int aWidth, int aHeight, int aRadius, Window aParent)
             {
+                Parent = aParent;
                 X = aX;
                 Y = aY;
                 Width = aWidth;
-                Percent = aPercent;
+                Height = aHeight;
+                Radius = aRadius;
             }
+
+            public new int X;
+            public new int Y;
+            public new int Width;
+            public new int Height;
+            public new int Radius;
+            public new string Text;
+            public new Window Parent;
 
             public override void Draw()
             {
-                Extras.Canvas.DrawFilledRectangle(new Pen(Color.DimGray), Parent.X + X - (Width / 2), Parent.Y + Y - (Height / 2), Width, 50);
-                Extras.Canvas.DrawFilledRectangle(new Pen(Color.DimGray), Parent.X + X - (Width / 2), Parent.Y + Y - (Height / 2), Percent / Percent, 50);
+                for (int n = X; n < Width; n++)
+                {
+                    Extras.Canvas.DrawPoint(new Pen(Color.White), Parent.X + n, Parent.Y + Y);
+                    if (n.ToString().EndsWith("0"))
+                    {
+                        Extras.Canvas.DrawLine(new Pen(Color.White), Parent.X + n, Parent.Y + Y - 5, Parent.X + n, Parent.Y + Y + 5);
+                        //Extras.Canvas.DrawString(n.ToString(), Cosmos.System.Graphics.Fonts.PCScreenFont.Default, new Pen(Color.White), n, Y - 7);
+                    }
+                }
             }
         }
     }

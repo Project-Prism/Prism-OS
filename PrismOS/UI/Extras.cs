@@ -46,7 +46,7 @@ namespace PrismOS.UI
 
             public static class Window
             {
-                public static Color Main { get; set; } = Color.White;
+                public static Color Main { get; set; } = Color.DarkGray;
             }
             public static class Button
             {
