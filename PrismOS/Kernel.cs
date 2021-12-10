@@ -23,24 +23,30 @@ namespace PrismOS
                 xClient.Connect(Addr, Port);
                 System.Console.WriteLine("Connected!");
 
-                xClient.Send(Encoding.ASCII.GetBytes(HTTP.GenHttp("www.github.com", "/index.html")));
+                xClient.Send(Encoding.ASCII.GetBytes(HTTP.GenHttp("http://www.github.com/index.html")));
 
-                System.Console.WriteLine("Request send, awaiting response...");
+                System.Console.WriteLine("Request sent, awaiting response...");
 
                 string data = Encoding.ASCII.GetString(xClient.Receive(ref End));
 
+                xClient.Close();
+
                 System.Console.WriteLine("Got response!\n\n");
                 System.Console.WriteLine(data);
-                
-                xClient.Close();
+
+                while(true)
+                {
+
+                }
+
                 Read(data);
             }
-            catch(Exception Ex)
+            catch (Exception Ex)
             {
                 System.Console.WriteLine("Error: " + Ex.Message);
             }
 
-            while (true) {}
+            while (true) { }
 
             UI.Framework.Window XW = new(200, 200, 300, 300, 0);
             XW.Children.Add(new UI.Framework.Label(50, 50, XW));
@@ -62,13 +68,13 @@ namespace PrismOS
 
         public static void Read(string Data)
         {
-            foreach (string str in Data.Replace("><", ">\n").Split("\n\n")[1].Split("\n"))
+            System.Xml.XmlDocument Doc = new();
+
+            Doc.LoadXml(Data);
+            
+            foreach(System.Xml.XmlNode Node in Doc.DocumentElement.ChildNodes)
             {
-                System.Console.WriteLine(
-                    "Found the tag '"
-                    + str.Replace("<", "").Split(">")[0] +
-                    "' with the contents of '" +
-                    str.Replace("<", "").Split(">")[1]);
+                System.Console.WriteLine("Found tag " + Node.Name + " With value " + Node.Value);
             }
         }
     }

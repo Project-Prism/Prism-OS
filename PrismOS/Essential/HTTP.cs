@@ -8,13 +8,17 @@ namespace PrismOS.Essential
 {
     public static class HTTP
     {
-        public static string GenHttp(string URL, string Path)
+        public static string GenHttp(string URL)
         {
-            return "GET " + Path + " HTTP/1.1\r\n" +
-                    "User-Agent: Wget/1.12.3 (linux-gnu)\r\n" +
-                    "Accept: */*\r\n" +
-                    "Host: " + URL + "\r\n" +
-                    "Connection: Keep-Alive\r\n\r\n";
+            string Path = "/" + URL.Split(".com/")[1];
+            return "GET " + Path + "HTTP/1.1\n\r" +
+                   "Host: " + URL.Replace(Path, "") + "\n\r" +
+                   "User-Agent: Wget (GNU/Linux)" +
+                   "Accept: */*" +
+                   "Keep-Alive: 300" +
+                   "Connection: keep-alive" +
+                   "Pragma: no-cache" +
+                   "Cache-Control: no-cache";
         }
     }
 }
