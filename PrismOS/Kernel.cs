@@ -19,25 +19,12 @@ namespace PrismOS
 
             try
             {
-                using TcpClient xClient = new(Addr, Port);
+                Network.Framework.ByteShark(Addr, Port);
+
+                TcpClient xClient = new(Addr, Port);
                 xClient.Connect(Addr, Port);
-                System.Console.WriteLine("Connected!");
-
-                xClient.Send(Encoding.ASCII.GetBytes(HTTP.GenHttp("http://www.github.com/index.html")));
-
-                System.Console.WriteLine("Request sent, awaiting response...");
-
+                xClient.Send(Encoding.ASCII.GetBytes(HTTP.GenHttp("www.github.com/index.html")));
                 string data = Encoding.ASCII.GetString(xClient.Receive(ref End));
-
-                xClient.Close();
-
-                System.Console.WriteLine("Got response!\n\n");
-                System.Console.WriteLine(data);
-
-                while(true)
-                {
-
-                }
 
                 Read(data);
             }
@@ -68,13 +55,14 @@ namespace PrismOS
 
         public static void Read(string Data)
         {
-            System.Xml.XmlDocument Doc = new();
-
-            Doc.LoadXml(Data);
-            
-            foreach(System.Xml.XmlNode Node in Doc.DocumentElement.ChildNodes)
+            foreach (string Line in Data.Replace("><", ">\n<").Split("\n"))
             {
-                System.Console.WriteLine("Found tag " + Node.Name + " With value " + Node.Value);
+                if (Line.StartsWith("<"))
+                {
+                    string Tag = Line.Replace("<", "").Split(">")[0];
+                    string Contents = Line.Replace("<", "").Split(">")[1].Split("</")[0].Split("/")[0];
+                    System.Console.WriteLine(Tag + " with the contents of " + Contents);
+                }
             }
         }
     }

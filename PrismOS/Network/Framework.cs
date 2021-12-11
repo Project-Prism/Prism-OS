@@ -51,15 +51,14 @@ namespace PrismOS.Network
 
         public static void ByteShark(Address IP, int Port)
         {
-            EndPoint end = new(IP, (ushort)Port);
-
-            using TcpClient clnt = new(IP, Port);
+            EndPoint end = new(Address.Zero, (ushort)Port);
+            TcpClient clnt = new(IP, Port);
+            clnt.Connect(IP, Port);
 
             while (true)
             {
                 clnt.Send(System.Text.Encoding.UTF8.GetBytes("Hey, if you can read this, i am just testing shtuff. no need to be worried."));
-                TCPPacket pack = new(clnt.Receive(ref end));
-                Console.WriteLine("Raw Data: " + pack.RawData + " : " + pack.TCP_DataLength);
+                Console.WriteLine("Raw Data: " + clnt.Receive(ref end));
             }
         }
     }
