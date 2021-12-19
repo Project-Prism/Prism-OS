@@ -17,24 +17,11 @@ This project is made possible by Cosmos and the community around it, and we give
 | [Terminal.cs](https://github.com/terminal-cs)     | General development, logo    |
 | [deadlocust](https://github.com/deaddlocust)      | General development          |
 | [Nifanfa](https://github.com/nifanfa)             | Bitfont                      |
-| [CrisisSDK](https://github.com/CrisisSDK)         | Rounded cube, coal v1 & v2    |
+| [CrisisSDK](https://github.com/CrisisSDK)         | Rounded cube, coal v1 & v2   |
 | [TheOpCoder](https://github.com/theopcoder)       | Website developer            |
-
-## To-do list
-
-| Topic                      |  Difficulty  | Notes                         |
-|----------------------------|--------------|-------------------------------|
-| Implement YASM into Cosmos |     Easy     | Starting soon                 |
-| Drivers                    |  Very Hard   | -                             |
-| Fix vbe circle & image     | Easy/Medium  | (in cosmos) should be ez      |
-| Re-Implement mouse         |     Easy     | -                             |
-| Implement resource files   | -            | better for managment (cosmos) |
-| Implement Hexi             |     -        | Hexi unfinished               |
 
 ## Building Prism
 Prism OS requires that you are using the latest devkit version of Cosmos in order to successfully compile.
-
-###### <small>It is not recommended to distribute modified copies of Prism OS. Instead, you should create a pull request to get whatever features you want implemented. It will most likely be accepted.</small>
 
 ### Step 1: 
 Open Visual Studio and click "clone repo"

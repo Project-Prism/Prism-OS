@@ -1,4 +1,4 @@
-﻿namespace PrismOS.Tools
+﻿namespace PrismOS.Math
 {
     public static class Calculate
     {
@@ -59,6 +59,11 @@
         {
             int Gdc = GCD(N1, N2);
             return new int[] { N1 / Gdc, N2 / Gdc };
+        }
+
+        public static int Difference(int N1, int N2)
+        {
+            return System.Math.Abs(N1 - N2);
         }
     }
 }
