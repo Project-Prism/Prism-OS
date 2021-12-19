@@ -13,12 +13,11 @@ namespace PrismOS
         {
             try
             {
-                UI.Framework.Canvas.Display();
                 InitVFS();
                 InitNet();
 
                 Bitmap Logo = new(File.ReadAllBytes("0:\\Resources\\Icons\\Logo.bmp"));
-                UI.Framework.Canvas.DrawImageAlpha(Logo, 400 - ((int)Logo.Width / 2), 300 - ((int)Logo.Height / 2));
+                UI.Forms.Canvas.DrawImage(400 - ((int)Logo.Width / 2), 300 - ((int)Logo.Height / 2), Logo);
 
                 Bitmap Folder = new(File.ReadAllBytes("0:\\Resources\\Folder.bmp"));
                 Bitmap Mouse = new(File.ReadAllBytes("0:\\Resources\\Mouse.bmp"));
@@ -37,13 +36,13 @@ namespace PrismOS
             }
             catch(Exception EX)
             {
-                UI.Framework.Canvas.Clear();
-                UI.Framework.Canvas.DrawString(
-                    "Critical error! " + EX.Message,
+                UI.Forms.Canvas.Clear();
+                UI.Forms.Canvas.DrawString(
+                    (UI.Forms.Canvas.Width / 2) - (Default.Width * (15 + EX.Message.Length) / 2),
+                    (UI.Forms.Canvas.Height / 2) - (Default.Height * 2 / 2),
                     Default,
-                    new Pen(System.Drawing.Color.Red),
-                    (UI.Framework.Width / 2) - (Default.Width * (15 + EX.Message.Length) / 2),
-                    (UI.Framework.Height / 2) - (Default.Height * 2 / 2));
+                    "Error! " + EX.Message,
+                    System.Drawing.Color.Red);
             }
         }
     }

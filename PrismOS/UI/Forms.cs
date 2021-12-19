@@ -1,12 +1,13 @@
 ﻿using S = System.Drawing;
 using System.Collections.Generic;
-using Cosmos.System.Graphics;
 using static PrismOS.UI.Framework;
 
 namespace PrismOS.UI
 {
     public static class Forms
     {
+        public static Canvas Canvas { get; set; } = new(1280, 720);
+
         public abstract class Form
         {
             #region Config
@@ -78,7 +79,7 @@ namespace PrismOS.UI
             {
                 if (Visible)
                 {
-                    Framework.Canvas.DrawFilledRectangle(new Pen(Theme.BackGround), X, Y, W, H);
+                    Canvas.DrawFilledSquare(X, Y, W, H, Theme.BackGround);
                 }
             }
 
@@ -129,7 +130,7 @@ namespace PrismOS.UI
             {
                 if (Visible)
                 {
-                    Framework.Canvas.DrawFilledRectangle(new Pen(Theme.BackGround), Parent.X + X, Parent.Y + Y, W, H);
+                    Canvas.DrawFilledSquare(Parent.X + X, Parent.Y + Y, W, H, Theme.BackGround);
                 }
             }
 
