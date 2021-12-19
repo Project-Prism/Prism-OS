@@ -1,11 +1,10 @@
-﻿namespace PrismOS.Essential
+﻿namespace PrismOS.Tools
 {
-    public static class Math
+    public static class Calculate
     {
         /// <summary>
         /// Check if a number is prime.
         /// </summary>
-        /// <param name="Number"></param>
         /// <returns>True if the number is prime.</returns>
         public static bool IsPrime(int N)
         {
@@ -19,6 +18,16 @@
                 if (N % i == 0) { return false; }
 
             return true;
+        }
+
+        /// <summary>
+        /// Check if a number is composite.
+        /// </summary>
+        /// <param name="N"></param>
+        /// <returns>True or False.</returns>
+        public static bool IsComposite(int N)
+        {
+            return !IsPrime(N);
         }
 
         /// <summary>

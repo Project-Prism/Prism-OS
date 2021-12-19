@@ -1,9 +1,9 @@
-using Cosmos.System.Network.IPv4;
-using System.Text;
-using Cosmos.System;
-using Cosmos.System.Network.IPv4.TCP;
+using System.IO;
+using static PrismOS.Storage.Storage;
+using static PrismOS.Network.Network;
+using static Cosmos.System.Graphics.Fonts.PCScreenFont;
+using Cosmos.System.Graphics;
 using System;
-using PrismOS.Essential;
 
 namespace PrismOS
 {
@@ -11,58 +11,39 @@ namespace PrismOS
     {
         protected override void Run()
         {
-            Network.Framework.Init();
-
-            const int Port = 80;
-            EndPoint End = new(Address.Zero, Port);
-            Address Addr = new(1, 1, 1, 1);
-
             try
             {
-                Network.Framework.ByteShark(Addr, Port);
+                UI.Framework.Canvas.Display();
+                InitVFS();
+                InitNet();
 
-                TcpClient xClient = new(Addr, Port);
-                xClient.Connect(Addr, Port);
-                xClient.Send(Encoding.ASCII.GetBytes(HTTP.GenHttp("www.github.com/index.html")));
-                string data = Encoding.ASCII.GetString(xClient.Receive(ref End));
+                Bitmap Logo = new(File.ReadAllBytes("0:\\Resources\\Icons\\Logo.bmp"));
+                UI.Framework.Canvas.DrawImageAlpha(Logo, 400 - ((int)Logo.Width / 2), 300 - ((int)Logo.Height / 2));
 
-                Read(data);
-            }
-            catch (Exception Ex)
-            {
-                System.Console.WriteLine("Error: " + Ex.Message);
-            }
+                Bitmap Folder = new(File.ReadAllBytes("0:\\Resources\\Folder.bmp"));
+                Bitmap Mouse = new(File.ReadAllBytes("0:\\Resources\\Mouse.bmp"));
+                Bitmap Warn = new(File.ReadAllBytes("0:\\Resources\\Warning.bmp"));
 
-            while (true) { }
+                UI.Framework.Theme WindowTheme = new(new int[] { -8355712, -16777056, -1 });
+                UI.Framework.Theme ButtonTheme = new(new int[] { -32768, -32768, -1 });
 
-            UI.Framework.Window XW = new(200, 200, 300, 300, 0);
-            XW.Children.Add(new UI.Framework.Label(50, 50, XW));
+                var X = new UI.Forms.Window(50, 50, 300, 300, 0, "Hello, m8!", WindowTheme, true);
+                X.Children.Add(new UI.Forms.Button(32, 32, 128, 32, 0, "This is a button", ButtonTheme, X, true));
 
-            while (true)
-            {
-                XW.Draw();
-
-                if (Essential.Math.IsPrime(KeyboardManager.ReadKey().KeyChar))
+                while (true)
                 {
-                    XW.Children[0].Text = "The number is prime.";
-                }
-                else
-                {
-                    XW.Children[0].Text = "The number is not prime.";
+                    X.Draw();
                 }
             }
-        }
-
-        public static void Read(string Data)
-        {
-            foreach (string Line in Data.Replace("><", ">\n<").Split("\n"))
+            catch(Exception EX)
             {
-                if (Line.StartsWith("<"))
-                {
-                    string Tag = Line.Replace("<", "").Split(">")[0];
-                    string Contents = Line.Replace("<", "").Split(">")[1].Split("</")[0].Split("/")[0];
-                    System.Console.WriteLine(Tag + " with the contents of " + Contents);
-                }
+                UI.Framework.Canvas.Clear();
+                UI.Framework.Canvas.DrawString(
+                    "Critical error! " + EX.Message,
+                    Default,
+                    new Pen(System.Drawing.Color.Red),
+                    (UI.Framework.Width / 2) - (Default.Width * (15 + EX.Message.Length) / 2),
+                    (UI.Framework.Height / 2) - (Default.Height * 2 / 2));
             }
         }
     }
