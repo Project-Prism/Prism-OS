@@ -1,4 +1,4 @@
-using System.IO;
+using Cosmos.System.Graphics;
 using static PrismOS.Storage.Storage;
 using static PrismOS.Network.Network;
 using static Cosmos.System.Graphics.Fonts.PCScreenFont;
@@ -47,11 +47,11 @@ namespace PrismOS
             {
                 UI.Forms.Canvas.Clear();
                 UI.Forms.Canvas.DrawString(
-                    (UI.Forms.Canvas.Width / 2) - (Default.Width * (15 + EX.Message.Length) / 2),
-                    (UI.Forms.Canvas.Height / 2) - (Default.Height * 2 / 2),
-                    Default,
                     "Error! " + EX.Message,
-                    System.Drawing.Color.Red);
+                    Default,
+                    new Pen(System.Drawing.Color.Red),
+                    (UI.Forms.Canvas.Mode.Columns / 2) - (Default.Width * (15 + EX.Message.Length) / 2),
+                    (UI.Forms.Canvas.Mode.Rows / 2) - (Default.Height * 2 / 2));
             }
         }
     }

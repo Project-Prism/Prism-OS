@@ -1,7 +1,7 @@
 ﻿using System;
 using C = Cosmos.System;
 
-namespace PrismOS.IO
+namespace PrismOS.Testing
 {
     public static class Console
     {

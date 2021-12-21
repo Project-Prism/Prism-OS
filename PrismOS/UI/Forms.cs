@@ -1,12 +1,14 @@
-﻿using S = System.Drawing;
+﻿using Pen = Cosmos.System.Graphics.Pen;
+using System.Drawing;
 using System.Collections.Generic;
+using Cosmos.System.Graphics;
 using static PrismOS.UI.Framework;
 
 namespace PrismOS.UI
 {
     public static class Forms
     {
-        public static Canvas Canvas { get; set; } = new(1280, 720);
+        public static Canvas Canvas { get; } = FullScreenCanvas.GetFullScreenCanvas();
 
         public abstract class Form
         {
@@ -79,7 +81,7 @@ namespace PrismOS.UI
             {
                 if (Visible)
                 {
-                    Canvas.DrawFilledSquare(X, Y, W, H, Theme.BackGround);
+                    Canvas.DrawFilledRectangle(new Pen(Theme.BackGround), X, Y, W, H);
                 }
             }
 
@@ -130,14 +132,14 @@ namespace PrismOS.UI
             {
                 if (Visible)
                 {
-                    Canvas.DrawFilledSquare(Parent.X + X, Parent.Y + Y, W, H, Theme.BackGround);
+                    Canvas.DrawFilledRectangle(new Pen(Theme.BackGround), Parent.X + X, Parent.Y + Y, W, H);
                 }
             }
 
             public override void Click()
             {
-                S.Color X = Theme.BackGround;
-                Theme.BackGround = S.Color.White;
+                Color X = Theme.BackGround;
+                Theme.BackGround = Color.White;
                 OnClick.Invoke(this);
                 Theme.BackGround = X;
             }
