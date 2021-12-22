@@ -82,6 +82,10 @@ namespace PrismOS.UI
                 if (Visible)
                 {
                     Canvas.DrawFilledRectangle(new Pen(Theme.BackGround), X, Y, W, H);
+                    foreach (Form X in Children)
+                    {
+                        X.Draw();
+                    }
                 }
             }
 
@@ -142,6 +146,55 @@ namespace PrismOS.UI
                 Theme.BackGround = Color.White;
                 OnClick.Invoke(this);
                 Theme.BackGround = X;
+            }
+        }
+
+        public class Label : Form
+        {
+            public Label(int aX, int aY, string aText, bool aVisible, Theme aTheme, Window aParent)
+            {
+                X = aX;
+                Y = aY;
+                Text = aText;
+                Visible = aVisible;
+                Theme = aTheme;
+                Parent = aParent;
+            }
+
+            #region Config
+            // X, Y, W, H, R = X, Y, Width, Height and Radius.
+            public new int X;
+            public new int Y;
+            public new int W;
+            public new int H;
+            public new int R;
+
+            // Extra properties
+            public new bool Visible;
+            public new string Text;
+            public new Theme Theme;
+
+            // The parent and children for the form.
+            public new Window Parent;
+            public new List<Form> Children;
+
+            // Click event for the form.
+            public new ClickDelegate OnClick;
+            public new delegate void ClickDelegate(Form This);
+            #endregion Config
+
+            public override void Draw()
+            {
+                Canvas.DrawString(
+                    Text,
+                    Cosmos.System.Graphics.Fonts.PCScreenFont.Default,
+                    new Pen(Theme.Text),
+                    X,
+                    Y);
+            }
+
+            public override void Click()
+            {
             }
         }
     }

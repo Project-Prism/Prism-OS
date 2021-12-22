@@ -1,6 +1,6 @@
-﻿namespace PrismOS.Math
+﻿namespace PrismOS.Tools
 {
-    public static class Calculate
+    public static class Math
     {
         /// <summary>
         /// Check if a number is prime.

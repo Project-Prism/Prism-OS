@@ -1,4 +1,4 @@
-﻿namespace PrismOS.Time
+﻿namespace PrismOS.Tools
 {
     public class StopWatch
     {
@@ -8,13 +8,13 @@
 
         public void Start()
         {
-            StartTime = Values.UnixTimestampMils;
+            StartTime = Time.UnixTimestampMils;
         }
 
         public void Stop()
         {
-            StopTime = Values.UnixTimestampMils;
-            ElapsedMiliseconds += Math.Calculate.Difference(StartTime, StopTime);
+            StopTime = Time.UnixTimestampMils;
+            ElapsedMiliseconds += Math.Difference(StartTime, StopTime);
         }
     }
 }
