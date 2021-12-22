@@ -2,39 +2,61 @@
 using Cosmos.System.Network.IPv4;
 using System.Text;
 using System.IO;
+using System.Collections.Generic;
 
 namespace PrismOS.Network.NWeb
 {
     public class NWebServer
     {
-        public NWebServer(string Path)
+        public NWebServer(string xPath, bool xAllowPost, bool xAllowGet)
         {
-            xServer = new(1080);
-            xEndPoint = new(Address.Zero, 1080);
-            xPath = Path;
-            xServer.Start();
+            Clients = new();
+            Server = new(1080);
+            EndPoint = new(Address.Zero, 1080);
+            Path = xPath;
+
+            AllowPost = xAllowPost;
+            AllowGet = xAllowGet;
+
+            Server.Start();
         }
 
-        public TcpListener xServer;
-        public EndPoint xEndPoint;
-        public string xPath;
+        public List<TcpClient> Clients;
+        public TcpListener Server;
+        public EndPoint EndPoint;
+        public string Path;
+
+        public bool AllowPost = true;
+        public bool AllowGet = true;
 
         public void Run()
         {
-            while(true)
+            while (true)
             {
-                TcpClient TcpClient = xServer.AcceptTcpClient();
+                Clients.Add(Server.AcceptTcpClient());
 
-                string[] Recieved = Encoding.ASCII.GetString(TcpClient.Receive(ref xEndPoint)).Split(": ");
-
-                switch (Recieved[0])
+                foreach (TcpClient Client in Clients)
                 {
-                    case "GET":
-                        TcpClient.Send(File.ReadAllBytes(xPath + Recieved[1]));
-                        break;
-                    case "POST":
-                        File.WriteAllBytes(xPath + Recieved[1], Encoding.ASCII.GetBytes(Recieved[2]));
-                        break;
+                    string[] Recieved = Encoding.ASCII.GetString(Client.NonBlockingReceive(ref EndPoint)).Split(": ");
+
+                    switch (Recieved[0])
+                    {
+                        case "GET":
+                            if (AllowGet)
+                            {
+                                Client.Send(File.ReadAllBytes(Path + Recieved[1]));
+                            }
+                            break;
+                        case "POST":
+                            if (AllowPost)
+                            {
+                                File.WriteAllBytes(Path + Recieved[1], Encoding.ASCII.GetBytes(Recieved[2]));
+                            }
+                            break;
+                        default:
+                            Client.Send(Encoding.ASCII.GetBytes("Unknown NWeb command."));
+                            break;
+                    }
                 }
             }
         }

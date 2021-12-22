@@ -3,9 +3,6 @@ using Font = Cosmos.System.Graphics.Fonts.PCScreenFont;
 using static PrismOS.Storage.Storage;
 using static PrismOS.Network.Network;
 using System;
-using static PrismOS.UI.Framework;
-using static PrismOS.UI.Forms;
-using Cosmos.System.Graphics;
 
 namespace PrismOS
 {
@@ -18,19 +15,9 @@ namespace PrismOS
                 InitVFS();
                 InitNet();
 
-                UI.Forms.Canvas.Mode = new Mode(1280, 720, (ColorDepth)32);
-
-                Theme WindowTheme = new(new int[] { -8355712, -16777056, -1 });
-                Theme ButtonTheme = new(new int[] { -32768, -32768, -1 });
-                Theme TextTheme = new(new int[] { -1, -1, -1 });
-
-                var X = new Window(32, 32, 256, 256, 0, "Stats", WindowTheme, true);
-                X.Children.Add(new Label(15, 15, "Installed RAM: " + Cosmos.Core.CPU.GetAmountOfRAM(), true, TextTheme, X));
-
-                while (true)
-                {
-                    X.Draw();
-                }
+                Network.NWeb.NWebClient x = new(new Cosmos.System.Network.IPv4.Address(0, 0, 0, 0), "ID1");
+                x.Post("Test.txt", System.Text.Encoding.UTF8.GetBytes("Hello, this is a test using the NWeb client and server!"));
+                Console.WriteLine(x.Get("Test.txt"));
             }
             catch(Exception EX)
             {

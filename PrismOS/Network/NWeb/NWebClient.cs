@@ -6,27 +6,29 @@ namespace PrismOS.Network.NWeb
 {
     public class NWebClient
     {
-        public NWebClient(Address Address)
+        public NWebClient(Address xAddress, string xID)
         {
-            xAddress = Address;
-            xClient = new(1080);
-            xEndPoint = new(Address.Zero, 1080);
-            xClient.Connect(xAddress, 1080);
+            Address = xAddress;
+            Client = new(1080);
+            EndPoint = new(Address.Zero, 1080);
+            Client.Connect(Address, 1080);
+            ID = xID;
         }
 
-        public Address xAddress;
-        public TcpClient xClient;
-        public EndPoint xEndPoint;
+        public Address Address;
+        public TcpClient Client;
+        public EndPoint EndPoint;
+        public string ID;
 
         public byte[] Get(string Path)
         {
-            xClient.Send(Encoding.ASCII.GetBytes("Get: " + Path));
-            return xClient.Receive(ref xEndPoint);
+            Client.Send(Encoding.ASCII.GetBytes("GET: " + Path));
+            return Client.NonBlockingReceive(ref EndPoint);
         }
 
         public void Post(string Path, byte[] File)
         {
-            xClient.Send(Encoding.ASCII.GetBytes("Post: " + Path + ": " + File));
+            Client.Send(Encoding.ASCII.GetBytes("POST: " + Path + ": " + File));
         }
     }
 }
