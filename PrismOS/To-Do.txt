@@ -1,0 +1,13 @@
+﻿[ High prioroty ]
+Fix the stopwatch
+
+[ Medium prioroty ]
+
+[ Low prioroty ]
+Test NWeb client/server
+
+[ Ideas ]
+Make a discord bot with TcpClient
+
+((FREE/USED)*CAPACITY)/100 = PERCENT USED
+100 - ((FREE/USED)*CAPACITY)/100 = PERCENT LEFT
