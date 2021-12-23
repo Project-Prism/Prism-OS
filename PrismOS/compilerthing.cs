@@ -15,10 +15,10 @@ namespace PrismOS
         {
             UnknownCommand,
         }
-        public enum Codes : byte
+        public enum Codes : int
         {
-            Terminate = 0x000, // Tells the runner when it should stop reading data, such as text.
-            Write = 0x001 // Tells the runner to print out the following bytes to the console as a char until it reaches a Terminate byte
+            Terminate = 0x00000000, // Tells the runner when it should stop reading data, such as text.
+            Write = 0x00000001 // Tells the runner to print out the following bytes to the console as a char until it reaches a Terminate byte
         }
 
         public static byte[] Compile(string aFile)
