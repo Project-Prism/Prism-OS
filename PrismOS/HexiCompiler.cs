@@ -12,10 +12,8 @@ namespace PrismOS
     {
         public enum Codes : byte
         {
-            NextArg, // Marks the end of an argument
             Print, // Write the following bytes until termination
-            Draw, // Draw to the screen
-            Halt, // Stop all code execution
+            Sleep, // Sleep for however many milliseconds.
             Quit, // Quit running
             DefineDebug, // Define whether the program should launch as debugable
         }
@@ -30,7 +28,7 @@ namespace PrismOS
             foreach (string Line in Lines)
             {
                 if (Line.Length == 0)
-                { continue; }
+                { }
                 else if (Line.Contains("#Debug"))
                 {
                     Bytes.Add((byte)Codes.DefineDebug);
@@ -43,20 +41,22 @@ namespace PrismOS
                         #region Print
                         case "Print":
                             Bytes.Add((byte)Codes.Print);
-                            Bytes.Add((byte)Args[1].Length);
-                            foreach (char Char in Args[1])
+                            string Str = Args[1].Replace("\\n", "\n");
+                            Bytes.Add((byte)Str.Length);
+                            foreach (char Char in Str)
                             {
                                 Bytes.Add((byte)Char);
                             }
                             break;
                         #endregion Print
 
-                        #region Halt
-                        case "Halt":
-                            Bytes.Add((byte)Codes.Halt);
-                            Bytes.Add(0);
+                        #region Sleep
+                        case "Sleep":
+                            Bytes.Add((byte)Codes.Sleep);
+                            int.Parse(Args[1]);
+                            Bytes.Add((byte)Args[1].Length);
                             break;
-                        #endregion Halt
+                        #endregion Sleep
 
                         #region Quit
                         case "Quit":
@@ -79,26 +79,29 @@ namespace PrismOS
             int Index = 0;
             while (true)
             {
-                switch (Bytes[Index++])
+                switch (Bytes[Index])
                 {
                     case (byte)Codes.DefineDebug:
+                        Index++;
                         IsDebug = true;
                         break;
 
                     case (byte)Codes.Print:
+                        Index++;
                         int DataLength = Bytes[Index++];
                         for (int i = Index; i < Index + DataLength; i++)
                         {
                             Console.Write((char)Bytes[i]);
                         }
-                        Console.Write('\n');
                         break;
 
-                    case (byte)Codes.Halt:
-                        Thread.Sleep(-1);
+                    case (byte)Codes.Sleep:
+                        if (IsDebug) { Console.WriteLine("Sleeping for " + (int)Bytes[Index++]); }
+                        Thread.Sleep(Bytes[Index++]);
                         break;
 
                     case (byte)Codes.Quit:
+                        Index++;
                         if (IsDebug)
                         { Process.GetCurrentProcess().Kill(); }
                         else
