@@ -5,11 +5,13 @@ using System.Threading;
 
 namespace PrismOS
 {
+    /// <summary>
+    /// The hexi compiler. read hexi_readme.txt for info on how it works.
+    /// </summary>
     public static class HexiCompiler
     {
         public enum Codes : byte
         {
-            Terminate, // Marks the end of data
             NextArg, // Marks the end of an argument
             Print, // Write the following bytes until termination
             Draw, // Draw to the screen
@@ -46,7 +48,6 @@ namespace PrismOS
                             {
                                 Bytes.Add((byte)Char);
                             }
-                            Bytes.Add((byte)Codes.Terminate);
                             break;
                         #endregion Print
 
@@ -94,14 +95,14 @@ namespace PrismOS
                         break;
 
                     case (byte)Codes.Halt:
-                        Thread.Sleep(999999999);
+                        Thread.Sleep(-1);
                         break;
 
                     case (byte)Codes.Quit:
                         if (IsDebug)
                         { Process.GetCurrentProcess().Kill(); }
                         else
-                        { Console.WriteLine("The program has exited."); Thread.Sleep(999999999); }
+                        { Console.WriteLine("The program has exited."); Thread.Sleep(-1); }
                         break;
                 }
             }
