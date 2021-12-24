@@ -6,15 +6,19 @@ namespace PrismOS
 {
     public class Kernel : Cosmos.System.Kernel
     {
-        public static List<UI.SaltUI.Window> Windows = new();
-
         protected override void Run()
         {
-            InitVFS();
-            InitNet();
+            //InitVFS();
+            //InitNet();
 
-            UI.SaltUI.Window xDisplay = new(50, 50, 100, 50);
-            xDisplay.Draw();
+            List<UI.SaltUI.Window> Windows = new();
+
+            Windows.Add(new UI.SaltUI.Window(50, 50, 100, 50));
+
+            while (true)
+            {
+                Windows[0].Draw();
+            }
         }
     }
 }
