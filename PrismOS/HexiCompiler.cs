@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading;
+using System.Text;
 
 namespace PrismOS
 {
@@ -10,105 +10,124 @@ namespace PrismOS
     /// </summary>
     public static class HexiCompiler
     {
-        public enum Codes : byte
+        public enum Code : byte
         {
-            Print, // Write the following bytes until termination
-            Sleep, // Sleep for however many milliseconds.
-            Quit, // Quit running
-            DefineDebug, // Define whether the program should launch as debugable
+            System_Console_Write, // Writes text to the terminal
+            System_Console_WriteLine, // Writes text plus a new line to the terminal
         }
+
+        public static Stopwatch ST { get; } = new();
 
         public static byte[] Compile(string[] Lines)
         {
-            Stopwatch ST = new();
             ST.Start();
             List<byte> Bytes = new();
-            string[] Args;
 
-            foreach (string Line in Lines)
+            for (int ln = 0; ln < Lines.Length; ln++)
             {
-                if (Line.Length == 0)
-                { }
-                else if (Line.Contains("#Debug"))
+                if (Lines[ln].Contains('(') && Lines[ln].EndsWith(");"))
                 {
-                    Bytes.Add((byte)Codes.DefineDebug);
-                }
-                else if (Line.Contains("=>"))
-                {
-                    Args = Line.Split("=>");
-                    switch (Args[0])
+                    string[] Stage1 = Lines[ln].Replace(");", "").Split('(');
+                    string[] Function = Stage1[0].Split(".");
+                    string[] Args = SplitCsv(Stage1[1]);
+
+                    switch (Function[0])
                     {
-                        #region Print
-                        case "Print":
-                            Bytes.Add((byte)Codes.Print);
-                            string Str = Args[1].Replace("\\n", "\n");
-                            Bytes.Add((byte)Str.Length);
-                            foreach (char Char in Str)
+                        case "System":
+                            #region System
+                            switch (Function[1])
                             {
-                                Bytes.Add((byte)Char);
+                                case "Console":
+                                    switch (Function[2])
+                                    {
+                                        case "Write":
+                                            Bytes.Add((byte)Code.System_Console_Write);
+                                            AddString(ref Bytes, Args[0]);
+                                            break;
+
+                                        case "WriteLine":
+                                            Bytes.Add((byte)Code.System_Console_WriteLine);
+                                            AddString(ref Bytes, Args[0]);
+                                            break;
+                                    }
+                                    break;
                             }
                             break;
-                        #endregion Print
-
-                        #region Sleep
-                        case "Sleep":
-                            Bytes.Add((byte)Codes.Sleep);
-                            int.Parse(Args[1]);
-                            Bytes.Add((byte)Args[1].Length);
+                        #endregion System;
+                        default:
+                            Console.WriteLine("[ERROR] Unknown namespace '" + Function + "'.");
                             break;
-                        #endregion Sleep
-
-                        #region Quit
-                        case "Quit":
-                            Bytes.Add((byte)Codes.Quit);
-                            Bytes.Add(0);
-                            break;
-                            #endregion Quit
                     }
                 }
             }
 
             ST.Stop();
-            Console.WriteLine("Time Elapsed: " + ST.Elapsed.TotalMilliseconds + " MS.");
+            Console.WriteLine("Finished compiling. [ " + ST.Elapsed.TotalMilliseconds + " milliseconds ]");
             return Bytes.ToArray(); // Done compiling
         }
 
         public static void Run(byte[] Bytes)
         {
-            bool IsDebug = false;
-            int Index = 0;
-            while (true)
+            ST.Restart();
+            for (int Index = 0; Index < Bytes.Length; Index++)
             {
-                switch (Bytes[Index])
+                switch (Bytes[Index++])
                 {
-                    case (byte)Codes.DefineDebug:
-                        Index++;
-                        IsDebug = true;
+                    case (byte)Code.System_Console_Write:
+                        Console.Write(GetString(Bytes, ref Index));
                         break;
 
-                    case (byte)Codes.Print:
-                        Index++;
-                        int DataLength = Bytes[Index++];
-                        for (int i = Index; i < Index + DataLength; i++)
-                        {
-                            Console.Write((char)Bytes[i]);
-                        }
-                        break;
-
-                    case (byte)Codes.Sleep:
-                        if (IsDebug) { Console.WriteLine("Sleeping for " + (int)Bytes[Index++]); }
-                        Thread.Sleep(Bytes[Index++]);
-                        break;
-
-                    case (byte)Codes.Quit:
-                        Index++;
-                        if (IsDebug)
-                        { Process.GetCurrentProcess().Kill(); }
-                        else
-                        { Console.WriteLine("The program has exited."); Thread.Sleep(-1); }
+                    case (byte)Code.System_Console_WriteLine:
+                        Console.WriteLine(GetString(Bytes, ref Index));
                         break;
                 }
             }
+            ST.Stop();
+            Console.WriteLine("Finished running. [ " + ST.Elapsed.TotalMilliseconds + " milliseconds ]");
+        }
+
+        public static string[] SplitCsv(string line)
+        {
+            List<string> result = new();
+            StringBuilder currentStr = new("");
+            bool inQuotes = false;
+            for (int i = 0; i < line.Length; i++) // For each character
+            {
+                if (line[i] == '\"') { inQuotes = !inQuotes; } // Quotes are closing or opening
+                else if (line[i] == ',') // Comma
+                {
+                    if (!inQuotes) // If not in quotes, end of current string, add it to result
+                    {
+                        result.Add(currentStr.ToString());
+                        currentStr.Clear();
+                    }
+                    else { currentStr.Append(line[i]); } // If in quotes, just add it }
+                }
+                else { currentStr.Append(line[i]); } // Add any other character to current string
+            }
+            result.Add(currentStr.ToString());
+            return result.ToArray(); // Return array of all strings
+        }
+
+        public static void AddString(ref List<byte> Bytes, string Data)
+        {
+            Bytes.Add((byte)(Data.Length + 2));
+            foreach (char Char in Data)
+            {
+                Bytes.Add((byte)Char);
+            }
+        }
+
+        public static string GetString(byte[] Bytes, ref int Index)
+        {
+            int Count = Bytes[Index++];
+            string Str = "";
+            for (int i = Index; i < Count; i++)
+            {
+                Index++;
+                Str += (char)Bytes[i];
+            }
+            return Str;
         }
     }
 }

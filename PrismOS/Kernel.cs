@@ -8,8 +8,8 @@ namespace PrismOS
     {
         protected override void Run()
         {
-            //InitVFS();
-            //InitNet();
+            InitVFS();
+            InitNet();
 
             List<UI.SaltUI.Window> Windows = new();
 
