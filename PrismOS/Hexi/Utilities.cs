@@ -8,16 +8,16 @@ namespace PrismOS.Hexi
         internal enum Code : byte
         {
             // Interface
-            Write, // Write text
-            WriteLine, // Write text with newline
+            Write, // Write text. [code][value]
+            WriteLine, // Write text with newline [code][value]
 
             // Memory
-            Allocate, // Allocate a specific ammount of memory to the program
-            MemSet, // Set a part of memory to a value
+            Allocate, // Allocate a specific ammount of memory to the program [code][value]
+            MemSet, // Set a part of memory to a value [code][value][value]
 
             // Core
-            Jump, // Jump to a specific byte of the code
-            Quit, // Stop the program
+            Jump, // Jump to a specific byte of the code [code][value]
+            Quit, // Stop the program [code]
         }
 
         internal static void AddString(ref List<byte> Bytes, string String)
