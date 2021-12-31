@@ -8,6 +8,8 @@ namespace PrismOS.Hexi
     {
         public static void Execute(byte[] ByteCode)
         {
+            byte[] Memory = Array.Empty<byte>();
+
             for (int Index = 0; Index < ByteCode.Length;)
             {
                 switch (ByteCode[Index++])
@@ -26,7 +28,21 @@ namespace PrismOS.Hexi
                     case (byte)Code.Jump:
                         Index = ByteCode[Index];
                         break;
-                        #endregion Jump
+                    #endregion Jump
+                    #region Quit
+                    case (byte)Code.Quit:
+                        return;
+                    #endregion Quit
+                    #region Allocate
+                    case (byte)Code.Allocate:
+                        Memory = new byte[ByteCode[Index++]];
+                        break;
+                    #endregion Allocate
+                    #region MemSet
+                    case (byte)Code.MemSet:
+                        Memory[ByteCode[Index++]] = ByteCode[Index++];
+                        break;
+                    #endregion MemSet
                 }
             }
         }

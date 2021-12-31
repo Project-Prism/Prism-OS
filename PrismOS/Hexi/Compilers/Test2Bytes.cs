@@ -39,6 +39,21 @@ namespace PrismOS.Hexi.Compilers
                         Bytes.Add((byte)Code.Jump);
                         Bytes.Add((byte)int.Parse(Arg));
                         break;
+                    case "alloc":
+                        Bytes.Add((byte)Code.Allocate);
+                        Bytes.Add((byte)int.Parse(Arg));
+                        break;
+                    case "mset":
+                        Bytes.Add((byte)Code.MemSet);
+                        string[] args = Arg.Split(">");
+                        Bytes.Add((byte)int.Parse(args[0]));
+                        Bytes.Add((byte)args[1][0]); // Only get first char
+                        break;
+                    case "Quit":
+                        Bytes.Add((byte)Code.Quit);
+                        return Bytes.ToArray();
+                        break;
+                        break;
                     default:
                         Console.WriteLine("Skipping unknown or unimplemented function '" + Function + "'.");
                         break;

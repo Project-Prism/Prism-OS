@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 
 namespace PrismOS.Hexi
 {
@@ -7,9 +6,17 @@ namespace PrismOS.Hexi
     {
         internal enum Code : byte
         {
-            Write, // null
-            WriteLine, // soh
-            Jump, // stx
+            // Interface
+            Write, // Write text
+            WriteLine, // Write text with newline
+
+            // Memory
+            Allocate, // Allocate a specific ammount of memory to the program
+            MemSet, // Set a part of memory to a value
+
+            // Core
+            Jump, // Jump to a specific byte of the code
+            Quit, // Stop the program
         }
 
         internal static void AddString(ref List<byte> Bytes, string String)
