@@ -29,13 +29,13 @@ namespace PrismOS.Hexi.Compilers
                                     switch (Function[2])
                                     {
                                         case "Write":
-                                            Bytes.Add((byte)Code.Write);
+                                            Bytes.Add((byte)Codes.Console.Print);
                                             AddString(ref Bytes, Args[0]);
                                             break;
 
                                         case "WriteLine":
-                                            Bytes.Add((byte)Code.WriteLine);
-                                            AddString(ref Bytes, Args[0]);
+                                            Bytes.Add((byte)Codes.Console.Print);
+                                            AddString(ref Bytes, Args[0] + "\n");
                                             break;
                                     }
                                     break;

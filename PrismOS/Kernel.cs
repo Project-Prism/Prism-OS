@@ -13,6 +13,8 @@ namespace PrismOS
 
         protected override void BeforeRun()
         {
+            var x = new Tools.StopWatch();
+            x.Start();
             // Start the network and filesystem
             VFSManager.RegisterVFS(VFS);
             VFS.Initialize(true);
@@ -26,16 +28,18 @@ namespace PrismOS
             DHCPClient xClient = new();
             xClient.SendDiscoverPacket();
             xClient.Dispose();
+            x.Stop();
+            System.Console.WriteLine("Finished boot in " + x.Elapsed.TotalMilliseconds + " MS.");
         }
 
         protected override void Run()
         {
-            SaltUI.Windows.Add(new SaltUI.Window(50, 50, 100, 50));
-            SaltUI.Windows[0].Children.Add(new SaltUI.Text(0, 0, "Haii"));
+            //SaltUI.Windows.Add(new SaltUI.Window(50, 50, 100, 50));
+            //SaltUI.Windows[0].Children.Add(new SaltUI.Text(0, 0, "Haii"));
 
             while (true)
             {
-                SaltUI.Tick();
+                //SaltUI.Tick();
             }
         }
     }
