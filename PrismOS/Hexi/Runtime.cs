@@ -21,8 +21,7 @@ namespace PrismOS.Hexi
             public enum Memory
             {
                 Allocate = 0x0004, // [Code][Value]
-                Append = 0x0005, // [Code][Length][Data]
-                Set = 0x0006, // [Code][Index][Length][Data]
+                Set = 0x0005, // [Code][Index][Length][Data]
             }
             public enum Graphics
             {

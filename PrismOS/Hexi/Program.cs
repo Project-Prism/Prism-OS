@@ -17,7 +17,6 @@ namespace PrismOS.Hexi
         public byte[] ByteCode;
         public byte[] Memory;
         public int Index = 0;
-        public int MemoryIndex = 0;
 
         #region Temp
         public int X, Y, ARGB, IND;
@@ -29,7 +28,7 @@ namespace PrismOS.Hexi
             {
                 #region Console
                 case (byte)Codes.Console.Print:
-                    Console.Write(UTF8.GetString(Bytecode, ByteCode[Index], ByteCode[Index++]));
+                    Console.Write(UTF8.GetString(ByteCode, ByteCode[Index], ByteCode[Index++]));
                     break;
                 #endregion Console_Print
 
@@ -45,19 +44,6 @@ namespace PrismOS.Hexi
                     }
                     break;
                 #endregion Set
-
-                #region Append
-                case (byte)Codes.Memory.Append:
-                    // Add the length of the following bytes to memory
-                    Memory[MemoryIndex++] = ByteCode[Index++];
-
-                    // Add the bytes to memory
-                    for (; MemoryIndex < MemoryIndex + ByteCode[Index++];)
-                    {
-                        Memory[MemoryIndex++] = ByteCode[Index++];
-                    }
-                    break;
-                #endregion Append
 
                 #region Allocate
                 case (byte)Codes.Memory.Allocate:

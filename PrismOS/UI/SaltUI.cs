@@ -131,7 +131,7 @@ namespace PrismOS.UI
                 Bytes.Add((byte)Label.Length);
                 foreach(char Char in Label)
                 {
-
+                    Bytes.Add((byte)Char);
                 }
                 return Bytes.ToArray();
             }
