@@ -1,49 +1,41 @@
-﻿using System;
-using static System.Text.Encoding;
-using static PrismOS.Hexi.Utilities;
+﻿using System.Collections.Generic;
 
 namespace PrismOS.Hexi
 {
     public static class Runtime
     {
-        public static void Execute(byte[] ByteCode)
-        {
-            byte[] Memory = Array.Empty<byte>();
+        public static List<Program> Programs { get; } = new();
 
-            for (int Index = 0; Index < ByteCode.Length;)
+        public static class Codes
+        {
+            public enum Console : byte
             {
-                switch (ByteCode[Index++])
-                {
-                    #region Write
-                    case (byte)Code.Write:
-                        Console.Write(UTF8.GetString(ByteCode, Index + 1, ByteCode[Index++]));
-                        break;
-                    #endregion Write
-                    #region WriteLine
-                    case (byte)Code.WriteLine:
-                        Console.WriteLine(UTF8.GetString(ByteCode, Index + 1, ByteCode[Index++]));
-                        break;
-                    #endregion WriteLine
-                    #region Jump
-                    case (byte)Code.Jump:
-                        Index = ByteCode[Index];
-                        break;
-                    #endregion Jump
-                    #region Quit
-                    case (byte)Code.Quit:
-                        return;
-                    #endregion Quit
-                    #region Allocate
-                    case (byte)Code.Allocate:
-                        Memory = new byte[ByteCode[Index++]];
-                        break;
-                    #endregion Allocate
-                    #region MemSet
-                    case (byte)Code.MemSet:
-                        Memory[ByteCode[Index++]] = ByteCode[Index++];
-                        break;
-                    #endregion MemSet
-                }
+                Print = 0x0000, // [Code][Memory Index][Length]
+            }
+            public enum Program : byte
+            {
+                Start = 0x0001, // [Code][PathToFile]
+                Stop = 0x0002, // [Code]
+                Jump = 0x0003, // [Code][Value]
+            }
+            public enum Memory
+            {
+                Allocate = 0x0004, // [Code][Value]
+                Append = 0x0005, // [Code][Length][Data]
+                Set = 0x0006, // [Code][Index][Length][Data]
+            }
+            public enum Graphics
+            {
+                SetPixel = 0x0007, // [Code][X][Y][argb]
+                GetPixel = 0x0008, // [Code][X][Y][Memory index]
+            }
+        }
+
+        public static void Tick()
+        {
+            foreach (Program Prog in Programs)
+            {
+                Prog.Tick();
             }
         }
     }
