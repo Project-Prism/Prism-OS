@@ -31,14 +31,8 @@ namespace PrismOS
 
         protected override void Run()
         {
-            SaltCanvas c = new(1920, 1080);
-            for (int i = 0; i < c.Width; i++)
-            {
-                for (int f = 0; f < c.Height; f++)
-                {
-                    c.SetPixel(i, f, System.Drawing.Color.White);
-                }
-            }
+            SaltCanvas c = new(800, 600);
+            c.Clear(System.Drawing.Color.AliceBlue);
             c.Update();
             while(true)
             {
