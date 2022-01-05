@@ -11,7 +11,7 @@ namespace PrismOS.UI
 
         public static void Tick()
         {
-            foreach(Window Win in Windows)
+            foreach (Window Win in Windows)
             {
                 Win.Draw();
             }
@@ -30,7 +30,6 @@ namespace PrismOS.UI
                 throw new System.Exception("Function not implemented for base element. (" + Bytes + ")", new System.NotImplementedException());
             }
         }
-
         public class Window : IForm
         {
             internal Event OnClickDown;
@@ -84,7 +83,6 @@ namespace PrismOS.UI
                 return new Window(0, 0, Bytes[0], Bytes[1]);
             }
         }
-
         public class Text : IForm
         {
             internal Event OnClickDown;

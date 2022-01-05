@@ -11,11 +11,9 @@ namespace PrismOS
     {
         public static readonly CosmosVFS VFS = new();
 
+        /*
         protected override void BeforeRun()
         {
-            var x = new Tools.StopWatch();
-            x.Start();
-            // Start the network and filesystem
             VFSManager.RegisterVFS(VFS);
             VFS.Initialize(true);
 
@@ -28,18 +26,23 @@ namespace PrismOS
             DHCPClient xClient = new();
             xClient.SendDiscoverPacket();
             xClient.Dispose();
-            x.Stop();
-            System.Console.WriteLine("Finished boot in " + x.Elapsed.TotalMilliseconds + " MS.");
         }
+        */
 
         protected override void Run()
         {
-            //SaltUI.Windows.Add(new SaltUI.Window(50, 50, 100, 50));
-            //SaltUI.Windows[0].Children.Add(new SaltUI.Text(0, 0, "Haii"));
-
-            while (true)
+            SaltCanvas c = new(1920, 1080);
+            for (int i = 0; i < c.Width; i++)
             {
-                //SaltUI.Tick();
+                for (int f = 0; f < c.Height; f++)
+                {
+                    c.SetPixel(i, f, System.Drawing.Color.White);
+                }
+            }
+            c.Update();
+            while(true)
+            {
+
             }
         }
     }
