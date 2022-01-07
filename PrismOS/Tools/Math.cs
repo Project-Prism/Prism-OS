@@ -3,6 +3,16 @@
     public static class Math
     {
         /// <summary>
+        /// Get the value of a percent of a number.
+        /// </summary>
+        /// <param name="Percent"></param>
+        /// <param name="Total"></param>
+        public static int PercentOf(int Percent, int Total)
+        {
+            return (Percent * Total) / 100;
+        }
+
+        /// <summary>
         /// Check if a number is prime.
         /// </summary>
         /// <returns>True if the number is prime.</returns>
@@ -61,6 +71,12 @@
             return new int[] { N1 / Gdc, N2 / Gdc };
         }
 
+        /// <summary>
+        /// Find the difference between two numbers.
+        /// </summary>
+        /// <param name="N1"></param>
+        /// <param name="N2"></param>
+        /// <returns>The difference between N1 and N2</returns>
         public static int Difference(int N1, int N2)
         {
             return System.Math.Abs(N1 - N2);

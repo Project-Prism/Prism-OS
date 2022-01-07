@@ -29,10 +29,10 @@
 
         #region Values
         public int ARGB;
-        public byte R => unchecked((byte)(ARGB >> ARGBRedShift));
-        public byte G => unchecked((byte)(ARGB >> ARGBGreenShift));
-        public byte B => unchecked((byte)(ARGB >> ARGBBlueShift));
-        public byte A => unchecked((byte)(ARGB >> ARGBAlphaShift));
+        public int Red => unchecked(ARGB >> ARGBRedShift);
+        public int Green => unchecked(ARGB >> ARGBGreenShift);
+        public int Blue => unchecked(ARGB >> ARGBBlueShift);
+        public int Alpha => unchecked(ARGB >> ARGBAlphaShift);
 
         private const int ARGBAlphaShift = 24;
         private const int ARGBRedShift = 16;

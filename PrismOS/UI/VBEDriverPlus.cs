@@ -12,9 +12,9 @@ namespace PrismOS.UI
         {
             IO = Global.BaseIOGroups.VBE;
         }
-        public void BufferLessCopyVRAM(int[] aData)
+        public void SetVram(int[] Data)
         {
-            IO.LinearFrameBuffer.Copy(aData);
+            IO.LinearFrameBuffer.Copy(Data);
         }
     }
 }

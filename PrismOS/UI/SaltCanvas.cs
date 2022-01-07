@@ -18,7 +18,7 @@ namespace PrismOS.UI
 
         public void Update()
         {
-            VBE.BufferLessCopyVRAM(Buffer);
+            VBE.SetVram(Buffer);
         }
         public void Resize(int Width, int Height)
         {
@@ -26,7 +26,7 @@ namespace PrismOS.UI
             this.Height = Height;
             VBE = new((ushort)Width, (ushort)Height, 32);
             Buffer = new int[Width * Height];
-            VBE.BufferLessCopyVRAM(Buffer);
+            VBE.SetVram(Buffer);
         }
 
         #region Drawing

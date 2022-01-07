@@ -1,4 +1,6 @@
 using PrismOS.UI;
+using Color = PrismOS.UI.Common.Color;
+using SColor = System.Drawing.Color;
 
 namespace PrismOS
 {
@@ -7,20 +9,50 @@ namespace PrismOS
         protected override void Run()
         {
             SaltCanvas c = new(1280, 720);
-            c.Clear(new(118, 109, 49));
-            c.SetPixel(0, 0, new(-1));
-            c.SetPixel(0, 1, new(-1));
-            c.SetPixel(1, 1, new(-1));
-            c.SetPixel(1, 0, new(-1));
-            //c.DrawFilledRectangle(50, 50, 50, 50, new(-248));
-            int X = 0, Y = 0;
+
+            int R = 0;
+            int G = 0;
+            int B = 0;
 
             while (true)
             {
-                c.SetPixel(X, Y, new(-1));
-                X++;
-                Y++;
-                c.Update();
+                for (; R < 255; R++)
+                {
+                    c.Clear(new(R, G, B));
+                    c.Update();
+                }
+                for (; G < 255; G++)
+                {
+                    c.Clear(new(R, G, B));
+                    c.Update();
+                }
+                for (; B < 255; B++)
+                {
+                    c.Clear(new(R, G, B));
+                    c.Update();
+                }
+
+                for (; R > 0; R--)
+                {
+                    c.Clear(new(R, G, B));
+                    c.Update();
+                }
+                for (; G > 0; G--)
+                {
+                    c.Clear(new(R, G, B));
+                    c.Update();
+                }
+                for (; R < 255; R++)
+                {
+                    c.Clear(new(R, G, B));
+                    c.Update();
+                }
+                for (; B > 0; B--)
+                {
+                    R--;
+                    c.Clear(new(R, G, B));
+                    c.Update();
+                }
             }
         }
     }
