@@ -1,6 +1,4 @@
 using PrismOS.UI;
-using Color = PrismOS.UI.Common.Color;
-using SColor = System.Drawing.Color;
 
 namespace PrismOS
 {
