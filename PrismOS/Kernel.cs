@@ -1,42 +1,26 @@
 using PrismOS.UI;
-using Cosmos.System.Network.Config;
-using Cosmos.HAL;
-using Cosmos.System.Network.IPv4.UDP.DHCP;
-using Cosmos.System.FileSystem.VFS;
-using Cosmos.System.FileSystem;
 
 namespace PrismOS
 {
     public class Kernel : Cosmos.System.Kernel
     {
-        public static readonly CosmosVFS VFS = new();
-
-        /*
-        protected override void BeforeRun()
-        {
-            VFSManager.RegisterVFS(VFS);
-            VFS.Initialize(true);
-
-            IPConfig.Enable(
-                NetworkDevice.GetDeviceByName("eth0"),
-                new(127, 0, 0, 1),
-                new(255, 255, 255, 0),
-                new(10, 0, 0, 1));
-
-            DHCPClient xClient = new();
-            xClient.SendDiscoverPacket();
-            xClient.Dispose();
-        }
-        */
-
         protected override void Run()
         {
-            SaltCanvas c = new(800, 600);
-            c.Clear(System.Drawing.Color.AliceBlue);
-            c.Update();
-            while(true)
-            {
+            SaltCanvas c = new(1280, 720);
+            c.Clear(new(118, 109, 49));
+            c.SetPixel(0, 0, new(-1));
+            c.SetPixel(0, 1, new(-1));
+            c.SetPixel(1, 1, new(-1));
+            c.SetPixel(1, 0, new(-1));
+            //c.DrawFilledRectangle(50, 50, 50, 50, new(-248));
+            int X = 0, Y = 0;
 
+            while (true)
+            {
+                c.SetPixel(X, Y, new(-1));
+                X++;
+                Y++;
+                c.Update();
             }
         }
     }

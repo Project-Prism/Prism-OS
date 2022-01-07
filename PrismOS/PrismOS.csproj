@@ -29,12 +29,30 @@
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <GenerateDocumentationFile>False</GenerateDocumentationFile>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/Project-Prism/Prism-OS</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/Project-Prism/Prism-OS</PackageProjectUrl>
+        <PackageLicenseFile>C:\Users\EvanLawrence\Source\Repos\Prism-OS\LICENSE</PackageLicenseFile>
+        <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <Optimize>True</Optimize>
     </PropertyGroup>
 
     <ItemGroup>
       <Compile Remove="isoFiles\Icons\**" />
       <EmbeddedResource Remove="isoFiles\Icons\**" />
       <None Remove="isoFiles\Icons\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="..\README.md">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
     </ItemGroup>
 
     <ItemGroup>
