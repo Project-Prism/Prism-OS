@@ -1,7 +1,6 @@
 ﻿using Color = PrismOS.UI.Common.Color;
 using VBE = PrismOS.UI.VBEDriverPlus;
 using PrismOS.UI.Components;
-using Bitmap = Cosmos.System.Graphics.Bitmap;
 using System.Collections.Generic;
 using System;
 
@@ -17,8 +16,8 @@ namespace PrismOS.UI
 
         #region Variables
         public List<Window> Windows { get; } = new();
-        public VBE VBE { get; set; }
         public int[] Buffer { get; set; }
+        public VBE VBE { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
         #endregion Variables
@@ -39,7 +38,59 @@ namespace PrismOS.UI
         }
         #endregion Pixel
 
+        #region Line
+        public void DrawLine(int FromX, int FromY, int ToX, int ToY, Color Color)
+        {
+            int i, sdx, sdy, dxabs, dyabs, x, y, px, py;
+
+            dxabs = Math.Abs(FromX);
+            dyabs = Math.Abs(FromY);
+            sdx = Math.Sign(FromX);
+            sdy = Math.Sign(FromY);
+            x = dyabs >> 1;
+            y = dxabs >> 1;
+            px = ToX;
+            py = ToY;
+
+            if (dxabs >= dyabs) /* the line is more horizontal than vertical */
+            {
+                for (i = 0; i < dxabs; i++)
+                {
+                    y += dyabs;
+                    if (y >= dxabs)
+                    {
+                        y -= dxabs;
+                        py += sdy;
+                    }
+                    px += sdx;
+                    SetPixel(px, py, Color);
+                }
+            }
+            else /* the line is more vertical than horizontal */
+            {
+                for (i = 0; i < dyabs; i++)
+                {
+                    x += dxabs;
+                    if (x >= dyabs)
+                    {
+                        x -= dyabs;
+                        px += sdx;
+                    }
+                    py += sdy;
+                    SetPixel(px, py, Color);
+                }
+            }
+        }
+        #endregion Line
+
         #region Rectangle
+        public void DrawRectangle(int X, int Y, int Width, int Height, Color Color)
+        {
+            DrawLine(X, Y, X + Width, Y, Color); // Top Line
+            DrawLine(X, Y, X, Y + Height, Color); // Left Line
+            DrawLine(Width + X, Y + Height, Width + X, Y, Color); // Right Line
+            DrawLine(Width + X, Y + Height, X, Height + Y, Color); // Bottom Line
+        }
         public void DrawFilledRectangle(int X, int Y, int Width, int Height, Color Color)
         {
             X -= Width / 2;
@@ -55,25 +106,23 @@ namespace PrismOS.UI
         }
         #endregion Rectangle
 
-        #region Image
-        public void DrawImage(int X, int Y, Bitmap Bitmap)
+        #region Circle
+        public void DrawFilledCircle(int X, int Y, int Radius, Color Color)
         {
-            for (; X < Bitmap.Width; X++)
+            int dx = (X + (Radius / 2)) - X; // horizontal offset
+            int dy = (Y + (Radius / 2)) - Y; // vertical offset
+            if (((dx * dx) + (dy * dy)) <= (Radius * Radius))
             {
-                for (; Y < Bitmap.Height; Y++)
-                {
-                    SetPixel(X, Y, new(Bitmap.rawData[X * Y * (int)Bitmap.Depth]));
-                }
+                SetPixel(dx, dy, Color);
             }
         }
-        #endregion Image
+        #endregion Circle
 
         #region Misc
         public void Clear(Color Color)
         {
-            Array.Fill(Buffer, Color.ARGB, 0, Buffer.Length);
+            Array.Fill(Buffer, Color.ARGB);
         }
-
         public static Color AlphaBlend(Color PixelColor, Color SetColor)
         {
             int R = (SetColor.Red * SetColor.Alpha) + (PixelColor.Red * (255 - SetColor.Alpha)) >> 8;
@@ -86,7 +135,6 @@ namespace PrismOS.UI
         {
             VBE.SetVram(Buffer);
         }
-
         public void Resize(int Width, int Height)
         {
             this.Width = Width;

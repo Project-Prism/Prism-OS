@@ -6,14 +6,37 @@ namespace PrismOS
     {
         protected override void Run()
         {
+            FadeDemo();
+        }
+
+        public static void CircleSize()
+        {
+            while (true)
+            {
+                Canvas c = new(1280, 720);
+
+                while (true)
+                {
+                    for (int Radius = 1; Radius < 50; Radius++)
+                    {
+                        c.DrawFilledCircle(c.Width / 2, c.Height / 2, Radius, new(-1));
+                        c.Update();
+                    }
+                    for (int Radius = 50; Radius > 1; Radius--)
+                    {
+                        c.DrawFilledCircle(c.Width / 2, c.Height / 2, Radius, new(-1));
+                        c.Update();
+                    }
+                }
+            }
+        }
+
+        public static void SizeDemo()
+        {
             Canvas c = new(1280, 720);
 
-            int A = 0;
-            int R = 0;
-            int G = 0;
-            int B = 0;
-
             int I = 150;
+            int A = 0;
 
             while (true)
             {
@@ -42,6 +65,15 @@ namespace PrismOS
                     c.Update();
                 }
             }
+        }
+
+        public static void FadeDemo()
+        {
+            int R = 0;
+            int G = 0;
+            int B = 0;
+
+            Canvas c = new(1280, 720);
 
             while (true)
             {
