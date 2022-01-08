@@ -8,9 +8,40 @@ namespace PrismOS
         {
             Canvas c = new(1280, 720);
 
+            int A = 0;
             int R = 0;
             int G = 0;
             int B = 0;
+
+            int I = 150;
+
+            while (true)
+            {
+                for (; I > 1; I--)
+                {
+                    c.Clear(new(System.Drawing.Color.Green.ToArgb()));
+                    c.DrawFilledRectangle(c.Width / 2, c.Height / 2, I, I, new(A, 25, 25, 25));
+                    c.Update();
+                }
+                for (; I < 150; I++)
+                {
+                    c.Clear(new(System.Drawing.Color.Green.ToArgb()));
+                    c.DrawFilledRectangle(c.Width / 2, c.Height / 2, I, I, new(A, 25, 25, 25));
+                    c.Update();
+                }
+                for (; A < 255; A++)
+                {
+                    c.Clear(new(System.Drawing.Color.Green.ToArgb()));
+                    c.DrawFilledRectangle(c.Width / 2, c.Height / 2, I, I, new(A, 25, 25, 25));
+                    c.Update();
+                }
+                for (; A > 0; A--)
+                {
+                    c.Clear(new(System.Drawing.Color.Green.ToArgb()));
+                    c.DrawFilledRectangle(c.Width / 2, c.Height / 2, I, I, new(A, 25, 25, 25));
+                    c.Update();
+                }
+            }
 
             while (true)
             {

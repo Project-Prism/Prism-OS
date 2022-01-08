@@ -42,11 +42,14 @@ namespace PrismOS.UI
         #region Rectangle
         public void DrawFilledRectangle(int X, int Y, int Width, int Height, Color Color)
         {
-            for (; X < Width; X++)
+            X -= Width / 2;
+            Y -= Height / 2;
+
+            for (int h = 0; h < Height; h++)
             {
-                for (; Y < Height; Y++)
+                for (int w = 0; w < Width; w++)
                 {
-                    SetPixel(X, Y, Color);
+                    SetPixel(X + w, Y + h, Color);
                 }
             }
         }
