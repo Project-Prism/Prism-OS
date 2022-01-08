@@ -27,7 +27,7 @@ namespace PrismOS.UI
         #region Pixel
         public void SetPixel(int X, int Y, Color Color)
         {
-            if (Color.Alpha < 255)
+            if (Color.Alpha < 255 && Color.Alpha != 0)
             {
                 Color = AlphaBlend(GetPixel(X, Y), Color);
             }
