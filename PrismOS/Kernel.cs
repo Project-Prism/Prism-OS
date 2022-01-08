@@ -6,7 +6,7 @@ namespace PrismOS
     {
         protected override void Run()
         {
-            SaltCanvas c = new(1280, 720);
+            Canvas c = new(1280, 720);
 
             int R = 0;
             int G = 0;
