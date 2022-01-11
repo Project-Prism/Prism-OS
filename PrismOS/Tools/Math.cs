@@ -3,6 +3,16 @@
     public static class Math
     {
         /// <summary>
+        /// Find the percentage of and increase
+        /// </summary>
+        /// <param name="Initial"></param>
+        /// <param name="Final"></param>
+        public static int PercentIncrease(int Initial, int Final)
+        {
+            return 100 * ((Final - Initial) / Initial);
+        }
+
+        /// <summary>
         /// Get the value of a percent of a number.
         /// </summary>
         /// <param name="Percent"></param>

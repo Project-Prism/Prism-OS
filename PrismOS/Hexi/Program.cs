@@ -80,7 +80,7 @@ namespace PrismOS.Hexi
                     X = ByteCode[Index++];
                     Y = ByteCode[Index++];
                     ARGB = ByteCode[Index++];
-                    UI.SaltUI.Canvas.DrawPoint(new Pen(Color.FromArgb(ARGB)), X, Y);
+                    //UI.SaltUI.Canvas.DrawPoint(new Pen(Color.FromArgb(ARGB)), X, Y);
                     break;
                 #endregion SetPixel
                 #region GetPixel
@@ -88,7 +88,7 @@ namespace PrismOS.Hexi
                     X = ByteCode[Index++];
                     Y = ByteCode[Index++];
                     IND = ByteCode[Index++];
-                    Memory[IND] = (byte)UI.SaltUI.Canvas.GetPointColor(X, Y).ToArgb();
+                    //Memory[IND] = (byte)UI.SaltUI.Canvas.GetPointColor(X, Y).ToArgb();
                     break;
                     #endregion GetPixel
 

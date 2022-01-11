@@ -7,10 +7,9 @@ namespace PrismOS.UI
     // Thanks to zarlo for this
     public class VBEDriverPlus : VBEDriver
     {
-        private readonly VBEIOGroup IO;
+        private readonly VBEIOGroup IO = Global.BaseIOGroups.VBE;
         public VBEDriverPlus(ushort xres, ushort yres, ushort bpp) : base(xres, yres, bpp)
         {
-            IO = Global.BaseIOGroups.VBE;
         }
         public void SetVram(int[] Data)
         {
