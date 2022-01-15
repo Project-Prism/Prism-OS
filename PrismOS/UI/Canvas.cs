@@ -109,14 +109,37 @@ namespace PrismOS.UI
         #region Circle
         public void DrawFilledCircle(int X, int Y, int Radius, Color Color)
         {
-            int dx = (X + (Radius / 2)) - X; // horizontal offset
-            int dy = (Y + (Radius / 2)) - Y; // vertical offset
-            if (((dx * dx) + (dy * dy)) <= (Radius * Radius))
+            int y = 0;
+            int xChange = 1 - (Radius << 1);
+            int yChange = 0;
+            int radiusError = 0;
+
+            while (Radius >= y)
             {
-                SetPixel(dx, dy, Color);
+                for (int I = X - Radius; I <= X + Radius; I++)
+                {
+                    SetPixel(I, Y + y, Color);
+                    SetPixel(I, Y - y, Color);
+                }
+                for (int I = X - y; I <= X + y; I++)
+                {
+                    SetPixel(I, Y + Radius, Color);
+                    SetPixel(I, Y - Radius, Color);
+                }
+
+                y++;
+                radiusError += yChange;
+                yChange += 2;
+                if (((radiusError << 1) + xChange) > 0)
+                {
+                    Radius--;
+                    radiusError += xChange;
+                    xChange += 2;
+                }
             }
         }
         #endregion Circle
+        #endregion Functions
 
         #region Misc
         public void Clear(Color Color)
@@ -144,6 +167,5 @@ namespace PrismOS.UI
             VBE.SetVram(Buffer);
         }
         #endregion Misc
-        #endregion Functions
     }
 }

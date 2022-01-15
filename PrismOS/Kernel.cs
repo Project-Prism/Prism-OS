@@ -6,7 +6,7 @@ namespace PrismOS
     {
         protected override void Run()
         {
-            FadeDemo();
+            CircleSize();
         }
 
         public static void CircleSize()
@@ -19,11 +19,13 @@ namespace PrismOS
                 {
                     for (int Radius = 1; Radius < 50; Radius++)
                     {
+                        c.Clear(new(System.Drawing.Color.Black));
                         c.DrawFilledCircle(c.Width / 2, c.Height / 2, Radius, new(-1));
                         c.Update();
                     }
                     for (int Radius = 50; Radius > 1; Radius--)
                     {
+                        c.Clear(new(System.Drawing.Color.Black));
                         c.DrawFilledCircle(c.Width / 2, c.Height / 2, Radius, new(-1));
                         c.Update();
                     }
