@@ -15,7 +15,7 @@ This project is made possible by Cosmos and the community around it, and we give
 |---------------------------------------------------|------------------------------|
 | [Cosmos team](https://github.com/CosmosOS/Cosmos) | Cosmos, helping out          |
 | [Terminal.cs](https://github.com/terminal-cs)     | General development, logo    |
-| [deadlocust](https://github.com/deaddlocust)      | General development          |
+| [pinkphone](https://github.com/pinkphone1818)     | General development          |
 | [Nifanfa](https://github.com/nifanfa)             | Bitfont                      |
 | [CrisisSDK](https://github.com/CrisisSDK)         | Rounded cube, coal v1 & v2   |
 | [theopcoder](https://github.com/theopcoder)       | Website developer            |
