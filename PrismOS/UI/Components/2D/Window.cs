@@ -4,13 +4,13 @@ namespace PrismOS.UI.Components
 {
     public class Window : IBase
     {
-        internal delegate void Event();
-        internal Event OnClickDown;
-        internal Event OnClickUp;
-        internal Event OnHover;
-        internal Event OnDraw;
-        internal Event OnRemove;
-        internal Event OnAdd;
+        //internal delegate void Event();
+        //internal Event OnClickDown;
+        //internal Event OnClickUp;
+        //internal Event OnHover;
+        //internal Event OnDraw;
+        //internal Event OnRemove;
+        //internal Event OnAdd;
 
         public List<IBase> Children;
         public int X, Y, Width, Height;
@@ -25,24 +25,19 @@ namespace PrismOS.UI.Components
 
         public void Draw()
         {
-            OnDraw();
             //Canvas.DrawFilledRectangle(new Cosmos.System.Graphics.Pen(System.Drawing.Color.White), X, Y, Width, Height);
         }
         public void ClickDown()
         {
-            OnClickDown();
         }
         public void ClickUp()
         {
-            OnClickUp();
         }
         public void Hover()
         {
-            OnHover();
         }
         public void Destroy()
         {
-            OnRemove();
         }
         public byte[] ToBytes()
         {

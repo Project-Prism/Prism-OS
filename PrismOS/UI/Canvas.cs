@@ -1,7 +1,6 @@
 ﻿using Color = PrismOS.UI.Common.Color;
-using VBE = PrismOS.UI.VBEDriverPlus;
-using PrismOS.UI.Components;
-using System.Collections.Generic;
+using Global = Cosmos.Core.Global;
+using VBE = Cosmos.HAL.Drivers.VBEDriver;
 using System;
 
 namespace PrismOS.UI
@@ -11,19 +10,20 @@ namespace PrismOS.UI
         public Canvas(int Width, int Height)
         {
             VBE = new((ushort)Width, (ushort)Height, 32);
-            Resize(Width, Height);
+            this.Width = Width;
+            this.Height = Height;
+            Buffer = new int[Width * Height];
+            Update();
         }
 
-        #region Variables
-        public List<Window> Windows { get; } = new();
+        #region Properties
         public int[] Buffer { get; set; }
-        public VBE VBE { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
-        #endregion Variables
+        public VBE VBE { get; set; }
+        #endregion Properties
 
-        #region Functions
-        #region Pixel
+        #region Drawing
         public void SetPixel(int X, int Y, Color Color)
         {
             if (Color.Alpha < 255 && Color.Alpha != 0)
@@ -36,9 +36,7 @@ namespace PrismOS.UI
         {
             return new(Buffer[X + (Width * Y)]);
         }
-        #endregion Pixel
 
-        #region Line
         public void DrawLine(int FromX, int FromY, int ToX, int ToY, Color Color)
         {
             int i, sdx, sdy, dxabs, dyabs, x, y, px, py;
@@ -81,9 +79,6 @@ namespace PrismOS.UI
                 }
             }
         }
-        #endregion Line
-
-        #region Rectangle
         public void DrawRectangle(int X, int Y, int Width, int Height, Color Color)
         {
             DrawLine(X, Y, X + Width, Y, Color); // Top Line
@@ -104,9 +99,6 @@ namespace PrismOS.UI
                 }
             }
         }
-        #endregion Rectangle
-
-        #region Circle
         public void DrawFilledCircle(int X, int Y, int Radius, Color Color)
         {
             int y = 0;
@@ -138,14 +130,7 @@ namespace PrismOS.UI
                 }
             }
         }
-        #endregion Circle
-        #endregion Functions
 
-        #region Misc
-        public void Clear(Color Color)
-        {
-            Array.Fill(Buffer, Color.ARGB);
-        }
         public static Color AlphaBlend(Color PixelColor, Color SetColor)
         {
             int R = (SetColor.Red * SetColor.Alpha) + (PixelColor.Red * (255 - SetColor.Alpha)) >> 8;
@@ -153,19 +138,14 @@ namespace PrismOS.UI
             int B = (SetColor.Blue * SetColor.Alpha) + (PixelColor.Blue * (255 - SetColor.Alpha)) >> 8;
             return new(R, G, B);
         }
-
+        public void Clear(Color Color)
+        {
+            Array.Fill(Buffer, Color.ARGB);
+        }
         public void Update()
         {
-            VBE.SetVram(Buffer);
+            Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy(Buffer, 0, Buffer.Length);
         }
-        public void Resize(int Width, int Height)
-        {
-            this.Width = Width;
-            this.Height = Height;
-            Buffer = new int[Width * Height];
-            VBE.VBESet((ushort)Width, (ushort)Height, 32);
-            VBE.SetVram(Buffer);
-        }
-        #endregion Misc
+        #endregion Drawing
     }
 }

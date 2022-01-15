@@ -6,27 +6,27 @@ namespace PrismOS
     {
         protected override void Run()
         {
-            CircleSize();
+            CircleSize(new(1280, 720));
         }
 
-        public static void CircleSize()
+        public static void CircleSize(Canvas c)
         {
             while (true)
             {
-                Canvas c = new(1280, 720);
-
                 while (true)
                 {
                     for (int Radius = 1; Radius < 50; Radius++)
                     {
                         c.Clear(new(System.Drawing.Color.Black));
                         c.DrawFilledCircle(c.Width / 2, c.Height / 2, Radius, new(-1));
+                        c.DrawRectangle((c.Width / 2) - Radius, (c.Height / 2) - Radius, (c.Width / 2) + Radius, (c.Height / 2) + Radius, new(-1));
                         c.Update();
                     }
                     for (int Radius = 50; Radius > 1; Radius--)
                     {
                         c.Clear(new(System.Drawing.Color.Black));
                         c.DrawFilledCircle(c.Width / 2, c.Height / 2, Radius, new(-1));
+                        c.DrawRectangle((c.Width / 2) - Radius, (c.Height / 2) - Radius, (c.Width / 2) + Radius, (c.Height / 2) + Radius, new(-1));
                         c.Update();
                     }
                 }
@@ -83,6 +83,7 @@ namespace PrismOS
                 {
                     c.Clear(new(R, G, B));
                     c.Update();
+
                 }
                 for (; G < 255; G++)
                 {
