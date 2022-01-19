@@ -69,15 +69,13 @@ namespace PrismOS.UI
             }
             int numerator = longest >> 1;
 
-            int color = Color.ToArgb();
             for (int i = 0; i <= longest; i++)
             {
-                
                 if (Color.A < 255)
                 {
                     Color = AlphaBlend(GetPixel(X1, Y1), Color);
                 }
-                Buffer[(Width * Y1) + X1] = color;
+                Buffer[(Width * Y1) + X1] = Color.ToArgb();
                 
                 numerator += shortest;
                 if (numerator >= longest)
