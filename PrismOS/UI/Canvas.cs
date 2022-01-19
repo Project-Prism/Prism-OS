@@ -23,7 +23,6 @@ namespace PrismOS.UI
         public int Width { get; }
         public int Height { get; }
         public int FPS { get; private set; }
-        public bool ShowFPS { get; set; }
         private int Frames { get; set; }
         private DateTime LT { get; set; }
         #endregion
@@ -52,44 +51,65 @@ namespace PrismOS.UI
         #region Line
         public void DrawLine(int X1, int Y1, int X2, int Y2, Color Color)
         {
-            int w = X2 - X1;
-            int h = Y2 - Y1;
-            int dx1 = 0, dy1 = 0, dx2 = 0, dy2 = 0;
-            if (w < 0) dx1 = -1; else if (w > 0) dx1 = 1;
-            if (h < 0) dy1 = -1; else if (h > 0) dy1 = 1;
-            if (w < 0) dx2 = -1; else if (w > 0) dx2 = 1;
-            int longest = Math.Abs(w);
-            int shortest = Math.Abs(h);
-            if (longest <= shortest)
-            {
-                longest = Math.Abs(h);
-                shortest = Math.Abs(w);
-                if (h < 0) dy2 = -1; else if (h > 0) dy2 = 1;
-                dx2 = 0;
-            }
-            int numerator = longest >> 1;
+            bool yLonger = false;
+            int incrementVal;
 
-            for (int i = 0; i <= longest; i++)
+            int shortLen = Y2 - Y1;
+            int longLen = X2 - X1;
+            if (Math.Abs(shortLen) > Math.Abs(longLen))
             {
-                if (Color.A < 255)
+                int swap = shortLen;
+                shortLen = longLen;
+                longLen = swap;
+                yLonger = true;
+            }
+
+            if (longLen < 0) incrementVal = -1;
+            else incrementVal = 1;
+
+            double divDiff;
+            if (shortLen == 0) divDiff = longLen;
+            else divDiff = (double)longLen / (double)shortLen;
+            if (yLonger)
+            {
+                for (int i = 0; i != longLen; i += incrementVal)
                 {
-                    Color = AlphaBlend(GetPixel(X1, Y1), Color);
-                }
-                Buffer[(Width * Y1) + X1] = Color.ToArgb();
-                
-                numerator += shortest;
-                if (numerator >= longest)
-                {
-                    numerator -= longest;
-                    X1 += dx1;
-                    Y1 += dy1;
-                }
-                else
-                {
-                    X1 += dx2;
-                    Y1 += dy2;
+                    SetPixel(X1 + (int)((double)i / divDiff), Y1 + i, Color);
                 }
             }
+            else
+            {
+                for (int i = 0; i != longLen; i += incrementVal)
+                {
+                    SetPixel(X1 + i, Y1 + (int)((double)i / divDiff), Color);
+                }
+            }
+        }
+
+        public void DrawAngledLine(int X, int Y, int Angle, int Radius, Color Color)
+        {
+            int[] sine = new int[16] { 0, 27, 54, 79, 104, 128, 150, 171, 190, 201, 221, 233, 243, 250, 254, 255 };
+            int xEnd, yEnd, quadrant, x_flip, y_flip;
+            quadrant = Angle / 15;
+
+            switch (quadrant)
+            {
+                case 0: x_flip = 1; y_flip = -1; break;
+                case 1: Angle = Math.Abs(Angle - 30); x_flip = y_flip = 1; break;
+                case 2: Angle = Angle - 30; x_flip = -1; y_flip = 1; break;
+                case 3: Angle = Math.Abs(Angle - 60); x_flip = y_flip = -1; break;
+                default: x_flip = y_flip = 1; break;
+            }
+
+            xEnd = X;
+            yEnd = Y;
+
+            if (Angle > sine.Length) return;
+
+            xEnd += (x_flip * ((sine[Angle] * Radius) >> 8));
+            yEnd += (y_flip * ((sine[15 - Angle] * Radius) >> 8));
+
+            DrawLine(X, Y, xEnd, yEnd, Color);
         }
         #endregion
 
