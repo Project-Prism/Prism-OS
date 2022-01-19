@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using static System.Text.Encoding;
 
-namespace PrismOS.Tools
+namespace PrismOS.Storage
 {
     /// <summary>
     /// Arcfile, made by terminal.cs. (Version 2.0)

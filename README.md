@@ -13,12 +13,17 @@ This project is made possible by Cosmos and the community around it, and we give
 ## Notable contributors
 | Name                                              | Contributions                |
 |---------------------------------------------------|------------------------------|
-| [Cosmos team](https://github.com/CosmosOS/Cosmos) | Cosmos, helping out          |
+| [Cosmos team](https://github.com/CosmosOS/Cosmos) | The entirety of cosmos       |
 | [Terminal.cs](https://github.com/terminal-cs)     | General development, logo    |
 | [pinkphone](https://github.com/pinkphone1818)     | General development          |
 | [Nifanfa](https://github.com/nifanfa)             | Bitfont                      |
 | [CrisisSDK](https://github.com/CrisisSDK)         | Rounded cube, coal v1 & v2   |
 | [theopcoder](https://github.com/theopcoder)       | Website developer            |
+
+## Thanks to
+| Name                                              |                              |
+|---------------------------------------------------|------------------------------|
+| [MickyD](https://stackoverflow.com/a/31849722)    | FPS Counter                  |
 
 ## Wanting to contribute or fix a typo you found?
 Go right ahead! all you have to do is fork the project, change what you think needs changing, and make a pull request to this repository. Any help is greatly appreciated!

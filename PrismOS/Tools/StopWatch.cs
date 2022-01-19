@@ -16,7 +16,7 @@ namespace PrismOS.Tools
         public void Stop()
         {
             StopTime = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds;
-            Elapsed = new(0, 0, 0, 0, Math.Difference(StartTime, StopTime));
+            Elapsed = new(0, 0, 0, 0, Tools.Math.Difference(StartTime, StopTime));
         }
     }
 }
