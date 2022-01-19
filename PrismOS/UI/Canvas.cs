@@ -1,4 +1,4 @@
-﻿using PCScreenFont = Cosmos.System.Graphics.Fonts.PCScreenFont;
+using PCScreenFont = Cosmos.System.Graphics.Fonts.PCScreenFont;
 using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
 using Bitmap = Cosmos.System.Graphics.Bitmap;
 using Color = System.Drawing.Color;
@@ -68,9 +68,17 @@ namespace PrismOS.UI
                 dx2 = 0;
             }
             int numerator = longest >> 1;
+
+            int color = Color.ToArgb();
             for (int i = 0; i <= longest; i++)
             {
-                SetPixel(X1, Y1, Color);
+                
+                if (Color.A < 255)
+                {
+                    Color = AlphaBlend(GetPixel(X1, Y1), Color);
+                }
+                Buffer[(Width * Y1) + X1] = color;
+                
                 numerator += shortest;
                 if (numerator >= longest)
                 {
