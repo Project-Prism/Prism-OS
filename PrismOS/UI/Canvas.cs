@@ -8,13 +8,12 @@ namespace PrismOS.UI
 {
     public class Canvas
     {
-        public Canvas(int Width, int Height, bool ShowFPS)
+        public Canvas(int Width, int Height)
         {
             VBE = new((ushort)Width, (ushort)Height, 32);
             Buffer = new int[Width * Height];
             this.Width = Width;
             this.Height = Height;
-            this.ShowFPS = ShowFPS;
             Update();
         }
 
@@ -203,22 +202,15 @@ namespace PrismOS.UI
                 LT = DateTime.Now;
             }
 
-            // Draw FPS if enabled
-            if (ShowFPS)
-            {
-                DrawString(15, 15, PCScreenFont.Default, FPS + " FPS", Color.White);
-            }
-
             // Copy buffer to vram
             Cosmos.Core.Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy(Buffer, 0, Buffer.Length);
         }
         private static Color AlphaBlend(Color PixelColor, Color SetColor)
         {
-            int Final = PixelColor.ToArgb() + (SetColor.A * (SetColor.ToArgb() - PixelColor.ToArgb()));
-            //int R = (SetColor.R * SetColor.A) + (PixelColor.R * (255 - SetColor.A)) >> 8;
-            //int G = (SetColor.G * SetColor.A) + (PixelColor.G * (255 - SetColor.A)) >> 8;
-            //int B = (SetColor.B * SetColor.A) + (PixelColor.B * (255 - SetColor.A)) >> 8;
-            return Color.FromArgb(Final);
+            int R = (SetColor.R * SetColor.A) + (PixelColor.R * (255 - SetColor.A)) >> 8;
+            int G = (SetColor.G * SetColor.A) + (PixelColor.G * (255 - SetColor.A)) >> 8;
+            int B = (SetColor.B * SetColor.A) + (PixelColor.B * (255 - SetColor.A)) >> 8;
+            return Color.FromArgb(R, G, B);
         }
         #endregion
 
