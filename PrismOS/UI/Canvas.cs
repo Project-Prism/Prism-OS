@@ -125,7 +125,10 @@ namespace PrismOS.UI
         {
             for (int IX = X; IX < X + Width; IX++)
             {
-                DrawLine(IX, Y, IX, Height, Color);
+                for (int IY = X; IY < X + Width; IY++)
+                {
+                    SetPixel(IX, IY, Color);
+                }
             }
         }
         #endregion
