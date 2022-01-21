@@ -96,7 +96,7 @@ namespace PrismOS.UI
             {
                 case 0: x_flip = 1; y_flip = -1; break;
                 case 1: Angle = Math.Abs(Angle - 30); x_flip = y_flip = 1; break;
-                case 2: Angle = Angle - 30; x_flip = -1; y_flip = 1; break;
+                case 2: Angle -= 30; x_flip = -1; y_flip = 1; break;
                 case 3: Angle = Math.Abs(Angle - 60); x_flip = y_flip = -1; break;
                 default: x_flip = y_flip = 1; break;
             }
@@ -125,7 +125,7 @@ namespace PrismOS.UI
         {
             for (int IX = X; IX < X + Width; IX++)
             {
-                for (int IY = X; IY < X + Width; IY++)
+                for (int IY = Y; IY < Y + Height; IY++)
                 {
                     SetPixel(IX, IY, Color);
                 }
