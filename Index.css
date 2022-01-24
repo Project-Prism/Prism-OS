@@ -2,7 +2,6 @@
     text-align: center;
     font-size: 30px;
     padding: 5px;
-
 }
 
 .Saying {
@@ -11,11 +10,11 @@
 }
 
 .OptionButtons button {
+    font-family: 'Comfortaa', cursive;
     transition-duration: 0.4s;
     border-color: black;
     border-radius: 15px;
     text-align: center;
-    font-family: 'Comfortaa', cursive;
     margin-bottom: 1cm;
     font-weight: bold;
     margin-left: 30px;
