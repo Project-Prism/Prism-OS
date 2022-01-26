@@ -15,9 +15,11 @@ namespace PrismOS.UI
             this.Width = Width;
             this.Height = Height;
             Update();
+            GetCanvas = this;
         }
 
         #region Properties
+        public static Canvas GetCanvas { get; set; }
         public VBEDriver VBE { get; }
         public int[] Buffer { get; set; }
         public int Width { get; }

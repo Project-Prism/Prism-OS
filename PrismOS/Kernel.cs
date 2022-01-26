@@ -1,9 +1,4 @@
-using System.Drawing;
-using static Cosmos.System.Graphics.Fonts.PCScreenFont;
-using PrismOS.UI;
-using PrismOS.UI.Elements;
-using PrismOS.UI.Elements.Clocks;
-using System;
+using static PrismOS.Hexi.Main;
 
 namespace PrismOS
 {
@@ -11,16 +6,15 @@ namespace PrismOS
     {
         protected override void Run()
         {
-            Canvas Canvas = new(1280, 720);
-            Window Window1 = new(500, 700, 400, 100, Color.White, Color.DarkSlateGray, Color.Blue, Canvas);
-            Window1.Children.Add(new Mixed(100, 100, 20, Window1));
+            Storage.VFS.InitVFS();
+            System.Console.WriteLine("Compiling...");
+            Compiler.Compile("0:\\IN.HEX", "0:\\OUT.H");
+            System.Console.WriteLine("Running...");
+            Runtime.RunProgram("0:\\OUT.H");
 
             while (true)
             {
-                Canvas.Clear(Color.Green);
-                Window1.Draw();
-                Canvas.DrawString(0, 0, Default, Canvas.FPS + " FPS", Color.White);
-                Canvas.Update();
+                Runtime.Tick();
             }
         }
     }
