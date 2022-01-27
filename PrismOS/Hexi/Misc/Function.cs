@@ -22,6 +22,8 @@ namespace PrismOS.Hexi.Misc
 			new Function("ProgramAPI.ProgramStart", 0x0004, 2, ProgramAPI.StartProgram),
 			new Function("ProgramAPI.ProgramStop", 0x0005, 1, ProgramAPI.StopProgram),
 			new Function("ProgramAPI.Jump", 0x0006, 1, ProgramAPI.MemoryJump),
+
+			new Function("StorageAPI.InitVFS", 0x0007, 0, StorageAPI.InitVFS),
 		};
 
 		public Function(string Name, byte Type, int ArgumentCount, MethodDefinition Definition)

@@ -17,5 +17,15 @@ namespace PrismOS.Hexi.API
 			for (int i = 0; i < length; i++)
 				exe.Memory[index + i] = args[2 + i];
 		}
+
+		public static byte[] ReadBytesFromMemory(Executable exe, int index, int length)
+		{
+			var bytes = new byte[length];
+
+			for (var i = 0; i < length; i++)
+				bytes[i] = exe.Memory[index + i];
+
+			return bytes;
+		}
 	}
 }

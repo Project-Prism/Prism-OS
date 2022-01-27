@@ -1,6 +1,4 @@
 ﻿using static Cosmos.System.Graphics.Fonts.PCScreenFont;
-using System.Collections.Generic;
-using System.Drawing;
 
 namespace PrismOS.UI.Elements.Clocks
 {
@@ -14,25 +12,11 @@ namespace PrismOS.UI.Elements.Clocks
             Canvas = Parent.Canvas;
         }
 
-        public override int X { get; set; }
-        public override int Y { get; set; }
-        public override int Width { get; set; }
-        public override int Height { get; set; }
-        public override int Radius { get; set; }
-        public override Color Foreground { get; set; }
-        public override Color Background { get; set; }
-        public override Color Accent { get; set; }
-        public override Element Parent { get; set; }
-        public override List<Element> Children { get; set; }
-        public override Canvas Canvas { get; set; }
-
-        #region Clock properties
         System.DateTime LT = System.DateTime.Now;
         bool ShowCollon = true;
         string Time = "";
-        #endregion
 
-        public override void Draw()
+        public new void Draw()
         {
             if (System.DateTime.Now.Second != LT.Second)
             {

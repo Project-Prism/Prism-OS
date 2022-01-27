@@ -1,4 +1,6 @@
 ﻿using PrismOS.Hexi.Misc;
+using System.Text;
+using System.IO;
 
 namespace PrismOS.Hexi.API
 {
@@ -6,8 +8,14 @@ namespace PrismOS.Hexi.API
     {
 		internal static void StartProgram(Executable exe, byte[] args)
 		{
-			Main.Runtime.Executables.Add(new Executable(KernelAPI.ReadBytesFromMemory(exe, args[0], args[1])));
+			Main.Runtime.Executables.Add(new Executable(MemoryAPI.ReadBytesFromMemory(exe, args[0], args[1])));
 		}
+
+		public static void StartProgramFromDisk(Executable exe, byte[] args)
+        {
+			string Path = Encoding.ASCII.GetString(exe.Memory, args[0], args[1]);
+			Main.Runtime.Executables.Add(new Executable(File.ReadAllBytes(Path)));
+        }
 
 		internal static void StopProgram(Executable exe, byte[] args)
 		{

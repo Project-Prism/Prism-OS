@@ -27,3 +27,10 @@ This project is made possible by Cosmos and the community around it, and we give
 
 ## Wanting to contribute or fix a typo you found?
 Go right ahead! all you have to do is fork the project, change what you think needs changing, and make a pull request to this repository. Any help is greatly appreciated!
+
+## Hexi code examples
+```cs
+ConsoleAPI.WriteLine(b[0,40,10]); // Byte array
+ConsoleAPI.WriteLine("Hello, World!"); // String
+ConsoleAPI.WriteLine('s'); // Char
+```

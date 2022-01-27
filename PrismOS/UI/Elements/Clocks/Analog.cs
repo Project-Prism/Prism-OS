@@ -14,19 +14,7 @@ namespace PrismOS.UI.Elements.Clocks
             this.Canvas = Parent.Canvas;
         }
 
-        public override int X { get; set; }
-        public override int Y { get; set; }
-        public override int Width { get; set; }
-        public override int Height { get; set; }
-        public override int Radius { get; set; }
-        public override Color Foreground { get; set; }
-        public override Color Background { get; set; }
-        public override Color Accent { get; set; }
-        public override Element Parent { get; set; }
-        public override List<Element> Children { get; set; }
-        public override Canvas Canvas { get; set; }
-
-        public override void Draw()
+        public new void Draw()
         {
             Canvas.DrawFilledCircle(
                 X: Parent.X + X,

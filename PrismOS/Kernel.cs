@@ -6,6 +6,16 @@ namespace PrismOS
     {
         protected override void Run()
         {
+            var c = new UI.Canvas(1280, 720);
+            while (true)
+            {
+                c.Clear(System.Drawing.Color.DarkSlateGray);
+                UI.Overlays.SystemInfo.Tick();
+                UI.Overlays.TypingTester.Tick();
+                c.Update();
+            }
+
+            /*
             Storage.VFS.InitVFS();
             System.Console.WriteLine("Compiling...");
             Compiler.Compile("0:\\IN.HEX", "0:\\OUT.H");
@@ -16,6 +26,7 @@ namespace PrismOS
             {
                 Runtime.Tick();
             }
+            */
         }
     }
 }

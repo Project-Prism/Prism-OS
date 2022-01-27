@@ -12,15 +12,19 @@ namespace PrismOS.Hexi
 		{
 			public static void Compile(string Input, string Output)
 			{
-				var bytes = new List<byte>();
-
-				string[] Lines = File.ReadAllLines(Input);
-				for (var ln = 0; ln < Lines.Length; ln++)
+				var Bytes = new List<byte>();
+				int Index = 0;
+				foreach (string Line in File.ReadAllLines(Input))
 				{
-					if (Lines[ln].Contains('(') && Lines[ln].EndsWith(");"))
+					if (Line.Contains('(') && Line.EndsWith(")"))
+                    {
+						Console.WriteLine("Error: Missing ';' on " + Index + ":" + Line.LastIndexOf(')'));
+						return;
+                    }
+					if (Line.Contains('(') && Line.EndsWith(");"))
 					{
-						var stage1 = Lines[ln].Replace(");", string.Empty).Split('(');
-						var function = stage1[0].Split('.');
+						var stage1 = Line.Replace(");", string.Empty).Split('(');
+						var function = stage1[0];
 						var args = ParseArguments(stage1[1]);
 
 						var found = false;
@@ -29,10 +33,10 @@ namespace PrismOS.Hexi
 						{
 							var func = Functions[i];
 
-							if (func.Name == function[0])
+							if (func.Name == function)
 							{
 								// Add function type
-								bytes.Add(func.Type);
+								Bytes.Add(func.Type);
 
 								for (var j = 0; j < func.Arguments; j++)
 								{
@@ -41,11 +45,29 @@ namespace PrismOS.Hexi
 									// Add arguments
 									if (int.TryParse(arg, out var param))
 									{
-										bytes.Add((byte)param);
+										// Detected int value
+										Bytes.Add((byte)param);
+									}
+									else if (arg.StartsWith("\"") && arg.EndsWith("\""))
+                                    {
+										// Detected string value
+										for (int I = 1; I < arg.Length - 2; I++)
+                                        {
+											Bytes.Add((byte)arg[I]);
+                                        }
+                                    }
+									else if (arg.StartsWith("'") && arg.EndsWith("'"))
+									{
+										if (arg.Length > 1)
+                                        {
+											Console.WriteLine("Error: char length cannot be greater than 1.");
+                                        }
+										// Detected char value
+										Bytes.Add((byte)arg[0]);
 									}
 									else if (arg.StartsWith("b[") && arg.EndsWith("]"))
 									{
-										var count = AddBytes(ref bytes, arg) - 1;
+										var count = AddBytes(ref Bytes, arg) - 1;
 										Functions[i] = new Function(func.Name, func.Type, func.Arguments + count, func.Definition);
 									}
 									else
@@ -62,14 +84,15 @@ namespace PrismOS.Hexi
 
 						if (!found)
 						{
-							Console.WriteLine("[ERROR] Unknown function '" + function[0] + "'.");
+							Console.WriteLine("[ERROR] Unknown function '" + function[^1] + "'.");
 							return;
 						}
 					}
+					Index++;
 				}
 
 				// Done compiling
-				File.WriteAllBytes(Output, bytes.ToArray());
+				File.WriteAllBytes(Output, Bytes.ToArray());
 			}
 
 			private static int AddBytes(ref List<byte> bytes, string array)
@@ -97,34 +120,37 @@ namespace PrismOS.Hexi
 				{
 					var c = args[i];
 
-					if (c == 'b' && args[i + 1] == '[')
-					{
-						var end = args.IndexOf("]");
-						var array = args[i..end];
+                    if (c == 'b' && args[i + 1] == '[')
+                    {
+                        var end = args.IndexOf("]");
+                        var array = args[i..end];
 
-						result.Add(array + "]");
+                        result.Add(array + "]");
 
-						i = end;
-					}
-					else if (c == ',')
-					{
-						result.Add(arg);
+                        i = end;
+                    }
+                    else if (c == ',')
+                    {
+                        result.Add(arg);
 
-						arg = string.Empty;
+                        arg = string.Empty;
 
-						i += (args[i + 1] == ' ' ? 1 : 0);
-					}
-					else if (i == args.Length - 1)
-					{
-						if (arg.Length == 0)
-							arg += c;
+                        i += (args[i + 1] == ' ' ? 1 : 0);
+                    }
+                    else if (i == args.Length - 1)
+                    {
+                        if (arg.Length == 0)
+                            arg += c;
 
-						result.Add(arg);
+                        result.Add(arg);
 
-						break;
-					}
-					else arg += c;
-				}
+                        break;
+                    }
+                    else
+                    {
+                        arg += c;
+                    }
+                }
 
 				if (result.Count == 0)
 					result.Add(arg);
