@@ -1,4 +1,4 @@
-﻿namespace PrismOS.Tools
+﻿namespace PrismOS.Generic
 {
     public static class Math
     {

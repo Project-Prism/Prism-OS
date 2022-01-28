@@ -1,28 +1,16 @@
 using PCScreenFont = Cosmos.System.Graphics.Fonts.PCScreenFont;
 using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
-using SVGAII = Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII;
 using Bitmap = Cosmos.System.Graphics.Bitmap;
 using Color = System.Drawing.Color;
 using System;
 
-namespace PrismOS.UI
+namespace PrismOS.Graphics
 {
     public class Canvas
     {
         public Canvas(int Width, int Height)
         {
-            if (Cosmos.Core.VBE.IsAvailable())
-            {
-                VideoMode = 0x0;
-                VBE = new((ushort)Width, (ushort)Height, 32);
-            }
-            else
-            {
-                VideoMode = 0x1;
-                SVGAII = new();
-                SVGAII.SetMode((uint)Width, (uint)Height, 32);
-            }
-
+            VBE = new((ushort)Width, (ushort)Height, 32);
             Buffer = new int[Width * Height];
             this.Width = Width;
             this.Height = Height;
@@ -33,8 +21,6 @@ namespace PrismOS.UI
         #region Properties
         public static Canvas GetCanvas { get; set; }
         public VBEDriver VBE { get; }
-        public SVGAII SVGAII { get; }
-        public byte VideoMode { get; }
         public int[] Buffer { get; set; }
         public int Width { get; }
         public int Height { get; }
@@ -139,12 +125,9 @@ namespace PrismOS.UI
         }
         public void DrawFilledRectangle(int X, int Y, int Width, int Height, Color Color)
         {
-            for (int IX = X; IX < X + Width; IX++)
+            for (int IY = Y; IY < Y + Height; IY++)
             {
-                for (int IY = Y; IY < Y + Height; IY++)
-                {
-                    SetPixel(IX, IY, Color);
-                }
+                Array.Fill(Buffer, Color.ToArgb(), X + (this.Width * IY), Width);
             }
         }
         #endregion
@@ -223,9 +206,6 @@ namespace PrismOS.UI
         }
         public void DrawString(int X, int Y, PCScreenFont Font, string String, Color Color)
         {
-            X -= Font.Width / 2 * String.Length;
-            Y -= Font.Height / 2;
-
             foreach (char Char in String)
             {
                 DrawChar(X, Y, Font, Char, Color);
@@ -250,15 +230,7 @@ namespace PrismOS.UI
                 LT = DateTime.Now;
             }
 
-            if (VideoMode == 0x0)
-            {
-                // Copy buffer to vram
-                Cosmos.Core.Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy(Buffer, 0, Buffer.Length);
-            }
-            else
-            {
-                SVGAII.VideoMemory.Copy(Buffer, 0, Buffer.Length);
-            }
+            Cosmos.Core.Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy(Buffer, 0, Buffer.Length);
         }
         private static Color AlphaBlend(Color PixelColor, Color SetColor)
         {

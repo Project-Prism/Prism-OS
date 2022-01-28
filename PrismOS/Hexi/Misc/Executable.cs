@@ -16,7 +16,6 @@ namespace PrismOS.Hexi.Misc
 
 		public int Index = 0, ID;
 		public byte[] Memory;
-		public UI.Elements.Window AppWindow;
 
 		public void Tick()
 		{
@@ -25,10 +24,6 @@ namespace PrismOS.Hexi.Misc
 				ProgramAPI.StopProgram(this, null);
 				return;
 			}
-			if (AppWindow != null)
-            {
-				AppWindow.Draw();
-            }
 
 			var func = ByteCode[Index++];
 

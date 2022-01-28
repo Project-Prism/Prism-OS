@@ -16,14 +16,27 @@ namespace PrismOS.Hexi
 				int Index = 0;
 				foreach (string Line in File.ReadAllLines(Input))
 				{
-					if (Line.Contains('(') && Line.EndsWith(")"))
+					string MLine = Line;
+					if (MLine.Length == 0 || MLine == "    ")
                     {
-						Console.WriteLine("Error: Missing ';' on " + Index + ":" + Line.LastIndexOf(')'));
+						continue;
+                    }
+					if (MLine.StartsWith("//"))
+                    {
+						continue;
+                    }
+					if (MLine.Contains("//"))
+                    {
+						MLine = MLine.Remove(MLine.IndexOf("//"), MLine.Length - MLine.IndexOf("//"));
+                    }
+					if (MLine.Contains('(') && MLine.EndsWith(")"))
+                    {
+						Console.WriteLine("Error: Missing ';' on " + Index + ":" + MLine.LastIndexOf(')'));
 						return;
                     }
-					if (Line.Contains('(') && Line.EndsWith(");"))
+					if (MLine.Contains('(') && MLine.EndsWith(");"))
 					{
-						var stage1 = Line.Replace(");", string.Empty).Split('(');
+						var stage1 = MLine.Replace(");", string.Empty).Split('(');
 						var function = stage1[0];
 						var args = ParseArguments(stage1[1]);
 

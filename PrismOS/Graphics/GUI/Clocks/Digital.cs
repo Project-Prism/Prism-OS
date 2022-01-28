@@ -1,15 +1,16 @@
 ﻿using static Cosmos.System.Graphics.Fonts.PCScreenFont;
+using PrismOS.Graphics.GUI;
+using PrismOS.Graphics.GUI.Containers;
 
-namespace PrismOS.UI.Elements.Clocks
+namespace PrismOS.Graphics.GUI.Clocks
 {
-    public class Digital : Element
+    public class Digital : Base
     {
-        public Digital(int X, int Y, Element Parent)
+        public Digital(int X, int Y, Window Parent)
         {
             this.X = X;
             this.Y = Y;
             this.Parent = Parent;
-            Canvas = Parent.Canvas;
         }
 
         System.DateTime LT = System.DateTime.Now;
@@ -32,10 +33,10 @@ namespace PrismOS.UI.Elements.Clocks
                 }
                 LT = System.DateTime.Now;
             }
-            Canvas.DrawString(
-                (Canvas.Width / 2) - (Default.Width * Time.Length / 2),
-                (Canvas.Height / 2) - (Default.Height / 2), Default, Time,
-                Accent);
+            Canvas.GetCanvas.DrawString(
+                (Canvas.GetCanvas.Width / 2) - (Default.Width * Time.Length / 2),
+                (Canvas.GetCanvas.Height / 2) - (Default.Height / 2), Default, Time,
+                Parent.Theme.Accent);
         }
     }
 }

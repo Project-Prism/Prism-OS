@@ -1,3 +1,4 @@
+using PrismOS.Graphics;
 using static PrismOS.Hexi.Main;
 
 namespace PrismOS
@@ -6,17 +7,13 @@ namespace PrismOS
     {
         protected override void Run()
         {
-            var c = new UI.Canvas(1280, 720);
-            while (true)
+            Storage.VFS.InitVFS();
+
+            foreach (string String in System.IO.Directory.GetFiles("0:\\"))
             {
-                c.Clear(System.Drawing.Color.DarkSlateGray);
-                UI.Overlays.SystemInfo.Tick();
-                UI.Overlays.TypingTester.Tick();
-                c.Update();
+                System.Console.WriteLine(String);
             }
 
-            /*
-            Storage.VFS.InitVFS();
             System.Console.WriteLine("Compiling...");
             Compiler.Compile("0:\\IN.HEX", "0:\\OUT.H");
             System.Console.WriteLine("Running...");
@@ -26,7 +23,6 @@ namespace PrismOS
             {
                 Runtime.Tick();
             }
-            */
         }
     }
 }

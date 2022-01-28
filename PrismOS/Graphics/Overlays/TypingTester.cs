@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using static Cosmos.System.Graphics.Fonts.PCScreenFont;
 
-namespace PrismOS.UI.Overlays
+namespace PrismOS.Graphics.Overlays
 {
     public static class TypingTester
     {

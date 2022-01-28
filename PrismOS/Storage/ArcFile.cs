@@ -1,80 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using static System.Text.Encoding;
 
-namespace PrismOS.Storage
+namespace PrismOS.Storage.Arc
 {
     /// <summary>
-    /// Arcfile, made by terminal.cs. (Version 2.0)
+    /// ArcFile, made by terminal.cs. (Version 2)
     /// https://github.com/terminal-cs/Arc
     /// </summary>
-    public class ArcFile : IDisposable
+    public class ArcFile<T> : Dictionary<string, T>
     {
-        private Dictionary<string, byte[]> Pairs { get; } = new();
-        private string Path { get; }
+        public readonly string Path = "";
 
-        /// <summary>
-        /// An easy way to store values in a file.
-        /// </summary>
-        /// <param name="xPath"></param>
-        public ArcFile(string xPath)
+        public ArcFile(string PathToFile)
         {
-            Path = xPath;
-            if (File.Exists(Path))
+            Path = PathToFile;
+            if (!File.Exists(PathToFile)) { return; }
+            foreach (string Line in File.ReadAllText(Path).Split('\n'))
             {
-                foreach (string Ln in File.ReadAllLines(Path))
-                {
-                    string[] Split = Ln.Split(" => ");
-                    Pairs.Add(Split[0], UTF8.GetBytes(Split[1]));
-                }
-            }
-            else
-            {
-                File.Create(Path);
+                if (Line?.Length == 0) { continue; }
+                string[] ThisLine = Line.Split(':');
+
+                Add(ThisLine[0], (T)(object)ThisLine[1]);
             }
         }
-
-        /// <summary>
-        /// Remo the specified key if it is present.
-        /// </summary>
-        /// <param name="Key"></param>
-        public void Remove(string Key) => Pairs.Remove(Key);
-
-        /// <summary>
-        /// Assign a value to a key.
-        /// </summary>
-        /// <param name="Key"></param>
-        /// <param name="Value"></param>
-        public void Assign(string Key, byte[] Value) => Pairs[Key] = Value;
-
-        /// <summary>
-        /// Collect the value from a key.
-        /// </summary>
-        /// <param name="Key"></param>
-        /// <returns>The value of the key if it is present.</returns>
-        public virtual byte[] Collect(string Key) => Pairs[Key];
-
-        /// <summary>
-        /// Export the Arc file.
-        /// </summary>
-        public void Export()
+        public void Save()
         {
             string Final = "";
-            foreach(KeyValuePair<string, byte[]> Pair in Pairs)
+            foreach (KeyValuePair<string, T> Pair in this)
             {
-                Final += Pair.Key + " => " + Pair.Value;
+                Final += Pair.Key + ':' + Pair.Value + "\n";
             }
-        }
-
-        /// <summary>
-        /// Export and Dispose of the Arc file.
-        /// </summary>
-        public void Dispose()
-        {
-            Export();
-            //GC.SuppressFinalize(this);
-            //GC.Collect();
+            File.WriteAllText(Path, Final);
         }
     }
 }
