@@ -9,6 +9,7 @@ namespace PrismOS
         protected override void Run()
         {
             Canvas X = new(1280, 720);
+            int A = 0;
             // Window manager freezes os :(
             //int p = 0;
             //Graphics.GUI.Containers.Window W1 = new(100, 100, 500, 500, 0, "", new(Color.White, Color.DarkSlateBlue, Color.Blue, Color.White));
@@ -17,6 +18,16 @@ namespace PrismOS
             while (true)
             {
                 X.Clear(Color.DarkSlateGray);
+                X.DrawFilledArc(100, 100, 20, 0, A, Color.White);
+                if (A == 360)
+                {
+                    A = 0;
+                }
+                else
+                {
+                    A++;
+                }
+
                 Graphics.Overlays.FPS.Draw();
                 X.Update();
             }

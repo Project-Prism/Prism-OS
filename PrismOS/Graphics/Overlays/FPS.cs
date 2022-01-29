@@ -7,7 +7,7 @@ namespace PrismOS.Graphics.Overlays
     {
         public static void Draw()
         {
-            Canvas.GetCanvas.DrawFilledRectangle(25, 25, Default.Width * ("FPS: " + Canvas.GetCanvas.FPS).Length, Default.Height, Color.FromArgb(100, 25, 25, 25));
+            Canvas.GetCanvas.DrawFilledRectangle(25, 25, Default.Width * ("FPS: " + Canvas.GetCanvas.FPS).Length + 10, Default.Height + 10, Color.FromArgb(100, 25, 25, 25));
             Canvas.GetCanvas.DrawString(30, 30, Default, "FPS: " + Canvas.GetCanvas.FPS, Color.White);
         }
     }

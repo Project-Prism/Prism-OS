@@ -166,6 +166,25 @@ namespace PrismOS.Graphics
         }
         #endregion
 
+        #region Arc
+
+        public void DrawArc(int X, int Y, int Radius, int StartAngle, int EndAngle, Color Color)
+        {
+            for (double I = StartAngle; I < EndAngle; I += 0.05)
+            {
+                SetPixel((int)(X + (Math.Cos(I) * Radius)), (int)(Y + (Math.Sin(I) * Radius)), Color);
+            }
+        }
+        public void DrawFilledArc(int X, int Y, int Radius, int StartAngle, int EndAngle, Color Color)
+        {
+            for (double I = StartAngle; I < EndAngle; I += 0.05)
+            {
+                DrawLine(X, Y, (int)(X + (Math.Cos(I) * Radius)), (int)(Y + (Math.Sin(I) * Radius)), Color);
+            }
+        }
+
+        #endregion
+
         #region Triangle
         public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
         {
