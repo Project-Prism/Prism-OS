@@ -2,7 +2,7 @@
 
 namespace PrismOS.Generic
 {
-    public class StopWatch
+    public class Timer
     {
         private int StartTime { get; set; } = 0;
         private int StopTime { get; set; } = 0;

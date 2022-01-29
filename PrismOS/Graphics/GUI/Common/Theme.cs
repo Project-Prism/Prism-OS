@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace PrismOS.Graphics.Common
+namespace PrismOS.Graphics.GUI.Common
 {
     public struct Theme
     {

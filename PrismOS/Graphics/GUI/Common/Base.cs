@@ -1,7 +1,6 @@
-﻿using PrismOS.Graphics.Common;
-using PrismOS.Graphics.GUI.Containers;
+﻿using PrismOS.Graphics.GUI.Containers;
 
-namespace PrismOS.Graphics.GUI
+namespace PrismOS.Graphics.GUI.Common
 {
     public class Base
     {
