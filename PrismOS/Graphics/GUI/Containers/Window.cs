@@ -1,5 +1,5 @@
-﻿using PrismOS.Graphics.Common;
-using PrismOS.Generic;
+﻿using PrismOS.Generic;
+using PrismOS.Graphics.GUI.Common;
 
 namespace PrismOS.Graphics.GUI.Containers
 {

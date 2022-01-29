@@ -1,4 +1,6 @@
-﻿namespace PrismOS.Graphics.GUI.Progress
+﻿using PrismOS.Graphics.GUI.Common;
+
+namespace PrismOS.Graphics.GUI.Progress
 {
     public class Progressbar : Base
     {

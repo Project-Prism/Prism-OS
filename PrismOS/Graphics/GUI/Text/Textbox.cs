@@ -1,6 +1,6 @@
 ﻿using static Cosmos.System.Graphics.Fonts.PCScreenFont;
-using PrismOS.Graphics.GUI;
 using PrismOS.Graphics.GUI.Containers;
+using PrismOS.Graphics.GUI.Common;
 
 namespace PrismOS.Graphics.GUI.Text
 {

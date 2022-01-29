@@ -1,4 +1,4 @@
-﻿using PrismOS.Graphics.GUI;
+﻿using PrismOS.Graphics.GUI.Common;
 using PrismOS.Graphics.GUI.Containers;
 
 namespace PrismOS.Graphics.GUI.Clocks
