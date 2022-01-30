@@ -30,6 +30,13 @@ Have any problems? Found a bug? Just want to chat? [Join the discord](https://di
 
 Want to add something new to Prism OS? Simply create a pull request and we'll review it.
 
+## To-Do
+This is a small list of a few things that need to get done
+| Name             | Category         | Notes                                                                 |
+|------------------|------------------|-----------------------------------------------------------------------|
+| Draw Filled Arc  | Graphics/Canvas  | N/A                                                                   |
+| Draw Round cube  | Graphics/Canvas  | Use draw filled arc instead of circle for proper use of trsnaparency  |
+
 ## License
 
 This project is licensed under [GPL-3.0](https://github.com/Project-Prism/Prism-OS/blob/main/LICENSE).
