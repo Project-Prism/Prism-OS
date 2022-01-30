@@ -1,5 +1,4 @@
 using PrismOS.Graphics;
-using static Cosmos.System.Graphics.Fonts.PCScreenFont;
 using System.Drawing;
 
 namespace PrismOS
@@ -9,25 +8,15 @@ namespace PrismOS
         protected override void Run()
         {
             Canvas X = new(1280, 720);
-            int A = 0;
             // Window manager freezes os :(
             //int p = 0;
             //Graphics.GUI.Containers.Window W1 = new(100, 100, 500, 500, 0, "", new(Color.White, Color.DarkSlateBlue, Color.Blue, Color.White));
             //W1.Children.Add(new Graphics.GUI.Progress.Progressbar(30, 30, 10, 200, p));
-            
+
             while (true)
             {
                 X.Clear(Color.DarkSlateGray);
-                X.DrawFilledArc(100, 100, 20, 0, A, Color.White);
-                if (A == 360)
-                {
-                    A = 0;
-                }
-                else
-                {
-                    A++;
-                }
-
+                X.DrawBitmap(100, 100, Generic.Noise.GenWhiteNoiseImage(50, 50));
                 Graphics.Overlays.FPS.Draw();
                 X.Update();
             }

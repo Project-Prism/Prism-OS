@@ -127,12 +127,34 @@ namespace PrismOS.Graphics
         {
             for (int IY = Y; IY < Y + Height; IY++)
             {
-                Array.Fill(Buffer, Color.ToArgb(), X + (this.Width * IY), Width);
+                for (int IX = X; IX < X + Width; IX++)
+                {
+                    SetPixel(IX, IY, Color);
+                }
             }
+        }
+        public void DrawRoundedRectangle(int X, int Y, int Width, int Height, int Radius, Color Color)
+        {
+            int X2 = X + Width, Y2 = Y + Height, R2 = Radius * 2;
+            DrawFilledRectangle(X, Y + Radius, X2, Y2 - R2, Color); // L/R
+            DrawFilledRectangle(X + Radius, Y, X2 - R2, Y2, Color); // T/B
+
+            DrawCircle(X + Radius, Y + Radius, Radius, Color, 270, 360); // Top left
+            DrawCircle(X2, Y2 - R2 + Radius, Radius, Color, 0, 90); // Top Right
+            DrawCircle(X + Radius, Y2 + Radius, Radius, Color, 180, 270); // Bottom Left
+            DrawCircle(X2 - R2, Y2 - Radius, Radius, Color, 90, 180);// Bottom Right
         }
         #endregion
 
         #region Circle
+
+        public void DrawCircle(int X, int Y, int Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
+        {
+            for (double I = StartAngle; I < EndAngle; I += 0.05)
+            {
+                SetPixel((int)(X + (Math.Cos(I) * Radius)), (int)(Y + (Math.Sin(I) * Radius)), Color);
+            }
+        }
         public void DrawFilledCircle(int X, int Y, int Radius, Color Color)
         {
             int y = 0;
@@ -162,24 +184,6 @@ namespace PrismOS.Graphics
                     radiusError += xChange;
                     xChange += 2;
                 }
-            }
-        }
-        #endregion
-
-        #region Arc
-
-        public void DrawArc(int X, int Y, int Radius, int StartAngle, int EndAngle, Color Color)
-        {
-            for (double I = StartAngle; I < EndAngle; I += 0.05)
-            {
-                SetPixel((int)(X + (Math.Cos(I) * Radius)), (int)(Y + (Math.Sin(I) * Radius)), Color);
-            }
-        }
-        public void DrawFilledArc(int X, int Y, int Radius, int StartAngle, int EndAngle, Color Color)
-        {
-            for (double I = StartAngle; I < EndAngle; I += 0.05)
-            {
-                DrawLine(X, Y, (int)(X + (Math.Cos(I) * Radius)), (int)(Y + (Math.Sin(I) * Radius)), Color);
             }
         }
 
