@@ -1,39 +1,38 @@
-﻿using System;
-using static PrismOS.Hexi.Runtime;
-using static PrismOS.API.KernelAPI;
+﻿using PrismOS.Hexi.API;
 
-namespace PrismOS.Hexi
+using static PrismOS.Hexi.Main.Runtime;
+
+namespace PrismOS.Hexi.Misc
 {
-	internal class Executable
+	public class Executable
 	{
 		public Executable(byte[] Bytes)
 		{
-			Id = new Random().Next();
-
+			ID = Executables.Count + 1;
 			ByteCode = Bytes;
 		}
 
 		private readonly byte[] ByteCode;
 
-		public int Index = 0, Id;
+		public int Index = 0, ID;
 		public byte[] Memory;
 
 		public void Tick()
 		{
 			if (Index >= ByteCode.Length)
 			{
-				KernelStopProgram(this, null);
+				ProgramAPI.StopProgram(this, null);
 				return;
 			}
 
-			var func = (Funcs)ByteCode[Index++];
+			var func = ByteCode[Index++];
 
-			foreach (var f in Functions)
-				if (f.Type == func)
+			foreach (var f in Function.Functions)
+            {
+                if (f.Type == func)
 				{
 					// Construct arguments, if any
 					byte[] args = null;
-
 					if (f.Arguments > 0)
 					{
 						args = new byte[f.Arguments];
@@ -44,9 +43,9 @@ namespace PrismOS.Hexi
 
 					// Invoke function
 					f.Definition(this, args);
-
 					break;
 				}
-		}
+            }
+        }
 	}
 }

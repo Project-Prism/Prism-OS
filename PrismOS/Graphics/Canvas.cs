@@ -4,7 +4,7 @@ using Bitmap = Cosmos.System.Graphics.Bitmap;
 using Color = System.Drawing.Color;
 using System;
 
-namespace PrismOS.UI
+namespace PrismOS.Graphics
 {
     public class Canvas
     {
@@ -15,9 +15,11 @@ namespace PrismOS.UI
             this.Width = Width;
             this.Height = Height;
             Update();
+            GetCanvas = this;
         }
 
         #region Properties
+        public static Canvas GetCanvas { get; set; }
         public VBEDriver VBE { get; }
         public int[] Buffer { get; set; }
         public int Width { get; }
@@ -123,12 +125,9 @@ namespace PrismOS.UI
         }
         public void DrawFilledRectangle(int X, int Y, int Width, int Height, Color Color)
         {
-            for (int IX = X; IX < X + Width; IX++)
+            for (int IY = Y; IY < Y + Height; IY++)
             {
-                for (int IY = Y; IY < Y + Height; IY++)
-                {
-                    SetPixel(IX, IY, Color);
-                }
+                Array.Fill(Buffer, Color.ToArgb(), X + (this.Width * IY), Width);
             }
         }
         #endregion
@@ -165,6 +164,25 @@ namespace PrismOS.UI
                 }
             }
         }
+        #endregion
+
+        #region Arc
+
+        public void DrawArc(int X, int Y, int Radius, int StartAngle, int EndAngle, Color Color)
+        {
+            for (double I = StartAngle; I < EndAngle; I += 0.05)
+            {
+                SetPixel((int)(X + (Math.Cos(I) * Radius)), (int)(Y + (Math.Sin(I) * Radius)), Color);
+            }
+        }
+        public void DrawFilledArc(int X, int Y, int Radius, int StartAngle, int EndAngle, Color Color)
+        {
+            for (double I = StartAngle; I < EndAngle; I += 0.05)
+            {
+                DrawLine(X, Y, (int)(X + (Math.Cos(I) * Radius)), (int)(Y + (Math.Sin(I) * Radius)), Color);
+            }
+        }
+
         #endregion
 
         #region Triangle
@@ -231,7 +249,6 @@ namespace PrismOS.UI
                 LT = DateTime.Now;
             }
 
-            // Copy buffer to vram
             Cosmos.Core.Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy(Buffer, 0, Buffer.Length);
         }
         private static Color AlphaBlend(Color PixelColor, Color SetColor)

@@ -37,25 +37,11 @@ namespace PrismOS.Network.NWeb
 
                 foreach (TcpClient Client in Clients)
                 {
-                    string[] Recieved = Encoding.ASCII.GetString(Client.NonBlockingReceive(ref EndPoint)).Split(": ");
+                    byte[] Recieved = Client.NonBlockingReceive(ref EndPoint);
+                    int Method = Recieved[1];
 
-                    switch (Recieved[0])
+                    for (int I = 0; I < Recieved.Length; I++)
                     {
-                        case "GET":
-                            if (AllowGet)
-                            {
-                                Client.Send(File.ReadAllBytes(Path + Recieved[1]));
-                            }
-                            break;
-                        case "POST":
-                            if (AllowPost)
-                            {
-                                File.WriteAllBytes(Path + Recieved[1], Encoding.ASCII.GetBytes(Recieved[2]));
-                            }
-                            break;
-                        default:
-                            Client.Send(Encoding.ASCII.GetBytes("Unknown NWeb command."));
-                            break;
                     }
                 }
             }

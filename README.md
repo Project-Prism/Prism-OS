@@ -11,19 +11,27 @@ This project is made possible by Cosmos and the community around it, and we give
 ![](https://github.com/Project-Prism/Prism-OS/blob/main/PrismOS/Screenshots/Prism%20OS%20(21.9.8).png?raw=true)
 
 ## Notable contributors
-| Name                                              | Contributions                |
-|---------------------------------------------------|------------------------------|
-| [Cosmos team](https://github.com/CosmosOS/Cosmos) | The entirety of cosmos       |
-| [Terminal.cs](https://github.com/terminal-cs)     | General development, logo    |
-| [pinkphone](https://github.com/pinkphone1818)     | General development          |
-| [Nifanfa](https://github.com/nifanfa)             | Bitfont                      |
-| [CrisisSDK](https://github.com/CrisisSDK)         | Rounded cube, coal v1 & v2   |
-| [theopcoder](https://github.com/theopcoder)       | Website developer            |
+| Name                                                  | Contribution(s)              |
+|-------------------------------------------------------|------------------------------|
+| [Cosmos team](https://github.com/CosmosOS/Cosmos)     | The entirety of cosmos       |
+| [Terminal.cs](https://github.com/terminal-cs)         | General development, logo    |
+| [pinkphone](https://github.com/pinkphone1818)         | General development          |
+| [Nifanfa](https://github.com/nifanfa)                 | Bitfont                      |
+| [CrisisSDK](https://github.com/CrisisSDK)             | Rounded cube, coal v1 & v2   |
+| [theopcoder](https://github.com/theopcoder)           | Website developer            |
 
 ## Thanks to
-| Name                                              |                              |
-|---------------------------------------------------|------------------------------|
-| [MickyD](https://stackoverflow.com/a/31849722)    | FPS Counter                  |
+| Name                                                  |                              |
+|-------------------------------------------------------|------------------------------|
+| [MickyD](https://stackoverflow.com/a/31849722)        | FPS Counter                  |
+| [Timo Kähkönen](https://stackoverflow.com/a/14793184) | Arc drawing                  |
 
 ## Wanting to contribute or fix a typo you found?
 Go right ahead! all you have to do is fork the project, change what you think needs changing, and make a pull request to this repository. Any help is greatly appreciated!
+
+## Hexi code examples
+```cs
+ConsoleAPI.WriteLine(b[0,40,10]); // Byte array
+ConsoleAPI.WriteLine("Hello, World!"); // String
+ConsoleAPI.WriteLine('s'); // Char
+```
