@@ -12,6 +12,7 @@ namespace PrismOS.Graphics.GUI
             this.Height = Height;
             Screen = new(Width, Height);
             VBE = new((ushort)Width, (ushort)Height, 32);
+            Windows = new();
         }
 
         public List<Window> Windows { get; set; }
