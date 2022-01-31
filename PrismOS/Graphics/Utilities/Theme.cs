@@ -1,7 +1,10 @@
 ﻿using System.Drawing;
 
-namespace PrismOS.Graphics.GUI.Common
+namespace PrismOS.Graphics.Utilities
 {
+    /// <summary>
+    /// A super basic theme engine
+    /// </summary>
     public struct Theme
     {
         public Theme(Color Background, Color Foreground, Color Accent, Color Text)

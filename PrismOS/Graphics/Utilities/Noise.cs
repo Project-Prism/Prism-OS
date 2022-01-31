@@ -2,12 +2,17 @@
 using System;
 using System.Drawing;
 
-namespace PrismOS.Generic
+namespace PrismOS.Graphics.Utilities
 {
     public static class Noise
     {
         private static readonly Random Random = new();
 
+        /// <summary>
+        /// Generate a randomly noisy image.
+        /// </summary>
+        /// <param name="Width"></param>
+        /// <param name="Height"></param>
         public static Bitmap GenWhiteNoiseImage(int Width, int Height)
         {
             byte[] Buffer = new byte[Width * Height];

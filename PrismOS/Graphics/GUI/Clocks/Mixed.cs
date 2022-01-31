@@ -1,9 +1,8 @@
-﻿using PrismOS.Graphics.GUI.Common;
-using PrismOS.Graphics.GUI.Containers;
+﻿using PrismOS.Graphics.Utilities;
 
 namespace PrismOS.Graphics.GUI.Clocks
 {
-    public class Mixed : Base
+    public class Mixed : Element
     {
         public Mixed(int X, int Y, int Radius, Window Parent)
         {
@@ -34,12 +33,12 @@ namespace PrismOS.Graphics.GUI.Clocks
                 LT = System.DateTime.Now;
             }
 
-            Canvas.GetCanvas.DrawFilledCircle(Parent.X + X, Parent.Y + Y, Radius + 45, Parent.Theme.Background);
-            Canvas.GetCanvas.DrawString(Parent.X + X, Parent.Y + Y - 50, Cosmos.System.Graphics.Fonts.PCScreenFont.Default, Time, Color: Parent.Theme.Accent);
+            Parent.Screen.DrawFilledCircle(Parent.X + X, Parent.Y + Y, Radius + 45, Parent.Theme.Background);
+            Parent.Screen.DrawString(Parent.X + X, Parent.Y + Y - 50, Cosmos.System.Graphics.Fonts.PCScreenFont.Default, Time, Color: Parent.Theme.Accent);
 
-            Canvas.GetCanvas.DrawAngledLine( Parent.X + X, Parent.Y + Y, System.DateTime.Now.Hour, Radius, Parent.Theme.Foreground);
-            Canvas.GetCanvas.DrawAngledLine(Parent.X + X, Parent.Y + Y, System.DateTime.Now.Minute, Radius + 20, Parent.Theme.Foreground);
-            Canvas.GetCanvas.DrawAngledLine(Parent.X + X, Parent.Y + Y, System.DateTime.Now.Second, Radius + 40, Parent.Theme.Accent);
+            Parent.Screen.DrawAngledLine( Parent.X + X, Parent.Y + Y, System.DateTime.Now.Hour, Radius, Parent.Theme.Foreground);
+            Parent.Screen.DrawAngledLine(Parent.X + X, Parent.Y + Y, System.DateTime.Now.Minute, Radius + 20, Parent.Theme.Foreground);
+            Parent.Screen.DrawAngledLine(Parent.X + X, Parent.Y + Y, System.DateTime.Now.Second, Radius + 40, Parent.Theme.Accent);
         }
     }
 }

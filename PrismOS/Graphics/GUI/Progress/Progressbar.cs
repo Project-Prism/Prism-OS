@@ -1,8 +1,8 @@
-﻿using PrismOS.Graphics.GUI.Common;
+﻿using PrismOS.Graphics.Utilities;
 
 namespace PrismOS.Graphics.GUI.Progress
 {
-    public class Progressbar : Base
+    public class Progressbar : Element
     {
         public Progressbar(int X, int Y, int Height, int Width, int Progress)
         {
@@ -17,8 +17,8 @@ namespace PrismOS.Graphics.GUI.Progress
 
         public new void Draw()
         {
-            Canvas.GetCanvas.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Parent.Theme.Background);
-            Canvas.GetCanvas.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width / Progress, Height, Parent.Theme.Accent);
+            Parent.Screen.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Parent.Theme.Background);
+            Parent.Screen.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width / Progress, Height, Parent.Theme.Accent);
         }
     }
 }

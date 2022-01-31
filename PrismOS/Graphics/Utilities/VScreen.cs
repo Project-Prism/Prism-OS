@@ -1,32 +1,28 @@
-using PCScreenFont = Cosmos.System.Graphics.Fonts.PCScreenFont;
-using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
-using Bitmap = Cosmos.System.Graphics.Bitmap;
+﻿using System;
 using Color = System.Drawing.Color;
-using System;
+using Bitmap = Cosmos.System.Graphics.Bitmap;
+using Cosmos.System.Graphics.Fonts;
 
-namespace PrismOS.Graphics
+namespace PrismOS.Graphics.Utilities
 {
-    public class Canvas
+    public class VScreen
     {
-        public Canvas(int Width, int Height)
+        /// <summary>
+        /// A basic virtual screen.
+        /// </summary>
+        /// <param name="Width"></param>
+        /// <param name="Height"></param>
+        public VScreen(int Width, int Height)
         {
-            VBE = new((ushort)Width, (ushort)Height, 32);
-            Buffer = new int[Width * Height];
             this.Width = Width;
             this.Height = Height;
-            Update();
-            GetCanvas = this;
+            Buffer = new int[Width * Height];
         }
 
         #region Properties
-        public static Canvas GetCanvas { get; set; }
-        public VBEDriver VBE { get; }
-        public int[] Buffer { get; set; }
-        public int Width { get; }
-        public int Height { get; }
-        public int FPS { get; private set; }
-        private int Frames { get; set; }
-        private DateTime LT { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public int[] Buffer { get;  set; }
         #endregion
 
         #region Drawing
@@ -147,7 +143,6 @@ namespace PrismOS.Graphics
         #endregion
 
         #region Circle
-
         public void DrawCircle(int X, int Y, int Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
         {
             for (double I = StartAngle; I < EndAngle; I += 0.05)
@@ -186,7 +181,6 @@ namespace PrismOS.Graphics
                 }
             }
         }
-
         #endregion
 
         #region Triangle
@@ -241,19 +235,6 @@ namespace PrismOS.Graphics
         public void Clear(Color Color)
         {
             Array.Fill(Buffer, Color.ToArgb());
-        }
-        public void Update()
-        {
-            // Calculate fps
-            Frames++;
-            if ((DateTime.Now - LT).TotalSeconds >= 1)
-            {
-                FPS = Frames;
-                Frames = 0;
-                LT = DateTime.Now;
-            }
-
-            Cosmos.Core.Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy(Buffer, 0, Buffer.Length);
         }
         private static Color AlphaBlend(Color PixelColor, Color SetColor)
         {

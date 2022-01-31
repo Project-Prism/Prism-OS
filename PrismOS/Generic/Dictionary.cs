@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace PrismOS.Storage.Arc
+namespace PrismOS.Generic
 {
     /// <summary>
-    /// ArcFile, made by terminal.cs. (Version 2)
+    /// A custom version of dictionary called ArcFile, made by terminal.cs. (Version 2)
     /// https://github.com/terminal-cs/Arc
     /// </summary>
-    public class ArcFile<T> : Dictionary<string, T>
+    public class Dictionary<T> : Dictionary<string, T>
     {
         public readonly string Path = "";
 
-        public ArcFile(string PathToFile)
+        public Dictionary(string PathToFile)
         {
             Path = PathToFile;
             if (!File.Exists(PathToFile)) { return; }

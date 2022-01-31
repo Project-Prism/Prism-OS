@@ -1,4 +1,5 @@
-using PrismOS.Graphics;
+using PrismOS.Graphics.Utilities;
+using PrismOS.Graphics.GUI;
 using System.Drawing;
 
 namespace PrismOS
@@ -7,18 +8,14 @@ namespace PrismOS
     {
         protected override void Run()
         {
-            Canvas X = new(1280, 720);
-            // Window manager freezes os :(
-            //int p = 0;
-            //Graphics.GUI.Containers.Window W1 = new(100, 100, 500, 500, 0, "", new(Color.White, Color.DarkSlateBlue, Color.Blue, Color.White));
-            //W1.Children.Add(new Graphics.GUI.Progress.Progressbar(30, 30, 10, 200, p));
+            Theme Theme1 = new(Color.White, Color.DarkSlateBlue, Color.Blue, Color.White);
+            WindowManager WM = new(1280, 720);
+            WM.Windows.Add(new(100, 100, 500, 500, 0, "", Theme1));
+            WM.Windows[0].Children.Add(new Graphics.GUI.Progress.Progressbar(30, 30, 10, 200, 50));
 
             while (true)
             {
-                X.Clear(Color.DarkSlateGray);
-                X.DrawBitmap(100, 100, Generic.Noise.GenWhiteNoiseImage(50, 50));
-                Graphics.Overlays.FPS.Draw();
-                X.Update();
+                WM.Draw();
             }
 
             /*

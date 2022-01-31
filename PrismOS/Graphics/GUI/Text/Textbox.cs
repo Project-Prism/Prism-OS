@@ -1,10 +1,9 @@
 ﻿using static Cosmos.System.Graphics.Fonts.PCScreenFont;
-using PrismOS.Graphics.GUI.Containers;
-using PrismOS.Graphics.GUI.Common;
+using PrismOS.Graphics.Utilities;
 
 namespace PrismOS.Graphics.GUI.Text
 {
-    public class Textbox : Base
+    public class Textbox : Element
     {
         public Textbox(int X, int Y, int Width, int Height, Window Parent)
         {
@@ -38,8 +37,8 @@ namespace PrismOS.Graphics.GUI.Text
                 }
             }
 
-            Canvas.GetCanvas.DrawFilledRectangle((Parent.X + X) - 200, Parent.Y + Y - 10, Width, Height, Parent.Theme.Foreground);
-            Canvas.GetCanvas.DrawString(Parent.X + X, Parent.Y + Y, Default, Text, Parent.Theme.Text);
+            Parent.Screen.DrawFilledRectangle(Parent.X + X - 200, Parent.Y + Y - 10, Width, Height, Parent.Theme.Foreground);
+            Parent.Screen.DrawString(Parent.X + X, Parent.Y + Y, Default, Text, Parent.Theme.Text);
         }
     }
 }

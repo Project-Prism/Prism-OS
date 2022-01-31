@@ -1,8 +1,6 @@
-﻿using PrismOS.Graphics.GUI.Containers;
-
-namespace PrismOS.Graphics.GUI.Common
+﻿namespace PrismOS.Graphics.GUI
 {
-    public class Base
+    public class Element
     {
         public int X { get; set; }
         public int Y { get; set; }
@@ -15,7 +13,7 @@ namespace PrismOS.Graphics.GUI.Common
 
         public void Draw()
         {
-            Focused = false;
+            Parent.Screen.DrawFilledRectangle(X, Y, Width, Height, Parent.Theme.Background);
         }
     }
 }
