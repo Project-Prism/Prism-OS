@@ -14,7 +14,6 @@ namespace PrismOS.Graphics.GUI
             this.Radius = Radius;
             this.Text = Text;
             this.Theme = Theme;
-            Screen = new(Width, Height);
             Children = new();
         }
 
@@ -24,14 +23,13 @@ namespace PrismOS.Graphics.GUI
         public int Height { get; set; }
         public int Radius { get; set; }
         public string Text { get; set; }
-        public VScreen Screen { get; set; }
         public Theme Theme { get; set; }
         public List<Element> Children { get; set; }
 
         public void Draw()
         {
-            Screen.DrawFilledRectangle(X, Y, Width, Height, Theme.Background);
-            Screen.DrawFilledRectangle(X, Y, Width, 50, Theme.Foreground);
+            Canvas.GetCanvas.DrawFilledRectangle(X, Y, Width, Height, Theme.Background);
+            Canvas.GetCanvas.DrawFilledRectangle(X, Y, Width, 50, Theme.Foreground);
 
             foreach (Element Object in Children)
             {

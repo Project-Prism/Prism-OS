@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace PrismOS.Graphics.Utilities
+namespace PrismOS.Graphics
 {
     /// <summary>
     /// A super basic theme engine

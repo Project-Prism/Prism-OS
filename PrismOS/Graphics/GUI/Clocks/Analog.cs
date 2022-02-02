@@ -1,6 +1,4 @@
-﻿using PrismOS.Graphics.Utilities;
-
-namespace PrismOS.Graphics.GUI.Clocks
+﻿namespace PrismOS.Graphics.GUI.Clocks
 {
     public class Analog : Element
     {
@@ -14,27 +12,27 @@ namespace PrismOS.Graphics.GUI.Clocks
 
         public new void Draw()
         {
-            Parent.Screen.DrawFilledCircle(
+            Canvas.GetCanvas.DrawFilledCircle(
                 X: Parent.X + X,
                 Y: Parent.Y + Y,
                 Radius: Radius + 45,
                 Color: Parent.Theme.Background);
 
-            Parent.Screen.DrawAngledLine(
+            Canvas.GetCanvas.DrawAngledLine(
                 X: Parent.X + X,
                 Y: Parent.Y + Y,
                 Angle: System.DateTime.Now.Hour,
                 Radius: Radius,
                 Color: Parent.Theme.Foreground);
 
-            Parent.Screen.DrawAngledLine(
+            Canvas.GetCanvas.DrawAngledLine(
                 X: Parent.X + X,
                 Y: Parent.Y + Y,
                 Angle: System.DateTime.Now.Minute,
                 Radius: Radius + 20,
                 Color: Parent.Theme.Foreground);
 
-            Parent.Screen.DrawAngledLine(
+            Canvas.GetCanvas.DrawAngledLine(
                 X: Parent.X + X,
                 Y: Parent.Y + Y,
                 Angle: System.DateTime.Now.Second,

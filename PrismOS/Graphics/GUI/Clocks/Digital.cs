@@ -31,9 +31,9 @@ namespace PrismOS.Graphics.GUI.Clocks
                 }
                 LT = System.DateTime.Now;
             }
-            Parent.Screen.DrawString(
-                (Parent.Screen.Width / 2) - (Default.Width * Time.Length / 2),
-                (Parent.Screen.Height / 2) - (Default.Height / 2), Default, Time,
+            Canvas.GetCanvas.DrawString(
+                (Canvas.GetCanvas.Width / 2) - (Default.Width * Time.Length / 2),
+                (Canvas.GetCanvas.Height / 2) - (Default.Height / 2), Default, Time,
                 Parent.Theme.Accent);
         }
     }

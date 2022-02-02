@@ -1,5 +1,3 @@
-using PrismOS.Graphics.Utilities;
-using PrismOS.Graphics.GUI;
 using System.Drawing;
 
 namespace PrismOS
@@ -8,14 +6,22 @@ namespace PrismOS
     {
         protected override void Run()
         {
-            Theme Theme1 = new(Color.White, Color.DarkSlateBlue, Color.Blue, Color.White);
-            WindowManager WM = new(1280, 720);
-            WM.Windows.Add(new(100, 100, 500, 500, 0, "", Theme1));
-            WM.Windows[0].Children.Add(new Graphics.GUI.Progress.Progressbar(30, 30, 10, 200, 50));
-
+            Graphics.Canvas c = new(1280, 720);
+            int A = 0;
             while (true)
             {
-                WM.Draw();
+                c.Clear();
+                c.DrawLine(50, 50, 70, 70, Color.White);
+                c.DrawString(10, 10, Cosmos.System.Graphics.Fonts.PCScreenFont.Default, "Testing text", Color.White);
+                c.Update();
+                if (A != 360)
+                {
+                    A++;
+                }
+                else
+                {
+                    A = 0;
+                }
             }
 
             /*

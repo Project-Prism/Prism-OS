@@ -13,7 +13,7 @@
 
         public void Draw()
         {
-            Parent.Screen.DrawFilledRectangle(X, Y, Width, Height, Parent.Theme.Background);
+            Canvas.GetCanvas.DrawFilledRectangle(X, Y, Width, Height, Parent.Theme.Background);
         }
     }
 }

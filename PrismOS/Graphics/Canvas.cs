@@ -1,36 +1,39 @@
 ﻿using System;
 using Color = System.Drawing.Color;
 using Bitmap = Cosmos.System.Graphics.Bitmap;
+using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
 using Cosmos.System.Graphics.Fonts;
 
-namespace PrismOS.Graphics.Utilities
+namespace PrismOS.Graphics
 {
-    public class VScreen
+    public class Canvas
     {
-        /// <summary>
-        /// A basic virtual screen.
-        /// </summary>
-        /// <param name="Width"></param>
-        /// <param name="Height"></param>
-        public VScreen(int Width, int Height)
+        public Canvas(int Width, int Height)
         {
             this.Width = Width;
             this.Height = Height;
             Buffer = new int[Width * Height];
+            AABuffer = new int[Width * Height];
+            VBE = new((ushort)Width, (ushort)Height, 32);
+            GetCanvas = this;
+            Clear(Color.Black);
         }
 
         #region Properties
+        public static Canvas GetCanvas { get; set; }
+        public VBEDriver VBE { get; set; }
+        public int[] Buffer { get; set; }
+        public int[] AABuffer { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
-        public int[] Buffer { get;  set; }
         #endregion
 
         #region Drawing
 
         #region Pixel
-        public void SetPixel(int X, int Y, Color Color)
+        public void SetPixel(int X, int Y, Color Color, bool Smooth = false)
         {
-            if (X > Width || X < 0 || Y > Height || Y < 0)
+            if (X > Width || X < 0 || Y > Height || Y < 0 || Color.A == 0)
             {
                 return;
             }
@@ -38,6 +41,17 @@ namespace PrismOS.Graphics.Utilities
             {
                 Color = AlphaBlend(GetPixel(X, Y), Color);
             }
+            if (Smooth)
+            {
+                Color Color2 = Color.FromArgb(Color.A / 4, Color);
+                // Draw antialiasing
+                AABuffer[(Width * (Y - 1)) + X] = Color2.ToArgb();
+                AABuffer[(Width * (Y + 1)) + X] = Color2.ToArgb();
+                AABuffer[(Width * Y) + (X - 1)] = Color2.ToArgb();
+                AABuffer[(Width * Y) + (X + 1)] = Color2.ToArgb();
+            }
+
+            // Draw main pixel
             Buffer[(Width * Y) + X] = Color.ToArgb();
         }
         public Color GetPixel(int X, int Y)
@@ -47,45 +61,33 @@ namespace PrismOS.Graphics.Utilities
         #endregion
 
         #region Line
-        public void DrawLine(int X1, int Y1, int X2, int Y2, Color Color)
+        public void DrawLine(int X, int Y, int X2, int Y2, Color Color)
         {
-            bool yLonger = false;
-            int incrementVal;
-
-            int shortLen = Y2 - Y1;
-            int longLen = X2 - X1;
-            if (Math.Abs(shortLen) > Math.Abs(longLen))
+            int dx = X2 - X;
+            int dy = Y2 - Y;
+            int p = (2 * dy) - dx;
+            while (X <= X2)
             {
-                int swap = shortLen;
-                shortLen = longLen;
-                longLen = swap;
-                yLonger = true;
-            }
-
-            if (longLen < 0) incrementVal = -1;
-            else incrementVal = 1;
-
-            double divDiff;
-            if (shortLen == 0) divDiff = longLen;
-            else divDiff = (double)longLen / (double)shortLen;
-            if (yLonger)
-            {
-                for (int i = 0; i != longLen; i += incrementVal)
+                if (p < 0)
                 {
-                    SetPixel(X1 + (int)((double)i / divDiff), Y1 + i, Color);
+                    X++;
+                    p += 2 * dy;
                 }
-            }
-            else
-            {
-                for (int i = 0; i != longLen; i += incrementVal)
+                else
                 {
-                    SetPixel(X1 + i, Y1 + (int)((double)i / divDiff), Color);
+                    X++;
+                    Y++;
+                    p += 2 * (dy - dx);
                 }
+                SetPixel(X, Y, Color, true);
             }
         }
-
         public void DrawAngledLine(int X, int Y, int Angle, int Radius, Color Color)
         {
+            DrawLine(X, Y, (int)(X + (Math.Cos(Angle) * Radius)), (int)(Y + (Math.Sin(Angle) * Radius)), Color);
+            System.Threading.Thread.Sleep(1);
+            return;
+
             int[] sine = new int[16] { 0, 27, 54, 79, 104, 128, 150, 171, 190, 201, 221, 233, 243, 250, 254, 255 };
             int xEnd, yEnd, quadrant, x_flip, y_flip;
             quadrant = Angle / 15;
@@ -104,8 +106,8 @@ namespace PrismOS.Graphics.Utilities
 
             if (Angle > sine.Length) return;
 
-            xEnd += (x_flip * ((sine[Angle] * Radius) >> 8));
-            yEnd += (y_flip * ((sine[15 - Angle] * Radius) >> 8));
+            xEnd += x_flip * ((sine[Angle] * Radius) >> 8);
+            yEnd += y_flip * ((sine[15 - Angle] * Radius) >> 8);
 
             DrawLine(X, Y, xEnd, yEnd, Color);
         }
@@ -128,17 +130,6 @@ namespace PrismOS.Graphics.Utilities
                     SetPixel(IX, IY, Color);
                 }
             }
-        }
-        public void DrawRoundedRectangle(int X, int Y, int Width, int Height, int Radius, Color Color)
-        {
-            int X2 = X + Width, Y2 = Y + Height, R2 = Radius * 2;
-            DrawFilledRectangle(X, Y + Radius, X2, Y2 - R2, Color); // L/R
-            DrawFilledRectangle(X + Radius, Y, X2 - R2, Y2, Color); // T/B
-
-            DrawCircle(X + Radius, Y + Radius, Radius, Color, 270, 360); // Top left
-            DrawCircle(X2, Y2 - R2 + Radius, Radius, Color, 0, 90); // Top Right
-            DrawCircle(X + Radius, Y2 + Radius, Radius, Color, 180, 270); // Bottom Left
-            DrawCircle(X2 - R2, Y2 - Radius, Radius, Color, 90, 180);// Bottom Right
         }
         #endregion
 
@@ -232,9 +223,27 @@ namespace PrismOS.Graphics.Utilities
         #endregion
 
         #region Misc
-        public void Clear(Color Color)
+        public void Clear(Color Color = default)
         {
+            if (Color == default)
+            {
+                Color = Color.Black;
+            }
+
             Array.Fill(Buffer, Color.ToArgb());
+            Array.Fill(AABuffer, Color.Transparent.ToArgb());
+        }
+        public void Update()
+        {
+            // Copy antialising to the buffer
+            for (int IX = 0; IX < Width; IX++)
+            {
+                for (int IY = 0; IY < Height; IY++)
+                {
+                    SetPixel(IX, IY, Color.FromArgb(AABuffer[(Width * IY) + IX]));
+                }
+            }
+            Cosmos.Core.Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy(Buffer, 0, Buffer.Length);
         }
         private static Color AlphaBlend(Color PixelColor, Color SetColor)
         {
