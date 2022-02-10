@@ -2,30 +2,13 @@
 using Cosmos.System.FileSystem.VFS;
 using System;
 using System.Collections.Generic;
+using Cosmos.System.Network.Config;
+using Cosmos.System.Network.IPv4;
+using Cosmos.HAL;
+using Cosmos.System.Network.IPv4.UDP.DHCP;
 
 namespace PrismOS.Core
 {
-    public struct Function
-    {
-        public delegate void AMethod(string[] Args);
-        public Function(string Name, string Description, AMethod Method)
-        {
-            this.Name = Name;
-            this.Description = Description;
-            this.Method = Method;
-        }
-
-        public static List<Function> Functions { get; set; } = new();
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public AMethod Method { get; set; }
-
-        public static void AddCommand(string Name, string Description, AMethod Method)
-        {
-            Functions.Add(new(Name, Description, Method));
-        }
-    }
-
     public class Shell : IDisposable
     {
         public Shell()
@@ -35,9 +18,32 @@ namespace PrismOS.Core
             Function.AddCommand("help", "List all available commands", Help);
             Function.AddCommand("shutdown", "Shuts down the system.\nArguments\n==========\n-r restarts the system instead", Power);
             Function.AddCommand("clear", "clear entire console", Clear);
-            Function.AddCommand("hexi", "(compile onputFile outputFile) or (run file)", Hexi);
             Function.AddCommand("write", "path contents", Write);
             Function.AddCommand("svfs", "start the cosmos virtual filesystem", SVFS);
+            Function.AddCommand("snet", "Starts the ipv4 networking service.", SNET);
+            Function.AddCommand("ls", "List files", LS);
+            Console.WriteLine("Shell v1 loaded.");
+        }
+
+        public string Path = "0:\\";
+
+        public struct Function
+        {
+            public delegate void AMethod(string[] Args);
+            public Function(string Description, AMethod Method)
+            {
+                this.Description = Description;
+                this.Method = Method;
+            }
+
+            public static Dictionary<string, Function> Functions { get; set; } = new();
+            public string Description { get; set; }
+            public AMethod Method { get; set; }
+
+            public static void AddCommand(string Name, string Description, AMethod Method)
+            {
+                Functions.Add(Name, new(Description, Method));
+            }
         }
 
         public void SendCommand(string Input)
@@ -57,34 +63,21 @@ namespace PrismOS.Core
                     Args = Array.Empty<string>();
                 }
 
-                foreach (Function Function in Function.Functions)
+                if (Function.Functions.ContainsKey(Command))
                 {
-                    if (Command == Function.Name)
-                    {
-                        Function.Method(Args);
-                        return;
-                    }
+                    Function.Functions[Command].Method(Args);
                 }
-                Console.WriteLine("Unknown command.");
+                else
+                {
+                    Console.WriteLine("Unknown command.");
+                }
             }
             catch (Exception EX)
             {
-                Console.WriteLine("Error: "+ EX.Message);
+                Console.WriteLine("[ ERROR ] " + EX.Message);
             }
         }
 
-        void Hexi(string[] args)
-        {
-            switch (args[0])
-            {
-                case "compile":
-                    Core.Hexi.Main.Compiler.Compile(args[1], args[2]);
-                    break;
-                case "run":
-                    Core.Hexi.Main.Runtime.RunProgram(args[1]);
-                    break;
-            }
-        }
         void Print(string[] args)
         {
             if (args.Length < 1)
@@ -103,15 +96,17 @@ namespace PrismOS.Core
                 Console.WriteLine("---- List of all available commands ----");
                 Console.WriteLine("=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
                 Console.ForegroundColor = ConsoleColor.Blue;
-                foreach (Function Function in Function.Functions)
+                foreach (KeyValuePair<string, Function> Pair in Function.Functions)
                 {
-                    Console.WriteLine("[ " + Function.Name + " ]");
+                    Console.WriteLine("[ " + Pair.Key + " | " + Pair.Value.Description + " ]");
                 }
                 Console.ResetColor();
                 Console.WriteLine();
             }
             else
             {
+                if (Function.Functions.ContainsKey(args[0]))
+                    Console.WriteLine(args[0] + " | " + Function.Functions[args[0]].Description);
             }
         }
         void About(string[] args)
@@ -138,6 +133,8 @@ _______________________________________________
                 ConsoleKeyInfo input = Console.ReadKey(false);
                 if (input.KeyChar == 'y')
                 {
+                    DHCPClient DHCPC = new();
+                    DHCPC.SendReleasePacket();
                     Cosmos.System.Power.Shutdown();
                 }
             }
@@ -146,6 +143,8 @@ _______________________________________________
                 Console.WriteLine("Restart system? this will cause all progress to be lost [y/n]");
                 if (Console.ReadKey(false).KeyChar == 'y')
                 {
+                    DHCPClient DHCPC = new();
+                    DHCPC.SendReleasePacket();
                     Cosmos.System.Power.Reboot();
                 }
             }
@@ -162,22 +161,48 @@ _______________________________________________
         {
             System.IO.File.WriteAllText(args[0], args[1]);
         }
-        void Calculate(string[] args)
-        {
-            // move math class here
-        }
         void SVFS(string[] args)
         {
             CosmosVFS VFS = new();
             VFSManager.RegisterVFS(VFS);
             VFS.Initialize(true);
         }
+        void SNET(string[] args)
+        {
+            IPConfig.Enable(NetworkDevice.GetDeviceByName("eth0"), Address.Zero, Address.Broadcast, Address.Parse("192.168.1.1"));
+            DHCPClient DHCPC = new();
+            DHCPC.SendDiscoverPacket();
+        }
+        void LS(string[] args)
+        {
+            if (args.Length == 0)
+            {
+                Console.WriteLine("File entries for path " + Path);
+                foreach (string Str in System.IO.Directory.GetFiles(Path))
+                {
+                    Console.WriteLine(Str);
+                }
+            }
+            else
+            {
+                if (args[0].Contains(":\\"))
+                {
+                    Console.WriteLine("File entries for path " + args[0]);
+                    foreach (string Str in System.IO.Directory.GetFiles(args[0]))
+                    {
+                        Console.WriteLine(Str);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect path '" + args[0] + "'.");
+                }
+            }
+        }
 
         public void Dispose()
         {
-            // need gc
-            //GC.SuppressFinalize(this);
-            //GC.Collect();
+            GC.SuppressFinalize(this);
         }
     }
 }
