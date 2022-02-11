@@ -1,5 +1,10 @@
-using PrismOS.Graphics;
-using System.Drawing;
+using Cosmos.System.FileSystem;
+using Cosmos.System.FileSystem.VFS;
+using System;
+using Cosmos.System.Network.Config;
+using Cosmos.HAL;
+using Cosmos.System.Network.IPv4.UDP.DHCP;
+using Cosmos.System.Network.IPv4;
 
 namespace PrismOS
 {
@@ -7,38 +12,20 @@ namespace PrismOS
     {
         protected override void Run()
         {
-            Canvas X = new(1280, 720);
-            // Window manager freezes os :(
-            //int p = 0;
-            //Graphics.GUI.Containers.Window W1 = new(100, 100, 500, 500, 0, "", new(Color.White, Color.DarkSlateBlue, Color.Blue, Color.White));
-            //W1.Children.Add(new Graphics.GUI.Progress.Progressbar(30, 30, 10, 200, p));
+            CosmosVFS VFS = new();
+            VFSManager.RegisterVFS(VFS);
+            VFS.Initialize(true);
+            IPConfig.Enable(NetworkDevice.GetDeviceByName("eth0"), Address.Zero, Address.Broadcast, Address.Parse("192.168.1.1"));
+            new DHCPClient().SendDiscoverPacket();
+
+            Console.Clear();
+            Core.Shell Shell = new();
 
             while (true)
             {
-                X.Clear(Color.DarkSlateGray);
-                X.DrawBitmap(100, 100, Generic.Noise.GenWhiteNoiseImage(50, 50));
-                Graphics.Overlays.FPS.Draw();
-                X.Update();
+                Console.Write("> ");
+                Shell.SendCommand(Console.ReadLine());
             }
-
-            /*
-            Storage.VFS.InitVFS();
-
-            foreach (string String in System.IO.Directory.GetFiles("0:\\"))
-            {
-                System.Console.WriteLine(String);
-            }
-
-            System.Console.WriteLine("Compiling...");
-            Compiler.Compile("0:\\IN.HEX", "0:\\OUT.H");
-            System.Console.WriteLine("Running...");
-            Runtime.RunProgram("0:\\OUT.H");
-
-            while (true)
-            {
-                Runtime.Tick();
-            }
-            */
         }
     }
 }
