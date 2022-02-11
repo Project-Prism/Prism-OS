@@ -1,8 +1,10 @@
 using Cosmos.System.FileSystem;
 using Cosmos.System.FileSystem.VFS;
 using System;
-using System.IO;
-using PrismOS.Generic;
+using Cosmos.System.Network.Config;
+using Cosmos.HAL;
+using Cosmos.System.Network.IPv4.UDP.DHCP;
+using Cosmos.System.Network.IPv4;
 
 namespace PrismOS
 {
@@ -10,8 +12,13 @@ namespace PrismOS
     {
         protected override void Run()
         {
+            CosmosVFS VFS = new();
+            VFSManager.RegisterVFS(VFS);
+            VFS.Initialize(true);
+            IPConfig.Enable(NetworkDevice.GetDeviceByName("eth0"), Address.Zero, Address.Broadcast, Address.Parse("192.168.1.1"));
+            new DHCPClient().SendDiscoverPacket();
+
             Console.Clear();
-            Console.WriteLine("Welcome to Prism OS! type 'help' for help with commands.\n(Note: it is recomended to run 'svfs' and 'snet' when you are in the terminal.)");
             Core.Shell Shell = new();
 
             while (true)

@@ -2,9 +2,9 @@
 
 namespace PrismOS.Generic
 {
-    public static class ArrayHelper
+    public static class Data
     {
-        public static string ToString(object[] Array)
+        public static string ArrayToString(object[] Array)
         {
             if (Array.GetType() == typeof(string[]))
             {
@@ -37,6 +37,13 @@ namespace PrismOS.Generic
             {
                 throw new("ArrayHelper error: unsuported type: " + typeof(Array));
             }
+        }
+
+        public static string ParseString(string String)
+        {
+            String = String.Replace("\\n", "\n");
+            String = String.Replace("\\t", "\t");
+            return String;
         }
     }
 }
