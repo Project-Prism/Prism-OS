@@ -8,6 +8,7 @@ namespace PrismOS.Core
     {
         public Shell()
         {
+            GC.KeepAlive(this);
             Functions = new();
             Functions.Add(new string[] { "print", "Print a text string." }, Print);
             Functions.Add(new string[] { "help", "type 'help' without an argument to get a list of commands. type it with one argument to get help with that one command." }, Help);
@@ -126,7 +127,14 @@ _______________________________________________
 
         public void Dispose()
         {
+            Functions.Clear();
+            Functions = null;
             GC.SuppressFinalize(this);
+        }
+
+        public override string ToString()
+        {
+            return "Prism OS Shell with " + Functions.Count + " commands loaded.";
         }
     }
 }

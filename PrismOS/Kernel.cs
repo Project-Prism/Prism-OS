@@ -12,12 +12,6 @@ namespace PrismOS
     {
         protected override void Run()
         {
-            CosmosVFS VFS = new();
-            VFSManager.RegisterVFS(VFS);
-            VFS.Initialize(true);
-            IPConfig.Enable(NetworkDevice.GetDeviceByName("eth0"), Address.Zero, Address.Broadcast, Address.Parse("192.168.1.1"));
-            new DHCPClient().SendDiscoverPacket();
-
             Console.Clear();
             Core.Shell Shell = new();
 
