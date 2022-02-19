@@ -1,10 +1,4 @@
-using Cosmos.System.FileSystem;
-using Cosmos.System.FileSystem.VFS;
-using System;
-using Cosmos.System.Network.Config;
-using Cosmos.HAL;
-using Cosmos.System.Network.IPv4.UDP.DHCP;
-using Cosmos.System.Network.IPv4;
+using System.Drawing;
 
 namespace PrismOS
 {
@@ -12,13 +6,16 @@ namespace PrismOS
     {
         protected override void Run()
         {
-            Console.Clear();
-            Core.Shell Shell = new();
-
             while (true)
             {
-                Console.Write("> ");
-                Shell.SendCommand(Console.ReadLine());
+                Graphics.Canvas Canvas = new(1280, 720);
+
+                while (true)
+                {
+                    Canvas.Clear();
+                    Canvas.DrawCube(1.0f, Color.White);
+                    Canvas.Update();
+                }
             }
         }
     }

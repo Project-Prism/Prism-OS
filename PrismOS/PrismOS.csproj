@@ -6,8 +6,8 @@
         <Platform>cosmos</Platform>
         <SupportsX86Intrinsics>false</SupportsX86Intrinsics>
         <SelfContained>True</SelfContained>
-	<CompileVBEMultiboot>False</CompileVBEMultiboot>
-        <VBEResolution>800x600</VBEResolution>
+	<CompileVBEMultiboot>True</CompileVBEMultiboot>
+        <VBEResolution>1280x720x32</VBEResolution>
         <BinFormat>ELF</BinFormat>
         <StackCorruptionDetectionEnabled>True</StackCorruptionDetectionEnabled>
         <StackCorruptionDetectionLevel>MethodFooters</StackCorruptionDetectionLevel>
@@ -26,7 +26,7 @@
         <CosmosDebugPort>Serial: COM1</CosmosDebugPort>
         <Launch>VMware</Launch>
         <Profile>VMware</Profile>
-        <Description>Use VMware Player or Workstation to deploy and debug.</Description>
+        <Description></Description>
         <PxeInterface>192.168.0.8</PxeInterface>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GenerateDocumentationFile>False</GenerateDocumentationFile>
@@ -36,6 +36,7 @@
         <PackageProjectUrl>https://github.com/Project-Prism/Prism-OS</PackageProjectUrl>
         <PackageLicenseFile>C:\Users\EvanLawrence\Source\Repos\Prism-OS\LICENSE</PackageLicenseFile>
         <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+        <Version>$(HOME)</Version>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -43,9 +44,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Remove="isoFiles\Icons\**" />
-      <EmbeddedResource Remove="isoFiles\Icons\**" />
-      <None Remove="isoFiles\Icons\**" />
+      <None Remove="Files\Cursor.bmp" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Files\Cursor.bmp" />
+      <EmbeddedResource Include="Files\Wallpaper.bmp">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
@@ -60,6 +66,7 @@
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="DotNetParser" Version="0.5.9" />
+        <PackageReference Include="System.Collections" Version="4.3.0" />
     </ItemGroup>
 
     <ItemGroup>
