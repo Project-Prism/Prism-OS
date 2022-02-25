@@ -1,0 +1,24 @@
+﻿List<string> Info = new();
+                Info.Add("VBE Version: " + Cosmos.Core.VBE.getControllerInfo().vbeVersion);
+                Info.Add("Total VRAM: " + Cosmos.Core.VBE.getControllerInfo().totalmemory);
+                Info.Add("Total RAM: " + ((Cosmos.Core.GCImplementation.GetAvailableRAM() + Cosmos.Core.GCImplementation.GetUsedRAM()) / 1024) + " MB");
+                Info.Add("Used RAM: " + (Cosmos.Core.GCImplementation.GetUsedRAM() / 1024) + " MB");
+                Info.Add("Free RAM: " + (Cosmos.Core.GCImplementation.GetAvailableRAM() / 1024) + " MB");
+                Info.Add("GPU Name: " + new string((sbyte*)Cosmos.Core.VBE.getControllerInfo().oemProductNamePtr));
+                Info.Add("GPU OEM: " + new string((sbyte*)Cosmos.Core.VBE.getControllerInfo().oemStringPtr));
+                Info.Add("CPU OEM: " + Cosmos.Core.CPU.GetCPUBrandString());
+                Info.Add("CPU Speed: " + (Cosmos.Core.CPU.GetCPUCycleSpeed() / 1E+09) + " Ghz");
+
+                
+                int X = 0;
+                int AMP = 30;
+                while (true)
+                {
+                    for (int Y = Canvas.Height / 2; Y < 360; Y += 2)
+                    {
+                        Canvas.SetPixel(
+                            X: X,
+                            Y: (Canvas.Height / 2) + (AMP * Math.Sin(Math.PI * Y / 180)),
+                            Color: Color.White);
+                    }
+                }

@@ -1,4 +1,4 @@
-﻿namespace PrismOS.Common
+﻿namespace PrismOS.Numerics
 {
     public struct Mesh
     {

@@ -4,11 +4,16 @@ namespace PrismOS.Framework
 {
     public class Process : IDisposable
     {
+        public Process(string FromBase255String)
+        {
+            ROM = Tests.Base255.FromBase255String(FromBase255String);
+            RAM = new byte[30000];
+            Output = "";
+        }
         public Process(byte[] RawData)
         {
             ROM = RawData;
             RAM = new byte[30000];
-            Random = new();
             Output = "";
         }
 
@@ -29,7 +34,7 @@ namespace PrismOS.Framework
             RAMLst =    0x12, // Decrements the ram pointer by one.
             Random =    0x13, // Sets the currently selected memory address to a random value.
         }
-        private readonly Random Random;
+        private readonly Random Random = new();
         private readonly byte[] ROM;
         private readonly byte[] RAM;
         private int ROMPointer;

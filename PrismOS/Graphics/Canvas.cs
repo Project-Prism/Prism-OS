@@ -1,28 +1,29 @@
-﻿using System;
-using Color = System.Drawing.Color;
+﻿using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
 using Bitmap = Cosmos.System.Graphics.Bitmap;
-using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
-using Cosmos.System.Graphics.Fonts;
-using PrismOS.Common;
-using System.Numerics;
+using Color = System.Drawing.Color;
+using System;
+using System.Text;
+using System.IO;
+using Mouse = Cosmos.System.MouseManager;
 
 namespace PrismOS.Graphics
 {
-    public class Canvas : IDisposable
+    public unsafe class Canvas
     {
         public Canvas(int Width, int Height)
         {
-            VBE = new((ushort)Width, (ushort)Height, 32);
-            Buffer = new int[Width * Height];
-            this.Height = Height;
             this.Width = Width;
+            this.Height = Height;
+            VBE = new((ushort)Width, (ushort)Height, 32);
+            Buffer = new int*[Width * Height];
+            Mouse.ScreenWidth = (uint)Width;
+            Mouse.ScreenHeight = (uint)Height;
+            Mouse.X = (uint)Width / 2;
+            Mouse.Y = (uint)Height / 2;
         }
 
-        public float FFar = 100.0f;
-        public float FNear = 0.1f;
-        public float FOV = 90.0f;
         public VBEDriver VBE;
-        public int[] Buffer;
+        public int*[] Buffer;
         public int Height;
         public int Width;
 
@@ -31,25 +32,24 @@ namespace PrismOS.Graphics
         public void SetPixel(int X, int Y, Color Color)
         {
             if (X > Width || X < 0 || Y > Height || Y < 0 || Color.A == 0)
-            {
                 return;
-            }
             if (Color.A < 255)
-            {
                 Color = Blend(GetPixel(X, Y), Color);
-            }
 
             // Draw main pixel
-            Buffer[(Width * Y) + X] = Color.ToArgb();
+            Buffer[(Width * Y) + X] = (int*)Color.ToArgb();
         }
         public Color GetPixel(int X, int Y)
         {
-            return Color.FromArgb(Buffer[(Width * Y) + X]);
+            return Color.FromArgb((int)Buffer[(Width * Y) + X]);
         }
-        public static Color Blend(Color Back, Color Front) => Color.FromArgb(
-        (Back.R * (1 - Front.A)) + Front.R,
-        (Back.G * (1 - Front.A)) + Front.G,
-        (Back.B * (1 - Front.A)) + Front.B);
+        public static Color Blend(Color Back, Color Front)
+        {
+            int R = ((Front.A * Front.R) + ((256 - Front.A) * Back.R)) >> 8;
+            int G = ((Front.A * Front.G) + ((256 - Front.A) * Back.G)) >> 8;
+            int B = ((Front.A * Front.B) + ((256 - Front.A) * Back.B)) >> 8;
+            return Color.FromArgb(R, G, B);
+        }
 
         #endregion
 
@@ -145,6 +145,12 @@ namespace PrismOS.Graphics
         }
         public void DrawFilledRectangle(int X, int Y, int Width, int Height, int Radius, Color Color)
         {
+            if (Radius == 0)
+            {
+                DrawFilledRectangle(X, Y, Width, Height, Color);
+                return;
+            }
+
             int x2 = X + Width, y2 = Y + Height, r2 = Radius + Radius;
             // Draw Outside circles
             DrawFilledCircle(X + Radius, Y + Radius, Radius, Color);
@@ -165,49 +171,26 @@ namespace PrismOS.Graphics
 
         public void DrawCircle(int X, int Y, int Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
         {
-            if (Radius == 0)
-            {
+            if (Radius == 0 || StartAngle == EndAngle)
                 return;
-            }
-            for (double I = StartAngle; I < EndAngle; I += 0.05)
+
+            for (; StartAngle < EndAngle; StartAngle += 2)
             {
-                SetPixel(X + (Radius * (int)Math.Cos(I)), Y + (Radius * (int)Math.Sin(I)), Color);
+                SetPixel(
+                    X: (int)(X + (Radius * Math.Sin(Math.PI * StartAngle / 180))),
+                    Y: (int)(Y + (Radius * Math.Cos(Math.PI * StartAngle / 180))),
+                    Color: Color);
             }
         }
-        public void DrawFilledCircle(int X, int Y, int Radius, Color Color)
+
+        public void DrawFilledCircle(int X, int Y, int Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
         {
-            if (Radius == 0)
-            {
+            if (Radius == 0 || StartAngle == EndAngle)
                 return;
-            }
 
-            int y = 0;
-            int xChange = 1 - (Radius << 1);
-            int yChange = 0;
-            int radiusError = 0;
-
-            while (Radius >= y)
+            for (int I = 0; I < Radius; I++)
             {
-                for (int I = X - Radius; I <= X + Radius; I++)
-                {
-                    SetPixel(I, Y + y, Color);
-                    SetPixel(I, Y - y, Color);
-                }
-                for (int I = X - y; I <= X + y; I++)
-                {
-                    SetPixel(I, Y + Radius, Color);
-                    SetPixel(I, Y - Radius, Color);
-                }
-
-                y++;
-                radiusError += yChange;
-                yChange += 2;
-                if (((radiusError << 1) + xChange) > 0)
-                {
-                    Radius--;
-                    radiusError += xChange;
-                    xChange += 2;
-                }
+                DrawCircle(X, Y, I, Color, StartAngle, EndAngle);
             }
         }
 
@@ -231,23 +214,24 @@ namespace PrismOS.Graphics
             for (int IX = 0; IX < Bitmap.Width; IX++)
             {
                 for (int IY = 0; IY < Bitmap.Height; IY++)
-                {
                     SetPixel(X + IX, Y + IY, Color.FromArgb(Bitmap.rawData[(Bitmap.Width * IY) + IX]));
-                }
             }
         }
         public void DrawBitmap(int X, int Y, int Width, int Height, Bitmap Bitmap)
         {
-            Bitmap Temp = new((uint)Width, (uint)Height, Bitmap.Depth);
+            if (Width == 0 || Height == 0)
+                return;
 
-            int XR = (((int)Bitmap.Width << 16) / Width) + 1;
-            int YR = (((int)Bitmap.Height << 16) / Height) + 1;
+            Bitmap Temp = new((uint)Width, (uint)Height, Cosmos.System.Graphics.ColorDepth.ColorDepth32);
+            int x_ratio = (int)((Bitmap.Width << 16) / Width) + 1;
+            int y_ratio = (int)((Bitmap.Height << 16) / Height) + 1;
+            int x2, y2;
             for (int i = 0; i < Height; i++)
             {
                 for (int j = 0; j < Width; j++)
                 {
-                    int x2 = (j * XR) >> 16;
-                    int y2 = (i * YR) >> 16;
+                    x2 = (j * x_ratio) >> 16;
+                    y2 = (i * y_ratio) >> 16;
                     Temp.rawData[(i * Width) + j] = Bitmap.rawData[(y2 * Bitmap.Width) + x2];
                 }
             }
@@ -258,101 +242,54 @@ namespace PrismOS.Graphics
 
         #region Text
 
-        public void DrawChar(int X, int Y, char Char, Color Color, PCScreenFont Font)
+        public class Font
         {
-            int p = Font.Height * (byte)Char;
-
-            for (int cy = 0; cy < Font.Height; cy++)
+            public Font(int Width, int Height, string Base64)
             {
-                for (byte cx = 0; cx < Font.Width; cx++)
+                this.Width = Width;
+                this.Height = Height;
+                MS = new(Convert.FromBase64String(Base64));
+            }
+            public Font(byte[] Data)
+            {
+                Width = Data[0];
+                Height = Data[1];
+                MS = new(Data, 2, Data.Length - 2, true);
+            }
+            public Font(string FromFile)
+            {
+                byte[] File = System.IO.File.ReadAllBytes(FromFile);
+                Width = File[0];
+                Height = File[1];
+                MS = new(File, 2, File.Length - 2, true);
+            }
+
+            public int Width;
+            public int Height;
+            public MemoryStream MS;
+            public static Font Default = new(8, 16, "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AAB4zMzM2MzGxsbMAAAAAAAA/sbGwMDAwMDAwAAAAAAAAAAA/mxsbGxsbGwAAAAAAAAA/sZgMBgwYMb+AAAAAAAAAAAAftjY2NjYcAAAAAAAAAAAZmZmZmZ8YGDAAAAAAAAAAHbcGBgYGBgYAAAAAAAAAH4YPGZmZjwYfgAAAAAAAAA4bMbG/sbGbDgAAAAAAAA4bMbGxmxsbGzuAAAAAAAAHjAYDD5mZmZmPAAAAAAAAAAAAH7b29t+AAAAAAAAAAAAAwZ+29vzfmDAAAAAAAAAHDBgYHxgYGAwHAAAAAAAAAB8xsbGxsbGxsYAAAAAAAAAAP4AAP4AAP4AAAAAAAAAAAAYGH4YGAAA/wAAAAAAAAAwGAwGDBgwAH4AAAAAAAAADBgwYDAYDAB+AAAAAAAADhsbGBgYGBgYGBgYGBgYGBgYGBgYGNjY2HAAAAAAAAAAABgYAH4AGBgAAAAAAAAAAAAAdtwAdtwAAAAAAAAAOGxsOAAAAAAAAAAAAAAAAAAAAAAAABgYAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAAADwwMDAwM7GxsPBwAAAAAANhsbGxsbAAAAAAAAAAAAABw2DBgyPgAAAAAAAAAAAAAAAAAfHx8fHx8fAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==");
+        }
+
+        public void DrawString(int X, int Y, string Text, Color Color)
+        {
+            string[] Lines = Text.Split('\n');
+            for (int Line = 0; Line < Lines.Length; Line++)
+            {
+                for (int Char = 0; Char < Lines[Line].Length; Char++)
                 {
-                    if (Font.ConvertByteToBitAddres(Font.Data[p + cy], cx + 1))
+                    Font.Default.MS.Seek((Encoding.ASCII.GetBytes(Lines[Line][Char].ToString())[0] & 0xFF) * Font.Default.Height, SeekOrigin.Begin);
+                    byte[] fontbuf = new byte[Font.Default.Height];
+                    Font.Default.MS.Read(fontbuf, 0, fontbuf.Length);
+
+                    for (int IY = 0; IY < Font.Default.Height; IY++)
                     {
-                        SetPixel(X + (Font.Width - cx), Y + cy, Color);
+                        for (int IX = 0; IX < Font.Default.Width; IX++)
+                        {
+                            if ((fontbuf[IY] & (0x80 >> IX)) != 0)
+                                SetPixel(X + IX + (Char * Font.Default.Width), Y + IY + (Line * Font.Default.Height), Color);
+                        }
                     }
                 }
-            }
-        }
-        public void DrawString(int X, int Y, string String, Color Color, PCScreenFont Font = default)
-        {
-            if (Font == default)
-            {
-                Font = PCScreenFont.Default;
-            }
-
-            foreach (char Char in String)
-            {
-                DrawChar(X, Y, Char, Color, Font);
-                X += Font.Width;
-            }
-        }
-
-        #endregion
-
-        #region 3D
-
-        public void DrawCube(float Scale, Color Color)
-        {
-            Mesh Cube;
-            Cube.Triangles = new Triangle[]
-            {
-                // South
-                new(0.0f, 0.0f, 0.0f,    0.0f, 1.0f, 0.0f,    1.0f, 1.0f, 0.0f),
-                new(0.0f, 0.0f, 0.0f,    1.0f, 1.0f, 0.0f,    1.0f, 0.0f, 0.0f),
-
-                // East
-                new(1.0f, 0.0f, 0.0f,    1.0f, 1.0f, 0.0f,    1.0f, 1.0f, 1.0f),
-                new(1.0f, 0.0f, 0.0f,    1.0f, 1.0f, 1.0f,    1.0f, 0.0f, 1.0f),
-
-                // North
-                new(1.0f, 0.0f, 1.0f,    1.0f, 1.0f, 1.0f,    0.0f, 1.0f, 1.0f),
-                new(1.0f, 0.0f, 1.0f,    0.0f, 1.0f, 1.0f,    0.0f, 0.0f, 1.0f),
-
-                // West
-                new(0.0f, 0.0f, 1.0f,    0.0f, 1.0f, 1.0f,    0.0f, 1.0f, 0.0f),
-                new(0.0f, 0.0f, 1.0f,    0.0f, 1.0f, 0.0f,    0.0f, 0.0f, 0.0f),
-
-                // Top
-                new(0.0f, 1.0f, 0.0f,    0.0f, 1.0f, 1.0f,    1.0f, 1.0f, 1.0f),
-                new(0.0f, 1.0f, 0.0f,    1.0f, 1.0f, 1.0f,    1.0f, 1.0f, 0.0f),
-
-                // Bottom
-                new(1.0f, 0.0f, 1.0f,    0.0f, 0.0f, 1.0f,    0.0f, 0.0f, 0.0f),
-                new(1.0f, 0.0f, 1.0f,    0.0f, 0.0f, 0.0f,    1.0f, 0.0f, 0.0f)
-                };
-            Matrix4x4 Matrix = new();
-            float AspectRatio = Height / Width;
-            float FOVRad = 1.0f / (float)Math.Tan(FOV  * 0.5f / 180.0f * 3.14159f);
-
-            Matrix.M11 = AspectRatio * FOVRad;
-            Matrix.M22 = FOVRad;
-            Matrix.M33 = FFar / (FFar - FNear);
-            Matrix.M43 = -FFar * FNear / (FFar * FNear);
-            Matrix.M34 = 1.0f;
-            Matrix.M44 = 0.0f;
-
-            for (int I = 0; I < Cube.Triangles.Length; I++)
-            {
-                Triangle TriProjected = new(), TriTranslated;
-
-                TriTranslated = Cube.Triangles[I];
-                TriTranslated.V1.Z = Cube.Triangles[I].V1.Z + 3.0f;
-                TriTranslated.V2.Z = Cube.Triangles[I].V2.Z + 3.0f;
-                TriTranslated.V3.Z = Cube.Triangles[I].V3.Z + 3.0f;
-
-                MultiplyMatrixVector(ref TriTranslated.V1, ref TriProjected.V1, ref Matrix);
-                MultiplyMatrixVector(ref TriTranslated.V2, ref TriProjected.V2, ref Matrix);
-                MultiplyMatrixVector(ref TriTranslated.V3, ref TriProjected.V3, ref Matrix);
-
-                TriProjected.V1.X += Scale; TriProjected.V1.Y += Scale;
-                TriProjected.V2.X += Scale; TriProjected.V2.Y += Scale;
-                TriProjected.V3.X += Scale; TriProjected.V3.Y += Scale;
-
-                TriProjected.V1.X *= 0.5f * Width; TriProjected.V1.Y *= 0.5f * Height;
-                TriProjected.V2.X *= 0.5f * Width; TriProjected.V2.Y *= 0.5f * Height;
-                TriProjected.V3.X *= 0.5f * Width; TriProjected.V3.Y *= 0.5f * Height;
-
-                DrawTriangle((int)TriProjected.V1.X, (int)TriProjected.V1.Y, (int)TriProjected.V2.X, (int)TriProjected.V2.Y, (int)TriProjected.V3.X, (int)TriProjected.V3.Y, Color);
             }
         }
 
@@ -366,37 +303,27 @@ namespace PrismOS.Graphics
             {
                 Color = Color.Black;
             }
-            Array.Fill(Buffer, Color.ToArgb());
+
+            for (int I = 0; I < Width * Height; I++)
+                Buffer[I] = (int*)Color.ToArgb();
+        }
+
+        public Bitmap ToBitmap()
+        {
+            Bitmap S = new((uint)Width, (uint)Height, Cosmos.System.Graphics.ColorDepth.ColorDepth32);
+            S.rawData = (int[])(object)Buffer;
+            return S;
         }
 
         public void Update()
         {
-            if (Buffer.Length != Width * Height)
+            if (Buffer.Length < Width * Height)
             {
-                Buffer = new int[Width * Height];
-                VBE.VBESet((ushort)Width, (ushort)Height, 32);
-                return;
+                VBE.VBESet((ushort)Width, (ushort)Height, 32, true);
+                Buffer = new int*[Width * Height];
             }
-            Cosmos.Core.Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy(Buffer, 0, Buffer.Length);
-        }
 
-        public static void MultiplyMatrixVector(ref Vector3 i, ref Vector3 o, ref Matrix4x4 m)
-        {
-            o.X = (i.X * m.M11) + (i.Y * m.M21) + (i.Z * m.M31) + m.M41;
-            o.Y = (i.X * m.M12) + (i.Y * m.M22) + (i.Z * m.M32) + m.M42;
-            o.Z = (i.X * m.M13) + (i.Y * m.M23) + (i.Z * m.M33) + m.M43;
-            float w = (i.X * m.M14) + (i.Y * m.M24) + (i.Z * m.M34) + m.M44;
-
-            if (w != 0.0f)
-            {
-                o.X /= w; o.Y /= w; o.Z /= w;
-            }
-        }
-
-        public void Dispose()
-        {
-            VBE.DisableDisplay();
-            GC.SuppressFinalize(this);
+            Cosmos.Core.Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);
         }
 
         #endregion
