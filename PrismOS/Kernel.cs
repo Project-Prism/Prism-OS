@@ -1,6 +1,3 @@
-using Cosmos.System.Graphics;
-using PrismOS.Graphics;
-using PrismOS.Tests;
 using System;
 using System.Drawing;
 using Canvas = PrismOS.Graphics.Canvas;
@@ -13,8 +10,6 @@ namespace PrismOS
         protected override void Run()
         {
             Canvas Canvas = new(800, 480);
-            int Frames = 0;
-            DateTime LT = DateTime.Now;
 
             while (true)
             {
