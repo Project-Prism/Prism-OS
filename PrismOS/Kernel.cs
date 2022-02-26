@@ -10,6 +10,9 @@ namespace PrismOS
         protected override void Run()
         {
             Canvas Canvas = new(800, 480);
+            int Frames = 0;
+            int FPS = 0;
+            DateTime LT = DateTime.Now;
 
             while (true)
             {
@@ -18,6 +21,14 @@ namespace PrismOS
                 //Canvas.DrawCircle(50, 50, 10, Color.White, 0, 180);
                 //Canvas.DrawFilledCircle(50, 20, 10, Color.White);
                 //Canvas.DrawFilledCircle(20, 50, 10, Color.White, 0, 180);
+                if (LT.Second != DateTime.Now.Second)
+                {
+                    LT = DateTime.Now;
+                    FPS = Frames;
+                    Frames = 0;
+                }
+                Frames++;
+                Canvas.DrawString(15, 15, "FPS: " + FPS, Color.White);
                 Canvas.DrawBitmap((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
                 Canvas.Update();
             }
