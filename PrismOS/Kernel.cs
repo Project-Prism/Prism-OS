@@ -9,7 +9,7 @@ namespace PrismOS
     {
         protected override void Run()
         {
-            Canvas Canvas = new(800, 480);
+            Canvas Canvas = new(1280, 720);
             Paint Paint = new();
 
             try
@@ -19,7 +19,7 @@ namespace PrismOS
                     Canvas.Clear(Color.Green);
                     //Graphics.UI.Clock(Canvas);
                     Paint.Clock2(Canvas);
-                    Canvas.DrawString(15, 60, "FPS: " + Canvas.FPS, Color.White);
+                    Canvas.DrawString(15, 60, Canvas.Width + "x" + Canvas.Height + " (" + Canvas.FPS + " FPS)", Color.White);
                     Canvas.DrawBitmap((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
                     Canvas.Update();
                 }

@@ -2,7 +2,6 @@
 using Bitmap = Cosmos.System.Graphics.Bitmap;
 using Mouse = Cosmos.System.MouseManager;
 using Color = System.Drawing.Color;
-using PrismOS.Tests;
 using Cosmos.Core;
 using System.Text;
 using System.IO;
