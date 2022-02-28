@@ -59,5 +59,37 @@ namespace PrismOS.Tests
             LastFrame = Bitmap;
             return Temp;
         }
+
+        public static Bitmap Ghost(Bitmap Original, Bitmap New)
+        {
+            if (Original.rawData.Length != New.rawData.Length)
+                return null;
+
+            for (int I = 0; I < Original.rawData.Length; I++)
+            {
+                Color C1 = Color.FromArgb(Original.rawData[I]);
+                Color C2 = Color.FromArgb(New.rawData[I]);
+
+                int R = (C1.R / 2) + (C2.R / 2);
+                int G = (C1.G / 2) + (C2.G / 2);
+                int B = (C1.B / 2) + (C2.B / 2);
+
+                Original.rawData[I] = Color.FromArgb(R, G, B).ToArgb();
+            }
+            return Original;
+        }
+
+        public static Bitmap Tint(Bitmap Bitmap, Color Color)
+        {
+            for (int I = 0; I < Bitmap.rawData.Length; I++)
+            {
+                Color C = Color.FromArgb(Bitmap.rawData[I]);
+                byte R = (byte)((C.R / 2) - Color.R + Color.R);
+                byte G = (byte)((C.G / 2) - Color.G + Color.G);
+                byte B = (byte)((C.B / 2) - Color.B + Color.B);
+                Bitmap.rawData[I] = Color.FromArgb(R, G, B).ToArgb();
+            }
+            return Bitmap;
+        }
     }
 }

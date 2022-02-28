@@ -1,13 +1,4 @@
-﻿List<string> Info = new();
-                Info.Add("VBE Version: " + Cosmos.Core.VBE.getControllerInfo().vbeVersion);
-                Info.Add("Total VRAM: " + Cosmos.Core.VBE.getControllerInfo().totalmemory);
-                Info.Add("Total RAM: " + ((Cosmos.Core.GCImplementation.GetAvailableRAM() + Cosmos.Core.GCImplementation.GetUsedRAM()) / 1024) + " MB");
-                Info.Add("Used RAM: " + (Cosmos.Core.GCImplementation.GetUsedRAM() / 1024) + " MB");
-                Info.Add("Free RAM: " + (Cosmos.Core.GCImplementation.GetAvailableRAM() / 1024) + " MB");
-                Info.Add("GPU Name: " + new string((sbyte*)Cosmos.Core.VBE.getControllerInfo().oemProductNamePtr));
-                Info.Add("GPU OEM: " + new string((sbyte*)Cosmos.Core.VBE.getControllerInfo().oemStringPtr));
-                Info.Add("CPU OEM: " + Cosmos.Core.CPU.GetCPUBrandString());
-                Info.Add("CPU Speed: " + (Cosmos.Core.CPU.GetCPUCycleSpeed() / 1E+09) + " Ghz");
+﻿
 
                 
                 int X = 0;
@@ -21,4 +12,27 @@
                             Y: (Canvas.Height / 2) + (AMP * Math.Sin(Math.PI * Y / 180)),
                             Color: Color.White);
                     }
+                }
+
+
+                Canvas.DrawString(15, 15, "VBE Version: " + Cosmos.Core.VBE.getControllerInfo().vbeVersion, Color.White);
+                Canvas.DrawString(15, 15, "Total VRAM: " + Cosmos.Core.VBE.getControllerInfo().totalmemory, Color.White);
+                Canvas.DrawString(15, 15, "Total RAM: " + ((Cosmos.Core.GCImplementation.GetAvailableRAM() + Cosmos.Core.GCImplementation.GetUsedRAM()) / 1024) + " MB", Color.White);
+                Canvas.DrawString(15, 15, "Used RAM: " + (Cosmos.Core.GCImplementation.GetUsedRAM() / 1024) + " MB", Color.White);
+                Canvas.DrawString(15, 15, "Free RAM: " + (Cosmos.Core.GCImplementation.GetAvailableRAM() / 1024) + " MB", Color.White);
+                Canvas.DrawString(15, 15, "GPU Name: " + new string((sbyte*)Cosmos.Core.VBE.getControllerInfo().oemProductNamePtr), Color.White);
+                Canvas.DrawString(15, 15, "GPU OEM: " + new string((sbyte*)Cosmos.Core.VBE.getControllerInfo().oemStringPtr), Color.White);
+                Canvas.DrawString(15, 15, "CPU OEM: " + Cosmos.Core.CPU.GetCPUBrandString(), Color.White);
+                Canvas.DrawString(15, 15, "CPU Speed: " + (Cosmos.Core.CPU.GetCPUCycleSpeed() / 1E+09) + " Ghz", Color.White);
+                Canvas.DrawString(15, 15, "FPS: " + FPS, Color.White);
+
+
+
+                
+                int Y = 25;
+                for (int X = 1; X < 25; X++)
+                {
+                    Y--;
+                    Canvas.DrawFilledCircle(100, 100, X, Y, System.Drawing.Color.White, 0, 360);
+                    Canvas.Update();
                 }

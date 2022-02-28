@@ -5,6 +5,7 @@ using System;
 using System.Text;
 using System.IO;
 using Mouse = Cosmos.System.MouseManager;
+using Cosmos.Core;
 
 namespace PrismOS.Graphics
 {
@@ -14,12 +15,12 @@ namespace PrismOS.Graphics
         {
             this.Width = Width;
             this.Height = Height;
-            VBE = new((ushort)Width, (ushort)Height, 32);
-            Buffer = new int*[Width * Height];
             Mouse.ScreenWidth = (uint)Width;
             Mouse.ScreenHeight = (uint)Height;
             Mouse.X = (uint)Width / 2;
             Mouse.Y = (uint)Height / 2;
+            VBE = new((ushort)Width, (ushort)Height, 32);
+            Buffer = new int*[Width * Height];
         }
 
         public VBEDriver VBE;
@@ -174,7 +175,7 @@ namespace PrismOS.Graphics
             if (Radius == 0 || StartAngle == EndAngle)
                 return;
 
-            for (; StartAngle < EndAngle; StartAngle += 2)
+            for (; StartAngle < EndAngle; StartAngle++)
             {
                 SetPixel(
                     X: (int)(X + (Radius * Math.Sin(Math.PI * StartAngle / 180))),
@@ -304,8 +305,7 @@ namespace PrismOS.Graphics
                 Color = Color.Black;
             }
 
-            for (int I = 0; I < Width * Height; I++)
-                Buffer[I] = (int*)Color.ToArgb();
+            MemoryOperations.Fill((int[])(object)Buffer, Color.ToArgb());
         }
 
         public Bitmap ToBitmap()
@@ -321,7 +321,7 @@ namespace PrismOS.Graphics
                 Buffer = new int*[Width * Height];
             }
 
-            Cosmos.Core.Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);
+            Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);
         }
 
         #endregion
