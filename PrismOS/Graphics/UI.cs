@@ -1,67 +1,128 @@
-﻿/*
-using Cosmos.System;
+﻿using Cosmos.System;
 using System.Collections.Generic;
 using System.Drawing;
 using Bitmap = Cosmos.System.Graphics.Bitmap;
+using Mouse = Cosmos.System.MouseManager;
+using System;
 
 namespace PrismOS.Graphics
 {
     public static class UI
     {
+        public static List<Graphics.UI.Window> Windows = new()
+        {
+            { new(100, 100, 300, 300, 4, "Hewwo, Worwd! UwU") }
+        };
+        public static int clickX = -100, clickY = -100;
+        public static bool clickDown = false;
+        public static void Clock(Canvas Canvas)
+        {
+            foreach (var window in Windows)
+            {
+                if (clickDown && clickX > window.X && clickX < window.X + window.Width && clickY > window.Y)
+                {
+                    if (Math.Abs(clickX - Mouse.X) > 4 || Math.Abs(clickY - Mouse.Y) > 4)
+                    {
+                        window.Dragging((int)Mouse.X, (int)Mouse.Y);
+                    }
+                }
+
+                window.Render(Canvas);
+            }
+
+            if (Mouse.MouseState == Cosmos.System.MouseState.Left)
+            {
+                if (!clickDown)
+                {
+                    clickX = (int)Mouse.X;
+                    clickY = (int)Mouse.Y;
+                    clickDown = true;
+                }
+            }
+            else if (clickDown)
+            {
+                clickDown = false;
+                if (Math.Abs(clickX - Mouse.X) < 4 && Math.Abs(clickY - Mouse.Y) < 4)
+                {
+                    Graphics.UI.ActiveElement = null;
+                    foreach (var window in Windows)
+                    {
+                        if (clickX > window.X && clickX < window.X + window.Width && clickY > window.Y && clickY < window.Y + window.Height)
+                        {
+                            window.Click(clickX - window.X, clickY - window.Y, 1);
+                        }
+                    }
+                }
+                clickX = -100;
+                clickY = -100;
+            }
+
+            if (Graphics.UI.ActiveElement != null)
+            {
+                if (Cosmos.System.KeyboardManager.TryReadKey(out var Key))
+                {
+                    Graphics.UI.ActiveElement.Key(Key);
+                }
+            }
+        }
+
         public static Element ActiveElement { get; set; }
         public delegate void ClickDelegate(Element self);
 
         public abstract class Element
         {
-            public int X, Y, Width, Height;
+            public int X, Y, Width, Height, Radius;
+            public List<Element> Children = new();
+            public ClickDelegate OnClick;
             public Element Parent;
+            public string Text;
 
-            internal abstract void Render(Canvas Canvas, int offset_x, int offset_y);
+            public abstract void Render(Canvas Canvas);
 
-            internal virtual bool Click(int x, int y, int btn)
+            public virtual bool Click(int X, int Y, int btn)
             {
                 ActiveElement = this;
                 return true;
             }
 
-            internal virtual bool MouseDown(int x, int y, int btn)
+            public virtual bool MouseDown(int X, int Y, int btn)
             {
                 return true;
             }
 
-            internal virtual bool MouseUp(int x, int y, int btn)
+            public virtual bool MouseUp(int X, int Y, int btn)
             {
                 return true;
             }
 
-            internal virtual bool Key(KeyEvent keyInfo)
+            public virtual bool Key(KeyEvent key)
             {
                 return false;
+            }
+
+            public void AddChild(Element Element)
+            {
+                Element.Parent = this;
+                Children.Add(Element);
             }
         }
 
         public class Window : Element
         {
-            public Window(int X, int Y, int Width, int Height, string Title, int Radius) : base(X, Y, Width, Height)
+            public Window(int X, int Y, int Width, int Height, int Radius, string Text)
             {
+                this.X = X;
+                this.Y = Y;
+                this.Width = Width;
+                this.Height = Height;
+                this.Radius = Radius;
+                this.Text = Text;
                 LastX = X;
                 LastY = Y;
-                this.Title = Title;
-                this.Radius = Radius;
-                Children = new List<Element>();
             }
 
-            public string Title;
-            public List<Element> Children;
-            public int LastX, LastY, Radius;
-
-            public void AddChild(Element guiElement)
-            {
-                guiElement.Parent = this;
-                Children.Add(guiElement);
-            }
-
-            internal override bool Click(int x, int y, int btn)
+            public int LastX, LastY;
+            public override bool Click(int X, int Y, int btn)
             {
                 ActiveElement = this;
                 foreach (var child in Children)
@@ -70,9 +131,9 @@ namespace PrismOS.Graphics
                     int x2 = x1 + child.Width;
                     int y1 = child.Y;
                     int y2 = y1 + child.Height;
-                    if (x >= x1 && x <= x2 && y >= y1 && y <= y2)
+                    if (X >= x1 && X <= x2 && Y >= y1 && Y <= y2)
                     {
-                        child.Click(x - x1, y - y1, btn);
+                        child.Click(X - x1, Y - y1, btn);
                     }
                 }
                 return true;
@@ -86,61 +147,56 @@ namespace PrismOS.Graphics
                 Y += dy * 2;
             }
 
-            internal override void Render(Canvas Canvas, int offset_x = 0, int offset_y = 0)
+            public override void Render(Canvas Canvas)
             {
-                if (LastX != X || LastY != Y) // we moved
-                {
-                    Canvas.DrawFilledRectangle(LastX, LastY, Width, Height, Radius, Color.White);
-                    LastX = X;
-                    LastY = Y;
-                }
                 Canvas.DrawFilledRectangle(X - 1, Y - 1, Width + 2, Height + 2, Radius, Color.DeepSkyBlue);
                 Canvas.DrawFilledRectangle(X, Y, Width, Height, Radius, Color.White);
-                Canvas.DrawFilledRectangle(X, Y, Width, 50, Radius, Color.DeepSkyBlue);
-                Canvas.DrawString(X, Y, Title, Color.White);
+                Canvas.DrawFilledRectangle(X, Y, Width, 15, Radius, Color.FromArgb(25, 25, 25));
+                Canvas.DrawString(X, Y, Text, Color.White);
 
                 foreach (var child in Children)
                 {
-                    child.Render(Canvas, X, Y + 50);
+                    child.Render(Canvas);
                 }
             }
         }
 
-        internal class TextBox : Element
+        public class TextBox : Element
         {
-            public TextBox(int X, int Y, string Text, bool Typable = false) : base(X, Y, 0, 0)
+            public TextBox(int X, int Y, string Text, bool Typable = false)
             {
-                Value = Text;
+                this.X = X;
+                this.Y = Y;
+                this.Text = Text;
+                this.Typable = Typable;
                 TextColour = Color.Black;
                 Background = Color.Transparent;
-                this.Typable = Typable;
             }
 
-            public string Value;
             public Color Background;
             public Color TextColour;
             public bool Typable;
 
-            internal override void Render(Canvas Canvas, int offset_x, int offset_y)
+            public override void Render(Canvas Canvas)
             {
-                Canvas.DrawString(X + offset_x, Y + offset_y, Value, TextColour);
+                Canvas.DrawString(X + Parent.X, Y + Parent.X, Text, TextColour);
             }
 
-            internal override bool Key(KeyEvent keyInfo)
+            public override bool Key(KeyEvent keyInfo)
             {
                 switch (keyInfo.Key)
                 {
                     case ConsoleKeyEx.Backspace:
-                        if (Value.Length > 0)
+                        if (Text.Length > 0)
                         {
-                            Value = Value[0..^1];
+                            Text = Text[0..^1];
                         }
                         break;
 
                     default:
                         if (!KeyboardManager.ControlPressed && keyInfo.KeyChar > (char)0)
                         {
-                            Value += keyInfo.KeyChar;
+                            Text += keyInfo.KeyChar;
                         }
                         break;
                 }
@@ -148,39 +204,40 @@ namespace PrismOS.Graphics
             }
         }
 
-        internal class Button : Element
+        public class Button : Element
         {
-            public string Value;
-            public Color Background;
-            public Color TextColour;
-
-            public delegate void ClickDelegate(Button self);
-
-            public ClickDelegate OnClick;
-
-            public Button(int x, int y, int w, int h, string text, Color Textclr, Color Backcolor, ClickDelegate onClick)
+            public Button(int X, int Y, int Width, int Height, string text, Color Textclr, Color Backcolor, ClickDelegate onClick)
             {
-                Value = text;
+                this.X = X;
+                this.Y = Y;
+                this.Width = Width;
+                this.Height = Height;
+                this.Text = text;
                 Background = Backcolor;
                 TextColour = Textclr;
                 OnClick = onClick;
             }
 
-            internal override void Render(Canvas Canvas, int offset_x, int offset_y)
+            public Color Background;
+            public Color TextColour;
+
+            public override void Render(Canvas Canvas)
             {
                 int mx = X + 4;
                 int my = Y + (Height / 2) - 8;
-                Canvas.DrawFilledRectangle(X + offset_x - 1, Y + offset_y - 1, Width + 2, Height + 2, 2, Color.White);
-                Canvas.DrawFilledRectangle(X + offset_x, Y + offset_y, Width, Height, 2, Color.Gray);
-                Canvas.DrawString(mx + offset_x, my + offset_y, Value, Color.White);
+                Canvas.DrawFilledRectangle(X + Parent.X - 1, Y + Parent.Y - 1, Width + 2, Height + 2, 2, Color.White);
+                Canvas.DrawFilledRectangle(X + Parent.X, Y + Parent.Y, Width, Height, 2, Color.Gray);
+                Canvas.DrawString(mx + Parent.X, my + Parent.Y, Text, Color.White);
             }
 
-            internal override bool Click(int x, int y, int btn)
+            public override bool Click(int x, int y, int btn)
             {
                 OnClick(this);
                 return base.Click(x, y, btn);
             }
         }
+
+        /*
 
         internal class Image : Element
         {
@@ -287,6 +344,6 @@ namespace PrismOS.Graphics
                 return base.Click(x, y, btn);
             }
         }
+        */
     }
 }
-*/
