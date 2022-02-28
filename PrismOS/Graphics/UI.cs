@@ -9,7 +9,7 @@ namespace PrismOS.Graphics
 {
     public static class UI
     {
-        public static List<Graphics.UI.Window> Windows = new()
+        public static List<Window> Windows = new()
         {
             { new(100, 100, 300, 300, 4, "Hewwo, Worwd! UwU") }
         };
@@ -30,7 +30,7 @@ namespace PrismOS.Graphics
                 window.Render(Canvas);
             }
 
-            if (Mouse.MouseState == Cosmos.System.MouseState.Left)
+            if (Mouse.MouseState == MouseState.Left)
             {
                 if (!clickDown)
                 {
@@ -57,12 +57,9 @@ namespace PrismOS.Graphics
                 clickY = -100;
             }
 
-            if (Graphics.UI.ActiveElement != null)
+            if (ActiveElement != null && KeyboardManager.TryReadKey(out var Key))
             {
-                if (Cosmos.System.KeyboardManager.TryReadKey(out var Key))
-                {
-                    Graphics.UI.ActiveElement.Key(Key);
-                }
+                ActiveElement.Key(Key);
             }
         }
 
@@ -152,7 +149,7 @@ namespace PrismOS.Graphics
                 Canvas.DrawFilledRectangle(X - 1, Y - 1, Width + 2, Height + 2, Radius, Color.DeepSkyBlue);
                 Canvas.DrawFilledRectangle(X, Y, Width, Height, Radius, Color.White);
                 Canvas.DrawFilledRectangle(X, Y, Width, 15, Radius, Color.FromArgb(25, 25, 25));
-                Canvas.DrawString(X, Y, Text, Color.White);
+                Canvas.DrawString(X + ((Width / 2) - (Canvas.Font.Default.Width * Text.Length / 2)), Y, Text, Color.White);
 
                 foreach (var child in Children)
                 {

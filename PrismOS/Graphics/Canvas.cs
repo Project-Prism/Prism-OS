@@ -26,8 +26,12 @@ namespace PrismOS.Graphics
 
         public VBEDriver VBE;
         public int*[] Buffer;
+        private DateTime LT;
+        private int TCycles;
+        private int Frames;
         public int Height;
         public int Width;
+        public int FPS;
 
         #region Pixel
 
@@ -285,6 +289,18 @@ namespace PrismOS.Graphics
             {
                 VBE.VBESet((ushort)Width, (ushort)Height, 32, true);
                 Buffer = new int*[Width * Height];
+            }
+            Frames++;
+            if ((DateTime.Now - LT).TotalSeconds >= 1)
+            {
+                FPS = Frames;
+                Frames = 0;
+                LT = DateTime.Now;
+            }
+            if (TCycles++ == 100)
+            {
+                TCycles = 0;
+                Cosmos.Core.Memory.Heap.Collect();
             }
 
             Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);

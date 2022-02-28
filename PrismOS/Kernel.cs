@@ -19,6 +19,7 @@ namespace PrismOS
                     Canvas.Clear(Color.Green);
                     //Graphics.UI.Clock(Canvas);
                     Paint.Clock2(Canvas);
+                    Canvas.DrawString(15, 60, "FPS: " + Canvas.FPS, Color.White);
                     Canvas.DrawBitmap((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
                     Canvas.Update();
                 }
