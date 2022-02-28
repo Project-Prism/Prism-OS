@@ -1,7 +1,6 @@
 using System.Drawing;
 using Canvas = PrismOS.Graphics.Canvas;
 using Mouse = Cosmos.System.MouseManager;
-using PrismOS.Tests;
 
 namespace PrismOS
 {
@@ -9,8 +8,7 @@ namespace PrismOS
     {
         protected override void Run()
         {
-            Canvas Canvas = new(1280, 720);
-            Paint Paint = new();
+            Canvas Canvas = new(1920, 1080);
 
             try
             {
@@ -18,8 +16,7 @@ namespace PrismOS
                 {
                     Canvas.Clear(Color.Green);
                     Graphics.UI.Clock(Canvas);
-                    //Paint.Clock2(Canvas);
-                    Canvas.DrawString(15, 60, Canvas.Width + "x" + Canvas.Height + " (" + Canvas.FPS + " FPS)", Color.White);
+                    Canvas.DrawString(15, 15, Canvas.Width + "x" + Canvas.Height + " (" + Canvas.FPS + " FPS)", Color.White);
                     Canvas.DrawBitmap((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
                     Canvas.Update();
                 }

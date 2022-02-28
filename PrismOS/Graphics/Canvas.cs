@@ -2,6 +2,8 @@
 using Bitmap = Cosmos.System.Graphics.Bitmap;
 using Mouse = Cosmos.System.MouseManager;
 using Color = System.Drawing.Color;
+using System.Collections.Generic;
+using Cosmos.System.Graphics;
 using Cosmos.Core;
 using System.Text;
 using System.IO;
@@ -23,6 +25,15 @@ namespace PrismOS.Graphics
             Buffer = new int*[Width * Height];
         }
 
+        public List<Mode> Modes = new()
+        {
+            { new(320, 240, (ColorDepth)32) },
+            { new(800, 480, (ColorDepth)32) },
+            { new(1280, 720, (ColorDepth)32) },
+            { new(1920, 1080, (ColorDepth)32) }
+        };
+        public bool ShowMenu;
+        private int Selected;
         public VBEDriver VBE;
         public int*[] Buffer;
         private DateTime LT;
@@ -284,10 +295,39 @@ namespace PrismOS.Graphics
 
         public void Update()
         {
-            if (Buffer.Length < Width * Height)
+            if (Buffer.Length != Width * Height)
             {
-                VBE.VBESet((ushort)Width, (ushort)Height, 32, true);
+                VBE.DisableDisplay();
+                VBE = new((ushort)Width, (ushort)Height, 32);
                 Buffer = new int*[Width * Height];
+                return;
+            }
+            if (Cosmos.System.KeyboardManager.ControlPressed || ShowMenu)
+            {
+                ShowMenu = true;
+                DrawFilledRectangle(0, 0, 100, Font.Default.Height * Modes.Count, Color.FromArgb(100, 25, 25, 25));
+                DrawFilledRectangle(0, Selected * Font.Default.Height, 100, Font.Default.Height, Color.DarkOrange);
+                for (int I = 0; I < Modes.Count; I++)
+                {
+                    DrawString(15, I * Font.Default.Height, Modes[I].Columns + "x" + Modes[I].Rows, Color.White);
+                }
+                if (Cosmos.System.KeyboardManager.TryReadKey(out var Key))
+                {
+                    if (Key.Key == Cosmos.System.ConsoleKeyEx.UpArrow && Selected != 0)
+                    {
+                        Selected--;
+                    }
+                    if (Key.Key == Cosmos.System.ConsoleKeyEx.DownArrow && Selected != Ms.Count - 1)
+                    {
+                        Selected++;
+                    }
+                    if (Key.Key == Cosmos.System.ConsoleKeyEx.Enter)
+                    {
+                        ShowMenu = false;
+                        Width = Modes[Selected].Columns;
+                        Height = Modes[Selected].Rows;
+                    }
+                }
             }
             Frames++;
             if ((DateTime.Now - LT).TotalSeconds >= 1)
