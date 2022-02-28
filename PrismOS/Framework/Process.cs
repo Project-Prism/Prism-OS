@@ -4,12 +4,6 @@ namespace PrismOS.Framework
 {
     public class Process : IDisposable
     {
-        public Process(string FromBase255String)
-        {
-            ROM = Tests.Base255.FromBase255String(FromBase255String);
-            RAM = new byte[30000];
-            Output = "";
-        }
         public Process(byte[] RawData)
         {
             ROM = RawData;

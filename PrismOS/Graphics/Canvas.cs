@@ -1,11 +1,12 @@
 ﻿using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
 using Bitmap = Cosmos.System.Graphics.Bitmap;
+using Mouse = Cosmos.System.MouseManager;
 using Color = System.Drawing.Color;
-using System;
+using PrismOS.Tests;
+using Cosmos.Core;
 using System.Text;
 using System.IO;
-using Mouse = Cosmos.System.MouseManager;
-using Cosmos.Core;
+using System;
 
 namespace PrismOS.Graphics
 {
@@ -58,51 +59,16 @@ namespace PrismOS.Graphics
 
         public void DrawLine(int X, int Y, int X2, int Y2, Color Color)
         {
-            int C;
-            bool steep = false;
-            if (Math.Abs(X - X2) < Math.Abs(Y - Y2))
-            {
-                C = X;
-                X = Y;
-                Y = C;
+            int dx = Math.Abs(X2 - X), sx = X < X2 ? 1 : -1;
+            int dy = Math.Abs(Y2 - Y), sy = Y < Y2 ? 1 : -1;
+            int err = (dx > dy ? dx : -dy) / 2;
 
-                C = X2;
-                X2 = Y2;
-                Y2 = C;
-
-                steep = true;
-            }
-            if (X > X2)
+            while (X != X2 || Y != Y2)
             {
-                C = X;
-                X = X2;
-                X2 = C;
-
-                C = Y;
-                Y = Y2;
-                Y2 = C;
-            }
-            int dx = X2 - X;
-            int dy = Y2 - Y;
-            float derror = Math.Abs(dy / (float)dx);
-            float error = 0;
-            int y = Y;
-            for (int x = X; x <= X2; x++)
-            {
-                if (steep)
-                {
-                    SetPixel(y, x, Color);
-                }
-                else
-                {
-                    SetPixel(x, y, Color);
-                }
-                error += derror;
-                if (error > .5)
-                {
-                    y += (Y2 > Y ? 1 : -1);
-                    error--;
-                }
+                SetPixel(X, Y, Color);
+                int e2 = err;
+                if (e2 > -dx) { err -= dy; X += sx; }
+                if (e2 < dy) { err += dx; Y += sy; }
             }
         }
         public void DrawAngledLine(int X, int Y, int Angle, int Radius, Color Color)
