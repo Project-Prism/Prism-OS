@@ -1,7 +1,6 @@
 ﻿using Cosmos.System;
 using System.Collections.Generic;
 using System.Drawing;
-using Bitmap = Cosmos.System.Graphics.Bitmap;
 using Mouse = Cosmos.System.MouseManager;
 using System;
 
@@ -146,7 +145,6 @@ namespace PrismOS.Graphics
 
             public override void Render(Canvas Canvas)
             {
-                Canvas.DrawFilledRectangle(X - 1, Y - 1, Width + 2, Height + 2, Radius, Color.DeepSkyBlue);
                 Canvas.DrawFilledRectangle(X, Y, Width, Height, Radius, Color.White);
                 Canvas.DrawFilledRectangle(X, Y, Width, 15, Radius, Color.FromArgb(25, 25, 25));
                 Canvas.DrawString(X + ((Width / 2) - (Canvas.Font.Default.Width * Text.Length / 2)), Y, Text, Color.White);
