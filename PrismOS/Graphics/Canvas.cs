@@ -15,14 +15,7 @@ namespace PrismOS.Graphics
     {
         public Canvas(int Width, int Height)
         {
-            this.Width = Width;
-            this.Height = Height;
-            Mouse.ScreenWidth = (uint)Width;
-            Mouse.ScreenHeight = (uint)Height;
-            Mouse.X = (uint)Width / 2;
-            Mouse.Y = (uint)Height / 2;
-            VBE = new((ushort)Width, (ushort)Height, 32);
-            Buffer = new int*[Width * Height];
+            Resize(Width, Height);
         }
 
         public List<Mode> Modes = new()
@@ -37,7 +30,6 @@ namespace PrismOS.Graphics
         public VBEDriver VBE;
         public int*[] Buffer;
         private DateTime LT;
-        private int TCycles;
         private int Frames;
         public int Height;
         public int Width;
@@ -288,20 +280,21 @@ namespace PrismOS.Graphics
             MemoryOperations.Fill((int[])(object)Buffer, Color.ToArgb());
         }
 
-        public Bitmap ToBitmap()
+        public void Resize(int Width, int Height)
         {
-            return new Bitmap((uint)Width, (uint)Height, (byte[])(object)Buffer, Cosmos.System.Graphics.ColorDepth.ColorDepth32);
+            VBE.DisableDisplay();
+            this.Width = Width;
+            this.Height = Height;
+            VBE = new((ushort)Width, (ushort)Height, 32);
+            Buffer = new int*[Width * Height];
+            Mouse.ScreenWidth = (uint)Width;
+            Mouse.ScreenHeight = (uint)Height;
+            Mouse.X = (uint)Width / 2;
+            Mouse.Y = (uint)Height / 2;
         }
 
         public void Update()
         {
-            if (Buffer.Length != Width * Height)
-            {
-                VBE.DisableDisplay();
-                VBE = new((ushort)Width, (ushort)Height, 32);
-                Buffer = new int*[Width * Height];
-                return;
-            }
             if (Cosmos.System.KeyboardManager.ControlPressed || ShowMenu)
             {
                 ShowMenu = true;
@@ -317,15 +310,15 @@ namespace PrismOS.Graphics
                     {
                         Selected--;
                     }
-                    if (Key.Key == Cosmos.System.ConsoleKeyEx.DownArrow && Selected != Ms.Count - 1)
+                    if (Key.Key == Cosmos.System.ConsoleKeyEx.DownArrow && Selected != Modes.Count - 1)
                     {
                         Selected++;
                     }
                     if (Key.Key == Cosmos.System.ConsoleKeyEx.Enter)
                     {
                         ShowMenu = false;
-                        Width = Modes[Selected].Columns;
-                        Height = Modes[Selected].Rows;
+                        Resize(Modes[Selected].Columns, Modes[Selected].Rows);
+                        return;
                     }
                 }
             }
@@ -335,10 +328,6 @@ namespace PrismOS.Graphics
                 FPS = Frames;
                 Frames = 0;
                 LT = DateTime.Now;
-            }
-            if (TCycles++ == 100)
-            {
-                TCycles = 0;
                 Cosmos.Core.Memory.Heap.Collect();
             }
 
