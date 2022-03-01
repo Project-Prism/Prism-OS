@@ -20,8 +20,10 @@ namespace PrismOS.Graphics
 
         public List<Mode> Modes = new()
         {
-            { new(320, 240, (ColorDepth)32) },
-            { new(800, 480, (ColorDepth)32) },
+            { new(320, 200, (ColorDepth)32) },
+            { new(640, 480, (ColorDepth)32) },
+            { new(720, 480, (ColorDepth)32) },
+            { new(1024, 768, (ColorDepth)32) },
             { new(1280, 720, (ColorDepth)32) },
             { new(1920, 1080, (ColorDepth)32) }
         };
