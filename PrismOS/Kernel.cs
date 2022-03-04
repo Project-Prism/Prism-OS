@@ -15,8 +15,8 @@ namespace PrismOS
                 while (true)
                 {
                     Canvas.Clear(Color.Green);
-                    Graphics.UI.Clock(Canvas);
-                    Canvas.DrawString(15, 15, Canvas.Width + "x" + Canvas.Height + " (" + Canvas.FPS + " FPS)", Color.White);
+                    Tests.SineWaveVisualiser.Tick(Canvas);
+                    Canvas.DrawString(15, 60, Canvas.Width + "x" + Canvas.Height + " (" + Canvas.FPS + " FPS)", Color.White);
                     Canvas.DrawBitmap((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
                     Canvas.Update();
                 }

@@ -6,6 +6,7 @@ namespace PrismOS.Tests
 {
     public static class ImageTools
     {
+        private static Random Random { get; } = new();
         private static Bitmap LastFrame;
 
         public static Bitmap AddGrayScale(Bitmap Bitmap)
@@ -90,6 +91,27 @@ namespace PrismOS.Tests
                 Bitmap.rawData[I] = Color.FromArgb(R, G, B).ToArgb();
             }
             return Bitmap;
+        }
+
+        public static Bitmap GetNoise(int Width, int Height)
+        {
+            Bitmap Temp = new((uint)Width, (uint)Height, ColorDepth.ColorDepth32);
+            for (int I = 0; I < Width * Height; I++)
+            {
+                Temp.rawData[I] = Color.FromArgb(Random.Next(0, 255), Random.Next(0, 255), Random.Next(0, 255)).ToArgb();
+            }
+            return Temp;
+        }
+
+        public static Bitmap GetSine(int Width, int Height, Color Color, double Freq = 40.0, double Amp = 0.25)
+        {
+            Bitmap Temp = new((uint)Width, (uint)Height, ColorDepth.ColorDepth32);
+            Amp *= Height;
+            for (int X = 0; X < Width; X++)
+            {
+                Temp.rawData[(Width * ((Height / 5) + ((short)(Amp * Math.Sin(2 * Math.PI * X * Freq / 8000)) / 2))) + X] = Color.ToArgb();
+            }
+            return Temp;
         }
     }
 }

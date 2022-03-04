@@ -67,6 +67,31 @@ namespace PrismOS.Graphics
 
         public void DrawLine(int X, int Y, int X2, int Y2, Color Color)
         {
+            /*
+            int B;
+            if (X < X2)
+            {
+                B = X;
+                X = X2;
+                X2 = B;
+            }
+            if (Y < Y2)
+            {
+                B = Y;
+                Y = Y2;
+                Y2 = B;
+            }
+
+            int I = X2, J = Y2;
+            while (I != X2 && J != Y2)
+            {
+                J++;
+                SetPixel(I, J, Color);
+                I++;
+                SetPixel(I, J, Color);
+            }
+            */
+
             int dx = Math.Abs(X2 - X), sx = X < X2 ? 1 : -1;
             int dy = Math.Abs(Y2 - Y), sy = Y < Y2 ? 1 : -1;
             int err = (dx > dy ? dx : -dy) / 2;
@@ -126,18 +151,22 @@ namespace PrismOS.Graphics
                 return;
             }
 
-            int x2 = X + Width, y2 = Y + Height, r2 = Radius + Radius;
             // Draw Outside circles
-            DrawFilledCircle(X + Radius, Y + Radius, Radius, Color);
-            DrawFilledCircle(x2 - Radius - 1, Y + Radius, Radius, Color);
-            DrawFilledCircle(X + Radius, y2 - Radius - 1, Radius, Color);
-            DrawFilledCircle(x2 - Radius - 1, y2 - Radius - 1, Radius, Color);
+            DrawFilledCircle(X + Width - (Radius * 2), Y + Height - (Radius * 2), Radius, Color, 0, 90);
+            DrawFilledCircle(X - 1, Y + Height - (Radius * 2) - 1, Radius, Color, 270, 360);
+            DrawFilledCircle(X + Width - (Radius * 2) + 2, Y - 1, Radius, Color, 90, 180);
+            DrawFilledCircle(X - 1, Y, Radius, Color, 180, 270);
 
             // Draw Main Rectangle
-            DrawFilledRectangle(X, Y + Radius, Width, Height - r2, Color);
+            DrawFilledRectangle(X, Y, Width - (Radius * 2), Height - (Radius * 2), Color);
+
             // Draw Outside Rectangles
-            DrawFilledRectangle(X + Radius, Y, Width - r2, Radius, Color);
-            DrawFilledRectangle(X + Radius, y2 - Radius, Width - r2, Radius, Color);
+            DrawFilledRectangle(X - Radius, Y, Radius, Height - (Radius * 2), Color);
+            DrawFilledRectangle(X + Width - (Radius * 2), Y, Radius, Height - (Radius * 2), Color);
+            DrawFilledRectangle(X, Y - Radius, Width - (Radius * 2) + 1, Radius, Color);
+            DrawFilledRectangle(X, Y + Width - (Radius * 2), Width - (Radius * 2) + 1, Radius, Color);
+            //DrawFilledRectangle(X + Radius, Y, Width - r2, Radius, Color);
+            //DrawFilledRectangle(X + Radius, y2 - Radius, Width - r2, Radius, Color);
         }
 
         #endregion
