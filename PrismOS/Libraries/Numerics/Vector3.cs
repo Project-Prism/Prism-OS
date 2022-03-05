@@ -1,4 +1,4 @@
-﻿namespace PrismOS.Numerics
+﻿namespace PrismOS.Libraries.Numerics
 {
     public class Vector3
     {

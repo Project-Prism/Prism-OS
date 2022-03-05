@@ -45,10 +45,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Files\Audio.wav" />
       <None Remove="Files\Cursor.bmp" />
     </ItemGroup>
 
     <ItemGroup>
+      <EmbeddedResource Include="Files\Audio.wav" />
       <EmbeddedResource Include="Files\Cursor.bmp" />
       <EmbeddedResource Include="Files\Wallpaper.bmp">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

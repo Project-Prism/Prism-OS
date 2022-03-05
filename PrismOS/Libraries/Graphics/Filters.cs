@@ -2,9 +2,9 @@
 using System;
 using System.Drawing;
 
-namespace PrismOS.Tests
+namespace PrismOS.Libraries.Graphics
 {
-    public static class ImageTools
+    public static class Filters
     {
         private static Random Random { get; } = new();
         private static Bitmap LastFrame;

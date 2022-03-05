@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PrismOS.Numerics
+namespace PrismOS.Libraries.Numerics
 {
     public class Matrix<T>
     {

@@ -9,13 +9,14 @@ using System.Text;
 using System.IO;
 using System;
 
-namespace PrismOS.Graphics
+namespace PrismOS.Libraries.Graphics
 {
     public unsafe class Canvas
     {
         public Canvas(int Width, int Height)
         {
             Resize(Width, Height);
+            Update();
         }
 
         public List<Mode> Modes = new()
@@ -294,6 +295,18 @@ namespace PrismOS.Graphics
                         }
                     }
                 }
+            }
+        }
+
+        #endregion
+
+        #region Special
+
+        public void DrawSine(int X, int Y, int Width, int Height, Color Color, double Frequency = 40.0)
+        {
+            for (; X < X + Width; X++)
+            {
+                SetPixel(X, (Y / 5) + ((short)(0.25 * Height * Math.Sin(2 * Math.PI * X * Frequency / 8000)) / 2), Color);
             }
         }
 

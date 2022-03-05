@@ -4,9 +4,9 @@ using System.Drawing;
 using Mouse = Cosmos.System.MouseManager;
 using System;
 
-namespace PrismOS.Graphics
+namespace PrismOS.Libraries.Graphics
 {
-    public static class UI
+    public static class GUI
     {
         public static List<Window> Windows = new()
         {
@@ -43,7 +43,7 @@ namespace PrismOS.Graphics
                 clickDown = false;
                 if (Math.Abs(clickX - Mouse.X) < 4 && Math.Abs(clickY - Mouse.Y) < 4)
                 {
-                    Graphics.UI.ActiveElement = null;
+                    Graphics.GUI.ActiveElement = null;
                     foreach (var window in Windows)
                     {
                         if (clickX > window.X && clickX < window.X + window.Width && clickY > window.Y && clickY < window.Y + window.Height)
