@@ -28,10 +28,10 @@ namespace PrismOS.Libraries.Graphics
             { new(1280, 720, (ColorDepth)32) },
             { new(1920, 1080, (ColorDepth)32) }
         };
+        public int*[] Buffer;
         public bool ShowMenu;
         private int Selected;
         public VBEDriver VBE;
-        public int*[] Buffer;
         private DateTime LT;
         private int Frames;
         public int Height;
@@ -68,31 +68,6 @@ namespace PrismOS.Libraries.Graphics
 
         public void DrawLine(int X, int Y, int X2, int Y2, Color Color)
         {
-            /*
-            int B;
-            if (X < X2)
-            {
-                B = X;
-                X = X2;
-                X2 = B;
-            }
-            if (Y < Y2)
-            {
-                B = Y;
-                Y = Y2;
-                Y2 = B;
-            }
-
-            int I = X2, J = Y2;
-            while (I != X2 && J != Y2)
-            {
-                J++;
-                SetPixel(I, J, Color);
-                I++;
-                SetPixel(I, J, Color);
-            }
-            */
-
             int dx = Math.Abs(X2 - X), sx = X < X2 ? 1 : -1;
             int dy = Math.Abs(Y2 - Y), sy = Y < Y2 ? 1 : -1;
             int err = (dx > dy ? dx : -dy) / 2;
@@ -222,12 +197,13 @@ namespace PrismOS.Libraries.Graphics
                     SetPixel(X + IX, Y + IY, Color.FromArgb(Bitmap.rawData[(Bitmap.Width * IY) + IX]));
             }
         }
+
         public void DrawBitmap(int X, int Y, int Width, int Height, Bitmap Bitmap)
         {
             if (Width == 0 || Height == 0)
                 return;
 
-            Bitmap Temp = new((uint)Width, (uint)Height, Cosmos.System.Graphics.ColorDepth.ColorDepth32);
+            Bitmap Temp = new((uint)Width, (uint)Height, ColorDepth.ColorDepth32);
             int x_ratio = (int)((Bitmap.Width << 16) / Width) + 1;
             int y_ratio = (int)((Bitmap.Height << 16) / Height) + 1;
             int x2, y2;
@@ -321,7 +297,20 @@ namespace PrismOS.Libraries.Graphics
                 Color = Color.Black;
             }
 
-            MemoryOperations.Fill((int[])(object)Buffer, Color.ToArgb());
+            if (Color.A == 255)
+            {
+                MemoryOperations.Fill((int[])(object)Buffer, Color.ToArgb());
+            }
+            else
+            {
+                for (int X = 0; X < Width; X ++)
+                {
+                    for (int Y = 0; Y < Height; Y++)
+                    {
+                        SetPixel(X, Y, Color);
+                    }
+                }
+            }
         }
 
         public void Resize(int Width, int Height)

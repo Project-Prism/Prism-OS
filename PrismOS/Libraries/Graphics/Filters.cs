@@ -113,5 +113,23 @@ namespace PrismOS.Libraries.Graphics
             }
             return Temp;
         }
+
+        public static Bitmap Resize(Bitmap Bitmap, int Width, int Height)
+        {
+            Bitmap Temp = new((uint)Width, (uint)Height, ColorDepth.ColorDepth32);
+            int x_ratio = (int)((Bitmap.Width << 16) / Width) + 1;
+            int y_ratio = (int)((Bitmap.Height << 16) / Height) + 1;
+            int x2, y2;
+            for (int i = 0; i < Height; i++)
+            {
+                for (int j = 0; j < Width; j++)
+                {
+                    x2 = (j * x_ratio) >> 16;
+                    y2 = (i * y_ratio) >> 16;
+                    Temp.rawData[(i * Width) + j] = Bitmap.rawData[(y2 * Bitmap.Width) + x2];
+                }
+            }
+            return Temp;
+        }
     }
 }
