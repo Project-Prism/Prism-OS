@@ -4,6 +4,6 @@ namespace PrismOS.Libraries.Numerics
 {
     public class Matrix<T>
     {
-        public List<T[]> M = new();
+        public List<List<T>> M = new();
     }
 }

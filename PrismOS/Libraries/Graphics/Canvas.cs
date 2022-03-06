@@ -16,7 +16,6 @@ namespace PrismOS.Libraries.Graphics
         public Canvas(int Width, int Height)
         {
             Resize(Width, Height);
-            Update();
         }
 
         public List<Mode> Modes = new()
@@ -184,6 +183,21 @@ namespace PrismOS.Libraries.Graphics
             DrawLine(X1, Y1, X3, Y3, Color);
             DrawLine(X2, Y2, X3, Y3, Color);
         }
+        public void DrawFilledTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
+        {
+            // TODO: optimise and fix
+            int dx = Math.Abs(X2 - X1), sx = X1 < X2 ? 1 : -1;
+            int dy = Math.Abs(Y2 - Y1), sy = Y1 < Y2 ? 1 : -1;
+            int err = (dx > dy ? dx : -dy) / 2;
+
+            while (X1 != X2 || Y1 != Y2)
+            {
+                DrawLine(X1, Y1, X3, Y3, Color);
+                int e2 = err;
+                if (e2 > -dx) { err -= dy; X1 += sx; }
+                if (e2 < dy) { err += dx; Y1 += sy; }
+            }
+        }
 
         #endregion
 
@@ -303,7 +317,7 @@ namespace PrismOS.Libraries.Graphics
             }
             else
             {
-                for (int X = 0; X < Width; X ++)
+                for (int X = 0; X < Width; X++)
                 {
                     for (int Y = 0; Y < Height; Y++)
                     {
@@ -324,6 +338,7 @@ namespace PrismOS.Libraries.Graphics
             Mouse.ScreenHeight = (uint)Height;
             Mouse.X = (uint)Width / 2;
             Mouse.Y = (uint)Height / 2;
+            Update();
         }
 
         public void Update()
