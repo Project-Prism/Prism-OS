@@ -1,35 +1,35 @@
 ﻿using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
-using Bitmap = Cosmos.System.Graphics.Bitmap;
 using Mouse = Cosmos.System.MouseManager;
 using Color = System.Drawing.Color;
-using System.Collections.Generic;
 using Cosmos.System.Graphics;
 using Cosmos.Core;
 using System.Text;
 using System.IO;
 using System;
+using PrismOS.Libraries.Numerics;
 
 namespace PrismOS.Libraries.Graphics
 {
     public unsafe class Canvas
     {
-        public Canvas(int Width, int Height)
+        public Canvas(int Width, int Height, bool UseVBE)
         {
-            Resize(Width, Height);
+            this.Width = Width;
+            this.Height = Height;
+            Buffer = new int*[Width * Height];
+            Mouse.ScreenWidth = (uint)Width;
+            Mouse.ScreenHeight = (uint)Height;
+            Mouse.X = (uint)Width / 2;
+            Mouse.Y = (uint)Height / 2;
+            if (UseVBE)
+            {
+                VBE = new((ushort)Width, (ushort)Height, 32);
+                Update();
+            }
         }
 
-        public List<Mode> Modes = new()
-        {
-            { new(320, 200, (ColorDepth)32) },
-            { new(640, 480, (ColorDepth)32) },
-            { new(720, 480, (ColorDepth)32) },
-            { new(1024, 768, (ColorDepth)32) },
-            { new(1280, 720, (ColorDepth)32) },
-            { new(1920, 1080, (ColorDepth)32) }
-        };
+        public float AspectRatio;
         public int*[] Buffer;
-        public bool ShowMenu;
-        private int Selected;
         public VBEDriver VBE;
         private DateTime LT;
         private int Frames;
@@ -211,26 +211,9 @@ namespace PrismOS.Libraries.Graphics
                     SetPixel(X + IX, Y + IY, Color.FromArgb(Bitmap.rawData[(Bitmap.Width * IY) + IX]));
             }
         }
-
         public void DrawBitmap(int X, int Y, int Width, int Height, Bitmap Bitmap)
         {
-            if (Width == 0 || Height == 0)
-                return;
-
-            Bitmap Temp = new((uint)Width, (uint)Height, ColorDepth.ColorDepth32);
-            int x_ratio = (int)((Bitmap.Width << 16) / Width) + 1;
-            int y_ratio = (int)((Bitmap.Height << 16) / Height) + 1;
-            int x2, y2;
-            for (int i = 0; i < Height; i++)
-            {
-                for (int j = 0; j < Width; j++)
-                {
-                    x2 = (j * x_ratio) >> 16;
-                    y2 = (i * y_ratio) >> 16;
-                    Temp.rawData[(i * Width) + j] = Bitmap.rawData[(y2 * Bitmap.Width) + x2];
-                }
-            }
-            DrawBitmap(X, Y, Temp);
+            DrawBitmap(X, Y, new((uint)Width, (uint)Height, (byte[])(object)Bitmap.rawData, Cosmos.System.Graphics.ColorDepth.ColorDepth32));
         }
 
         #endregion
@@ -264,7 +247,6 @@ namespace PrismOS.Libraries.Graphics
             public MemoryStream MS;
             public readonly static Font Default = new(8, 16, "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AAB4zMzM2MzGxsbMAAAAAAAA/sbGwMDAwMDAwAAAAAAAAAAA/mxsbGxsbGwAAAAAAAAA/sZgMBgwYMb+AAAAAAAAAAAAftjY2NjYcAAAAAAAAAAAZmZmZmZ8YGDAAAAAAAAAAHbcGBgYGBgYAAAAAAAAAH4YPGZmZjwYfgAAAAAAAAA4bMbG/sbGbDgAAAAAAAA4bMbGxmxsbGzuAAAAAAAAHjAYDD5mZmZmPAAAAAAAAAAAAH7b29t+AAAAAAAAAAAAAwZ+29vzfmDAAAAAAAAAHDBgYHxgYGAwHAAAAAAAAAB8xsbGxsbGxsYAAAAAAAAAAP4AAP4AAP4AAAAAAAAAAAAYGH4YGAAA/wAAAAAAAAAwGAwGDBgwAH4AAAAAAAAADBgwYDAYDAB+AAAAAAAADhsbGBgYGBgYGBgYGBgYGBgYGBgYGNjY2HAAAAAAAAAAABgYAH4AGBgAAAAAAAAAAAAAdtwAdtwAAAAAAAAAOGxsOAAAAAAAAAAAAAAAAAAAAAAAABgYAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAAADwwMDAwM7GxsPBwAAAAAANhsbGxsbAAAAAAAAAAAAABw2DBgyPgAAAAAAAAAAAAAAAAAfHx8fHx8fAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==");
         }
-
         public void DrawString(int X, int Y, string Text, Color Color)
         {
             string[] Lines = Text.Split('\n');
@@ -292,11 +274,114 @@ namespace PrismOS.Libraries.Graphics
 
         #region Special
 
-        public void DrawSine(int X, int Y, int Width, int Height, Color Color, double Frequency = 40.0)
+        public static float[] GetPerlinNoise1D(int Count, int Seed, int Octaves)
         {
-            for (; X < X + Width; X++)
+            Random Random = new(Seed);
+
+            float[] FNoiseSeed1D = new float[Count], FPerlinNoise1D = new float[Count];
+
+            for (int I = 0; I < FNoiseSeed1D.Length; I++)
+                FNoiseSeed1D[I] = Random.Next(0, 1);
+
+            for (int I = 0; I < Count; I++)
             {
-                SetPixel(X, (Y / 5) + ((short)(0.25 * Height * Math.Sin(2 * Math.PI * X * Frequency / 8000)) / 2), Color);
+                float FNoise = 0.0f;
+                float FScale = 1.0f;
+                float FScaleAcc = 0.0f;
+
+                for (int O = 0; O < Octaves; O++)
+                {
+                    int Pitch = Count >> O;
+                    int Sample1 = I / Pitch * Pitch;
+                    int Sample2 = (Sample1 + Pitch) % Count;
+
+                    float Blend = (I * Sample1) / Pitch;
+                    float Sample = (1.0f - Blend) * FNoiseSeed1D[Sample1] + Blend * FNoiseSeed1D[Sample2];
+                    FNoise += Sample * FScale;
+                    FScaleAcc += FScale;
+                    FScale /= 2.0f;
+                }
+
+                // Scale to seed range
+                FPerlinNoise1D[I] = FNoise / FScaleAcc;
+            }
+
+            return FPerlinNoise1D;
+        }
+
+        public void DrawObject(Mesh Object, float Elapsed, float FFar = 0.1f, float FNear = 1000.0f, float Fov = 90.0f)
+        {
+            float FTheta = 1.0f * Elapsed, FovRad = 1.0f / (float)Math.Tan(Fov * 0.00872663889);
+
+            // Set dynamic variables
+            Matrix<float> Projection = new(), RotZ = new(), RotX = new();
+            AspectRatio = Height / Width;
+
+            // Set projection matrix
+            Projection.M[0][0] = AspectRatio * FovRad;
+            Projection.M[1][1] = FovRad;
+            Projection.M[2][2] = FFar / (FFar * FNear);
+            Projection.M[3][2] = -FFar * FNear / (FFar * FNear);
+            Projection.M[2][3] = 1.0f;
+            Projection.M[3][3] = 0.0f;
+
+            // Rotate Z
+            RotZ.M[0][0] = (float)Math.Cos(FTheta);
+            RotZ.M[0][1] = (float)Math.Sin(FTheta);
+            RotZ.M[1][0] = -(float)Math.Sin(FTheta);
+            RotZ.M[1][1] = (float)Math.Cos(FTheta);
+            RotZ.M[2][2] = 1;
+            RotZ.M[3][3] = 1;
+
+            // Rotate X
+            RotX.M[0][0] = 1;
+            RotX.M[1][1] = (float)Math.Cos(FTheta * 0.5f);
+            RotX.M[1][2] = (float)Math.Sin(FTheta * 0.5f);
+            RotX.M[2][1] = -(float)Math.Sin(FTheta * 0.5f);
+            RotX.M[2][2] = (float)Math.Cos(FTheta * 0.5f);
+            RotX.M[3][3] = 1;
+
+            // Draw triangles
+            for (int I = 0; I < Object.Triangles.Length; I++)
+            {
+                Triangle TriProjected = new(), Triangle = Object.Triangles[I], TriTranslated = Triangle;
+
+                // Translate triangle
+                TriTranslated.P[0].Z = Triangle.P[0].Z + 3.0f;
+                TriTranslated.P[1].Z = Triangle.P[1].Z + 3.0f;
+                TriTranslated.P[2].Z = Triangle.P[2].Z + 3.0f;
+
+                // Multiply matrix vectors
+                MMV(ref TriTranslated.P[0], ref TriProjected.P[0], Projection);
+                MMV(ref TriTranslated.P[1], ref TriProjected.P[1], Projection);
+                MMV(ref TriTranslated.P[2], ref TriProjected.P[2], Projection);
+
+                // Scale into view
+                TriProjected.P[0].X += 1.0f; TriProjected.P[0].Y += 1.0f;
+                TriProjected.P[1].X += 1.0f; TriProjected.P[1].Y += 1.0f;
+                TriProjected.P[2].X += 1.0f; TriProjected.P[2].Y += 1.0f;
+                TriProjected.P[0].X *= 0.5f * Width; TriProjected.P[0].Y *= 0.5f * Width;
+                TriProjected.P[1].X *= 0.5f * Width; TriProjected.P[1].Y *= 0.5f * Width;
+                TriProjected.P[2].X *= 0.5f * Width; TriProjected.P[2].Y *= 0.5f * Width;
+
+                // Draw triangle
+                DrawTriangle(
+                    (int)TriProjected.P[0].X, (int)TriProjected.P[0].Y,
+                    (int)TriProjected.P[1].X, (int)TriProjected.P[1].Y,
+                    (int)TriProjected.P[2].X, (int)TriProjected.P[2].Y,
+                    Color.White);
+            }
+        }
+        private static void MMV(ref Vector3 In, ref Vector3 Out, Matrix<float> Matrix)
+        {
+            Out.X = In.X * Matrix.M[0][0] * In.Y * Matrix.M[1][0] + In.Z * Matrix.M[2][0] + Matrix.M[3][0];
+            Out.X = In.X * Matrix.M[0][1] * In.Y * Matrix.M[1][1] + In.Z * Matrix.M[2][1] + Matrix.M[3][1];
+            Out.X = In.X * Matrix.M[0][2] * In.Y * Matrix.M[1][2] + In.Z * Matrix.M[2][2] + Matrix.M[3][2];
+            float W = In.X * Matrix.M[0][3] * In.Y * Matrix.M[1][3] + In.Z * Matrix.M[2][3] + Matrix.M[3][3];
+
+            if (W != 0.0f)
+            {
+                Out.X /= W; Out.Y /= W; Out.Z /= W;
             }
         }
 
@@ -327,59 +412,21 @@ namespace PrismOS.Libraries.Graphics
             }
         }
 
-        public void Resize(int Width, int Height)
-        {
-            VBE.DisableDisplay();
-            this.Width = Width;
-            this.Height = Height;
-            VBE = new((ushort)Width, (ushort)Height, 32);
-            Buffer = new int*[Width * Height];
-            Mouse.ScreenWidth = (uint)Width;
-            Mouse.ScreenHeight = (uint)Height;
-            Mouse.X = (uint)Width / 2;
-            Mouse.Y = (uint)Height / 2;
-            Update();
-        }
-
         public void Update()
         {
-            if (Cosmos.System.KeyboardManager.ControlPressed || ShowMenu)
+            if (VBE != null)
             {
-                ShowMenu = true;
-                DrawFilledRectangle(0, 0, 100, Font.Default.Height * Modes.Count, Color.FromArgb(100, 25, 25, 25));
-                DrawFilledRectangle(0, Selected * Font.Default.Height, 100, Font.Default.Height, Color.DarkOrange);
-                for (int I = 0; I < Modes.Count; I++)
+                Frames++;
+                if ((DateTime.Now - LT).TotalSeconds >= 1)
                 {
-                    DrawString(15, I * Font.Default.Height, Modes[I].Columns + "x" + Modes[I].Rows, Color.White);
+                    FPS = Frames;
+                    Frames = 0;
+                    LT = DateTime.Now;
+                    Cosmos.Core.Memory.Heap.Collect();
                 }
-                if (Cosmos.System.KeyboardManager.TryReadKey(out var Key))
-                {
-                    if (Key.Key == Cosmos.System.ConsoleKeyEx.UpArrow && Selected != 0)
-                    {
-                        Selected--;
-                    }
-                    if (Key.Key == Cosmos.System.ConsoleKeyEx.DownArrow && Selected != Modes.Count - 1)
-                    {
-                        Selected++;
-                    }
-                    if (Key.Key == Cosmos.System.ConsoleKeyEx.Enter)
-                    {
-                        ShowMenu = false;
-                        Resize(Modes[Selected].Columns, Modes[Selected].Rows);
-                        return;
-                    }
-                }
-            }
-            Frames++;
-            if ((DateTime.Now - LT).TotalSeconds >= 1)
-            {
-                FPS = Frames;
-                Frames = 0;
-                LT = DateTime.Now;
-                Cosmos.Core.Memory.Heap.Collect();
-            }
 
-            Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);
+                Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);
+            }
         }
 
         #endregion

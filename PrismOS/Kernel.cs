@@ -1,6 +1,5 @@
+using PrismOS.Libraries.Graphics;
 using System.Drawing;
-using Mouse = Cosmos.System.MouseManager;
-using Canvas = PrismOS.Libraries.Graphics.Canvas;
 using System;
 
 namespace PrismOS
@@ -9,26 +8,22 @@ namespace PrismOS
     {
         protected override void Run()
         {
-            Canvas Canvas = new(1920, 1080);
-            Tests.TEngine T = new(Canvas);
+            Apps.GameOfLife GOL = new();
+            Canvas Canvas = new(1024, 768, true);
 
             try
             {
                 while (true)
                 {
                     Canvas.Clear();
-                    Canvas.DrawString(15, 15, "FPS: " + Canvas.FPS, Color.White);
-                    T.OnUpdate();
-                    //Canvas.DrawBitmap((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
+                    GOL.Update(Canvas);
+                    Canvas.DrawString(15, 15, "FPS: " + Canvas.FPS + (GOL.Paused ? "\nGame paused." : "\nGame running."), Color.White);
                     Canvas.Update();
                 }
             }
             catch (Exception EX)
             {
-                Canvas.VBE.DisableDisplay();
-                Console.Clear();
-                Console.WriteLine("Error! " + EX.Message);
-                while (true) { }
+                new Apps.Menus().Update1(EX.Message, Canvas);
             }
         }
     }

@@ -2,7 +2,7 @@
 using System;
 using System.Drawing;
 
-namespace PrismOS.Libraries.Graphics
+namespace PrismOS.Tests
 {
     public static class Filters
     {

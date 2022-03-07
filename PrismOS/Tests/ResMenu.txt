@@ -1,0 +1,41 @@
+﻿
+                if (Cosmos.System.KeyboardManager.ControlPressed || ShowMenu)
+                {
+                    ShowMenu = true;
+                    Canvas.DrawFilledRectangle(0, 0, 100, Canvas.Font.Default.Height * Modes.Count, Color.FromArgb(100, 25, 25, 25));
+                    Canvas.DrawFilledRectangle(0, Selected * Canvas.Font.Default.Height, 100, Canvas.Font.Default.Height, Color.DarkOrange);
+                    for (int I = 0; I < Modes.Count; I++)
+                    {
+                        Canvas.DrawString(15, I * Canvas.Font.Default.Height, Modes[I].Columns + "x" + Modes[I].Rows, Color.White);
+                    }
+                    if (Cosmos.System.KeyboardManager.TryReadKey(out var Key))
+                    {
+                        if (Key.Key == Cosmos.System.ConsoleKeyEx.UpArrow && Selected != 0)
+                        {
+                            Selected--;
+                        }
+                        if (Key.Key == Cosmos.System.ConsoleKeyEx.DownArrow && Selected != Modes.Count - 1)
+                        {
+                            Selected++;
+                        }
+                        if (Key.Key == Cosmos.System.ConsoleKeyEx.Enter)
+                        {
+                            ShowMenu = false;
+                            Canvas.Resize(Modes[Selected].Columns, Modes[Selected].Rows);
+                            return;
+                        }
+                    }
+                }
+
+                
+            bool ShowMenu = false;
+            int Selected = 0;
+            List<Mode> Modes = new()
+            {
+                { new(320, 200, (ColorDepth)32) },
+                { new(640, 480, (ColorDepth)32) },
+                { new(720, 480, (ColorDepth)32) },
+                { new(1024, 768, (ColorDepth)32) },
+                { new(1280, 720, (ColorDepth)32) },
+                { new(1920, 1080, (ColorDepth)32) }
+            };
