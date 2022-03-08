@@ -8,7 +8,7 @@ namespace PrismOS
     public unsafe class Kernel : Cosmos.System.Kernel
     {
         // TODO
-        // fix 3D (wtf weird grub error??)
+        // fix 3D (wtf weird grub error??) (tutorial is https://www.youtube.com/watch?v=ih20l3pJoeU)
         // fix "game of life" (matrix doesn't initialise properly, also effects 3D)
         // re-do perlin noise generator (screwed up currently :skull:)
         // implement draw filled triangle into canvas _properly_
