@@ -8,32 +8,45 @@ namespace PrismOS.Apps
 {
     public class GameOfLife
     {
-        public int SquareSize = 32;
-        public bool Paused = true;
-        public Matrix<bool> GameBoard = new();
+        public GameOfLife(Canvas Canvas, int SquareSize = 32)
+        {
+            this.Canvas = Canvas;
+            this.SquareSize = SquareSize;
+            GameBoard = new(Canvas.Width / SquareSize, Canvas.Height / SquareSize);
+        }
 
-        public void Update(Canvas Canvas)
+        public Canvas Canvas;
+        public int SquareSize;
+        public bool Paused = true;
+        public Matrix<bool> GameBoard;
+
+        public void Update()
         {
             if (!Paused)
             {
-                for (int X = 0; X < Canvas.Width; X *= SquareSize)
+                for (int X = 0; X < GameBoard.M.Count; X++)
                 {
-                    for (int Y = 0; Y < Canvas.Height; Y *= SquareSize)
+                    for (int Y = 0; Y < GameBoard.M[X].Count; Y++)
                     {
-                        if (X >= 0 && Y >= 0 && X <= Canvas.Width && Y <= Canvas.Height)
+                        int AliveNeighborsCount = 0;
+                        foreach (bool B in new bool[] { GameBoard.M[X - 1][Y], GameBoard.M[X + 1][Y], GameBoard.M[X][Y - 1], GameBoard.M[X][Y + 1] })
                         {
-                            int AliveNeighborsCount = 0;
-                            foreach (bool B in new bool[] { GameBoard.M[X - 1][Y], GameBoard.M[X + 1][Y], GameBoard.M[X][Y - 1], GameBoard.M[X][Y + 1] })
-                            {
-                                if (B)
-                                    AliveNeighborsCount++;
-                            }
-                            if (AliveNeighborsCount != 3)
-                                GameBoard.M[32 * X][32 * Y] = false;
-                            else
-                                Canvas.DrawFilledRectangle(32 * X, 32 * Y, SquareSize, SquareSize, Color.White);
+                            if (B)
+                                AliveNeighborsCount++;
                         }
+
+                        GameBoard.M[X][Y] = AliveNeighborsCount == 3;
                     }
+                }
+            }
+            for (int X = 0; X < Canvas.Width; X++)
+            {
+                for (int Y = 0; Y < Canvas.Height; Y++)
+                {
+                    if (GameBoard.M[X][Y] == true)
+                        Canvas.DrawFilledRectangle(X * SquareSize, Y * SquareSize, SquareSize, SquareSize, Color.White);
+                    else
+                        Canvas.DrawFilledRectangle(X * SquareSize, Y * SquareSize, SquareSize, SquareSize, Color.Black);
                 }
             }
             if (Keyboard.ControlPressed)
@@ -42,7 +55,7 @@ namespace PrismOS.Apps
             }
             if (Mouse.MouseState == Cosmos.System.MouseState.Left)
             {
-                GameBoard.M[32 * (int)Mouse.X][32 * (int)Mouse.Y] = true;
+                GameBoard.M[(int)Mouse.X / SquareSize][(int)Mouse.Y / SquareSize] = !GameBoard.M[(int)Mouse.X / SquareSize][(int)Mouse.Y / SquareSize];
             }
         }
     }

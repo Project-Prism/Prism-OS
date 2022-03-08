@@ -314,8 +314,7 @@ namespace PrismOS.Libraries.Graphics
             float FTheta = 1.0f * Elapsed, FovRad = 1.0f / (float)Math.Tan(Fov * 0.00872663889);
 
             // Set dynamic variables
-            Matrix<float> Projection = new(), RotZ = new(), RotX = new();
-            AspectRatio = Height / Width;
+            Matrix<float> Projection = new(4, 4), RotZ = new(4, 4), RotX = new(4, 4);
 
             // Set projection matrix
             Projection.M[0][0] = AspectRatio * FovRad;
@@ -414,6 +413,7 @@ namespace PrismOS.Libraries.Graphics
 
         public void Update()
         {
+            AspectRatio = Height / Width;
             if (VBE != null)
             {
                 Frames++;
