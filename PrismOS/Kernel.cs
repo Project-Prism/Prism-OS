@@ -1,6 +1,7 @@
 using PrismOS.Libraries.Graphics;
 using System.Drawing;
 using System;
+using PrismOS.Libraries.Numerics;
 
 namespace PrismOS
 {
@@ -15,12 +16,17 @@ namespace PrismOS
         protected override void Run()
         {
             Canvas Canvas = new(1024, 768, true);
+            Apps.GameOfLife GL = new(Canvas);
 
             try
             {
+                if (!Tests.Tester.MatrixTest())
+                    new Apps.Menus().Update1(new("Matrix tests failed! expected values not found."), Canvas);
+
                 while (true)
                 {
                     Canvas.Clear();
+                    GL.Update();
                     Canvas.DrawString(15, 15, "FPS: " + Canvas.FPS, Color.White);
                     Canvas.Update();
                 }
