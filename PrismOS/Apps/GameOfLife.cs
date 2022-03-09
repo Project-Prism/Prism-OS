@@ -8,7 +8,7 @@ namespace PrismOS.Apps
 {
     public class GameOfLife
     {
-        public GameOfLife(Canvas Canvas, int SquareSize = 32)
+        public GameOfLife(Canvas Canvas, int SquareSize = 16)
         {
             this.Canvas = Canvas;
             this.SquareSize = SquareSize;
@@ -39,9 +39,9 @@ namespace PrismOS.Apps
                     }
                 }
             }
-            for (int X = 0; X < Canvas.Width; X++)
+            for (int X = 0; X < Canvas.Width / SquareSize; X++)
             {
-                for (int Y = 0; Y < Canvas.Height; Y++)
+                for (int Y = 0; Y < Canvas.Height / SquareSize; Y++)
                 {
                     if (GameBoard.M[X][Y] == true)
                         Canvas.DrawFilledRectangle(X * SquareSize, Y * SquareSize, SquareSize, SquareSize, Color.White);

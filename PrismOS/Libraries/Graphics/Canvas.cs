@@ -81,7 +81,7 @@ namespace PrismOS.Libraries.Graphics
         }
         public void DrawAngledLine(int X, int Y, int Angle, int Radius, Color Color)
         {
-            DrawLine(X, Y, (int)(X + (Math.Cos(Angle) * Radius)), (int)(Y + (Math.Sin(Angle) * Radius)), Color);
+            DrawLine(X, Y, (int)(X + (Math.Cos(Math.PI * Angle / 180) * Radius)), (int)(X + (Math.Sin(Math.PI * Angle / 180) * Radius)), Color);
         }
 
         #endregion
