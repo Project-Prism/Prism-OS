@@ -168,6 +168,23 @@ namespace PrismOS.Libraries.Graphics
             }
         }
 
+        public void DrawFilledCircleImage(int X, int Y, Color Color, Bitmap Bitmap, int StartAngle = 0, int EndAngle = 360)
+        {
+            if (Bitmap.Width / 2 == 0 || StartAngle == EndAngle)
+                return;
+
+            for (int I = 0; I < Bitmap.Width / 2; I++)
+            {
+                for (; StartAngle < EndAngle; StartAngle++)
+                {
+                    SetPixel(
+                        X: (int)(X + (I * Math.Sin(Math.PI * StartAngle / 180))),
+                        Y: (int)(Y + (I * Math.Cos(Math.PI * StartAngle / 180))),
+                        Color: Color.FromArgb(Bitmap.rawData[(Bitmap.Width * (int)(I * Math.Cos(Math.PI * StartAngle / 180))) + (int)(I * Math.Sin(Math.PI * StartAngle / 180))]));
+                }
+            }
+        }
+
         #endregion
 
         #region Triangle
@@ -198,17 +215,41 @@ namespace PrismOS.Libraries.Graphics
 
         #region Image
 
-        public void DrawBitmap(int X, int Y, Bitmap Bitmap)
+        public void DrawBitmap(int X, int Y, Bitmap Bitmap, Position Position = Position.None)
         {
+            switch (Position)
+            {
+                case Position.Center:
+                    X += (Width / 2) - (int)(Bitmap.Width / 2);
+                    Y += (Height / 2) - (int)(Bitmap.Height / 2);
+                    break;
+                case Position.Left:
+                    X += 0;
+                    Y += (Height / 2) - (int)(Bitmap.Height / 2);
+                    break;
+                case Position.Right:
+                    X += Width - (int)Bitmap.Width;
+                    Y += (Height / 2) - (int)(Bitmap.Height / 2);
+                    break;
+                case Position.Top:
+                    X += (Width / 2) - (int)(Bitmap.Width / 2);
+                    Y += 0;
+                    break;
+                case Position.Bottom:
+                    X += (Width / 2) - (int)(Bitmap.Width / 2);
+                    Y += Height - (int)Bitmap.Height;
+                    break;
+            }
+
             for (int IX = 0; IX < Bitmap.Width; IX++)
             {
                 for (int IY = 0; IY < Bitmap.Height; IY++)
                     SetPixel(X + IX, Y + IY, Color.FromArgb(Bitmap.rawData[(Bitmap.Width * IY) + IX]));
             }
         }
-        public void DrawBitmap(int X, int Y, int Width, int Height, Bitmap Bitmap)
+        public void DrawBitmap(int X, int Y, int Width, int Height, Bitmap Bitmap, Position Position = Position.None)
         {
-            DrawBitmap(X, Y, new((uint)Width, (uint)Height, (byte[])(object)Bitmap.rawData, Cosmos.System.Graphics.ColorDepth.ColorDepth32));
+            DrawBitmap(X, Y, new((uint)Width, (uint)Height, (byte[])(object)Bitmap.rawData, Cosmos.System.Graphics.ColorDepth.ColorDepth32), Position);
         }
 
         #endregion
