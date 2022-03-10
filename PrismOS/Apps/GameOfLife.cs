@@ -44,9 +44,9 @@ namespace PrismOS.Apps
                 for (int Y = 0; Y < Canvas.Height / SquareSize; Y++)
                 {
                     if (GameBoard.M[X][Y] == true)
-                        Canvas.DrawFilledRectangle(X * SquareSize, Y * SquareSize, SquareSize, SquareSize, Color.White);
+                        Canvas.DrawFilledRectangle(X * SquareSize, Y * SquareSize, SquareSize, SquareSize, 0, Color.White);
                     else
-                        Canvas.DrawFilledRectangle(X * SquareSize, Y * SquareSize, SquareSize, SquareSize, Color.Black);
+                        Canvas.DrawFilledRectangle(X * SquareSize, Y * SquareSize, SquareSize, SquareSize, 0, Color.Black);
                 }
             }
             if (Keyboard.ControlPressed)

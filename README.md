@@ -14,6 +14,15 @@ Have any problems? Found a bug? Just want to chat? [Join the discord](https://di
 | [pinkphone](https://github.com/pinkphone1818)         | General development          |
 | [theopcoder](https://github.com/theopcoder)           | Website developer            |
 
+## To-do
+Just a list of things that need to be done.
+| Name                      | Description                                                          |
+|---------------------------|----------------------------------------------------------------------|
+| Fix 3D                    | Unsure of cause                                                      |
+| Fix game of life          | Unsure of cause (https://www.youtube.com/watch?v=6-0UaeJBumA&t=589s) |
+| Re-make perlin noise      | currently not good    (https://www.youtube.com/watch?v=ih20l3pJoeU)  |
+| implement filled triangle | current implementation is horible.                                   |
+
 ## Contributing
 
 Want to add something new to Prism OS? Simply create a pull request and we'll review it.

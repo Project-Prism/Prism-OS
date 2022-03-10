@@ -1,33 +1,40 @@
+using Mouse = Cosmos.System.MouseManager;
 using PrismOS.Libraries.Graphics;
 using System.Drawing;
 using System;
-using PrismOS.Libraries.Numerics;
 
 namespace PrismOS
 {
     public unsafe class Kernel : Cosmos.System.Kernel
     {
-        // TODO
-        // fix 3D (wtf weird grub error??) (tutorial is https://www.youtube.com/watch?v=ih20l3pJoeU)
-        // fix "game of life" (matrix doesn't initialise properly, also effects 3D)
-        // re-do perlin noise generator (screwed up currently :skull:)
-        // implement draw filled triangle into canvas _properly_
-
         protected override void Run()
         {
             Canvas Canvas = new(1024, 768, true);
-            Apps.GameOfLife GL = new(Canvas);
 
             try
             {
-                if (!Tests.Tester.MatrixTest())
-                    new Apps.Menus().Update1(new("Matrix tests failed! expected values not found."), Canvas);
-
                 while (true)
                 {
-                    Canvas.Clear();
-                    GL.Update();
+                    Canvas.Clear(Color.Green);
+
+                    if (Mouse.X > 100 && Mouse.Y > 100 && Mouse.X < 300 && Mouse.Y < 225)
+                    {
+                        Canvas.DrawFilledRectangle(100, 100, 200, 125, 0, Color.LightGray);
+                    }
+                    else
+                    {
+                        Canvas.DrawFilledRectangle(100, 100, 200, 125, 0, Color.White);
+                    }
+
+                    Canvas.DrawString(0, 0, "Center text!", Color.White, Canvas.Position.Center);
+                    Canvas.DrawString(5, 5, "Center text!", Color.White, Canvas.Position.Center);
+                    Canvas.DrawString(0, 0, "left text!", Color.White, Canvas.Position.Left);
+                    Canvas.DrawString(0, 0, "right text!", Color.White, Canvas.Position.Right);
+                    Canvas.DrawString(0, 0, "top text!", Color.White, Canvas.Position.Top);
+                    Canvas.DrawString(0, 0, "bottom text!", Color.White, Canvas.Position.Bottom);
+
                     Canvas.DrawString(15, 15, "FPS: " + Canvas.FPS, Color.White);
+                    Canvas.DrawBitmap((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
                     Canvas.Update();
                 }
             }

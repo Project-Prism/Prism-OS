@@ -1,4 +1,4 @@
-﻿using Cosmos.System.Graphics;
+﻿using PrismOS.Libraries.Graphics;
 using IL2CPU.API.Attribs;
 
 namespace PrismOS.Files

@@ -1,25 +1,18 @@
-﻿using Cosmos.HAL.Drivers.PCI.Audio;
-using System;
-
-namespace PrismOS.Libraries.Sound
+﻿namespace PrismOS.Libraries.Sound
 {
     public static class PCSpeaker
     {
-        public static void Tick(double Amp = 0.25, double Freq = 1000, int Samples = 20)
+        public static void Play(Cosmos.HAL.Drivers.PCI.Audio.PCMStream PCM)
         {
-            Amp *= short.MaxValue;
-            for (int n = 0; n < Samples; n++)
+            for (int I = 0; I < PCM.getData().Length; I++)
             {
-                Cosmos.System.PCSpeaker.Beep((uint)(Amp * Math.Sin(2 * Math.PI * n * Freq / Samples)));
+                Beep((short)System.Math.Abs(PCM.getData()[I]), 0.1);
             }
         }
 
-        public static void Play(PCMStream PCMStream)
+        public static void Beep(short Freq, double Duration)
         {
-            for (int I = 0; I < PCMStream.getData().Length; I++)
-            {
-                Cosmos.System.PCSpeaker.Beep(PCMStream.getData()[I], (uint)Cosmos.System.Durations.Sixteenth);
-            }
+            Cosmos.HAL.PCSpeaker.Beep((uint)System.Math.Abs(Freq), (uint)Duration);
         }
     }
 }
