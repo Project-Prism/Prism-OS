@@ -6,7 +6,7 @@ using Cosmos.System.FileSystem;
 using System.Drawing;
 using System;
 
-namespace PrismOS
+namespace PrismOS.Libraries.Core
 {
     public unsafe class Kernel : Cosmos.System.Kernel
     {
@@ -67,11 +67,17 @@ namespace PrismOS
                     Canvas.DrawString(15, 15, "FPS: " + Canvas.FPS, Color.White);
                     Canvas.DrawBitmap((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
                     Canvas.Update();
+
+                    Interfaces.Events.Update();
                 }
             }
             catch (Exception EX)
             {
-                new Apps.Menus().Update1(EX.Message, Canvas);
+                Canvas.Clear(Color.ForestGreen);
+                Canvas.DrawFilledRectangle(0, 0, 400, 50, 0, Color.FromArgb(25, 25, 25), Canvas.Position.Center);
+                Canvas.DrawString(0, 0, EX.Message, Color.White, Canvas.Position.Center);
+                Canvas.Update();
+                while (true) { }
             }
         }
     }
