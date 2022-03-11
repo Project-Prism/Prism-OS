@@ -5,20 +5,19 @@ namespace PrismOS.Libraries.Runtime
 {
     public class BatchFile
     {
-        public BatchFile(string RawText, int Pointer = 0)
+        public BatchFile(string RawText)
         {
-            this.Pointer = Pointer;
             this.RawText = RawText;
         }
 
         public bool Echo;
-        public int Pointer;
+        public int Line = 0;
         public string RawText;
         public Dictionary<string, string> Variables = new();
 
         public void Cycle()
         {
-            string[] Params = RawText.Split('\n')[Pointer++].Split(' ');
+            string[] Params = RawText.Split('\n')[Line++].Split(' ');
 
             switch (Params[0].ToLower())
             {
@@ -35,8 +34,7 @@ namespace PrismOS.Libraries.Runtime
                 case "echo":
                     if (Params[1].StartsWith('$'))
                     {
-                        Pointer++;
-                        Console.WriteLine(Variables[Params[Pointer++]]);
+                        Console.WriteLine(Variables[Params[1].Replace("$", "")]);
                     }
                     else
                     {
@@ -62,11 +60,11 @@ namespace PrismOS.Libraries.Runtime
                 case "goto":
                     if (Params[1].StartsWith('$'))
                     {
-                        Pointer = int.Parse(Variables[Params[1]]);
+                        Line = int.Parse(Variables[Params[1]]);
                     }
                     else
                     {
-                        Pointer = int.Parse(Params[1]);
+                        Line = int.Parse(Params[1]);
                     }
                     return;
                 case "cls":

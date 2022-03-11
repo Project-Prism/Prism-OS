@@ -6,7 +6,7 @@ using Cosmos.System.FileSystem;
 using System.Drawing;
 using System;
 
-namespace PrismOS.Libraries.Core
+namespace PrismOS
 {
     public unsafe class Kernel : Cosmos.System.Kernel
     {
@@ -38,6 +38,8 @@ namespace PrismOS.Libraries.Core
             //{
             //    BF.Cycle();
             //}
+
+            Libraries.Sound.PCSpeaker.PlayMono(Files.Resources.Audio);
 
             try
             {
@@ -78,7 +80,7 @@ namespace PrismOS.Libraries.Core
                     Canvas.DrawBitmap((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
                     Canvas.Update();
 
-                    Interfaces.Events.Update();
+                    Libraries.Interfaces.Events.Update();
                 }
             }
             catch (Exception EX)
