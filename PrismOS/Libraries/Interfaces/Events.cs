@@ -13,7 +13,7 @@ namespace PrismOS.Libraries.Interfaces
         private static bool IsClicked = false;
         private static bool IsPressed = false;
 
-        public delegate void KeyboardEvent(KeyEvent Key);
+        public delegate void KeyboardEvent(ConsoleKeyEx Key);
         public delegate void MouseEvent(int X, int Y);
 
         public static void Update()
@@ -35,13 +35,13 @@ namespace PrismOS.Libraries.Interfaces
             {
                 IsPressed = true;
                 foreach (KeyboardEvent Event in OnKeyDown)
-                    Event.Invoke(Key);
+                    Event.Invoke(Key.Key);
             }
             if (IsPressed && !KeyboardManager.TryReadKey(out Key))
             {
                 IsPressed = false;
                 foreach (KeyboardEvent Event in OnKeyUp)
-                    Event.Invoke(Key);
+                    Event.Invoke(Key.Key);
             }
         }
     }

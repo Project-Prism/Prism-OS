@@ -14,12 +14,15 @@ namespace PrismOS.Libraries.Core
         public static CosmosVFS VFS;
         public List<BootTask> BootTasks = new()
         {
+            () => { Console.WriteLine("Unable to initiate fastflux ultra-cryptic portable computer zionator. (a.k.a: You are screwed.) Have fun with a fried pc!"); },
+            () => { Cosmos.System.PCSpeaker.Beep(1000, (uint)Cosmos.System.Durations.Sixteenth); },
             () => { Canvas = new(1024, 768, true); },
             () => { Canvas.DrawString(0, 0, "Please Wait...", Color.White, Canvas.Position.Center); },
             () => { Canvas.Update(); },
             () => { VFS = new CosmosVFS(); },
             () => { VFS.Initialize(false); },
             () => { VFSManager.RegisterVFS(VFS); },
+            () => { Console.WriteLine("Initiating self destruction sequence..."); }
         };
         public delegate void BootTask();
 
@@ -29,6 +32,13 @@ namespace PrismOS.Libraries.Core
 
         protected override void Run()
         {
+            //Runtime.BatchFile BF = new("cls\n@echo off\necho Hello, World!\necho Written in batch!\n@echo\ntimeout \t 9999");
+
+            //while (true)
+            //{
+            //    BF.Cycle();
+            //}
+
             try
             {
                 for (int I = 0; I < BootTasks.Count; I++)

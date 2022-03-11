@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PrismOS.Core
+namespace PrismOS.Libraries.Runtime
 {
     public unsafe class Process : IDisposable
     {
