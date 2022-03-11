@@ -13,6 +13,9 @@ namespace PrismOS.Libraries.Graphics
     {
         public Canvas(int Width, int Height, bool UseVBE)
         {
+            MinX = 0; MaxX = Width;
+            MinY = 0; MaxY = Height;
+
             this.Width = Width;
             this.Height = Height;
             Buffer = new int*[Width * Height];
@@ -34,7 +37,7 @@ namespace PrismOS.Libraries.Graphics
             Left, Right,
             None,
         }
-        public int Width, Height;
+        public int Width, Height, MinX, MinY, MaxX, MaxY;
         public float AspectRatio;
         public int*[] Buffer;
         public VBEDriver VBE;
@@ -46,7 +49,7 @@ namespace PrismOS.Libraries.Graphics
 
         public void SetPixel(int X, int Y, Color Color)
         {
-            if (X > Width || X < 0 || Y > Height || Y < 0 || Color.A == 0)
+            if (X > MinX + MaxX || X < MinX || Y > MinY + MaxY || Y < MinY || Color.A == 0)
                 return;
             if (Color.A < 255)
                 Color = Blend(GetPixel(X, Y), Color);
@@ -93,8 +96,32 @@ namespace PrismOS.Libraries.Graphics
 
         #region Rectangle
 
-        public void DrawRectangle(int X, int Y, int Width, int Height, int Radius, Color Color)
+        public void DrawRectangle(int X, int Y, int Width, int Height, int Radius, Color Color, Position Position = Position.None)
         {
+            switch (Position)
+            {
+                case Position.Center:
+                    X += (this.Width / 2) - (Width / 2);
+                    Y += (this.Height / 2) - (Height / 2);
+                    break;
+                case Position.Top:
+                    X += (this.Width / 2) - (Width / 2);
+                    Y += 0;
+                    break;
+                case Position.Bottom:
+                    X += (this.Width / 2) - (Width / 2);
+                    Y += this.Height - Height;
+                    break;
+                case Position.Left:
+                    X += 0;
+                    Y += (this.Height / 2) - (Height / 2);
+                    break;
+                case Position.Right:
+                    X += this.Width - Width;
+                    Y += (this.Height / 2) - (Height / 2);
+                    break;
+            }
+
             if (Radius > 0)
             {
                 DrawCircle(X, Y, Radius, Color, 180, 270); // Top left
@@ -109,8 +136,32 @@ namespace PrismOS.Libraries.Graphics
             DrawLine(X + Width, Y + Radius, Width + X, Y + Height - (Radius * 2), Color); // Right Line
         }
 
-        public void DrawFilledRectangle(int X, int Y, int Width, int Height, int Radius, Color Color)
+        public void DrawFilledRectangle(int X, int Y, int Width, int Height, int Radius, Color Color, Position Position = Position.None)
         {
+            switch (Position)
+            {
+                case Position.Center:
+                    X += (this.Width / 2) - (Width / 2);
+                    Y += (this.Height / 2) - (Height / 2);
+                    break;
+                case Position.Top:
+                    X += (this.Width / 2) - (Width / 2);
+                    Y += 0;
+                    break;
+                case Position.Bottom:
+                    X += (this.Width / 2) - (Width / 2);
+                    Y += this.Height - Height;
+                    break;
+                case Position.Left:
+                    X += 0;
+                    Y += (this.Height / 2) - (Height / 2);
+                    break;
+                case Position.Right:
+                    X += this.Width - Width;
+                    Y += (this.Height / 2) - (Height / 2);
+                    break;
+            }
+
             if (Radius == 0)
             {
                 for (int IY = Y; IY < Y + Height; IY++)
@@ -165,23 +216,6 @@ namespace PrismOS.Libraries.Graphics
             for (int I = 0; I < Radius; I++)
             {
                 DrawCircle(X, Y, I, Color, StartAngle, EndAngle);
-            }
-        }
-
-        public void DrawFilledCircleImage(int X, int Y, Color Color, Bitmap Bitmap, int StartAngle = 0, int EndAngle = 360)
-        {
-            if (Bitmap.Width / 2 == 0 || StartAngle == EndAngle)
-                return;
-
-            for (int I = 0; I < Bitmap.Width / 2; I++)
-            {
-                for (; StartAngle < EndAngle; StartAngle++)
-                {
-                    SetPixel(
-                        X: (int)(X + (I * Math.Sin(Math.PI * StartAngle / 180))),
-                        Y: (int)(Y + (I * Math.Cos(Math.PI * StartAngle / 180))),
-                        Color: Color.FromArgb(Bitmap.rawData[(Bitmap.Width * (int)(I * Math.Cos(Math.PI * StartAngle / 180))) + (int)(I * Math.Sin(Math.PI * StartAngle / 180))]));
-                }
             }
         }
 
@@ -355,6 +389,18 @@ namespace PrismOS.Libraries.Graphics
                     }
                 }
             }
+        }
+
+        public void SetBounds(int X, int Y, int Width, int Height)
+        {
+            MinX = X; MinY = Y;
+            MaxX = Width; MaxY = Height;
+        }
+
+        public void ResetBounds()
+        {
+            MinX = 0; MinY = 0;
+            MaxX = Width; MaxY = Height;
         }
 
         public void Update()
