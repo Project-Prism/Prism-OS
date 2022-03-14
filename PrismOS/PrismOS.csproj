@@ -45,16 +45,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Files\Audio.wav" />
-      <None Remove="Files\Cursor.bmp" />
-      <None Remove="Files\Logo.bmp" />
+      <None Remove="Files\NoIcon.bmp" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Files\Sound\Audio.wav" />
-      <EmbeddedResource Include="Files\Icons\Cursor.bmp" />
-      <EmbeddedResource Include="Files\Icons\Logo.bmp" />
-      <EmbeddedResource Include="Files\Icons\Wallpaper.bmp"/>
+      <EmbeddedResource Include="Files\Audio.wav" />
+      <EmbeddedResource Include="Files\Cursor.bmp" />
+      <EmbeddedResource Include="Files\NoIcon.bmp" />
+      <EmbeddedResource Include="Files\Logo.bmp" />
+      <EmbeddedResource Include="Files\Wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>

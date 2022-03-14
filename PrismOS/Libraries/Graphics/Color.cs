@@ -18,6 +18,18 @@ namespace PrismOS.Libraries.Graphics
             this.G = G;
             this.B = B;
         }
+        public Color(string Hex)
+        {
+            Hex = Hex.Replace("#", "");
+            byte R = byte.Parse("0x" + Hex[1].ToString() + Hex[2].ToString());
+            byte G = byte.Parse("0x" + Hex[3].ToString() + Hex[4].ToString());
+            byte B = byte.Parse("0x" + Hex[5].ToString() + Hex[6].ToString());
+
+            A = 255;
+            this.R = R;
+            this.G = G;
+            this.B = B;
+        }
         public Color(int ARGB)
         {
             A = (int)((ARGB & 0xFF000000) >> 24);
@@ -67,6 +79,8 @@ namespace PrismOS.Libraries.Graphics
         public static readonly Color StackOverflowWhite = new(255, 188, 187, 187);
         public static readonly Color DeepGray = new(255, 25, 25, 25);
         public static readonly Color LightGray = new(255, 125, 125, 125);
+        public static readonly Color SuperOrange = new(255, 255, 99, 71);
+        public static readonly Color FakeGrassGreen = new(255, 60, 179, 113);
         #endregion
     }
 }

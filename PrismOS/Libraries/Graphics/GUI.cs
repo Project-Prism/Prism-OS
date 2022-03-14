@@ -58,9 +58,9 @@ namespace PrismOS.Libraries.Graphics
             }
         }
 
-        public static bool IsMouseWithin(int X, int Y, int Width, int Height)
+        public static bool IsMouseWithin(Element E)
         {
-            if (Mouse.X >= X && Mouse.Y >= Y && Mouse.X <= X + Width && Mouse.Y <= Y + Height)
+            if (Mouse.X >= E.X && Mouse.Y >= E.Y && Mouse.X <= E.X + E.Width && Mouse.Y <= E.Y + E.Height)
                 return true;
             else
                 return false;

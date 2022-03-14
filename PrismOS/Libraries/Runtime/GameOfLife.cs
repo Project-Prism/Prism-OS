@@ -3,7 +3,7 @@ using Mouse = Cosmos.System.MouseManager;
 using PrismOS.Libraries.Graphics;
 using PrismOS.Libraries.Numerics;
 
-namespace PrismOS.Apps
+namespace PrismOS.Libraries.Runtime
 {
     public class GameOfLife
     {
