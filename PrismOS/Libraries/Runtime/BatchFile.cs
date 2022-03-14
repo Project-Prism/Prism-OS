@@ -19,6 +19,7 @@ namespace PrismOS.Libraries.Runtime
         {
             string[] Params = RawText.Split('\n')[Line++].Split(' ');
 
+
             switch (Params[0].ToLower())
             {
                 case "@echo":

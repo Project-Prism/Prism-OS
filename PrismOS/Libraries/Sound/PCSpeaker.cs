@@ -4,22 +4,17 @@ namespace PrismOS.Libraries.Sound
 {
     public unsafe static class PCSpeaker
     {
-        public static void PlayMono(byte[] Audio)
+        public static void Play(byte[] RawBytes)
         {
-            Console.Write("Prepairing audio... ");
-            short[] SAudio = new short[Audio.Length / 2];
-            for (int I = 0; I < Audio.Length; I += 2)
-            {
-                SAudio[I / 2] = (short)(Audio[I] | Audio[I + 1] << 8);
-            }
+            short[] Audio = new short[RawBytes.Length / 2];
+            Buffer.BlockCopy(RawBytes, 44, Audio, 0, RawBytes.Length);
 
-            Console.WriteLine("Done.");
-            for (int I = 0; I < SAudio.Length; I++)
+            for (int I = 0; I < Audio.Length; I++)
             {
-                if (Math.Abs(SAudio[I]) < 37 || Math.Abs(SAudio[I]) < short.MaxValue)
-                    continue;
-
-                Cosmos.HAL.PCSpeaker.Beep((uint)Math.Abs(SAudio[I]), (uint)Cosmos.System.Durations.Sixteenth);
+                if (Audio[I] > 37 && Audio[I] < short.MaxValue)
+                {
+                    Cosmos.HAL.PCSpeaker.Beep((uint)Audio[I], 1);
+                }
             }
         }
     }

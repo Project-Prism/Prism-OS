@@ -2,7 +2,6 @@
 using Mouse = Cosmos.System.MouseManager;
 using PrismOS.Libraries.Graphics;
 using PrismOS.Libraries.Numerics;
-using System.Drawing;
 
 namespace PrismOS.Apps
 {

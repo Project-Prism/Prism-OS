@@ -6,7 +6,7 @@
         <Platform>cosmos</Platform>
         <SupportsX86Intrinsics>true</SupportsX86Intrinsics>
         <SelfContained>True</SelfContained>
-	<CompileVBEMultiboot>False</CompileVBEMultiboot>
+	    <CompileVBEMultiboot>False</CompileVBEMultiboot>
         <VBEResolution>1280x720x32</VBEResolution>
         <BinFormat>ELF</BinFormat>
         <StackCorruptionDetectionEnabled>True</StackCorruptionDetectionEnabled>
@@ -17,7 +17,7 @@
         <IgnoreDebugStubAttribute>False</IgnoreDebugStubAttribute>
         <ISOFile>bin\Debug\net5.0\PrismOS.iso</ISOFile>
         <VMwareEdition>Workstation</VMwareEdition>
-	<IlcOptimizationPreference>Speed</IlcOptimizationPreference>
+	    <IlcOptimizationPreference>Speed</IlcOptimizationPreference>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -51,12 +51,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Files\Audio.wav" />
-      <EmbeddedResource Include="Files\Cursor.bmp" />
-      <EmbeddedResource Include="Files\Logo.bmp" />
-      <EmbeddedResource Include="Files\Wallpaper.bmp">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </EmbeddedResource>
+      <EmbeddedResource Include="Files\Sound\Audio.wav" />
+      <EmbeddedResource Include="Files\Icons\Cursor.bmp" />
+      <EmbeddedResource Include="Files\Icons\Logo.bmp" />
+      <EmbeddedResource Include="Files\Icons\Wallpaper.bmp"/>
     </ItemGroup>
 
     <ItemGroup>
