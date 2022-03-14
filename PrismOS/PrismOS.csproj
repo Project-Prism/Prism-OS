@@ -46,6 +46,7 @@
 
     <ItemGroup>
       <None Remove="Files\NoIcon.bmp" />
+      <None Remove="Files\Wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>

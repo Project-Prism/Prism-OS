@@ -82,5 +82,13 @@ namespace PrismOS.Libraries.Graphics
         public static readonly Color SuperOrange = new(255, 255, 99, 71);
         public static readonly Color FakeGrassGreen = new(255, 60, 179, 113);
         #endregion
+
+        public static class SystemColors
+        {
+            public static Color BackGround = StackOverflowBlack;
+            public static Color ForeGround = GoogleBlue;
+            public static Color ContentText = White;
+            public static Color TitleText = Black;
+        }
     }
 }

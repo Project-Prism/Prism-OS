@@ -38,9 +38,9 @@ namespace PrismOS.Libraries.Graphics
 
         #region Pixel
 
-        public void SetPixel(int X, int Y, Color Color)
+        public void SetPixel(int X, int Y, Color Color, bool Unsafe = false)
         {
-            if (X > MinX + MaxX || X < MinX || Y > MinY + MaxY || Y < MinY || Color.A == 0)
+            if (!Unsafe && X > MinX + MaxX || X < MinX || Y > MinY + MaxY || Y < MinY || Color.A == 0)
                 return;
             if (Color.A < 255)
                 Color = Blend(Color, GetPixel(X, Y));
