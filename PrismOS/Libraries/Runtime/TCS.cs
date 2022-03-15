@@ -62,23 +62,23 @@ namespace TCS
         public const int JMP = 0xB;
         public const int ERR = 0xC;
         public const int MOV = 0xD;
-        public const int RET = 0xF;
-        public const int ADDV = 0x10;
-        public const int SUBV = 0x11;
-        public const int DEVV = 0x12;
-        public const int MULV = 0x13;
-        public const int JPE = 0x14;
-        public const int JPNE = 0x15;
-        public const int JPG = 0x16;
-        public const int JPL = 0x17;
-        public const int JPMP = 0x18;
-        public const int PUSH = 0x19;
-        public const int POP = 0x1A;
-        public const int INC = 0x1B;
-        public const int DEC = 0x1C;
-        public const int TIMES = 0x1D;
-        public const int GTCLA = 0x1E;
-        public const int STREG = 0x1F;
+        public const int RET = 0xE;
+        public const int ADDV = 0xF;
+        public const int SUBV = 0x10;
+        public const int DEVV = 0x11;
+        public const int MULV = 0x12;
+        public const int JPE = 0x13;
+        public const int JPNE = 0x14;
+        public const int JPG = 0x15;
+        public const int JPL = 0x16;
+        public const int JPMP = 0x17;
+        public const int PUSH = 0x18;
+        public const int POP = 0x19;
+        public const int INC = 0x1A;
+        public const int DEC = 0x1B;
+        public const int TIMES = 0x1C;
+        public const int GTCLA = 0x1D;
+        public const int STREG = 0x1E;
     }
     public struct Registers
     {

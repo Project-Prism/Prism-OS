@@ -14,14 +14,15 @@ namespace PrismOS.Libraries.Graphics
             this.Width = Width;
             this.Height = Height;
             Buffer = new int*[Width * Height];
-            Mouse.ScreenWidth = (uint)Width;
-            Mouse.ScreenHeight = (uint)Height;
-            Mouse.X = (uint)Width / 2;
-            Mouse.Y = (uint)Height / 2;
+            
             if (UseVBE)
             {
                 VBE = new((ushort)Width, (ushort)Height, 32);
                 Update();
+                Mouse.ScreenWidth = (uint)Width;
+                Mouse.ScreenHeight = (uint)Height;
+                Mouse.X = (uint)Width / 2;
+                Mouse.Y = (uint)Height / 2;
             }
         }
 

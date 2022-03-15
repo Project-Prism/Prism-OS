@@ -7,20 +7,47 @@ namespace PrismOS.Libraries.Runtime
         public Process(byte[] RawData)
         {
             ROM = RawData;
-            RAM = new byte*[30000];
+            RAM = new byte[30000];
             Out = "";
         }
 
-        public enum Code : byte
+        public enum Code
         {
-            Move, Copy, Clear,
-            Inc, Dec, Add, Sub, Mul, Div,
-            Jmp, Ret, Int,
+            INT   = 0x0,
+            CPY   = 0x1,
+            ADD   = 0x2,
+            SUB   = 0x3,
+            DIV   = 0x4,
+            MUL   = 0x5,
+            CMP   = 0x6,
+            JE    = 0x7,
+            JNE   = 0x8,
+            JG    = 0x9,
+            JL    = 0xA,
+            JMP   = 0xB,
+            ERR   = 0xC,
+            MOV   = 0xD,
+            RET   = 0xE,
+            ADDV  = 0xF,
+            SUBV  = 0x10,
+            DEVV  = 0x11,
+            MULV  = 0x12,
+            JPE   = 0x13,
+            JPNE  = 0x14,
+            JPG   = 0x15,
+            JPL   = 0x16,
+            JPMP  = 0x17,
+            PUSH  = 0x18,
+            POP   = 0x19,
+            INC   = 0x1A,
+            DEC   = 0x1B,
+            TIMES = 0x1C,
+            GTCLA = 0x1D,
+            STREG = 0x1E,
         }
         public string Out, In;
         private int Pos, LPos;
-        private readonly byte[] ROM;
-        private readonly byte*[] RAM;
+        private readonly byte[] ROM, RAM;
 
         public void Cycle()
         {
@@ -30,32 +57,24 @@ namespace PrismOS.Libraries.Runtime
             switch (ROM[Pos++])
             {
                 #region Move
-                case (byte)Code.Move:
+                case (byte)Code.MOV:
                     From = ROM[Pos++];
                     To = ROM[Pos++];
-                    RAM[To] = (byte*)ROM[From];
+                    RAM[To] = ROM[From];
                     break;
                 #endregion
 
                 #region Copy
-                case (byte)Code.Copy:
+                case (byte)Code.CPY:
                     From = ROM[Pos++];
                     To = ROM[Pos++];
                     RAM[To] = RAM[From];
                     break;
                 #endregion
 
-                #region Clear
-
-                case (byte)Code.Clear:
-                    RAM[(byte)ROM[Pos++]] = (byte*)0x0;
-                    break;
-
-                #endregion
-
                 #region Inc
 
-                case (byte)Code.Inc:
+                case (byte)Code.INC:
                     RAM[ROM[Pos++]]++;
                     break;
 
@@ -63,7 +82,7 @@ namespace PrismOS.Libraries.Runtime
 
                 #region Dec
 
-                case (byte)Code.Dec:
+                case (byte)Code.DEC:
                     RAM[(byte)ROM[Pos++]]--;
                     break;
 
@@ -71,39 +90,39 @@ namespace PrismOS.Libraries.Runtime
 
                 #region Add
 
-                case (byte)Code.Add:
-                    RAM[(byte)ROM[Pos++]] += (byte)ROM[Pos++];
+                case (byte)Code.ADD:
+                    RAM[ROM[Pos++]] += ROM[Pos++];
                     break;
 
                 #endregion
 
                 #region Sub
 
-                case (byte)Code.Sub:
-                    RAM[(byte)ROM[Pos++]] -= (byte)ROM[Pos++];
+                case (byte)Code.SUB:
+                    RAM[ROM[Pos++]] -= ROM[Pos++];
                     break;
 
                 #endregion
 
                 #region Mul
 
-                case (byte)Code.Mul:
-                    RAM[ROM[Pos]] = (byte*)((int)RAM[ROM[Pos++]] * ROM[Pos++]);
+                case (byte)Code.MUL:
+                    RAM[ROM[Pos]] = (byte)((byte)RAM[ROM[Pos++]] * ROM[Pos++]);
                     break;
 
                 #endregion
 
                 #region Div
 
-                case (byte)Code.Div:
-                    RAM[ROM[Pos]] = (byte*)((int)RAM[ROM[Pos++]] / ROM[Pos++]);
+                case (byte)Code.DIV:
+                    RAM[ROM[Pos]] = (byte)((int)RAM[ROM[Pos++]] / ROM[Pos++]);
                     break;
 
                 #endregion
 
                 #region Jmp
 
-                case (byte)Code.Jmp:
+                case (byte)Code.JMP:
                     LPos = Pos;
                     Pos = ROM[Pos];
                     break;
@@ -112,7 +131,7 @@ namespace PrismOS.Libraries.Runtime
 
                 #region Ret
 
-                case (byte)Code.Ret:
+                case (byte)Code.RET:
                     Pos = LPos;
                     break;
 
@@ -120,14 +139,14 @@ namespace PrismOS.Libraries.Runtime
 
                 #region Int
 
-                case (byte)Code.Int:
+                case (byte)Code.INT:
                     switch (ROM[Pos++])
                     {
                         case 0xD0:
                             Out += (char)ROM[Pos++];
                             break;
                         case 0xD1:
-                            RAM[ROM[Pos++]] = (byte*)(byte)Console.ReadKey().KeyChar;
+                            RAM[ROM[Pos++]] = (byte)(byte)Console.ReadKey().KeyChar;
                             break;
                     }
                     break;
