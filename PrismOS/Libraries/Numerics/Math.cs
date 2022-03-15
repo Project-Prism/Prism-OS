@@ -40,7 +40,7 @@
             return (int)Number;
         }
 
-        // Sin and Cos placeholder
+        // Placeholders
         public static double Cos(double Number)
         {
             return System.Math.Cos(Number);

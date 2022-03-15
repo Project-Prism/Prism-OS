@@ -68,9 +68,9 @@ namespace PrismOS.Libraries.Graphics
                 Y = (int)Math.Clamp(Mouse.Y - IY, 15, Canvas.Height - Height + 15);
             }
 
-            Canvas.DrawFilledRectangle(X, Y, Width, Height, Radius, Color.SystemColors.BackGround);
-            Canvas.DrawFilledRectangle(X, Y - 15, Width, 15, Radius, Color.SystemColors.ForeGround);
-            Canvas.DrawString(X, Y - 15, Text, Color.SystemColors.TitleText);
+            Canvas.DrawFilledRectangle(IX + X, IY + Y, Width, Height, Radius, Color.SystemColors.BackGround);
+            Canvas.DrawFilledRectangle(IX + X, IY + Y - 15, Width, 15, Radius, Color.SystemColors.ForeGround);
+            Canvas.DrawString(IX + X, IY + Y - 15, Text, Color.SystemColors.TitleText);
 
             foreach (Element E in Children)
             {
@@ -81,8 +81,8 @@ namespace PrismOS.Libraries.Graphics
                 if (E.Type == 0x01)
                 {
                     Canvas.DrawString(
-                        X + E.X,
-                        Y + E.Y,
+                        IX + X + E.X,
+                        IY + Y + E.Y,
                         E.Text, Color.SystemColors.ContentText);
                 } // Label
             }

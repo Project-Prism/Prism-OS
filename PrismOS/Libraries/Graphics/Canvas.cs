@@ -61,7 +61,6 @@ namespace PrismOS.Libraries.Graphics
 
         public void DrawLine(int X, int Y, int X2, int Y2, Color Color)
         {
-#warning Need to implement clamping for line drawing
             int dx = Math.Abs(X2 - X), sx = X < X2 ? 1 : -1;
             int dy = Math.Abs(Y2 - Y), sy = Y < Y2 ? 1 : -1;
             int err = (dx > dy ? dx : -dy) / 2;
