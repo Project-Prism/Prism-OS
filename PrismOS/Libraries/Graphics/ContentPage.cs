@@ -6,7 +6,7 @@ namespace PrismOS.Libraries.Graphics
 {
     public class ContentPage
     {
-        public ContentPage(int X, int Y, int Width, int Height, int Radius, string Text, Bitmap Icon)
+        public ContentPage(int X, int Y, int Width, int Height, int Radius, string Text, Bitmap Icon, List<Element> Children = default)
         {
             this.X = X;
             this.Y = Y;
@@ -15,7 +15,10 @@ namespace PrismOS.Libraries.Graphics
             this.Radius = Radius;
             this.Text = Text;
             this.Icon = Icon;
-            Children = new();
+            if (Children != default)
+            {
+                this.Children = Children;
+            }
         }
 
         public bool Moving;
@@ -53,7 +56,7 @@ namespace PrismOS.Libraries.Graphics
             {
                 Moving = false;
             }
-            if (IsMouseWithin(X, Y, Width, 15) && Mouse.MouseState == Cosmos.System.MouseState.Left && !Moving)
+            if (IsMouseWithin(X, Y - 15, Width, 15) && Mouse.MouseState == Cosmos.System.MouseState.Left && !Moving)
             {
                 Moving = true;
                 IX = (int)Mouse.X - X;
@@ -62,12 +65,12 @@ namespace PrismOS.Libraries.Graphics
             if (Moving)
             {
                 X = (int)Math.Clamp(Mouse.X - IX, 0, Canvas.Width - Width);
-                Y = (int)Math.Clamp(Mouse.Y - IY, 15, Canvas.Height - (Height + (15 - (5 * 2))));
+                Y = (int)Math.Clamp(Mouse.Y - IY, 15, Canvas.Height - Height + 15);
             }
 
-            Canvas.DrawFilledRectangle(IX, IY, Width, Height, Radius, Color.SystemColors.BackGround);
-            Canvas.DrawFilledRectangle(IX, IY, Width, 15, Radius, Color.SystemColors.ForeGround);
-            Canvas.DrawString(IX, IY, Text, Color.SystemColors.TitleText);
+            Canvas.DrawFilledRectangle(X, Y, Width, Height, Radius, Color.SystemColors.BackGround);
+            Canvas.DrawFilledRectangle(X, Y - 15, Width, 15, Radius, Color.SystemColors.ForeGround);
+            Canvas.DrawString(X, Y - 15, Text, Color.SystemColors.TitleText);
 
             foreach (Element E in Children)
             {

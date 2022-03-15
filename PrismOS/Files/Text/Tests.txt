@@ -4,10 +4,7 @@ Canvas.DrawString(15, 15, "Total RAM: " + ((Cosmos.Core.GCImplementation.GetAvai
 Canvas.DrawString(15, 15, "Used RAM: " + (Cosmos.Core.GCImplementation.GetUsedRAM() / 1024) + " MB", Color.White);
 Canvas.DrawString(15, 15, "Free RAM: " + (Cosmos.Core.GCImplementation.GetAvailableRAM() / 1024) + " MB", Color.White);
 Canvas.DrawString(15, 15, "GPU Name: " + new string((sbyte*)Cosmos.Core.VBE.getControllerInfo().oemProductNamePtr), Color.White);
-Canvas.DrawString(15, 15, "GPU OEM: " + new string((sbyte*)Cosmos.Core.VBE.getControllerInfo().oemStringPtr), Color.White);
-Canvas.DrawString(15, 15, "CPU OEM: " + Cosmos.Core.CPU.GetCPUBrandString(), Color.White);
 Canvas.DrawString(15, 15, "CPU Speed: " + (Cosmos.Core.CPU.GetCPUCycleSpeed() / 1E+09) + " Ghz", Color.White);
-Canvas.DrawString(15, 15, "FPS: " + FPS, Color.White);
 
 
 

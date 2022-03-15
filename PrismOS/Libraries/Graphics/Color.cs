@@ -81,6 +81,7 @@ namespace PrismOS.Libraries.Graphics
         public static readonly Color LightGray = new(255, 125, 125, 125);
         public static readonly Color SuperOrange = new(255, 255, 99, 71);
         public static readonly Color FakeGrassGreen = new(255, 60, 179, 113);
+        public static readonly Color DeepBlue = new(255, 51, 47, 208);
         #endregion
 
         public static class SystemColors
@@ -89,6 +90,9 @@ namespace PrismOS.Libraries.Graphics
             public static Color ForeGround = GoogleBlue;
             public static Color ContentText = White;
             public static Color TitleText = Black;
+            public static Color Button = GoogleBlue;
+            public static Color ButtonHighlight = new(255, 77, 144, 255);
+            public static Color ButtonClick = DeepBlue;
         }
     }
 }
