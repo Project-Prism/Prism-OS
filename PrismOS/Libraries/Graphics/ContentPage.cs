@@ -26,6 +26,7 @@ namespace PrismOS.Libraries.Graphics
         public Bitmap Icon;
         public List<Element> Children;
         public int X, Y, Width, Height, Radius;
+        public int IX, IY;
 
         public class Element
         {
@@ -51,26 +52,23 @@ namespace PrismOS.Libraries.Graphics
 
         public void Update(Canvas Canvas)
         {
-            int IX = X, IY = Y;
-            if (Mouse.MouseState != Cosmos.System.MouseState.Left)
-            {
-                Moving = false;
+            if (Mouse.MouseState==Cosmos.System.MouseState.Left) {
+                if (Mouse.X > X && Mouse.X < X + Width && Mouse.Y > Y - 15 && Mouse.Y < Y && !Moving) {
+                    Moving=true;
+                    IX=(int)Mouse.X-X;
+                    IY=(int)Mouse.Y-Y;
+                }
+            } else {
+                Moving=false;
             }
-            if (IsMouseWithin(X, Y - 15, Width, 15) && Mouse.MouseState == Cosmos.System.MouseState.Left && !Moving)
-            {
-                Moving = true;
-                IX = (int)Mouse.X - X;
-                IY = (int)Mouse.Y - Y;
-            }
-            if (Moving)
-            {
+            if (Moving) {
                 X = (int)Math.Clamp(Mouse.X - IX, 0, Canvas.Width - Width);
-                Y = (int)Math.Clamp(Mouse.Y - IY, 15, Canvas.Height - Height + 15);
+                Y = (int)Math.Clamp(Mouse.Y - IY, 15, Canvas.Height - (Height + 15));
             }
 
-            Canvas.DrawFilledRectangle(IX + X, IY + Y, Width, Height, Radius, Color.SystemColors.BackGround);
-            Canvas.DrawFilledRectangle(IX + X, IY + Y - 15, Width, 15, Radius, Color.SystemColors.ForeGround);
-            Canvas.DrawString(IX + X, IY + Y - 15, Text, Color.SystemColors.TitleText);
+            Canvas.DrawFilledRectangle(X, Y, Width, Height, Radius, Color.SystemColors.BackGround);
+            Canvas.DrawFilledRectangle(X, Y - 15, Width, 15, Radius, Color.SystemColors.ForeGround);
+            Canvas.DrawString(X, Y - 15, Text, Color.SystemColors.TitleText);
 
             foreach (Element E in Children)
             {
@@ -81,8 +79,8 @@ namespace PrismOS.Libraries.Graphics
                 if (E.Type == 0x01)
                 {
                     Canvas.DrawString(
-                        IX + X + E.X,
-                        IY + Y + E.Y,
+                        X + E.X,
+                        Y + E.Y,
                         E.Text, Color.SystemColors.ContentText);
                 } // Label
             }
