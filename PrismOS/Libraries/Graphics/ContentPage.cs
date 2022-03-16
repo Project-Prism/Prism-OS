@@ -24,7 +24,7 @@ namespace PrismOS.Libraries.Graphics
         public bool Moving;
         public string Text;
         public Bitmap Icon;
-        public delegate void OnClick();
+        public delegate void OnClick(ref Element This);
         public List<Element> Children;
         public int X, Y, Width, Height, Radius;
         public int IX, IY;
@@ -76,8 +76,9 @@ namespace PrismOS.Libraries.Graphics
             Canvas.DrawFilledRectangle(X, Y - 15, Width, 15, Radius, Color.SystemColors.ForeGround);
             Canvas.DrawString(X, Y - 15, Text, Color.SystemColors.TitleText);
 
-            foreach (Element E in Children)
+            for (int I = 0; I < Children.Count; I++)
             {
+                Element E = Children[I];
                 E.Hovering = IsMouseWithin(E.X, E.Y, E.Width, E.Height);
                 E.Clicked = E.Hovering && Mouse.MouseState == Cosmos.System.MouseState.Left;
                 if (E.Clicked && Mouse.MouseState != Cosmos.System.MouseState.Left)
@@ -85,7 +86,7 @@ namespace PrismOS.Libraries.Graphics
                     E.Clicked = false;
                     if (E.ClickEvent != null)
                     {
-                        E.ClickEvent.Invoke();
+                        E.ClickEvent.Invoke(ref E);
                     }
                 }
 

@@ -83,14 +83,8 @@ namespace PrismOS.Libraries.Graphics
 
         #region Rectangle
 
-        public void DrawRectangle(int X, int Y, int Width, int Height, int Radius, Color Color, bool Clamp = true)
+        public void DrawRectangle(int X, int Y, int Width, int Height, int Radius, Color Color)
         {
-            if (Clamp)
-            {
-                X = Math.Clamp(X, 0, this.Width - Width);
-                Y = Math.Clamp(Y, 0, this.Height - Height);
-            }
-
             if (Radius > 0)
             {
                 DrawCircle(X, Y, Radius, Color, 180, 270); // Top left
@@ -104,14 +98,8 @@ namespace PrismOS.Libraries.Graphics
             DrawLine(X + Width, Y + Radius, Width + X, Y + Height - (Radius * 2), Color); // Right Line
         }
 
-        public void DrawFilledRectangle(int X, int Y, int Width, int Height, int Radius, Color Color, bool Clamp = true)
+        public void DrawFilledRectangle(int X, int Y, int Width, int Height, int Radius, Color Color)
         {
-            if (Clamp)
-            {
-                X = Math.Clamp(X, 0, this.Width - Width);
-                Y = Math.Clamp(Y, 0, this.Height - Height);
-            }
-
             if (Radius == 0)
             {
                 for (int IY = Y; IY < Y + Height; IY++)
@@ -144,14 +132,8 @@ namespace PrismOS.Libraries.Graphics
 
         #region Circle
 
-        public void DrawCircle(int X, int Y, int Radius, Color Color, int StartAngle = 0, int EndAngle = 360, bool Clamp = true)
+        public void DrawCircle(int X, int Y, int Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
         {
-            if (Clamp)
-            {
-                X = Math.Clamp(X, 0, Width - Radius);
-                Y = Math.Clamp(Y, 0, Height - Radius);
-            }
-
             if (Radius == 0 || StartAngle == EndAngle)
                 return;
 
@@ -197,23 +179,17 @@ namespace PrismOS.Libraries.Graphics
 
         #region Image
 
-        public void DrawBitmap(int X, int Y, Bitmap Bitmap, bool Clamp = true)
+        public void DrawBitmap(int X, int Y, Bitmap Bitmap)
         {
-            if (Clamp)
-            {
-                X = Math.Clamp(X, 0, Width - (int)Bitmap.Width);
-                Y = Math.Clamp(Y, 0, Height - (int)Bitmap.Height);
-            }
-
             for (int IX = 0; IX < Bitmap.Width; IX++)
             {
                 for (int IY = 0; IY < Bitmap.Height; IY++)
                     SetPixel(X + IX, Y + IY, new(Bitmap.rawData[(Bitmap.Width * IY) + IX]));
             }
         }
-        public void DrawBitmap(int X, int Y, int Width, int Height, Bitmap Bitmap, bool Clamp = true)
+        public void DrawBitmap(int X, int Y, int Width, int Height, Bitmap Bitmap)
         {
-            DrawBitmap(X, Y, new((uint)Width, (uint)Height, (byte[])(object)Bitmap.rawData, Bitmap.Depth), Clamp);
+            DrawBitmap(X, Y, new((uint)Width, (uint)Height, (byte[])(object)Bitmap.rawData, Bitmap.Depth));
         }
 
         #endregion

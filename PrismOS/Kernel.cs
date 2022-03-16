@@ -5,6 +5,7 @@ using PrismOS.Libraries.Graphics;
 using Cosmos.System.FileSystem;
 using System;
 using XSharp.Assembler.x86;
+using static PrismOS.Libraries.Graphics.ContentPage;
 
 namespace PrismOS
 {
@@ -22,7 +23,7 @@ namespace PrismOS
             new(5, (Canvas.Font.Default.Height + 2) * 0, 0, 0, 0, "FPS: 0", null, Page1, 0x01),
             new(5, (Canvas.Font.Default.Height + 2) * 1, 0, 0, 0, "Runtime: .Net 5.0", null, Page1, 0x01),
             new(5, (Canvas.Font.Default.Height + 2) * 2, 0, 0, 0, "UpTime: ", null, Page1, 0x01),
-            new(5, (Canvas.Font.Default.Height + 2) * 3, 100, 25, 0, "Reboot", null, Page1, 0x02, () => { Cosmos.System.Power.Reboot(); }),
+            new(5, (Canvas.Font.Default.Height + 2) * 3, 100, 25, 0, "Reboot", null, Page1, 0x02, (ref Element This) => { This.Text = "Hello!"; }),
         });
         public static DateTime BootTime = DateTime.UtcNow;
 
@@ -39,23 +40,21 @@ namespace PrismOS
             try
             {
                 Canvas.Clear(Color.CoolGreen);
-
-                //XSharp.XS.LiteralCode("mov ax, 0x4f15\nmov bl, 0x01\nxor cx, cx\nxor dx, dx\nint 0x10");
-
-                //uint* EDID = (uint*)ES:DI; (wtf is address ES:DI???)
-                // AL = 0x4F if function supported
-                // AH = status(0 is success, 1 is fail)
-                // ES: DI contains the EDID
-
                 Page1.Update(Canvas);
                 Page1.Children[0].Text = "FPS: " + Canvas.FPS;
-                Page1.Children[2].Text = "UpTime: " + DateTime.UtcNow.Subtract(BootTime).ToString("d Days, h Hour(s), mm Minute(s), ss Second(s).");
+                Page1.Children[2].Text = "UpTime: " + DateTime.UtcNow.Subtract(BootTime).ToString("d Days, h Hours, mm Minutes, ss Seconds.");
                 Canvas.DrawFilledRectangle(0, Canvas.Height - 25, Canvas.Width, 25, 0, Color.StackOverflowBlack);
                 Canvas.DrawString(5, Canvas.Height - Canvas.Font.Default.Height, Strings_EN.OSMessage, Color.White);
                 Canvas.DrawBitmap((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
                 Canvas.Update();
             }
-            catch { }
+            catch(Exception EX)
+            {
+                Canvas.Clear();
+                Canvas.DrawString(0, 0, EX.Message, Color.White);
+                Canvas.Update();
+                while (true) { }
+            }
         }
     }
 }
