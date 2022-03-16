@@ -332,7 +332,7 @@ namespace TCS
 
         static public double[] Set(double[] set)
         {
-            double[] tr = new double[Code.RET];
+            double[] tr = new double[Registers.ret];
             Array.Clear(tr, 0, tr.Length);
             for (int i = 0; i < set.Length; i++)
             {

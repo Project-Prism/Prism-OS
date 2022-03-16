@@ -73,6 +73,12 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Reference Include="XSharp">
+        <HintPath>..\..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\XSharp.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
       <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
     </ItemGroup>
 
