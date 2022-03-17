@@ -79,8 +79,6 @@ namespace PrismOS.Libraries.Graphics
             for (int I = 0; I < Children.Count; I++)
             {
                 Element E = Children[I];
-                E.Hovering = IsMouseWithin(E.X, E.Y, E.Width, E.Height);
-                E.Clicked = E.Hovering && Mouse.MouseState == Cosmos.System.MouseState.Left;
                 if (E.Clicked && Mouse.MouseState != Cosmos.System.MouseState.Left)
                 {
                     E.Clicked = false;
@@ -89,6 +87,8 @@ namespace PrismOS.Libraries.Graphics
                         E.ClickEvent.Invoke(ref E);
                     }
                 }
+                E.Hovering = IsMouseWithin(X + E.X, X + E.Y, E.Width, E.Height);
+                E.Clicked = E.Hovering && Mouse.MouseState == Cosmos.System.MouseState.Left;
 
                 if (E.Type == 0x00)
                 {
@@ -116,8 +116,8 @@ namespace PrismOS.Libraries.Graphics
                     {
                         C = Color.SystemColors.Button;
                     }
-                    Canvas.DrawFilledRectangle(E.X, E.Y, E.Width, E.Height, E.Radius, C);
-                    Canvas.DrawString(E.X, E.Y, E.Text, Color.SystemColors.TitleText);
+                    Canvas.DrawFilledRectangle(X + E.X, Y + E.Y, E.Width, E.Height, E.Radius, C);
+                    Canvas.DrawString(X + E.X, Y + E.Y, E.Text, Color.SystemColors.TitleText);
                 } // Button
             }
         }
