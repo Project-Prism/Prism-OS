@@ -42,16 +42,14 @@ namespace PrismOS
                 Page1.Children[0].Text = "FPS: " + Canvas.FPS;
                 Canvas.DrawFilledRectangle(0, Canvas.Height - 25, Canvas.Width, 25, 0, Color.StackOverflowBlack);
                 Canvas.DrawString(5, Canvas.Height - Canvas.Font.Default.Height, Strings_EN.OSMessage, Color.White);
+
+                Mouse.X = (uint)Math.Clamp(Mouse.X, 0, Canvas.Width - Files.Resources.Cursor.Width);
+                Mouse.Y = (uint)Math.Clamp(Mouse.Y, 0, Canvas.Height - Files.Resources.Cursor.Height);
+
                 Canvas.DrawBitmap((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
                 Canvas.Update();
             }
-            catch(Exception EX)
-            {
-                Canvas.Clear();
-                Canvas.DrawString(0, 0, EX.Message, Color.White);
-                Canvas.Update();
-                while (true) { }
-            }
+            catch { }
         }
     }
 }

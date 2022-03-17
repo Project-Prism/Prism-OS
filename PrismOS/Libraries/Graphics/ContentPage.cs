@@ -117,7 +117,11 @@ namespace PrismOS.Libraries.Graphics
                         C = Color.SystemColors.Button;
                     }
                     Canvas.DrawFilledRectangle(X + E.X, Y + E.Y, E.Width, E.Height, E.Radius, C);
-                    Canvas.DrawString(X + E.X, Y + E.Y, E.Text, Color.SystemColors.TitleText);
+
+                    Canvas.DrawString(
+                        Math.Clamp(X + E.X, 0, Canvas.Width - (Canvas.Font.Default.Width * Text.Length)),
+                        Math.Clamp(Y + E.Y, 0, Canvas.Height - (Canvas.Font.Default.Height * Text.Split('\n').Length)),
+                        E.Text, Color.SystemColors.TitleText);
                 } // Button
             }
         }
