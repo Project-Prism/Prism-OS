@@ -1,5 +1,7 @@
 using static PrismOS.Libraries.Graphics.ContentPage;
+using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Mouse = Cosmos.System.MouseManager;
+using Cosmos.System.Network.IPv4.TCP;
 using Cosmos.System.FileSystem.VFS;
 using PrismOS.Libraries.Graphics;
 using Cosmos.System.FileSystem;
@@ -31,6 +33,7 @@ namespace PrismOS
             VFS = new();
             VFS.Initialize(false);
             VFSManager.RegisterVFS(VFS);
+            new DHCPClient().SendDiscoverPacket();
         }
 
         protected override void Run()
@@ -42,11 +45,7 @@ namespace PrismOS
                 Page1.Children[0].Text = "FPS: " + Canvas.FPS;
                 Canvas.DrawFilledRectangle(0, Canvas.Height - 25, Canvas.Width, 25, 0, Color.StackOverflowBlack);
                 Canvas.DrawString(5, Canvas.Height - Canvas.Font.Default.Height, Strings_EN.OSMessage, Color.White);
-
-                Mouse.X = (uint)Math.Clamp(Mouse.X, 0, Canvas.Width - Files.Resources.Cursor.Width);
-                Mouse.Y = (uint)Math.Clamp(Mouse.Y, 0, Canvas.Height - Files.Resources.Cursor.Height);
-
-                Canvas.DrawBitmap((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
+                Canvas.DrawBezierLine(50, 50, (int)Mouse.X, (int)Mouse.Y, 200, 200, Color.RubyRed);
                 Canvas.Update();
             }
             catch { }

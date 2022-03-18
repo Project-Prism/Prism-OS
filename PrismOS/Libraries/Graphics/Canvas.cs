@@ -1,5 +1,6 @@
 ﻿using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
 using Mouse = Cosmos.System.MouseManager;
+using PrismOS.Libraries.Formats;
 using Cosmos.Core;
 using System.Text;
 using System.IO;
@@ -14,11 +15,12 @@ namespace PrismOS.Libraries.Graphics
             this.Width = Width;
             this.Height = Height;
             Buffer = new int*[Width * Height];
-            
+
             if (UseVBE)
             {
                 VBE = new((ushort)Width, (ushort)Height, 32);
                 Update();
+                ShowCursor = true;
                 Mouse.ScreenWidth = (uint)Width;
                 Mouse.ScreenHeight = (uint)Height;
                 Mouse.X = (uint)Width / 2;
@@ -28,6 +30,7 @@ namespace PrismOS.Libraries.Graphics
 
         public int Width, Height;
         public float AspectRatio;
+        public bool ShowCursor;
         public int*[] Buffer;
         public VBEDriver VBE;
         private DateTime LT;
@@ -77,6 +80,33 @@ namespace PrismOS.Libraries.Graphics
         public void DrawAngledLine(int X, int Y, int Angle, int Radius, Color Color)
         {
             DrawLine(X, Y, (int)(X + (Math.Cos(Math.PI * Angle / 180) * Radius)), (int)(X + (Math.Sin(Math.PI * Angle / 180) * Radius)), Color);
+        }
+        public void DrawBezierLine(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, bool Initial = true, int N = 6)
+        {
+            // X2 and Y2 is where the curve should bend to.
+            if (Initial)
+            {
+                //DrawLine(X1, Y1, X2, Y2, Color.Black);
+                //DrawLine(X2, Y2, X3, Y3, Color.Black);
+            }
+
+            if (N > 0)
+            {
+                int X12 = (X1 + X2) / 2;
+                int Y12 = (Y1 + Y2) / 2;
+                int X23 = (X2 + X3) / 2;
+                int Y23 = (Y2 + Y3) / 2;
+                int X123 = (X12 + X23) / 2;
+                int Y123 = (Y12 + Y23) / 2;
+
+                DrawBezierLine(X1, Y1, X12, Y12, X123, Y123, Color, false, N - 1);
+                DrawBezierLine(X123, Y123, X23, Y23, X3, Y3, Color, false, N - 1);
+            }
+            else
+            {
+                DrawLine(X1, Y1, X2, Y2, Color);
+                DrawLine(X2, Y2, X3, Y3, Color);
+            }
         }
 
         #endregion
@@ -163,7 +193,7 @@ namespace PrismOS.Libraries.Graphics
 
         public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
         {
-            #warning Need to implement clamping for triangle
+#warning Need to implement clamping for triangle
             DrawLine(X1, Y1, X2, Y2, Color);
             DrawLine(X1, Y1, X3, Y3, Color);
             DrawLine(X2, Y2, X3, Y3, Color);
@@ -265,6 +295,13 @@ namespace PrismOS.Libraries.Graphics
                     Frames = 0;
                     LT = DateTime.Now;
                     Cosmos.Core.Memory.Heap.Collect();
+                }
+
+                if (ShowCursor)
+                {
+                    Mouse.X = (uint)Math.Clamp(Mouse.X, 0, Width - Files.Resources.Cursor.Width);
+                    Mouse.Y = (uint)Math.Clamp(Mouse.Y, 0, Height - Files.Resources.Cursor.Height);
+                    DrawBitmap((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
                 }
 
                 Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);

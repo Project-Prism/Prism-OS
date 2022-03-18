@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Mouse = Cosmos.System.MouseManager;
 using System.Collections.Generic;
-using Mouse = Cosmos.System.MouseManager;
+using PrismOS.Libraries.Formats;
+using System;
 
 namespace PrismOS.Libraries.Graphics
 {

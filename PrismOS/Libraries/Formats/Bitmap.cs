@@ -1,8 +1,8 @@
 ﻿using Cosmos.System.Graphics;
-using System.Drawing;
+using PrismOS.Libraries.Graphics;
 using System;
 
-namespace PrismOS.Libraries.Graphics
+namespace PrismOS.Libraries.Formats
 {
     public class Bitmap : Cosmos.System.Graphics.Bitmap
     {

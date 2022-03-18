@@ -101,3 +101,17 @@ if (Cosmos.System.KeyboardManager.ControlPressed || ShowMenu)
 
                     Canvas.Update();
                 }
+
+                
+            TCP.Start();
+            Console.WriteLine("Server started!");
+            while (true)
+            {
+                TCP.AcceptTcpClient().Send(System.Text.Encoding.ASCII.GetBytes(
+                    $"HTTP/1.1 200 OK\n" +
+                    $"Date: {DateTime.UtcNow:ddd, d MMM yyyy h:mm:ss zz}\n" +
+                    $"Server: Cosmos / DevKit(Prism OS)\n" +
+                    $"Content - Type: text / html\n" +
+                    $"Connection: Closed\n" +
+                    "<html><body><h1>Hello, World!</h1></body></html>"));
+            }
