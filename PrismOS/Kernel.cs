@@ -45,11 +45,7 @@ namespace PrismOS
                 Page1.Children[0].Text = "FPS: " + Canvas.FPS;
                 if (Started)
                 {
-                    TcpClient Client = TCP.AcceptTcpClient(5);
-                    if (Client != null)
-                    {
-                        Client.Send(System.Text.Encoding.ASCII.GetBytes(Libraries.Network.HTTP.GenerateHTTP("<title>Prism OS</title><button OnClick=\"alert(1)\">Click me!</button>")));
-                    }
+                    TCP.AcceptTcpClient(10).Send(System.Text.Encoding.ASCII.GetBytes(Libraries.Network.HTTP.GenerateHTTP("<title>Prism OS</title><button OnClick=\"alert(1)\">Click me!</button>")));
                 }
                 Canvas.DrawFilledRectangle(0, Canvas.Height - 25, Canvas.Width, 25, 0, Color.StackOverflowBlack);
                 Canvas.DrawString(5, Canvas.Height - Canvas.Font.Default.Height, Strings_EN.OSMessage, Color.White);

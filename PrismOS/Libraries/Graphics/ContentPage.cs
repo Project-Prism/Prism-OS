@@ -1,3 +1,4 @@
+using PrismOS.Libraries.Formats;
 using System;
 using System.Collections.Generic;
 using Mouse = Cosmos.System.MouseManager;
@@ -57,15 +58,19 @@ namespace PrismOS.Libraries.Graphics
         public void Update(Canvas Canvas)
         {
             if (Mouse.MouseState==Cosmos.System.MouseState.Left) {
-                if (Mouse.X > X && Mouse.X < X + Width && Mouse.Y > Y - 15 && Mouse.Y < Y && !Moving) {
+                if (Mouse.X > X && Mouse.X < X + Width && Mouse.Y > Y - 15 && Mouse.Y < Y && !Moving)
+                {
                     Moving=true;
                     IX=(int)Mouse.X-X;
                     IY=(int)Mouse.Y-Y;
                 }
-            } else {
+            }
+            else
+            {
                 Moving=false;
             }
-            if (Moving) {
+            if (Moving)
+            {
                 X = (int)Math.Clamp(Mouse.X - IX, 0, Canvas.Width - Width);
                 Y = (int)Math.Clamp(Mouse.Y - IY, 15, Canvas.Height - (Height + 15));
             }
