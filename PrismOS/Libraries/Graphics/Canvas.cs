@@ -41,6 +41,9 @@ namespace PrismOS.Libraries.Graphics
 
         public void SetPixel(int X, int Y, Color Color)
         {
+            if (X < 0 || Y < 0 || X >= Width || Y >= Height || Color.A == 0)
+                return;
+
             if (Color.A < 255)
                 Color = Blend(Color, GetPixel(X, Y));
 
@@ -49,6 +52,9 @@ namespace PrismOS.Libraries.Graphics
         }
         public Color GetPixel(int X, int Y)
         {
+            if (X < 0 || Y < 0 || X > Width || Y > Height)
+                return Color.Black;
+
             return new((int)Buffer[(Width * Y) + X]);
         }
         public static Color Blend(Color NewColor, Color BackColor)
@@ -81,13 +87,13 @@ namespace PrismOS.Libraries.Graphics
         {
             DrawLine(X, Y, (int)(X + (Math.Cos(Math.PI * Angle / 180) * Radius)), (int)(X + (Math.Sin(Math.PI * Angle / 180) * Radius)), Color);
         }
-        public void DrawBezierLine(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, bool Initial = true, int N = 6)
+        public void DrawBezierLine(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, bool ShowBorder, int N = 6)
         {
             // X2 and Y2 is where the curve should bend to.
-            if (Initial)
+            if (ShowBorder)
             {
-                //DrawLine(X1, Y1, X2, Y2, Color.Black);
-                //DrawLine(X2, Y2, X3, Y3, Color.Black);
+                DrawLine(X1, Y1, X2, Y2, Color.Black);
+                DrawLine(X2, Y2, X3, Y3, Color.Black);
             }
 
             if (N > 0)
@@ -127,35 +133,29 @@ namespace PrismOS.Libraries.Graphics
             DrawLine(X, Y + Radius, X, Y + Height - (Radius * 2), Color); // Left Line
             DrawLine(X + Width, Y + Radius, Width + X, Y + Height - (Radius * 2), Color); // Right Line
         }
-
         public void DrawFilledRectangle(int X, int Y, int Width, int Height, int Radius, Color Color)
         {
             if (Radius == 0)
             {
-                for (int IY = Y; IY < Y + Height; IY++)
+                for (int IX = X; IX < X + Width; IX++)
                 {
-                    for (int IX = X; IX < X + Width; IX++)
+                    for (int IY = Y; IY < Y + Height; IY++)
                     {
                         SetPixel(IX, IY, Color);
                     }
                 }
-                return;
             }
+            else
+            {
+                DrawFilledRectangle(X + Radius, Y, Width - Radius * 2, Height, 0, Color);
+                DrawFilledRectangle(X, Y + Radius, Width, Height - Radius * 2, 0, Color);
 
-            // Draw Outside circles
-            DrawFilledCircle(X + Width - (Radius * 2), Y + Height - (Radius * 2), Radius, Color, 0, 90);
-            DrawFilledCircle(X - 1, Y + Height - (Radius * 2) - 1, Radius, Color, 270, 360);
-            DrawFilledCircle(X + Width - (Radius * 2) + 2, Y - 1, Radius, Color, 90, 180);
-            DrawFilledCircle(X - 1, Y, Radius, Color, 180, 270);
+                DrawFilledCircle(X + Radius, Y + Radius, Radius, Color);
+                DrawFilledCircle(X + Width - Radius - 1, Y + Radius, Radius, Color);
 
-            // Draw Main Rectangle
-            DrawFilledRectangle(X, Y, Width - (Radius * 2), Height - (Radius * 2), 0, Color);
-
-            // Draw Outside Rectangles
-            DrawFilledRectangle(X - Radius, Y, Radius, Height - (Radius * 2), 0, Color);
-            DrawFilledRectangle(X + Width - (Radius * 2), Y, Radius, Height - (Radius * 2), 0, Color);
-            DrawFilledRectangle(X, Y - Radius, Width - (Radius * 2) + 1, Radius, 0, Color);
-            DrawFilledRectangle(X, Y + Width - (Radius * 2), Width - (Radius * 2) + 1, Radius, 0, Color);
+                DrawFilledCircle(X + Radius, Y + Height - Radius - 1, Radius, Color);
+                DrawFilledCircle(X + Width - Radius - 1, Y + Height - Radius - 1, Radius, Color);
+            }
         }
 
         #endregion
@@ -175,7 +175,6 @@ namespace PrismOS.Libraries.Graphics
                     Color: Color);
             }
         }
-
         public void DrawFilledCircle(int X, int Y, int Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
         {
             if (Radius == 0 || StartAngle == EndAngle)
@@ -193,7 +192,6 @@ namespace PrismOS.Libraries.Graphics
 
         public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
         {
-#warning Need to implement clamping for triangle
             DrawLine(X1, Y1, X2, Y2, Color);
             DrawLine(X1, Y1, X3, Y3, Color);
             DrawLine(X2, Y2, X3, Y3, Color);
@@ -214,6 +212,19 @@ namespace PrismOS.Libraries.Graphics
         public void DrawBitmap(int X, int Y, int Width, int Height, Bitmap Bitmap)
         {
             DrawBitmap(X, Y, new((uint)Width, (uint)Height, (byte[])(object)Bitmap.rawData, Bitmap.Depth));
+        }
+        public void DrawArray(int X, int Y, int Width, int Height, int*[] Buffer)
+        {
+            if (Buffer.Length != Width * Height)
+                return;
+
+            for (int IX = 0; IX < Width; IX++)
+            {
+                for (int IY = 0; IY < Height; IY++)
+                {
+                    SetPixel(X + IX, Y + IY, new((int)Buffer[(Width + IY) + IX]));
+                }
+            }
         }
 
         #endregion
@@ -291,10 +302,10 @@ namespace PrismOS.Libraries.Graphics
                 Frames++;
                 if ((DateTime.Now - LT).TotalSeconds >= 1)
                 {
+                    Cosmos.Core.Memory.Heap.Collect();
                     FPS = Frames;
                     Frames = 0;
                     LT = DateTime.Now;
-                    Cosmos.Core.Memory.Heap.Collect();
                 }
 
                 if (ShowCursor)
