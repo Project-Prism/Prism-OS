@@ -1,20 +1,21 @@
-﻿using System;
+﻿using PrismOS.Libraries.Formats;
 
 namespace PrismOS.Libraries.Sound
 {
     public unsafe static class PCSpeaker
     {
-        public static void Play(byte[] RawBytes)
+        public static void Play(WAVFile File, int TimeSpan = default)
         {
-            short[] Audio = new short[RawBytes.Length / 2];
-            Buffer.BlockCopy(RawBytes, 44, Audio, 0, RawBytes.Length);
+            // If timespan is default, set to WAVFiles's length, else, keep set value
+            //TimeSpan = (TimeSpan == default ? File.Time : Timespan);
 
-            for (int I = 0; I < Audio.Length; I++)
+            for (int I = 0; I < File.Audio.Length; I++)
             {
-                if (Audio[I] > 37 && Audio[I] < short.MaxValue)
+                if (File.Audio[I] > 37 && File.Audio[I] < short.MaxValue)
                 {
-                    Cosmos.HAL.PCSpeaker.Beep((uint)Audio[I], 1);
+                    Cosmos.HAL.PCSpeaker.Beep((uint)File.Audio[I], 1);
                 }
+                System.Threading.Thread.Sleep((TimeSpan / File.Audio.Length) * 1000);
             }
         }
     }

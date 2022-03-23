@@ -1,15 +1,14 @@
 ﻿namespace PrismOS.Libraries.Numerics
 {
-    public struct Triangle
+    public struct Triangle<T>
     {
-        public Triangle(float X1, float Y1, float Z1, float X2, float Y2, float Z2, float X3, float Y3, float Z3)
+        public Triangle(T X1, T Y1, T Z1, T X2, T Y2, T Z2, T X3, T Y3, T Z3)
         {
-            P = new Vector3<float>[3];
-            P[0] = new(X1, Y1, Z1);
-            P[1] = new(X2, Y2, Z2);
-            P[2] = new(X3, Y3, Z3);
+            P1 = new(X1, Y1, Z1);
+            P2 = new(X2, Y2, Z2);
+            P3 = new(X3, Y3, Z3);
         }
 
-        public Vector3<float>[] P;
+        public Vector3<T> P1, P2, P3;
     }
 }

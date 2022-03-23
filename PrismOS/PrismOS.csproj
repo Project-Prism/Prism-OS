@@ -25,7 +25,7 @@
         <StartCosmosGDB>False</StartCosmosGDB>
         <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
         <CosmosDebugPort>Serial: COM1</CosmosDebugPort>
-        <Launch>VMware</Launch>
+        <Launch>ISO</Launch>
         <Profile>VMware</Profile>
         <Description></Description>
         <PxeInterface>192.168.0.8</PxeInterface>
@@ -38,6 +38,14 @@
         <PackageLicenseFile>C:\Users\EvanLawrence\Source\Repos\Prism-OS\LICENSE</PackageLicenseFile>
         <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
         <Version>$(HOME)</Version>
+        <ExtractMapFile>False</ExtractMapFile>
+        <QemuMemory>4096</QemuMemory>
+        <QemuNetworkDevice>PCNet</QemuNetworkDevice>
+        <QemuVideoDriver>VBE</QemuVideoDriver>
+        <QemuAudioDriver>SoundBlaster16</QemuAudioDriver>
+        <QemuUseSerial>True</QemuUseSerial>
+        <QemuUseCustomLocation>True</QemuUseCustomLocation>
+        <QemuLocationParameters>C:\Program Files\qemu\qemu-system-i386.exe</QemuLocationParameters>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

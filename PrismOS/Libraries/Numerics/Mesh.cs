@@ -2,11 +2,11 @@
 {
     public struct Mesh
     {
-        public Mesh(Triangle[] Triangles)
+        public Mesh(Triangle<float>[] Triangles)
         {
             this.Triangles = Triangles;
         }
 
-        public Triangle[] Triangles;
+        public Triangle<float>[] Triangles;
     }
 }
