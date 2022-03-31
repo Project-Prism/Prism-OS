@@ -21,7 +21,7 @@ Just a list of things that need to be done.
 | Fix 3D                    | Unsure of cause                                                      |
 | Fix game of life          | Unsure of cause (https://www.youtube.com/watch?v=6-0UaeJBumA&t=589s) |
 | Re-make perlin noise      | currently not good    (https://www.youtube.com/watch?v=ih20l3pJoeU)  |
-| implement filled triangle | current implementation is horible.                                   |
+| implement filled triangle | current implementation is horrible.                                   |
 
 ## Contributing
 
