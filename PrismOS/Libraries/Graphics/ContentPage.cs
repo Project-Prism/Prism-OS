@@ -1,7 +1,8 @@
+using Mouse = Cosmos.System.MouseManager;
+using PrismOS.Libraries.Graphics.Drawing;
+using System.Collections.Generic;
 using PrismOS.Libraries.Formats;
 using System;
-using System.Collections.Generic;
-using Mouse = Cosmos.System.MouseManager;
 
 namespace PrismOS.Libraries.Graphics
 {
@@ -106,6 +107,9 @@ namespace PrismOS.Libraries.Graphics
                 } // Label
                 if (E.Type == 0x02)
                 {
+                    E.Hovering = IsMouseWithin(X + E.X, Y + E.Y, E.Width, E.Height);
+                    E.Clicked = E.Hovering && Mouse.MouseState == Cosmos.System.MouseState.Left;
+
                     Color C;
                     if (E.Hovering && E.Clicked)
                     {

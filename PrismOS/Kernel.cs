@@ -1,5 +1,6 @@
 using static PrismOS.Libraries.Graphics.ContentPage;
 using Cosmos.System.Network.IPv4.UDP.DHCP;
+using PrismOS.Libraries.Graphics.Drawing;
 using Cosmos.System.Network.IPv4.TCP;
 using Cosmos.System.FileSystem.VFS;
 using PrismOS.Libraries.Graphics;

@@ -1,5 +1,5 @@
 ﻿using Cosmos.System.Graphics;
-using PrismOS.Libraries.Graphics;
+using PrismOS.Libraries.Graphics.Drawing;
 using System;
 
 namespace PrismOS.Libraries.Formats

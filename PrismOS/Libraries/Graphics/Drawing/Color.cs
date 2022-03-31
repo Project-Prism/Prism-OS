@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PrismOS.Libraries.Graphics
+namespace PrismOS.Libraries.Graphics.Drawing
 {
     public struct Color : IDisposable
     {
