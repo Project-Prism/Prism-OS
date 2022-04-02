@@ -1,5 +1,5 @@
 ﻿using Cosmos.System.Graphics;
-using PrismOS.Libraries.Graphics.Drawing;
+using PrismOS.Libraries.Graphics;
 using System;
 
 namespace PrismOS.Libraries.Formats
@@ -32,7 +32,7 @@ namespace PrismOS.Libraries.Formats
             for (int I = 0; I < rawData.Length; I++)
             {
                 Color C = new(rawData[I]);
-                rawData[I] = new Color(C.R / 3, C.G / 3, C.B / 3).ToArgb();
+                rawData[I] = new Color((byte)(C.R / 3), (byte)(C.G / 3), (byte)(C.B / 3)).ARGB;
             }
         }
         public void AddThreshHold(byte MinValue, byte MaxValue)
@@ -44,7 +44,7 @@ namespace PrismOS.Libraries.Formats
 
                 if (B < MinValue || B > MaxValue)
                 {
-                    rawData[I] = Color.Black.ToArgb();
+                    rawData[I] = Color.Black.ARGB;
                 }
             }
         }
@@ -58,15 +58,15 @@ namespace PrismOS.Libraries.Formats
                     Color C1 = new(rawData[I]);
                     Color C2 = new(LastFrame.rawData[I]);
 
-                    int RDiff = Math.Abs(C1.R - C2.R);
-                    int GDiff = Math.Abs(C1.G - C2.G);
-                    int BDiff = Math.Abs(C1.B - C2.B);
+                    byte RDiff = (byte)Math.Abs(C1.R - C2.R);
+                    byte GDiff = (byte)Math.Abs(C1.G - C2.G);
+                    byte BDiff = (byte)Math.Abs(C1.B - C2.B);
 
-                    rawData[I] = new Color(RDiff, GDiff, BDiff).ToArgb();
+                    rawData[I] = new Color(RDiff, GDiff, BDiff).ARGB;
                 }
                 else
                 {
-                    rawData[I] = Color.Black.ToArgb();
+                    rawData[I] = Color.Black.ARGB;
                 }
             }
         }
@@ -78,11 +78,11 @@ namespace PrismOS.Libraries.Formats
                 Color C1 = new(LastFrame.rawData[I]);
                 Color C2 = new(rawData[I]);
 
-                int R = (C1.R / 2) + (C2.R / 2);
-                int G = (C1.G / 2) + (C2.G / 2);
-                int B = (C1.B / 2) + (C2.B / 2);
+                byte R = (byte)((C1.R / 2) + (C2.R / 2));
+                byte G = (byte)((C1.G / 2) + (C2.G / 2));
+                byte B = (byte)((C1.B / 2) + (C2.B / 2));
 
-                rawData[I] = new Color(R, G, B).ToArgb();
+                rawData[I] = new Color(R, G, B).ARGB;
             }
         }
         public void Tint(Color Color)
@@ -93,7 +93,7 @@ namespace PrismOS.Libraries.Formats
                 byte R = (byte)((C.R / 2) - Color.R + Color.R);
                 byte G = (byte)((C.G / 2) - Color.G + Color.G);
                 byte B = (byte)((C.B / 2) - Color.B + Color.B);
-                rawData[I] = new Color(R, G, B).ToArgb();
+                rawData[I] = new Color(R, G, B).ARGB;
             }
         }
         public void GetNoise()
@@ -101,7 +101,7 @@ namespace PrismOS.Libraries.Formats
             Random Random = new();
             for (int I = 0; I < rawData.Length; I++)
             {
-                rawData[I] = new Color(Random.Next(0, 255), Random.Next(0, 255), Random.Next(0, 255)).ToArgb();
+                rawData[I] = new Color((byte)Random.Next(0, 255), (byte)Random.Next(0, 255), (byte)Random.Next(0, 255)).ARGB;
             }
             LastFrame = this;
             
@@ -109,11 +109,11 @@ namespace PrismOS.Libraries.Formats
         public void GetSine(Color Color, bool Clear, double Freq = 40.0, double Amp = 0.25)
         {
             if (Clear)
-                Array.Fill(rawData, Color.Black.ToArgb());
+                Array.Fill(rawData, Color.Black.ARGB);
             Amp *= Height;
             for (int X = 0; X < Width; X++)
             {
-                rawData[(Width * ((Height / 5) + ((short)(Amp * Math.Sin(2 * Math.PI * X * Freq / 8000)) / 2))) + X] = Color.ToArgb();
+                rawData[(Width * ((Height / 5) + ((short)(Amp * Math.Sin(2 * Math.PI * X * Freq / 8000)) / 2))) + X] = Color.ARGB;
             }
         }
         public void Resize(int Width, int Height)
@@ -134,6 +134,18 @@ namespace PrismOS.Libraries.Formats
             this.Width = Temp.Width;
             this.Height = Temp.Height;
             rawData = Temp.rawData;
+        }
+        public Color GetAverageColor()
+        {
+            Color Temp = new(255, 0, 0, 0);
+            for (int I = 0; I < rawData.Length; I++)
+            {
+                Color Temp2 = new(rawData[I]);
+                Temp.R += (byte)(Temp2.R / rawData.Length);
+                Temp.G += (byte)(Temp2.G / rawData.Length);
+                Temp.B += (byte)(Temp2.B / rawData.Length);
+            }
+            return Temp;
         }
     }
 }

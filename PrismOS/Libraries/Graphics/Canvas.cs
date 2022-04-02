@@ -6,7 +6,7 @@ using System.Text;
 using System.IO;
 using System;
 
-namespace PrismOS.Libraries.Graphics.Drawing
+namespace PrismOS.Libraries.Graphics
 {
     public unsafe class Canvas
     {
@@ -19,12 +19,12 @@ namespace PrismOS.Libraries.Graphics.Drawing
             if (UseVBE)
             {
                 VBE = new((ushort)Width, (ushort)Height, 32);
-                Update();
                 ShowCursor = true;
                 Mouse.ScreenWidth = (uint)Width;
                 Mouse.ScreenHeight = (uint)Height;
                 Mouse.X = (uint)Width / 2;
                 Mouse.Y = (uint)Height / 2;
+                Update();
             }
         }
 
@@ -45,10 +45,10 @@ namespace PrismOS.Libraries.Graphics.Drawing
                 return;
 
             if (Color.A < 255)
-                Color = AlphaBlend(Color, GetPixel(X, Y));
+                Color = Color.AlphaBlend(Color, GetPixel(X, Y));
 
             // Draw main pixel
-            Buffer[(Width * Y) + X] = (int*)Color.ToArgb();
+            Buffer[(Width * Y) + X] = (int*)Color.ARGB;
         }
         public Color GetPixel(int X, int Y)
         {
@@ -56,25 +56,6 @@ namespace PrismOS.Libraries.Graphics.Drawing
                 return Color.Black;
 
             return new((int)Buffer[(Width * Y) + X]);
-        }
-        public static Color AlphaBlend(Color NewColor, Color BackColor)
-        {
-            int R = ((NewColor.A * NewColor.R) + ((256 - NewColor.A) * BackColor.R)) >> 8;
-            int G = ((NewColor.A * NewColor.G) + ((256 - NewColor.A) * BackColor.G)) >> 8;
-            int B = ((NewColor.A * NewColor.B) + ((256 - NewColor.A) * BackColor.B)) >> 8;
-            return new(R, G, B);
-        }
-        public static Color ColorBlend(Color[] Colors)
-        {
-            Color BaseColor = new(0, 0, 0, 0);
-            for (int I = 0; I < Colors.Length; I++)
-            {
-                BaseColor.A += Colors[I].A / Colors.Length;
-                BaseColor.R += Colors[I].R / Colors.Length;
-                BaseColor.G += Colors[I].G / Colors.Length;
-                BaseColor.B += Colors[I].B / Colors.Length;
-            }
-            return BaseColor;
         }
 
         #endregion
@@ -300,9 +281,9 @@ namespace PrismOS.Libraries.Graphics.Drawing
         public void Clear(Color? Color = null)
         {
             if (Color == null)
-                Color = Drawing.Color.Black;
+                Color = Graphics.Color.Black;
 
-            MemoryOperations.Fill((int[])(object)Buffer, Color.Value.ToArgb());
+            MemoryOperations.Fill((int[])(object)Buffer, Color.Value.ARGB);
         }
 
         public void Update()

@@ -8,7 +8,7 @@ namespace PrismOS.Libraries.Formats
         public WAVFile(byte[] Binary)
         {
             BinaryReader Reader = new(new MemoryStream(Binary));
-            if (Reader.ReadChars(4).ToString() != "RIFf")
+            if (Reader.ReadChars(4).ToString() != "RIFF")
             {
                 return;
             }

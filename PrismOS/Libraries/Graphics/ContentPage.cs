@@ -1,5 +1,4 @@
 using Mouse = Cosmos.System.MouseManager;
-using PrismOS.Libraries.Graphics.Drawing;
 using System.Collections.Generic;
 using PrismOS.Libraries.Formats;
 using System;

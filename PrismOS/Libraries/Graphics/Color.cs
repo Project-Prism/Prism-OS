@@ -1,30 +1,18 @@
 ﻿using System;
 
-namespace PrismOS.Libraries.Graphics.Drawing
+namespace PrismOS.Libraries.Graphics
 {
     public struct Color : IDisposable
     {
-        public Color(int A, int R, int G, int B)
+        public Color(byte A, byte R, byte G, byte B)
         {
             this.A = A;
             this.R = R;
             this.G = G;
             this.B = B;
         }
-        public Color(int R, int G, int B)
+        public Color(byte R, byte G, byte B)
         {
-            A = 255;
-            this.R = R;
-            this.G = G;
-            this.B = B;
-        }
-        public Color(string Hex)
-        {
-            Hex = Hex.Replace("#", "");
-            byte R = byte.Parse("0x" + Hex[1].ToString() + Hex[2].ToString());
-            byte G = byte.Parse("0x" + Hex[3].ToString() + Hex[4].ToString());
-            byte B = byte.Parse("0x" + Hex[5].ToString() + Hex[6].ToString());
-
             A = 255;
             this.R = R;
             this.G = G;
@@ -32,27 +20,56 @@ namespace PrismOS.Libraries.Graphics.Drawing
         }
         public Color(int ARGB)
         {
-            A = (int)((ARGB & 0xFF000000) >> 24);
-            R = (ARGB & 0x00FF0000) >> 16;
-            G = (ARGB & 0x0000FF00) >> 8;
-            B = (ARGB & 0x000000FF) >> 0;
+            A = (byte)((ARGB & 0xFF000000) >> 24);
+            R = (byte)((ARGB & 0x00FF0000) >> 16);
+            G = (byte)((ARGB & 0x0000FF00) >> 8);
+            B = (byte)((ARGB & 0x000000FF) >> 0);
         }
 
-        public int ARGB => ((R & 0x0ff) << 16) | ((G & 0x0ff) << 8) | (B & 0x0ff);
-        public int A, R, G, B;
-
-        public void Blend(Color NewColor)
+        public int ARGB
         {
-            R = ((NewColor.A * NewColor.R) + ((256 - NewColor.A) * R)) >> 8;
-            G = ((NewColor.A * NewColor.G) + ((256 - NewColor.A) * G)) >> 8;
-            B = ((NewColor.A * NewColor.B) + ((256 - NewColor.A) * B)) >> 8;
+            get
+            {
+                return ((R & 0x0ff) << 16) | ((G & 0x0ff) << 8) | (B & 0x0ff);
+            }
+            set
+            {
+                // Does not work
+                byte[] ARGB = BitConverter.GetBytes(value);
+                A = ARGB[0];
+                R = ARGB[1];
+                G = ARGB[2];
+                B = ARGB[3];
+            }
         }
-
-        public int ToArgb()
+        public byte Brightness
         {
-            return ARGB;
+            get
+            {
+                return (byte)((R / 3) + (G / 3) + (B / 3));
+            }
         }
+        public byte A, R, G, B;
 
+        public static Color AlphaBlend(Color NewColor, Color BackColor)
+        {
+            byte R = (byte)(((NewColor.A * NewColor.R) + ((256 - NewColor.A) * BackColor.R)) >> 8);
+            byte G = (byte)(((NewColor.A * NewColor.G) + ((256 - NewColor.A) * BackColor.G)) >> 8);
+            byte B = (byte)(((NewColor.A * NewColor.B) + ((256 - NewColor.A) * BackColor.B)) >> 8);
+            return new(R, G, B);
+        }
+        public static Color ColorBlend(Color[] Colors)
+        {
+            Color BaseColor = new(0, 0, 0, 0);
+            for (int I = 0; I < Colors.Length; I++)
+            {
+                BaseColor.A += (byte)(Colors[I].A / Colors.Length);
+                BaseColor.R += (byte)(Colors[I].R / Colors.Length);
+                BaseColor.G += (byte)(Colors[I].G / Colors.Length);
+                BaseColor.B += (byte)(Colors[I].B / Colors.Length);
+            }
+            return BaseColor;
+        }
         public void Dispose()
         {
             Cosmos.Core.GCImplementation.Free(this);
@@ -82,6 +99,7 @@ namespace PrismOS.Libraries.Graphics.Drawing
         public static readonly Color SuperOrange = new(255, 255, 99, 71);
         public static readonly Color FakeGrassGreen = new(255, 60, 179, 113);
         public static readonly Color DeepBlue = new(255, 51, 47, 208);
+        public static readonly Color BloodOrange = new(255, 255, 123, 0);
         #endregion
 
         public static class SystemColors

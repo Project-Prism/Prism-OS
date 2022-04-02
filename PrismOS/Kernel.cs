@@ -1,6 +1,5 @@
 using static PrismOS.Libraries.Graphics.ContentPage;
 using Cosmos.System.Network.IPv4.UDP.DHCP;
-using PrismOS.Libraries.Graphics.Drawing;
 using Cosmos.System.Network.IPv4.TCP;
 using Cosmos.System.FileSystem.VFS;
 using PrismOS.Libraries.Graphics;
@@ -46,7 +45,12 @@ namespace PrismOS
                 Page1.Children[0].Text = "FPS: " + Canvas.FPS;
                 if (Started)
                 {
-                    TCP.AcceptTcpClient(10).Send(System.Text.Encoding.ASCII.GetBytes(Libraries.Network.HTTP.GenerateHTTP("<title>Prism OS</title><button OnClick=\"alert(1)\">Click me!</button>")));
+                    var D = TCP.AcceptTcpClient(10);
+                    if (D != null)
+                    {
+                        D.Send(System.Text.Encoding.ASCII.GetBytes(Libraries.Network.HTTP.GenerateHTTP("<title>Prism OS</title><button OnClick=\"alert(1)\">Click me!</button>")));
+                        D = null;
+                    }
                 }
                 Canvas.DrawFilledRectangle(0, Canvas.Height - 25, Canvas.Width, 25, 0, Color.StackOverflowBlack);
                 Canvas.DrawString(5, Canvas.Height - Canvas.Font.Default.Height, Strings_EN.OSMessage, Color.White);
