@@ -18,6 +18,13 @@ namespace PrismOS.Libraries.Graphics
             this.G = G;
             this.B = B;
         }
+        public Color(Color Color, byte A)
+        {
+            this.A = A;
+            R = Color.R;
+            G = Color.G;
+            B = Color.B;
+        }
         public Color(int ARGB)
         {
             A = (byte)((ARGB & 0xFF000000) >> 24);

@@ -10,27 +10,22 @@ namespace PrismOS.Libraries.Graphics
 {
     public unsafe class Canvas
     {
-        public Canvas(int Width, int Height, bool UseVBE)
+        public Canvas(int Width, int Height)
         {
             this.Width = Width;
             this.Height = Height;
             Buffer = new int*[Width * Height];
+            VBE = new((ushort)Width, (ushort)Height, 32);
 
-            if (UseVBE)
-            {
-                VBE = new((ushort)Width, (ushort)Height, 32);
-                ShowCursor = true;
-                Mouse.ScreenWidth = (uint)Width;
-                Mouse.ScreenHeight = (uint)Height;
-                Mouse.X = (uint)Width / 2;
-                Mouse.Y = (uint)Height / 2;
-                Update();
-            }
+            Mouse.ScreenWidth = (uint)Width;
+            Mouse.ScreenHeight = (uint)Height;
+            Mouse.X = (uint)Width / 2;
+            Mouse.Y = (uint)Height / 2;
+            Update();
         }
 
         public int Width, Height;
-        public float AspectRatio;
-        public bool ShowCursor;
+        public float AspectRatio => Height / Width;
         public int*[] Buffer;
         public VBEDriver VBE;
         private DateTime LT;
@@ -42,18 +37,24 @@ namespace PrismOS.Libraries.Graphics
         public void SetPixel(int X, int Y, Color Color)
         {
             if (X < 0 || Y < 0 || X >= Width || Y >= Height || Color.A == 0)
+            {
                 return;
-
+            }
             if (Color.A < 255)
+            {
                 Color = Color.AlphaBlend(Color, GetPixel(X, Y));
+            }
 
             // Draw main pixel
             Buffer[(Width * Y) + X] = (int*)Color.ARGB;
+            //MemoryOperations.Copy(Buffer[(Width * Y) + X], (int*)Color.ARGB, 1);
         }
         public Color GetPixel(int X, int Y)
         {
-            if (X < 0 || Y < 0 || X > Width || Y > Height)
+            if (X < 0 || Y < 0 || X >= Width || Y >= Height)
+            {
                 return Color.Black;
+            }
 
             return new((int)Buffer[(Width * Y) + X]);
         }
@@ -80,15 +81,9 @@ namespace PrismOS.Libraries.Graphics
         {
             DrawLine(X, Y, (int)(X + (Math.Cos(Math.PI * Angle / 180) * Radius)), (int)(X + (Math.Sin(Math.PI * Angle / 180) * Radius)), Color);
         }
-        public void DrawBezierLine(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, bool ShowBorder, int N = 6)
+        public void DrawBezierLine(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, int N = 6)
         {
             // X2 and Y2 is where the curve should bend to.
-            if (ShowBorder)
-            {
-                DrawLine(X1, Y1, X2, Y2, Color.Black);
-                DrawLine(X2, Y2, X3, Y3, Color.Black);
-            }
-
             if (N > 0)
             {
                 int X12 = (X1 + X2) / 2;
@@ -98,8 +93,8 @@ namespace PrismOS.Libraries.Graphics
                 int X123 = (X12 + X23) / 2;
                 int Y123 = (Y12 + Y23) / 2;
 
-                DrawBezierLine(X1, Y1, X12, Y12, X123, Y123, Color, false, N - 1);
-                DrawBezierLine(X123, Y123, X23, Y23, X3, Y3, Color, false, N - 1);
+                DrawBezierLine(X1, Y1, X12, Y12, X123, Y123, Color, N - 1);
+                DrawBezierLine(X123, Y123, X23, Y23, X3, Y3, Color, N - 1);
             }
             else
             {
@@ -157,8 +152,10 @@ namespace PrismOS.Libraries.Graphics
 
         public void DrawCircle(int X, int Y, int Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
         {
-            if (Radius == 0 || StartAngle == EndAngle)
+            if (Radius == 0)
+            {
                 return;
+            }
 
             for (; StartAngle < EndAngle; StartAngle++)
             {
@@ -170,12 +167,14 @@ namespace PrismOS.Libraries.Graphics
         }
         public void DrawFilledCircle(int X, int Y, int Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
         {
-            if (Radius == 0 || StartAngle == EndAngle)
+            if (Radius == 0)
+            {
                 return;
+            }
 
             for (int I = 0; I < Radius; I++)
             {
-                DrawCircle(X, Y, I, Color, StartAngle, EndAngle);
+                DrawCircle(X, Y, Radius, Color, StartAngle, EndAngle);
             }
         }
 
@@ -288,28 +287,16 @@ namespace PrismOS.Libraries.Graphics
 
         public void Update()
         {
-            AspectRatio = Height / Width;
-
-            if (VBE != null)
+            Frames++;
+            if ((DateTime.Now - LT).TotalSeconds >= 1)
             {
-                Frames++;
-                if ((DateTime.Now - LT).TotalSeconds >= 1)
-                {
-                    Cosmos.Core.Memory.Heap.Collect();
-                    FPS = Frames;
-                    Frames = 0;
-                    LT = DateTime.Now;
-                }
-
-                if (ShowCursor)
-                {
-                    Mouse.X = (uint)Math.Clamp(Mouse.X, 0, Width - Files.Resources.Cursor.Width);
-                    Mouse.Y = (uint)Math.Clamp(Mouse.Y, 0, Height - Files.Resources.Cursor.Height);
-                    DrawBitmap((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
-                }
-
-                Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);
+                Cosmos.Core.Memory.Heap.Collect();
+                FPS = Frames;
+                Frames = 0;
+                LT = DateTime.Now;
             }
+
+            Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);
         }
 
         #endregion

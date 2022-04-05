@@ -7,57 +7,39 @@ namespace PrismOS.Libraries.Graphics
 {
     public class ContentPage
     {
-        public ContentPage(int X, int Y, int Width, int Height, int Radius, string Text, Bitmap Icon, List<Element> Children = default)
+        public ContentPage()
         {
-            this.X = X;
-            this.Y = Y;
-            this.Width = Width;
-            this.Height = Height;
-            this.Radius = Radius;
-            this.Text = Text;
-            this.Icon = Icon;
-            if (Children != default)
-            {
-                this.Children = Children;
-            }
         }
 
+        #region Values
         public bool Moving;
         public string Text;
         public Bitmap Icon;
-        public delegate void OnClick(ref Element This);
         public List<Element> Children;
-        public int X, Y, Width, Height, Radius;
-        public int IX, IY;
+        public int X, Y, IX, IY, Width, Height, Radius;
+        public delegate void Event(ref Element This);
+        #endregion
 
         public class Element
         {
-            public Element(int X, int Y, int Width, int Height, int Radius, string Text, Bitmap Icon, ContentPage Parent, byte Type, OnClick ClickEvent = null)
+            public Element()
             {
-                this.X = X;
-                this.Y = Y;
-                this.Width = Width;
-                this.Height = Height;
-                this.Radius = Radius;
-                this.Text = Text;
-                this.Icon = Icon;
-                this.Parent = Parent;
-                this.Type = Type;
-                this.ClickEvent = ClickEvent;
             }
 
             public byte Type;
             public string Text;
             public Bitmap Icon;
             public ContentPage Parent;
-            public OnClick ClickEvent;
+            public Event OnClick, OnUpdate;
             public bool Clicked, Hovering;
             public int X, Y, Width, Height, Radius;
         }
 
         public void Update(Canvas Canvas)
         {
-            if (Mouse.MouseState==Cosmos.System.MouseState.Left) {
+            #region Dragging
+            if (Mouse.MouseState==Cosmos.System.MouseState.Left)
+            {
                 if (Mouse.X > X && Mouse.X < X + Width && Mouse.Y > Y - 15 && Mouse.Y < Y && !Moving)
                 {
                     Moving=true;
@@ -71,23 +53,30 @@ namespace PrismOS.Libraries.Graphics
             }
             if (Moving)
             {
-                X = (int)Math.Clamp(Mouse.X - IX, 0, Canvas.Width - Width);
-                Y = (int)Math.Clamp(Mouse.Y - IY, 15, Canvas.Height - (Height + 15));
+                X = (int)Mouse.X - IX;
+                Y = (int)Mouse.Y - IY;
             }
+            #endregion
 
+            #region Drawing
             Canvas.DrawFilledRectangle(X, Y, Width, Height, Radius, Color.SystemColors.BackGround);
             Canvas.DrawFilledRectangle(X, Y - 15, Width, 15, Radius, Color.SystemColors.ForeGround);
             Canvas.DrawString(X, Y - 15, Text, Color.SystemColors.TitleText);
+            #endregion
 
             for (int I = 0; I < Children.Count; I++)
             {
                 Element E = Children[I];
+                if (E.OnUpdate != null)
+                {
+                    E.OnUpdate.Invoke(ref E);
+                }
                 if (E.Clicked && Mouse.MouseState != Cosmos.System.MouseState.Left)
                 {
                     E.Clicked = false;
-                    if (E.ClickEvent != null)
+                    if (E.OnClick != null)
                     {
-                        E.ClickEvent.Invoke(ref E);
+                        E.OnClick.Invoke(ref E);
                     }
                 }
                 E.Hovering = IsMouseWithin(X + E.X, X + E.Y, E.Width, E.Height);
@@ -106,9 +95,6 @@ namespace PrismOS.Libraries.Graphics
                 } // Label
                 if (E.Type == 0x02)
                 {
-                    E.Hovering = IsMouseWithin(X + E.X, Y + E.Y, E.Width, E.Height);
-                    E.Clicked = E.Hovering && Mouse.MouseState == Cosmos.System.MouseState.Left;
-
                     Color C;
                     if (E.Hovering && E.Clicked)
                     {
@@ -129,6 +115,20 @@ namespace PrismOS.Libraries.Graphics
                         Math.Clamp(Y + E.Y, 0, Canvas.Height - (Canvas.Font.Default.Height * Text.Split('\n').Length)),
                         E.Text, Color.SystemColors.TitleText);
                 } // Button
+                if (E.Type == 0x03)
+                {
+                    if (E.Icon != null)
+                    {
+                        if (Width != 0 && Height != 0)
+                        {
+                            Canvas.DrawBitmap(E.X, E.Y, E.Width, E.Height, E.Icon);
+                        }
+                        else
+                        {
+                            Canvas.DrawBitmap(E.X, E.Y, E.Icon);
+                        }
+                    }
+                } // Image
             }
         }
 

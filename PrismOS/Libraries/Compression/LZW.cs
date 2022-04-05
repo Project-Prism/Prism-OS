@@ -6,7 +6,7 @@ namespace PrismOS.Libraries.Compression
 {
     public static class LZW
     {
-        public static byte[] Compress(byte[] RawData)
+        public static byte[] LZWCompress(byte[] RawData)
         {
             // build the dictionary
             Dictionary<string, int> Dictionary = new();
@@ -44,7 +44,7 @@ namespace PrismOS.Libraries.Compression
             return ReturnBytes;
         }
 
-        public static byte[] Decompress(byte[] CompressedRawData)
+        public static byte[] LZWDecompress(byte[] CompressedRawData)
         {
             Dictionary<int, string> Dictionary = new();
 
