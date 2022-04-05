@@ -10,13 +10,24 @@ namespace PrismOS
     {
         public static Canvas Canvas;
         public static CosmosVFS VFS;
+        public static string TaskString
+        {
+            get
+            {
+                return 
+                    Canvas.FPS + " FPS" +
+                    "\nMemory Used: " + Cosmos.Core.GCImplementation.GetUsedRAM() / 1024 + " GB" +
+                    "\nMemory Free: " + Cosmos.Core.GCImplementation.GetAvailableRAM() / 1024 + " GB" +
+                    "\nTotal Memory: " + (Cosmos.Core.GCImplementation.GetAvailableRAM() + Cosmos.Core.GCImplementation.GetUsedRAM()) / 1024 + " GB";
+            }
+        }
         public static ContentPage Page1 = new()
         {
             X = 100,
             Y = 100,
             Width = 400,
             Height = 150,
-            Text = "Minecraft 1.18.2*",
+            Text = "Task Manager - Performance",
 
             Children = new()
             {
@@ -24,9 +35,9 @@ namespace PrismOS
                 {
                     X = 15,
                     Y = 15,
-                    OnUpdate = (ref ContentPage.Element E) => { E.Text = Canvas.FPS + " FPS"; },
+                    OnUpdate = (ref ContentPage.Element E) => { E.Text = TaskString; },
                     Type = 0x01,
-                }
+                },
             }
         };
 
