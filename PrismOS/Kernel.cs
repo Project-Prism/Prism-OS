@@ -1,7 +1,9 @@
 using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Mouse = Cosmos.System.MouseManager;
+using static PrismOS.Files.Resources;
 using Cosmos.System.FileSystem.VFS;
 using PrismOS.Libraries.Graphics;
+using PrismOS.Libraries.Formats;
 using Cosmos.System.FileSystem;
 
 namespace PrismOS
@@ -14,11 +16,11 @@ namespace PrismOS
         {
             get
             {
-                return 
+                return
                     Canvas.FPS + " FPS" +
-                    "\nMemory Used: " + Cosmos.Core.GCImplementation.GetUsedRAM() / 1024 + " GB" +
-                    "\nMemory Free: " + Cosmos.Core.GCImplementation.GetAvailableRAM() / 1024 + " GB" +
-                    "\nTotal Memory: " + (Cosmos.Core.GCImplementation.GetAvailableRAM() + Cosmos.Core.GCImplementation.GetUsedRAM()) / 1024 + " GB";
+                    "\nMemory Used: " + Cosmos.Core.GCImplementation.GetUsedRAM() / 1000000 + " MB" +
+                    "\nMemory Free: " + Cosmos.Core.GCImplementation.GetAvailableRAM() + " MB" +
+                    "\nTotal Memory: " + Cosmos.Core.GCImplementation.GetAvailableRAM() + (Cosmos.Core.GCImplementation.GetUsedRAM() / 1000000) + " MB";
             }
         }
         public static ContentPage Page1 = new()
@@ -40,6 +42,7 @@ namespace PrismOS
                 },
             }
         };
+        public static BMP Cursor = new(CursorB);
 
         protected override void BeforeRun()
         {
@@ -56,7 +59,8 @@ namespace PrismOS
             {
                 Canvas.Clear(Color.CoolGreen);
                 Page1.Update(Canvas);
-                Canvas.DrawBitmap((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
+                Canvas.DrawFilledCircle(50, 50, 30, Color.Red, 0, 100);
+                Canvas.DrawBitmap((int)Mouse.X, (int)Mouse.Y, Cursor);
                 Canvas.Update();
             }
             catch { }

@@ -14,7 +14,7 @@ namespace PrismOS.Libraries.Graphics
         #region Values
         public bool Moving;
         public string Text;
-        public Bitmap Icon;
+        public BMP Icon;
         public List<Element> Children;
         public int X, Y, IX, IY, Width, Height, Radius;
         public delegate void Event(ref Element This);
@@ -28,7 +28,7 @@ namespace PrismOS.Libraries.Graphics
 
             public byte Type;
             public string Text;
-            public Bitmap Icon;
+            public BMP Icon;
             public ContentPage Parent;
             public Event OnClick, OnUpdate;
             public bool Clicked, Hovering;
@@ -61,7 +61,7 @@ namespace PrismOS.Libraries.Graphics
             #region Drawing
             Canvas.DrawFilledRectangle(X, Y, Width, Height, Radius, Color.SystemColors.BackGround);
             Canvas.DrawFilledRectangle(X, Y - 15, Width, 15, Radius, Color.SystemColors.ForeGround);
-            Canvas.DrawString(X, Y - 15, Text, Color.SystemColors.TitleText);
+            //Canvas.DrawString(X, Y - 15, Text, Color.SystemColors.TitleText);
             #endregion
 
             for (int I = 0; I < Children.Count; I++)

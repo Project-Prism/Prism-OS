@@ -1,6 +1,7 @@
 ﻿using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
 using Mouse = Cosmos.System.MouseManager;
 using PrismOS.Libraries.Formats;
+using PrismOS.Files;
 using Cosmos.Core;
 using System.Text;
 using System.IO;
@@ -48,6 +49,19 @@ namespace PrismOS.Libraries.Graphics
             // Draw main pixel
             Buffer[(Width * Y) + X] = (int*)Color.ARGB;
             //MemoryOperations.Copy(Buffer[(Width * Y) + X], (int*)Color.ARGB, 1);
+        }
+        public void SetBlurPixel(int X, int Y, int Size)
+        {
+            Color Average = new(255, 0, 0, 0);
+            for (int IX = 0; IX < Size; IX++)
+            {
+                for (int IY = 0; IY < Size; IY++)
+                {
+                    Average.R += (byte)(GetPixel(X + IX, Y + IY).R / (Size * Size));
+                    Average.G += (byte)(GetPixel(X + IX, Y + IY).G / (Size * Size));
+                    Average.B += (byte)(GetPixel(X + IX, Y + IY).B / (Size * Size));
+                }
+            }
         }
         public Color GetPixel(int X, int Y)
         {
@@ -159,10 +173,10 @@ namespace PrismOS.Libraries.Graphics
 
             for (; StartAngle < EndAngle; StartAngle++)
             {
-                SetPixel(
-                    X: (int)(X + (Radius * Math.Sin(Math.PI * StartAngle / 180))),
-                    Y: (int)(Y + (Radius * Math.Cos(Math.PI * StartAngle / 180))),
-                    Color: Color);
+                double Angle = Math.PI * StartAngle / 180;
+                X += (int)(Radius * Math.Cos(Angle));
+                Y += (int)(Radius * Math.Sin(Angle));
+                SetPixel(X, Y, Color);
             }
         }
         public void DrawFilledCircle(int X, int Y, int Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
@@ -193,28 +207,27 @@ namespace PrismOS.Libraries.Graphics
 
         #region Image
 
-        public void DrawBitmap(int X, int Y, Bitmap Bitmap)
+        // Currently only works with 32 bit bitmaps, other depths might cause isssues.
+        public void DrawBitmap(int X, int Y, BMP Bitmap)
         {
             for (int IX = 0; IX < Bitmap.Width; IX++)
             {
                 for (int IY = 0; IY < Bitmap.Height; IY++)
-                    SetPixel(X + IX, Y + IY, new(Bitmap.rawData[(Bitmap.Width * IY) + IX]));
+                {
+                    SetPixel(X + IX, Y + IY, new((int)Bitmap.Buffer[(Bitmap.Width * IY) + IX]));
+                }
             }
         }
-        public void DrawBitmap(int X, int Y, int Width, int Height, Bitmap Bitmap)
+        public void DrawBitmap(int X, int Y, int Width, int Height, BMP Bitmap)
         {
-            DrawBitmap(X, Y, new((uint)Width, (uint)Height, (byte[])(object)Bitmap.rawData, Bitmap.Depth));
-        }
-        public void DrawArray(int X, int Y, int Width, int Height, int*[] Buffer)
-        {
-            if (Buffer.Length != Width * Height)
-                return;
-
-            for (int IX = 0; IX < Width; IX++)
+            for (int IX = 0; IX < Bitmap.Width; IX++)
             {
-                for (int IY = 0; IY < Height; IY++)
+                for (int IY = 0; IY < Bitmap.Height; IY++)
                 {
-                    SetPixel(X + IX, Y + IY, new((int)Buffer[(Width + IY) + IX]));
+                    SetPixel(
+                        X + IX / (Bitmap.Width / Width),
+                        Y + IY / (Bitmap.Height / Height),
+                        new((int)Bitmap.Buffer[(Bitmap.Width * IY) + IX]));
                 }
             }
         }
@@ -277,6 +290,7 @@ namespace PrismOS.Libraries.Graphics
 
         #region Misc
 
+        // Probably not needed
         public void Clear(Color? Color = null)
         {
             if (Color == null)
