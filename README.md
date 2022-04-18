@@ -11,7 +11,6 @@ Have any problems? Found a bug? Just want to chat? [Join the discord](https://di
 |-------------------------------------------------------|------------------------------|
 | [Cosmos team](https://github.com/CosmosOS/Cosmos)     | The entirety of cosmos       |
 | [Terminal.cs](https://github.com/terminal-cs)         | General development, logo    |
-| [pinkphone](https://github.com/pinkphone1818)         | General development          |
 | [theopcoder](https://github.com/theopcoder)           | Website developer            |
 
 ## To-do
