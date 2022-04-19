@@ -1,3 +1,7 @@
+// BROKEN:
+// Circles
+// mouse image / loading (ln 19)
+
 using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Mouse = Cosmos.System.MouseManager;
 using static PrismOS.Files.Resources;
@@ -10,8 +14,6 @@ namespace PrismOS
 {
     public unsafe class Kernel : Cosmos.System.Kernel
     {
-        public static Canvas Canvas;
-        public static CosmosVFS VFS;
         public static string TaskString
         {
             get
@@ -42,7 +44,8 @@ namespace PrismOS
                 },
             }
         };
-        public static BMP Cursor = new(CursorB);
+        public static Canvas Canvas;
+        public static CosmosVFS VFS;
 
         protected override void BeforeRun()
         {
@@ -59,7 +62,6 @@ namespace PrismOS
             {
                 Canvas.Clear(Color.CoolGreen);
                 Page1.Update(Canvas);
-                Canvas.DrawFilledCircle(50, 50, 30, Color.Red, 0, 100);
                 Canvas.DrawBitmap((int)Mouse.X, (int)Mouse.Y, Cursor);
                 Canvas.Update();
             }

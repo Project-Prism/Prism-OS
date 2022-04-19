@@ -38,18 +38,18 @@ namespace PrismOS.Libraries.Graphics
         public void Update(Canvas Canvas)
         {
             #region Dragging
-            if (Mouse.MouseState==Cosmos.System.MouseState.Left)
+            if (Mouse.MouseState == Cosmos.System.MouseState.Left)
             {
                 if (Mouse.X > X && Mouse.X < X + Width && Mouse.Y > Y - 15 && Mouse.Y < Y && !Moving)
                 {
-                    Moving=true;
-                    IX=(int)Mouse.X-X;
-                    IY=(int)Mouse.Y-Y;
+                    Moving = true;
+                    IX = (int)Mouse.X - X;
+                    IY = (int)Mouse.Y - Y;
                 }
             }
             else
             {
-                Moving=false;
+                Moving = false;
             }
             if (Moving)
             {
@@ -91,7 +91,7 @@ namespace PrismOS.Libraries.Graphics
                     Canvas.DrawString(
                         Math.Clamp(X + E.X, 0, Canvas.Width - (Canvas.Font.Default.Width * Text.Length)),
                         Math.Clamp(Y + E.Y, 0, Canvas.Height - (Canvas.Font.Default.Height * Text.Split('\n').Length)),
-                        E.Text, Color.SystemColors.ContentText);
+                        E.Text, Color.SystemColors.ContentText, Canvas.Font.Default);
                 } // Label
                 if (E.Type == 0x02)
                 {
@@ -113,7 +113,7 @@ namespace PrismOS.Libraries.Graphics
                     Canvas.DrawString(
                         Math.Clamp(X + E.X, 0, Canvas.Width - (Canvas.Font.Default.Width * Text.Length)),
                         Math.Clamp(Y + E.Y, 0, Canvas.Height - (Canvas.Font.Default.Height * Text.Split('\n').Length)),
-                        E.Text, Color.SystemColors.TitleText);
+                        E.Text, Color.SystemColors.TitleText, Canvas.Font.Default);
                 } // Button
                 if (E.Type == 0x03)
                 {

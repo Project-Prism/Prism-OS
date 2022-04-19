@@ -11,5 +11,6 @@ namespace PrismOS.Files
         [ManifestResourceStream(ResourceName = Base + "Logo.bmp")] public readonly static byte[] LogoB;
         [ManifestResourceStream(ResourceName = Base + "Audio.wav")] public readonly static byte[] Audio;
         [ManifestResourceStream(ResourceName = Base + "NoIcon.bmp")] public readonly static byte[] FileDefaultB;
+        public static BMP Cursor = new(new Cosmos.System.Graphics.Bitmap(CursorB));
     }
 }

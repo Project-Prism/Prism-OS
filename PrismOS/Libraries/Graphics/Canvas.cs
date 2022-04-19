@@ -173,9 +173,9 @@ namespace PrismOS.Libraries.Graphics
 
             for (; StartAngle < EndAngle; StartAngle++)
             {
-                double Angle = Math.PI * StartAngle / 180;
-                X += (int)(Radius * Math.Cos(Angle));
-                Y += (int)(Radius * Math.Sin(Angle));
+                double Angle1 = Math.PI * StartAngle / 180;
+                X += (int)(Radius * Math.Cos(Angle1));
+                Y += (int)(Radius * Math.Sin(Angle1));
                 SetPixel(X, Y, Color);
             }
         }
@@ -265,21 +265,25 @@ namespace PrismOS.Libraries.Graphics
         }
         public void DrawString(int X, int Y, string Text, Color Color)
         {
+            DrawString(X, Y, Text, Color, Font.Default);
+        }
+        public void DrawString(int X, int Y, string Text, Color Color, Font Font)
+        {
             string[] Lines = Text.Split('\n');
             for (int Line = 0; Line < Lines.Length; Line++)
             {
                 for (int Char = 0; Char < Lines[Line].Length; Char++)
                 {
-                    Font.Default.MS.Seek((Encoding.ASCII.GetBytes(Lines[Line][Char].ToString())[0] & 0xFF) * Font.Default.Height, SeekOrigin.Begin);
-                    byte[] fontbuf = new byte[Font.Default.Height];
-                    Font.Default.MS.Read(fontbuf, 0, fontbuf.Length);
+                    Font.MS.Seek((Encoding.ASCII.GetBytes(Lines[Line][Char].ToString())[0] & 0xFF) * Font.Height, SeekOrigin.Begin);
+                    byte[] fontbuf = new byte[Font.Height];
+                    Font.MS.Read(fontbuf, 0, fontbuf.Length);
 
-                    for (int IY = 0; IY < Font.Default.Height; IY++)
+                    for (int IY = 0; IY < Font.Height; IY++)
                     {
-                        for (int IX = 0; IX < Font.Default.Width; IX++)
+                        for (int IX = 0; IX < Font.Width; IX++)
                         {
                             if ((fontbuf[IY] & (0x80 >> IX)) != 0)
-                                SetPixel(X + IX + (Char * Font.Default.Width), Y + IY + (Line * Font.Default.Height), Color);
+                                SetPixel(X + IX + (Char * Font.Width), Y + IY + (Line * Font.Height), Color);
                         }
                     }
                 }
@@ -290,7 +294,6 @@ namespace PrismOS.Libraries.Graphics
 
         #region Misc
 
-        // Probably not needed
         public void Clear(Color? Color = null)
         {
             if (Color == null)
