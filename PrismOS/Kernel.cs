@@ -14,17 +14,6 @@ namespace PrismOS
 {
     public unsafe class Kernel : Cosmos.System.Kernel
     {
-        public static string TaskString
-        {
-            get
-            {
-                return
-                    Canvas.FPS + " FPS" +
-                    "\nMemory Used: " + Cosmos.Core.GCImplementation.GetUsedRAM() / 1000000 + " MB" +
-                    "\nMemory Free: " + Cosmos.Core.GCImplementation.GetAvailableRAM() + " MB" +
-                    "\nTotal Memory: " + Cosmos.Core.GCImplementation.GetAvailableRAM() + (Cosmos.Core.GCImplementation.GetUsedRAM() / 1000000) + " MB";
-            }
-        }
         public static ContentPage Page1 = new()
         {
             X = 100,
@@ -39,7 +28,14 @@ namespace PrismOS
                 {
                     X = 15,
                     Y = 15,
-                    OnUpdate = (ref ContentPage.Element E) => { E.Text = TaskString; },
+                    OnUpdate = (ref ContentPage.Element E) =>
+                    {
+                        E.Text =
+                          Canvas.FPS + " FPS" +
+                      "\nMemory Used: " + Cosmos.Core.GCImplementation.GetUsedRAM() / 1000000 + " MB" +
+                      "\nMemory Free: " + Cosmos.Core.GCImplementation.GetAvailableRAM() + " MB" +
+                      "\nTotal Memory: " + Cosmos.Core.GCImplementation.GetAvailableRAM() + (Cosmos.Core.GCImplementation.GetUsedRAM() / 1000000) + " MB";
+                    },
                     Type = 0x01,
                 },
             }
@@ -60,6 +56,8 @@ namespace PrismOS
         {
             try
             {
+                // PrismOS.Libraries.GUI is not finished
+                // PrismOS.Libraries.Graphics.Comtentpage will be old with it's finished
                 Canvas.Clear(Color.CoolGreen);
                 Page1.Update(Canvas);
                 Canvas.DrawBitmap((int)Mouse.X, (int)Mouse.Y, Cursor);
