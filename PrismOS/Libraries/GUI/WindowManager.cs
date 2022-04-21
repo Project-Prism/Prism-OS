@@ -2,17 +2,19 @@
 using PrismOS.Libraries.Graphics;
 using System.Collections.Generic;
 
-namespace PrismOS.Libraries.CoreUI
+namespace PrismOS.Libraries.GUI
 {
-    public class Core
+    public class WindowManager
     {
         public List<Window> Windows = new();
         public class Window
         {
-            public bool Moving;
-            public int X, Y, Width, Height, Radius, IX, IY;
+            public string Text;
+            public int X, Y, Width, Height, Radius;
             public List<Elements.Element> Elements = new();
         }
+        public bool Moving;
+        public int IX, IY;
 
         public void Update(Canvas Canvas)
         {
@@ -22,21 +24,21 @@ namespace PrismOS.Libraries.CoreUI
                 #region Dragging
                 if (Mouse.MouseState == Cosmos.System.MouseState.Left)
                 {
-                    if (Mouse.X > Window.X && Mouse.X < Window.X + Window.Width && Mouse.Y > Window.Y - 15 && Mouse.Y < Window.Y && !Window.Moving)
+                    if (Mouse.X > Window.X && Mouse.X < Window.X + Window.Width && Mouse.Y > Window.Y - 15 && Mouse.Y < Window.Y && !Moving)
                     {
-                        Window.Moving = true;
-                        Window.IX = (int)Mouse.X - Window.X;
-                        Window.IY = (int)Mouse.Y - Window.Y;
+                        Moving = true;
+                        IX = (int)Mouse.X - Window.X;
+                        IY = (int)Mouse.Y - Window.Y;
                     }
                 }
                 else
                 {
-                    Window.Moving = false;
+                    Moving = false;
                 }
-                if (Window.Moving)
+                if (Moving)
                 {
-                    Window.X = (int)Mouse.X - Window.IX;
-                    Window.Y = (int)Mouse.Y - Window.IY;
+                    Window.X = (int)Mouse.X - IX;
+                    Window.Y = (int)Mouse.Y - IY;
                 }
                 #endregion
 

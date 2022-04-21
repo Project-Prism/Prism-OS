@@ -1,45 +1,15 @@
-// BROKEN:
-// Circles
-// mouse image / loading (ln 19)
-
 using Cosmos.System.Network.IPv4.UDP.DHCP;
-using Mouse = Cosmos.System.MouseManager;
-using static PrismOS.Files.Resources;
 using Cosmos.System.FileSystem.VFS;
 using PrismOS.Libraries.Graphics;
-using PrismOS.Libraries.Formats;
 using Cosmos.System.FileSystem;
+using PrismOS.Libraries.GUI;
 
 namespace PrismOS
 {
     public unsafe class Kernel : Cosmos.System.Kernel
     {
-        public static ContentPage Page1 = new()
-        {
-            X = 100,
-            Y = 100,
-            Width = 400,
-            Height = 150,
-            Text = "Task Manager - Performance",
-
-            Children = new()
-            {
-                new()
-                {
-                    X = 15,
-                    Y = 15,
-                    OnUpdate = (ref ContentPage.Element E) =>
-                    {
-                        E.Text =
-                          Canvas.FPS + " FPS" +
-                      "\nMemory Used: " + Cosmos.Core.GCImplementation.GetUsedRAM() / 1000000 + " MB" +
-                      "\nMemory Free: " + Cosmos.Core.GCImplementation.GetAvailableRAM() + " MB" +
-                      "\nTotal Memory: " + Cosmos.Core.GCImplementation.GetAvailableRAM() + (Cosmos.Core.GCImplementation.GetUsedRAM() / 1000000) + " MB";
-                    },
-                    Type = 0x01,
-                },
-            }
-        };
+        public static WindowManager WM = new();
+        public static bool ShowStart = false;
         public static Canvas Canvas;
         public static CosmosVFS VFS;
 
@@ -50,17 +20,44 @@ namespace PrismOS
             VFS.Initialize(false);
             VFSManager.RegisterVFS(VFS);
             new DHCPClient().SendDiscoverPacket();
+            WM.Windows.Add(new()
+            {
+                X = 0,
+                Y = Canvas.Height - 32,
+                Width = Canvas.Width,
+                Height = Canvas.Height,
+                Elements = new()
+                {
+                    new Libraries.GUI.Elements.Button()
+                    {
+                        X = 0,
+                        Y = Canvas.Height - 32,
+                        Width = 50,
+                        Height = 32,
+                        Radius = 0,
+                        Text = "Start",
+                        OnClick = (ref Libraries.GUI.Elements.Element E) => { ShowStart = !ShowStart; },
+                    },
+                    new Libraries.GUI.Elements.Panel()
+                    {
+                        X = 0,
+                        Y = Canvas.Height - 32 - 200,
+                        Width = 100,
+                        Height = 200,
+                        Radius = 0,
+                        Color = Color.White,
+                        OnUpdate = (ref Libraries.GUI.Elements.Element E) => { E.Visible = ShowStart; },
+                    },
+                }
+            });
         }
 
         protected override void Run()
         {
             try
             {
-                // PrismOS.Libraries.GUI is not finished
-                // PrismOS.Libraries.Graphics.Comtentpage will be old with it's finished
-                Canvas.Clear(Color.CoolGreen);
-                Page1.Update(Canvas);
-                Canvas.DrawBitmap((int)Mouse.X, (int)Mouse.Y, Cursor);
+                Canvas.Clear(Color.GoogleYellow);
+                WM.Update(Canvas);
                 Canvas.Update();
             }
             catch { }
