@@ -4,20 +4,8 @@
         <TargetFramework>net5.0</TargetFramework>
         <!--<RuntimeIdentifier>cosmos</RuntimeIdentifier>-->
         <Platform>cosmos</Platform>
-        <SupportsX86Intrinsics>true</SupportsX86Intrinsics>
+        <SupportsX86Intrinsics>false</SupportsX86Intrinsics>
         <SelfContained>True</SelfContained>
-	    <CompileVBEMultiboot>False</CompileVBEMultiboot>
-        <VBEResolution>1280x720x32</VBEResolution>
-        <BinFormat>ELF</BinFormat>
-        <StackCorruptionDetectionEnabled>True</StackCorruptionDetectionEnabled>
-        <StackCorruptionDetectionLevel>MethodFooters</StackCorruptionDetectionLevel>
-        <Deployment>ISO</Deployment>
-        <DebugEnabled>False</DebugEnabled>
-        <DebugMode>Source</DebugMode>
-        <IgnoreDebugStubAttribute>False</IgnoreDebugStubAttribute>
-        <ISOFile>bin\Debug\net5.0\PrismOS.iso</ISOFile>
-        <VMwareEdition>Workstation</VMwareEdition>
-	    <IlcOptimizationPreference>Speed</IlcOptimizationPreference>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -25,69 +13,41 @@
         <StartCosmosGDB>False</StartCosmosGDB>
         <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
         <CosmosDebugPort>Serial: COM1</CosmosDebugPort>
-        <Launch>ISO</Launch>
+        <Launch>Qemu</Launch>
         <Profile>VMware</Profile>
-        <Description></Description>
+        <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <GenerateDocumentationFile>False</GenerateDocumentationFile>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
-        <RepositoryType>git</RepositoryType>
-        <RepositoryUrl>https://github.com/Project-Prism/Prism-OS</RepositoryUrl>
-        <PackageProjectUrl>https://github.com/Project-Prism/Prism-OS</PackageProjectUrl>
-        <PackageLicenseFile>C:\Users\EvanLawrence\Source\Repos\Prism-OS\LICENSE</PackageLicenseFile>
-        <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-        <Version>$(HOME)</Version>
-        <ExtractMapFile>False</ExtractMapFile>
+        <CompileVBEMultiboot>False</CompileVBEMultiboot>
+        <VBEResolution>1280x720x32</VBEResolution>
+        <DebugEnabled>False</DebugEnabled>
         <QemuMemory>4096</QemuMemory>
-        <QemuNetworkDevice>PCNet</QemuNetworkDevice>
+        <QemuNetworkDevice>RTL8139</QemuNetworkDevice>
         <QemuVideoDriver>VBE</QemuVideoDriver>
         <QemuAudioDriver>SoundBlaster16</QemuAudioDriver>
-        <QemuUseSerial>True</QemuUseSerial>
         <QemuUseCustomLocation>True</QemuUseCustomLocation>
-        <QemuLocationParameters>C:\Program Files\qemu\qemu-system-i386.exe</QemuLocationParameters>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-      <Optimize>True</Optimize>
+        <QemuLocationParameters>C:\qemu\qemu-system-i386.exe</QemuLocationParameters>
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Files\NoIcon.bmp" />
+      <None Remove="Files\Cursor.bmp" />
+      <None Remove="Files\Logo.bmp" />
       <None Remove="Files\Wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Files\Audio.wav" />
-      <EmbeddedResource Include="Files\Cursor.bmp" />
-      <EmbeddedResource Include="Files\NoIcon.bmp" />
-      <EmbeddedResource Include="Files\Logo.bmp" />
       <EmbeddedResource Include="Files\Wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="..\.editorconfig" Link=".editorconfig" />
-      <None Include="..\README.md">
-        <Pack>True</Pack>
-        <PackagePath>\</PackagePath>
-      </None>
+      <EmbeddedResource Include="Files\Cursor.bmp" />
+      <EmbeddedResource Include="Files\Logo.bmp" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
-        <PackageReference Include="System.Collections" Version="4.3.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="XSharp">
-        <HintPath>..\..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\XSharp.dll</HintPath>
-      </Reference>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
     </ItemGroup>
 
 </Project>

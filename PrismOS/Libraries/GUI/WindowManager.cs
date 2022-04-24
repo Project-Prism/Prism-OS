@@ -9,7 +9,6 @@ namespace PrismOS.Libraries.GUI
         public List<Window> Windows = new();
         public class Window
         {
-            public string Text;
             public int X, Y, Width, Height, Radius;
             public List<Elements.Element> Elements = new();
         }

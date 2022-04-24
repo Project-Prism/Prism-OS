@@ -1,11 +1,10 @@
-﻿using PrismOS.Libraries.Formats;
-using PrismOS.Libraries.Graphics;
+﻿using PrismOS.Libraries.Graphics;
 
 namespace PrismOS.Libraries.GUI.Elements
 {
     public class Image : Element
     {
-        public BMP Source;
+        public Formats.Image Source;
 
         public override void Update(Canvas Canvas)
         {
@@ -20,7 +19,7 @@ namespace PrismOS.Libraries.GUI.Elements
                     Height = (int)Source.Height;
                 }
 
-                Canvas.DrawBitmap(X, Y, Width, Height, Source);
+                Canvas.DrawImage(X, Y, Width, Height, Source);
             }
         }
     }

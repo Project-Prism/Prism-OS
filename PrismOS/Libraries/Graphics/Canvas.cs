@@ -1,7 +1,6 @@
 ﻿using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
 using Mouse = Cosmos.System.MouseManager;
 using PrismOS.Libraries.Formats;
-using PrismOS.Files;
 using Cosmos.Core;
 using System.Text;
 using System.IO;
@@ -77,18 +76,18 @@ namespace PrismOS.Libraries.Graphics
 
         #region Line
 
-        public void DrawLine(int X, int Y, int X2, int Y2, Color Color)
+        public void DrawLine(int X1, int Y1, int X2, int Y2, Color Color)
         {
-            int dx = Math.Abs(X2 - X), sx = X < X2 ? 1 : -1;
-            int dy = Math.Abs(Y2 - Y), sy = Y < Y2 ? 1 : -1;
-            int err = (dx > dy ? dx : -dy) / 2;
+            int DX = Math.Abs(X2 - X1), SX = X1 < X2 ? 1 : -1;
+            int DY = Math.Abs(Y2 - Y1), SY = Y1 < Y2 ? 1 : -1;
+            int err = (DX > DY ? DX : -DY) / 2;
 
-            while (X != X2 || Y != Y2)
+            while (X1 != X2 || Y1 != Y2)
             {
-                SetPixel(X, Y, Color);
+                SetPixel(X1, Y1, Color);
                 int e2 = err;
-                if (e2 > -dx) { err -= dy; X += sx; }
-                if (e2 < dy) { err += dx; Y += sy; }
+                if (e2 > -DX) { err -= DY; X1 += SX; }
+                if (e2 < DY) { err += DX; Y1 += SY; }
             }
         }
         public void DrawAngledLine(int X, int Y, int Angle, int Radius, Color Color)
@@ -207,18 +206,17 @@ namespace PrismOS.Libraries.Graphics
 
         #region Image
 
-        // Currently only works with 32 bit bitmaps, other depths might cause isssues.
-        public void DrawBitmap(int X, int Y, BMP Bitmap)
+        public void DrawImage(int X, int Y, Image Image)
         {
-            for (int IX = 0; IX < Bitmap.Width; IX++)
+            for (int IX = 0; IX < Image.Width; IX++)
             {
-                for (int IY = 0; IY < Bitmap.Height; IY++)
+                for (int IY = 0; IY < Image.Height; IY++)
                 {
-                    SetPixel(X + IX, Y + IY, new((int)Bitmap.Buffer[(Bitmap.Width * IY) + IX]));
+                    SetPixel(X + IX, Y + IY, new((int)Image.Buffer[(Image.Width * IY) + IX]));
                 }
             }
         }
-        public void DrawBitmap(int X, int Y, int Width, int Height, BMP Bitmap)
+        public void DrawImage(int X, int Y, int Width, int Height, Image Bitmap)
         {
             for (int IX = 0; IX < Bitmap.Width; IX++)
             {
