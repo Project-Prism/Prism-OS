@@ -25,7 +25,6 @@ namespace PrismOS.Libraries.Graphics
         }
 
         public int Width, Height;
-        public float AspectRatio => Height / Width;
         public int*[] Buffer;
         public VBEDriver VBE;
         private DateTime LT;
@@ -46,8 +45,8 @@ namespace PrismOS.Libraries.Graphics
             }
 
             // Draw main pixel
-            //Buffer[(Width * Y) + X] = (int*)Color.ARGB;
-            MemoryOperations.Copy(Buffer[(Width * Y) + X], (int*)Color.ARGB, 1);
+            Buffer[(Width * Y) + X] = (int*)Color.ARGB;
+            //MemoryOperations.Copy(Buffer[(Width * Y) + X], (int*)Color.ARGB, 1);
         }
         public void SetBlurPixel(int X, int Y, int Size)
         {

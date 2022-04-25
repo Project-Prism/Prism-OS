@@ -12,11 +12,11 @@ namespace PrismOS
     public unsafe class Kernel : Cosmos.System.Kernel
     {
         public static Image Cursor = new(Files.Resources.CursorB);
+        public static Image T = new(Files.Resources.TGA, Image.Types.Targa);
         public static Canvas Canvas;
         public static CosmosVFS VFS;
         public static WindowManager WM;
         public static bool ShowStart = false;
-        public static TGA T = new(Files.Resources.TGA);
 
         protected override void BeforeRun()
         {
@@ -65,13 +65,8 @@ namespace PrismOS
             try
             {
                 Canvas.Clear(Color.CoolGreen);
-                for (int X = 0; X < T.Width; X++)
-                {
-                    for (int Y = 0; Y < T.Height; Y++)
-                    {
-                        Canvas.SetPixel(X, Y, new((int)T.Buffer[(T.Width * Y) + X]));
-                    }
-                }
+                WM.Update(Canvas);
+                Canvas.DrawImage((int)Mouse.X, (int)Mouse.Y, Cursor);
                 Canvas.Update();
             }
             catch (Exception EX)
