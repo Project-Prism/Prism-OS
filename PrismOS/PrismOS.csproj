@@ -31,13 +31,11 @@
 
     <ItemGroup>
       <None Remove="Files\Cursor.bmp" />
-      <None Remove="Files\football_seal.tga" />
       <None Remove="Files\Logo.bmp" />
       <None Remove="Files\Wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Files\football_seal.tga" />
       <EmbeddedResource Include="Files\Wallpaper.bmp" />
     </ItemGroup>
 

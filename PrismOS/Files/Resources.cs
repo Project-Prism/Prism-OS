@@ -1,5 +1,4 @@
-﻿using PrismOS.Libraries.Formats;
-using IL2CPU.API.Attribs;
+﻿using IL2CPU.API.Attribs;
 
 namespace PrismOS.Files
 {
@@ -10,6 +9,5 @@ namespace PrismOS.Files
         [ManifestResourceStream(ResourceName = Base + "Cursor.bmp")] public readonly static byte[] CursorB;
         [ManifestResourceStream(ResourceName = Base + "Logo.bmp")] public readonly static byte[] LogoB;
         [ManifestResourceStream(ResourceName = Base + "Audio.wav")] public readonly static byte[] Audio;
-        [ManifestResourceStream(ResourceName = Base + "football_seal.tga")] public readonly static byte[] TGA;
     }
 }

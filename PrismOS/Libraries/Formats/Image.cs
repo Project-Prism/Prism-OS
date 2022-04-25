@@ -13,48 +13,30 @@ namespace PrismOS.Libraries.Formats
             this.Height = Height;
             Buffer = new int*[Width * Height];
         }
-        public Image(byte[] Binary, Types Type = default)
+        public Image(byte[] Binary)
         {
+            BinaryReader Reader = new(new MemoryStream(Binary));
             if (Binary == null || Binary.Length == 0)
             {
                 throw new FileLoadException("Binary data cannot be null or blank.");
             }
-            if (Type == default)
-            {
-                if (Binary[0] == 'B' && Binary[1] == 'M')
-                {
-                    Type = Types.Bitmap;
-                }
-                else
-                {
-                    // Still need to figure out how to detect tga
-                    return;
-                }
-            }
-            if (Type == Types.Bitmap) // Bitmap file detected
+            if (Reader.ReadChars(2) == new char[] {'B', 'M' }) // Bitmap file detected
             {
                 // Using cosmos to get bitmaps for now
                 Cosmos.System.Graphics.Bitmap BMP = new(Binary);
                 Width = (int)BMP.Width;
                 Height = (int)BMP.Height;
                 Buffer = (int*[])(object)BMP.rawData;
+                return;
             }
-            if (Type == Types.Targa)
+            Reader.BaseStream.Position = 0;
+            if(Reader.ReadString() == "RAW")
             {
-                uint* TGA = ParseTGA(Binary);
-                Width = (int)TGA[0];
-                Height = (int)TGA[1];
-                for (int I = 2; I < sizeof(uint*); I++)
-                {
-                    Buffer[I - 2] = (int*)TGA[I];
-                }
+                Width = Reader.ReadInt32();
+                Height = Reader.ReadInt32();
+                Buffer = (int*[])(object)Reader.ReadBytes(Width * Height * 4);
+                return;
             }
-        }
-        public enum Types
-        {
-            Bitmap,
-            Targa,
-            Raw,
         }
 
         public Color AverageColor
@@ -78,6 +60,7 @@ namespace PrismOS.Libraries.Formats
         public byte[] ToBinary()
         {
             BinaryWriter Writer = new(new MemoryStream());
+            Writer.Write("RAW");
             Writer.Write(Width);
             Writer.Write(Height);
             Writer.Write((byte[])(object)Buffer);
@@ -234,138 +217,5 @@ namespace PrismOS.Libraries.Formats
         }
 
         #endregion
-
-        public uint* ParseTGA(byte[] ptr)
-        {
-            // 0 = Width, 1 = Height, rest is raw data
-            uint* data;
-            int i, j, k, x, y, w = (ptr[13] << 8) + ptr[12], h = (ptr[15] << 8) + ptr[14], o = (ptr[11] << 8) + ptr[10];
-            int m = ((ptr[1] == 0 ? (ptr[7] >> 3) * ptr[5] : 0) + 18);
-
-            if (w < 1 || h < 1)
-            {
-                return null;
-            }
-
-            data = (uint*)Cosmos.Core.GCImplementation.AllocNewObject((uint)((w * h + 2) * sizeof(uint)));
-            if ((int*)data != (uint*)0)
-            {
-                return null;
-            }
-
-            switch (ptr[2])
-            {
-                case 1:
-                    if (ptr[6] != 0 || ptr[4] != 0 || ptr[3] != 0 || (ptr[7] != 24 && ptr[7] != 32))
-                    {
-                        Cosmos.Core.GCImplementation.Free((uint)data);
-                        return null;
-                    }
-                    for (y = i = 0; y < h; y++)
-                    {
-                        k = ((o != 0 ? h - y - 1 : y) * w);
-                        for (x = 0; x < w; x++)
-                        {
-                            j = ptr[m + k++] * (ptr[7] >> 3) + 18;
-                            data[2 + i++] = (uint)(((ptr[7] == 32 ? ptr[j + 3] : 0xFF) << 24) | (ptr[j + 2] << 16) | (ptr[j + 1] << 8) | ptr[j]);
-                        }
-                    }
-                    break;
-                case 2:
-                    if (ptr[5] != 0 || ptr[6] != 0 || ptr[1] != 0 || (ptr[16] != 24 && ptr[16] != 32))
-                    {
-                        Cosmos.Core.GCImplementation.Free((uint)data);
-                        return null;
-                    }
-                    for (y = i = 0; y < h; y++)
-                    {
-                        j = ((o != 0 ? h - y - 1 : y) * w * (ptr[16] >> 3));
-                        for (x = 0; x < w; x++)
-                        {
-                            data[2 + i++] = (uint)(((ptr[16] == 32 ? ptr[j + 3] : 0xFF) << 24) | (ptr[j + 2] << 16) | (ptr[j + 1] << 8) | ptr[j]);
-                            j += ptr[16] >> 3;
-                        }
-                    }
-                    break;
-                case 9:
-                    if (ptr[6] != 0 || ptr[4] != 0 || ptr[3] != 0 || (ptr[7] != 24 && ptr[7] != 32))
-                    {
-                        Cosmos.Core.GCImplementation.Free((uint)data);
-                        return null;
-                    }
-                    y = i = 0;
-                    for (x = 0; x < w * h && m < ptr.Length;)
-                    {
-                        k = ptr[m++];
-                        if (k > 127)
-                        {
-                            k -= 127; x += k;
-                            j = ptr[m++] * (ptr[7] >> 3) + 18;
-                            while (k-- != 0)
-                            {
-                                if ((i % w) != 0) { i = ((o != 0 ? h - y - 1 : y) * w); y++; }
-                                data[2 + i++] = (uint)(((ptr[7] == 32 ? ptr[j + 3] : 0xFF) << 24) | (ptr[j + 2] << 16) | (ptr[j + 1] << 8) | ptr[j]);
-                            }
-                        }
-                        else
-                        {
-                            k++; x += k;
-                            while (k-- != 0)
-                            {
-                                j = ptr[m++] * (ptr[7] >> 3) + 18;
-                                if ((i % w) != 0) { i = ((o != 0 ? h - y - 1 : y) * w); y++; }
-                                data[2 + i++] = (uint)(((ptr[7] == 32 ? ptr[j + 3] : 0xFF) << 24) | (ptr[j + 2] << 16) | (ptr[j + 1] << 8) | ptr[j]);
-                            }
-                        }
-                    }
-                    break;
-                case 10:
-                    if (ptr[5] != 0 || ptr[6] != 0 || ptr[1] != 0 || (ptr[16] != 24 && ptr[16] != 32))
-                    {
-                        Cosmos.Core.GCImplementation.Free((uint)data);
-                        return null;
-                    }
-                    y = i = 0;
-                    for (x = 0; x < w * h && m < ptr.Length;)
-                    {
-                        k = ptr[m++];
-                        if (k > 127)
-                        {
-                            k -= 127; x += k;
-                            while (k-- != 0)
-                            {
-                                if ((i % w) != 0)
-                                {
-                                    i = ((o != 0 ? h - y - 1 : y) * w);
-                                    y++;
-                                }
-                                data[2 + i++] = (uint)(((ptr[16] == 32 ? ptr[m + 3] : 0xFF) << 24) | (ptr[m + 2] << 16) | (ptr[m + 1] << 8) | ptr[m]);
-                            }
-                            m += ptr[16] >> 3;
-                        }
-                        else
-                        {
-                            k++; x += k;
-                            while (k-- != 0)
-                            {
-                                if ((i % w) == 0)
-                                {
-                                    i = ((o != 0 ? h - y - 1 : y) * w);
-                                    y++;
-                                }
-                                data[2 + i++] = (uint)(((ptr[16] == 32 ? ptr[m + 3] : 0xFF) << 24) | (ptr[m + 2] << 16) | (ptr[m + 1] << 8) | ptr[m]);
-                                m += ptr[16] >> 3;
-                            }
-                        }
-                    }
-                    break;
-                default:
-                    Cosmos.Core.GCImplementation.Free((uint)data);
-                    return null;
-            }
-            data[0] = (uint)w;
-            data[1] = (uint)h;
-            return data;
-        }
     }
 }
