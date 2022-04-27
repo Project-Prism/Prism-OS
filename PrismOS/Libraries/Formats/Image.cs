@@ -8,7 +8,6 @@ namespace PrismOS.Libraries.Formats
     {
         public Image(int Width, int Height)
         {
-            System.Console.WriteLine($"[ DEBUG ] Creating new image with width {Width} and height {Height}");
             this.Width = Width;
             this.Height = Height;
             Buffer = new int*[Width * Height];
@@ -20,7 +19,7 @@ namespace PrismOS.Libraries.Formats
             {
                 throw new FileLoadException("Binary data cannot be null or blank.");
             }
-            if (Reader.ReadChars(2) == new char[] {'B', 'M' }) // Bitmap file detected
+            if (Binary[0] == 'B' && Binary[1] == 'M') // Bitmap file detected
             {
                 // Using cosmos to get bitmaps for now
                 Cosmos.System.Graphics.Bitmap BMP = new(Binary);
@@ -29,7 +28,6 @@ namespace PrismOS.Libraries.Formats
                 Buffer = (int*[])(object)BMP.rawData;
                 return;
             }
-            Reader.BaseStream.Position = 0;
             if(Reader.ReadString() == "RAW")
             {
                 Width = Reader.ReadInt32();

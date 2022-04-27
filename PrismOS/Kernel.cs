@@ -20,44 +20,48 @@ namespace PrismOS
 
         protected override void BeforeRun()
         {
+            Canvas = new(1280, 720);
             VFS = new();
             VFS.Initialize(false);
             VFSManager.RegisterVFS(VFS);
             new DHCPClient().SendDiscoverPacket();
             WM.Windows.Add(new()
+            {
+                X = 0,
+                Y = Canvas.Height - 32,
+                Width = Canvas.Width,
+                Height = 32,
+                Radius = 0,
+                ShowElements = true,
+                ShowWindow = false,
+                Elements = new()
+                {
+                    new Libraries.GUI.Elements.Panel()
                     {
                         X = 0,
-                        Y = Canvas.Height - 32,
+                        Y = 0,
                         Width = Canvas.Width,
                         Height = 32,
                         Radius = 0,
-                        Elements = new()
-                        {
-                            new Libraries.GUI.Elements.Button()
-                            {
-                                X = 0,
-                                Y = Canvas.Height - 32,
-                                Width = 50,
-                                Height = 32,
-                                Radius = 0,
-                                Text = "Start",
-                                Visible = true,
-                                OnClick = (ref Libraries.GUI.Elements.Element E) => { ShowStart = !ShowStart; },
-                            },
-                            new Libraries.GUI.Elements.Panel()
-                            {
-                                X = 0,
-                                Y = Canvas.Height - 32 - 200,
-                                Width = 100,
-                                Height = 200,
-                                Radius = 0,
-                                Color = Color.White,
-                                Visible = true,
-                                OnUpdate = (ref Libraries.GUI.Elements.Element E) => { E.Visible = ShowStart; },
-                            },
-                        }
-                    });
-            Canvas = new(1280, 720);
+                        Color = Color.White,
+                        Visible = true,
+                        OnUpdate = (ref Libraries.GUI.Elements.Element E) => { E.Visible = ShowStart; },
+                        OnClick = (ref Libraries.GUI.Elements.Element E) => { },
+                    },
+                    new Libraries.GUI.Elements.Button()
+                    {
+                        X = 0,
+                        Y = 0,
+                        Width = 64,
+                        Height = 32,
+                        Radius = 0,
+                        Text = "Start",
+                        Visible = true,
+                        OnClick = (ref Libraries.GUI.Elements.Element E) => { ShowStart = !ShowStart; },
+                        OnUpdate = (ref Libraries.GUI.Elements.Element E) => { },
+                    },
+                }
+            });
         }
 
         protected override void Run()
@@ -71,23 +75,10 @@ namespace PrismOS
             }
             catch (Exception EX)
             {
-                WM.Windows.Add(new()
-                {
-                    X = 15,
-                    Y = 15,
-                    Width = 300,
-                    Height = 150,
-                    Elements = new()
-                    {
-                        new Libraries.GUI.Elements.Label()
-                        {
-                            X = 0,
-                            Y = 0,
-                            Text = "A critical error occured!\n" + EX.Message,
-                            Color = Color.White,
-                        }
-                    }
-                });
+                Canvas.Clear(Color.RubyRed);
+                Canvas.DrawString(15, 15, "ERROR!\n" + EX.Message, Color.Black);
+                Canvas.Update();
+                while (true) { }
             }
         }
     }

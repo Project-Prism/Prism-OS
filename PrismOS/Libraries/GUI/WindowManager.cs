@@ -9,6 +9,7 @@ namespace PrismOS.Libraries.GUI
         public List<Window> Windows = new();
         public class Window
         {
+            public bool ShowWindow, ShowElements;
             public int X, Y, Width, Height, Radius;
             public List<Elements.Element> Elements = new();
         }
@@ -43,36 +44,42 @@ namespace PrismOS.Libraries.GUI
 
                 #region Draw Window
 
-                Canvas.DrawFilledRectangle(Window.X, Window.Y, Window.Width, Window.Height, Window.Radius, Color.StackOverflowBlack);
+                if (Window.ShowWindow)
+                {
+                    Canvas.DrawFilledRectangle(Window.X, Window.Y, Window.Width, Window.Height, Window.Radius, Color.StackOverflowBlack);
+                }
 
                 #endregion
 
                 #region Draw Elements
 
-                for (int I = 0; I < Window.Elements.Count; I++)
+                if (Window.ShowElements)
                 {
-                    Elements.Element E = Window.Elements[I];
-
-                    #region Calculations
-
-                    if (E.OnUpdate != null)
+                    for (int I = 0; I < Window.Elements.Count; I++)
                     {
-                        E.OnUpdate.Invoke(ref E);
-                    }
-                    if (E.Clicked && Mouse.MouseState != Cosmos.System.MouseState.Left)
-                    {
-                        E.Clicked = false;
-                        if (E.OnClick != null)
+                        Elements.Element E = Window.Elements[I];
+
+                        #region Calculations
+
+                        if (E.OnUpdate != null)
                         {
-                            E.OnClick.Invoke(ref E);
+                            E.OnUpdate.Invoke(ref E);
                         }
+                        if (E.Clicked && Mouse.MouseState != Cosmos.System.MouseState.Left)
+                        {
+                            E.Clicked = false;
+                            if (E.OnClick != null)
+                            {
+                                E.OnClick.Invoke(ref E);
+                            }
+                        }
+                        E.Hovering = IsMouseWithin(Window.X + E.X, Window.X + E.Y, E.Width, E.Height);
+                        E.Clicked = E.Hovering && Mouse.MouseState == Cosmos.System.MouseState.Left;
+
+                        #endregion
+
+                        E.Update(Canvas);
                     }
-                    E.Hovering = IsMouseWithin(Window.X + E.X, Window.X + E.Y, E.Width, E.Height);
-                    E.Clicked = E.Hovering && Mouse.MouseState == Cosmos.System.MouseState.Left;
-
-                    #endregion
-
-                    E.Update(Canvas);
                 }
 
                 #endregion
