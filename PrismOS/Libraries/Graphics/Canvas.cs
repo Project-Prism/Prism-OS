@@ -21,7 +21,6 @@ namespace PrismOS.Libraries.Graphics
             Mouse.ScreenHeight = (uint)Height;
             Mouse.X = (uint)Width / 2;
             Mouse.Y = (uint)Height / 2;
-            Update();
         }
 
         public int Width, Height;
@@ -207,6 +206,10 @@ namespace PrismOS.Libraries.Graphics
 
         public void DrawImage(int X, int Y, Image Image)
         {
+            if (Image == null)
+            {
+                throw new Exception("Cannot draw a null image file.");
+            }
             for (int IX = 0; IX < Image.Width; IX++)
             {
                 for (int IY = 0; IY < Image.Height; IY++)
@@ -215,16 +218,20 @@ namespace PrismOS.Libraries.Graphics
                 }
             }
         }
-        public void DrawImage(int X, int Y, int Width, int Height, Image Bitmap)
+        public void DrawImage(int X, int Y, int Width, int Height, Image Image)
         {
-            for (int IX = 0; IX < Bitmap.Width; IX++)
+            if (Image == null)
             {
-                for (int IY = 0; IY < Bitmap.Height; IY++)
+                throw new Exception("Cannot draw a null image file.");
+            }
+            for (int IX = 0; IX < Image.Width; IX++)
+            {
+                for (int IY = 0; IY < Image.Height; IY++)
                 {
                     SetPixel(
-                        X + IX / (Bitmap.Width / Width),
-                        Y + IY / (Bitmap.Height / Height),
-                        new((int)Bitmap.Buffer[(Bitmap.Width * IY) + IX]));
+                        X + IX / (Image.Width / Width),
+                        Y + IY / (Image.Height / Height),
+                        new((int)Image.Buffer[(Image.Width * IY) + IX]));
                 }
             }
         }
@@ -262,9 +269,13 @@ namespace PrismOS.Libraries.Graphics
         }
         public void DrawString(int X, int Y, string Text, Color Color)
         {
-            DrawString(X, Y, Text, Color, Font.Default);
+            DrawString(X, Y, Text, Color, Font.Default, false, false);
         }
-        public void DrawString(int X, int Y, string Text, Color Color, Font Font)
+        public void DrawString(int X, int Y, string Text, Color Color, bool Underline, bool Crossout)
+        {
+            DrawString(X, Y, Text, Color, Font.Default, Underline, Crossout);
+        }
+        public void DrawString(int X, int Y, string Text, Color Color, Font Font, bool Underline, bool Crossout)
         {
             string[] Lines = Text.Split('\n');
             for (int Line = 0; Line < Lines.Length; Line++)
@@ -280,9 +291,25 @@ namespace PrismOS.Libraries.Graphics
                         for (int IX = 0; IX < Font.Width; IX++)
                         {
                             if ((fontbuf[IY] & (0x80 >> IX)) != 0)
+                            {
                                 SetPixel(X + IX + (Char * Font.Width), Y + IY + (Line * Font.Height), Color);
+                            }
                         }
                     }
+                }
+            }
+            if (Crossout)
+            {
+                for (int I = -1; I < 1; I++)
+                {
+                    DrawLine(X, Y + (Font.Height / 2) + I, X + (Font.Width * Text.Length), Y + (Font.Height / 2) + I, Color);
+                }
+            }
+            if (Underline)
+            {
+                for (int I = 0; I < 3; I++)
+                {
+                    DrawLine(X, Y + Font.Height + I, X + (Font.Width * Text.Length), Y + Font.Height + I, Color);
                 }
             }
         }
@@ -309,6 +336,7 @@ namespace PrismOS.Libraries.Graphics
                 Frames = 0;
                 LT = DateTime.Now;
             }
+            DrawImage((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
 
             Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);
         }

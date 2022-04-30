@@ -1,10 +1,11 @@
 ﻿using PrismOS.Libraries.Graphics;
 using System;
 using System.IO;
+using GC = Cosmos.Core.GCImplementation;
 
 namespace PrismOS.Libraries.Formats
 {
-    public unsafe class Image
+    public unsafe class Image : IDisposable
     {
         public Image(int Width, int Height)
         {
@@ -28,13 +29,14 @@ namespace PrismOS.Libraries.Formats
                 Buffer = (int*[])(object)BMP.rawData;
                 return;
             }
-            if(Reader.ReadString() == "RAW")
+            if (Reader.ReadString() == "RAW")
             {
                 Width = Reader.ReadInt32();
                 Height = Reader.ReadInt32();
                 Buffer = (int*[])(object)Reader.ReadBytes(Width * Height * 4);
                 return;
             }
+            Reader.Dispose();
         }
 
         public Color AverageColor
@@ -63,6 +65,11 @@ namespace PrismOS.Libraries.Formats
             Writer.Write(Height);
             Writer.Write((byte[])(object)Buffer);
             return (Writer.BaseStream as MemoryStream).ToArray();
+        }
+
+        public void Dispose()
+        {
+            GC.Free(Buffer);
         }
 
         #region Effects

@@ -2,7 +2,7 @@
 using System.IO;
 using System;
 
-namespace PrismOS.Libraries.Runtime
+namespace PrismOS.Libraries
 {
     public static class Hexi
     {

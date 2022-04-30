@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GC = Cosmos.Core.GCImplementation;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -41,6 +42,9 @@ namespace PrismOS.Libraries.Compression
 
             byte[] ReturnBytes = new byte[Compressed.Count * sizeof(int)];
             Buffer.BlockCopy(Compressed.ToArray(), 0, ReturnBytes, 0, ReturnBytes.Length);
+            GC.Free(Dictionary);
+            GC.Free(Compressed);
+            GC.Free(W);
             return ReturnBytes;
         }
 
@@ -81,6 +85,10 @@ namespace PrismOS.Libraries.Compression
 
                 W = entry;
             }
+
+            GC.Free(W);
+            GC.Free(Compressed);
+            GC.Free(CompressedTemp);
 
             return Encoding.ASCII.GetBytes(decompressed.ToString());
         }
