@@ -33,6 +33,7 @@ namespace PrismOS
                         Radius = 0,
                         Draggable = false,
                         Visible = true,
+                        TitleVisible = false,
                         Elements = new()
                         {
                             new Libraries.Graphics.GUI.Elements.Button()
@@ -43,15 +44,25 @@ namespace PrismOS
                                 Height = 32,
                                 Radius = 0,
                                 Text = "Start",
-                                OnClick = (ref Libraries.Graphics.GUI.Elements.Element E) => { WM.Windows[0].Elements[1].Visible = !WM.Windows[0].Elements[1].Visible; },
+                                OnClick = (ref Libraries.Graphics.GUI.Elements.Element E) => { WM.Windows[0].Elements[2].Visible = !WM.Windows[0].Elements[2].Visible; },
                                 OnUpdate = (ref Libraries.Graphics.GUI.Elements.Element E) => { },
+                            },
+                            new Libraries.Graphics.GUI.Elements.Button()
+                            {
+                                X = 70,
+                                Y = 0,
+                                Width = 32,
+                                Height = 32,
+                                Radius = 0,
+                                Text = "M",
+                                OnClick = (ref Libraries.Graphics.GUI.Elements.Element E) => { WM.Windows.Add(new() { X = 200, Y = 50, Width = 300, Height = 150, Draggable = true, }); },
                             },
                             new Libraries.Graphics.GUI.Elements.Panel()
                             {
                                 X = 0,
-                                Y = -400,
-                                Width = 64,
-                                Height = 400,
+                                Y = -300,
+                                Width = 150,
+                                Height = 300,
                                 Color = new(Color.Black, 128),
                                 Visible = false,
                                 Radius = 0,

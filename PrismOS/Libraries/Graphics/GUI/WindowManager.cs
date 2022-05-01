@@ -10,10 +10,10 @@ namespace PrismOS.Libraries.Graphics.GUI
         {
             public int X, Y, Width, Height, Radius;
             public List<Elements.Element> Elements = new();
-            public bool Visible = true, Draggable = true;
+            public bool Visible = true, Draggable = true, TitleVisible = true;
+            public bool Moving;
+            public int IX, IY;
         }
-        public bool Moving;
-        public int IX, IY;
 
         public void Update(Canvas Canvas)
         {
@@ -27,21 +27,21 @@ namespace PrismOS.Libraries.Graphics.GUI
                 {
                     if (Mouse.MouseState == Cosmos.System.MouseState.Left)
                     {
-                        if (Mouse.X > Window.X && Mouse.X < Window.X + Window.Width && Mouse.Y > Window.Y - 15 && Mouse.Y < Window.Y && !Moving)
+                        if (Mouse.X > Window.X && Mouse.X < Window.X + Window.Width && Mouse.Y > Window.Y - 15 && Mouse.Y < Window.Y && !Window.Moving)
                         {
-                            Moving = true;
-                            IX = (int)Mouse.X - Window.X;
-                            IY = (int)Mouse.Y - Window.Y;
+                            Window.Moving = true;
+                            Window.IX = (int)Mouse.X - Window.X;
+                            Window.IY = (int)Mouse.Y - Window.Y;
                         }
                     }
                     else
                     {
-                        Moving = false;
+                        Window.Moving = false;
                     }
-                    if (Moving)
+                    if (Window.Moving)
                     {
-                        Window.X = (int)Mouse.X - IX;
-                        Window.Y = (int)Mouse.Y - IY;
+                        Window.X = (int)Mouse.X - Window.IX;
+                        Window.Y = (int)Mouse.Y - Window.IY;
                     }
                 }
 
@@ -51,6 +51,10 @@ namespace PrismOS.Libraries.Graphics.GUI
 
                 if (Window.Visible)
                 {
+                    if (Window.TitleVisible)
+                    {
+                        Canvas.DrawFilledRectangle(Window.X, Window.Y - 15, Window.Width, 15, 0, Color.Black);
+                    }
                     Canvas.DrawFilledRectangle(Window.X, Window.Y, Window.Width, Window.Height, Window.Radius, Color.StackOverflowBlack);
                 }
 
