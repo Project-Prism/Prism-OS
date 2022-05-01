@@ -10,21 +10,14 @@ namespace PrismOS.Libraries.Graphics.GUI.Elements
         {
             if (Visible)
             {
-                if (Clicked)
-                {
-                    Canvas.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, Color.Black);
-                    Canvas.DrawString(Parent.X + X, Parent.Y + Y, Text, Color.White);
-                }
-                else if (Hovering)
-                {
-                    Canvas.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, Color.LightGray);
-                    Canvas.DrawString(Parent.X + X, Parent.Y + Y, Text, Color.Black);
-                }
-                else
-                {
-                    Canvas.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, Color.White);
-                    Canvas.DrawString(Parent.X + X, Parent.Y + Y, Text, Color.Black);
-                }
+                Color Background = Clicked ? Color.Black : Hovering ? Color.LightGray : Color.White;
+                Color Foreground = Clicked ? Color.White : Hovering ? Color.Black : Color.Black;
+
+                int SX = Parent.X + X + (Text.Length * Canvas.Font.Default.Width);
+                int SY = Parent.Y + Y + (Text.Split('\n').Length * Canvas.Font.Default.Height);
+
+                Canvas.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, Background);
+                Canvas.DrawString(SX, SY, Text, Foreground);
             }
         }
     }

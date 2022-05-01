@@ -14,6 +14,7 @@ namespace PrismOS.Libraries.Graphics.GUI
             public bool Moving;
             public int IX, IY;
         }
+        private bool Dragging = false;
 
         public void Update(Canvas Canvas)
         {
@@ -27,8 +28,11 @@ namespace PrismOS.Libraries.Graphics.GUI
                 {
                     if (Mouse.MouseState == Cosmos.System.MouseState.Left)
                     {
-                        if (Mouse.X > Window.X && Mouse.X < Window.X + Window.Width && Mouse.Y > Window.Y - 15 && Mouse.Y < Window.Y && !Window.Moving)
+                        if (Mouse.X > Window.X && Mouse.X < Window.X + Window.Width && Mouse.Y > Window.Y - 15 && Mouse.Y < Window.Y && !Window.Moving && !Dragging)
                         {
+                            Dragging = true;
+                            Windows.Remove(Window);
+                            Windows.Insert(Windows.Count, Window);
                             Window.Moving = true;
                             Window.IX = (int)Mouse.X - Window.X;
                             Window.IY = (int)Mouse.Y - Window.Y;
@@ -36,6 +40,7 @@ namespace PrismOS.Libraries.Graphics.GUI
                     }
                     else
                     {
+                        Dragging = false;
                         Window.Moving = false;
                     }
                     if (Window.Moving)
@@ -68,20 +73,23 @@ namespace PrismOS.Libraries.Graphics.GUI
 
                     #region Calculations
 
-                    if (E.OnUpdate != null)
+                    if (Windows[0] == Window)
                     {
-                        E.OnUpdate.Invoke(ref E);
-                    }
-                    if (E.Clicked && Mouse.MouseState != Cosmos.System.MouseState.Left)
-                    {
-                        E.Clicked = false;
-                        if (E.OnClick != null)
+                        if (E.OnUpdate != null)
                         {
-                            E.OnClick.Invoke(ref E);
+                            E.OnUpdate.Invoke(ref E);
                         }
+                        if (E.Clicked && Mouse.MouseState != Cosmos.System.MouseState.Left)
+                        {
+                            E.Clicked = false;
+                            if (E.OnClick != null)
+                            {
+                                E.OnClick.Invoke(ref E);
+                            }
+                        }
+                        E.Hovering = IsMouseWithin(Window.X + E.X, Window.X + E.Y, E.Width, E.Height);
+                        E.Clicked = E.Hovering && Mouse.MouseState == Cosmos.System.MouseState.Left;
                     }
-                    E.Hovering = IsMouseWithin(Window.X + E.X, Window.X + E.Y, E.Width, E.Height);
-                    E.Clicked = E.Hovering && Mouse.MouseState == Cosmos.System.MouseState.Left;
 
                     #endregion
 

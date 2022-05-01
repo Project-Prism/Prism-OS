@@ -171,9 +171,9 @@ namespace PrismOS.Libraries.Graphics
             for (; StartAngle < EndAngle; StartAngle++)
             {
                 double Angle1 = Math.PI * StartAngle / 180;
-                X += (int)(Radius * Math.Cos(Angle1));
-                Y += (int)(Radius * Math.Sin(Angle1));
-                SetPixel(X, Y, Color);
+                int IX = (int)(Radius * Math.Cos(Angle1));
+                int IY = (int)(Radius * Math.Sin(Angle1));
+                SetPixel(X + IX, Y + IY, Color);
             }
         }
         public void DrawFilledCircle(int X, int Y, int Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
@@ -185,7 +185,7 @@ namespace PrismOS.Libraries.Graphics
 
             for (int I = 0; I < Radius; I++)
             {
-                DrawCircle(X, Y, Radius, Color, StartAngle, EndAngle);
+                DrawCircle(X, Y, I, Color, StartAngle, EndAngle);
             }
         }
 

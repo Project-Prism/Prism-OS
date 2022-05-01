@@ -11,7 +11,6 @@ namespace PrismOS
     public unsafe class Kernel : Cosmos.System.Kernel
     {
         public static WindowManager WM;
-        public static bool ShowStart = false;
         public static Canvas Canvas;
         public static CosmosVFS VFS;
 
@@ -82,7 +81,6 @@ namespace PrismOS
                 WM.Update(Canvas);
                 Canvas.Update();
             }
-            #region Catch
             catch (Exception EX)
             {
                 WM.Windows.Add(new()
@@ -129,7 +127,6 @@ namespace PrismOS
                     },
                 });
             }
-            #endregion
         }
     }
 }
