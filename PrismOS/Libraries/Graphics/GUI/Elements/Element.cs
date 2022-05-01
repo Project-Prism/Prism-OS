@@ -4,7 +4,7 @@ namespace PrismOS.Libraries.Graphics.GUI.Elements
 {
     public abstract class Element
     {
-        public delegate void Event(ref Element This);
+        public delegate void Event(ref Element This, ref Window Parent);
         public int X, Y, Width, Height, Radius;
         public Event OnClick, OnUpdate;
         public bool Clicked, Hovering, Visible = true;

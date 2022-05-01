@@ -12,5 +12,6 @@ namespace PrismOS.Files
         [ManifestResourceStream(ResourceName = Base + "Audio.wav")] public readonly static byte[] Audio;
 
         public static Image Cursor = new(CursorB);
+        public static Image Logo = new(LogoB);
     }
 }

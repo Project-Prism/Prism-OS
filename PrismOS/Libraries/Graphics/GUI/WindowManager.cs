@@ -12,6 +12,7 @@ namespace PrismOS.Libraries.Graphics.GUI
             public List<Elements.Element> Elements = new();
             public bool Visible = true, Draggable = true, TitleVisible = true;
             public bool Moving;
+            public string Text;
             public int IX, IY;
         }
         private bool Dragging = false;
@@ -59,6 +60,7 @@ namespace PrismOS.Libraries.Graphics.GUI
                     if (Window.TitleVisible)
                     {
                         Canvas.DrawFilledRectangle(Window.X, Window.Y - 15, Window.Width, 15, 0, Color.Black);
+                        Canvas.DrawString(Window.X, Window.Y - 15, Window.Text, Color.White);
                     }
                     Canvas.DrawFilledRectangle(Window.X, Window.Y, Window.Width, Window.Height, Window.Radius, Color.StackOverflowBlack);
                 }
@@ -77,14 +79,14 @@ namespace PrismOS.Libraries.Graphics.GUI
                     {
                         if (E.OnUpdate != null)
                         {
-                            E.OnUpdate.Invoke(ref E);
+                            E.OnUpdate.Invoke(ref E, ref Window);
                         }
                         if (E.Clicked && Mouse.MouseState != Cosmos.System.MouseState.Left)
                         {
                             E.Clicked = false;
                             if (E.OnClick != null)
                             {
-                                E.OnClick.Invoke(ref E);
+                                E.OnClick.Invoke(ref E, ref Window);
                             }
                         }
                         E.Hovering = IsMouseWithin(Window.X + E.X, Window.X + E.Y, E.Width, E.Height);

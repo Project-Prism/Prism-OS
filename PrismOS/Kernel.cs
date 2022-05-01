@@ -1,10 +1,11 @@
-﻿using PrismOS.Libraries.Graphics;
-using System;
-using PrismOS.Libraries;
-using Cosmos.System.FileSystem;
-using PrismOS.Libraries.Graphics.GUI;
+﻿using static PrismOS.Libraries.Graphics.GUI.WindowManager;
+using PrismOS.Libraries.Graphics.GUI.Elements;
 using Cosmos.System.Network.IPv4.UDP.DHCP;
+using PrismOS.Libraries.Graphics.GUI;
 using Cosmos.System.FileSystem.VFS;
+using PrismOS.Libraries.Graphics;
+using Cosmos.System.FileSystem;
+using System;
 
 namespace PrismOS
 {
@@ -17,6 +18,8 @@ namespace PrismOS
         protected override void BeforeRun()
         {
             Canvas = new(960, 540);
+            Canvas.DrawImage(Canvas.Width / 2 - 128, Canvas.Height / 2 - 128, 128, 128, Files.Resources.Logo);
+            Canvas.Update();
             VFS = new(); VFS.Initialize(false); VFSManager.RegisterVFS(VFS);
             new DHCPClient().SendDiscoverPacket();
             WM = new()
@@ -35,7 +38,7 @@ namespace PrismOS
                         TitleVisible = false,
                         Elements = new()
                         {
-                            new Libraries.Graphics.GUI.Elements.Button()
+                            new Button()
                             {
                                 X = 0,
                                 Y = 0,
@@ -43,10 +46,9 @@ namespace PrismOS
                                 Height = 32,
                                 Radius = 0,
                                 Text = "Start",
-                                OnClick = (ref Libraries.Graphics.GUI.Elements.Element E) => { WM.Windows[0].Elements[2].Visible = !WM.Windows[0].Elements[2].Visible; },
-                                OnUpdate = (ref Libraries.Graphics.GUI.Elements.Element E) => { },
+                                OnClick = (ref Element E, ref Window Parent) => { Parent.Elements[2].Visible = !Parent.Elements[2].Visible; },
                             },
-                            new Libraries.Graphics.GUI.Elements.Button()
+                            new Button()
                             {
                                 X = 70,
                                 Y = 0,
@@ -54,9 +56,36 @@ namespace PrismOS
                                 Height = 32,
                                 Radius = 0,
                                 Text = "M",
-                                OnClick = (ref Libraries.Graphics.GUI.Elements.Element E) => { WM.Windows.Add(new() { X = 200, Y = 50, Width = 300, Height = 150, Draggable = true, }); },
+                                OnClick = (ref Element E, ref Window Parent) => { WM.Windows.Add(new()
+                                {
+                                    X = 200,
+                                    Y = 50,
+                                    Width = 300,
+                                    Height = 150,
+                                    Draggable = true,
+                                    Text = "Clock",
+                                    Elements = new()
+                                    {
+                                        new Clock()
+                                        {
+                                            X = 150,
+                                            Y = 75,
+                                            Radius = 50,
+                                            OnUpdate = (ref Element E, ref Window Parent) => { ((Clock)E).Time = DateTime.Now; },
+                                        },
+                                        new Button()
+                                        {
+                                            X = 285,
+                                            Y = 0,
+                                            Width = 15,
+                                            Height = 15,
+                                            Text = "X",
+                                            OnClick = (ref Element E, ref Window Parent) => { WM.Windows.Remove(Parent); },
+                                        },
+                                    },
+                                }); },
                             },
-                            new Libraries.Graphics.GUI.Elements.Panel()
+                            new Panel()
                             {
                                 X = 0,
                                 Y = -300,
@@ -92,7 +121,7 @@ namespace PrismOS
                     Radius = 0,
                     Elements = new()
                     {
-                        new Libraries.Graphics.GUI.Elements.Panel()
+                        new Panel()
                         {
                             X = 0,
                             Y = 0,
@@ -101,21 +130,21 @@ namespace PrismOS
                             Radius = 0,
                             Color = Color.Black,
                         },
-                        new Libraries.Graphics.GUI.Elements.Label()
+                        new Label()
                         {
                             X = 0,
                             Y = 0,
                             Color = Color.White,
                             Text = "Critical error!",
                         },
-                        new Libraries.Graphics.GUI.Elements.Label()
+                        new Label()
                         {
                             X = 50,
                             Y = 50,
                             Color = Color.White,
                             Text = EX.Message,
                         },
-                        new Libraries.Graphics.GUI.Elements.Button()
+                        new Button()
                         {
                             X = 284,
                             Y = 115,
@@ -123,6 +152,7 @@ namespace PrismOS
                             Height = 35,
                             Text = "Okay",
                             Radius = 0,
+                            OnClick = (ref Element E, ref Window Parent) => { WM.Windows.Remove(Parent); },
                         },
                     },
                 });
