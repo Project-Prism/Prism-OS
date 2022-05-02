@@ -7,8 +7,8 @@ This project is made possible by Cosmos and the community around it, and we give
 Have any problems? Found a bug? Just want to chat? [Join the discord](https://discord.gg/DdERgtGmF6)!
 
 ## Screenshots
-[Image1](https://raw.githubusercontent.com/Project-Prism/Prism-OS/main/Images/1.png)
-[Image2](https://raw.githubusercontent.com/Project-Prism/Prism-OS/main/Images/2.png)
+![Image1](https://raw.githubusercontent.com/Project-Prism/Prism-OS/main/Images/1.png)
+![Image2](https://raw.githubusercontent.com/Project-Prism/Prism-OS/main/Images/2.png)
 
 ## Notable contributors
 | Name                                                  | Contribution(s)              |
