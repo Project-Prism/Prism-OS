@@ -13,5 +13,6 @@ namespace PrismOS.Files
 
         public static Image Cursor = new(CursorB);
         public static Image Logo = new(LogoB);
+        public static Image Wallpaper = new(WallpaperB);
     }
 }

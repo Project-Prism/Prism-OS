@@ -75,23 +75,20 @@ namespace PrismOS.Libraries.Graphics.GUI
 
                     #region Calculations
 
-                    if (Windows[0] == Window)
+                    if (E.OnUpdate != null)
                     {
-                        if (E.OnUpdate != null)
-                        {
-                            E.OnUpdate.Invoke(ref E, ref Window);
-                        }
-                        if (E.Clicked && Mouse.MouseState != Cosmos.System.MouseState.Left)
-                        {
-                            E.Clicked = false;
-                            if (E.OnClick != null)
-                            {
-                                E.OnClick.Invoke(ref E, ref Window);
-                            }
-                        }
-                        E.Hovering = IsMouseWithin(Window.X + E.X, Window.X + E.Y, E.Width, E.Height);
-                        E.Clicked = E.Hovering && Mouse.MouseState == Cosmos.System.MouseState.Left;
+                        E.OnUpdate.Invoke(ref E, ref Window);
                     }
+                    if (E.Clicked && Mouse.MouseState != Cosmos.System.MouseState.Left)
+                    {
+                        E.Clicked = false;
+                        if (E.OnClick != null)
+                        {
+                            E.OnClick.Invoke(ref E, ref Window);
+                        }
+                    }
+                    E.Hovering = IsMouseWithin(Window.X + E.X, Window.X + E.Y, E.Width, E.Height);
+                    E.Clicked = E.Hovering && Mouse.MouseState == Cosmos.System.MouseState.Left;
 
                     #endregion
 

@@ -5,9 +5,9 @@ using PrismOS.Libraries.Graphics.GUI;
 using Cosmos.System.FileSystem.VFS;
 using PrismOS.Libraries.Graphics;
 using Cosmos.System.FileSystem;
-using Cosmos.HAL.BlockDevice;
 using System;
 
+// Prism OS, created on May 11th, 2021, 1:26 AM UTC-8
 namespace PrismOS
 {
     // PrismOS.Livraries.Filesystem.Ramdisk is still WIP!
@@ -16,11 +16,13 @@ namespace PrismOS
         public static WindowManager WM;
         public static Canvas Canvas;
         public static CosmosVFS VFS;
+        public static bool Booting;
 
         protected override void BeforeRun()
         {
+            Booting = true;
             Canvas = new(960, 540);
-            Canvas.DrawImage(Canvas.Width / 2 - 128, Canvas.Height / 2 - 128, 128, 128, Files.Resources.Logo);
+            Canvas.DrawImage(Canvas.Width / 2 - 128, Canvas.Height / 2 - 128, 256, 256, Files.Resources.Logo);
             Canvas.Update();
             VFS = new(); VFS.Initialize(false); VFSManager.RegisterVFS(VFS);
             new DHCPClient().SendDiscoverPacket();
@@ -58,34 +60,37 @@ namespace PrismOS
                                 Height = 32,
                                 Radius = 0,
                                 Text = "M",
-                                OnClick = (ref Element E, ref Window Parent) => { WM.Windows.Add(new()
+                                OnClick = (ref Element E, ref Window Parent) =>
                                 {
-                                    X = 200,
-                                    Y = 50,
-                                    Width = 300,
-                                    Height = 150,
-                                    Draggable = true,
-                                    Text = "Clock",
-                                    Elements = new()
+                                    WM.Windows.Add(new()
                                     {
-                                        new Clock()
+                                        X = 200,
+                                        Y = 50,
+                                        Width = 300,
+                                        Height = 150,
+                                        Draggable = true,
+                                        Text = "Clock",
+                                        Elements = new()
                                         {
-                                            X = 150,
-                                            Y = 75,
-                                            Radius = 50,
-                                            OnUpdate = (ref Element E, ref Window Parent) => { ((Clock)E).Time = DateTime.Now; },
+                                            new Clock()
+                                            {
+                                                X = 150,
+                                                Y = 75,
+                                                Radius = 50,
+                                                OnUpdate = (ref Element E, ref Window Parent) => { ((Clock)E).Time = DateTime.Now; },
+                                            },
+                                            new Button()
+                                            {
+                                                X = 285,
+                                                Y = -15,
+                                                Width = 15,
+                                                Height = 15,
+                                                Text = "X",
+                                                OnClick = (ref Element E, ref Window Parent) => { WM.Windows.Remove(Parent); },
+                                            },
                                         },
-                                        new Button()
-                                        {
-                                            X = 285,
-                                            Y = -15,
-                                            Width = 15,
-                                            Height = 15,
-                                            Text = "X",
-                                            OnClick = (ref Element E, ref Window Parent) => { WM.Windows.Remove(Parent); },
-                                        },
-                                    },
-                                }); },
+                                    });
+                                },
                             },
                             new Panel()
                             {
@@ -97,10 +102,69 @@ namespace PrismOS
                                 Visible = false,
                                 Radius = 0,
                             },
+                            new Button()
+                            {
+                                X = 108,
+                                Y = 0,
+                                Width = 32,
+                                Height = 32,
+                                Radius = 0,
+                                Text = "TT",
+                                OnClick = (ref Element E, ref Window Parent) =>
+                                {
+                                    WM.Windows.Add(new()
+                                    {
+                                        X = 200,
+                                        Y = 50,
+                                        Width = 300,
+                                        Height = 150,
+                                        Draggable = true,
+                                        Text = "typing test",
+                                        Elements = new()
+                                        {
+                                            new Textbox()
+                                            {
+                                                X = 0,
+                                                Y = 150 - 12,
+                                                Width = 300,
+                                                Height = 12,
+                                                Radius = 4,
+                                                OnUpdate = (ref Element E, ref Window Parent) =>
+                                                {
+                                                    if (Cosmos.System.KeyboardManager.TryReadKey(out var Key))
+                                                    {
+                                                        if (Key.Key == Cosmos.System.ConsoleKeyEx.Enter)
+                                                        {
+                                                            ((Label)Parent.Elements[1]).Text += '\n' + ((Textbox)E).Text;
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            new Label()
+                                            {
+                                                X = 15,
+                                                Y = 15,
+                                                Color = Color.White,
+                                                Text = "",
+                                            },
+                                            new Button()
+                                            {
+                                                X = 285,
+                                                Y = -15,
+                                                Width = 15,
+                                                Height = 15,
+                                                Text = "X",
+                                                OnClick = (ref Element E, ref Window Parent) => { WM.Windows.Remove(Parent); },
+                                            },
+                                        },
+                                    });
+                                },
+                            },
                         },
                     },
                 }
             };
+            Booting = false;
         }
 
         protected override void Run()
@@ -108,56 +172,22 @@ namespace PrismOS
             try
             {
                 Canvas.Clear(Color.CoolGreen);
+                //Canvas.DrawImage(0, 0, Canvas.Width, Canvas.Height, Files.Resources.Wallpaper);
                 Canvas.DrawString(15, 15, "FPS: " + Canvas.FPS, Color.Black);
                 WM.Update(Canvas);
                 Canvas.Update();
             }
             catch (Exception EX)
             {
-                WM.Windows.Add(new()
-                {
-                    X = Canvas.Width / 2 - 150,
-                    Y = Canvas.Height / 2 - 75,
-                    Width = 300,
-                    Height = 150,
-                    Radius = 0,
-                    Elements = new()
-                    {
-                        new Panel()
-                        {
-                            X = 0,
-                            Y = 0,
-                            Height = 12,
-                            Width = 300,
-                            Radius = 0,
-                            Color = Color.Black,
-                        },
-                        new Label()
-                        {
-                            X = 0,
-                            Y = 0,
-                            Color = Color.White,
-                            Text = "Critical error!",
-                        },
-                        new Label()
-                        {
-                            X = 50,
-                            Y = 50,
-                            Color = Color.White,
-                            Text = EX.Message,
-                        },
-                        new Button()
-                        {
-                            X = 284,
-                            Y = 115,
-                            Width = 12,
-                            Height = 35,
-                            Text = "Okay",
-                            Radius = 0,
-                            OnClick = (ref Element E, ref Window Parent) => { WM.Windows.Remove(Parent); },
-                        },
-                    },
-                });
+                #region Crash Screen
+
+                Canvas.Clear();
+                Canvas.DrawImage(Canvas.Width / 2 - 128, Canvas.Height / 2 - 128, 256, 256, Files.Resources.Logo);
+                string Error = $"[!] Critical failure [!]\nPrism OS has {(Booting ? "failed to boot" : "crashed")}! see error message below.\n" + EX.Message;
+                Canvas.DrawString(Canvas.Width / 2, Canvas.Height / 2 + 128, Error, Color.Red, true);
+                Canvas.Update();
+
+                #endregion
             }
         }
     }

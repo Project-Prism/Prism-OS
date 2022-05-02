@@ -1,6 +1,5 @@
 ﻿using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
 using Mouse = Cosmos.System.MouseManager;
-using PrismOS.Libraries.Utilities;
 using PrismOS.Libraries.Formats;
 using Cosmos.Core;
 using System.Text;
@@ -171,9 +170,9 @@ namespace PrismOS.Libraries.Graphics
                 return;
             }
 
-            for (; StartAngle < EndAngle; StartAngle++)
+            for (double Angle = StartAngle; Angle < EndAngle; Angle += 0.5)
             {
-                double Angle1 = Math.PI * StartAngle / 180;
+                double Angle1 = Math.PI * Angle / 180;
                 int IX = (int)(Radius * Math.Cos(Angle1));
                 int IY = (int)(Radius * Math.Sin(Angle1));
                 SetPixel(X + IX, Y + IY, Color);
@@ -190,6 +189,8 @@ namespace PrismOS.Libraries.Graphics
             {
                 DrawCircle(X, Y, I, Color, StartAngle, EndAngle);
             }
+            DrawCircle(X, Y, Radius, new(Color, (byte)(Color.A / 3)));
+            DrawCircle(X, Y, Radius + 1, new(Color, (byte)(Color.A / 9)));
         }
 
         #endregion
@@ -272,17 +273,52 @@ namespace PrismOS.Libraries.Graphics
         }
         public void DrawString(int X, int Y, string Text, Color Color)
         {
-            DrawString(X, Y, Text, Color, Font.Default, false, false);
+            DrawString(X, Y, Text, Color, Font.Default, false, false, false);
+        }
+        public void DrawString(int X, int Y, string Text, Color Color, bool Center)
+        {
+            DrawString(X, Y, Text, Color, Font.Default, false, false, Center);
         }
         public void DrawString(int X, int Y, string Text, Color Color, bool Underline, bool Crossout)
         {
-            DrawString(X, Y, Text, Color, Font.Default, Underline, Crossout);
+            DrawString(X, Y, Text, Color, Font.Default, Underline, Crossout, false);
         }
-        public void DrawString(int X, int Y, string Text, Color Color, Font Font, bool Underline, bool Crossout)
+        public void DrawString(int X, int Y, string Text, Color Color, bool Underline, bool Crossout, bool Center)
         {
+            DrawString(X, Y, Text, Color, Font.Default, Underline, Crossout, Center);
+        }
+        public void DrawString(int X, int Y, string Text, Color Color, Font Font, bool Underline, bool Crossout, bool Center)
+        {
+            if (Center)
+            {
+                string Longest = "";
+                foreach(string S in Text.Split('\n'))
+                {
+                    if (S.Length > Longest.Length)
+                    {
+                        Longest = S;
+                    }
+                }
+                Y -= Text.Split('\n').Length * Font.Default.Height / 2;
+            }
             string[] Lines = Text.Split('\n');
             for (int Line = 0; Line < Lines.Length; Line++)
             {
+                int TX = Center ? X - Lines[Line].Length * Font.Default.Width / 2 : X;
+                if (Crossout)
+                {
+                    for (int I = -1; I < 1; I++)
+                    {
+                        DrawLine(TX, Y + (Font.Height / 2) + I, TX + (Font.Width * Text.Length), Y + (Font.Height / 2) + I, Color);
+                    }
+                }
+                if (Underline)
+                {
+                    for (int I = 0; I < 3; I++)
+                    {
+                        DrawLine(TX, Y + Font.Height + I, TX + (Font.Width * Text.Length), Y + Font.Height + I, Color);
+                    }
+                }
                 for (int Char = 0; Char < Lines[Line].Length; Char++)
                 {
                     Font.MS.Seek((Encoding.ASCII.GetBytes(Lines[Line][Char].ToString())[0] & 0xFF) * Font.Height, SeekOrigin.Begin);
@@ -295,24 +331,10 @@ namespace PrismOS.Libraries.Graphics
                         {
                             if ((fontbuf[IY] & (0x80 >> IX)) != 0)
                             {
-                                SetPixel(X + IX + (Char * Font.Width), Y + IY + (Line * Font.Height), Color);
+                                SetPixel(TX + IX + (Char * Font.Width), Y + IY + (Line * Font.Height), Color);
                             }
                         }
                     }
-                }
-            }
-            if (Crossout)
-            {
-                for (int I = -1; I < 1; I++)
-                {
-                    DrawLine(X, Y + (Font.Height / 2) + I, X + (Font.Width * Text.Length), Y + (Font.Height / 2) + I, Color);
-                }
-            }
-            if (Underline)
-            {
-                for (int I = 0; I < 3; I++)
-                {
-                    DrawLine(X, Y + Font.Height + I, X + (Font.Width * Text.Length), Y + Font.Height + I, Color);
                 }
             }
         }
