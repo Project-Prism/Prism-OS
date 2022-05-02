@@ -6,6 +6,10 @@ This project is made possible by Cosmos and the community around it, and we give
 
 Have any problems? Found a bug? Just want to chat? [Join the discord](https://discord.gg/DdERgtGmF6)!
 
+## Screenshots
+[Image1](https://raw.githubusercontent.com/Project-Prism/Prism-OS/main/Images/1.png)
+[Image2](https://raw.githubusercontent.com/Project-Prism/Prism-OS/main/Images/2.png)
+
 ## Notable contributors
 | Name                                                  | Contribution(s)              |
 |-------------------------------------------------------|------------------------------|
@@ -15,12 +19,12 @@ Have any problems? Found a bug? Just want to chat? [Join the discord](https://di
 
 ## To-do
 Just a list of things that need to be done.
-| Name                      | Description                                                          |
-|---------------------------|----------------------------------------------------------------------|
-| Fix 3D                    | Unsure of cause                                                      |
-| Fix game of life          | Unsure of cause (https://www.youtube.com/watch?v=6-0UaeJBumA&t=589s) |
-| Re-make perlin noise      | currently not good    (https://www.youtube.com/watch?v=ih20l3pJoeU)  |
-| implement filled triangle | current implementation is horrible.                                   |
+| Name                      | Description                                                           |
+|---------------------------|-----------------------------------------------------------------------|
+| Fix 3D                    | Unsure of cause                                                       |
+| Fix game of life          | Unsure of cause (https://www.youtube.com/watch?v=6-0UaeJBumA&t=589s)  |
+| perlin noise              |																		|
+| implement filled triangle |																	    |
 
 ## Contributing
 

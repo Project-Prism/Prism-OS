@@ -87,7 +87,7 @@ namespace PrismOS.Libraries.Graphics.GUI
                             E.OnClick.Invoke(ref E, ref Window);
                         }
                     }
-                    E.Hovering = IsMouseWithin(Window.X + E.X, Window.X + E.Y, E.Width, E.Height);
+                    E.Hovering = IsMouseWithin(Window.X + E.X, Window.Y + E.Y, E.Width, E.Height);
                     E.Clicked = E.Hovering && Mouse.MouseState == Cosmos.System.MouseState.Left;
 
                     #endregion
