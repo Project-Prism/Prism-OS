@@ -9,7 +9,7 @@ namespace PrismOS.Libraries.Graphics.GUI.Elements
 
         public override void Update(Canvas Canvas, Window Parent)
         {
-            if (Visible)
+            if (Visible && Parent.Visible)
             {
                 Canvas.DrawFilledCircle(Parent.X + X, Parent.Y + Y, Radius, Color.White);
                 Canvas.DrawAngledLine(Parent.X + X, Parent.Y + Y, DateTime.Now.Hour * 30, Radius - 45, Color.Black);

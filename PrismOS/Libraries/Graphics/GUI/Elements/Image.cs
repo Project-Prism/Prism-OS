@@ -8,7 +8,7 @@ namespace PrismOS.Libraries.Graphics.GUI.Elements
 
         public override void Update(Canvas Canvas, Window Parent)
         {
-            if (Visible && Source != null)
+            if (Visible && Parent.Visible && Source != null)
             {
                 if (Width == default)
                 {

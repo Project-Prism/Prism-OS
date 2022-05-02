@@ -30,7 +30,7 @@ namespace PrismOS
             {
                 Windows = new()
                 {
-                    new()
+                    new() // Task bar
                     {
                         X = 0,
                         Y = Canvas.Height - 32,
@@ -59,7 +59,7 @@ namespace PrismOS
                                 Width = 32,
                                 Height = 32,
                                 Radius = 0,
-                                Text = "M",
+                                Text = "C",
                                 OnClick = (ref Element E, ref Window Parent) =>
                                 {
                                     WM.Windows.Add(new()

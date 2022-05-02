@@ -9,7 +9,7 @@ namespace PrismOS.Libraries.Graphics.GUI.Elements
 
         public override void Update(Canvas Canvas, Window Parent)
         {
-            if (Visible)
+            if (Visible && Parent.Visible)
             {
                 Canvas.DrawString(Parent.X + X, Parent.Y + Y, Text, Color);
             }

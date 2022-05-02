@@ -8,7 +8,7 @@ namespace PrismOS.Libraries.Graphics.GUI.Elements
 
         public override void Update(Canvas Canvas, Window Parent)
         {
-            if (Visible)
+            if (Visible && Parent.Visible)
             {
                 Color Background = Clicked ? Color.Black : Hovering ? Color.LightGray : Color.White;
                 Color Foreground = Clicked ? Color.White : Hovering ? Color.Black : Color.Black;

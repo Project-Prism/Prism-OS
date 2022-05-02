@@ -8,7 +8,7 @@ namespace PrismOS.Libraries.Graphics.GUI.Elements
 
         public override void Update(Canvas Canvas, Window Parent)
         {
-            if (Visible)
+            if (Visible && Parent.Visible)
             {
                 Canvas.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, Color);
             }
