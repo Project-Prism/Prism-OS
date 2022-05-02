@@ -19,7 +19,7 @@
         <PxeInterface>192.168.0.8</PxeInterface>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <CompileVBEMultiboot>False</CompileVBEMultiboot>
-        <VBEResolution>1280x720x32</VBEResolution>
+        <VBEResolution>960x540x32</VBEResolution>
         <DebugEnabled>False</DebugEnabled>
         <QemuMemory>4096</QemuMemory>
         <QemuNetworkDevice>RTL8139</QemuNetworkDevice>

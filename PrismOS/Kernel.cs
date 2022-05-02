@@ -5,10 +5,12 @@ using PrismOS.Libraries.Graphics.GUI;
 using Cosmos.System.FileSystem.VFS;
 using PrismOS.Libraries.Graphics;
 using Cosmos.System.FileSystem;
+using Cosmos.HAL.BlockDevice;
 using System;
 
 namespace PrismOS
 {
+    // PrismOS.Livraries.Filesystem.Ramdisk is still WIP!
     public unsafe class Kernel : Cosmos.System.Kernel
     {
         public static WindowManager WM;
@@ -76,7 +78,7 @@ namespace PrismOS
                                         new Button()
                                         {
                                             X = 285,
-                                            Y = 0,
+                                            Y = -15,
                                             Width = 15,
                                             Height = 15,
                                             Text = "X",

@@ -1,5 +1,6 @@
 ﻿using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
 using Mouse = Cosmos.System.MouseManager;
+using PrismOS.Libraries.Utilities;
 using PrismOS.Libraries.Formats;
 using Cosmos.Core;
 using System.Text;
@@ -90,7 +91,9 @@ namespace PrismOS.Libraries.Graphics
         }
         public void DrawAngledLine(int X, int Y, int Angle, int Radius, Color Color)
         {
-            DrawLine(X, Y, (int)(X + (Math.Cos(Math.PI * Angle / 180) * Radius)), (int)(X + (Math.Sin(Math.PI * Angle / 180) * Radius)), Color);
+            int IX = (int)(Radius * Math.Cos(Math.PI * Angle / 180));
+            int IY = (int)(Radius * Math.Sin(Math.PI * Angle / 180));
+            DrawLine(X, Y, X + IX, Y + IY, Color);
         }
         public void DrawBezierLine(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, int N = 6)
         {
