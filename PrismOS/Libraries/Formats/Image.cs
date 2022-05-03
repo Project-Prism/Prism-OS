@@ -76,9 +76,9 @@ namespace PrismOS.Libraries.Formats
 
         public Image Resize(int Width, int Height)
         {
-            if (Width == this.Width && Height == this.Height)
+            if (this == null)
             {
-                return this;
+                throw new Exception("Cannot draw a null image file.");
             }
             Image Temp = new(Width, Height);
             for (int IX = 0; IX < this.Width; IX++)
@@ -87,38 +87,7 @@ namespace PrismOS.Libraries.Formats
                 {
                     int X = IX / (this.Width / Width);
                     int Y = IY / (this.Height / Height);
-                    Temp.Buffer[(Width * Y) + X] = Buffer[(this.Width * IY) + IX];
-                }
-            }
-            return Temp;
-        }
-        public Image Rotate(int Angle)
-        {
-            Image Temp = new(Width, Height);
-
-            double radians = (Angle * Math.PI) / 180;
-            int sinf = (int)Math.Sin(radians);
-            int cosf = (int)Math.Cos(radians);
-
-            double X0 = 0.5 * (Width - 1);
-            double Y0 = 0.5 * (Height - 1);
-
-            // rotation
-            for (int x = 0; x < Temp.Width; x++)
-            {
-                for (int y = 0; y < Temp.Height; y++)
-                {
-                    double a = x - X0;
-                    double b = y - Y0;
-                    int xx = (int)(+a * cosf - b * sinf + X0);
-                    int yy = (int)(+a * sinf + b * cosf + Y0);
-
-                    if (xx >= 0 && xx < Temp.Width && yy >= 0 && yy < Temp.Height)
-                    {
-                        Temp.Buffer[(y * Temp.Height + x) * 3 + 0] = Temp.Buffer[(yy * Temp.Height + xx) * 3 + 0];
-                        Temp.Buffer[(y * Temp.Height + x) * 3 + 1] = Temp.Buffer[(yy * Temp.Height + xx) * 3 + 1];
-                        Temp.Buffer[(y * Temp.Height + x) * 3 + 2] = Temp.Buffer[(yy * Temp.Height + xx) * 3 + 2];
-                    }
+                    Temp.Buffer[(Temp.Width * Y) + X] = Buffer[(this.Width * IY) + IX];
                 }
             }
             return Temp;
@@ -145,19 +114,6 @@ namespace PrismOS.Libraries.Formats
                 {
                     Temp.Buffer[I] = (int*)Color.Black.ARGB;
                 }
-            }
-            return Temp;
-        }
-        public Image Tint(Color Color)
-        {
-            Image Temp = new(Width, Height);
-            for (int I = 0; I < Buffer.Length; I++)
-            {
-                Color C = new((int)Temp.Buffer[I]);
-                byte R = (byte)((C.R / 2) - Color.R + Color.R);
-                byte G = (byte)((C.G / 2) - Color.G + Color.G);
-                byte B = (byte)((C.B / 2) - Color.B + Color.B);
-                Temp.Buffer[I] = (int*)new Color(R, G, B).ARGB;
             }
             return Temp;
         }

@@ -1,5 +1,6 @@
 ﻿using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
 using Mouse = Cosmos.System.MouseManager;
+using static PrismOS.Files.Resources;
 using PrismOS.Libraries.Formats;
 using Cosmos.Core;
 using System.Text;
@@ -16,6 +17,8 @@ namespace PrismOS.Libraries.Graphics
             this.Height = Height;
             Buffer = new int*[Width * Height];
             VBE = new((ushort)Width, (ushort)Height, 32);
+            Wallpaper = Wallpaper.Resize(Width, Height);
+            Update();
 
             Mouse.ScreenWidth = (uint)Width;
             Mouse.ScreenHeight = (uint)Height;
@@ -361,9 +364,10 @@ namespace PrismOS.Libraries.Graphics
                 Frames = 0;
                 LT = DateTime.Now;
             }
-            DrawImage((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
+            DrawImage((int)Mouse.X, (int)Mouse.Y, Cursor);
 
             Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);
+            MemoryOperations.Copy((int[])(object)Buffer, (int[])(object)Wallpaper.Buffer);
         }
 
         #endregion
