@@ -13,6 +13,7 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
     public unsafe class Kernel : Cosmos.System.Kernel
     {
         public static WindowManager WM;
+        public static CosmosVFS VFS;
         public static Canvas Canvas;
         public static bool Booting;
 
@@ -21,6 +22,7 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
             Booting = true;
             Canvas = new(960, 540);
             Canvas.DrawImage(Canvas.Width / 2 - 128, Canvas.Height / 2 - 128, 256, 256, Files.Resources.Logo);
+            Canvas.DrawString(Canvas.Width / 2, Canvas.Height / 2 + 128, "Prism OS\nPowered by cosmos.", Color.White, true);
             Canvas.Update();
             WM = new()
             {
@@ -151,7 +153,7 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                     }
                 },
             };
-            VFSManager.RegisterVFS(new CosmosVFS());
+            VFS = new(); VFS.Initialize(true); VFSManager.RegisterVFS(VFS);
             new DHCPClient().SendDiscoverPacket();
             Booting = false;
         }
@@ -160,7 +162,7 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
         {
             try
             {
-                Canvas.DrawString(15, 15, "FPS: " + Canvas.FPS, Color.Black);
+                Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}\nFree Memmory: {Cosmos.Core.GCImplementation.GetAvailableRAM() / 1048576} MB", Color.Black);
                 WM.Update(Canvas);
                 Canvas.Update();
             }
