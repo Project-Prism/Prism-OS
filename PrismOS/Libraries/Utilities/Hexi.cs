@@ -101,7 +101,7 @@ namespace PrismOS.Libraries
                         Kernel.Canvas.SetPixel(Reader.ReadInt32(), Reader.ReadInt32(), new(Reader.ReadInt32()));
                         break;
                     case 0x08:
-                        Kernel.Canvas.Update();
+                        Kernel.Canvas.Update(true);
                         break;
                     default:
                         Console.WriteLine("[ Error ] Unknown command.");

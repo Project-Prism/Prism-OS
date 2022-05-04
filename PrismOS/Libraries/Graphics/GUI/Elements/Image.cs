@@ -10,16 +10,13 @@ namespace PrismOS.Libraries.Graphics.GUI.Elements
         {
             if (Visible && Parent.Visible && Source != null)
             {
-                if (Width == default)
+                if (Width == default || Height == default)
                 {
-                    Width = Source.Width;
-                }
-                if (Height == default)
-                {
-                    Height = Source.Height;
+                    Width = Parent.Width;
+                    Height = Parent.Height;
                 }
 
-                Canvas.DrawImage(Parent.X + X, Parent.Y = Y, Width, Height, Source);
+                Canvas.DrawImage(Parent.X + X, Parent.Y + Y, Width, Height, Source);
             }
         }
     }

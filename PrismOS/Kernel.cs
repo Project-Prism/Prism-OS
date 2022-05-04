@@ -4,6 +4,7 @@ using Cosmos.System.Network.IPv4.UDP.DHCP;
 using PrismOS.Libraries.Graphics.GUI;
 using Cosmos.System.FileSystem.VFS;
 using PrismOS.Libraries.Graphics;
+using System.Collections.Generic;
 using Cosmos.System.FileSystem;
 using Cosmos.System;
 using System;
@@ -12,21 +13,15 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
 {
     public unsafe class Kernel : Cosmos.System.Kernel
     {
-        public static WindowManager WM;
-        public static CosmosVFS VFS;
-        public static Canvas Canvas;
-        public static bool Booting;
-
-        protected override void BeforeRun()
+        public static Dictionary<Action, string> BootTasks = new()
         {
-            Booting = true;
-            Canvas = new(960, 540);
-            Canvas.DrawImage(Canvas.Width / 2 - 128, Canvas.Height / 2 - 128, 256, 256, Files.Resources.Logo);
-            Canvas.DrawString(Canvas.Width / 2, Canvas.Height / 2 + 128, "Prism OS\nPowered by cosmos.", Color.White, true);
-            Canvas.Update();
-            WM = new()
-            {
-                Windows = new()
+            { () => { Canvas = new(960, 540); }, "Creating new canvas instace..." },
+            { () => { Booting = true; }, "" },
+            { () => { VFS = new(); }, "Creating new VFS instance..." },
+            { () => { VFS.Initialize(true); }, "Initilizing VFS..." },
+            { () => { VFSManager.RegisterVFS(VFS); }, "Registering VFS..." },
+            { () => { new DHCPClient().SendDiscoverPacket(); }, "Starting network services..." },
+            { () => { WM = new() { Windows = new()
                 {
                     new()
                     {
@@ -149,22 +144,72 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                                     });
                                 },
                             },
+                            new Button()
+                            {
+                                X = 146,
+                                Y = 0,
+                                Width = 32,
+                                Height = 32,
+                                Text = "IMG",
+                                OnClick = (ref Element E, ref Window Parent) =>
+                                {
+                                    WM.Windows.Add(new()
+                                    {
+                                        X = 200,
+                                        Y = 50,
+                                        Width = 300,
+                                        Height = 150,
+                                        Text = "Image Viewer",
+                                        Elements = new()
+                                        {
+                                            new Image()
+                                            {
+                                                X = 0,
+                                                Y = 0,
+                                                Source = Files.Resources.Content,
+                                            },
+                                            new Button()
+                                            {
+                                                X = 285,
+                                                Y = -15,
+                                                Width = 15,
+                                                Height = 15,
+                                                Text = "X",
+                                                OnClick = (ref Element E, ref Window Parent) => { WM.Windows.Remove(Parent); },
+                                            },
+                                        },
+                                    });
+                                },
+                            },
                         },
                     }
-                },
-            };
-            VFS = new(); VFS.Initialize(true); VFSManager.RegisterVFS(VFS);
-            new DHCPClient().SendDiscoverPacket();
-            Booting = false;
+                }, }; System.Threading.Thread.Sleep(3000); }, "Starting desktop..." },
+            { () => { Booting = false; }, "" },
+        };
+        public static WindowManager WM;
+        public static CosmosVFS VFS;
+        public static Canvas Canvas;
+        public static bool Booting;
+
+        protected override void BeforeRun()
+        {
+            foreach (KeyValuePair<Action, string> Pair in BootTasks)
+            {
+                Pair.Key.Invoke();
+                Canvas.Clear();
+                Canvas.DrawImage(Canvas.Width / 2 - 128, Canvas.Height / 2 - 128, 256, 256, Files.Resources.Logo);
+                Canvas.DrawString(Canvas.Width / 2, Canvas.Height / 2 + 128, $"Prism OS\nPowered by cosmos.\n\n{Pair.Value}", Color.White, true);
+                Canvas.Update(false);
+            }
         }
 
         protected override void Run()
         {
             try
             {
-                Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}\nFree Memmory: {Cosmos.Core.GCImplementation.GetAvailableRAM() / 1048576} MB", Color.Black);
+                Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}\nFree Memmory: {Cosmos.Core.GCImplementation.GetAvailableRAM()} MB", Color.Black);
                 WM.Update(Canvas);
-                Canvas.Update();
+                Canvas.Update(true);
             }
             catch (Exception EX)
             {
@@ -174,11 +219,12 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                 Canvas.DrawImage(Canvas.Width / 2 - 128, Canvas.Height / 2 - 128, 256, 256, Files.Resources.Logo);
                 string Error = $"[!] Critical failure [!]\nPrism OS has {(Booting ? "failed to boot" : "crashed")}! see error message below.\n" + EX.Message;
                 Canvas.DrawString(Canvas.Width / 2, Canvas.Height / 2 + 128, Error, Color.Red, true);
-                Canvas.Update();
-                while(true) { }
+                Canvas.Update(false);
+                while (true) { }
 
                 #endregion
             }
         }
     }
+
 }

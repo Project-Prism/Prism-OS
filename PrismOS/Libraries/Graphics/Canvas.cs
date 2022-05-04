@@ -1,6 +1,7 @@
 ﻿using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
 using Mouse = Cosmos.System.MouseManager;
 using static PrismOS.Files.Resources;
+using System.Collections.Generic;
 using PrismOS.Libraries.Formats;
 using Cosmos.Core;
 using System.Text;
@@ -18,7 +19,7 @@ namespace PrismOS.Libraries.Graphics
             Buffer = new int*[Width * Height];
             VBE = new((ushort)Width, (ushort)Height, 32);
             Wallpaper = Wallpaper.Resize(Width, Height);
-            Update();
+            Update(false);
 
             Mouse.ScreenWidth = (uint)Width;
             Mouse.ScreenHeight = (uint)Height;
@@ -292,10 +293,15 @@ namespace PrismOS.Libraries.Graphics
         }
         public void DrawString(int X, int Y, string Text, Color Color, Font Font, bool Underline, bool Crossout, bool Center)
         {
+            if (Text == null || Text.Length == 0)
+            {
+                return;
+            }
+
             if (Center)
             {
                 string Longest = "";
-                foreach(string S in Text.Split('\n'))
+                foreach (string S in Text.Split('\n'))
                 {
                     if (S.Length > Longest.Length)
                     {
@@ -354,7 +360,7 @@ namespace PrismOS.Libraries.Graphics
             MemoryOperations.Fill((int[])(object)Buffer, Color.Value.ARGB);
         }
 
-        public void Update()
+        public void Update(bool ShowMouse)
         {
             Frames++;
             if ((DateTime.Now - LT).TotalSeconds >= 1)
@@ -364,10 +370,32 @@ namespace PrismOS.Libraries.Graphics
                 Frames = 0;
                 LT = DateTime.Now;
             }
-            DrawImage((int)Mouse.X, (int)Mouse.Y, Cursor);
+            if (ShowMouse)
+            {
+                DrawImage((int)Mouse.X, (int)Mouse.Y, Cursor);
+            }
 
             Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);
             MemoryOperations.Copy((int[])(object)Buffer, (int[])(object)Wallpaper.Buffer);
+        }
+
+        public static int[] Interpolate(int Y1, int X1, int Y2, int X2)
+        {
+            if (Y1! == Y2)
+            {
+                return new int[] { X1 };
+            }
+            List<int> Values = new();
+
+            int A = (X1 - X1) / (Y2 - Y1);
+            int D = X1;
+            for (int I = Y1; I < Y2; I++)
+            {
+                Values.Add(D);
+                D += A;
+            }
+
+            return Values.ToArray();
         }
 
         #endregion

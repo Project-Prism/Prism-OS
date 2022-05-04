@@ -11,7 +11,14 @@
             {
                 if (Cosmos.System.KeyboardManager.TryReadKey(out var Key))
                 {
-                    Text += Key.KeyChar.ToString();
+                    if (Key.Key == Cosmos.System.ConsoleKeyEx.Backspace)
+                    {
+                        Text.Remove(Text.Length);
+                    }
+                    else
+                    {
+                        Text += Key.KeyChar.ToString();
+                    }
                 }
 
                 Canvas.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, Background);

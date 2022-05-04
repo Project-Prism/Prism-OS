@@ -11,9 +11,7 @@ namespace PrismOS.Libraries.Graphics.GUI
             public int X, Y, Width, Height, Radius;
             public List<Elements.Element> Elements = new();
             public bool Visible = true, Draggable = true, TitleVisible = true;
-            public bool Moving;
             public string Text;
-            public int IX, IY;
         }
         private bool Dragging = false;
 
@@ -29,25 +27,21 @@ namespace PrismOS.Libraries.Graphics.GUI
                 {
                     if (Mouse.MouseState == Cosmos.System.MouseState.Left)
                     {
-                        if (Mouse.X > Window.X && Mouse.X < Window.X + Window.Width && Mouse.Y > Window.Y - 15 && Mouse.Y < Window.Y && !Window.Moving && !Dragging)
+                        if (Mouse.X > Window.X && Mouse.X < Window.X + Window.Width && Mouse.Y > Window.Y - 15 && Mouse.Y < Window.Y && !Dragging)
                         {
                             Dragging = true;
                             Windows.Remove(Window);
                             Windows.Insert(Windows.Count, Window);
-                            Window.Moving = true;
-                            Window.IX = (int)Mouse.X - Window.X;
-                            Window.IY = (int)Mouse.Y - Window.Y;
                         }
                     }
                     else
                     {
                         Dragging = false;
-                        Window.Moving = false;
                     }
-                    if (Window.Moving)
-                    {
-                        Window.X = (int)Mouse.X - Window.IX;
-                        Window.Y = (int)Mouse.Y - Window.IY;
+                    if (Dragging)
+                    { // Move the window to the correct position
+                        Window.X = (int)Mouse.X - ((int)Mouse.X - Window.X);
+                        Window.Y = (int)Mouse.Y - ((int)Mouse.Y - Window.Y);
                     }
                 }
 
@@ -79,7 +73,7 @@ namespace PrismOS.Libraries.Graphics.GUI
                     {
                         E.OnUpdate.Invoke(ref E, ref Window);
                     }
-                    if (E.Clicked && Mouse.MouseState != Cosmos.System.MouseState.Left)
+                    if (E.Clicked && Mouse.MouseState != Cosmos.System.MouseState.Left && !Dragging)
                     {
                         E.Clicked = false;
                         if (E.OnClick != null)
