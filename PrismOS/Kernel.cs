@@ -144,43 +144,6 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                                     });
                                 },
                             },
-                            new Button()
-                            {
-                                X = 146,
-                                Y = 0,
-                                Width = 32,
-                                Height = 32,
-                                Text = "IMG",
-                                OnClick = (ref Element E, ref Window Parent) =>
-                                {
-                                    WM.Windows.Add(new()
-                                    {
-                                        X = 200,
-                                        Y = 50,
-                                        Width = 300,
-                                        Height = 150,
-                                        Text = "Image Viewer",
-                                        Elements = new()
-                                        {
-                                            new Image()
-                                            {
-                                                X = 0,
-                                                Y = 0,
-                                                Source = Files.Resources.Content,
-                                            },
-                                            new Button()
-                                            {
-                                                X = 285,
-                                                Y = -15,
-                                                Width = 15,
-                                                Height = 15,
-                                                Text = "X",
-                                                OnClick = (ref Element E, ref Window Parent) => { WM.Windows.Remove(Parent); },
-                                            },
-                                        },
-                                    });
-                                },
-                            },
                         },
                     }
                 }, }; System.Threading.Thread.Sleep(3000); }, "Starting desktop..." },

@@ -31,7 +31,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Files\Content.bmp" />
       <None Remove="Files\Cursor.bmp" />
       <None Remove="Files\Logo.bmp" />
       <None Remove="Files\Wallpaper.bmp" />
@@ -44,7 +43,6 @@
 
     <ItemGroup>
       <EmbeddedResource Include="Files\Logo.bmp" />
-      <EmbeddedResource Include="Files\Content.bmp" />
     </ItemGroup>
 
     <ItemGroup>
