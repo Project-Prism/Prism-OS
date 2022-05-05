@@ -12,6 +12,8 @@ namespace PrismOS.Libraries.Graphics.GUI
             public List<Elements.Element> Elements = new();
             public bool Visible = true, Draggable = true, TitleVisible = true;
             public string Text;
+            public bool Moving;
+            public int IX, IY;
         }
         private bool Dragging = false;
 
@@ -27,21 +29,25 @@ namespace PrismOS.Libraries.Graphics.GUI
                 {
                     if (Mouse.MouseState == Cosmos.System.MouseState.Left)
                     {
-                        if (Mouse.X > Window.X && Mouse.X < Window.X + Window.Width && Mouse.Y > Window.Y - 15 && Mouse.Y < Window.Y && !Dragging)
+                        if (Mouse.X > Window.X && Mouse.X < Window.X + Window.Width && Mouse.Y > Window.Y - 15 && Mouse.Y < Window.Y && !Window.Moving && !Dragging)
                         {
                             Dragging = true;
                             Windows.Remove(Window);
                             Windows.Insert(Windows.Count, Window);
+                            Window.Moving = true;
+                            Window.IX = (int)Mouse.X - Window.X;
+                            Window.IY = (int)Mouse.Y - Window.Y;
                         }
                     }
                     else
                     {
                         Dragging = false;
+                        Window.Moving = false;
                     }
-                    if (Dragging)
-                    { // Move the window to the correct position
-                        Window.X = (int)Mouse.X - ((int)Mouse.X - Window.X);
-                        Window.Y = (int)Mouse.Y - ((int)Mouse.Y - Window.Y);
+                    if (Window.Moving)
+                    {
+                        Window.X = (int)Mouse.X - Window.IX;
+                        Window.Y = (int)Mouse.Y - Window.IY;
                     }
                 }
 

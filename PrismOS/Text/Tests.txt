@@ -250,3 +250,7 @@ if (Cosmos.System.KeyboardManager.ControlPressed || ShowMenu)
             data[1] = (uint)h;
             return data;
         }
+
+         // Move the window to the correct position
+                        Window.X = (int)Mouse.X - ((int)Mouse.X - Window.X);
+                        Window.Y = (int)Mouse.Y - ((int)Mouse.Y - Window.Y);
