@@ -13,17 +13,15 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
 {
     public unsafe class Kernel : Cosmos.System.Kernel
     {
-        public static Dictionary<Action, string> BootTasks = new()
+        public static List<(Action, string)> BootTasks = new()
         {
-            { () => { Canvas = new(960, 540); }, "Creating new canvas instace..." },
-            { () => { Booting = true; }, "" },
-            { () => { VFS = new(); }, "Creating new VFS instance..." },
-            { () => { VFS.Initialize(true); }, "Initilizing VFS..." },
-            { () => { VFSManager.RegisterVFS(VFS); }, "Registering VFS..." },
-            { () => { new DHCPClient().SendDiscoverPacket(); }, "Starting network services..." },
-            { () => { WM = new() { Windows = new()
-                {
-                    new()
+            (() => { Canvas = new(960, 540); }, "Creating new canvas instace..."),
+            (() => { Booting = true; }, "" ),
+            (() => { VFS = new(); }, "Creating new VFS instance..." ),
+            (() => { VFS.Initialize(true); }, "Initilizing VFS..." ),
+            (() => { VFSManager.RegisterVFS(VFS); }, "Registering VFS..." ),
+            (() => { new DHCPClient().SendDiscoverPacket(); }, "Starting network services..." ),
+            (() => { WM = new() { Windows = new() { new()
                     {
                         X = 0,
                         Y = Canvas.Height - 32,
@@ -145,9 +143,8 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                                 },
                             },
                         },
-                    }
-                }, }; System.Threading.Thread.Sleep(3000); }, "Starting desktop..." },
-            { () => { Booting = false; }, "" },
+                    } }, }; System.Threading.Thread.Sleep(3000); }, "Starting desktop..." ),
+            (() => { Booting = false; }, "" ),
         };
         public static WindowManager WM;
         public static CosmosVFS VFS;
@@ -156,12 +153,12 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
 
         protected override void BeforeRun()
         {
-            foreach (KeyValuePair<Action, string> Pair in BootTasks)
+            foreach ((Action, string) T in BootTasks)
             {
-                Pair.Key.Invoke();
+                T.Item1.Invoke();
                 Canvas.Clear();
                 Canvas.DrawImage(Canvas.Width / 2 - 128, Canvas.Height / 2 - 128, 256, 256, Files.Resources.Logo);
-                Canvas.DrawString(Canvas.Width / 2, Canvas.Height / 2 + 128, $"Prism OS\nPowered by cosmos.\n\n{Pair.Value}", Color.White, true);
+                Canvas.DrawString(Canvas.Width / 2, Canvas.Height / 2 + 128, $"Prism OS\nPowered by cosmos.\n\n{T.Item2}", Color.White, true);
                 Canvas.Update(false);
             }
         }
