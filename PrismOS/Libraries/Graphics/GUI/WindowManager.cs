@@ -99,6 +99,49 @@ namespace PrismOS.Libraries.Graphics.GUI
             }
         }
 
+        public void ShowMessage(string Title, string Contents, string Button)
+        {
+            Window W = new()
+            {
+                X = (Kernel.Canvas.Width / 2) - 200 + (10 * (Windows.Count - 1)),
+                Y = (Kernel.Canvas.Height / 2) - 75 + (10 * (Windows.Count - 1)),
+                Width = 400,
+                Height = 150,
+                Radius = 4,
+                Text = Title,
+                Elements = new()
+                {
+                    new Elements.Button()
+                    {
+                        X = 285,
+                        Y = -15,
+                        Width = 15,
+                        Height = 15,
+                        Text = "X",
+                        OnClick = (ref Elements.Element E, ref Window Parent) => { Windows.Remove(Parent); },
+                    },
+                    new Elements.Label()
+                    {
+                        X = 200,
+                        Y = 75,
+                        Center = true,
+                        Text = Contents,
+                    },
+                    new Elements.Button()
+                    {
+                        X = 360,
+                        Y = 138,
+                        Width = 40,
+                        Height = 12,
+                        Radius = 4,
+                        Text = Button,
+                        OnClick = (ref Elements.Element E, ref Window Parent) => { Windows.Remove(Parent); },
+                    },
+                },
+            };
+            Windows.Add(W);
+        }
+
         public static bool IsMouseWithin(int X, int Y, int Width, int Height)
         {
             return Mouse.X >= X && Mouse.Y >= Y && Mouse.X <= X + Width && Mouse.Y <= Y + Height;
