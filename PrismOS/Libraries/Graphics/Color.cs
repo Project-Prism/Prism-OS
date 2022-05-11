@@ -39,15 +39,6 @@ namespace PrismOS.Libraries.Graphics
             {
                 return (A << 24) | (R << 16) | (G << 8) | B;
             }
-            set
-            {
-                // Does not work
-                byte[] ARGB = BitConverter.GetBytes(value);
-                A = ARGB[0];
-                R = ARGB[1];
-                G = ARGB[2];
-                B = ARGB[3];
-            }
         }
         public byte Brightness
         {
