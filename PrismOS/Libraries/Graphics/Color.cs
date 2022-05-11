@@ -37,7 +37,7 @@ namespace PrismOS.Libraries.Graphics
         {
             get
             {
-                return ((R & 0x0ff) << 16) | ((G & 0x0ff) << 8) | (B & 0x0ff);
+                return (A << 24) | (R << 16) | (G << 8) | B;
             }
             set
             {

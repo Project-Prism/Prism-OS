@@ -1,4 +1,4 @@
-﻿using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
+﻿using GC = Cosmos.Core.GCImplementation;
 using Mouse = Cosmos.System.MouseManager;
 using static PrismOS.Files.Resources;
 using System.Collections.Generic;
@@ -12,24 +12,23 @@ namespace PrismOS.Libraries.Graphics
 {
     public unsafe class Canvas
     {
-        public Canvas(int Width, int Height)
+        public Canvas()
         {
-            this.Width = Width;
-            this.Height = Height;
-            Buffer = new int*[Width * Height];
-            VBE = new((ushort)Width, (ushort)Height, 32);
-            Wallpaper = Wallpaper.Resize(Width, Height);
+            Info = VBE.getControllerInfo();
+            Mode = VBE.getModeInfo();
+            Buffer = (uint*)GC.AllocNewObject((uint)(Mode.width * Mode.height * 4));
+            Wallpaper = Wallpaper.Resize(Mode.width, Mode.height);
             Update(false);
 
-            Mouse.ScreenWidth = (uint)Width;
-            Mouse.ScreenHeight = (uint)Height;
-            Mouse.X = (uint)Width / 2;
-            Mouse.Y = (uint)Height / 2;
+            Mouse.ScreenWidth = Mode.width;
+            Mouse.ScreenHeight = Mode.height;
+            Mouse.X = (uint)Mode.width / 2;
+            Mouse.Y = (uint)Mode.height / 2;
         }
 
-        public int Width, Height;
-        public int*[] Buffer;
-        public VBEDriver VBE;
+        public VBE.ControllerInfo Info;
+        public VBE.ModeInfo Mode;
+        public uint* Buffer;
         private DateTime LT;
         private int Frames;
         public int FPS;
@@ -38,7 +37,7 @@ namespace PrismOS.Libraries.Graphics
 
         public void SetPixel(int X, int Y, Color Color)
         {
-            if (X < 0 || Y < 0 || X >= Width || Y >= Height || Color.A == 0)
+            if (X < 0 || Y < 0 || X >= Mode.width || Y >= Mode.height || Color.A == 0)
             {
                 return;
             }
@@ -48,8 +47,7 @@ namespace PrismOS.Libraries.Graphics
             }
 
             // Draw main pixel
-            Buffer[(Width * Y) + X] = (int*)Color.ARGB;
-            //MemoryOperations.Copy(Buffer[(Width * Y) + X], (int*)Color.ARGB, 1);
+            Buffer[Y * Mode.pitch / 4 + X] = (uint)Color.ARGB;
         }
         public void SetBlurPixel(int X, int Y, int Size)
         {
@@ -66,12 +64,12 @@ namespace PrismOS.Libraries.Graphics
         }
         public Color GetPixel(int X, int Y)
         {
-            if (X < 0 || Y < 0 || X >= Width || Y >= Height)
+            if (X < 0 || Y < 0 || X >= Mode.width || Y >= Mode.height)
             {
                 return Color.Black;
             }
 
-            return new((int)Buffer[(Width * Y) + X]);
+            return new((int)Buffer[Y * Mode.pitch / 4 + X]);
         }
 
         #endregion
@@ -126,6 +124,11 @@ namespace PrismOS.Libraries.Graphics
 
         public void DrawRectangle(int X, int Y, int Width, int Height, int Radius, Color Color)
         {
+            if (Width == 0 || Height == 0)
+            {
+                return;
+            }
+
             if (Radius > 0)
             {
                 DrawCircle(X, Y, Radius, Color, 180, 270); // Top left
@@ -140,6 +143,11 @@ namespace PrismOS.Libraries.Graphics
         }
         public void DrawFilledRectangle(int X, int Y, int Width, int Height, int Radius, Color Color)
         {
+            if (Width == 0 || Height == 0)
+            {
+                return;
+            }
+
             if (Radius == 0)
             {
                 for (int IX = X; IX < X + Width; IX++)
@@ -199,6 +207,26 @@ namespace PrismOS.Libraries.Graphics
 
         #endregion
 
+        #region Ellipse
+
+        public void DrawEllipse(int X, int Y, int Width, int Height, Color Color, int StartAngle = 0, int EndAngle = 360)
+        {
+            if (Width == 0 || Height == 0)
+            {
+                return;
+            }
+
+            for (double Angle = StartAngle; Angle < EndAngle; Angle += 0.5)
+            {
+                double Angle1 = Math.PI * Angle / 180;
+                int IX = (int)(Width * Math.Cos(Angle1));
+                int IY = (int)(Height * Math.Sin(Angle1));
+                SetPixel(X + IX, Y + IY, Color);
+            }
+        }
+        
+        #endregion
+
         #region Triangle
 
         public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
@@ -214,10 +242,15 @@ namespace PrismOS.Libraries.Graphics
 
         public void DrawImage(int X, int Y, Image Image)
         {
+            if (Image.Width == 0 || Image.Height == 0)
+            {
+                return;
+            }
             if (Image == null)
             {
                 throw new Exception("Cannot draw a null image file.");
             }
+
             for (int IX = 0; IX < Image.Width; IX++)
             {
                 for (int IY = 0; IY < Image.Height; IY++)
@@ -228,10 +261,15 @@ namespace PrismOS.Libraries.Graphics
         }
         public void DrawImage(int X, int Y, int Width, int Height, Image Image)
         {
+            if (Width == 0 || Height == 0)
+            {
+                return;
+            }
             if (Image == null)
             {
                 throw new Exception("Cannot draw a null image file.");
             }
+
             for (int IX = 0; IX < Image.Width; IX++)
             {
                 for (int IY = 0; IY < Image.Height; IY++)
@@ -357,14 +395,14 @@ namespace PrismOS.Libraries.Graphics
             if (Color == null)
                 Color = Graphics.Color.Black;
 
-            MemoryOperations.Fill((int[])(object)Buffer, Color.Value.ARGB);
+            MemoryOperations.Fill(Buffer, (uint)Color.Value.ARGB, Mode.width * Mode.height * Mode.bpp);
         }
 
         public void Update(bool ShowMouse)
         {
             Frames++;
             if ((DateTime.Now - LT).TotalSeconds >= 1)
-            {
+            { // If one second has elapsed, set the FPS value to the number of frames remdered in that time and reset it.
                 Cosmos.Core.Memory.Heap.Collect();
                 FPS = Frames;
                 Frames = 0;
@@ -375,27 +413,9 @@ namespace PrismOS.Libraries.Graphics
                 DrawImage((int)Mouse.X, (int)Mouse.Y, Cursor);
             }
 
-            Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);
-            MemoryOperations.Copy((int[])(object)Buffer, (int[])(object)Wallpaper.Buffer);
-        }
-
-        public static int[] Interpolate(int Y1, int X1, int Y2, int X2)
-        {
-            if (Y1! == Y2)
-            {
-                return new int[] { X1 };
-            }
-            List<int> Values = new();
-
-            int A = (X1 - X1) / (Y2 - Y1);
-            int D = X1;
-            for (int I = Y1; I < Y2; I++)
-            {
-                Values.Add(D);
-                D += A;
-            }
-
-            return Values.ToArray();
+            // Copy the buffer to the framebuffer and then set the buffer to the wallpaper
+            MemoryOperations.Copy(GC.GetPointer(Mode.framebuffer), Buffer, Mode.width * Mode.height * 4);
+            MemoryOperations.Copy(Buffer, GC.GetPointer(Wallpaper.Buffer), Mode.width * Mode.height * 4);
         }
 
         #endregion

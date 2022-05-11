@@ -15,7 +15,7 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
     {
         public static List<(Action, string)> BootTasks = new()
         {
-            (() => { Canvas = new(960, 540); }, "Creating new canvas instace..."),
+            (() => { Canvas = new(); }, "Creating new canvas instace..."),
             (() => { Booting = true; }, "" ),
             (() => { VFS = new(); }, "Creating new VFS instance..." ),
             (() => { VFS.Initialize(true); }, "Initilizing VFS..." ),
@@ -24,8 +24,8 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
             (() => { WM = new() { Windows = new() { new()
                     {
                         X = 0,
-                        Y = Canvas.Height - 32,
-                        Width = Canvas.Width,
+                        Y = Canvas.Mode.height - 32,
+                        Width = Canvas.Mode.width,
                         Height = 32,
                         Draggable = false,
                         TitleVisible = false,
@@ -157,8 +157,8 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
             {
                 T.Item1.Invoke();
                 Canvas.Clear();
-                Canvas.DrawImage(Canvas.Width / 2 - 128, Canvas.Height / 2 - 128, 256, 256, Files.Resources.Logo);
-                Canvas.DrawString(Canvas.Width / 2, Canvas.Height / 2 + 128, $"Prism OS\nPowered by cosmos.\n\n{T.Item2}", Color.White, true);
+                Canvas.DrawImage(Canvas.Mode.width / 2 - 128, Canvas.Mode.height / 2 - 128, 256, 256, Files.Resources.Logo);
+                Canvas.DrawString(Canvas.Mode.width / 2, Canvas.Mode.height / 2 + 128, $"Prism OS\nPowered by cosmos.\n\n{T.Item2}", Color.White, true);
                 Canvas.Update(false);
             }
         }
@@ -176,9 +176,9 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                 #region Crash Screen
 
                 Canvas.Clear();
-                Canvas.DrawImage(Canvas.Width / 2 - 128, Canvas.Height / 2 - 128, 256, 256, Files.Resources.Logo);
+                Canvas.DrawImage(Canvas.Mode.width / 2 - 128, Canvas.Mode.height / 2 - 128, 256, 256, Files.Resources.Logo);
                 string Error = $"[!] Critical failure [!]\nPrism OS has {(Booting ? "failed to boot" : "crashed")}! see error message below.\n" + EX.Message;
-                Canvas.DrawString(Canvas.Width / 2, Canvas.Height / 2 + 128, Error, Color.Red, true);
+                Canvas.DrawString(Canvas.Mode.width / 2, Canvas.Mode.height / 2 + 128, Error, Color.Red, true);
                 Canvas.Update(false);
                 while (true) { }
 
