@@ -107,8 +107,8 @@ namespace PrismOS.Libraries.Graphics.GUI
         {
             Window W = new()
             {
-                X = (Kernel.Canvas.Mode.width / 2) - 200 + (10 * (Windows.Count - 1)),
-                Y = (Kernel.Canvas.Mode.height / 2) - 75 + (10 * (Windows.Count - 1)),
+                X = (Kernel.Canvas.Width / 2) - 200 + (10 * (Windows.Count - 1)),
+                Y = (Kernel.Canvas.Height / 2) - 75 + (10 * (Windows.Count - 1)),
                 Width = 400,
                 Height = 150,
                 Radius = 4,
