@@ -123,8 +123,13 @@ namespace PrismOS.Libraries.Graphics
         {
             for (double U = 0.0; U <= 1.0; U += 0.0001)
             {
-                double XU = Math.Pow(1 - U, 3) * X0 + 3 * U * Math.Pow(1 - U, 2) * X1 + 3 * Math.Pow(U, 2) * (1 - U) * X2 + Math.Pow(U, 3) * X3;
-                double YU = Math.Pow(1 - U, 3) * Y0 + 3 * U * Math.Pow(1 - U, 2) * Y1 + 3 * Math.Pow(U, 2) * (1 - U) * Y2 + Math.Pow(U, 3) * Y3;
+                double Power3V1 = (1 - U) * (1 - U) * (1 - U);
+                double Power2V1 = (1 - U) * (1 - U);
+                double Power3V2 = U * U * U;
+                double Power2V2 = U * U;
+
+                double XU = Power3V1 * X0 + 3 * U * Power2V1 * X1 + 3 * Power2V2 * (1 - U) * X2 + Power3V2 * X3;
+                double YU = Power3V1 * Y0 + 3 * U * Power2V1 * Y1 + 3 * Power2V2 * (1 - U) * Y2 + Power3V2 * Y3;
                 SetPixel((int)XU, (int)YU, Color);
             }
         }
