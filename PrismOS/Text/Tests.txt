@@ -254,3 +254,32 @@ if (Cosmos.System.KeyboardManager.ControlPressed || ShowMenu)
          // Move the window to the correct position
                         Window.X = (int)Mouse.X - ((int)Mouse.X - Window.X);
                         Window.Y = (int)Mouse.Y - ((int)Mouse.Y - Window.Y);
+
+                        
+
+            System.Console.WriteLine("Gateway address: " + Cosmos.System.Network.Config.NetworkConfig.CurrentConfig.Value.DefaultGateway.ToString());
+            System.Console.WriteLine("Subnet mask: " + Cosmos.System.Network.Config.NetworkConfig.CurrentConfig.Value.SubnetMask.ToString());
+            System.Console.WriteLine("local IP: " + Cosmos.System.Network.Config.NetworkConfig.CurrentConfig.Value.IPAddress.ToString());
+            System.Console.WriteLine("Mac address: " + Cosmos.System.Network.Config.NetworkConfig.CurrentConfig.Key.MACAddress.ToString());
+            System.Console.WriteLine("network device: " + Cosmos.System.Network.Config.NetworkConfig.CurrentConfig.Key.Name);
+            Cosmos.System.Network.IPv4.TCP.TcpClient TCP = new(80);
+            System.Console.WriteLine("Created DNS and TCP clients!");
+            DNS.SendAsk("http://example.com/");
+            System.Console.WriteLine("Sent request for 'http://example.com/'...");
+            System.Console.WriteLine("Got return address!");
+            TCP.Send(System.Text.Encoding.UTF8.GetBytes("GET /Index.html"));
+            System.Console.WriteLine("Sent request for index.html...");
+            Cosmos.System.Network.IPv4.EndPoint E = TCP.LocalEndPoint;
+            System.Console.WriteLine(System.Text.Encoding.UTF8.GetString(TCP.Receive(ref E)));
+            while (true) { }
+
+            
+                // P = -P0*T^3+3*P0*T-3*P0*T+P0+3*P1*T^3-6*P1*T^2+3*P1*T+-3*P2*T^3+3*P2*T^2+P3*T^3
+
+                
+                (int, int) A = Numerics.Math.LinearInterpolate(X1, Y1, X2, Y2, T);
+                (int, int) B = Numerics.Math.LinearInterpolate(X2, Y2, X3, Y3, T);
+                (int, int) C = Numerics.Math.LinearInterpolate(X3, Y3, X4, Y4, T);
+                (int, int) D = Numerics.Math.LinearInterpolate(A, B, T);
+                (int, int) E = Numerics.Math.LinearInterpolate(B, C, T);
+                (int, int) P = Numerics.Math.LinearInterpolate(D, E, T);

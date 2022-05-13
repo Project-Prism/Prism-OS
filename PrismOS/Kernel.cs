@@ -1,6 +1,7 @@
 ﻿using static PrismOS.Libraries.Graphics.GUI.WindowManager;
 using PrismOS.Libraries.Graphics.GUI.Elements;
 using Cosmos.System.Network.IPv4.UDP.DHCP;
+using Cosmos.System.Network.IPv4.UDP.DNS;
 using PrismOS.Libraries.Graphics.GUI;
 using Cosmos.System.FileSystem.VFS;
 using PrismOS.Libraries.Graphics;
@@ -15,142 +16,147 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
     {
         public static List<(Action, string)> BootTasks = new()
         {
-            (() => { Canvas = new(960, 540); }, "Creating new canvas instace..."),
-            (() => { Booting = true; }, ""),
-            (() => { VFS = new(); }, "Creating new VFS instance..."),
-            (() => { VFS.Initialize(true); }, "Initilizing VFS..."),
-            (() => { VFSManager.RegisterVFS(VFS); }, "Registering VFS..."),
-            (() => { new DHCPClient().SendDiscoverPacket(); }, "Starting network services..."),
-            (() => { WM = new() { Windows = new()
+            ( () => { Canvas = new(960, 540); }, "Creating new canvas instace..." ),
+            ( () => { System.Console.Clear(); }, "Clearing console..." ),
+            ( () => { Booting = true; }, "Updating boot status..." ),
+            ( () => { VFS = new(); }, "Creating new VFS instance..." ),
+            ( () => { VFS.Initialize(true); }, "Initilizing VFS..." ),
+            ( () => { VFSManager.RegisterVFS(VFS); }, "Registering VFS..." ),
+            ( () => { new DHCPClient().SendDiscoverPacket(); DNS = new(); }, "Starting network services..." ),
+            ( () => { WM = new()
                     {
-                        new()
+                        Windows = new()
                         {
-                            X = 0,
-                            Y = Canvas.Height - 32,
-                            Width = Canvas.Width,
-                            Height = 32,
-                            Draggable = false,
-                            TitleVisible = false,
-                            Elements = new()
+                            new()
                             {
-                                // Task bar and start button
-                                new Panel()
+                                X = 0,
+                                Y = Canvas.Height - 32,
+                                Width = Canvas.Width,
+                                Height = 32,
+                                Draggable = false,
+                                TitleVisible = false,
+                                Elements = new()
                                 {
-                                    X = 0,
-                                    Y = -300,
-                                    Width = 150,
-                                    Height = 300,
-                                    Color = new(Color.Black, 128),
-                                    Visible = false,
-                                },
-                                new Button()
-                                {
-                                    X = 0,
-                                    Y = 0,
-                                    Width = 64,
-                                    Height = 32,
-                                    Text = "Start",
-                                    OnClick = (ref Element E, ref Window Parent) => { Parent.Elements[0].Visible = !Parent.Elements[0].Visible; },
-                                },
+                                    // Task bar and start button
+                                    new Panel()
+                                    {
+                                        X = 0,
+                                        Y = -300,
+                                        Width = 150,
+                                        Height = 300,
+                                        Color = new(Color.Black, 128),
+                                        Visible = false,
+                                    },
+                                    new Button()
+                                    {
+                                        X = 0,
+                                        Y = 0,
+                                        Width = 64,
+                                        Height = 32,
+                                        Text = "Start",
+                                        OnClick = (ref Element E, ref Window Parent) => { Parent.Elements[0].Visible = !Parent.Elements[0].Visible; },
+                                    },
 
-                                // App buttons
-                                new Button()
-                                {
-                                    X = 70,
-                                    Y = 0,
-                                    Width = 32,
-                                    Height = 32,
-                                    Text = "C",
-                                    OnClick = (ref Element E, ref Window Parent) =>
+                                    // App buttons
+                                    new Button()
                                     {
-                                        WM.Windows.Add(new()
+                                        X = 70,
+                                        Y = 0,
+                                        Width = 32,
+                                        Height = 32,
+                                        Text = "C",
+                                        OnClick = (ref Element E, ref Window Parent) =>
                                         {
-                                            X = 200,
-                                            Y = 50,
-                                            Width = 300,
-                                            Height = 150,
-                                            Text = "Clock",
-                                            Elements = new()
+                                            WM.Windows.Add(new()
                                             {
-                                                new Clock()
+                                                X = 200,
+                                                Y = 50,
+                                                Width = 300,
+                                                Height = 150,
+                                                Text = "Clock",
+                                                Elements = new()
                                                 {
-                                                    X = 150,
-                                                    Y = 75,
-                                                    Radius = 50,
-                                                    OnUpdate = (ref Element E, ref Window Parent) => { ((Clock)E).Time = DateTime.Now; },
-                                                },
-                                                new Button()
-                                                {
-                                                    X = 285,
-                                                    Y = -15,
-                                                    Width = 15,
-                                                    Height = 15,
-                                                    Text = "X",
-                                                    OnClick = (ref Element E, ref Window Parent) => { WM.Windows.Remove(Parent); },
-                                                },
-                                            },
-                                        });
-                                    },
-                                },
-                                new Button()
-                                {
-                                    X = 108,
-                                    Y = 0,
-                                    Width = 32,
-                                    Height = 32,
-                                    Text = "TT",
-                                    OnClick = (ref Element E, ref Window Parent) =>
-                                    {
-                                        WM.Windows.Add(new()
-                                        {
-                                            X = 200,
-                                            Y = 50,
-                                            Width = 300,
-                                            Height = 150,
-                                            Text = "typing test",
-                                            Elements = new()
-                                            {
-                                                new Textbox()
-                                                {
-                                                    X = 0,
-                                                    Y = 150 - 12,
-                                                    Width = 300,
-                                                    Height = 12,
-                                                    OnUpdate = (ref Element E, ref Window Parent) =>
+                                                    new Clock()
                                                     {
-                                                        if (KeyboardManager.TryReadKey(out var Key) && Key.Key == ConsoleKeyEx.Enter)
+                                                        X = 150,
+                                                        Y = 75,
+                                                        Radius = 50,
+                                                        OnUpdate = (ref Element E, ref Window Parent) => { ((Clock)E).Time = DateTime.Now; },
+                                                    },
+                                                    new Button()
+                                                    {
+                                                        X = 285,
+                                                        Y = -15,
+                                                        Width = 15,
+                                                        Height = 15,
+                                                        Text = "X",
+                                                        OnClick = (ref Element E, ref Window Parent) => { WM.Windows.Remove(Parent); },
+                                                    },
+                                                },
+                                            });
+                                        },
+                                    },
+                                    new Button()
+                                    {
+                                        X = 108,
+                                        Y = 0,
+                                        Width = 32,
+                                        Height = 32,
+                                        Text = "TT",
+                                        OnClick = (ref Element E, ref Window Parent) =>
+                                        {
+                                            WM.Windows.Add(new()
+                                            {
+                                                X = 200,
+                                                Y = 50,
+                                                Width = 300,
+                                                Height = 150,
+                                                Text = "typing test",
+                                                Elements = new()
+                                                {
+                                                    new Textbox()
+                                                    {
+                                                        X = 0,
+                                                        Y = 150 - 12,
+                                                        Width = 300,
+                                                        Height = 12,
+                                                        OnUpdate = (ref Element E, ref Window Parent) =>
                                                         {
-                                                            ((Label)Parent.Elements[1]).Text += '\n' + ((Textbox)E).Text;
+                                                            if (KeyboardManager.TryReadKey(out var Key) && Key.Key == ConsoleKeyEx.Enter)
+                                                            {
+                                                                ((Label)Parent.Elements[1]).Text += '\n' + ((Textbox)E).Text;
+                                                            }
                                                         }
-                                                    }
+                                                    },
+                                                    new Label()
+                                                    {
+                                                        X = 0,
+                                                        Y = 0,
+                                                        Color = Color.White,
+                                                        Text = "",
+                                                    },
+                                                    new Button()
+                                                    {
+                                                        X = 285,
+                                                        Y = -15,
+                                                        Width = 15,
+                                                        Height = 15,
+                                                        Text = "X",
+                                                        OnClick = (ref Element E, ref Window Parent) => { WM.Windows.Remove(Parent); },
+                                                    },
                                                 },
-                                                new Label()
-                                                {
-                                                    X = 0,
-                                                    Y = 0,
-                                                    Color = Color.White,
-                                                    Text = "",
-                                                },
-                                                new Button()
-                                                {
-                                                    X = 285,
-                                                    Y = -15,
-                                                    Width = 15,
-                                                    Height = 15,
-                                                    Text = "X",
-                                                    OnClick = (ref Element E, ref Window Parent) => { WM.Windows.Remove(Parent); },
-                                                },
-                                            },
-                                        });
+                                            });
+                                        },
                                     },
                                 },
-                            },
-                        }
-                    }, }; }, "Starting desktop..."),
-            (() => { Booting = false; }, ""),
+                            }
+                        },
+                    }; }, "Starting desktop..." ),
+            ( () => { Booting = false; }, "Updating boot status..." ),
         };
         public static WindowManager WM;
         public static CosmosVFS VFS;
+        public static DnsClient DNS;
         public static Canvas Canvas;
         public static bool Booting;
 
@@ -173,6 +179,7 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                 Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}\nFree Memmory: {Cosmos.Core.GCImplementation.GetAvailableRAM()} MB", Color.Black);
                 WM.Update(Canvas);
                 Canvas.Update(true);
+                Canvas.DrawCubicBezierLine(0, 0, 300, 200, 400, 0, 700, 500, Color.White);
             }
             catch (Exception EX)
             {

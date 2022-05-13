@@ -98,7 +98,7 @@ namespace PrismOS.Libraries.Graphics
             int IY = (int)(Radius * Math.Sin(Math.PI * Angle / 180));
             DrawLine(X, Y, X + IX, Y + IY, Color);
         }
-        public void DrawBezierLine(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, int N = 6)
+        public void DrawQuadraticBezierLine(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, int N = 6)
         {
             // X2 and Y2 is where the curve should bend to.
             if (N > 0)
@@ -110,13 +110,22 @@ namespace PrismOS.Libraries.Graphics
                 int X123 = (X12 + X23) / 2;
                 int Y123 = (Y12 + Y23) / 2;
 
-                DrawBezierLine(X1, Y1, X12, Y12, X123, Y123, Color, N - 1);
-                DrawBezierLine(X123, Y123, X23, Y23, X3, Y3, Color, N - 1);
+                DrawQuadraticBezierLine(X1, Y1, X12, Y12, X123, Y123, Color, N - 1);
+                DrawQuadraticBezierLine(X123, Y123, X23, Y23, X3, Y3, Color, N - 1);
             }
             else
             {
                 DrawLine(X1, Y1, X2, Y2, Color);
                 DrawLine(X2, Y2, X3, Y3, Color);
+            }
+        }
+        public void DrawCubicBezierLine(int X0 , int Y0, int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
+        {
+            for (double U = 0.0; U <= 1.0; U += 0.0001)
+            {
+                double XU = Math.Pow(1 - U, 3) * X0 + 3 * U * Math.Pow(1 - U, 2) * X1 + 3 * Math.Pow(U, 2) * (1 - U) * X2 + Math.Pow(U, 3) * X3;
+                double YU = Math.Pow(1 - U, 3) * Y0 + 3 * U * Math.Pow(1 - U, 2) * Y1 + 3 * Math.Pow(U, 2) * (1 - U) * Y2 + Math.Pow(U, 3) * Y3;
+                SetPixel((int)XU, (int)YU, Color);
             }
         }
 
