@@ -389,6 +389,7 @@ namespace PrismOS.Libraries.Graphics
                 DrawImage((int)Mouse.X, (int)Mouse.Y, Cursor);
             }
 
+            //MemoryOperations.Copy(*(uint**)0xE0000000, GCImplementation.GetPointer(Buffer), Width * Height * 4);
             Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);
             MemoryOperations.Copy((int[])(object)Buffer, (int[])(object)Wallpaper.Buffer);
         }

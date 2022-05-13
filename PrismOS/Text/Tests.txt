@@ -1,4 +1,4 @@
-﻿Canvas.DrawString(15, 15, "VBE Version: " + Cosmos.Core.VBE.getControllerInfo().vbeVersion, Color.White);
+﻿vCanvas.DrawString(15, 15, "VBE Version: " + Cosmos.Core.VBE.getControllerInfo().vbeVersion, Color.White);
 Canvas.DrawString(15, 15, "Total VRAM: " + Cosmos.Core.VBE.getControllerInfo().totalmemory, Color.White);
 Canvas.DrawString(15, 15, "Total RAM: " + ((Cosmos.Core.GCImplementation.GetAvailableRAM() + Cosmos.Core.GCImplementation.GetUsedRAM()) / 1024) + " MB", Color.White);
 Canvas.DrawString(15, 15, "Used RAM: " + (Cosmos.Core.GCImplementation.GetUsedRAM() / 1024) + " MB", Color.White);
@@ -116,21 +116,48 @@ if (Cosmos.System.KeyboardManager.ControlPressed || ShowMenu)
                     "<html><body><h1>Hello, World!</h1></body></html>"));
             }
 
+            System.Console.WriteLine("Gateway address: " + Cosmos.System.Network.Config.NetworkConfig.CurrentConfig.Value.DefaultGateway.ToString());
+            System.Console.WriteLine("Subnet mask: " + Cosmos.System.Network.Config.NetworkConfig.CurrentConfig.Value.SubnetMask.ToString());
+            System.Console.WriteLine("local IP: " + Cosmos.System.Network.Config.NetworkConfig.CurrentConfig.Value.IPAddress.ToString());
+            System.Console.WriteLine("Mac address: " + Cosmos.System.Network.Config.NetworkConfig.CurrentConfig.Key.MACAddress.ToString());
+            System.Console.WriteLine("network device: " + Cosmos.System.Network.Config.NetworkConfig.CurrentConfig.Key.Name);
+            Cosmos.System.Network.IPv4.TCP.TcpClient TCP = new(80);
+            System.Console.WriteLine("Created DNS and TCP clients!");
+            DNS.SendAsk("http://example.com/");
+            System.Console.WriteLine("Sent request for 'http://example.com/'...");
+            System.Console.WriteLine("Got return address!");
+            TCP.Send(System.Text.Encoding.UTF8.GetBytes("GET /Index.html"));
+            System.Console.WriteLine("Sent request for index.html...");
+            Cosmos.System.Network.IPv4.EndPoint E = TCP.LocalEndPoint;
+            System.Console.WriteLine(System.Text.Encoding.UTF8.GetString(TCP.Receive(ref E)));
+            while (true) { }
+
             
+                // P = -P0*T^3+3*P0*T-3*P0*T+P0+3*P1*T^3-6*P1*T^2+3*P1*T+-3*P2*T^3+3*P2*T^2+P3*T^3
+
+                
+                (int, int) A = Numerics.Math.LinearInterpolate(X1, Y1, X2, Y2, T);
+                (int, int) B = Numerics.Math.LinearInterpolate(X2, Y2, X3, Y3, T);
+                (int, int) C = Numerics.Math.LinearInterpolate(X3, Y3, X4, Y4, T);
+                (int, int) D = Numerics.Math.LinearInterpolate(A, B, T);
+                (int, int) E = Numerics.Math.LinearInterpolate(B, C, T);
+                (int, int) P = Numerics.Math.LinearInterpolate(D, E, T);
+
+                
 
         public uint* ParseTGA(byte[] ptr)
         {
             // 0 = Width, 1 = Height, rest is raw data
             uint* data;
             int i, j, k, x, y, w = (ptr[13] << 8) + ptr[12], h = (ptr[15] << 8) + ptr[14], o = (ptr[11] << 8) + ptr[10];
-            int m = ((ptr[1] == 0 ? (ptr[7] >> 3) * ptr[5] : 0) + 18);
+            int m = (ptr[1] == 0 ? (ptr[7] >> 3) * ptr[5] : 0) + 18;
 
             if (w < 1 || h < 1)
             {
                 return null;
             }
 
-            data = (uint*)Cosmos.Core.GCImplementation.AllocNewObject((uint)((w * h + 2) * sizeof(uint)));
+            data = (uint*)GC.AllocNewObject((uint)((w * h + 2) * sizeof(uint)));
             if ((int*)data != (uint*)0)
             {
                 return null;
@@ -141,7 +168,7 @@ if (Cosmos.System.KeyboardManager.ControlPressed || ShowMenu)
                 case 1:
                     if (ptr[6] != 0 || ptr[4] != 0 || ptr[3] != 0 || (ptr[7] != 24 && ptr[7] != 32))
                     {
-                        Cosmos.Core.GCImplementation.Free((uint)data);
+                        GC.Free((uint)data);
                         return null;
                     }
                     for (y = i = 0; y < h; y++)
@@ -157,7 +184,7 @@ if (Cosmos.System.KeyboardManager.ControlPressed || ShowMenu)
                 case 2:
                     if (ptr[5] != 0 || ptr[6] != 0 || ptr[1] != 0 || (ptr[16] != 24 && ptr[16] != 32))
                     {
-                        Cosmos.Core.GCImplementation.Free((uint)data);
+                        GC.Free((uint)data);
                         return null;
                     }
                     for (y = i = 0; y < h; y++)
@@ -173,7 +200,7 @@ if (Cosmos.System.KeyboardManager.ControlPressed || ShowMenu)
                 case 9:
                     if (ptr[6] != 0 || ptr[4] != 0 || ptr[3] != 0 || (ptr[7] != 24 && ptr[7] != 32))
                     {
-                        Cosmos.Core.GCImplementation.Free((uint)data);
+                        GC.Free((uint)data);
                         return null;
                     }
                     y = i = 0;
@@ -205,7 +232,7 @@ if (Cosmos.System.KeyboardManager.ControlPressed || ShowMenu)
                 case 10:
                     if (ptr[5] != 0 || ptr[6] != 0 || ptr[1] != 0 || (ptr[16] != 24 && ptr[16] != 32))
                     {
-                        Cosmos.Core.GCImplementation.Free((uint)data);
+                        GC.Free((uint)data);
                         return null;
                     }
                     y = i = 0;
@@ -243,43 +270,10 @@ if (Cosmos.System.KeyboardManager.ControlPressed || ShowMenu)
                     }
                     break;
                 default:
-                    Cosmos.Core.GCImplementation.Free((uint)data);
+                    GC.Free((uint)data);
                     return null;
             }
             data[0] = (uint)w;
             data[1] = (uint)h;
             return data;
         }
-
-         // Move the window to the correct position
-                        Window.X = (int)Mouse.X - ((int)Mouse.X - Window.X);
-                        Window.Y = (int)Mouse.Y - ((int)Mouse.Y - Window.Y);
-
-                        
-
-            System.Console.WriteLine("Gateway address: " + Cosmos.System.Network.Config.NetworkConfig.CurrentConfig.Value.DefaultGateway.ToString());
-            System.Console.WriteLine("Subnet mask: " + Cosmos.System.Network.Config.NetworkConfig.CurrentConfig.Value.SubnetMask.ToString());
-            System.Console.WriteLine("local IP: " + Cosmos.System.Network.Config.NetworkConfig.CurrentConfig.Value.IPAddress.ToString());
-            System.Console.WriteLine("Mac address: " + Cosmos.System.Network.Config.NetworkConfig.CurrentConfig.Key.MACAddress.ToString());
-            System.Console.WriteLine("network device: " + Cosmos.System.Network.Config.NetworkConfig.CurrentConfig.Key.Name);
-            Cosmos.System.Network.IPv4.TCP.TcpClient TCP = new(80);
-            System.Console.WriteLine("Created DNS and TCP clients!");
-            DNS.SendAsk("http://example.com/");
-            System.Console.WriteLine("Sent request for 'http://example.com/'...");
-            System.Console.WriteLine("Got return address!");
-            TCP.Send(System.Text.Encoding.UTF8.GetBytes("GET /Index.html"));
-            System.Console.WriteLine("Sent request for index.html...");
-            Cosmos.System.Network.IPv4.EndPoint E = TCP.LocalEndPoint;
-            System.Console.WriteLine(System.Text.Encoding.UTF8.GetString(TCP.Receive(ref E)));
-            while (true) { }
-
-            
-                // P = -P0*T^3+3*P0*T-3*P0*T+P0+3*P1*T^3-6*P1*T^2+3*P1*T+-3*P2*T^3+3*P2*T^2+P3*T^3
-
-                
-                (int, int) A = Numerics.Math.LinearInterpolate(X1, Y1, X2, Y2, T);
-                (int, int) B = Numerics.Math.LinearInterpolate(X2, Y2, X3, Y3, T);
-                (int, int) C = Numerics.Math.LinearInterpolate(X3, Y3, X4, Y4, T);
-                (int, int) D = Numerics.Math.LinearInterpolate(A, B, T);
-                (int, int) E = Numerics.Math.LinearInterpolate(B, C, T);
-                (int, int) P = Numerics.Math.LinearInterpolate(D, E, T);

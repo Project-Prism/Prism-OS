@@ -9,6 +9,6 @@ namespace PrismOS.Libraries.Graphics.GUI.Elements
         public Event OnClick, OnUpdate;
         public bool Clicked, Hovering, Visible = true;
 
-        public abstract void Update(Canvas canvas, Window Parent);
+        public abstract void Update(Canvas Canvas, Window Parent);
     }
 }

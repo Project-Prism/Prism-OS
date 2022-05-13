@@ -28,6 +28,7 @@
         {
             return +Number;
         }
+
         public static double Abs(double Number)
         {
             return +Number;
