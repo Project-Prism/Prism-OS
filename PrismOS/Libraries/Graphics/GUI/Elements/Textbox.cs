@@ -13,7 +13,7 @@
                 {
                     if (Key.Key == Cosmos.System.ConsoleKeyEx.Backspace)
                     {
-                        Text.Remove(Text.Length);
+                        Text.Remove(Text.Length - 1);
                     }
                     else
                     {
