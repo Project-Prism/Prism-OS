@@ -142,15 +142,15 @@ namespace PrismOS.Libraries.Graphics
         {
             if (Radius > 0)
             {
-                DrawCircle(X, Y, Radius, Color, 180, 270); // Top left
-                DrawCircle(X + Width, Y + Height, Radius, Color, 0, 90); // Bottom right
-                DrawCircle(X, Y + Height, Radius, Color, 90, 180); // Bottom left
-                DrawCircle(X + Width, Y, Radius, Color, 270, 360);
+                DrawCircle(Radius + X, Radius + Y, Radius, Color, 180, 270); // Top left
+                DrawCircle(X + Width - Radius, Y + Height - Radius, Radius, Color, 0, 90); // Bottom right
+                DrawCircle(Radius + X, Y + Height - Radius, Radius, Color, 90, 180); // Bottom left
+                DrawCircle(X + Width - Radius, Radius + Y, Radius, Color, 270, 360);
             }
-            DrawLine(X + Radius, Y, X + Width - (Radius * 2), Y, Color); // Top Line
-            DrawLine(X + Radius, Y + Height, X + Width - (Radius * 2), Height + Y, Color); // Bottom Line
-            DrawLine(X, Y + Radius, X, Y + Height - (Radius * 2), Color); // Left Line
-            DrawLine(X + Width, Y + Radius, Width + X, Y + Height - (Radius * 2), Color); // Right Line
+            DrawLine(X + Radius, Y, X + Width - Radius, Y, Color); // Top Line
+            DrawLine(X + Radius, Y + Height, X + Width - Radius, Height + Y, Color); // Bottom Line
+            DrawLine(X, Y + Radius, X, Y + Height - Radius, Color); // Left Line
+            DrawLine(X + Width, Y + Radius, Width + X, Y + Height - Radius, Color); // Right Line
         }
         public void DrawFilledRectangle(int X, int Y, int Width, int Height, int Radius, Color Color)
         {

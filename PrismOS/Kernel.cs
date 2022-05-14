@@ -23,137 +23,85 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
             (() => { VFS.Initialize(true); }, "Initilizing VFS..."),
             (() => { VFSManager.RegisterVFS(VFS); }, "Registering VFS..."),
             (() => { new DHCPClient().SendDiscoverPacket(); DNS = new(); }, "Starting network services..."),
-            (() => { Booting = false; }, "Updating boot status..."),
-        };
-        public static WindowManager WM = new()
-        {
-            Windows = new()
+            (() =>
             {
-                new()
+                WM = new();
+
+                Window TaskBar = new()
                 {
-                    X = 0,
-                    Y = Canvas.Height - 32,
-                    Width = Canvas.Width,
+                    X = (Canvas.Width / 2) - ((Canvas.Width - 256) / 2),
+                    Y = Canvas.Height - 64,
+                    Width = Canvas.Width - 256,
                     Height = 32,
+                    Radius = GlobalRadius,
                     Draggable = false,
                     TitleVisible = false,
+                    Text = "System.Core.TaskBar",
                     Elements = new()
                     {
-                        // Task bar and start button
-                        new Panel()
-                        {
-                            X = 0,
-                            Y = -300,
-                            Width = 150,
-                            Height = 300,
-                            Color = new(Color.Black, 128),
-                            Visible = false,
-                        },
                         new Button()
                         {
                             X = 0,
                             Y = 0,
-                            Width = 64,
+                            Width = 128,
                             Height = 32,
-                            Text = "Start",
-                            OnClick = (ref Element E, ref Window Parent) => { Parent.Elements[0].Visible = !Parent.Elements[0].Visible; },
-                        },
-
-                        // App buttons
-                        new Button()
-                        {
-                            X = 70,
-                            Y = 0,
-                            Width = 32,
-                            Height = 32,
-                            Text = "C",
+                            Text = "Apps",
+                            Radius = GlobalRadius,
                             OnClick = (ref Element E, ref Window Parent) =>
                             {
-                                WM.Windows.Add(new()
-                                {
-                                    X = 200,
-                                    Y = 50,
-                                    Width = 300,
-                                    Height = 150,
-                                    Text = "Clock",
-                                    Elements = new()
-                                    {
-                                        new Clock()
-                                        {
-                                            X = 150,
-                                            Y = 75,
-                                            Radius = 50,
-                                            OnUpdate = (ref Element E, ref Window Parent) => { ((Clock)E).Time = DateTime.Now; },
-                                        },
-                                        new Button()
-                                        {
-                                            X = 285,
-                                            Y = -15,
-                                            Width = 15,
-                                            Height = 15,
-                                            Text = "X",
-                                            OnClick = (ref Element E, ref Window Parent) => { WM.Windows.Remove(Parent); },
-                                        },
-                                    },
-                                });
+                                WM.Windows[1].Visible = !WM.Windows[1].Visible;
+                            },
+                        }
+                    },
+                };
+                Window AppMenu = new()
+                {
+                    X = (Canvas.Width / 2) - 256,
+                    Y = (Canvas.Height / 2) - 256,
+                    Width = 512,
+                    Height = 256,
+                    Radius = GlobalRadius,
+                    Text = "Applications",
+                    Visible = false,
+                    Elements = new()
+                    {
+                        // Close button
+                        new Button()
+                        {
+                            X = 512 - 15,
+                            Y = -15,
+                            Width = 15,
+                            Height = 15,
+                            Radius = GlobalRadius,
+                            Text = "X",
+                            OnClick = (ref Element E, ref Window Parent) =>
+                            {
+                                Parent.Visible = false;
                             },
                         },
+
                         new Button()
                         {
-                            X = 108,
-                            Y = 0,
-                            Width = 32,
-                            Height = 32,
-                            Text = "TT",
+                            X = 15, Y = 15,
+                            Width = 50,
+                            Height = 15,
+                            Radius = GlobalRadius,
+                            Text = "Clock",
                             OnClick = (ref Element E, ref Window Parent) =>
                             {
-                                WM.Windows.Add(new()
-                                {
-                                    X = 200,
-                                    Y = 50,
-                                    Width = 300,
-                                    Height = 150,
-                                    Text = "typing test",
-                                    Elements = new()
-                                    {
-                                        new Textbox()
-                                        {
-                                            X = 0,
-                                            Y = 150 - 12,
-                                            Width = 300,
-                                            Height = 12,
-                                            OnUpdate = (ref Element E, ref Window Parent) =>
-                                            {
-                                                if (KeyboardManager.TryReadKey(out var Key) && Key.Key == ConsoleKeyEx.Enter)
-                                                {
-                                                    ((Label)Parent.Elements[1]).Text += '\n' + ((Textbox)E).Text;
-                                                }
-                                            }
-                                        },
-                                        new Label()
-                                        {
-                                            X = 0,
-                                            Y = 0,
-                                            Color = Color.White,
-                                            Text = "",
-                                        },
-                                        new Button()
-                                        {
-                                            X = 285,
-                                            Y = -15,
-                                            Width = 15,
-                                            Height = 15,
-                                            Text = "X",
-                                            OnClick = (ref Element E, ref Window Parent) => { WM.Windows.Remove(Parent); },
-                                        },
-                                    },
-                                });
+                                WM.ShowMessage("Error", "Application not implementeed yet!", "Ok");
                             },
                         },
                     },
-                }
-            },
+                };
+
+                WM.Windows.Add(TaskBar);
+                WM.Windows.Add(AppMenu);
+            }, "Starting desktop..."),
+            (() => { Booting = false; }, "Updating boot status..."),
         };
+        public const int GlobalRadius = 6;
+        public static WindowManager WM;
         public static CosmosVFS VFS;
         public static DnsClient DNS;
         public static Canvas Canvas;

@@ -65,6 +65,7 @@ namespace PrismOS.Libraries.Graphics.GUI
                             Canvas.DrawString(Window.X, Window.Y - 15, Window.Text, Color.White);
                         }
                         Canvas.DrawFilledRectangle(Window.X, Window.Y, Window.Width, Window.Height, Window.Radius, Color.StackOverflowBlack);
+                        Canvas.DrawRectangle(Window.X - 1, Window.Y - 1, Window.Width + 1, Window.Height + 1, Window.Radius, Color.White);
                     }
 
                     #endregion
@@ -111,16 +112,17 @@ namespace PrismOS.Libraries.Graphics.GUI
                 Y = (Kernel.Canvas.Height / 2) - 75 + (10 * (Windows.Count - 1)),
                 Width = 400,
                 Height = 150,
-                Radius = 4,
+                Radius = Kernel.GlobalRadius,
                 Text = Title,
                 Elements = new()
                 {
                     new Elements.Button()
                     {
-                        X = 285,
+                        X = 400 - 15,
                         Y = -15,
                         Width = 15,
                         Height = 15,
+                        Radius = Kernel.GlobalRadius,
                         Text = "X",
                         OnClick = (ref Elements.Element E, ref Window Parent) => { Windows.Remove(Parent); },
                     },
@@ -130,6 +132,7 @@ namespace PrismOS.Libraries.Graphics.GUI
                         Y = 75,
                         Center = true,
                         Text = Contents,
+                        Color = Color.White,
                     },
                     new Elements.Button()
                     {
@@ -137,7 +140,7 @@ namespace PrismOS.Libraries.Graphics.GUI
                         Y = 138,
                         Width = 40,
                         Height = 12,
-                        Radius = 4,
+                        Radius = Kernel.GlobalRadius,
                         Text = Button,
                         OnClick = (ref Elements.Element E, ref Window Parent) => { Windows.Remove(Parent); },
                     },
