@@ -12,7 +12,7 @@ namespace PrismOS.Libraries.Graphics.GUI.Elements
         {
             if (Visible && Parent.Visible)
             {
-                Canvas.DrawString(Parent.X + X, Parent.Y + Y, Text, Color, Underline, Crossout, Center);
+                Canvas.DrawString(Parent.X + X + (Width / 2), Parent.Y + Y + (Height / 2), Text, Color, Underline, Crossout, Center);
             }
         }
     }

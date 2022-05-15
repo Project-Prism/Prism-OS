@@ -53,29 +53,71 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                             },
                         },
 
-                        new Textbox()
+                        new Panel()
                         {
-                            X = 200 - 64,
-                            Y = 75 - 8,
-                            Width = 128,
-                            Height = 16,
+                            X = 200 - 32,
+                            Y = 75 - 32,
+                            Width = 96,
+                            Height = 32,
                             Radius = GlobalRadius,
+                            Color = Color.White,
                         },
-                        new Button() // 1080p
+                        new Label()
                         {
-                            X = 200 - 64,
-                            Y = 75 + 8,
-                            Width = 128,
-                            Height = 16,
+                            X = 200,
+                            Y = 75 - 32,
+                            Width = 32,
+                            Height = 32,
+                            Text = "NULL",
+                            Color = Color.Black,
+                            Center = true,
+                            OnUpdate = (ref Element E, ref Window Parent) =>
+                            {
+                                ((Label)E).Text = GlobalRadius.ToString();
+                            }
+                        },
+                        new Button()
+                        {
+                            X = 200 - 32,
+                            Y = 75 - 32,
+                            Width = 32,
+                            Height = 32,
                             Radius = GlobalRadius,
-                            Text = "Set resolution",
+                            Text = "-",
                             OnClick = (ref Element E, ref Window Parent) =>
                             {
-                                string[] Data = ((Textbox)Parent.Elements[0]).Text.Split('x');
-                                Canvas.VBE.DisableDisplay();
-                                Canvas = new(int.Parse(Data[0]), int.Parse(Data[1]));
+                                GlobalRadius--;
+                                ((Label)Parent.Elements[2]).Text = (int.Parse(((Label)Parent.Elements[2]).Text) - 1).ToString();
                             },
-                        },
+                        }, // Minus
+                        new Button()
+                        {
+                            X = 200 + 32,
+                            Y = 75 - 32,
+                            Width = 32,
+                            Height = 32,
+                            Radius = GlobalRadius,
+                            Text = "+",
+                            OnClick = (ref Element E, ref Window Parent) =>
+                            {
+                                GlobalRadius++;
+                                ((Label)Parent.Elements[2]).Text = (int.Parse(((Label)Parent.Elements[2]).Text) + 1).ToString();
+                            },
+                        }, // Plus
+                        new Button()
+                        {
+                            X = 200 - 32,
+                            Y = 75,
+                            Width = 96,
+                            Height = 32,
+                            Radius = GlobalRadius,
+                            Text = "Apply",
+                            OnClick = (ref Element E, ref Window Parent) =>
+                            {
+                                Cosmos.Core.GCImplementation.Free(WM);
+                                BootTasks[^2].Item1.Invoke();
+                            },
+                        }, // Apply
                     },
                 };
                 Window AppMenu = new()
@@ -163,7 +205,6 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                 WM.Windows.Add(TaskBar);
                 WM.Windows.Add(AppMenu);
                 WM.Windows.Add(Settings);
-                WM.ShowMessage("Help screen", "Hello! Welcome to the prism desktop.\nPress +/- to set global radius. Press enter to restart the desktop.\n", "Ok");
             }, "Starting desktop..."),
             (() => { Booting = false; }, "Updating boot status..."),
         };
@@ -190,23 +231,7 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
         {
             try
             {
-                if (KeyboardManager.TryReadKey(out var Key))
-                {
-                    switch (Key.Key)
-                    {
-                        case ConsoleKeyEx.NumPlus:
-                            GlobalRadius++;
-                            break;
-                        case ConsoleKeyEx.NumMinus:
-                            GlobalRadius = GlobalRadius == 0 ? 0 : GlobalRadius - 1;
-                            break;
-                        case ConsoleKeyEx.Enter:
-                            Cosmos.Core.GCImplementation.Free(WM);
-                            BootTasks[^2].Item1.Invoke();
-                            break;
-                    }
-                }
-                Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}\nFree Memmory: {Cosmos.Core.GCImplementation.GetAvailableRAM()} MB\nGlobal radius: " + GlobalRadius, Color.Black);
+                Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}\nFree Memmory: {Cosmos.Core.GCImplementation.GetAvailableRAM()} MB", Color.Black);
                 WM.Update(Canvas);
                 Canvas.Update(true);
             }
