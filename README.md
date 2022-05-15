@@ -11,7 +11,7 @@ Website: https://project-prism.github.io/Prism-OS/
 | [Terminal.cs](https://github.com/terminal-cs)     | Developer                    |
 
 ## Thanks to
-| Name                                              |                              |
+| Name                                              | Contributions                |
 |---------------------------------------------------|------------------------------|
 | [pinkphone1818](https://github.com/pinkphone1818) | Contributor                  |
 

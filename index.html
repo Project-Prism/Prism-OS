@@ -1,48 +1,53 @@
 <!DOCTYPE html>
-<!--Website redesigned by theopcoder-->
 <html>
     <head>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:900|Work+Sans:300" rel="stylesheet">
         <link rel="icon" href="./Images/PrismOSLogo.png">
-        <link rel="stylesheet" href="Global.css">
-        <link rel="stylesheet" href="Index.css">
-        <title>Prism OS Home</title>
+        <link rel="stylesheet" href="./CSS/Global.css">
+        <link rel="stylesheet" href="./CSS/Index.css">
+        <title>Prism OS - Home</title>
     </head>
 
     <body>
-        <div class="header">
+        <header>
             <a href="https://github.com/Project-Prism/Prism-OS"><img align="left" src="./Images/PrismOSLogo.png" width="74"></a>
 
             <!--Settings Button-->
             <details align="right" class="SettingsButton"><summary>Settings</summary>
                 <button onclick="myFunction()">Toggle light mode</button>
                 <script>
-                  function myFunction() {
+                    function myFunction() {
                         var element = document.body;
                         element.classList.toggle("LightMode");
-                        //element.classList.toggle("footer-light");
+                        element.classList.toggle("footer-light");
+
+                        //The Weekend reference ;)
+                        alert("And I say, OOOOOO, I'm blinded by the lights!");
                     }
                 </script>
             </details>
 
-            <!--Header content-->
-            <h1>Prism OS</h1>
-            <p class="Saying">The future of computers.</p>
+            <h1 align="center">Prism OS</h1>
+            <p class="Motto">The future of computers</p>
 
             <!--Buttons-->
+
+            <!--TODO make downloads go to page with the releases with the links to the downloads-->
+            <!--TODO work on the developers page-->
+
             <div align="center" class="OptionButtons">
                 <button onclick="window.location.href='https://github.com/Project-Prism/Prism-OS'"><img align="left" src="./Images/GitHubLogo.png" width="30">View our GitHub</button>
-                <button onclick="window.location.href='https://github.com/Project-Prism/Prism-OS/releases'"><img align="left" src="./Images/DownloadsImage.png" width="30">Download</button>
-                <button onclick="window.location.href='./Developers/developers.html'"><img align="left" src="./Images/DevelopersImage.png" width="30">Developers</button>
+                <button onclick="window.location.href='https://github.com/Project-Prism/Prism-OS/releases'"><img align="left" src="./Images/FileDownloadIcon.png" width="30">Download</button>
+                <button onclick="window.location.href='./Pages/Developers/developers.html'"><img align="left" src="./Images/Developer.png" width="30">Developers</button>
             </div>
-        </div>
-        
+        </header>
+
         <p class="ProjectInfo" align="center">
-            PrismOS is a small open-source project started in 2021. This project is based off the <a class="CosmosInfoLink" href="https://github.com/CosmosOS/Cosmos">Cosmos</a> developer kit, which uses C# as its internal coding language.
+            Prism OS is a small open-source project started in 2021. This project is based off the <a class="CosmosLink" href="https://github.com/CosmosOS/Cosmos">Cosmos</a> developer kit, which uses C# as its internal coding language.
         </p>
 
-        <div class="footer">
-            <p>Website designed by theopcoder.</p>
-        </div>
-
+        <footer class="footer">
+            <p>Website designed by <a class="GitHubUser" href="https://github.com/theopcoder">theopcoder.</a></p>
+        </footer>
     </body>
 </html>
