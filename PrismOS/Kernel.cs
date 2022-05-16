@@ -165,6 +165,19 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                                 WM[WM.IndexOf(Settings)].Visible = !WM[WM.IndexOf(Settings)].Visible;
                             },
                         },
+                        new Button()
+                        {
+                            X = 256 + 10,
+                            Y = 15,
+                            Width = 128,
+                            Height = 20,
+                            Radius = WM.GlobalRadius,
+                            Text = "Shut down",
+                            OnClick = (ref Element E, ref Window Parent) =>
+                            {
+                                Cosmos.System.Power.Shutdown();
+                            },
+                        },
                     },
                 };
                 Window TaskBar = new()
