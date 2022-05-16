@@ -1,7 +1,6 @@
 ﻿using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
 using Mouse = Cosmos.System.MouseManager;
 using static PrismOS.Files.Resources;
-using System.Collections.Generic;
 using PrismOS.Libraries.Formats;
 using Cosmos.Core;
 using System.Text;

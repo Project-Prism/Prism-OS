@@ -5,7 +5,7 @@
         public Color Background = Color.White, Foreground = Color.Black;
         public string Text = "";
 
-        public override void Update(Canvas Canvas, WindowManager.Window Parent)
+        public override void Update(Canvas Canvas, Window Parent)
         {
             if (Visible && Parent.Visible)
             {
