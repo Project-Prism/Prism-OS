@@ -15,7 +15,6 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
         public static List<(Action, string)> BootTasks = new()
         {
             (() => { Canvas = new(960, 540); }, "Creating new canvas instace..."),
-            (() => { Booting = true; }, "Updating boot status..."),
             (() => { VFS.Initialize(true); }, "Initilizing VFS..."),
             (() => { VFSManager.RegisterVFS(VFS); }, "Registering VFS..."),
             (() => { new DHCPClient().SendDiscoverPacket(); DNS = new(); }, "Starting network services..."),
@@ -200,7 +199,6 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                 WM.Add(AppMenu);
                 WM.Add(Settings);
             }, "Starting desktop..."),
-            (() => { Booting = false; }, "Updating boot status..."),
         };
         public static WindowManager WM = new();
         public static CosmosVFS VFS = new();
@@ -210,6 +208,7 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
 
         protected override void BeforeRun()
         {
+            Booting = true;
             foreach ((Action, string) T in BootTasks)
             {
                 T.Item1.Invoke();
@@ -218,13 +217,14 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                 Canvas.DrawString(Canvas.Width / 2, Canvas.Height / 2 + 128, $"Prism OS\nPowered by cosmos.\n\n{T.Item2}", Color.White, true);
                 Canvas.Update(false);
             }
+            Booting = false;
         }
 
         protected override void Run()
         {
             try
             {
-                Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}\nFree Memmory: {Cosmos.Core.GCImplementation.GetAvailableRAM()} MB", Color.Black);
+                Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}", Color.Black);
                 WM.Update(Canvas);
                 Canvas.Update(true);
             }

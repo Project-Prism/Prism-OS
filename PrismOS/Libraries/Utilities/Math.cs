@@ -1,4 +1,4 @@
-﻿namespace PrismOS.Libraries.Numerics
+﻿namespace PrismOS.Libraries.Utilities
 {
     public unsafe static class Math
     {

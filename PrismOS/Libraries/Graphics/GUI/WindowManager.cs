@@ -6,7 +6,7 @@ namespace PrismOS.Libraries.Graphics.GUI
     public class WindowManager : List<Elements.Window>
     {
         private bool Dragging = false;
-        public int GlobalRadius = 6;
+        public int GlobalRadius = 0;
 
         public void Update(Canvas Canvas)
         {
