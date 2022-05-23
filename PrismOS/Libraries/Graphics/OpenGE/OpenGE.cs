@@ -7,27 +7,15 @@ namespace PrismOS.Libraries.Graphics.OpenGE
     {
         public Mesh TestCube = Shapes.Cube;
 
-        public void Update(Canvas Canvas, float ElapsedTime, int Width, int Height)
+        public void Update(Canvas Canvas, float ElapsedTime)
         {
             for (int I = 0; I < TestCube.Triangles.Length; I++)
             {
-                Triangle<float> Triangle = ScaleTriangle(ProjectTriangle(TestCube.Triangles[I], Width, Height, 1000.0f, 0.1f, 90.0f), Canvas.Width, Canvas.Height);
+                Triangle<float> Triangle = ProjectTriangle(TestCube.Triangles[I], Canvas.Width, Canvas.Height, 1000.0f, 0.1f, 90.0f);
                 Canvas.DrawTriangle(Triangle, Color.White);
             }
         }
 
-        public static Triangle<float> ScaleTriangle(Triangle<float> Triangle, int Width, int Height)
-        {
-            Triangle.P1.X += 1.0f; Triangle.P1.Y += 1.0f;
-            Triangle.P2.X += 1.0f; Triangle.P2.Y += 1.0f;
-            Triangle.P3.X += 1.0f; Triangle.P3.Y += 1.0f;
-
-            Triangle.P1.X *= (float)0.5 * Width; Triangle.P1.Y *= (float)0.5 * Height;
-            Triangle.P2.X *= (float)0.5 * Width; Triangle.P2.Y *= (float)0.5 * Height;
-            Triangle.P3.X *= (float)0.5 * Width; Triangle.P3.Y *= (float)0.5 * Height;
-
-            return Triangle;
-        }
         public static Triangle<float> ProjectTriangle(Triangle<float> Triangle, int Width, int Height, float ZFar, float ZNear, float FOV)
         {
             float A = Width / Height;

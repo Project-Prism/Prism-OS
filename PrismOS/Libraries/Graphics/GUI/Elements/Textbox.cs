@@ -1,23 +1,31 @@
-﻿namespace PrismOS.Libraries.Graphics.GUI.Elements
+﻿using System.Collections.Generic;
+
+namespace PrismOS.Libraries.Graphics.GUI.Elements
 {
     public class Textbox : Element
     {
+        public string Hint;
+        public string Text => PText.ToString();
+        public List<char> PText = new();
         public Color Background = Color.White, Foreground = Color.Black;
-        public string Text = "";
 
         public override void Update(Canvas Canvas, Window Parent)
         {
             if (Visible && Parent.Visible)
             {
+                if (Text.Length == 0 && Hint.Length != 0)
+                {
+                    Canvas.DrawString(Parent.X + X, Parent.Y + Y, Hint, Color.LightGray);
+                }
                 if (Cosmos.System.KeyboardManager.TryReadKey(out var Key))
                 {
                     if (Key.Key == Cosmos.System.ConsoleKeyEx.Backspace)
                     {
-                        Text.Remove(Text.Length - 1);
+                        PText.Remove(PText[PText.Count]);
                     }
                     else
                     {
-                        Text += Key.KeyChar.ToString();
+                        PText.Add(Key.KeyChar);
                     }
                 }
 

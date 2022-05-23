@@ -114,36 +114,21 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                 };
                 Window AppMenu = new()
                 {
-                    X = 200,
-                    Y = 200,
-                    Width = 512,
+                    X = 0,
+                    Y = Canvas.Height - 32 - 256,
+                    Width = 128,
                     Height = 256,
                     Radius = WM.GlobalRadius,
                     Text = "Applications",
                     Visible = false,
                     Elements = new()
                     {
-                        // Close button
                         new Button()
                         {
-                            X = 512 - 15,
-                            Y = -15,
-                            Width = 15,
-                            Height = 15,
-                            Radius = WM.GlobalRadius,
-                            Text = "X",
-                            OnClick = (ref Element E, ref Window Parent) =>
-                            {
-                                Parent.Visible = false;
-                            },
-                        },
-
-                        new Button()
-                        {
-                            X = 15,
-                            Y = 15,
+                            X = 0,
+                            Y = 0,
                             Width = 128,
-                            Height = 20,
+                            Height = 12,
                             Radius = WM.GlobalRadius,
                             Text = "Clock",
                             OnClick = (ref Element E, ref Window Parent) =>
@@ -153,10 +138,10 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                         },
                         new Button()
                         {
-                            X = 128 + 20,
-                            Y = 15,
+                            X = 0,
+                            Y = 14,
                             Width = 128,
-                            Height = 20,
+                            Height = 12,
                             Radius = WM.GlobalRadius,
                             Text = "Settings",
                             OnClick = (ref Element E, ref Window Parent) =>
@@ -166,10 +151,10 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                         },
                         new Button()
                         {
-                            X = 256 + 10,
-                            Y = 15,
+                            X = 0,
+                            Y = 28,
                             Width = 128,
-                            Height = 20,
+                            Height = 12,
                             Radius = WM.GlobalRadius,
                             Text = "Shut down",
                             OnClick = (ref Element E, ref Window Parent) =>
@@ -181,9 +166,9 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                 };
                 Window TaskBar = new()
                 {
-                    X = (Canvas.Width / 2) - 256,
-                    Y = Canvas.Height - 64,
-                    Width = 512,
+                    X = 0,
+                    Y = Canvas.Height - 32,
+                    Width = Canvas.Width,
                     Height = 32,
                     Radius = WM.GlobalRadius,
                     Draggable = false,
@@ -195,15 +180,26 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                         {
                             X = 0,
                             Y = 0,
-                            Width = 128,
+                            Width = 64,
                             Height = 32,
-                            Text = "Apps",
                             Radius = WM.GlobalRadius,
+                            Text = "Start",
                             OnClick = (ref Element E, ref Window Parent) =>
                             {
                                 WM[WM.IndexOf(AppMenu)].Visible = !WM[WM.IndexOf(AppMenu)].Visible;
                             },
-                        }
+                            OnUpdate = (ref Element E, ref Window Parent) =>
+                            {
+                                if (Cosmos.System.KeyboardManager.TryReadKey(out var Key) && Key.Key == Cosmos.System.ConsoleKeyEx.LWin)
+                                {
+                                    WM[1].Visible = !WM[1].Visible;
+                                }
+                                if (Cosmos.System.MouseManager.MouseState == Cosmos.System.MouseState.Left)
+                                {
+                                    WM[1].Visible = false;
+                                }
+                            },
+                        },
                     },
                 };
 
