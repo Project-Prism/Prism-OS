@@ -38,11 +38,8 @@
 
     <ItemGroup>
       <EmbeddedResource Include="Files\Cursor.bmp" />
-      <EmbeddedResource Include="Files\Wallpaper.bmp" />
-    </ItemGroup>
-
-    <ItemGroup>
       <EmbeddedResource Include="Files\Logo.bmp" />
+      <EmbeddedResource Include="Files\Wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>

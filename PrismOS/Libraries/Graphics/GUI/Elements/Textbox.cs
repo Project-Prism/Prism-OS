@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-
-namespace PrismOS.Libraries.Graphics.GUI.Elements
+﻿namespace PrismOS.Libraries.Graphics.GUI.Elements
 {
     public class Textbox : Element
     {
         public string Hint;
-        public string Text => PText.ToString();
-        public List<char> PText = new();
+        public string Text = "";
         public Color Background = Color.White, Foreground = Color.Black;
 
         public override void Update(Canvas Canvas, Window Parent)
@@ -21,11 +18,11 @@ namespace PrismOS.Libraries.Graphics.GUI.Elements
                 {
                     if (Key.Key == Cosmos.System.ConsoleKeyEx.Backspace)
                     {
-                        PText.Remove(PText[PText.Count]);
+                        Text = Text[0..(Text.Length - 1)];
                     }
                     else
                     {
-                        PText.Add(Key.KeyChar);
+                        Text += Key.KeyChar;
                     }
                 }
 

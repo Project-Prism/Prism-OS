@@ -1,10 +1,12 @@
-﻿using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
+﻿using SVGADriver = Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII;
+using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
 using Mouse = Cosmos.System.MouseManager;
 using static PrismOS.Files.Resources;
 using PrismOS.Libraries.Numerics;
 using PrismOS.Libraries.Formats;
 using Cosmos.Core;
 using System.Text;
+using Cosmos.HAL;
 using System.IO;
 using System;
 
@@ -14,10 +16,19 @@ namespace PrismOS.Libraries.Graphics
     {
         public Canvas(int Width, int Height)
         {
+            if (PCI.GetDevice(VendorID.VMWare, DeviceID.SVGAIIAdapter) != null)
+            {
+                SVGA = new();
+                SVGA.SetMode((uint)Width, (uint)Height, 32);
+            }
+            else
+            {
+                UseVBE = true;
+                VBE = new((ushort)Width, (ushort)Height, 32);
+            }
             this.Width = Width;
             this.Height = Height;
             Buffer = new int*[Width * Height];
-            VBE = new((ushort)Width, (ushort)Height, 32);
             Wallpaper = Wallpaper.Resize(Width, Height);
             Update(false);
 
@@ -27,12 +38,13 @@ namespace PrismOS.Libraries.Graphics
             Mouse.Y = (uint)Height / 2;
         }
 
-        public int Width, Height;
-        public int*[] Buffer;
+        private readonly bool UseVBE = false;
+        public int Width, Height, FPS;
+        public SVGADriver SVGA;
         public VBEDriver VBE;
+        public int*[] Buffer;
         private DateTime LT;
         private int Frames;
-        public int FPS;
 
         #region Pixel
 
@@ -397,8 +409,14 @@ namespace PrismOS.Libraries.Graphics
                 DrawImage((int)Mouse.X, (int)Mouse.Y, Cursor);
             }
 
-            //MemoryOperations.Copy(*(uint**)0xE0000000, GCImplementation.GetPointer(Buffer), Width * Height * 4);
-            Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);
+            if (UseVBE)
+            {
+                Cosmos.Core.Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);
+            }
+            else
+            {
+                SVGA.VideoMemory.Copy((int[])(object)Buffer);
+            }
             MemoryOperations.Copy((int[])(object)Buffer, (int[])(object)Wallpaper.Buffer);
         }
 
