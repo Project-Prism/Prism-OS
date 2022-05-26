@@ -121,6 +121,8 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                     Radius = WM.GlobalRadius,
                     Text = "Applications",
                     Visible = false,
+                    TitleVisible = false,
+                    Draggable = false,
                     Elements = new()
                     {
                         new Button()
@@ -194,7 +196,7 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                                 {
                                     WM[1].Visible = !WM[1].Visible;
                                 }
-                                if (Cosmos.System.MouseManager.MouseState == Cosmos.System.MouseState.Left)
+                                if (Cosmos.System.MouseManager.MouseState == Cosmos.System.MouseState.Left && !WindowManager.IsMouseWithin(0, Canvas.Height - 32, 64, 32))
                                 {
                                     WM[1].Visible = false;
                                 }
