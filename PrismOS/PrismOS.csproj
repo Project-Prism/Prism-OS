@@ -48,4 +48,10 @@
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="dnlib">
+        <HintPath>..\dnlib.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

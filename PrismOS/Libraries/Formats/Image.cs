@@ -1,11 +1,10 @@
 ﻿using PrismOS.Libraries.Graphics;
 using System;
 using System.IO;
-using GC = Cosmos.Core.GCImplementation;
 
 namespace PrismOS.Libraries.Formats
 {
-    public unsafe class Image : IDisposable
+    public unsafe class Image
     {
         public Image(int Width, int Height)
         {
@@ -29,12 +28,25 @@ namespace PrismOS.Libraries.Formats
                 Buffer = (int*[])(object)BMP.rawData;
                 return;
             }
-            if (Reader.ReadString() == "RAW")
+            else // Defaulting to TGA
             {
-                Width = Reader.ReadInt32();
-                Height = Reader.ReadInt32();
-                Buffer = (int*[])(object)Reader.ReadBytes(Width * Height * 4);
-                return;
+                Width = Reader.ReadInt16();
+                Height = Reader.ReadInt16();
+                int BPP = Reader.ReadByte();
+
+                if (BPP != 32)
+                {
+                    throw new Exception("Only 32 bit TGA files are supported!");
+                }
+
+                Buffer = new int*[Width * Height * 4];
+                for (int i = 0; i < Width * Height * 4; i += 4)
+                {
+                    *Buffer[i] = Binary[Reader.BaseStream.Position + i + 2];
+                    *Buffer[i + 1] = Binary[Reader.BaseStream.Position + i + 1];
+                    *Buffer[i + 2] = Binary[Reader.BaseStream.Position + i];
+                    *Buffer[i + 3] = Binary[Reader.BaseStream.Position + i + 3];
+                }
             }
             Reader.Dispose();
         }
@@ -57,19 +69,13 @@ namespace PrismOS.Libraries.Formats
         public int Width, Height;
         public int*[] Buffer;
 
-        public byte[] ToBinary()
+        public void SetPixel(int X, int Y, Color Color)
         {
-            BinaryWriter Writer = new(new MemoryStream());
-            Writer.Write("RAW");
-            Writer.Write(Width);
-            Writer.Write(Height);
-            Writer.Write((byte[])(object)Buffer);
-            return (Writer.BaseStream as MemoryStream).ToArray();
+            Buffer[X + Y * Width] = (int*)Color.AlphaBlend(Color, new((int)Buffer[X + Y * Width])).ARGB;
         }
-
-        public void Dispose()
+        public Color GetPixel(int X, int Y)
         {
-            GC.Free(Buffer);
+            return new((int)Buffer[X + Y * Width]);
         }
 
         #region Effects
@@ -91,6 +97,32 @@ namespace PrismOS.Libraries.Formats
                 }
             }
             return Temp;
+        }
+        // Generated using github's copilot, untested
+        public Image RotateImage(Image Image, int Degrees)
+        {
+            if (Degrees > 360)
+            {
+                return this;
+            }
+            int Width = Image.Width;
+            int Height = Image.Height;
+            int NewWidth = Width;
+            int NewHeight = Height;
+            if (Degrees == 90 || Degrees == 270)
+            {
+                NewWidth = Height;
+                NewHeight = Width;
+            }
+            Image NewImage = new(NewWidth, NewHeight);
+            for (int i = 0; i < NewWidth; i++)
+            {
+                for (int j = 0; j < NewHeight; j++)
+                {
+                    NewImage.SetPixel(i, j, Image.GetPixel(Degrees == 90 ? Width - j - 1 : Degrees == 270 ? Width - i - 1 : i, Degrees == 90 ? j : Degrees == 270 ? Height - i - 1 : j));
+                }
+            }
+            return NewImage;
         }
         public Image Grayscale()
         {

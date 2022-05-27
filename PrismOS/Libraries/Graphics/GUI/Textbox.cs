@@ -1,4 +1,4 @@
-﻿namespace PrismOS.Libraries.Graphics.GUI.Elements
+﻿namespace PrismOS.Libraries.Graphics.GUI
 {
     public class Textbox : Element
     {

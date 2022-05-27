@@ -1,6 +1,4 @@
-﻿using static PrismOS.Libraries.Graphics.GUI.WindowManager;
-
-namespace PrismOS.Libraries.Graphics.GUI.Elements
+﻿namespace PrismOS.Libraries.Graphics.GUI
 {
     public class Panel : Element
     {

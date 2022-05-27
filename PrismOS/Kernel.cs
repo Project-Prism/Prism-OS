@@ -1,11 +1,10 @@
-﻿using PrismOS.Libraries.Graphics.GUI.Elements;
-using Cosmos.System.Network.IPv4.UDP.DHCP;
+﻿using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Cosmos.System.Network.IPv4.UDP.DNS;
-using PrismOS.Libraries.Graphics.GUI;
 using Cosmos.System.FileSystem.VFS;
 using PrismOS.Libraries.Graphics;
 using System.Collections.Generic;
 using Cosmos.System.FileSystem;
+using PrismOS.Libraries;
 using System;
 
 namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
@@ -18,200 +17,8 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
             (() => { VFS.Initialize(true); }, "Initilizing VFS..."),
             (() => { VFSManager.RegisterVFS(VFS); }, "Registering VFS..."),
             (() => { new DHCPClient().SendDiscoverPacket(); DNS = new(); }, "Starting network services..."),
-            (() =>
-            {
-                Window Settings = new()
-                {
-                    X = 200,
-                    Y = 200,
-                    Width = 400,
-                    Height = 150,
-                    Radius = WM.GlobalRadius,
-                    Text = "Settings",
-                    Visible = false,
-                    Elements = new()
-                    {
-                        // Close button
-                        new Button()
-                        {
-                            X = 400 - 15,
-                            Y = -15,
-                            Width = 15,
-                            Height = 15,
-                            Radius = WM.GlobalRadius,
-                            Text = "X",
-                            OnClick = (ref Element E, ref Window Parent) =>
-                            {
-                                Parent.Visible = false;
-                            },
-                        },
-
-                        new Panel()
-                        {
-                            X = 200 - 32,
-                            Y = 75 - 32,
-                            Width = 96,
-                            Height = 32,
-                            Radius = WM.GlobalRadius,
-                            Color = Color.White,
-                        },
-                        new Label()
-                        {
-                            X = 200,
-                            Y = 75 - 32,
-                            Width = 32,
-                            Height = 32,
-                            Text = "NULL",
-                            Color = Color.Black,
-                            Center = true,
-                            OnUpdate = (ref Element E, ref Window Parent) =>
-                            {
-                                ((Label)E).Text = WM.GlobalRadius.ToString();
-                            }
-                        },
-                        new Button()
-                        {
-                            X = 200 - 32,
-                            Y = 75 - 32,
-                            Width = 32,
-                            Height = 32,
-                            Radius = WM.GlobalRadius,
-                            Text = "-",
-                            OnClick = (ref Element E, ref Window Parent) =>
-                            {
-                                WM.GlobalRadius--;
-                                ((Label)Parent.Elements[2]).Text = (int.Parse(((Label)Parent.Elements[2]).Text) - 1).ToString();
-                            },
-                        }, // Minus
-                        new Button()
-                        {
-                            X = 200 + 32,
-                            Y = 75 - 32,
-                            Width = 32,
-                            Height = 32,
-                            Radius = WM.GlobalRadius,
-                            Text = "+",
-                            OnClick = (ref Element E, ref Window Parent) =>
-                            {
-                                WM.GlobalRadius++;
-                                ((Label)Parent.Elements[2]).Text = (int.Parse(((Label)Parent.Elements[2]).Text) + 1).ToString();
-                            },
-                        }, // Plus
-                        new Button()
-                        {
-                            X = 200 - 32,
-                            Y = 75,
-                            Width = 96,
-                            Height = 32,
-                            Radius = WM.GlobalRadius,
-                            Text = "Apply",
-                            OnClick = (ref Element E, ref Window Parent) =>
-                            {
-                                BootTasks[^2].Item1.Invoke();
-                            },
-                        }, // Apply
-                    },
-                };
-                Window AppMenu = new()
-                {
-                    X = 0,
-                    Y = Canvas.Height - 32 - 256,
-                    Width = 128,
-                    Height = 256,
-                    Radius = WM.GlobalRadius,
-                    Text = "Applications",
-                    Visible = false,
-                    TitleVisible = false,
-                    Draggable = false,
-                    Elements = new()
-                    {
-                        new Button()
-                        {
-                            X = 0,
-                            Y = 0,
-                            Width = 128,
-                            Height = 12,
-                            Radius = WM.GlobalRadius,
-                            Text = "Clock",
-                            OnClick = (ref Element E, ref Window Parent) =>
-                            {
-                                MessageBox.ShowMessage("Error", "Application not implementeed yet!", "Ok", WM);
-                            },
-                        },
-                        new Button()
-                        {
-                            X = 0,
-                            Y = 14,
-                            Width = 128,
-                            Height = 12,
-                            Radius = WM.GlobalRadius,
-                            Text = "Settings",
-                            OnClick = (ref Element E, ref Window Parent) =>
-                            {
-                                WM[WM.IndexOf(Settings)].Visible = !WM[WM.IndexOf(Settings)].Visible;
-                            },
-                        },
-                        new Button()
-                        {
-                            X = 0,
-                            Y = 28,
-                            Width = 128,
-                            Height = 12,
-                            Radius = WM.GlobalRadius,
-                            Text = "Shut down",
-                            OnClick = (ref Element E, ref Window Parent) =>
-                            {
-                                Cosmos.System.Power.Shutdown();
-                            },
-                        },
-                    },
-                };
-                Window TaskBar = new()
-                {
-                    X = 0,
-                    Y = Canvas.Height - 32,
-                    Width = Canvas.Width,
-                    Height = 32,
-                    Radius = WM.GlobalRadius,
-                    Draggable = false,
-                    TitleVisible = false,
-                    Text = "System.Core.TaskBar",
-                    Elements = new()
-                    {
-                        new Button()
-                        {
-                            X = 0,
-                            Y = 0,
-                            Width = 64,
-                            Height = 32,
-                            Radius = WM.GlobalRadius,
-                            Text = "Start",
-                            OnClick = (ref Element E, ref Window Parent) =>
-                            {
-                                WM[WM.IndexOf(AppMenu)].Visible = !WM[WM.IndexOf(AppMenu)].Visible;
-                            },
-                            OnUpdate = (ref Element E, ref Window Parent) =>
-                            {
-                                if (Cosmos.System.KeyboardManager.TryReadKey(out var Key) && Key.Key == Cosmos.System.ConsoleKeyEx.LWin)
-                                {
-                                    WM[1].Visible = !WM[1].Visible;
-                                }
-                                if (Cosmos.System.MouseManager.MouseState == Cosmos.System.MouseState.Left && !WindowManager.IsMouseWithin(0, Canvas.Height - 32, 64, 32))
-                                {
-                                    WM[1].Visible = false;
-                                }
-                            },
-                        },
-                    },
-                };
-
-                WM.Clear();
-                WM.Add(TaskBar);
-                WM.Add(AppMenu);
-                WM.Add(Settings);
-            }, "Starting desktop..."),
+            (() => { _ = new Applications.Terminal(); }, "Creating terminal..."),
         };
-        public static WindowManager WM = new();
         public static CosmosVFS VFS = new();
         public static DnsClient DNS = new();
         public static Canvas Canvas;
@@ -225,7 +32,7 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
                 T.Item1.Invoke();
                 Canvas.Clear();
                 Canvas.DrawImage(Canvas.Width / 2 - 128, Canvas.Height / 2 - 128, 256, 256, Files.Resources.Logo);
-                Canvas.DrawString(Canvas.Width / 2, Canvas.Height / 2 + 128, $"Prism OS\nPowered by cosmos.\n\n{T.Item2}", Color.White, true);
+                Canvas.DrawString(Canvas.Width / 2, Canvas.Height / 2 + 128, $"Prism OS\nPowered by the cosmos Kernel.\n\n{T.Item2}", Color.White, true);
                 Canvas.Update(false);
             }
             Booting = false;
@@ -236,7 +43,7 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
             try
             {
                 Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}", Color.Black);
-                WM.Update(Canvas);
+                Runtime.Update();
                 Canvas.Update(true);
             }
             catch (Exception EX)

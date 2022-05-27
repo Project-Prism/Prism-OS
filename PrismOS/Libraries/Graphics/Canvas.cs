@@ -18,6 +18,7 @@ namespace PrismOS.Libraries.Graphics
         {
             if (PCI.GetDevice(VendorID.VMWare, DeviceID.SVGAIIAdapter) != null)
             {
+                UseVBE = false;
                 SVGA = new();
                 SVGA.SetMode((uint)Width, (uint)Height, 32);
             }
@@ -36,10 +37,12 @@ namespace PrismOS.Libraries.Graphics
             Mouse.ScreenHeight = (uint)Height;
             Mouse.X = (uint)Width / 2;
             Mouse.Y = (uint)Height / 2;
+            Current = this;
         }
 
         private readonly bool UseVBE = false;
         public int Width, Height, FPS;
+        public static Canvas Current;
         public SVGADriver SVGA;
         public VBEDriver VBE;
         public int*[] Buffer;
@@ -109,6 +112,12 @@ namespace PrismOS.Libraries.Graphics
             int IX = (int)(Radius * Math.Cos(Math.PI * Angle / 180));
             int IY = (int)(Radius * Math.Sin(Math.PI * Angle / 180));
             DrawLine(X, Y, X + IX, Y + IY, Color);
+        }
+        public void DrawAngledLine(int X, int Y, int Angle, int Radius, Gradient Gradient)
+        {
+            int IX = (int)(Radius * Math.Cos(Math.PI * Angle / 180));
+            int IY = (int)(Radius * Math.Sin(Math.PI * Angle / 180));
+            DrawLine(X, Y, X + IX, Y + IY, Gradient[IX][IY]);
         }
         public void DrawQuadraticBezierLine(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, int N = 6)
         {
@@ -186,6 +195,24 @@ namespace PrismOS.Libraries.Graphics
 
                 DrawFilledCircle(X + Radius, Y + Height - Radius - 1, Radius, Color);
                 DrawFilledCircle(X + Width - Radius - 1, Y + Height - Radius - 1, Radius, Color);
+            }
+        }
+
+        public void DrawRectangleGrid(int X, int Y, int BlockCountX, int BlockCountY, int BlockSize, Color BlockType1, Color BlockType2)
+        {
+            for (int IX = 0; IX < BlockCountX; IX++)
+            {
+                for (int IY = 0; IY < BlockCountY; IY++)
+                {
+                    if ((IX + IY) % 2 == 0)
+                    {
+                        DrawFilledRectangle(X + IX * BlockSize, Y + IY * BlockSize, BlockSize, BlockSize, 0, BlockType1);
+                    }
+                    else
+                    {
+                        DrawFilledRectangle(X + IX * BlockSize, Y + IY * BlockSize, BlockSize, BlockSize, 0, BlockType2);
+                    }
+                }
             }
         }
 
@@ -406,7 +433,7 @@ namespace PrismOS.Libraries.Graphics
             }
             if (ShowMouse)
             {
-                DrawImage((int)Mouse.X, (int)Mouse.Y, Cursor);
+                DrawImage((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
             }
 
             if (UseVBE)

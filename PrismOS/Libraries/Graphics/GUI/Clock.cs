@@ -1,7 +1,6 @@
-﻿using static PrismOS.Libraries.Graphics.GUI.WindowManager;
-using System;
+﻿using System;
 
-namespace PrismOS.Libraries.Graphics.GUI.Elements
+namespace PrismOS.Libraries.Graphics.GUI
 {
     public class Clock : Element
     {

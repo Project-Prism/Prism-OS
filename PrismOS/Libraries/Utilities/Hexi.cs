@@ -6,6 +6,13 @@ namespace PrismOS.Libraries
 {
     public static class Hexi
     {
+        public class Variable
+        {
+            public Type Type { get; set; }
+            public string Name { get; set; }
+            public object Value { get; set; }
+        }
+
         public static Dictionary<string, byte> Functions = new()
         {
             { "Console.WriteLine", 0x00 },
@@ -21,6 +28,8 @@ namespace PrismOS.Libraries
 
         public static byte[] Compile(string Contents)
         {
+
+
             #region Variables
 
             BinaryWriter Writer = new(new MemoryStream());

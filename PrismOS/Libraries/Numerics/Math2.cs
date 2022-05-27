@@ -1,6 +1,6 @@
 ﻿namespace PrismOS.Libraries.Utilities
 {
-    public unsafe static class Math
+    public unsafe static class Math2
     {
         public const double PI = 3.14159265;
 

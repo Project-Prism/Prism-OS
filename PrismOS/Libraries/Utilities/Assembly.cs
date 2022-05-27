@@ -1,4 +1,4 @@
-﻿namespace PrismOS.Libraries.Assembly
+﻿namespace PrismOS.Libraries
 {
     public unsafe static class Assembly
     {
