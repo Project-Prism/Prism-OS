@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Mouse = Cosmos.System.MouseManager;
+using System.Collections.Generic;
 
 namespace PrismOS.Libraries.Graphics.GUI
 {
-
     public class Window
     {
         public int X, Y, Width, Height, Radius;
@@ -20,8 +20,30 @@ namespace PrismOS.Libraries.Graphics.GUI
                     Canvas.DrawFilledRectangle(X, Y - 15, Width, 15, 0, Color.StackOverflowOrange);
                     Canvas.DrawString(X, Y - 15, Text, Color.White);
                 }
-                Canvas.DrawFilledRectangle(X, Y, Width, Height, Radius, Color.StackOverflowBlack);
-                Canvas.DrawRectangle(X, Y, Width, Height, Radius, Color.White);
+                foreach (Element E in Elements)
+                {
+                    #region Calculations
+
+                    if (E.OnUpdate != null)
+                    {
+                        E.OnUpdate.Invoke(E, this);
+                    }
+                    if (E.Clicked && Mouse.MouseState != Cosmos.System.MouseState.Left && !Runtime.Dragging)
+                    {
+                        E.Clicked = false;
+                        if (E.OnClick != null)
+                        {
+                            E.OnClick.Invoke(E, this);
+                        }
+                    }
+                    E.Hovering = Mouse.X > E.X && Mouse.X < E.X + E.Width && Mouse.Y > E.Y && Mouse.Y < E.Y + E.Height;
+                    E.Clicked = E.Hovering && Mouse.MouseState == Cosmos.System.MouseState.Left;
+
+                    #endregion
+                    
+                    E.Update(Canvas, this);
+                }
+                Canvas.DrawRectangle(X, Y, Width - 1, Height - 1, Radius, Color.White);
             }
         }
     }

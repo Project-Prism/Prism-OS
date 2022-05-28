@@ -13,10 +13,11 @@ namespace PrismOS.Applications
             public string Description { get; set; }
             public string Usage { get; set; }
             public string Permission { get; set; }
-            public System.Action Target { get; set; }
-        }
+            public System.Action<object> Target { get; set; }
+           }
         public List<Command> Commands;
         public Window Window = new();
+        public Panel Panel1 = new();
         public Label Label1 = new();
         public string Input = "";
 
@@ -26,11 +27,11 @@ namespace PrismOS.Applications
             {
                 new()
                 {
-                    Name = "Test1",
-                    Description = "A command to test the functionality of the command manager",
+                    Name = "clear",
+                    Description = "Clear the console",
                     Permission = "User",
                     Usage = "[ Empty ]",
-                    Target = () => { Label1.Text += "Hello, World!\n"; },
+                    Target = (object Arguments) => { Label1.Text += "> "; },
                 },
                 new()
                 {
@@ -38,8 +39,16 @@ namespace PrismOS.Applications
                     Description = "Get the current time",
                     Permission = "User",
                     Usage = "[ Empty ]",
-                    Target = () => { Label1.Text += System.DateTime.Now.ToString("M/d/yyyy, h:mm t UTC+z") + "\n"; }
-                }
+                    Target = (object Arguments) => { Label1.Text += System.DateTime.Now.ToString("M/d/yyyy, h:mm t UTC+z") + "\n"; }
+                },
+                new()
+                {
+                  Name = "echo",
+                  Description = "Echo some text back",
+                  Permission = "User",
+                  Usage = "[ Empty ]",
+                  Target = (object Args) => { Label1.Text += Args + "\n"; },
+                },
             };
 
             // Main window
@@ -50,7 +59,16 @@ namespace PrismOS.Applications
             Window.Radius = 0;
             Window.Text = "Terminal (.cs)";
 
-            // Start button
+            // Main panel
+            Panel1.X = 0;
+            Panel1.Y = 0;
+            Panel1.Width = Window.Width;
+            Panel1.Height = Window.Height;
+            Panel1.Radius = 0;
+            Panel1.Color = new(255, 30, 30, 30);
+            Window.Elements.Add(Panel1);
+
+            // Main text
             Label1.X = 0;
             Label1.Y = 0;
             Label1.Text = "> ";
@@ -97,7 +115,7 @@ namespace PrismOS.Applications
                         {
                             if (C.Name == Input)
                             {
-                                C.Target.Invoke();
+                                C.Target.Invoke(Input[(C.Name.Length + 1)..Input.Length]);
                                 Label1.Text += "> ";
                                 Input = "";
                                 return;

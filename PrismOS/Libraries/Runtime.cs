@@ -40,45 +40,13 @@ namespace PrismOS.Libraries
                         Window.Y = (int)Mouse.Y - Window.IY;
                     }
                 }
-                if (Window.Visible)
-                {
-                    if (Window.TitleVisible)
-                    {
-                        Canvas.Current.DrawFilledRectangle(Window.X, Window.Y - 15, Window.Width, 15, 0, Color.StackOverflowOrange);
-                        Canvas.Current.DrawString(Window.X, Window.Y - 15, Window.Text, Color.White);
-                    }
-                    Canvas.Current.DrawFilledRectangle(Window.X, Window.Y, Window.Width, Window.Height, Window.Radius, Color.StackOverflowBlack);
-                    Canvas.Current.DrawRectangle(Window.X - 1, Window.Y - 1, Window.Width + 1, Window.Height + 1, Window.Radius, Color.White);
-                }
-                foreach (Element E in Window.Elements)
-                {
-                    #region Calculations
-
-                    if (E.OnUpdate != null)
-                    {
-                        E.OnUpdate.Invoke(E, Window);
-                    }
-                    if (E.Clicked && Mouse.MouseState != Cosmos.System.MouseState.Left && !Dragging)
-                    {
-                        E.Clicked = false;
-                        if (E.OnClick != null)
-                        {
-                            E.OnClick.Invoke(E, Window);
-                        }
-                    }
-                    E.Hovering = Mouse.X > E.X && Mouse.X < E.X + E.Width && Mouse.Y > E.Y && Mouse.Y < E.Y + E.Height;
-                    E.Clicked = E.Hovering && Mouse.MouseState == Cosmos.System.MouseState.Left;
-
-                    #endregion
-
-                    E.Update(Canvas.Current, Window);
-                }
+                Window.Update(Canvas.Current);
             }
         }
 
         public static List<Application> Applications = new();
         public static List<Window> Windows = new();
-        private static bool Dragging = false;
+        public static bool Dragging = false;
 
         public abstract class Application
         {
