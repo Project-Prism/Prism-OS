@@ -107,17 +107,8 @@ namespace PrismOS.Libraries.Graphics
         public static readonly Color FakeGrassGreen = new(255, 60, 179, 113);
         public static readonly Color DeepBlue = new(255, 51, 47, 208);
         public static readonly Color BloodOrange = new(255, 255, 123, 0);
+        public static readonly Color LightBlack = new(255, 25, 25, 25);
+        public static readonly Color LighterBlack = new(255, 50, 50, 50);
         #endregion
-
-        public static class SystemColors
-        {
-            public static Color BackGround = StackOverflowBlack;
-            public static Color ForeGround = GoogleBlue;
-            public static Color ContentText = White;
-            public static Color TitleText = Black;
-            public static Color Button = GoogleBlue;
-            public static Color ButtonHighlight = new(255, 77, 144, 255);
-            public static Color ButtonClick = DeepBlue;
-        }
     }
 }

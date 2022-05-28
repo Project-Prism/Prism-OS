@@ -8,6 +8,7 @@ namespace PrismOS.Libraries.Graphics.GUI
         public int X, Y, Width, Height, Radius;
         public List<Element> Elements = new();
         public bool Visible = true, Draggable = true, TitleVisible = true, Moving;
+        public Theme Theme;
         public string Text;
         public int IX, IY;
 
@@ -17,8 +18,8 @@ namespace PrismOS.Libraries.Graphics.GUI
             {
                 if (TitleVisible)
                 {
-                    Canvas.DrawFilledRectangle(X, Y - 15, Width, 15, 0, Color.StackOverflowOrange);
-                    Canvas.DrawString(X, Y - 15, Text, Color.White);
+                    Canvas.DrawFilledRectangle(X, Y - 15, Width, 15, 0, Theme.Accent);
+                    Canvas.DrawString(X, Y - 15, Text, Theme.Foreground);
                 }
                 foreach (Element E in Elements)
                 {
@@ -36,14 +37,14 @@ namespace PrismOS.Libraries.Graphics.GUI
                             E.OnClick.Invoke(E, this);
                         }
                     }
-                    E.Hovering = Mouse.X > E.X && Mouse.X < E.X + E.Width && Mouse.Y > E.Y && Mouse.Y < E.Y + E.Height;
+                    E.Hovering = Mouse.X >= E.X && Mouse.X <= E.X + E.Width && Mouse.Y >= E.Y && Mouse.Y <= E.Y + E.Height;
                     E.Clicked = E.Hovering && Mouse.MouseState == Cosmos.System.MouseState.Left;
 
                     #endregion
                     
                     E.Update(Canvas, this);
                 }
-                Canvas.DrawRectangle(X, Y, Width - 1, Height - 1, Radius, Color.White);
+                Canvas.DrawRectangle(X, Y, Width - 1, Height - 1, Radius, Theme.Foreground);
             }
         }
     }

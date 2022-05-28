@@ -2,13 +2,11 @@
 {
     public class Panel : Element
     {
-        public Color Color;
-
         public override void Update(Canvas Canvas, Window Parent)
         {
-            if (Visible && Parent.Visible)
+            if (Visible && Parent.Visible && Theme != null)
             {
-                Canvas.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, Color);
+                Canvas.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, Theme.Background);
             }
         }
     }

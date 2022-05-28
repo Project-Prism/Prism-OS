@@ -67,6 +67,7 @@ namespace PrismOS.Libraries
             public abstract void OnDestroy();
             public abstract void OnCreate();
         }
+        
         public static void Stop()
         {
             Canvas.Current.Clear();

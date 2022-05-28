@@ -16,6 +16,7 @@ namespace PrismOS.Applications
             public System.Action<object> Target { get; set; }
            }
         public List<Command> Commands;
+        public Button Button1 = new();
         public Window Window = new();
         public Panel Panel1 = new();
         public Label Label1 = new();
@@ -57,6 +58,7 @@ namespace PrismOS.Applications
             Window.Width = 400;
             Window.Height = 175;
             Window.Radius = 0;
+            Window.Theme = Theme.DefaultDark;
             Window.Text = "Terminal (.cs)";
 
             // Main panel
@@ -65,15 +67,26 @@ namespace PrismOS.Applications
             Panel1.Width = Window.Width;
             Panel1.Height = Window.Height;
             Panel1.Radius = 0;
-            Panel1.Color = new(255, 30, 30, 30);
+            Panel1.Theme = Theme.DefaultDark;
             Window.Elements.Add(Panel1);
 
             // Main text
             Label1.X = 0;
             Label1.Y = 0;
             Label1.Text = "> ";
-            Label1.Color = Color.White;
+            Label1.Theme = Theme.DefaultDark;
             Window.Elements.Add(Label1);
+
+            // Close button
+            Button1.X = Window.Width - 15;
+            Button1.Y = -15;
+            Button1.Width = 15;
+            Button1.Height = 15;
+            Button1.Radius = 0;
+            Button1.Text = "X";
+            Button1.Theme = Theme.DefaultDark;
+            Button1.OnClick = (Element E, Window Parent) => { Runtime.Windows.RemoveAt(Runtime.Windows.IndexOf(Window)); Runtime.Applications.RemoveAt(Runtime.Applications.IndexOf(this)); };
+            Window.Elements.Add(Button1);
 
             Runtime.Windows.Add(Window);
         }
@@ -84,22 +97,22 @@ namespace PrismOS.Applications
 
         public override void OnUpdate()
         {
-            string[] Temp = Label1.Text.Split("\n");
-            if ((Temp.Length * Canvas.Font.Default.Height) >= Window.Height)
+            // Trim the string to fit within the window
+            while (Label1.Text.Length * Canvas.Font.Default.Width > Window.Width)
             {
+                Label1.Text = Label1.Text[0..(Label1.Text.Length - 1)];
+                Input = Input[0..(Input.Length - 1)];
+            }
+            while (Label1.Text.Split('\n').Length * Canvas.Font.Default.Height > Window.Height * 2)
+            {
+                string[] Temp = Label1.Text.Split('\n');
+                Label1.Text = "";
                 for (int I = 1; I < Temp.Length; I++)
                 {
-                    Label1.Text = Temp[I] + "\n";
-                }
-                Label1.Text = Label1.Text[0..(Label1.Text.Length - 1)];
-            }
-            for (int I = 0; I < Temp.Length; I++)
-            {
-                if (Temp[I].Length * Canvas.Font.Default.Width >= Window.Width)
-                {
-                    Temp[I] = Temp[I][0..(Temp[I].Length * Canvas.Font.Default.Width)];
+                    Label1.Text += Temp[I] + '\n';
                 }
             }
+            
             if (Cosmos.System.KeyboardManager.TryReadKey(out var Key))
             {
                 switch (Key.Key)

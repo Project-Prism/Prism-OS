@@ -4,15 +4,14 @@
     {
         public string Hint;
         public string Text = "";
-        public Color Background = Color.White, Foreground = Color.Black;
 
         public override void Update(Canvas Canvas, Window Parent)
         {
-            if (Visible && Parent.Visible)
+            if (Visible && Parent.Visible && Theme != null)
             {
                 if (Text.Length == 0 && Hint.Length != 0)
                 {
-                    Canvas.DrawString(Parent.X + X, Parent.Y + Y, Hint, Color.LightGray);
+                    Canvas.DrawString(Parent.X + X, Parent.Y + Y, Hint, Theme.ForegroundHint);
                 }
                 if (Cosmos.System.KeyboardManager.TryReadKey(out var Key))
                 {
@@ -26,8 +25,8 @@
                     }
                 }
 
-                Canvas.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, Background);
-                Canvas.DrawString(Parent.X + X, Parent.Y + Y, Text, Foreground);
+                Canvas.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, Theme.Background);
+                Canvas.DrawString(Parent.X + X, Parent.Y + Y, Text, Theme.Background);
             }
         }
     }
