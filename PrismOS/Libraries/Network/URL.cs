@@ -10,27 +10,16 @@ namespace PrismOS.Libraries.Network
         {
             this.FullURL = FullURL;
         }
-
+        
         public string FullURL;
-
-        public string GetName1()
-        {
-            return FullURL.Replace("//", "&&&&").Split("/")[0].Replace("&&&&", "//") + "/";
-        }
-        public string GetName2()
-        {
-            return FullURL.Replace("//", "&&&&").Split("/")[0].Replace("&&&&", "//").Replace("http://", "").Replace("https://", "");
-        }
-        public string GetPath()
-        {
-            string Path = FullURL.Replace(FullURL.Replace("//", "&&&&").Split("/")[0].Replace("&&&&", "//") + "/", "").Insert(0, "/");
-            return Path;
-        }
+        public string Path => FullURL.Split('/')[^1];
+        public string Protocol => FullURL.Split(':')[0];
+        public string Domain => FullURL.Replace("//", "&&&&").Split("/")[0].Replace("&&&&", "//") + "/";
         public Address GetAddress()
         {
             DnsClient Client = new();
             Client.Connect(Cosmos.System.Network.Config.NetworkConfig.CurrentConfig.Value.DefaultGateway);
-            Client.SendAsk(GetName1());
+            Client.SendAsk(Domain);
             Address Temp = Client.Receive();
             Client.Dispose();
             return Temp;

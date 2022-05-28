@@ -29,6 +29,7 @@ Just a list of things that need to be done.
 ## Contributing
 
 Want to add something new to Prism OS? Simply create a pull request and we'll review it.
+You can install "AppTemplate.zip" to add an item template to visual studio that pre-fills some boilerplate code.
 
 ## License
 

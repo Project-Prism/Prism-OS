@@ -25,7 +25,7 @@ namespace PrismOS.Libraries.Network
         {
             EndPoint EP = new(URL.GetAddress(), (ushort)Port);
             string Request =
-                $"GET {URL.GetPath()} HTTP/1.1\n" +
+                $"GET {URL.Path} HTTP/1.1\n" +
                 "Connection: Keep - Alive";
 
             TcpClient Client = new(URL.GetAddress(), Port);
