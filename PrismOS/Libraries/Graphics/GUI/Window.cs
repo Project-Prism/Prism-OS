@@ -27,14 +27,14 @@ namespace PrismOS.Libraries.Graphics.GUI
 
                     if (E.OnUpdate != null)
                     {
-                        E.OnUpdate.Invoke(E, this);
+                        E.OnUpdate.Invoke();
                     }
                     if (E.Clicked && Mouse.MouseState != Cosmos.System.MouseState.Left && !Runtime.Dragging)
                     {
                         E.Clicked = false;
                         if (E.OnClick != null)
                         {
-                            E.OnClick.Invoke(E, this);
+                            E.OnClick.Invoke();
                         }
                     }
                     E.Hovering = Mouse.X >= E.X && Mouse.X <= E.X + E.Width && Mouse.Y >= E.Y && Mouse.Y <= E.Y + E.Height;

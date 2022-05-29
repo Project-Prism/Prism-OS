@@ -7,7 +7,7 @@ using Cosmos.System.FileSystem;
 using PrismOS.Libraries;
 using System;
 
-namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
+namespace PrismOS
 {
     public unsafe class Kernel : Cosmos.System.Kernel
     {
@@ -17,7 +17,8 @@ namespace PrismOS // Created on May 11th, 2021, 1:26 AM UTC-8
             (() => { VFS.Initialize(true); }, "Initilizing VFS..."),
             (() => { VFSManager.RegisterVFS(VFS); }, "Registering VFS..."),
             (() => { new DHCPClient().SendDiscoverPacket(); DNS = new(); }, "Starting network services..."),
-            (() => { _ = new Applications.Terminal(); }, "Creating terminal..."),
+            (() => { _ = new Libraries.Applications.Terminal(); }, "Creating terminal..."),
+            (() => { _ = new Libraries.Applications.AppTemplate1(); }, "Creating f..."),
         };
         public static CosmosVFS VFS = new();
         public static DnsClient DNS = new();

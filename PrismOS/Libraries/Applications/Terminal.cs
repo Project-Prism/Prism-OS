@@ -3,7 +3,7 @@ using PrismOS.Libraries.Graphics;
 using System.Collections.Generic;
 using PrismOS.Libraries;
 
-namespace PrismOS.Applications
+namespace PrismOS.Libraries.Applications
 {
     public class Terminal : Runtime.Application
     {
@@ -85,7 +85,7 @@ namespace PrismOS.Applications
             Button1.Radius = 0;
             Button1.Text = "X";
             Button1.Theme = Theme.DefaultDark;
-            Button1.OnClick = (Element E, Window Parent) => { Runtime.Windows.RemoveAt(Runtime.Windows.IndexOf(Window)); Runtime.Applications.RemoveAt(Runtime.Applications.IndexOf(this)); };
+            Button1.OnClick = new System.Action(() => { Button1_Click(); });
             Window.Elements.Add(Button1);
 
             Runtime.Windows.Add(Window);
@@ -150,6 +150,11 @@ namespace PrismOS.Applications
                         break;
                 }
             }
+        }
+
+        private void Button1_Click()
+        {
+            Runtime.Windows.RemoveAt(Runtime.Windows.IndexOf(Window)); Runtime.Applications.RemoveAt(Runtime.Applications.IndexOf(this));
         }
     }
 }
