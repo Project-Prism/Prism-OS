@@ -46,13 +46,20 @@ namespace PrismOS.Libraries
                     #region Calculations
 
                     E.OnUpdate.Invoke();
-                    if (E.Clicked && Mouse.MouseState != Cosmos.System.MouseState.Left && !Dragging)
-                    {
-                        E.Clicked = false;
-                        E.OnClick.Invoke();
+                    
+                    if (IsMouseWithin(Window.X+E.X, Window.Y+E.Y, E.Width, E.Height)) {
+                        E.Hovering=true;
+                        if (Cosmos.System.MouseManager.MouseState==Cosmos.System.MouseState.Left) {
+                            E.Clicked=true;
+                        } else {
+                            if (E.Clicked) {
+                                E.Clicked=false;
+                                E.OnClick();
+                            }
+                        }
+                    } else {
+                        E.Hovering=false;
                     }
-                    E.Hovering = Mouse.X >= E.X && Mouse.IsMouseWithin(E.X, E.Y, E.Width, E.Height);
-                    E.Clicked = E.Hovering && Mouse.MouseState == Cosmos.System.MouseState.Left;
 
                     #endregion
 
