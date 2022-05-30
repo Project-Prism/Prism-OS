@@ -40,6 +40,25 @@ namespace PrismOS.Libraries
                         Window.Y = (int)Mouse.Y - Window.IY;
                     }
                 }
+
+                foreach (Element E in Window.Elements)
+                {
+                    #region Calculations
+
+                    E.OnUpdate.Invoke();
+                    if (E.Clicked && Mouse.MouseState != Cosmos.System.MouseState.Left && !Dragging)
+                    {
+                        E.Clicked = false;
+                        E.OnClick.Invoke();
+                    }
+                    E.Hovering = Mouse.X >= E.X && Mouse.IsMouseWithin(E.X, E.Y, E.Width, E.Height);
+                    E.Clicked = E.Hovering && Mouse.MouseState == Cosmos.System.MouseState.Left;
+
+                    #endregion
+
+                    E.Update(Canvas.Current, Window);
+                }
+
                 Window.Update(Canvas.Current);
             }
         }
@@ -67,7 +86,7 @@ namespace PrismOS.Libraries
             public abstract void OnDestroy();
             public abstract void OnCreate();
         }
-        
+
         public static void Stop()
         {
             Canvas.Current.Clear();
