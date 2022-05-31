@@ -7,10 +7,7 @@
 
         public override void Update(Canvas Canvas, Window Parent)
         {
-            if (Visible && Parent.Visible && Theme != null)
-            {
-                Canvas.DrawString(Parent.X + X + (Width / 2), Parent.Y + Y + (Height / 2), Text, Theme.Foreground, Underline, Crossout, Center);
-            }
+            Canvas.DrawString(Parent.X + X + (Width / 2), Parent.Y + Y + (Height / 2), Text, Theme.Foreground, Underline, Crossout, Center);
         }
     }
 }

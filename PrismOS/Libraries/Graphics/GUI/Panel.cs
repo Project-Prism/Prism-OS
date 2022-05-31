@@ -4,10 +4,7 @@
     {
         public override void Update(Canvas Canvas, Window Parent)
         {
-            if (Visible && Parent.Visible && Theme != null)
-            {
-                Canvas.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, Theme.Background);
-            }
+            Canvas.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, Theme.Background);
         }
     }
 }

@@ -40,33 +40,43 @@ namespace PrismOS.Libraries
                         Window.Y = (int)Mouse.Y - Window.IY;
                     }
                 }
+                
+                Window.Update(Canvas.Current);
 
                 foreach (Element E in Window.Elements)
                 {
                     #region Calculations
 
                     E.OnUpdate.Invoke();
-                    
-                    if (IsMouseWithin(Window.X+E.X, Window.Y+E.Y, E.Width, E.Height)) {
-                        E.Hovering=true;
-                        if (Cosmos.System.MouseManager.MouseState==Cosmos.System.MouseState.Left) {
-                            E.Clicked=true;
-                        } else {
-                            if (E.Clicked) {
-                                E.Clicked=false;
+
+                    if (IsMouseWithin(Window.X + E.X, Window.Y + E.Y, E.Width, E.Height) && Window == Windows[^1])
+                    {
+                        E.Hovering = true;
+                        if (Mouse.MouseState == Cosmos.System.MouseState.Left)
+                        {
+                            E.Clicked = true;
+                        }
+                        else
+                        {
+                            if (E.Clicked)
+                            {
+                                E.Clicked = false;
                                 E.OnClick();
                             }
                         }
-                    } else {
-                        E.Hovering=false;
+                    }
+                    else
+                    {
+                        E.Hovering = false;
                     }
 
                     #endregion
 
-                    E.Update(Canvas.Current, Window);
+                    if (Window.Visible && E.Visible)
+                    {
+                        E.Update(Canvas.Current, Window);
+                    }
                 }
-
-                Window.Update(Canvas.Current);
             }
         }
 
@@ -105,6 +115,11 @@ namespace PrismOS.Libraries
                 App.OnDestroy();
             }
             Cosmos.System.Power.Shutdown();
+        }
+
+        public static bool IsMouseWithin(int X, int Y, int Width, int Height)
+        {
+            return Mouse.X >= X && Mouse.X <= X + Width && Mouse.Y >= Y && Mouse.Y <= Y + Height;
         }
     }
 }

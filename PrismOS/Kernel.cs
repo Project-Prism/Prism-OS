@@ -17,8 +17,7 @@ namespace PrismOS
             (() => { VFS.Initialize(true); }, "Initilizing VFS..."),
             (() => { VFSManager.RegisterVFS(VFS); }, "Registering VFS..."),
             (() => { new DHCPClient().SendDiscoverPacket(); DNS = new(); }, "Starting network services..."),
-            (() => { _ = new Libraries.Applications.Terminal(); }, "Creating terminal..."),
-            (() => { _ = new Libraries.Applications.AppTemplate1(); }, "Creating f..."),
+            (() => { _ = new Libraries.Applications.AppTemplate1(); }, "Creating app..."),
         };
         public static CosmosVFS VFS = new();
         public static DnsClient DNS = new();

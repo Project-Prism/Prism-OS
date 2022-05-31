@@ -3,7 +3,7 @@ using PrismOS.Libraries.Graphics;
 using System.Collections.Generic;
 using PrismOS.Libraries;
 
-namespace PrismOS.Libraries.Applications
+namespace PrismOS.Text
 {
     public class Terminal : Runtime.Application
     {
@@ -14,7 +14,7 @@ namespace PrismOS.Libraries.Applications
             public string Usage { get; set; }
             public string Permission { get; set; }
             public System.Action<object> Target { get; set; }
-           }
+        }
         public List<Command> Commands;
         public Button Button1 = new();
         public Window Window = new();
@@ -32,7 +32,7 @@ namespace PrismOS.Libraries.Applications
                     Description = "Clear the console",
                     Permission = "User",
                     Usage = "[ Empty ]",
-                    Target = (object Arguments) => { Label1.Text += "> "; },
+                    Target = (Arguments) => { Label1.Text += "> "; },
                 },
                 new()
                 {
@@ -40,7 +40,7 @@ namespace PrismOS.Libraries.Applications
                     Description = "Get the current time",
                     Permission = "User",
                     Usage = "[ Empty ]",
-                    Target = (object Arguments) => { Label1.Text += System.DateTime.Now.ToString("M/d/yyyy, h:mm t UTC+z") + "\n"; }
+                    Target = (Arguments) => { Label1.Text += System.DateTime.Now.ToString("M/d/yyyy, h:mm t UTC+z") + "\n"; }
                 },
                 new()
                 {
@@ -48,7 +48,7 @@ namespace PrismOS.Libraries.Applications
                   Description = "Echo some text back",
                   Permission = "User",
                   Usage = "[ Empty ]",
-                  Target = (object Args) => { Label1.Text += Args + "\n"; },
+                  Target = (Args) => { Label1.Text += Args + "\n"; },
                 },
             };
 
@@ -112,7 +112,7 @@ namespace PrismOS.Libraries.Applications
                     Label1.Text += Temp[I] + '\n';
                 }
             }
-            
+
             if (Cosmos.System.KeyboardManager.TryReadKey(out var Key))
             {
                 switch (Key.Key)

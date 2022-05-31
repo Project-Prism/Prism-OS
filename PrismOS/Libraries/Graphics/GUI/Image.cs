@@ -6,7 +6,7 @@
 
         public override void Update(Canvas Canvas, Window Parent)
         {
-            if (Visible && Parent.Visible && Source != null)
+            if (Source != null)
             {
                 if (Width == default || Height == default)
                 {
