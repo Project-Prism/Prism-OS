@@ -13,8 +13,8 @@ namespace PrismOS
     {
         public static List<(Action, string)> BootTasks = new()
         {
-            (() => { Canvas = new(960, 540); }, "Creating new canvas instace..."),
-            (() => { VFS.Initialize(true); }, "Initilizing VFS..."),
+            (() => { Canvas = new(960, 540); }, "Creating new canvas instance..."),
+            (() => { VFS.Initialize(true); }, "Initializing VFS..."),
             (() => { VFSManager.RegisterVFS(VFS); }, "Registering VFS..."),
             (() => { new DHCPClient().SendDiscoverPacket(); DNS = new(); }, "Starting network services..."),
             (() => { _ = new Libraries.Applications.AppTemplate1(); }, "Creating app..."),
@@ -42,7 +42,7 @@ namespace PrismOS
         {
             try
             {
-                Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}", Canvas.Font.Default, Color.BloodOrange);
+                Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}", Color.Black);
                 Runtime.Update();
                 Canvas.Update(true);
             }
