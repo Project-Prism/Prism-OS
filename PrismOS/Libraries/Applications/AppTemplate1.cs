@@ -10,7 +10,6 @@ namespace PrismOS.Libraries.Applications
         public Button Button1 = new();
         public Window Window = new();
         public Label Label1 = new();
-        public Panel Panel1 = new();
 
         public override void OnCreate()
         {
@@ -22,15 +21,6 @@ namespace PrismOS.Libraries.Applications
             Window.Radius = 0;
             Window.Theme = Theme.DefaultDark;
             Window.Text = "Form1";
-
-            // Main panel
-            Panel1.X = 0;
-            Panel1.Y = 0;
-            Panel1.Width = Window.Width;
-            Panel1.Height = Window.Height;
-            Panel1.Radius = 0;
-            Panel1.Theme = Theme.DefaultDark;
-            Window.Elements.Add(Panel1);
 
             // Label1
             Label1.X = 12;

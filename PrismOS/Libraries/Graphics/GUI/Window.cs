@@ -15,12 +15,13 @@ namespace PrismOS.Libraries.Graphics.GUI
         {
             if (Visible)
             {
+                Canvas.DrawFilledRectangle(X, Y - (TitleVisible ? 15 : 0), Width, Height, Radius, Theme.Background);
                 if (TitleVisible)
                 {
                     Canvas.DrawFilledRectangle(X, Y - 15, Width, 15, 0, Theme.Accent);
                     Canvas.DrawString(X, Y - 15, Text, Font, Theme.Foreground);
                 }
-                Canvas.DrawRectangle(X, Y, Width - 1, Height - 1, Radius, Theme.Foreground);
+                Canvas.DrawRectangle(X, Y - (TitleVisible ? 15 : 0), Width - 1, Height - 1, Radius, Theme.Foreground);
             }
         }
     }
