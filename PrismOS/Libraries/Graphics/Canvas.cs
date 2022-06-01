@@ -288,7 +288,6 @@ namespace PrismOS.Libraries.Graphics
                 this.MS = MS;
                 this.Width = Width;
                 this.Height = Height;
-                this.Size=Height;
             }
 
             public static string DefaultCharset = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
@@ -298,7 +297,6 @@ namespace PrismOS.Libraries.Graphics
             public MemoryStream MS;
             public int Width;
             public int Height;
-            public int Size;
         }
 
         public void DrawString(int X, int Y, string Text, Font Font, Color Color, bool Center = false, int Padding = 2)
@@ -332,25 +330,25 @@ namespace PrismOS.Libraries.Graphics
         public int DrawChar(int X, int Y, char Char, Font Font, Color Color)
         {
             int Index = Font.Charset.IndexOf(Char);
-            if (Index == -1) return Font.Size / 2;
+            if (Index == -1) return Font.Height / 2;
 
             int MaxX = 0;
 
             bool LastPixelIsNotDrawn = false;
 
-            int SizePerFont = Font.Size * (Font.Size / Font.Width);
+            int SizePerFont = Font.Height * (Font.Height / Font.Width);
             byte[] BFont = new byte[SizePerFont];
             Font.MS.Seek(SizePerFont * Index, SeekOrigin.Begin);
             Font.MS.Read(BFont, 0, BFont.Length);
 
-            for (int h = 0; h < Font.Size; h++)
+            for (int h = 0; h < Font.Height; h++)
             {
-                for (int aw = 0; aw < Font.Size / Font.Width; aw++)
+                for (int aw = 0; aw < Font.Height / Font.Width; aw++)
                 {
 
                     for (int ww = 0; ww < 8; ww++)
                     {
-                        if ((BFont[(h * (Font.Size / 8)) + aw] & (0x80 >> ww)) != 0)
+                        if ((BFont[(h * (Font.Height / 8)) + aw] & (0x80 >> ww)) != 0)
                         {
                             SetPixel(X + (aw * 8) + ww, Y + h, Color);
 

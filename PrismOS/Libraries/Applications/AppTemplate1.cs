@@ -34,7 +34,6 @@ namespace PrismOS.Libraries.Applications
             TextBox1.Y = 27;
             TextBox1.Width = 100;
             TextBox1.Height = 23;
-            TextBox1.Hint = "Start typing...";
             TextBox1.Theme = Theme.DefaultDark;
             Window.Elements.Add(TextBox1);
 

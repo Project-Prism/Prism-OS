@@ -19,7 +19,7 @@ namespace PrismOS.Libraries.Graphics.GUI
                 if (TitleVisible)
                 {
                     Canvas.DrawFilledRectangle(X, Y - 20, Width, 20, Radius, Theme.Accent);
-                    Canvas.DrawString(X + ((Width / 2)-(Text.Length*Font.Width)), Y-20, Text, Font, Theme.Foreground, false);
+                    Canvas.DrawString(X + Width / 2, Y-20, Text, Font, Theme.Foreground, true);
                     Canvas.DrawRectangle(X, Y - 20, Width - 1, Height - 1, Radius, Theme.Foreground);
                 }
             }
