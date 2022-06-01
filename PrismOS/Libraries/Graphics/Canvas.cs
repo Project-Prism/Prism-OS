@@ -317,7 +317,7 @@ namespace PrismOS.Libraries.Graphics
                     if (Center)
                     {
                         IX -= Font.Size * (Lines[Line].Length / 2);
-                        IY -= Font.Size * ((Lines.Length - 1) / 2);
+                        IY -= Font.Size * (Lines.Length / 2);
                     }
 
                     DrawChar(IX, IY, Lines[Line][Char], Font, Color);
