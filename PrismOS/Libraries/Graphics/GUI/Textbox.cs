@@ -23,11 +23,11 @@
             Canvas.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, Theme.Background);
             if (Text.Length == 0 && Hint.Length != 0)
             {
-                Canvas.DrawString(Parent.X + X + (Width / 2), Parent.Y + Y + (Height / 2), Hint, Font, Theme.ForegroundHint, true);
+                Canvas.DrawString(Parent.X + X + ((Width / 2) - Hint.Length * Font.Width / 2), Parent.Y + Y, Hint, Font, Theme.ForegroundHint, false);
             }
             else
             {
-                Canvas.DrawString(Parent.X + X + (Width / 2), Parent.Y + Y + (Height / 2), Text, Font, Theme.Foreground, true);
+                Canvas.DrawString(Parent.X + X + ((Width / 2) - Text.Length * Font.Width / 2), Parent.Y + Y, Text, Font, Theme.Foreground, false);
             }
             Canvas.DrawRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, Theme.Foreground);
         }

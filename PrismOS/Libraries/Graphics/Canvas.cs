@@ -282,18 +282,22 @@ namespace PrismOS.Libraries.Graphics
 
         public class Font
         {
-            public Font(string Charset, MemoryStream MS, int Size)
+            public Font(string Charset, MemoryStream MS, int Width, int Height)
             {
                 this.Charset = Charset;
                 this.MS = MS;
-                this.Size = Size;
+                this.Width = Width;
+                this.Height = Height;
+                this.Size=Height;
             }
 
             public static string DefaultCharset = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
-            public static Font Default = new(DefaultCharset, new(Font1), 16);
+            public static Font Default = new(DefaultCharset, new(Font1), 8, 16);
 
             public string Charset;
             public MemoryStream MS;
+            public int Width;
+            public int Height;
             public int Size;
         }
 
@@ -310,14 +314,14 @@ namespace PrismOS.Libraries.Graphics
                 for (int Char = 0; Char < Lines[Line].Length; Char++)
                 {
                     // draw character in the middle of x and y
-                    int IX = X + (Font.Size * Char);
-                    int IY = Y + (Font.Size * Line);
+                    int IX = X + (Font.Width * Char);
+                    int IY = Y + (Font.Height * Line);
 
                     // If center, move ix and iy to the center
                     if (Center)
                     {
-                        IX -= Font.Size * (Lines[Line].Length / 2);
-                        IY -= Font.Size * (Lines.Length / 2);
+                        IX -= Font.Width * (Lines[Line].Length / 2);
+                        IY -= Font.Height * (Lines.Length / 2);
                     }
 
                     DrawChar(IX, IY, Lines[Line][Char], Font, Color);
@@ -334,14 +338,14 @@ namespace PrismOS.Libraries.Graphics
 
             bool LastPixelIsNotDrawn = false;
 
-            int SizePerFont = Font.Size * (Font.Size / 8);
+            int SizePerFont = Font.Size * (Font.Size / Font.Width);
             byte[] BFont = new byte[SizePerFont];
             Font.MS.Seek(SizePerFont * Index, SeekOrigin.Begin);
             Font.MS.Read(BFont, 0, BFont.Length);
 
             for (int h = 0; h < Font.Size; h++)
             {
-                for (int aw = 0; aw < Font.Size / 8; aw++)
+                for (int aw = 0; aw < Font.Size / Font.Width; aw++)
                 {
 
                     for (int ww = 0; ww < 8; ww++)

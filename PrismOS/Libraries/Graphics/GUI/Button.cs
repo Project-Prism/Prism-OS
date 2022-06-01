@@ -10,8 +10,8 @@
             Color BG = Clicked ? Theme.BackgroundClick : Hovering ? Theme.BackgroundHover : Theme.Background;
             Color FG = Clicked ? Theme.ForegroundClick : Hovering ? Theme.ForegroundHover : Theme.Foreground;
 
-            int SX = Parent.X + X + ((Width / 2) - Text.Length * Font.Size / 2);
-            int SY = Parent.Y + Y + ((Height / 2) - (Text.Split('\n').Length * Font.Size / 2));
+            int SX = Parent.X + X + ((Width / 2) - Text.Length * Font.Width / 2);
+            int SY = Parent.Y + Y + ((Height / 2) - (Text.Split('\n').Length * Font.Height / 2));
 
             Canvas.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, BG);
             Canvas.DrawString(SX, SY, Text, Font, FG);
