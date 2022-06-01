@@ -4,9 +4,10 @@ namespace PrismOS.Libraries.Graphics.GUI
 {
     public class Window
     {
+        public bool Visible = true, Draggable = true, TitleVisible = true, Moving;
+        public Canvas.Font Font = Canvas.Font.Default;
         public int X, Y, Width, Height, Radius, IX, IY;
         public List<Element> Elements = new();
-        public bool Visible = true, Draggable = true, TitleVisible = true, Moving;
         public Theme Theme;
         public string Text;
 
@@ -17,7 +18,7 @@ namespace PrismOS.Libraries.Graphics.GUI
                 if (TitleVisible)
                 {
                     Canvas.DrawFilledRectangle(X, Y - 15, Width, 15, 0, Theme.Accent);
-                    Canvas.DrawString(X, Y - 15, Text, Theme.Foreground);
+                    Canvas.DrawString(X, Y - 15, Text, Font, Theme.Foreground);
                 }
                 Canvas.DrawRectangle(X, Y, Width - 1, Height - 1, Radius, Theme.Foreground);
             }

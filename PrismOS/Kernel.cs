@@ -32,7 +32,7 @@ namespace PrismOS
                 T.Item1.Invoke();
                 Canvas.Clear();
                 Canvas.DrawImage(Canvas.Width / 2 - 128, Canvas.Height / 2 - 128, 256, 256, Files.Resources.Logo);
-                Canvas.DrawString(Canvas.Width / 2, Canvas.Height / 2 + 128, $"Prism OS\nPowered by the cosmos Kernel.\n\n{T.Item2}", Color.White, true);
+                Canvas.DrawString(Canvas.Width / 2, Canvas.Height / 2 + 128, $"Prism OS\nPowered by the cosmos Kernel.\n\n{T.Item2}", Canvas.Font.Default, Color.White, true);
                 Canvas.Update(false);
             }
             Booting = false;
@@ -42,7 +42,7 @@ namespace PrismOS
         {
             try
             {
-                Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}", Color.Black);
+                Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}", Canvas.Font.Default, Color.BloodOrange);
                 Runtime.Update();
                 Canvas.Update(true);
             }
@@ -53,7 +53,7 @@ namespace PrismOS
                 Canvas.Clear();
                 Canvas.DrawImage(Canvas.Width / 2 - 128, Canvas.Height / 2 - 128, 256, 256, Files.Resources.Logo);
                 string Error = $"[!] Critical failure [!]\nPrism OS has {(Booting ? "failed to boot" : "crashed")}! see error message below.\n" + EX.Message;
-                Canvas.DrawString(Canvas.Width / 2, Canvas.Height / 2 + 128, Error, Color.Red, true);
+                Canvas.DrawString(Canvas.Width / 2, Canvas.Height / 2 + 128, Error, Canvas.Font.Default, Color.Red, true);
                 Canvas.Update(false);
                 while (true) { }
 

@@ -1,12 +1,9 @@
-﻿using SVGADriver = Cosmos.HAL.Drivers.PCI.Video.VMWareSVGAII;
-using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
+﻿using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
 using Mouse = Cosmos.System.MouseManager;
 using static PrismOS.Files.Resources;
 using PrismOS.Libraries.Numerics;
 using PrismOS.Libraries.Formats;
 using Cosmos.Core;
-using System.Text;
-using Cosmos.HAL;
 using System.IO;
 using System;
 
@@ -16,17 +13,7 @@ namespace PrismOS.Libraries.Graphics
     {
         public Canvas(int Width, int Height)
         {
-            if (PCI.GetDevice(VendorID.VMWare, DeviceID.SVGAIIAdapter) != null)
-            {
-                UseVBE = false;
-                SVGA = new();
-                SVGA.SetMode((uint)Width, (uint)Height, 32);
-            }
-            else
-            {
-                UseVBE = true;
-                VBE = new((ushort)Width, (ushort)Height, 32);
-            }
+            VBE = new((ushort)Width, (ushort)Height, 32);
             this.Width = Width;
             this.Height = Height;
             Buffer = new int*[Width * Height];
@@ -40,10 +27,8 @@ namespace PrismOS.Libraries.Graphics
             Current = this;
         }
 
-        private readonly bool UseVBE = false;
         public int Width, Height, FPS;
         public static Canvas Current;
-        public SVGADriver SVGA;
         public VBEDriver VBE;
         public int*[] Buffer;
         private DateTime LT;
@@ -64,20 +49,6 @@ namespace PrismOS.Libraries.Graphics
 
             // Draw main pixel
             Buffer[(Width * Y) + X] = (int*)Color.ARGB;
-            //MemoryOperations.Copy(Buffer[(Width * Y) + X], (int*)Color.ARGB, 1);
-        }
-        public void SetBlurPixel(int X, int Y, int Size)
-        {
-            Color Average = new(255, 0, 0, 0);
-            for (int IX = 0; IX < Size; IX++)
-            {
-                for (int IY = 0; IY < Size; IY++)
-                {
-                    Average.R += (byte)(GetPixel(X + IX, Y + IY).R / (Size * Size));
-                    Average.G += (byte)(GetPixel(X + IX, Y + IY).G / (Size * Size));
-                    Average.B += (byte)(GetPixel(X + IX, Y + IY).B / (Size * Size));
-                }
-            }
         }
         public Color GetPixel(int X, int Y)
         {
@@ -140,7 +111,7 @@ namespace PrismOS.Libraries.Graphics
                 DrawLine(X2, Y2, X3, Y3, Color);
             }
         }
-        public void DrawCubicBezierLine(int X0 , int Y0, int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
+        public void DrawCubicBezierLine(int X0, int Y0, int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
         {
             for (double U = 0.0; U <= 1.0; U += 0.0001)
             {
@@ -311,102 +282,94 @@ namespace PrismOS.Libraries.Graphics
 
         public class Font
         {
-            public Font(int Width, int Height, string Base64)
+            public Font(string Charset, MemoryStream MS, int Size)
             {
-                this.Width = Width;
-                this.Height = Height;
-                MS = new(Convert.FromBase64String(Base64));
-            }
-            public Font(byte[] Data)
-            {
-                Width = Data[0];
-                Height = Data[1];
-                MS = new(Data, 2, Data.Length - 2, true);
-            }
-            public Font(string FromFile)
-            {
-                byte[] File = System.IO.File.ReadAllBytes(FromFile);
-                Width = File[0];
-                Height = File[1];
-                MS = new(File, 2, File.Length - 2, true);
+                this.Charset = Charset;
+                this.MS = MS;
+                this.Size = Size;
             }
 
-            public int Width;
-            public int Height;
+            public static string DefaultCharset = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+            public static Font Default = new(DefaultCharset, new(Font1), 16);
+
+            public string Charset;
             public MemoryStream MS;
-            public readonly static Font Default = new(8, 16, "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AAB4zMzM2MzGxsbMAAAAAAAA/sbGwMDAwMDAwAAAAAAAAAAA/mxsbGxsbGwAAAAAAAAA/sZgMBgwYMb+AAAAAAAAAAAAftjY2NjYcAAAAAAAAAAAZmZmZmZ8YGDAAAAAAAAAAHbcGBgYGBgYAAAAAAAAAH4YPGZmZjwYfgAAAAAAAAA4bMbG/sbGbDgAAAAAAAA4bMbGxmxsbGzuAAAAAAAAHjAYDD5mZmZmPAAAAAAAAAAAAH7b29t+AAAAAAAAAAAAAwZ+29vzfmDAAAAAAAAAHDBgYHxgYGAwHAAAAAAAAAB8xsbGxsbGxsYAAAAAAAAAAP4AAP4AAP4AAAAAAAAAAAAYGH4YGAAA/wAAAAAAAAAwGAwGDBgwAH4AAAAAAAAADBgwYDAYDAB+AAAAAAAADhsbGBgYGBgYGBgYGBgYGBgYGBgYGNjY2HAAAAAAAAAAABgYAH4AGBgAAAAAAAAAAAAAdtwAdtwAAAAAAAAAOGxsOAAAAAAAAAAAAAAAAAAAAAAAABgYAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAAADwwMDAwM7GxsPBwAAAAAANhsbGxsbAAAAAAAAAAAAABw2DBgyPgAAAAAAAAAAAAAAAAAfHx8fHx8fAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==");
+            public int Size;
         }
-        public void DrawString(int X, int Y, string Text, Color Color)
-        {
-            DrawString(X, Y, Text, Color, Font.Default, false, false, false);
-        }
-        public void DrawString(int X, int Y, string Text, Color Color, bool Center)
-        {
-            DrawString(X, Y, Text, Color, Font.Default, false, false, Center);
-        }
-        public void DrawString(int X, int Y, string Text, Color Color, bool Underline, bool Crossout)
-        {
-            DrawString(X, Y, Text, Color, Font.Default, Underline, Crossout, false);
-        }
-        public void DrawString(int X, int Y, string Text, Color Color, bool Underline, bool Crossout, bool Center)
-        {
-            DrawString(X, Y, Text, Color, Font.Default, Underline, Crossout, Center);
-        }
-        public void DrawString(int X, int Y, string Text, Color Color, Font Font, bool Underline, bool Crossout, bool Center)
+
+        public void DrawString(int X, int Y, string Text, Font Font, Color Color, bool Center = false, int Padding = 2)
         {
             if (Text == null || Text.Length == 0)
             {
                 return;
             }
-
-            if (Center)
-            {
-                string Longest = "";
-                foreach (string S in Text.Split('\n'))
-                {
-                    if (S.Length > Longest.Length)
-                    {
-                        Longest = S;
-                    }
-                }
-                Y -= Text.Split('\n').Length * Font.Default.Height / 2;
-            }
             string[] Lines = Text.Split('\n');
+            
             for (int Line = 0; Line < Lines.Length; Line++)
             {
-                int TX = Center ? X - Lines[Line].Length * Font.Default.Width / 2 : X;
-                if (Crossout)
-                {
-                    for (int I = -1; I < 1; I++)
-                    {
-                        DrawLine(TX, Y + (Font.Height / 2) + I, TX + (Font.Width * Text.Length), Y + (Font.Height / 2) + I, Color);
-                    }
-                }
-                if (Underline)
-                {
-                    for (int I = 0; I < 3; I++)
-                    {
-                        DrawLine(TX, Y + Font.Height + I, TX + (Font.Width * Text.Length), Y + Font.Height + I, Color);
-                    }
-                }
                 for (int Char = 0; Char < Lines[Line].Length; Char++)
                 {
-                    Font.MS.Seek((Encoding.ASCII.GetBytes(Lines[Line][Char].ToString())[0] & 0xFF) * Font.Height, SeekOrigin.Begin);
-                    byte[] fontbuf = new byte[Font.Height];
-                    Font.MS.Read(fontbuf, 0, fontbuf.Length);
+                    // draw character in the middle of x and y
+                    int IX = X + (Font.Size * Char);
+                    int IY = Y + (Font.Size * Line);
 
-                    for (int IY = 0; IY < Font.Height; IY++)
+                    // If center, move ix and iy to the center
+                    if (Center)
                     {
-                        for (int IX = 0; IX < Font.Width; IX++)
+                        IX -= Font.Size * (Lines[Line].Length / 2);
+                        IY -= Font.Size * ((Lines.Length - 1) / 2);
+                    }
+
+                    DrawChar(IX, IY, Lines[Line][Char], Font, Color);
+                }
+            }
+        }
+
+        public int DrawChar(int X, int Y, char Char, Font Font, Color Color)
+        {
+            int Index = Font.Charset.IndexOf(Char);
+            if (Index == -1) return Font.Size / 2;
+
+            int MaxX = 0;
+
+            bool LastPixelIsNotDrawn = false;
+
+            int SizePerFont = Font.Size * (Font.Size / 8);
+            byte[] BFont = new byte[SizePerFont];
+            Font.MS.Seek(SizePerFont * Index, SeekOrigin.Begin);
+            Font.MS.Read(BFont, 0, BFont.Length);
+
+            for (int h = 0; h < Font.Size; h++)
+            {
+                for (int aw = 0; aw < Font.Size / 8; aw++)
+                {
+
+                    for (int ww = 0; ww < 8; ww++)
+                    {
+                        if ((BFont[(h * (Font.Size / 8)) + aw] & (0x80 >> ww)) != 0)
                         {
-                            if ((fontbuf[IY] & (0x80 >> IX)) != 0)
+                            SetPixel(X + (aw * 8) + ww, Y + h, Color);
+
+                            if ((aw * 8) + ww > MaxX)
                             {
-                                SetPixel(TX + IX + (Char * Font.Width), Y + IY + (Line * Font.Height), Color);
+                                MaxX = (aw * 8) + ww;
                             }
+
+                            if (LastPixelIsNotDrawn)
+                            {
+                                SetPixel(X + (aw * 8) + ww - 1, Y + h, new((byte)(Color.R / 2), (byte)(Color.G / 2), (byte)(Color.B / 2)));
+                                LastPixelIsNotDrawn = false;
+                            }
+                        }
+                        else
+                        {
+                            LastPixelIsNotDrawn = true;
                         }
                     }
                 }
             }
+
+            return MaxX;
         }
 
         #endregion
@@ -436,14 +399,7 @@ namespace PrismOS.Libraries.Graphics
                 DrawImage((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
             }
 
-            if (UseVBE)
-            {
-                Cosmos.Core.Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);
-            }
-            else
-            {
-                SVGA.VideoMemory.Copy((int[])(object)Buffer);
-            }
+            Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);
             MemoryOperations.Copy((int[])(object)Buffer, (int[])(object)Wallpaper.Buffer);
         }
 

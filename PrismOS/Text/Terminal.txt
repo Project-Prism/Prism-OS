@@ -98,12 +98,12 @@ namespace PrismOS.Text
         public override void OnUpdate()
         {
             // Trim the string to fit within the window
-            while (Label1.Text.Length * Canvas.Font.Default.Width > Window.Width)
+            while (Label1.Text.Length * Canvas.Font.Default.Size > Window.Width)
             {
                 Label1.Text = Label1.Text[0..(Label1.Text.Length - 1)];
                 Input = Input[0..(Input.Length - 1)];
             }
-            while (Label1.Text.Split('\n').Length * Canvas.Font.Default.Height > Window.Height * 2)
+            while (Label1.Text.Split('\n').Length * Canvas.Font.Default.Size > Window.Height * 2)
             {
                 string[] Temp = Label1.Text.Split('\n');
                 Label1.Text = "";

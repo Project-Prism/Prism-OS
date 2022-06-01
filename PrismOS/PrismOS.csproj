@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <EnableGDB>True</EnableGDB>
+        <EnableGDB>False</EnableGDB>
         <StartCosmosGDB>False</StartCosmosGDB>
         <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
         <CosmosDebugPort>Serial: COM1</CosmosDebugPort>

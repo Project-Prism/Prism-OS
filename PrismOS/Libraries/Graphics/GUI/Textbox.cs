@@ -2,7 +2,8 @@
 {
     public class Textbox : Element
     {
-        public string Hint;
+        public Canvas.Font Font = Canvas.Font.Default;
+        public string Hint = "";
         public string Text = "";
 
         public override void Update(Canvas Canvas, Window Parent)
@@ -22,11 +23,11 @@
             Canvas.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, Theme.Background);
             if (Text.Length == 0 && Hint.Length != 0)
             {
-                Canvas.DrawString(Parent.X + X + (Width / 2), Parent.Y + Y + (Height / 2), Hint, Theme.ForegroundHint, true);
+                Canvas.DrawString(Parent.X + X + (Width / 2), Parent.Y + Y + (Height / 2), Hint, Font, Theme.ForegroundHint, true);
             }
             else
             {
-                Canvas.DrawString(Parent.X + X + (Width / 2), Parent.Y + Y + (Height / 2), Text, Theme.Foreground, true);
+                Canvas.DrawString(Parent.X + X + (Width / 2), Parent.Y + Y + (Height / 2), Text, Font, Theme.Foreground, true);
             }
             Canvas.DrawRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, Theme.Foreground);
         }
