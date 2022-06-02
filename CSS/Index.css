@@ -1,35 +1,6 @@
-header {
-    background: linear-gradient(to right, #77216f, #3f42e7 100%);
-    border-radius: 10px;
-    text-align: center;
-    font-size: 30px;
-    padding: 10px;
-}
-
 .Motto {
     margin-top: -1cm;
     font-size: 20px;
-}
-
-.OptionButtons button {
-    transition-duration: 0.4s;
-    border-color: black;
-    border-radius: 15px;
-    text-align: center;
-    margin-bottom: 1cm;
-    margin-left: 30px;
-    border-width: 2px;
-    margin-top: 3cm;
-    font-size: 20px;
-    padding: 15px;
-    width: 220px;
-    height: 60px;
-}
-
-.OptionButtons button:hover {
-    background-color:rgb(215, 236, 240);
-    transform: scale(1.25);
-    cursor: pointer;
 }
 
 .ProjectInfo {
@@ -39,9 +10,4 @@ header {
 
 .CosmosLink {
     color: cyan;
-}
-
-.GitHubUser {
-    text-decoration: none;
-    color: white;
 }

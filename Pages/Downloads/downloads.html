@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:900|Work+Sans:300" rel="stylesheet">
+        <link rel="icon" href="../../Images/PrismOSLogo.png">
+        <link rel="stylesheet" href="../../CSS/Global.css">
+        <link rel="stylesheet" href="./downloads.css">
+        <title>Prism OS - Downloads</title>
+    </head>
+
+    <body>
+        <header>
+
+            <a href="https://github.com/Project-Prism/Prism-OS"><img align="left" src="../../Images/PrismOSLogo.png" width="74"></a>
+
+            <!--Settings Button-->
+            <details align="right" class="SettingsButton"><summary>Settings</summary>
+                <button onclick="myFunction()">Toggle light mode</button>
+                <script>
+                    function myFunction() {
+                        var element = document.body;
+                        element.classList.toggle("LightMode");
+                        element.classList.toggle("footer-light");
+
+                        //The Weekend reference ;)
+                        alert("And I say, OOOOOO, I'm blinded by the lights!");
+                    }
+                </script>
+            </details>
+
+            <h1 align="center">Prism OS</h1>
+            <h3 class="PageType">Downloads</h3>
+
+            <!--Buttons-->
+
+            <div align="center" class="OptionButtons">
+                <button onclick="window.location.href='../../index.html'"><img align="left" src="../..//Images/Home.png" width="25">Home</button>
+                <button onclick="window.location.href='https://github.com/Project-Prism/Prism-OS'"><img align="left" src="../../Images/GitHubLogo.png" width="25">View our GitHub</button>
+                <button onclick="window.location.href='../Developers/developers.html'"><img align="left" src="../../Images/Developer.png" width="25">Developers</button>
+            </div>
+
+        </header>
+        
+        <main>
+
+            <!--TODO Add Rest Of Releases & Pre Releases-->
+
+            <!--
+                New Row Layout
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button class="TableButton" onclick="window.location.href='DownloadLinkHere'"><img align="left" src="../..//Images/FileDownloadIcon.png" width="20">Download</button></td>
+                </tr>
+            -->
+
+            <!--Prism OS-->
+
+            <div class="container">
+
+                <!--Left Side-->
+                <div class="fixed">
+                    <table align="center" id="hover">
+                        <thead>
+                            <tr>
+                                <th colspan="4" class="OSName">
+                                    Prism OS Releases<br>
+                                    <button class="TableButton HeadTableButton" onclick="window.location.href='https://github.com/Project-Prism/Prism-OS/releases'"><img align="left" src="../..//Images/FileDownloadIcon.png" width="20">Latest Download</button>
+                                </th>    
+                            </tr>
+                            <tr>
+                                <th>Version</th>
+                                <th>Release Date</th>
+                                <th>Release Type</th>
+                                <th><a href="https://github.com/Project-Prism/Prism-OS/releases">Download</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2.9.5</td>
+                                <td>05/30/2022</td>
+                                <td>Pre Release</td>
+                                <td><button class="TableButton" onclick="window.location.href='https://github.com/Project-Prism/Prism-OS/releases/tag/v2.9.5'"><img align="left" src="../..//Images/FileDownloadIcon.png" width="20">Download</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--Right Side-->
+                <div class="flex-item">
+                    <h2 align="center">Prism OS</h2>
+                    <p align="center">
+                        Prism OS is the latest operating system that is being actively developed by a small group of developers. The idea started during the beginning of the Covid 
+                        pandemic during the lockdowns. While it was on GitHub, more people eventually started contributing and helping develop the OS. The OS later started getting a little
+                        more support from some friends who helped develop the OS. As time gone on, the projected started growing and becoming more than a hobby but instead a real project
+                        with real potential. In fact, we somehow managed to get the <a href="https://github.com/Project-Prism/Prism-OS/commit/ec7d05be12f36d9fa4cd22a3a291b9547aada70b">
+                        main developer of Linux to commit on the project!</a>
+                    </p>
+                </div>
+            </div>
+
+            <!--Lemon-OS | EOL-->
+            <div class="container">
+
+                <!--Left Side-->
+                <div class="fixed">
+                    <h2 align="center">Lemon OS</h2>
+                    <p>
+                        Lemon OS was the original name that was chosen for this project. Later on, it was decided to be renamed to PrismOS. Lemon OS was the original operating system which
+                        was made by Terminal.cs (Original Developer) which was later posted on GitHub for other people to discover. It was simple made for fun without the intention to
+                        become something more than some fun side project.
+                    </p>
+                </div>
+
+                <!--Right Side-->
+                <div class="flex-item">
+
+                    <table align="center" id="hover">
+                        <thead>
+                            <tr>
+                                <th colspan="4" class="OSName">
+                                    Lemon-OS Releases<br>
+                                    <a class="EOL">⚠ Lemon-OS Has Reached Its End Of Life! ⚠</a>
+                                </th>
+                                
+                            </tr>
+                            <tr>
+                                <th>Version</th>
+                                <th>Release Type</th>
+                                <th>Release Date</th>
+                                <th><a href="https://github.com/Project-Prism/Prism-OS/releases">Download</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Version: 1.1.4</td>
+                                <td>Pre Release</td>
+                                <td>05/11/2022</td>
+                                <td><button class="TableButton" onclick="window.location.href='https://github.com/Project-Prism/Prism-OS/releases/tag/v1.1.4'"><img align="left" src="../..//Images/FileDownloadIcon.png" width="20">Download</button></td>
+                            </tr>
+                            <tr>
+                                <td>Version: 1.0</td>
+                                <td>Pre Release</td>
+                                <td>05/11/2022</td>
+                                <td><button class="TableButton" onclick="window.location.href='https://github.com/Project-Prism/Prism-OS/releases/tag/v1.0.0'"><img align="left" src="../..//Images/FileDownloadIcon.png" width="20">Download</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </main>
+
+        <footer>
+            <p>Website designed by <a class="FooterUser" href="https://github.com/theopcoder">theopcoder.</a></p>
+        </footer>
+    </body>
+</html>

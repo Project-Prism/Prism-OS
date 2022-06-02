@@ -6,13 +6,44 @@ body {
     color: white;
 }
 
-.SettingsButton button {
+header {
+    background: linear-gradient(to right, #77216f, #3f42e7 100%);
+    border-radius: 10px;
     text-align: center;
+    font-size: 30px;
+    padding: 10px;
+}
+
+.PageType {
+    margin-top: -1cm;
+    color: #d12ed6;
+}
+
+.OptionButtons button {
+    border: 2px solid black;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 1cm;
+    margin-left: 30px;
+    margin-top: 3cm;
+    font-size: 20px;
+    padding: 15px;
+    width: 220px;
+    height: 60px;
+}
+
+.OptionButtons button:hover {
+    background-color:rgb(215, 236, 240);
     transition-duration: 0.4s;
-    border-color: black;
+    transform: scale(1.25);
+    cursor: pointer;
+}
+
+.SettingsButton button {
+    border: 2px solid black;
     border-radius: 15px;
     margin-right: 10px;
-    border-width: 2px;
+    text-align: center;
     font-weight: bold;
     line-height: 5px;
     margin-top: 20px;
@@ -24,13 +55,13 @@ body {
 
 .SettingsButton button:hover {
     background-color:rgb(215, 236, 240);
+    transition-duration: 0.4s;
     transform: scale(1.1);
     cursor: pointer;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
 }
 
 .LightMode {
@@ -42,11 +73,29 @@ h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 
+/*BUG Footer not staying at bottom of screen*/
+/*New Footer*/
 footer {
     background-color: rgb(25, 25, 34);
     text-align: center;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    left: 0;
+    line-height: 50px;
+    position: bottom;
+    height: 50px;
 }
+
+.FooterUser {
+    color: white;
+}
+
+/*
+    Old Footer
+
+    footer {
+        background-color: rgb(25, 25, 34);
+        text-align: center;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+    }
+*/
