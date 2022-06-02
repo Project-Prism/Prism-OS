@@ -10,6 +10,7 @@ Have any problems? Found a bug? Just want to chat? [Join the discord](https://di
 ## Screenshots
 ![Image1](https://raw.githubusercontent.com/Project-Prism/Prism-OS/main/Images/1.png)
 ![Image2](https://raw.githubusercontent.com/Project-Prism/Prism-OS/main/Images/2.png)
+![Video1](https://raw.githubusercontent.com/Project-Prism/Prism-OS/main/Images/1.mp4)
 
 ## Notable contributors
 | Name                                                  | Contribution(s)              |
