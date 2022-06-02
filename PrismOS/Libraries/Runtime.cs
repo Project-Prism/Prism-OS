@@ -19,14 +19,14 @@ namespace PrismOS.Libraries
                 {
                     if (Mouse.MouseState == Cosmos.System.MouseState.Left)
                     {
-                        if (Mouse.X > Window.X && Mouse.X < Window.X + Window.Width && Mouse.Y > Window.Y - 15 && Mouse.Y < Window.Y && !Window.Moving && !Dragging)
+                        if (Mouse.X > Window.Position.X && Mouse.X < Window.Position.X + Window.Size.Width && Mouse.Y > Window.Position.Y - 15 && Mouse.Y < Window.Position.Y && !Window.Moving && !Dragging)
                         {
                             Dragging = true;
                             Windows.Remove(Window);
                             Windows.Insert(Windows.Count, Window);
                             Window.Moving = true;
-                            Window.IX = (int)Mouse.X - Window.X;
-                            Window.IY = (int)Mouse.Y - Window.Y;
+                            Window.IX = (int)Mouse.X - Window.Position.X;
+                            Window.IY = (int)Mouse.Y - Window.Position.Y;
                         }
                     }
                     else
@@ -36,8 +36,8 @@ namespace PrismOS.Libraries
                     }
                     if (Window.Moving)
                     {
-                        Window.X = (int)Mouse.X - Window.IX;
-                        Window.Y = (int)Mouse.Y - Window.IY;
+                        Window.Position.X = (int)Mouse.X - Window.IX;
+                        Window.Position.Y = (int)Mouse.Y - Window.IY;
                     }
                 }
                 
@@ -49,7 +49,7 @@ namespace PrismOS.Libraries
 
                     E.OnUpdate.Invoke();
 
-                    if (IsMouseWithin(Window.X + E.X, Window.Y + E.Y, E.Width, E.Height) && Window == Windows[^1])
+                    if (IsMouseWithin(Window.Position.X + E.Position.X, Window.Position.Y + E.Position.Y, E.Size.Width, E.Size.Height) && Window == Windows[^1])
                     {
                         E.Hovering = true;
                         if (Mouse.MouseState == Cosmos.System.MouseState.Left)

@@ -299,7 +299,7 @@ namespace PrismOS.Libraries.Graphics
             public int Height;
         }
 
-        public void DrawString(int X, int Y, string Text, Font Font, Color Color, bool CenterX = false, bool CenterY = false, int Padding = 2)
+        public void DrawString(int X, int Y, string Text, Font Font, Color Color, bool Center = false, int Padding = 2)
         {
             if (Text == null || Text.Length == 0)
             {
@@ -316,12 +316,9 @@ namespace PrismOS.Libraries.Graphics
                     int IY = Y + (Font.Height * Line);
 
                     // If center, move ix and iy to the center
-                    if (CenterX)
+                    if (Center)
                     {
                         IX -= Font.Width * (Lines[Line].Length / 2);
-                    }
-                    if (CenterY)
-                    {
                         IY -= Font.Height * (Lines.Length / 2);
                     }
 

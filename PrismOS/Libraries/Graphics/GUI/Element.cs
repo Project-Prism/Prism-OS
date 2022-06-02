@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PrismOS.Libraries.Numerics;
+using System;
 
 namespace PrismOS.Libraries.Graphics.GUI
 {
@@ -6,8 +7,8 @@ namespace PrismOS.Libraries.Graphics.GUI
     {
         public Action OnClick = () => { }, OnUpdate = () => { };
         public bool Clicked, Hovering, Visible = true;
-        public int X, Y, Width, Height, Radius;
-        public Theme Theme;
+        public Position Position;
+        public Size Size;
 
         public abstract void Update(Canvas Canvas, Window Parent);
     }

@@ -1,26 +1,54 @@
 ﻿using System.Collections.Generic;
+using PrismOS.Libraries.Numerics;
 
 namespace PrismOS.Libraries.Graphics.GUI
 {
     public class Window
     {
         public bool Visible = true, Draggable = true, TitleVisible = true, Moving;
-        public Canvas.Font Font = Canvas.Font.Default;
-        public int X, Y, Width, Height, Radius, IX, IY;
         public List<Element> Elements = new();
+        public Position Position;
+        public Size Size;
         public Theme Theme;
         public string Text;
+        public int IX, IY;
 
         public void Update(Canvas Canvas)
         {
             if (Visible)
             {
-                Canvas.DrawFilledRectangle(X, Y - (TitleVisible ? 20 : 0), Width, Height, Radius, Theme.Background);
+                Canvas.DrawFilledRectangle(
+                    Position.X,
+                    Position.Y - (TitleVisible ? 20 : 0),
+                    Size.Width, Size.Height,
+                    Theme.Radius,
+                    Theme.Background);
+                
                 if (TitleVisible)
                 {
-                    Canvas.DrawFilledRectangle(X, Y - 20, Width, 20, Radius, Theme.Accent);
-                    Canvas.DrawString(X + Width / 2, Y-20, Text, Font, Theme.Foreground, true);
-                    Canvas.DrawRectangle(X, Y - 20, Width - 1, Height - 1, Radius, Theme.Foreground);
+                    Canvas.DrawFilledRectangle(
+                        Position.X,
+                        Position.Y - 20,
+                        Size.Width,
+                        20,
+                        Theme.Radius,
+                        Theme.Accent);
+                    
+                    Canvas.DrawString(
+                        Position.X + Size.Width / 2,
+                        Position.Y - 20,
+                        Text,
+                        Theme.Font,
+                        Theme.Foreground,
+                        true);
+                    
+                    Canvas.DrawRectangle(
+                        Position.X,
+                        Position.Y - 20,
+                        Size.Width - 1,
+                        Size.Height - 1,
+                        Theme.Radius,
+                        Theme.Foreground);
                 }
             }
         }

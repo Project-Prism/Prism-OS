@@ -4,7 +4,13 @@
     {
         public override void Update(Canvas Canvas, Window Parent)
         {
-            Canvas.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, Theme.Background);
+            Canvas.DrawFilledRectangle(
+                Parent.Position.X + Position.X,
+                Parent.Position.Y + Position.Y,
+                Size.Width,
+                Size.Height,
+                Parent.Theme.Radius,
+                Parent.Theme.Background);
         }
     }
 }

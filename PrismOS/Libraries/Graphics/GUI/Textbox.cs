@@ -20,16 +20,40 @@
                 }
             }
 
-            Canvas.DrawFilledRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, Theme.Background);
+            Canvas.DrawFilledRectangle(
+                Parent.Position.X + Position.X,
+                Parent.Position.Y + Position.Y,
+                Size.Width,
+                Size.Height,
+                Parent.Theme.Radius,
+                Parent.Theme.Background);
+            
             if (Text.Length == 0 && Hint.Length != 0)
             {
-                Canvas.DrawString(Parent.X + X + ((Width / 2) - Hint.Length * Font.Width / 2), Parent.Y + Y, Hint, Font, Theme.ForegroundHint, false);
+                Canvas.DrawString(
+                    Parent.Position.X + Position.X + ((Size.Width / 2) - Hint.Length * Font.Width / 2),
+                    Parent.Position.Y + Position.Y,
+                    Hint,
+                    Parent.Theme.Font,
+                    Parent.Theme.ForegroundHint,
+                    false);
             }
             else
             {
-                Canvas.DrawString(Parent.X + X + ((Width / 2) - Text.Length * Font.Width / 2), Parent.Y + Y, Text, Font, Theme.Foreground, false);
+                Canvas.DrawString(
+                    Parent.Position.X + Position.X + ((Size.Width / 2) - Text.Length * Font.Width / 2),
+                    Parent.Position.Y + Position.Y, Text, Font,
+                    Parent.Theme.Foreground,
+                    false);
             }
-            Canvas.DrawRectangle(Parent.X + X, Parent.Y + Y, Width, Height, Radius, Theme.Foreground);
+            
+            Canvas.DrawRectangle(
+                Parent.Position.X + Position.X,
+                Parent.Position.Y + Position.Y,
+                Size.Width,
+                Size.Height,
+                Parent.Theme.Radius,
+                Parent.Theme.Foreground);
         }
     }
 }

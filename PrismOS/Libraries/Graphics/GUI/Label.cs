@@ -8,7 +8,13 @@
 
         public override void Update(Canvas Canvas, Window Parent)
         {
-            Canvas.DrawString(Parent.X + X + (Width / 2), Parent.Y + Y + (Height / 2), Text, Font, Theme.Foreground, Center);
+            Canvas.DrawString(
+                Parent.Position.X + Position.X + (Size.Width / 2),
+                Parent.Position.Y + Position.Y + (Size.Height / 2),
+                Text,
+                Parent.Theme.Font,
+                Parent.Theme.Foreground,
+                Center);
         }
     }
 }

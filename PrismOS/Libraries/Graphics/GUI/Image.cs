@@ -8,13 +8,18 @@
         {
             if (Source != null)
             {
-                if (Width == default || Height == default)
+                if (Size.Width == default || Size.Height == default)
                 {
-                    Width = Parent.Width;
-                    Height = Parent.Height;
+                    Size.Width = Parent.Size.Width;
+                    Size.Height = Parent.Size.Height;
                 }
 
-                Canvas.DrawImage(Parent.X + X, Parent.Y + Y, Width, Height, Source);
+                Canvas.DrawImage(
+                    Parent.Position.X + Position.X,
+                    Parent.Position.Y + Position.Y,
+                    Size.Width,
+                    Size.Height,
+                    Source);
             }
         }
     }

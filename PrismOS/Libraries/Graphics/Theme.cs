@@ -12,6 +12,8 @@
             ForegroundHover = Color.Black,
             Accent = Color.RubyRed,
             ForegroundHint = Color.LightGray,
+            Font = Canvas.Font.Default,
+            Radius = 0,
         };
         public static Theme DefaultDark = new()
         {
@@ -23,11 +25,15 @@
             ForegroundHover = Color.White,
             Accent = Color.RubyRed,
             ForegroundHint = Color.LightGray,
+            Font = Canvas.Font.Default,
+            Radius = 0,
         };        
 
-        public Color Background, Foreground;
         public Color BackgroundClick, ForegroundClick;
         public Color BackgroundHover, ForegroundHover;
+        public Color Background, Foreground;
         public Color Accent, ForegroundHint;
+        public Canvas.Font Font;
+        public int Radius;
     }
 }

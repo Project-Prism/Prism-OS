@@ -34,11 +34,6 @@
       <None Remove="Files\Cursor.bmp" />
       <None Remove="Files\Logo.bmp" />
       <None Remove="Files\Wallpaper.bmp" />
-      <None Remove="Text\Terminal.txt" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Include="Text\Terminal.txt" />
     </ItemGroup>
 
     <ItemGroup>
