@@ -42,7 +42,7 @@ namespace PrismOS
         {
             try
             {
-                Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}", Canvas.Font.Default, Color.Black);
+                Canvas.DrawString(5, 5, $"FPS: {Canvas.FPS}", Canvas.Font.Default, Color.Black);
                 Runtime.Update();
                 Canvas.Update(true);
             }
