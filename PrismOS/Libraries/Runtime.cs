@@ -107,8 +107,8 @@ namespace PrismOS.Libraries
         public static void Stop()
         {
             Canvas.Current.Clear();
-            Canvas.Current.DrawImage(Canvas.Current.Width / 2 - 128, Canvas.Current.Height / 2 - 128, 256, 256, Files.Resources.Logo);
-            Canvas.Current.DrawString(Canvas.Current.Width / 2, Canvas.Current.Height / 2 + 128, "Shutting down...", Canvas.Font.Default, Color.White, true);
+            Canvas.Current.DrawImage(Canvas.Current.Mode.width / 2 - 128, Canvas.Current.Mode.height / 2 - 128, 256, 256, Files.Resources.Logo);
+            Canvas.Current.DrawString(Canvas.Current.Mode.width / 2, Canvas.Current.Mode.height / 2 + 128, "Shutting down...", Canvas.Font.Default, Color.White, true);
             Canvas.Current.Update(false);
             foreach (Application App in Applications)
             {

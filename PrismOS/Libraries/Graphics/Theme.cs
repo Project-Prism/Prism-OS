@@ -26,7 +26,7 @@
             Accent = Color.RubyRed,
             ForegroundHint = Color.LightGray,
             Font = Canvas.Font.Default,
-            Radius = 0,
+            Radius = 2,
         };        
 
         public Color BackgroundClick, ForegroundClick;

@@ -25,7 +25,7 @@ namespace PrismOS.Libraries.Graphics
             G = Color.G;
             B = Color.B;
         }
-        public Color(int ARGB)
+        public Color(uint ARGB)
         {
             A = (byte)((ARGB & 0xFF000000) >> 24);
             R = (byte)((ARGB & 0x00FF0000) >> 16);
@@ -33,20 +33,18 @@ namespace PrismOS.Libraries.Graphics
             B = (byte)((ARGB & 0x000000FF) >> 0);
         }
 
-        public int ARGB
+        public uint ARGB
         {
             get
             {
-                return ((R & 0x0ff) << 16) | ((G & 0x0ff) << 8) | (B & 0x0ff);
+                return (uint)(((A & 0x0ff) << 24) | ((R & 0x0ff) << 16) | ((G & 0x0ff) << 8) | (B & 0x0ff));
             }
             set
             {
-                // Does not work
-                byte[] ARGB = BitConverter.GetBytes(value);
-                A = ARGB[0];
-                R = ARGB[1];
-                G = ARGB[2];
-                B = ARGB[3];
+                A = (byte)((value & 0xFF000000) >> 24);
+                R = (byte)((value & 0x00FF0000) >> 16);
+                G = (byte)((value & 0x0000FF00) >> 8);
+                B = (byte)((value & 0x000000FF) >> 0);
             }
         }
         public byte Brightness

@@ -11,7 +11,7 @@ namespace PrismOS.Libraries.Graphics.OpenGE
         {
             for (int I = 0; I < TestCube.Triangles.Length; I++)
             {
-                Triangle<float> Triangle = ProjectTriangle(TestCube.Triangles[I], Canvas.Width, Canvas.Height, 1000.0f, 0.1f, 90.0f);
+                Triangle<float> Triangle = ProjectTriangle(TestCube.Triangles[I], Canvas.Mode.width, Canvas.Mode.height, 1000.0f, 0.1f, 90.0f);
                 Canvas.DrawTriangle(Triangle, Color.White);
             }
         }

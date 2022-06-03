@@ -104,10 +104,10 @@ namespace PrismOS.Libraries
                         Console.ResetColor();
                         break;
                     case 0x06:
-                        Kernel.Canvas.Clear(new(Reader.ReadInt32()));
+                        Kernel.Canvas.Clear(new(Reader.ReadUInt32()));
                         break;
                     case 0x07:
-                        Kernel.Canvas.SetPixel(Reader.ReadInt32(), Reader.ReadInt32(), new(Reader.ReadInt32()));
+                        Kernel.Canvas.SetPixel(Reader.ReadInt32(), Reader.ReadInt32(), new(Reader.ReadUInt32()));
                         break;
                     case 0x08:
                         Kernel.Canvas.Update(true);

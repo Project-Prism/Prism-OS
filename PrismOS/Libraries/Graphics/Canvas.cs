@@ -1,5 +1,4 @@
-﻿using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
-using Mouse = Cosmos.System.MouseManager;
+﻿using Mouse = Cosmos.System.MouseManager;
 using static PrismOS.Files.Resources;
 using PrismOS.Libraries.Numerics;
 using PrismOS.Libraries.Formats;
@@ -11,34 +10,32 @@ namespace PrismOS.Libraries.Graphics
 {
     public unsafe class Canvas
     {
-        public Canvas(int Width, int Height)
+        public Canvas()
         {
-            VBE = new((ushort)Width, (ushort)Height, 32);
-            this.Width = Width;
-            this.Height = Height;
-            Buffer = new int*[Width * Height];
-            Wallpaper = Wallpaper.Resize(Width, Height);
+            Mode = VBE.getModeInfo();
+            Buffer = (uint*)GCImplementation.AllocNewObject((uint)(Mode.width * Mode.height * (Mode.bpp / 8)));
+            Wallpaper = Wallpaper.Resize(Mode.width, Mode.height);
             Update(false);
-
-            Mouse.ScreenWidth = (uint)Width;
-            Mouse.ScreenHeight = (uint)Height;
-            Mouse.X = (uint)Width / 2;
-            Mouse.Y = (uint)Height / 2;
+            
+            Mouse.ScreenWidth = Mode.width;
+            Mouse.ScreenHeight = Mode.height;
+            Mouse.X = (uint)Mode.width / 2;
+            Mouse.Y = (uint)Mode.height / 2;
             Current = this;
         }
 
-        public int Width, Height, FPS;
         public static Canvas Current;
-        public VBEDriver VBE;
-        public int*[] Buffer;
+        public VBE.ModeInfo Mode;
+        public uint* Buffer;
         private DateTime LT;
         private int Frames;
+        public int FPS;
 
         #region Pixel
 
         public void SetPixel(int X, int Y, Color Color)
         {
-            if (X < 0 || Y < 0 || X >= Width || Y >= Height || Color.A == 0)
+            if (X < 0 || Y < 0 || X >= Mode.width || Y >= Mode.height || Color.A == 0)
             {
                 return;
             }
@@ -48,16 +45,16 @@ namespace PrismOS.Libraries.Graphics
             }
 
             // Draw main pixel
-            Buffer[(Width * Y) + X] = (int*)Color.ARGB;
+            Buffer[(Mode.width * Y) + X] = Color.ARGB;
         }
         public Color GetPixel(int X, int Y)
         {
-            if (X < 0 || Y < 0 || X >= Width || Y >= Height)
+            if (X < 0 || Y < 0 || X >= Mode.width || Y >= Mode.height)
             {
                 return Color.Black;
             }
 
-            return new((int)Buffer[(Width * Y) + X]);
+            return new(Buffer[(Mode.width * Y) + X]);
         }
 
         #endregion
@@ -254,7 +251,7 @@ namespace PrismOS.Libraries.Graphics
             {
                 for (int IY = 0; IY < Image.Height; IY++)
                 {
-                    SetPixel(X + IX, Y + IY, new((int)Image.Buffer[(Image.Width * IY) + IX]));
+                    SetPixel(X + IX, Y + IY, new((uint)Image.Buffer[(Image.Width * IY) + IX]));
                 }
             }
         }
@@ -271,7 +268,7 @@ namespace PrismOS.Libraries.Graphics
                     SetPixel(
                         X + IX / (Image.Width / Width),
                         Y + IY / (Image.Height / Height),
-                        new((int)Image.Buffer[(Image.Width * IY) + IX]));
+                        new((uint)Image.Buffer[(Image.Width * IY) + IX]));
                 }
             }
         }
@@ -383,7 +380,7 @@ namespace PrismOS.Libraries.Graphics
             if (Color == null)
                 Color = Graphics.Color.Black;
 
-            MemoryOperations.Fill((int[])(object)Buffer, Color.Value.ARGB);
+            MemoryOperations.Fill(Buffer, Color.Value.ARGB, Mode.width * Mode.height);
         }
 
         public void Update(bool ShowMouse)
@@ -398,11 +395,12 @@ namespace PrismOS.Libraries.Graphics
             }
             if (ShowMouse)
             {
-                DrawImage((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
+                DrawImage((int)Mouse.X, (int)Mouse.Y, Cursor);
             }
-
-            Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);
-            MemoryOperations.Copy((int[])(object)Buffer, (int[])(object)Wallpaper.Buffer);
+            
+            int Size = Mode.width * Mode.height * (Mode.bpp / 8);
+            MemoryOperations.Copy((uint*)Mode.framebuffer, Buffer, Size);
+            MemoryOperations.Copy(Buffer, GCImplementation.GetPointer(Wallpaper.Buffer), Size);
         }
 
         #endregion

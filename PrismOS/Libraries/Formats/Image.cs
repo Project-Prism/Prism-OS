@@ -10,7 +10,7 @@ namespace PrismOS.Libraries.Formats
         {
             this.Width = Width;
             this.Height = Height;
-            Buffer = new int*[Width * Height];
+            Buffer = new uint[Width * Height];
         }
         public Image(byte[] Binary)
         {
@@ -25,7 +25,7 @@ namespace PrismOS.Libraries.Formats
                 Cosmos.System.Graphics.Bitmap BMP = new(Binary);
                 Width = (int)BMP.Width;
                 Height = (int)BMP.Height;
-                Buffer = (int*[])(object)BMP.rawData;
+                Buffer = (uint[])(object)BMP.rawData;
                 return;
             }
             else // Defaulting to TGA
@@ -39,13 +39,13 @@ namespace PrismOS.Libraries.Formats
                     throw new Exception("Only 32 bit TGA files are supported!");
                 }
 
-                Buffer = new int*[Width * Height * 4];
+                Buffer = new uint[Width * Height * 4];
                 for (int i = 0; i < Width * Height * 4; i += 4)
                 {
-                    *Buffer[i] = Binary[Reader.BaseStream.Position + i + 2];
-                    *Buffer[i + 1] = Binary[Reader.BaseStream.Position + i + 1];
-                    *Buffer[i + 2] = Binary[Reader.BaseStream.Position + i];
-                    *Buffer[i + 3] = Binary[Reader.BaseStream.Position + i + 3];
+                    Buffer[i] = Binary[Reader.BaseStream.Position + i + 2];
+                    Buffer[i + 1] = Binary[Reader.BaseStream.Position + i + 1];
+                    Buffer[i + 2] = Binary[Reader.BaseStream.Position + i];
+                    Buffer[i + 3] = Binary[Reader.BaseStream.Position + i + 3];
                 }
             }
             Reader.Dispose();
@@ -58,7 +58,7 @@ namespace PrismOS.Libraries.Formats
                 Color T = new(255, 0, 0, 0);
                 for (int I = 0; I < Buffer.Length; I++)
                 {
-                    Color T2 = new((int)Buffer[I]);
+                    Color T2 = new(Buffer[I]);
                     T.R += (byte)(T2.R / Buffer.Length);
                     T.G += (byte)(T2.G / Buffer.Length);
                     T.B += (byte)(T2.B / Buffer.Length);
@@ -67,15 +67,15 @@ namespace PrismOS.Libraries.Formats
             }
         }
         public int Width, Height;
-        public int*[] Buffer;
+        public uint[] Buffer;
 
         public void SetPixel(int X, int Y, Color Color)
         {
-            Buffer[X + Y * Width] = (int*)Color.AlphaBlend(Color, new((int)Buffer[X + Y * Width])).ARGB;
+            Buffer[X + Y * Width] = Color.AlphaBlend(Color, new(Buffer[X + Y * Width])).ARGB;
         }
         public Color GetPixel(int X, int Y)
         {
-            return new((int)Buffer[X + Y * Width]);
+            return new(Buffer[X + Y * Width]);
         }
 
         #region Effects
@@ -129,8 +129,8 @@ namespace PrismOS.Libraries.Formats
             Image Temp = new(Width, Height);
             for (int I = 0; I < Buffer.Length; I++)
             {
-                Color C = new((int)Buffer[I]);
-                Temp.Buffer[I] = (int*)new Color(C.R, C.R, C.R).ARGB;
+                Color C = new(Buffer[I]);
+                Temp.Buffer[I] = new Color(C.R, C.R, C.R).ARGB;
             }
             return Temp;
         }
@@ -139,12 +139,12 @@ namespace PrismOS.Libraries.Formats
             Image Temp = new(Width, Height);
             for (int I = 0; I < Buffer.Length; I++)
             {
-                Color C = new((int)Buffer[I]);
+                Color C = new(Buffer[I]);
                 int T = (C.R / 3) + (C.G / 3) + (C.B / 3);
 
                 if (T < MinValue || T > MaxValue)
                 {
-                    Temp.Buffer[I] = (int*)Color.Black.ARGB;
+                    Temp.Buffer[I] = Color.Black.ARGB;
                 }
             }
             return Temp;
@@ -156,18 +156,18 @@ namespace PrismOS.Libraries.Formats
             {
                 if (Buffer[I] != Comparison.Buffer[I])
                 {
-                    Color C1 = new((int)Buffer[I]);
-                    Color C2 = new((int)Comparison.Buffer[I]);
+                    Color C1 = new(Buffer[I]);
+                    Color C2 = new(Comparison.Buffer[I]);
 
                     byte RDiff = (byte)Math.Abs(C1.R - C2.R);
                     byte GDiff = (byte)Math.Abs(C1.G - C2.G);
                     byte BDiff = (byte)Math.Abs(C1.B - C2.B);
 
-                    Temp.Buffer[I] = (int*)new Color(RDiff, GDiff, BDiff).ARGB;
+                    Temp.Buffer[I] = new Color(RDiff, GDiff, BDiff).ARGB;
                 }
                 else
                 {
-                    Temp.Buffer[I] = (int*)Color.Black.ARGB;
+                    Temp.Buffer[I] = Color.Black.ARGB;
                 }
             }
             return Temp;
@@ -177,14 +177,14 @@ namespace PrismOS.Libraries.Formats
             Image Temp = new(Width, Height);
             for (int I = 0; I < Buffer.Length; I++)
             {
-                Color C1 = new((int)Comparison.Buffer[I]);
-                Color C2 = new((int)Buffer[I]);
+                Color C1 = new(Comparison.Buffer[I]);
+                Color C2 = new(Buffer[I]);
 
                 byte R = (byte)((C1.R / 2) + (C2.R / 2));
                 byte G = (byte)((C1.G / 2) + (C2.G / 2));
                 byte B = (byte)((C1.B / 2) + (C2.B / 2));
 
-                Temp.Buffer[I] = (int*)new Color(R, G, B).ARGB;
+                Temp.Buffer[I] = new Color(R, G, B).ARGB;
             }
             return Temp;
         }
@@ -194,7 +194,7 @@ namespace PrismOS.Libraries.Formats
             Random Random = new();
             for (int I = 0; I < Buffer.Length; I++)
             {
-                Temp.Buffer[I] = (int*)new Color((byte)Random.Next(0, 255), (byte)Random.Next(0, 255), (byte)Random.Next(0, 255)).ARGB;
+                Temp.Buffer[I] = new Color((byte)Random.Next(0, 255), (byte)Random.Next(0, 255), (byte)Random.Next(0, 255)).ARGB;
             }
             return Temp;
         }
@@ -204,7 +204,7 @@ namespace PrismOS.Libraries.Formats
             Amp *= Height;
             for (int X = 0; X < Width; X++)
             {
-                Temp.Buffer[(Width * ((Height / 5) + ((short)(Amp * Math.Sin(2 * Math.PI * X * Freq / 8000)) / 2))) + X] = (int*)Color.ARGB;
+                Temp.Buffer[(Width * ((Height / 5) + ((short)(Amp * Math.Sin(2 * Math.PI * X * Freq / 8000)) / 2))) + X] = Color.ARGB;
             }
             return Temp;
         }
