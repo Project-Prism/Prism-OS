@@ -1,42 +1,60 @@
-.header {
+.developers {
+    background: #682885;
+    border-radius: 15px;
     text-align: center;
+    margin: 25px auto;
+    padding: 20px;
+    width: 80%;
+}
+
+/*7a3b8a*/
+
+h2 {
     font-size: 30px;
 }
 
-.OptionButtons button {
-    transition-duration: 0.4s;
-    border-color: black;
-    border-radius: 10px;
-    font-family: Arial;
-    font-weight: bold;
-    margin-left: 30px;
-    border-width: 2px;
-    margin-top: 20px;
-    font-size: 17px;
-    padding: 15px;
-    width: 200px;
-    height: 50px;
+h3 {
+    font-size: 25px;
 }
 
-.OptionButtons button:hover {
-    background-color:rgb(215, 236, 240);
-    transform: scale(1.25);
-    cursor: pointer;
+h4 {
+    font-size: 22px;
+    color: #2e3fd6;
 }
 
-h1 {
+li {
+    font-size: 20px;
+    text-align: left;
+}
+
+.dev {
+    background-color: #936bb4;
+    border-radius: 15px;
+    margin: 20px auto;
+    padding: 20px;
+    display: flex;
+}
+
+.dev p {
+    text-indent: 40px;
+    font-size: 20px;
+    width: 80%;
+}
+
+.dev h3 {
     text-align: center;
-    color: black;
+    color: #72e465;
 }
 
-.BioInfo {
-    font-size: 13px;
-    text-align: center;
-    width: 45%;
-    color:black;
-    background-color: #FAFAFA;
+.dev img {
+    border-radius: 15px;
+    height: 100px;
+    width: 100px;
+}
+
+.roles {
+    border: 2px dashed lightgreen;
     border-radius: 15px;
     text-align: center;
-    padding: 5px;
-    margin: 0 auto;
+    width: 300px;
 }

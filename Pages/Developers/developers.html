@@ -1,54 +1,124 @@
 <!DOCTYPE html>
-<!--Website redesigned by theopcoder-->
 <html>
     <head>
-        <link rel="icon" href="../Images/PrismOSLogo.png">
-        <link rel="stylesheet" href="developers.css">
-
-
-        <title>PrismOS Developers</title>
+        <link href="./Prism OS - Developers_files/css" rel="stylesheet">
+        <link rel="icon" href="../../Images/PrismOSLogo.png">
+        <link rel="stylesheet" href="../../CSS/Global.css">
+        <link rel="stylesheet" href="./developers.css">
+        <title>Prism OS - Developers</title>
     </head>
-    
+
     <body>
+        <header>
 
-        <button onclick="window.location.href='../../index.html'"><img align="left" src="../../Images/PrismOSLogo.png" width="30">Home Page</button>
+            <a href="https://github.com/Project-Prism/Prism-OS"><img align="left" src="../../Images/PrismOSLogo.png" width="74"></a>
 
-        <div style="text-align: center; border-radius: 12px; padding-bottom: 100px; background: linear-gradient(to right, #880E4F, #C62828 100%);">
-        <!--Header content-->
-            <h1>
-                <a href="../index.html"><img src="../Images/Favicon.png" width="74"></a>
-                Prism OS
-            </h1>
-            <p class="Saying">The future of computers.</p>
-            <div class="BioInfo">
-                <h3>Meet The Developers</h3>
-                <!--Terminal.cs-->
-                <h1>Terminal.cs</h1>
+            <!--Settings Button-->
+            <details align="right" class="SettingsButton"><summary>Settings</summary>
+                <button onclick="myFunction()">Toggle light mode</button>
+                <script>
+                    function myFunction() {
+                        var element = document.body;
+                        element.classList.toggle("LightMode");
+                        element.classList.toggle("footer-light");
 
-                <hr>
-                    <!--deadlocust-->
-                    <h1>deadlocust</h1>
-                    <p></p>
+                        //The Weekend reference ;)
+                        alert("And I say, OOOOOO, I'm blinded by the lights!");
+                    }
+                </script>
+            </details>
 
-                <hr>
-                    <!--ShiningLea-->
-                    <h1>ShiningLea</h1>
-                    <p></p>
+            <h1 align="center">Prism OS</h1>
+            <h3 class="PageType">Developers</h3>
 
-                <hr>
-                    <!--theopcoder-->
-                    <h1>theopcoder</h1>
-                    <p class="BioInfo">
-                        Website Developer <br>
-                        <br>
-                        Bio: I one day was looking at the Cosmos OS project and found this repository. The goal of it intrigued me and I saw the website was pretty bad so I decided to make a quick pull request and fix it up. Now I work on the website when needed and keep it clean and up to date.
-                    </p>
+            <!--Buttons-->
+
+            <div align="center" class="OptionButtons">
+                <button onclick="window.location.href='../../index.html'"><img align="left" src="../..//Images/Home.png" width="25">Home</button>
+                <button onclick="window.location.href='https://github.com/Project-Prism/Prism-OS'"><img align="left" src="../../Images/GitHubLogo.png" width="25">View our GitHub</button>
+                <button onclick="window.location.href='../../Pages/Downloads/downloads.html'"><img align="left" src="../../Images/FileDownloadIcon.png" width="30">Download</button>
             </div>
-        </div>
 
-        <div class="footer">
-            <p>Website designed by theopcoder.</p>
-        </div>
+        </header>
+        
+        <main>
 
+            <!--TODO work on the developers page | Add more developers & people alongside fixing boxes-->
+
+            <!--Developers-->
+            <div class="developers">
+
+                <h2>Developers</h2>
+
+                    <div class="dev">
+                        <div align="left">
+                            <h3>theopcoder</h3><br>
+                            <p>
+                                <b>Bio:</b> I one day was looking at the Cosmos OS project and found this repository. The goal of it intrigued me and I saw the website was pretty bad so I decided
+                                to make a quick pull request and fix it up. Now I work on the website when needed and keep it clean and up to date.
+                            </p>
+                            
+                            <div class="roles">
+                                <h4>Roles</h4>
+                                <ul>
+                                    <li>Website Developer</li>
+                                    <li>Developer</li>
+                                </ul>
+                            </div>
+
+                            <img align="right" src="../../Images/Developers/theopcoder.png" alt="theopcoder GitHub PFP">
+                        </div>
+                    </div>
+    
+                    <div class="dev">
+                        <div align="left">
+                            <h3>astrido</h3><br>
+                            <p>
+                                <b>Bio:</b> I found out about Prism when i was looking through interesting github repos/projects. I did some contributions to Prism, because i wanted to
+                                help the developers.
+                            </p>
+
+                            <div class="roles">
+                                <h4>Roles</h4>
+                                <ul>
+                                    <li>Developer</li>
+                                </ul>
+                            </div>
+
+                            <img align="right" src="../../Images/Developers/astrido.png" alt="astrido GitHub PFP">
+                        </div>
+                    </div>
+            </div>
+
+            <!--Contributors-->
+            <div class="developers">
+
+                <h2>Contributors</h2>
+
+                    <div class="dev">
+                        <div align="left">
+                            <h3>pogrammerX</h3><br>
+                            <p>
+                                <b>Bio: I like C#, C++ and Java :3</b> 
+                            </p>
+                            
+                            <div class="roles">
+                                <h4>Roles</h4>
+                                <ul>
+                                    <li>Contributor</li>
+                                </ul>
+                            </div>
+
+                            <img align="right" src="../../Images/Developers/pogrammerX.png" alt="pogrammerX GitHub PFP">
+                        </div>
+                    </div>
+            </div>
+
+        </main>
+
+        <footer>
+            <p>Website designed by <a class="FooterUser" href="https://github.com/theopcoder">theopcoder.</a></p>
+        </footer>
+    
     </body>
 </html>
