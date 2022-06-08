@@ -4,6 +4,11 @@ body {
     border-radius: 5px;
     font-weight: 300;
     color: white;
+
+    /*For Footer To Work Properly*/
+    flex-direction: column;
+    min-height: 98vh;
+    display: flex;
 }
 
 header {
@@ -73,19 +78,33 @@ h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 
-/*BUG Footer not staying at bottom of screen*/
-/*New Footer*/
-footer {
-    background-color: rgb(25, 25, 34);
-    text-align: center;
-    line-height: 50px;
-    position: bottom;
-    height: 50px;
-}
-
+/*Footer*/
 .FooterUser {
     color: white;
 }
+
+footer {
+    /*Universal Code*/
+    background-color: #191922;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: auto;
+}
+
+/*=====================================================*/
+/*These Footers not staying at bottom of screen*/
+
+/*
+
+    New Footer
+
+    footer {
+        line-height: 50px;
+        position: bottom;
+        height: 50px;
+    }
+
+*/
 
 /*
     Old Footer
