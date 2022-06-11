@@ -35,7 +35,7 @@
                     Parent.Position.Y + Position.Y,
                     Hint,
                     Parent.Theme.Font,
-                    Parent.Theme.ForegroundHint,
+                    Parent.Theme.ForegroundLight,
                     true);
             }
             else
