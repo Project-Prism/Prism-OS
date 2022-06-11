@@ -18,7 +18,7 @@
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <CompileVBEMultiboot>True</CompileVBEMultiboot>
+        <CompileVBEMultiboot>False</CompileVBEMultiboot>
         <VBEResolution>1024x768x32</VBEResolution>
         <DebugEnabled>False</DebugEnabled>
         <QemuMemory>4096</QemuMemory>
@@ -34,6 +34,12 @@
       <None Remove="Files\Cursor.bmp" />
       <None Remove="Files\Logo.bmp" />
       <None Remove="Files\Wallpaper.bmp" />
+      <None Remove="Text\AppTemplate2.txt" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="Text\Hexi.txt" />
+      <Compile Include="Text\AppTemplate2.txt" />
     </ItemGroup>
 
     <ItemGroup>

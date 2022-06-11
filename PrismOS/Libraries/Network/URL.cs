@@ -18,7 +18,7 @@ namespace PrismOS.Libraries.Network
         public Address GetAddress()
         {
             DnsClient Client = new();
-            //Client.Connect(Cosmos.System.Network.Config.NetworkConfig.CurrentConfig.Value.DefaultGateway);
+            Client.Connect(Cosmos.System.Network.Config.NetworkConfiguration.CurrentNetworkConfig.IPConfig.DefaultGateway);
             Client.SendAsk(Domain);
             Address Temp = Client.Receive();
             Client.Dispose();

@@ -36,7 +36,7 @@
                     Hint,
                     Parent.Theme.Font,
                     Parent.Theme.ForegroundHint,
-                    false);
+                    true);
             }
             else
             {
@@ -44,7 +44,7 @@
                     Parent.Position.X + Position.X + ((Size.Width / 2) - Text.Length * Font.Width / 2),
                     Parent.Position.Y + Position.Y, Text, Font,
                     Parent.Theme.Foreground,
-                    false);
+                    true);
             }
             
             Canvas.DrawRectangle(

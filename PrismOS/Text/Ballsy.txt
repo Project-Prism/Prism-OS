@@ -1,0 +1,46 @@
+﻿
+        public static Ball[] Balls =
+                {
+                    new()
+                    {
+                        X = 100,
+                        Y = 0,
+                        AccelerationY = 0,
+                        Radius = 30,
+                        Color = Color.RubyRed,
+                    },
+                };
+
+                
+
+        public static void RunBalls(Ball[] Balls, float Gravity, int Floor)
+        {
+            for (int I = 0; I < Balls.Length; I++)
+            {
+                Balls[I].AccelerationY += Gravity / 4;
+                Canvas.DrawFilledCircle(Balls[I].X, Balls[I].Y, Balls[I].Radius, Balls[I].Color);
+                if (Gravity == 0)
+                {
+                    return;
+                }
+                if (Balls[I].Y + Balls[I].Radius <= Floor)
+                {
+                    Balls[I].AccelerationY = Math.Abs(Balls[I].AccelerationY);
+                }
+                if (Balls[I].AccelerationY > 0)
+                {
+                    Balls[I].Y -= (int)Balls[I].AccelerationY;
+                }
+                else
+                {
+                    Balls[I].Y += (int)Balls[I].AccelerationY;
+                }
+            }
+        }
+
+        public class Ball
+        {
+            public Color Color;
+            public float AccelerationY;
+            public int X, Y, Radius;
+        }
