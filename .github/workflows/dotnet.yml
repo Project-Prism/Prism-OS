@@ -22,7 +22,7 @@ jobs:
     - name: Change diractory
       run: cd Cosmos
     - name: Switch to cross-platform branch
-      run: git checkout -b crossplatform
+      run: git checkout crossplatform
     - name: Build cosmos
       run: sudo make
     - name: Install cosmos
