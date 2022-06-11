@@ -21,6 +21,8 @@ jobs:
       run: git clone --single-branch --branch crossplatform https://github.com/CosmosOS/Cosmos
     - name: Change diractory
       run: cd Cosmos
+    - name: List
+      run: ls
     - name: Build cosmos
       run: sudo make
     - name: Install cosmos
