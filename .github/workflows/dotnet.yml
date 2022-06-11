@@ -19,10 +19,18 @@ jobs:
         dotnet-version: 6.0.x
     - name: Clone cosmos
       run: git clone https://github.com/CosmosOS/Cosmos
+    - name: Change diractory
+      run: cd Cosmos
+    - name: Checkout main
+      run: git checkout master
+    - name: Switch to cross-platform branch
+      run: git checkout -b crossplatform
     - name: Build cosmos
-      run: sudo make INC=-ICosmos
+      run: sudo make
     - name: Install cosmos
-      run: sudo make install INC=-ICosmos
+      run: sudo make install
+    - name: Change directory
+      run: cd ..
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
