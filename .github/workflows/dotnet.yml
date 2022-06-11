@@ -19,8 +19,6 @@ jobs:
         dotnet-version: 6.0.x
     - name: Clone cosmos
       run: git clone https://github.com/CosmosOS/Cosmos
-    - name: Change directory
-      run: mv Cosmos-master Cosmos
     - name: Build cosmos
       run: sudo make
     - name: Install cosmos
