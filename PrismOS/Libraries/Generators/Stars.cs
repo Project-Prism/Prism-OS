@@ -8,7 +8,7 @@ namespace PrismOS.Libraries.Generators
         public static void DrawStars(int Count, int MaxSize, int MinSize, int Width, int Height)
         {
             int X, Y, R;
-            Random Random = new();
+            System.Random Random = new();
             Color Color1 = Color.Black;
             Color Color2 = Color.UbuntuPurple;
             for (int i = 0; i < Width; i++)

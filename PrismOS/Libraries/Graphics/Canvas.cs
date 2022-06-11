@@ -1,5 +1,4 @@
-﻿using VBEDriver = Cosmos.HAL.Drivers.VBEDriver;
-using Mouse = Cosmos.System.MouseManager;
+﻿using Mouse = Cosmos.System.MouseManager;
 using static PrismOS.Files.Resources;
 using PrismOS.Libraries.Numerics;
 using PrismOS.Libraries.Formats;
@@ -11,34 +10,37 @@ namespace PrismOS.Libraries.Graphics
 {
     public unsafe class Canvas
     {
-        public Canvas(int Width, int Height)
+        public Canvas()
         {
-            VBE = new((ushort)Width, (ushort)Height, 32);
-            this.Width = Width;
-            this.Height = Height;
-            Buffer = new uint*[Width * Height];
-            Wallpaper = Wallpaper.Resize(Width, Height);
+            Cosmos.System.Global.mDebugger.Send("Setting mode...");
+            Mode = VBE.getModeInfo();
+            Cosmos.System.Global.mDebugger.Send("Setting buffer...");
+            Buffer = (uint*)GCImplementation.AllocNewObject((uint)(Mode.width * Mode.height * 4));
+            //Cosmos.System.Global.mDebugger.Send("Setting wallpaper...");
+            //Wallpaper = Wallpaper.Resize(Mode.width, Mode.height);
+            Cosmos.System.Global.mDebugger.Send("Run update");
             Update(false);
 
-            Mouse.ScreenWidth = (uint)Width;
-            Mouse.ScreenHeight = (uint)Height;
-            Mouse.X = (uint)Width / 2;
-            Mouse.Y = (uint)Height / 2;
+            Cosmos.System.Global.mDebugger.Send("Set mouse");
+            Mouse.ScreenWidth = Mode.width;
+            Mouse.ScreenHeight = Mode.height;
+            Mouse.X = (uint)Mode.width / 2;
+            Mouse.Y = (uint)Mode.height / 2;
             Current = this;
         }
 
-        public int Width, Height, FPS;
         public static Canvas Current;
-        public uint*[] Buffer;
-        public VBEDriver VBE;
+        public VBE.ModeInfo Mode;
+        public uint* Buffer;
         private DateTime LT;
         private int Frames;
+        public int FPS;
 
         #region Pixel
 
         public void SetPixel(int X, int Y, Color Color)
         {
-            if (X < 0 || Y < 0 || X >= Width || Y >= Height || Color.A == 0)
+            if (X < 0 || Y < 0 || X >= Mode.width || Y >= Mode.height || Color.A == 0)
             {
                 return;
             }
@@ -48,16 +50,16 @@ namespace PrismOS.Libraries.Graphics
             }
 
             // Draw main pixel
-            Buffer[(Width * Y) + X] = (uint*)Color.ARGB;
+            Buffer[(Mode.width * Y) + X] = (uint)Color.ARGB;
         }
         public Color GetPixel(int X, int Y)
         {
-            if (X < 0 || Y < 0 || X >= Width || Y >= Height)
+            if (X < 0 || Y < 0 || X >= Mode.width || Y >= Mode.height)
             {
                 return Color.Black;
             }
 
-            return new((uint)Buffer[(Width * Y) + X]);
+            return new(Buffer[(Mode.width * Y) + X]);
         }
 
         #endregion
@@ -297,7 +299,7 @@ namespace PrismOS.Libraries.Graphics
             public int Height;
         }
 
-        public void DrawString(int X, int Y, string Text, Font Font, Color Color, bool Center = false, int Padding = 2)
+        public void DrawString(int X, int Y, string Text, Font Font, Color Color, bool Center = false)
         {
             if (Text == null || Text.Length == 0)
             {
@@ -381,7 +383,8 @@ namespace PrismOS.Libraries.Graphics
             if (Color == null)
                 Color = Graphics.Color.Black;
 
-            MemoryOperations.Fill((int[])(object)Buffer, (int)Color.Value.ARGB);
+            int Size = Mode.width * Mode.height * 4;
+            MemoryOperations.Fill(Buffer, Color.Value.ARGB, Size);
         }
 
         public void Update(bool ShowMouse)
@@ -396,11 +399,15 @@ namespace PrismOS.Libraries.Graphics
             }
             if (ShowMouse)
             {
-                DrawImage((int)Mouse.X, (int)Mouse.Y, Files.Resources.Cursor);
+                DrawImage((int)Mouse.X, (int)Mouse.Y, Cursor);
             }
 
-            Global.BaseIOGroups.VBE.LinearFrameBuffer.Copy((int[])(object)Buffer);
-            MemoryOperations.Copy((int[])(object)Buffer, (int[])(object)Wallpaper.Buffer);
+            int Size = Mode.width * Mode.height * 4;
+            Cosmos.System.Global.mDebugger.Send("Copying buffer");
+            MemoryOperations.Copy((uint*)Mode.framebuffer, Buffer, Size);
+            Cosmos.System.Global.mDebugger.Send("Clear");
+            Clear();
+            //MemoryOperations.Copy(Buffer, GCImplementation.GetPointer(Wallpaper.Buffer), Size);
         }
 
         #endregion

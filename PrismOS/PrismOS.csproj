@@ -13,14 +13,14 @@
         <StartCosmosGDB>False</StartCosmosGDB>
         <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
         <CosmosDebugPort>Serial: COM1</CosmosDebugPort>
-        <Launch>ISO</Launch>
+        <Launch>VMware</Launch>
         <Profile>VMware</Profile>
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <CompileVBEMultiboot>False</CompileVBEMultiboot>
-        <VBEResolution>1024x768x32</VBEResolution>
-        <DebugEnabled>False</DebugEnabled>
+        <CompileVBEMultiboot>True</CompileVBEMultiboot>
+        <VBEResolution>800x600x32</VBEResolution>
+        <DebugEnabled>True</DebugEnabled>
         <QemuMemory>4096</QemuMemory>
         <QemuNetworkDevice>RTL8139</QemuNetworkDevice>
         <QemuVideoDriver>VBE</QemuVideoDriver>
@@ -28,6 +28,7 @@
         <QemuUseCustomLocation>False</QemuUseCustomLocation>
         <QemuLocationParameters>C:\qemu\qemu-system-i386.exe</QemuLocationParameters>
         <VMWareEdition>Workstation</VMWareEdition>
+        <DebugMode>Source</DebugMode>
     </PropertyGroup>
 
     <ItemGroup>
