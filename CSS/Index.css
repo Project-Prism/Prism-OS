@@ -3,9 +3,16 @@
     font-size: 20px;
 }
 
+h2 {
+    text-decoration: underline;
+    text-align: center;
+}
+
 .ProjectInfo {
+    text-align: center;
     margin-top: 40px;
     font-size: 20px;
+    margin: 20px;
 }
 
 .CosmosLink {

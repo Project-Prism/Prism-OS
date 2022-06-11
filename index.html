@@ -17,8 +17,13 @@
             <a href="https://github.com/Project-Prism/Prism-OS"><img align="left" src="./Images/PrismOSLogo.png" alt="Prism OS Logo" width="74"></a>
 
             <!--Settings Button-->
-            <details align="right" class="SettingsButton"><summary>Settings</summary>
-                <button onclick="myFunction()">Toggle light mode</button>
+            <details align="right" class="SettingsButton">
+                <summary>Settings</summary>
+                <!--
+                    Add a drop down menu with background color
+                    https://www.w3schools.com/howto/howto_css_dropdown.asp
+                -->
+                <button onclick="myFunction()"><img align="left" src="./Images/LightMode.png" alt="LightMode Icon" width="15">Toggle light mode</button>
                 <script>
                     function myFunction() {
                         var element = document.body;
@@ -34,18 +39,25 @@
             <h1 align="center">Prism OS</h1>
             <p class="Motto">The future of computers</p>
 
-            <!--Buttons-->
+            <nav>
+                <!--Buttons-->
 
-            <div align="center" class="OptionButtons">
-                <button onclick="window.location.href='https://github.com/Project-Prism/Prism-OS'"><img align="left" src="./Images/GitHubLogo.png" alt="GitHub Logo" width="30">View our GitHub</button>
-                <button onclick="window.location.href='./Pages/Downloads/downloads.html'"><img align="left" src="./Images/FileDownloadIcon.png" alt="Download Icon" width="30">Downloads</button>
-                <button onclick="window.location.href='./Pages/Developers/developers.html'"><img align="left" src="./Images/Developer.png" alt="Developer Icon" width="30">Developers</button>
-            </div>
+                <div align="center" class="OptionButtons">
+                    <button onclick="window.location.href='https://github.com/Project-Prism/Prism-OS'"><img align="left" src="./Images/GitHubLogo.png" alt="GitHub Logo" width="30">View our GitHub</button>
+                    <button onclick="window.location.href='./Pages/Downloads/downloads.html'"><img align="left" src="./Images/FileDownloadIcon.png" alt="Download Icon" width="30">Downloads</button>
+                    <button onclick="window.location.href='./Pages/Developers/developers.html'"><img align="left" src="./Images/Developer.png" alt="Developer Icon" width="30">Developers</button>
+                </div>
+            </nav>
+
         </header>
 
         <main>
-            <p class="ProjectInfo" align="center">
-                Prism OS is a small open-source project started in 2021. This project is based off the <a class="CosmosLink" href="https://github.com/CosmosOS/Cosmos">Cosmos</a> developer kit, which uses C# as its internal coding language.
+            <h2>What is Prism OS?</h2>
+            <p class="ProjectInfo">
+                Prism OS is a small open-source project created on May 11th, 2021 1:26AM UTC-8. Prism OS is made possible by the
+                <a class="CosmosLink" href="https://github.com/CosmosOS/Cosmos">Cosmos</a> open source project alongside all the developers and community based around it. Prism OS uses
+                the developer kit which is based in C# to make a GUI based OS with a basic window manager and mouse system. The OS also contains a basic networking
+                configuration (although it's very buggy) alongside a basic file system.
             </p>
         </main>
 

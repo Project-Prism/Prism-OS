@@ -16,4 +16,4 @@ Website: https://project-prism.github.io/Prism-OS/
 | [pinkphone1818](https://github.com/pinkphone1818) | Contributor                  |
 
 ## Wanting to contribute or fix a typo you found?
-Go right ahead! all you have to do is fork the project, change what you think needs changing, and make a pull request to this repository. Any help is greatly appreciated!
+Go right ahead! All you have to do is fork the project, change what you think needs changing, and make a pull request to this repository. Any help is greatly appreciated!
