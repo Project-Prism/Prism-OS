@@ -21,8 +21,6 @@ jobs:
       run: git clone https://github.com/CosmosOS/Cosmos
     - name: Change diractory
       run: cd Cosmos
-    - name: Checkout main
-      run: git checkout master
     - name: Switch to cross-platform branch
       run: git checkout -b crossplatform
     - name: Build cosmos
