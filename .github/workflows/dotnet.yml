@@ -20,7 +20,7 @@ jobs:
     - name: Clone cosmos
       run: git clone --single-branch --branch crossplatform https://github.com/CosmosOS/Cosmos
     - name: Clone IL2CPU
-      run: git clone https://github.com/CosmosOS/IL2CPU
+      run: git clone --single-branch --branch crossplatform https://github.com/CosmosOS/IL2CPU
     - name: Clone X#
       run: git clone https://github.com/CosmosOS/XSharp
     - name: Clone Common
