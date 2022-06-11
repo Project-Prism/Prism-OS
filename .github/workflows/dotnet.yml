@@ -19,12 +19,6 @@ jobs:
         dotnet-version: 6.0.x
     - name: Clone cosmos
       run: git clone --single-branch --branch crossplatform https://github.com/CosmosOS/Cosmos
-    - name: Clone IL2CPU
-      run: git clone --single-branch --branch crossplatform https://github.com/CosmosOS/IL2CPU
-    - name: Clone X#
-      run: git clone https://github.com/CosmosOS/XSharp
-    - name: Clone Common
-      run: git clone https://github.com/CosmosOS/Common
     - name: Build cosmos
       run: sudo make -C Cosmos
     - name: Install cosmos
