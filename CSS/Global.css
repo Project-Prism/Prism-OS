@@ -18,7 +18,7 @@ header {
     text-align: center;
     font-size: 30px;
     padding: 10px;
-    margin: 8px;
+    margin: 10px;
 }
 
 .PageType {
@@ -80,42 +80,39 @@ h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 
-/*Footer*/
-.FooterUser {
-    color: white;
-}
-
 footer {
-    /*Universal Code*/
     background-color: #191922;
     text-align: center;
     margin-top: auto;
+    font-size: 15px;
 }
 
-/*=====================================================*/
-/*These Footers not staying at bottom of screen*/
+footer hr {
+    margin-top: 0;
+}
 
-/*
+footer h4 {
+    font-size: 20px;
+}
 
-    New Footer
+footer img {
+    background-color: #bbb;
+    border-radius: 50%;
+    margin-bottom: 0;
+    padding: 10px;
+    margin-top: 0;
+    height: 1.2%;
+    margin: 10px;
+    width: 25px;
+}
 
-    footer {
-        line-height: 50px;
-        position: bottom;
-        height: 50px;
-    }
+footer img:hover {
+    transition: all .35s ease-in-out;
+    opacity: 0.7;
+}
 
-*/
-
-/*
-    Old Footer
-
-    footer {
-        background-color: rgb(25, 25, 34);
-        text-align: center;
-        position: fixed;
-        width: 100%;
-        bottom: 0;
-        left: 0;
-    }
-*/
+/*Footer*/
+.FooterUser {
+    font-size: 15px;
+    color: white;
+}
