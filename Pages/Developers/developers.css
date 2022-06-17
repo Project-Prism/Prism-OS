@@ -1,3 +1,18 @@
+body {
+    background:
+    linear-gradient(
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.2)
+    ),
+    url('../../Images/Wallpaper.bmp');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+header {
+    background: rgba(0, 0, 0, 0.582);
+}
+
 .developers {
     background: #682885;
     border-radius: 15px;
