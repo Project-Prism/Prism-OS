@@ -1,0 +1,256 @@
+﻿using Cosmos.Core;
+using Cosmos.Core.Memory;
+using Cosmos.HAL;
+using System;
+using System.Runtime.InteropServices;
+
+namespace PrismOS.Audio
+{
+    public unsafe class AC97
+    {
+        public PCIDevice Device { get; private set; }
+
+        public enum Port : ushort
+        {
+            NAM_RESET = 0x0000,
+            NAM_MASTER_VOLUME = 0x0002,
+            NAM_MONO_VOLUME = 0x0006,
+            NAM_PC_BEEP_VOLUME = 0x000A,
+            NAM_PCM_OUT_VOLUME = 0x0018,
+            NAM_EXT_AUDIO_ID = 0x0028,
+            NAM_FRONT_DAC_RATE = 0x002C,
+            NABM_PICONTROL = 0x000B,
+            NABM_POCONTROL = 0x001B,
+            NABM_MCCONTROL = 0x002B,
+
+            NABM_POBDBAR = 0x0010,
+            NABM_POLVI = 0x0015,
+
+            NABM_PISTATUS = 0x06,
+            NABM_POSTATUS = 0x16,
+            NABM_MCSTATUS = 0x26,
+        }
+        private Ac97BufDesc* descs;
+        private int numDesc;
+
+        /// <summary>
+        /// NAM-BAR (Mixer)
+        /// </summary>
+        public ushort NamBar;
+        /// <summary>
+        /// NABM-BAR (Player)
+        /// </summary>
+        public ushort NambBar;
+        public AC97()
+        {
+            foreach (PCIDevice Device in PCI.Devices)
+            {
+                if (Device.DeviceExists)
+                {
+                    if (Device.VendorID == 0x8086 && Device.DeviceID == 0x2415)
+                    {
+                        Console.WriteLine("Intel AC97 Detected");
+                        this.Device = Device;
+                        this.Device.EnableDevice();
+
+                        Console.WriteLine("Device IRQ: " + Device.InterruptLine);
+                        INTs.SetIrqHandler(Device.InterruptLine, new INTs.IRQDelegate(handleInt));
+                        NamBar = (ushort)this.Device.BaseAddressBar[0].BaseAddress;
+                        NambBar = (ushort)this.Device.BaseAddressBar[1].BaseAddress;
+
+                        //Reset
+                        outw(NamBar + (ushort)Port.NAM_RESET, 42);
+                        outb((ushort)(NambBar + (ushort)Port.NABM_PICONTROL), 0x02);
+                        outb((ushort)(NambBar + (ushort)Port.NABM_POCONTROL), 0x02);
+                        outb((ushort)(NambBar + (ushort)Port.NABM_MCCONTROL), 0x02);
+                        Cosmos.HAL.Global.PIT.Wait(100);
+
+                        //Set volume
+                        byte volume = 0;
+                        outw((ushort)(NamBar + (ushort)Port.NAM_MASTER_VOLUME), (ushort)((volume << 8) | volume));
+                        outw((ushort)(NamBar + (ushort)Port.NAM_MONO_VOLUME), volume);
+                        outw((ushort)(NamBar + (ushort)Port.NAM_PC_BEEP_VOLUME), volume);
+                        outw((ushort)(NamBar + (ushort)Port.NAM_PCM_OUT_VOLUME), (ushort)((volume << 8) | volume));
+                        Cosmos.HAL.Global.PIT.Wait(10);
+
+                        if ((inw((ushort)(NamBar + (ushort)Port.NAM_EXT_AUDIO_ID)) & 1) != 0)
+                        {
+                            // sample rate is fixed to 48 kHz
+                        }
+                        else
+                        {
+                            //TODO
+                        }
+
+                        Console.WriteLine("Sample rate: " + inw((ushort)(NamBar + (ushort)Port.NAM_FRONT_DAC_RATE)) + "Hz");
+
+
+                        numDesc = 32;
+                        descs = (Ac97BufDesc*)Heap.Alloc((uint)(sizeof(Ac97BufDesc) * numDesc));
+                    }
+                }
+            }
+        }
+
+        int CurrentIndex = 0;
+        byte[] CurrentlyPlayingFile;
+        ulong FilePosition;
+        bool MoreData = true;
+        short[] audioFile;
+        short* audioFilePtr;
+        internal void Test(byte[] file)
+        {
+            audioFile = new short[file.Length / 2];
+            for (int i = 0; i < file.Length; i += 2)
+            {
+                audioFile[i] = (short)(file[i] | file[i + 1] << 8);
+            }
+            fixed (short* ptr = audioFile)
+            {
+                audioFilePtr = ptr;
+            }
+
+
+            CurrentlyPlayingFile = file;
+            MoreData = true;
+            FilePosition = 0;
+
+            short* buffer = (short*)Heap.Alloc(65534 * sizeof(short));
+            MemoryOperations.Copy(buffer, audioFilePtr, 65534 * 2);
+            Console.WriteLine("Playing");
+            ////TODO: Use MemCpy
+            //for (int i = 0; i < 0xFFFF; i++)
+            //{
+            //    buffer[i] = audioFile[i];
+            //}
+
+            descs[CurrentIndex].Buffer = (uint)buffer;
+            descs[CurrentIndex].Length = 0xFFFE;
+            descs[CurrentIndex].Type = 0x8000;
+            CurrentIndex++;
+            FilePosition += 0xFFFE * 2;
+            numDesc = 1;
+
+            //var size = (uint)(65534 * sizeof(ushort));
+            //ulong FileOffset = 0;
+            //bool neww = false;
+            //int descrps = 0;
+            //for (int i = 0; i < numDesc; i++)
+            //{
+            //    if (neww)
+            //        break;
+            //    ushort* buffer = (ushort*)Heap.Alloc(size);
+            //    for (ulong a = 0; a < 0xFFFF; a += 2)
+            //    {
+            //        if ((ulong)file.Length <= FileOffset + a)
+            //        {
+            //            Console.WriteLine("End of file: " + FileOffset + a);
+            //            neww = true;
+            //            break;
+            //        }
+            //        ushort b = BitConverter.ToUInt16(new byte[] { file[FileOffset + a], file[FileOffset + a + 1] }, 0);
+            //        buffer[a] = b;
+            //    }
+
+            //    descs[i].Buffer = (uint)buffer;
+            //    descs[i].Length = 0xFFFE;
+            //    descs[i].Type = 0x4000;
+            //    descrps++;
+            //    FileOffset += 0xFFFE;
+            //}
+            //numDesc = descrps;
+            //Console.WriteLine("# of entries: "+ descrps);
+            //descs[numDesc - 1].Type = 0x8000; //BUP
+            //Console.WriteLine("Playing file");
+            outl((ushort)(NambBar + (ushort)Port.NABM_POBDBAR), (uint)descs);
+            outb((ushort)(NambBar + (ushort)Port.NABM_POLVI), (byte)(numDesc - 1));
+            outb((ushort)(NambBar + (ushort)Port.NABM_POCONTROL), 0x15); // play and generate interrupt afterwards
+        }
+
+        private void outw(ushort port, ushort data)
+        {
+            new IOPort(port).Word = data;
+        }
+        private void outw(int port, ushort data)
+        {
+            new IOPort((ushort)port).Word = data;
+        }
+        private void outb(ushort port, byte data)
+        {
+            new IOPort(port).Byte = data;
+        }
+        private void outl(ushort port, uint data)
+        {
+            new IOPort(port).DWord = data;
+        }
+        private ushort inw(ushort port)
+        {
+            return new IOPort(port).Word;
+        }
+        private byte inb(ushort port)
+        {
+            return new IOPort(port).Byte;
+        }
+
+        private void handleInt(ref INTs.IRQContext aContext)
+        {
+            byte pi = 0;
+            byte po = 0;
+            byte mc = 0;
+            pi = (byte)(inb((ushort)(NambBar + (ushort)Port.NABM_PISTATUS)) & 0x1C);
+            po = (byte)(inb((ushort)(NambBar + (ushort)Port.NABM_POSTATUS)) & 0x1C);
+            mc = (byte)(inb((ushort)(NambBar + (ushort)Port.NABM_MCSTATUS)) & 0x1C);
+
+            outb((ushort)(NambBar + (ushort)Port.NABM_PISTATUS), pi);
+            outb((ushort)(NambBar + (ushort)Port.NABM_POSTATUS), po);
+            outb((ushort)(NambBar + (ushort)Port.NABM_MCSTATUS), mc);
+
+            Console.WriteLine("Audio IRQ");
+            return;
+
+            if (MoreData)
+            {
+                short* buffer = (short*)Heap.Alloc((uint)(65534 * sizeof(short)));
+                for (ulong i = FilePosition; i < FilePosition + 65534; i++)
+                {
+                    if ((ulong)audioFile.Length >= i)
+                    {
+                        Console.WriteLine("End of file: " + FilePosition + i);
+                        MoreData = false;
+                        break;
+                    }
+                    buffer[i] = audioFile[i];
+                }
+
+                descs[CurrentIndex].Buffer = (uint)buffer;
+                descs[CurrentIndex].Length = 0xFFFE;
+                descs[CurrentIndex].Type = 0x8000;
+                CurrentIndex++;
+                FilePosition += 0xFFFE;
+                numDesc++;
+
+                outl((ushort)(NambBar + (ushort)Port.NABM_POBDBAR), (uint)descs);
+                outb((ushort)(NambBar + (ushort)Port.NABM_POLVI), (byte)(numDesc - 1));
+                outb((ushort)(NambBar + (ushort)Port.NABM_POCONTROL), 0x15); // play and generate interrupt afterwards
+            }
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct Ac97BufDesc
+        {
+            /// <summary>
+            /// Pointer to buffer
+            /// </summary>
+            public uint Buffer;
+            /// <summary>
+            /// Buffer length
+            /// </summary>
+            public ushort Length;
+            /// <summary>
+            /// 0x8000 - IOC (Fire IRQ after playing buffer)
+            /// 0x4000 - BUP (Play next buffer after this buffer)
+            /// </summary>
+            public ushort Type;
+        }
+    }
+}

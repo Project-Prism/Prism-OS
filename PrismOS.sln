@@ -1,9 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.0.32112.339
+VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismOS", "PrismOS\PrismOS.csproj", "{5AE536B5-BC57-44FD-8AEB-A7EB98020D33}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismOS", "PrismOS\PrismOS.csproj", "{C8304AB4-85C1-4A8D-9E0F-331E0DE3888E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F732F406-55BB-42AF-BD4A-8BBB93B0078A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +16,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5AE536B5-BC57-44FD-8AEB-A7EB98020D33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5AE536B5-BC57-44FD-8AEB-A7EB98020D33}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5AE536B5-BC57-44FD-8AEB-A7EB98020D33}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5AE536B5-BC57-44FD-8AEB-A7EB98020D33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8304AB4-85C1-4A8D-9E0F-331E0DE3888E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8304AB4-85C1-4A8D-9E0F-331E0DE3888E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8304AB4-85C1-4A8D-9E0F-331E0DE3888E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8304AB4-85C1-4A8D-9E0F-331E0DE3888E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {8E0387C7-2E1B-4AE7-BFEE-C1260ADC23D4}
+		SolutionGuid = {C2549F24-03F0-47D5-9D3E-8F152F57426E}
 	EndGlobalSection
 EndGlobal

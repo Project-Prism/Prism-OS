@@ -13,40 +13,41 @@
         <StartCosmosGDB>False</StartCosmosGDB>
         <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
         <CosmosDebugPort>Serial: COM1</CosmosDebugPort>
-        <Launch>VMware</Launch>
+        <Launch>ISO</Launch>
         <Profile>VMware</Profile>
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <CompileVBEMultiboot>True</CompileVBEMultiboot>
-        <VBEResolution>800x600x32</VBEResolution>
-        <DebugEnabled>True</DebugEnabled>
-        <QemuMemory>4096</QemuMemory>
-        <QemuNetworkDevice>RTL8139</QemuNetworkDevice>
-        <QemuVideoDriver>VBE</QemuVideoDriver>
-        <QemuAudioDriver>SoundBlaster16</QemuAudioDriver>
-        <QemuUseCustomLocation>False</QemuUseCustomLocation>
-        <QemuLocationParameters>C:\qemu\qemu-system-i386.exe</QemuLocationParameters>
+        <CompileVBEMultiboot>False</CompileVBEMultiboot>
+        <VBEResolution>1024x768x32</VBEResolution>
         <VMWareEdition>Workstation</VMWareEdition>
-        <DebugMode>Source</DebugMode>
+        <DebugEnabled>False</DebugEnabled>
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Files\Cursor.bmp" />
-      <None Remove="Files\Logo.bmp" />
-      <None Remove="Files\Wallpaper.bmp" />
-      <None Remove="Text\AppTemplate2.txt" />
+      <None Remove="Assets\Audio.wav" />
+      <None Remove="Assets\Cursor.bmp" />
+      <None Remove="Assets\Logo.bmp" />
+      <None Remove="Assets\Wallpaper.bmp" />
+      <None Remove="Audio\AC97.txt" />
+      <None Remove="Audio\SoundBaster16.txt" />
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Include="Text\Hexi.txt" />
-      <Compile Include="Text\AppTemplate2.txt" />
+      <Compile Include="Assets\Text\IntelHD.txt" />
+      <Compile Include="Assets\Text\SoundBaster16.txt" />
+      <Compile Include="Assets\Text\AC97.txt" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Files\Cursor.bmp" />
-      <EmbeddedResource Include="Files\Logo.bmp" />
-      <EmbeddedResource Include="Files\Wallpaper.bmp" />
+      <EmbeddedResource Include="Assets\Audio.wav" />
+      <EmbeddedResource Include="Assets\Cursor.bmp" />
+      <EmbeddedResource Include="Assets\Logo.bmp" />
+      <EmbeddedResource Include="Assets\Wallpaper.bmp" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="..\.editorconfig" Link=".editorconfig" />
     </ItemGroup>
 
     <ItemGroup>

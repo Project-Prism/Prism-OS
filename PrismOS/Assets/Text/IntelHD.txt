@@ -1,0 +1,127 @@
+﻿namespace PrismOS.Audio
+{
+	public unsafe class IntelHD // Main method not implemented.
+	{
+	    public short WritePos, ResponsePos, CorbBufferSize;
+        public Cosmos.HAL.PCIDevice Device;
+        public ulong* RirbBuffer;
+        public uint* CorbBuffer;
+
+        #region Memory Functions
+
+        public void Write8(Register Register, byte Value)
+        {
+            *(byte*)(Device.BAR0 + (byte)Register) = Value;
+        }
+        public byte Read8(Register Register)
+        {
+            return *(byte*)(Device.BAR0 + (byte)Register);
+        }
+
+        public void Write16(Register Register, ushort Value)
+        {
+            *(ushort*)(Device.BAR0 + (byte)Register) = Value;
+        }
+        public ushort Read16(Register Register)
+        {
+            return *(ushort*)(Device.BAR0 + (byte)Register);
+        }
+
+        public void Write32(Register Register, uint Value)
+        {
+            *(uint*)(Device.BAR0 + (byte)Register) = Value;
+        }
+        public uint Read32(Register Register)
+        {
+            return *(uint*)(Device.BAR0 + (byte)Register);
+        }
+
+        #endregion
+
+        public enum Register : byte
+        {
+            GCAP = 0x00, // Global Capabilities (includes number of DMA engines for input and output streams)
+            VMIN = 0x02, // Minor Version
+            VMAJ = 0x03, // Major Version	
+            OUTPAY = 0x04, // Output Payload Capacity(packet size limit for the/each output line)
+            INPAY = 0x06, // INPAY Input Payload Capacity(packet size limit for each input line)
+            GCTL = 0x08, // GCTL Global Control(used to reset the link and codec)
+            WAKEEN = 0x0C, // Wake Enable	
+            STATESTS = 0x0E, // STATESTS State Change Status	
+            GSTS = 0x10, // Global Status	
+            OUTSTRMPAY = 0x18, // Output Stream Payload Capability	
+            INSTRMPAY = 0x1A, // Input Stream Payload Capability	
+            INTCTL = 0x20, // Interrupt Control	
+            INTSTS = 0x24, // Interrupt Status
+            COUNTER = 0x30, // Wall Clock Counter	
+            SSYNC = 0x34, // Stream Synchronization(set bits 0-29 to pause DMA streams 1-30) [Note: The HD Audio specifications list this register at offset 0x38, but this appears to be incorrect.]
+            CORBLBASE = 0x40, // CORB Lower Base Address (command output ring buffer address)
+            CORBUBASE = 0x44, // CORB Upper Base Address
+            CORBWP = 0x48, // CORB Write Pointer	
+            CORBRP = 0x4a, // CORB Read Pointer	
+            CORBCTL = 0x4c, // CORB Control	
+            CORBSTS = 0x4d, // CORB Status	
+            CORBSIZE = 0x4e, // CORB Size	
+            RIRBLBASE = 0x50, // RIRB Lower Base Address (response input ring buffer address)
+            RIRBUBASE = 0x54, // RIRB Upper Base Address	
+            RIRBWP = 0x58, // RIRB Write Pointer	
+            RINTCNT = 0x5a, // Response Interrupt Count	
+            RIRBCTL = 0x5c, // RIRB Control	
+            RIRBSTS = 0x5d, // RIRB Status	
+            RIRBSIZE = 0x5e, // RIRB Size	
+            ICOI = 0x60, // Immediate Command Output Interface	
+            IRII = 0x64, // Immediate Response Input Interface	
+            ICS = 0x68, // Immediate Command Status	
+            DDPLBA = 0x70, // DPLBASE DMA Position Lower Base Address	
+            DDPUBA = 0x74, // DPUBASE DMA Position Upper Base Address	
+            SD = 0x80, // Stream Descriptors
+        }
+        public enum CORBCMDs
+        {
+            GetParameter = 0xf00,
+            GetSelectedInput = 0xf01,
+            SetSelectedInput = 0x701,
+        }
+        
+        public void WriteCommand(uint Codec, uint Node, CORBCMDs Command, byte Value)
+        {
+            while (Read16(Register.CORBRP) != Read16(Register.CORBWP)) ;
+            WritePos = (short)((WritePos + 1) % CorbBufferSize);
+            CorbBuffer[WritePos] = VERB(Codec, Node, (byte)Command, Value);
+            Write16(Register.CORBWP, (ushort)WritePos);
+        }
+        public static uint VERB(uint Codec, uint Node, byte Command, byte Value)
+        {
+            return (uint)((Codec << 28) | (Node << 20) | ((Command << 8) | (Value)));
+        }
+        public static (uint, byte) AllocateMaxSizeBuffer(byte Register)
+        {
+            if ((Register & (1 << 6)) != 0)
+            {
+                return (256, 0x02);
+            }
+            else if ((Register & (1 << 5)) != 0)
+            {
+                return (16, 0x01);
+            }
+
+            return (2, 0x00);
+        }
+        public ulong ReadResponse()
+        {
+            ushort RirbPos = Read16(Register.RIRBWP);
+            ulong RetVal = RirbBuffer[RirbPos];
+            RirbBuffer[RirbPos] = 0;
+            return RetVal;
+        }
+        public void Reset()
+        {
+            Write16(Register.STATESTS, (1 << 15) - 1);
+            Write32(Register.GCTL, 0);  //Clear the reset bit
+            while ((Read32(Register.GCTL) & 1) != 0) ;
+            Write32(Register.GCTL, 1);
+            while ((Read32(Register.GCTL) & 1) == 0) ;
+            while (Read16(Register.STATESTS) == 0) ;
+        }
+    }
+}
