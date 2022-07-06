@@ -14,7 +14,7 @@ body {
 
 header {
     background: linear-gradient(to right, #77216f, #3f42e7 100%);
-    border-radius: 10px;
+    /*border-radius: 10px;*/
     text-align: center;
     font-size: 30px;
     padding: 10px;
