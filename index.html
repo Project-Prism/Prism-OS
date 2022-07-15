@@ -8,7 +8,6 @@
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-
             gtag('config', 'G-1N9HX0D21Y');
         </script>
 
@@ -25,13 +24,13 @@
 
     <body>
         <header>
-            <a href="https://github.com/Project-Prism/Prism-OS"><img align="left" src="./Images/PrismOSLogo.png" alt="Prism OS Logo" width="74"></a>
+            <a href="https://github.com/Project-Prism/Prism-OS"><img align="left" src="./Images/PrismOSLogo.png" alt="Prism OS Logo" width="75"></a>
 
             <!--Settings Button-->
             <details align="right" class="SettingsButton">
                 <summary>Settings</summary>
                 <!--
-                    Add a drop down menu with background color
+                    TODO Add a drop down menu with background color
                     https://www.w3schools.com/howto/howto_css_dropdown.asp
                 -->
                 <button onclick="myFunction()"><img align="left" src="./Images/LightMode.png" alt="LightMode Icon" width="15">Toggle light mode</button>
@@ -73,10 +72,34 @@
         </main>
 
         <footer>
-            <h4>Social Media</h4>
-            <a href="https://discord.gg/DqNckqagMs"><img src="./Images/DiscordBlue.png" alt="Discord Clyde Blue Logo"></a>
-            <a href="https://github.com/Project-Prism/Prism-OS"><img src="./Images/GitHubLogo.png" alt="GitHub Logo"></a>
-            <hr> <!--Make the line centered and short to cover name. Make social media smaller alongside smaller footer-->
+            <!--Social Media-->
+            <div>
+                <h4>Social Media</h4>
+                <div class="InsideDiv">
+                    <a href="https://discord.gg/DqNckqagMs"><img src="./Images/DiscordBlue.png" alt="Discord Clyde Blue Logo"><p class="FooterImageText">Discord</p></a>
+                </div>
+                <div>
+                    <a href="https://github.com/Project-Prism/Prism-OS"><img src="./Images/GitHubLogo.png" alt="GitHub Logo"><p class="FooterImageText">GitHub</p></a>
+                </div>
+            </div>
+
+            <!--Feedback & Data-->
+            <div>
+                <h4>Feedback & Data</h4>
+                <div>
+                    <a href="https://forms.gle/tR5eotAkviTjdKRY7"><img src="./Images/Feedback.png" alt="Feedback"><p class="FooterImageText">Feedback</p></a>
+                </div>
+                <!--
+                    TODO Make information page. example, this site uses google fonts/icons
+                    <div>
+                        <a href="./WebsiteInfo.html"><img src="./Images/Info.png" alt="Info"><p class="FooterImageText">Info</p></a>
+                    </div>
+                    TODO Add this new footer to all pages
+                -->
+
+            </div>
+
+            <hr class="FooterHR"> <!--Make the line centered and short to cover name. Make social media smaller alongside smaller footer-->
             <p>Website designed by <a class="FooterUser" href="https://github.com/theopcoder">theopcoder.</a></p>
         </footer>
     </body>
