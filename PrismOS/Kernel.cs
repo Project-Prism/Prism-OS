@@ -1,63 +1,83 @@
-﻿using Cosmos.System.Network.IPv4.UDP.DHCP;
-using Cosmos.System.Network.IPv4.UDP.DNS;
-using Cosmos.System.FileSystem.VFS;
+﻿using Mouse = Cosmos.System.MouseManager;
+using PrismOS.Libraries.Graphics;
 using System.Collections.Generic;
-using Cosmos.System.FileSystem;
-using PrismOS.Graphics;
+using PrismOS.Libraries.Runtime;
+using PrismOS.Libraries.UI;
+using Cosmos.Core;
 using System;
 
 namespace PrismOS
 {
     public unsafe class Kernel : Cosmos.System.Kernel
     {
-        public static List<(Action, string)> BootTasks = new()
-        {
-            (() => { Canvas = new(960, 540); }, "Creating new canvas instance..."),
-            (() => { VFS.Initialize(true); }, "Initializing VFS..."),
-            (() => { VFSManager.RegisterVFS(VFS); }, "Registering VFS..."),
-            (() => { new DHCPClient().SendDiscoverPacket(); DNS = new(); }, "Starting network services..."),
-            (() => { _ = new Applications.AppTemplate1(); }, "Creating app..."),
-        };
-        public static CosmosVFS VFS = new();
-        public static DnsClient DNS = new();
-        public static Canvas Canvas;
-        public static bool Booting;
+        public static FrameBuffer Canvas = new(VBE.getModeInfo().width, VBE.getModeInfo().height);
+        public static List<Application> Applications = new();
+        public static List<Window> Windows = new();
+        private static DateTime LT = DateTime.Now;
+        public static bool Dragging = false;
+        private static uint Frames = 0;
+        public static uint FPS = 0;
 
         protected override void BeforeRun()
         {
-            Booting = true;
-            foreach ((Action, string) T in BootTasks)
-            {
-                T.Item1.Invoke();
-                Canvas.Clear();
-                Canvas.DrawImage((int)(Canvas.Width / 2 - 128), (int)(Canvas.Height / 2 - 128), 256, 256, Assets.Logo);
-                Canvas.DrawString((int)(Canvas.Width / 2), (int)(Canvas.Height / 2 + 128), $"Prism OS\nPowered by the cosmos Kernel.\n\n{T.Item2}", Canvas.Font.Default, Color.White, true);
-                Canvas.Update(false);
-            }
-            Booting = false;
+            Assets.Wallpaper = Assets.Wallpaper.Resize(Canvas.Width, Canvas.Height);
+            Mouse.ScreenWidth = Canvas.Width;
+            Mouse.ScreenHeight = Canvas.Height;
+            //_ = new AppTemplate1();
         }
 
         protected override void Run()
         {
-            try
-            {
-                Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}", Canvas.Font.Default, Color.Black);
-                Runtime.Update();
-                Canvas.Update(true);
-            }
-            catch (Exception EX)
-            {
-                #region Crash Screen
+            MemoryOperations.Copy(Canvas.Internal, Assets.Wallpaper.Internal, (int)Canvas.Size);
+            Canvas.DrawFilledRectangle(0, 0, FrameBuffer.Font.Default.Width * $"FPS: {FPS}".Length + 30, FrameBuffer.Font.Default.Height + 30, 0, Color.LightBlack);
+            Canvas.DrawString(15, 15, $"FPS: {FPS}", FrameBuffer.Font.Default, Color.White);
 
-                Canvas.Clear();
-                Canvas.DrawImage((int)(Canvas.Width / 2 - 128), (int)(Canvas.Height / 2 - 128), 256, 256, Assets.Logo);
-                string Error = $"[!] Critical failure [!]\nPrism OS has {(Booting ? "failed to boot" : "crashed")}! see error message below.\n" + EX.Message;
-                Canvas.DrawString((int)(Canvas.Width / 2), (int)(Canvas.Height / 2 + 128), Error, Canvas.Font.Default, Color.Red, true);
-                Canvas.Update(false);
-                while (true) { }
-
-                #endregion
+            foreach (Application App in Applications)
+            {
+                App.OnUpdate();
             }
+            foreach (Window Window in Windows)
+            {
+                if (Window.Draggable)
+                {
+                    if (Mouse.MouseState == Cosmos.System.MouseState.Left)
+                    {
+                        if (Mouse.X > Window.X && Mouse.X < Window.X + Window.Width && Mouse.Y > Window.Y && Mouse.Y < Window.Y + 20 && !Window.Moving && !Dragging)
+                        {
+                            Dragging = true;
+                            Windows.Remove(Window);
+                            Windows.Insert(Windows.Count, Window);
+                            Window.Moving = true;
+                            Window.IX = (int)Mouse.X - Window.X;
+                            Window.IY = (int)Mouse.Y - Window.Y;
+                        }
+                    }
+                    else
+                    {
+                        Dragging = false;
+                        Window.Moving = false;
+                    }
+                    if (Window.Moving)
+                    {
+                        Window.X = (int)Mouse.X - Window.IX;
+                        Window.Y = (int)Mouse.Y - Window.IY;
+                    }
+                }
+
+                Window.Update(Canvas);
+            }
+
+            Frames++;
+            if ((DateTime.Now - LT).TotalSeconds >= 1)
+            {
+                Cosmos.Core.Memory.Heap.Collect();
+                FPS = Frames;
+                Frames = 0;
+                LT = DateTime.Now;
+            }
+            Canvas.DrawImage((int)Mouse.X, (int)Mouse.Y, Assets.Cursor);
+            
+            MemoryOperations.Copy((uint*)VBE.getLfbOffset(), Canvas.Internal, (int)Canvas.Size);
         }
     }
 }

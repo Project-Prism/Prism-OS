@@ -18,30 +18,31 @@
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <CompileVBEMultiboot>False</CompileVBEMultiboot>
-        <VBEResolution>1024x768x32</VBEResolution>
+        <CompileVBEMultiboot>True</CompileVBEMultiboot>
+        <VBEResolution>1024x640x32</VBEResolution>
         <VMWareEdition>Workstation</VMWareEdition>
         <DebugEnabled>False</DebugEnabled>
+        <EnableBochsDebug>True</EnableBochsDebug>
+        <StartBochsDebugGui>True</StartBochsDebugGui>
+        <ExtractMapFile>False</ExtractMapFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <Optimize>True</Optimize>
     </PropertyGroup>
 
     <ItemGroup>
       <None Remove="Assets\Audio.wav" />
       <None Remove="Assets\Cursor.bmp" />
+      <None Remove="Assets\Font1.bf" />
       <None Remove="Assets\Logo.bmp" />
       <None Remove="Assets\Wallpaper.bmp" />
-      <None Remove="Audio\AC97.txt" />
-      <None Remove="Audio\SoundBaster16.txt" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Include="Assets\Text\IntelHD.txt" />
-      <Compile Include="Assets\Text\SoundBaster16.txt" />
-      <Compile Include="Assets\Text\AC97.txt" />
     </ItemGroup>
 
     <ItemGroup>
       <EmbeddedResource Include="Assets\Audio.wav" />
       <EmbeddedResource Include="Assets\Cursor.bmp" />
+      <EmbeddedResource Include="Assets\Font1.bf" />
       <EmbeddedResource Include="Assets\Logo.bmp" />
       <EmbeddedResource Include="Assets\Wallpaper.bmp" />
     </ItemGroup>
