@@ -19,14 +19,14 @@ namespace PrismOS
 
         protected override void BeforeRun()
         {
-            Canvas.DrawString((int)(Canvas.Width / 2), (int)(Canvas.Height / 2), "Please Wait...", FrameBuffer.Font.Default, Color.White, true);
+            Canvas.DrawImage((int)((Canvas.Width / 2) - 128), (int)((Canvas.Height / 2) - 128), Assets.Logo256);
             MemoryOperations.Copy((uint*)VBE.getLfbOffset(), Canvas.Internal, (int)Canvas.Size);
 
             Assets.Wallpaper = Assets.Wallpaper.Resize(Canvas.Width, Canvas.Height);
             Mouse.ScreenWidth = Canvas.Width;
             Mouse.ScreenHeight = Canvas.Height;
             _ = new AppTemplate1();
-            Play(Assets.W98);
+            Play(Assets.Window98Startup);
         }
 
         protected override void Run()

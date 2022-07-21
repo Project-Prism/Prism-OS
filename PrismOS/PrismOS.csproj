@@ -25,6 +25,7 @@
         <EnableBochsDebug>True</EnableBochsDebug>
         <StartBochsDebugGui>True</StartBochsDebugGui>
         <ExtractMapFile>False</ExtractMapFile>
+        <StackCorruptionDetectionLevel>AllInstructions</StackCorruptionDetectionLevel>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

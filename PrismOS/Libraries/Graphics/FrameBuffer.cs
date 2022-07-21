@@ -5,7 +5,7 @@ using System;
 
 namespace PrismOS.Libraries.Graphics
 {
-    public unsafe class FrameBuffer
+    public unsafe class FrameBuffer : IDisposable
     {
         public FrameBuffer(uint Width, uint Height)
         {
@@ -599,6 +599,16 @@ namespace PrismOS.Libraries.Graphics
                 }
             }
             return FB;
+        }
+
+        public void Dispose()
+        {
+            if (Size != 0)
+            {
+                Cosmos.Core.Memory.Heap.Free(Internal);
+            }
+            GCImplementation.Free(this);
+            GC.SuppressFinalize(this);
         }
 
         #endregion
