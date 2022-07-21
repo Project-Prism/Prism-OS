@@ -44,7 +44,6 @@ namespace PrismOS
             Frames++;
             if ((DateTime.Now - LT).TotalSeconds >= 1)
             {
-                Cosmos.Core.Memory.Heap.Collect();
                 FPS = Frames;
                 Frames = 0;
                 LT = DateTime.Now;
