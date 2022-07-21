@@ -42,55 +42,44 @@ namespace PrismOS.Libraries.Graphics
 
         public void SetPixel(int X, int Y, Color Color)
         {
-            if (Color.A == 0)
+            if (Color.A == 0 || X > Width || Y > Height || X < 0 || Y < 0)
             {
                 return;
             }
-            if (X < Width && Y < Height)
+            if (Color.A < 255)
             {
-                if (Color.A < 255)
-                {
-                    Color.AlphaBlend(GetPixel(X, Y), Color);
-                }
-                this[Y * Width + X] = Color.ARGB;
+                Color.AlphaBlend(GetPixel(X, Y), Color);
             }
+            this[Y * Width + X] = Color.ARGB;
         }
         public void SetPixel(int Index, Color Color)
         {
-            if (Color.A == 0)
+            if (Color.A == 0 || Index > Size)
             {
                 return;
             }
-            if (Index < Size)
+            if (Color.A < 255)
             {
-                if (Color.A < 255)
-                {
-                    Color.AlphaBlend(GetPixel(Index), Color);
-                }
-                this[Index] = Color.ARGB;
+                Color.AlphaBlend(GetPixel(Index), Color);
             }
+            this[Index] = Color.ARGB;
         }
         public Color GetPixel(int X, int Y)
         {
-            if (X < Width && Y < Height)
-            {
-                return Color.FromARGB(this[Y * Width + X]);
-            }
-            else
+            if (X > Width || Y > Height || X < 0 || Y < 0)
             {
                 return Color.Black;
             }
+            return Color.FromARGB(this[Y * Width + X]);
         }
         public Color GetPixel(int Index)
         {
-            if (Index < Size)
-            {
-                return Color.FromARGB(this[Index]);
-            }
-            else
+            if (Index > Size)
             {
                 return Color.Black;
             }
+
+            return Color.FromARGB(this[Index]);
         }
 
         #endregion
@@ -177,21 +166,21 @@ namespace PrismOS.Libraries.Graphics
             {
                 if (X < 0)
                 {
-                    Width -= +X;
+                    Width -= Math.Abs(X);
                     X = 0;
                 }
                 if (Y < 0)
                 {
-                    Height -= +Y;
+                    Height -= Math.Abs(Y);
                     Y = 0;
                 }
-                while (X + Width > this.Width)
+                if (X + Width >= this.Width)
                 {
-                    Width--;
+                    Width -= X;
                 }
-                while (Y + Height > this.Height)
+                if (Y + Height >= this.Height)
                 {
-                    Height--;
+                    Height -= Y;
                 }
                 for (int IY = 0; IY < Height; IY++)
                 {
@@ -304,9 +293,33 @@ namespace PrismOS.Libraries.Graphics
             }
             if (!Alpha)
             {
-                for (uint IY = 0; IY < Image.Height; IY++)
+                uint TWidth = Image.Width;
+                uint THeight = Image.Height;
+                uint PadX = 0;
+                uint PadY = 0;
+
+                if (X < 0)
                 {
-                    MemoryOperations.Copy(Internal + Y + (IY * Width), Image.Internal + (IY * Width), (int)Width);
+                    PadX = (uint)Math.Abs(X);
+                    TWidth -= PadX;
+                }
+                if (Y < 0)
+                {
+                    PadY = (uint)Math.Abs(Y);
+                    THeight -= PadY;
+                }
+                if (X + Image.Width >= Width)
+                {
+                    TWidth = Width - (uint)X;
+                }
+                if (Y + Image.Height >= Height)
+                {
+                    THeight = Height - (uint)Y;
+                }
+
+                for (uint IY = 0; IY < THeight; IY++)
+                {
+                    MemoryOperations.Copy(Internal + PadX + X + ((PadY + Y + IY) * Width), Image.Internal + PadX + ((PadY + IY) * Image.Width), (int)TWidth);
                 }
                 return;
             }
@@ -362,8 +375,8 @@ namespace PrismOS.Libraries.Graphics
                     // If center, move ix and iy to the center
                     if (Center)
                     {
-                        IX -= Font.Width * (Lines[Line].Length / 2);
-                        IY -= Font.Height * (Lines.Length / 2);
+                        IX -= Font.Width * Lines[Line].Length / 2;
+                        IY -= Font.Height * Lines.Length / 2;
                     }
 
                     DrawChar(IX, IY, Lines[Line][Char], Font, Color);

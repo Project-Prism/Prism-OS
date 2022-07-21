@@ -1,16 +1,21 @@
-﻿namespace PrismOS.Libraries.Runtime
+﻿using System.Collections.Generic;
+
+namespace PrismOS.Libraries.Runtime
 {
     public abstract class Application
     {
+        // Application Manager Variable
+        public static List<Application> Applications { get; set; } = new();
+
         public Application()
         {
             OnCreate();
-            Kernel.Applications.Add(this);
+            Applications.Add(this);
         }
         ~Application()
         {
             OnDestroy();
-            Kernel.Applications.Remove(this);
+            Applications.Remove(this);
         }
 
         public abstract void OnUpdate();

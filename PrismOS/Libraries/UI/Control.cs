@@ -21,7 +21,6 @@ namespace PrismOS.Libraries.UI
             }
             set
             {
-                Cosmos.Core.GCImplementation.Free(FrameBuffer);
                 FrameBuffer = new((uint)Width, (uint)value);
             }
         }
@@ -33,7 +32,6 @@ namespace PrismOS.Libraries.UI
             }
             set
             {
-                Cosmos.Core.GCImplementation.Free(FrameBuffer);
                 FrameBuffer = new((uint)value, (uint)Height);
             }
         }
