@@ -19,6 +19,9 @@ namespace PrismOS
 
         protected override void BeforeRun()
         {
+            Canvas.DrawString((int)(Canvas.Width / 2), (int)(Canvas.Height / 2), "Please Wait...", FrameBuffer.Font.Default, Color.White, true);
+            MemoryOperations.Copy((uint*)VBE.getLfbOffset(), Canvas.Internal, (int)Canvas.Size);
+
             Assets.Wallpaper = Assets.Wallpaper.Resize(Canvas.Width, Canvas.Height);
             Mouse.ScreenWidth = Canvas.Width;
             Mouse.ScreenHeight = Canvas.Height;
@@ -29,8 +32,9 @@ namespace PrismOS
         protected override void Run()
         {
             MemoryOperations.Copy(Canvas.Internal, Assets.Wallpaper.Internal, (int)Canvas.Size);
-            Canvas.DrawFilledRectangle(0, 0, FrameBuffer.Font.Default.Width * $"FPS: {FPS}".Length + 30, FrameBuffer.Font.Default.Height + 30, 0, Color.LightBlack);
+            Canvas.DrawFilledRectangle(0, 0, FrameBuffer.Font.Default.Width * $"Memory Available: {GCImplementation.GetAvailableRAM()} MB".Length + 30, FrameBuffer.Font.Default.Height * 2 + 30, 0, Color.LightBlack);
             Canvas.DrawString(15, 15, $"FPS: {FPS}", FrameBuffer.Font.Default, Color.White);
+            Canvas.DrawString(15, 30, $"Memory Available: {GCImplementation.GetAvailableRAM()} MB", FrameBuffer.Font.Default, Color.White);
 
             foreach (Application App in Application.Applications)
             {
