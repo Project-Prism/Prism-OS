@@ -44,7 +44,7 @@ namespace PrismOS
             Canvas.DrawImage(0, 0, Assets.Wallpaper, false);
             Canvas.DrawFilledRectangle(0, 0, FrameBuffer.Font.Default.Width * $"FPS: {FPS}".Length + 30, FrameBuffer.Font.Default.Height + 30, 0, Color.LightBlack);
             Canvas.DrawString(15, 15, $"FPS: {FPS}", FrameBuffer.Font.Default, Color.White);
-            
+
             foreach (Application App in Application.Applications)
             {
                 App.OnUpdate();
