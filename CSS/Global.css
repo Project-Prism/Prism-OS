@@ -120,8 +120,8 @@ footer img {
 }
 
 footer div {
-    display: inline-block;
     margin: 5px 25px 5px 25px;
+    display: inline-block;
 }
 
 .InsideDiv {
