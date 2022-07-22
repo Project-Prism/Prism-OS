@@ -13,7 +13,7 @@ namespace PrismOS.Libraries.UI
                 FrameBuffer.Clear(Parent.Theme.Background);
                 FrameBuffer.DrawString(0, 0, Text, Parent.Theme.Font, Parent.Theme.Foreground);
 
-                Parent.FrameBuffer.DrawImage(X, Y, FrameBuffer);
+                Parent.FrameBuffer.DrawImage(X, Y, FrameBuffer, false);
             }
 
         }

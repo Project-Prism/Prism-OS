@@ -17,14 +17,14 @@ namespace PrismOS
         [ManifestResourceStream(ResourceName = Base + "W98OFF.wav")] public static readonly byte[] W98OFFB;
 
         // Misc
-        public static FrameBuffer Cursor = FrameBuffer.FromBitmap(CursorB);
         public static FrameBuffer Wallpaper = FrameBuffer.FromBitmap(WallpaperB);
+        public static FrameBuffer Cursor = FrameBuffer.FromBitmap(CursorB);
 
         // System Sounds
         public static MemoryAudioStream Window98Startup = MemoryAudioStream.FromWave(W98B);
         public static MemoryAudioStream Window98Shutdown = MemoryAudioStream.FromWave(W98OFFB);
 
-        // Pre-Sized Logo Sizes
+        // Pre-Sized Logos
         public static FrameBuffer Logo = FrameBuffer.FromBitmap(LogoB);
         public static FrameBuffer Logo512 = Logo.Resize(512, 512);
         public static FrameBuffer Logo256 = Logo.Resize(256, 256);

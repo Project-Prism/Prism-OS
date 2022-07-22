@@ -69,6 +69,10 @@ namespace PrismOS.Libraries.Runtime
         private void Button1_Click()
         {
             Label1.Text = TextBox1.Text;
+            if (Label1.Text == "off")
+            {
+                Kernel.Play(Assets.Window98Shutdown);
+            }
         }
 
         private void Button2_Click()

@@ -32,7 +32,7 @@ namespace PrismOS
 
             // Create "Headless" Objects
             //_ = new PIT.PITTimer(new(() => { Heap.Collect(); }), 10000000000, true);
-            _ = new PIT.PITTimer(() => { FPS = Frames; Frames = 0; }, 1000000000, true);
+            //_ = new PIT.PITTimer(() => { FPS = Frames; Frames = 0; }, 1000000000, true);
             _ = new AppTemplate1();
 
             // Play Startup Sound

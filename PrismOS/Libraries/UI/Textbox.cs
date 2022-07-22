@@ -27,7 +27,7 @@ namespace PrismOS.Libraries.UI
                 FrameBuffer.DrawString(Width / 2, Height / 2, (Text.Length == 0 ? Hint : Text), Parent.Theme.Font, Parent.Theme.Foreground, 2, true);
                 FrameBuffer.DrawRectangle(0, 0, Width - 1, Height - 1, Parent.Theme.Radius, Parent.Theme.Foreground);
 
-                Parent.FrameBuffer.DrawImage(X, Y, FrameBuffer);
+                Parent.FrameBuffer.DrawImage(X, Y, FrameBuffer, false);
             }
         }
     }

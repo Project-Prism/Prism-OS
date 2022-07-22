@@ -10,7 +10,7 @@ namespace PrismOS.Libraries.UI
             {
                 FrameBuffer.DrawFilledRectangle(0, 0, Width, Height, Parent.Theme.Radius, Parent.Theme.Background);
 
-                Parent.FrameBuffer.DrawImage(X, Y, FrameBuffer);
+                Parent.FrameBuffer.DrawImage(X, Y, FrameBuffer, false);
             }
         }
     }

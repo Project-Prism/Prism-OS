@@ -14,7 +14,7 @@ namespace PrismOS.Libraries.UI
                 {
                     Source = Source.Resize((uint)Width, (uint)Height);
                 }
-                Parent.FrameBuffer.DrawImage(X, Y, Source);
+                Parent.FrameBuffer.DrawImage(X, Y, Source, true);
             }
         }
     }
