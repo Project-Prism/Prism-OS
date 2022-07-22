@@ -8,10 +8,27 @@ namespace PrismOS.Libraries.CSParser
         public object Value { get; set; }
         public Type Type { get; set; }
 
+        public bool IsReadOnly { get; set; }
+        public bool IsPointer { get; set; }
         public bool IsPublic { get; set; }
         public bool IsStatic { get; set; }
+        public bool IsUnsafe { get; set; }
+        public bool IsExtern { get; set; }
         public bool IsConst { get; set; }
         public bool IsNull { get; set; }
+
+        public static readonly Dictionary<string, string> Types = new()
+        {
+            { "string", "System.String" },
+            { "byte", "System.Byte" },
+            { "char", "System.Char" },
+            { "short", "System.Int16" },
+            { "int", "System.Int32" },
+            { "long", "System.Int64" },
+            { "ushort", "System.UInt16" },
+            { "uint", "System.UInt32" },
+            { "ulong", "System.UInt64" },
+        };
 
         public static Variable Parse(string Contents)
         {
@@ -26,6 +43,7 @@ namespace PrismOS.Libraries.CSParser
                     if (Builder == "public")
                     {
                         V.IsPublic = true;
+                        Builder = "";
                         continue;
                     }
                     if (Builder == "static")
@@ -35,6 +53,7 @@ namespace PrismOS.Libraries.CSParser
                             throw new("Variable cannot be both static and const.");
                         }
                         V.IsStatic = true;
+                        Builder = "";
                         continue;
                     }
                     if (Builder == "const")
@@ -46,26 +65,76 @@ namespace PrismOS.Libraries.CSParser
                         V.IsConst = true;
                         continue;
                     }
+                    if (Builder == "readonly")
+                    {
+                        V.IsReadOnly = true;
+                        Builder = "";
+                        continue;
+                    }
+                    if (Builder == "unsafe")
+                    {
+                        V.IsUnsafe = true;
+                        Builder = "";
+                        continue;
+                    }
+                    if (Builder == "extern")
+                    {
+                        V.IsExtern = true;
+                        Builder = "";
+                        continue;
+                    }
+
+                    if (Types.ContainsKey(Builder))
+                    {
+                        Builder = Types[Builder];
+                    }
+                    if (Type.GetType(Builder) != null)
+                    {
+                        V.Type = Type.GetType(Builder);
+                        V.IsPointer = Builder.EndsWith("*");
+                        Builder = "";
+                        continue;
+                    }
                     continue;
                 }
                 if (Contents[I] == '"' && !ReadingQuote)
                 {
-                    V.Type = typeof(string);
                     ReadingQuote = true;
                     continue;
                 }
                 if (Contents[I] == '"' && ReadingQuote)
                 {
                     V.Value = Builder;
+                    Builder = "";
                     ReadingQuote = false;
+                    continue;
                 }
                 if (Contents[I] == ';')
                 {
+                    if (V.Name == null)
+                    {
+                        V.Name = Builder;
+                    }
+                    if (V.Value == null)
+                    {
+                        V.Value = Builder;
+                    }
+                    if (V.Value == null)
+                    {
+                        V.IsNull = true && !V.IsExtern;
+                    }
+                    if (V.Type == null)
+                    {
+                        throw new("Type Not specified!");
+                    }
+
                     return V;
                 }
                 if (Contents[I] == '=')
                 {
+                    V.IsNull = false;
                     V.Name = Builder;
+                    Builder = "";
                     continue;
                 }
 
