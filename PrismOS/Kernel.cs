@@ -36,7 +36,7 @@ namespace PrismOS
             _ = new AppTemplate1();
 
             // Play Startup Sound
-            Play(Assets.Window98Startup);
+            //Play(Assets.Window98Startup);
         }
 
         protected override void Run()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System;
 
 namespace PrismOS.Libraries.CSParser
 {
@@ -32,13 +33,12 @@ namespace PrismOS.Libraries.CSParser
 
         public static Variable Parse(string Contents)
         {
-            bool ReadingQuote = false;
             string Builder = "";
             Variable V = new();
 
             for (int I = 0; I < Contents.Length; I++)
             {
-                if (Contents[I] == ' ' && !ReadingQuote)
+                if (Contents[I] == ' ')
                 {
                     if (Builder == "public")
                     {
@@ -97,16 +97,14 @@ namespace PrismOS.Libraries.CSParser
                     }
                     continue;
                 }
-                if (Contents[I] == '"' && !ReadingQuote)
+                if (Contents[I] == '"')
                 {
-                    ReadingQuote = true;
-                    continue;
-                }
-                if (Contents[I] == '"' && ReadingQuote)
-                {
+                    while (Contents[I] != '"')
+                    {
+                        Builder += Contents[I++];
+                    }
                     V.Value = Builder;
                     Builder = "";
-                    ReadingQuote = false;
                     continue;
                 }
                 if (Contents[I] == ';')
