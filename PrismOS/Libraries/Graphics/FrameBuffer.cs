@@ -361,7 +361,7 @@ namespace PrismOS.Libraries.Graphics
             public int Height;
         }
 
-        public void DrawString(int X, int Y, string Text, Font Font, Color Color, bool Center = false)
+        public void DrawString(int X, int Y, string Text, Font Font, Color Color, uint Padding = 2, bool Center = false)
         {
             if (Text == null || Text.Length == 0)
             {
@@ -369,22 +369,17 @@ namespace PrismOS.Libraries.Graphics
             }
             string[] Lines = Text.Split('\n');
 
+            // Loop Through Each Line Of Text
             for (int Line = 0; Line < Lines.Length; Line++)
             {
+                // Advanced Calculations To Determine Position
+                int IX = X - (Center ? (MeasureString(Text, Font) / 2) : 0);
+                int IY = Y + (Font.Height * Line) - (Center ? Font.Height * Lines.Length / 2 : 0);
+
+                // Loop Though Each Char In The Line
                 for (int Char = 0; Char < Lines[Line].Length; Char++)
                 {
-                    // draw character in the middle of x and y
-                    int IX = X + (Font.Width * Char);
-                    int IY = Y + (Font.Height * Line);
-
-                    // If center, move ix and iy to the center
-                    if (Center)
-                    {
-                        IX -= Font.Width * Lines[Line].Length / 2;
-                        IY -= Font.Height * Lines.Length / 2;
-                    }
-
-                    DrawChar(IX, IY, Lines[Line][Char], Font, Color);
+                    IX += DrawChar(IX, IY, Lines[Line][Char], Font, Color) + 2;
                 }
             }
         }
@@ -434,6 +429,56 @@ namespace PrismOS.Libraries.Graphics
             }
 
             return MaxX;
+        }
+
+        public static int MeasureString(string String, Font Font, uint Padding = 2)
+        {
+            int Width = 0;
+            for (int I = 0; I < String.Length; I++)
+            {
+                if (String[I] == ' ')
+                {
+                    Width += Font.Width;
+                    continue;
+                }
+                if (String[I] == '\t')
+                {
+                    Width += Font.Width * 4;
+                    continue;
+                }
+
+                int Index = Font.Charset.IndexOf(String[I]);
+                if (Index == -1) return Font.Height / 2;
+
+                int MaxX = 0;
+
+                int SizePerFont = Font.Height * (Font.Height / Font.Width);
+                byte[] BFont = new byte[SizePerFont];
+                Font.MS.Seek(SizePerFont * Index, SeekOrigin.Begin);
+                Font.MS.Read(BFont, 0, BFont.Length);
+
+                for (int h = 0; h < Font.Height; h++)
+                {
+                    for (int aw = 0; aw < Font.Height / Font.Width; aw++)
+                    {
+
+                        for (int ww = 0; ww < 8; ww++)
+                        {
+                            if ((BFont[(h * (Font.Height / 8)) + aw] & (0x80 >> ww)) != 0)
+                            {
+                                if ((aw * 8) + ww > MaxX)
+                                {
+                                    MaxX = (aw * 8) + ww;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Width += MaxX;
+            }
+            Width += (int)(Padding * String.Length);
+            return Width;
         }
 
         #endregion

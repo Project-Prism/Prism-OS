@@ -83,7 +83,7 @@ namespace PrismOS.Libraries.UI
                 if (TitleVisible)
                 {
                     FrameBuffer.DrawFilledRectangle(0, 0, Width, 20, Theme.Radius, Theme.Accent);
-                    FrameBuffer.DrawString(Width / 2, 10, Text, Theme.Font, Theme.Foreground, true);
+                    FrameBuffer.DrawString(Width / 2, 10, Text, Theme.Font, Theme.Foreground, 2, true);
                     FrameBuffer.DrawRectangle(0, 0, Width - 1, Height - 1, Theme.Radius, Theme.Foreground);
                 }
 

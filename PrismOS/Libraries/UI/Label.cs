@@ -10,7 +10,8 @@ namespace PrismOS.Libraries.UI
         {
             if (Visible)
             {
-                FrameBuffer.DrawString(Width / 2, Height / 2, Text, Parent.Theme.Font, Parent.Theme.Foreground, true);
+                FrameBuffer.Clear(Parent.Theme.Background);
+                FrameBuffer.DrawString(0, 0, Text, Parent.Theme.Font, Parent.Theme.Foreground);
 
                 Parent.FrameBuffer.DrawImage(X, Y, FrameBuffer);
             }

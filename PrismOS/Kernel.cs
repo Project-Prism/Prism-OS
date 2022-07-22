@@ -15,6 +15,7 @@ namespace PrismOS
     {
         public static FrameBuffer Canvas = new(VBE.getModeInfo().width, VBE.getModeInfo().height);
         public static AudioMixer Mixer = new();
+        private static DateTime LT = DateTime.Now;
         private static uint Frames = 0;
         public static uint FPS = 0;
 
@@ -54,6 +55,12 @@ namespace PrismOS
             }
 
             Frames++;
+            if ((DateTime.Now - LT).TotalSeconds >= 1)
+            {
+                FPS = Frames;
+                Frames = 0;
+                LT = DateTime.Now;
+            }
             Canvas.DrawImage((int)Mouse.X, (int)Mouse.Y, Assets.Cursor);
 
             MemoryOperations.Copy((uint*)VBE.getLfbOffset(), Canvas.Internal, (int)Canvas.Size);

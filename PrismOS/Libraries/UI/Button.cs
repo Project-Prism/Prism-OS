@@ -27,11 +27,8 @@ namespace PrismOS.Libraries.UI
                     FG = Parent.Theme.Foreground;
                 }
 
-                int SX = (Width / 2) - Text.Length * Parent.Theme.Font.Width / 2;
-                int SY = (Height / 2) - (Text.Split('\n').Length * Parent.Theme.Font.Height / 2);
-
                 FrameBuffer.DrawFilledRectangle(0, 0, Width, Height, Parent.Theme.Radius, BG);
-                FrameBuffer.DrawString(SX, SY, Text, Parent.Theme.Font, FG);
+                FrameBuffer.DrawString(Width / 2, Height / 2, Text, Parent.Theme.Font, FG, 2, true);
                 FrameBuffer.DrawRectangle(0, 0, Width - 1, Height - 1, Parent.Theme.Radius, Parent.Theme.Foreground);
 
                 Parent.FrameBuffer.DrawImage(X, Y, FrameBuffer);
