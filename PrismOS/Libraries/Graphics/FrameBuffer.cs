@@ -291,6 +291,11 @@ namespace PrismOS.Libraries.Graphics
             {
                 throw new Exception("Cannot draw a null image file.");
             }
+            if (!Alpha && X == 0 && Y == 0 && Image.Width == Width && Image.Height == Height)
+            {
+                MemoryOperations.Copy(Internal, Image.Internal, (int)Size);
+                return;
+            }
             if (!Alpha)
             {
                 uint TWidth = Image.Width;
