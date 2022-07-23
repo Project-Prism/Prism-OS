@@ -5,15 +5,21 @@ namespace PrismOS.Libraries.CSParser
 {
     public class Variable
     {
+        public Type Type { get; set; }
         public string Name { get; set; }
         public object Value { get; set; }
-        public Type Type { get; set; }
+        public List<(Type, string)> Arguments { get; set; }
+
+        public string GetMethod { get; set; }
+        public string SetMethod { get; set; }
 
         public bool IsReadOnly { get; set; }
         public bool IsPointer { get; set; }
         public bool IsPublic { get; set; }
+        public bool IsLambda { get; set; }
         public bool IsStatic { get; set; }
         public bool IsUnsafe { get; set; }
+        public bool IsMethod { get; set; }
         public bool IsExtern { get; set; }
         public bool IsConst { get; set; }
         public bool IsNull { get; set; }
@@ -29,6 +35,8 @@ namespace PrismOS.Libraries.CSParser
             { "ushort", "System.UInt16" },
             { "uint", "System.UInt32" },
             { "ulong", "System.UInt64" },
+            { "var", "System.Dynamic" },
+            { "void", "System.Void" },
         };
 
         public static Variable Parse(string Contents)
@@ -84,13 +92,10 @@ namespace PrismOS.Libraries.CSParser
                         continue;
                     }
 
-                    if (Types.ContainsKey(Builder))
+                    Type? T = Type.GetType(Types.ContainsKey(Builder) ? Types[Builder] : Builder);
+                    if (T != null)
                     {
-                        Builder = Types[Builder];
-                    }
-                    if (Type.GetType(Builder) != null)
-                    {
-                        V.Type = Type.GetType(Builder);
+                        V.Type = T;
                         V.IsPointer = Builder.EndsWith("*");
                         Builder = "";
                         continue;
@@ -130,10 +135,24 @@ namespace PrismOS.Libraries.CSParser
                 }
                 if (Contents[I] == '=')
                 {
+                    if (Contents[I + 1] == '>')
+                    {
+                        V.IsLambda = true;
+                        I++;
+                    }
                     V.IsNull = false;
                     V.Name = Builder;
                     Builder = "";
                     continue;
+                }
+                if (Contents[I] == '(')
+                {
+                    V.IsMethod = true;
+                    throw new("Methods Not Implemented!");
+                }
+                if (Contents[I] == '{')
+                {
+                    throw new("Get/Set Accessors Not Implemented!");
                 }
 
                 // Default If Not Running Specified Function
@@ -141,6 +160,23 @@ namespace PrismOS.Libraries.CSParser
             }
 
             throw new("Unexpected EOL (Missing ';')");
+        }
+
+        public override string ToString()
+        {
+            return
+                $"IsReadOnly: {IsReadOnly}\n" +
+                $"IsPointer: {IsPointer}\n" +
+                $"IsPublic: {IsPublic}\n" +
+                $"IsLambda: {IsLambda}\n" +
+                $"IsStatic: {IsStatic}\n" +
+                $"IsUnsafe: {IsUnsafe}\n" +
+                $"IsMethod: {IsMethod}\n" +
+                $"IsExtern: {IsExtern}\n" +
+                $"IsConst: {IsConst}\n" +
+                $"IsNull: {IsNull}\n" +
+                $"Get: {(GetMethod == null ? "default" : GetMethod)}\n" +
+                $"Set: {(SetMethod == null ? "default" : SetMethod)}";
         }
     }
 }

@@ -28,4 +28,4 @@ You can install "AppTemplate.zip" to add an item template to visual studio that 
 
 ## License
 
-This project is licensed under [GPL-3.0](https://github.com/Project-Prism/Prism-OS/blob/main/LICENSE).
+This project is licensed under [GPL-2.0](https://github.com/Project-Prism/Prism-OS/blob/main/LICENSE).
