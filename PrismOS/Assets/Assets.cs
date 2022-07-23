@@ -22,13 +22,13 @@ namespace PrismOS
 
         // System Sounds
         public static MemoryAudioStream Window98Startup = MemoryAudioStream.FromWave(W98B);
-        //public static MemoryAudioStream Window98Shutdown = MemoryAudioStream.FromWave(W98OFFB);
+        public static MemoryAudioStream Window98Shutdown = MemoryAudioStream.FromWave(W98OFFB);
 
         // Pre-Sized Logos
         public static FrameBuffer Logo = FrameBuffer.FromBitmap(LogoB);
-        //public static FrameBuffer Logo512 = Logo.Resize(512, 512);
+        public static FrameBuffer Logo512 = Logo.Resize(512, 512);
         public static FrameBuffer Logo256 = Logo.Resize(256, 256);
-        //public static FrameBuffer Logo128 = Logo.Resize(128, 128);
-        //public static FrameBuffer Logo64 = Logo.Resize(64, 64);
+        public static FrameBuffer Logo128 = Logo.Resize(128, 128);
+        public static FrameBuffer Logo64 = Logo.Resize(64, 64);
     }
 }

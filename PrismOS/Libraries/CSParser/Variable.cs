@@ -3,7 +3,7 @@ using System;
 
 namespace PrismOS.Libraries.CSParser
 {
-    internal class Variable
+    public class Variable
     {
         public string Name { get; set; }
         public object Value { get; set; }
