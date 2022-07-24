@@ -1,8 +1,7 @@
 # Prism OS
 
 Created on May 11th, 2021, 1:26 AM UTC-8
-
-Prism OS is a [Cosmos](https://github.com/CosmosOS/Cosmos) based operating system developed with C#. The operating system is a GUI-based operating system with a basic window manager, a mouse system, a basic networking functionality, and a (very buggy) file system.
+Prism OS is a [Cosmos](https://github.com/CosmosOS/Cosmos) based operating system developed with C#. The operating system is a gui based operating system with a basic window manager and a mouse system. it also has basic networking as a (very buggy) file system
 
 Website: https://project-prism.github.io/Prism-OS/index.html
 
