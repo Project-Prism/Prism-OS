@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
 
-namespace PrismOS.Libraries.CSParser
+namespace PrismOS.Libraries.Parsing.CSharp
 {
     public class Variable
     {
@@ -175,8 +175,8 @@ namespace PrismOS.Libraries.CSParser
                 $"IsExtern: {IsExtern}\n" +
                 $"IsConst: {IsConst}\n" +
                 $"IsNull: {IsNull}\n" +
-                $"Get: {(GetMethod == null ? "default" : GetMethod)}\n" +
-                $"Set: {(SetMethod == null ? "default" : SetMethod)}";
+                $"Get: {GetMethod ?? "default"}\n" +
+                $"Set: {SetMethod ?? "default"}";
         }
     }
 }

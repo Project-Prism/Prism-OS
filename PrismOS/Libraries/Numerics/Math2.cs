@@ -5,7 +5,7 @@
         // [0] = X, [1] = Y
         public static (int, int) Lerp(int X1, int Y1, int X2, int Y2, double T)
         {
-            return ((int, int))((1-T) * X1 + T * Y1, (1-T) * X2 + T * Y2);
+            return ((int, int))((1 - T) * X1 + T * Y1, (1 - T) * X2 + T * Y2);
         }
         public static (int, int) Lerp((int, int) P0, (int, int) P1, double T)
         {

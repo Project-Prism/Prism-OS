@@ -1,5 +1,4 @@
-﻿using PrismOS.Libraries.Numerics;
-using Cosmos.Core;
+﻿using Cosmos.Core;
 using System.IO;
 using System;
 
@@ -271,14 +270,6 @@ namespace PrismOS.Libraries.Graphics
             DrawLine(X1, Y1, X2, Y2, Color);
             DrawLine(X1, Y1, X3, Y3, Color);
             DrawLine(X2, Y2, X3, Y3, Color);
-        }
-        public void DrawTriangle(Triangle<float> Triangle, Color Color)
-        {
-            DrawTriangle((int)Triangle.P1.X, (int)Triangle.P1.Y, (int)Triangle.P2.X, (int)Triangle.P2.Y, (int)Triangle.P3.X, (int)Triangle.P3.Y, Color);
-        }
-        public void DrawTriangle(Triangle<int> Triangle, Color Color)
-        {
-            DrawTriangle(Triangle.P1.X, Triangle.P1.Y, Triangle.P2.X, Triangle.P2.Y, Triangle.P3.X, Triangle.P3.Y, Color);
         }
 
         #endregion

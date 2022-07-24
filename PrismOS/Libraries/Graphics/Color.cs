@@ -1,4 +1,6 @@
-﻿namespace PrismOS.Libraries.Graphics
+﻿using System;
+
+namespace PrismOS.Libraries.Graphics
 {
     public struct Color
     {
@@ -95,6 +97,7 @@
         }
 
         // Hidden values
+        private static Random _Random = new();
         private byte _A, _R, _G, _B;
         private uint _ARGB;
 
@@ -121,6 +124,7 @@
 
         #region Known Colors
 
+        public static Color Random => FromARGB(255, (byte)_Random.Next(0, 255), (byte)_Random.Next(0, 255), (byte)_Random.Next(0, 255));
         public static readonly Color White = FromARGB(255, 255, 255, 255);
         public static readonly Color Black = FromARGB(255, 0, 0, 0);
         public static readonly Color Red = FromARGB(255, 255, 0, 0);

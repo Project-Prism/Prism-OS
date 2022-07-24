@@ -4,7 +4,6 @@ using PrismOS.Libraries.Graphics;
 using PrismOS.Libraries.Runtime;
 using PrismOS.Libraries.UI;
 using Cosmos.System.Audio;
-using Cosmos.Core.Memory;
 using Cosmos.Core;
 using Cosmos.HAL;
 using System;
@@ -15,7 +14,6 @@ namespace PrismOS
     {
         public static FrameBuffer Canvas = new(VBE.getModeInfo().width, VBE.getModeInfo().height);
         public static AudioMixer Mixer = new();
-        private static DateTime LT = DateTime.Now;
         private static uint Frames = 0;
         public static uint FPS = 0;
 
@@ -31,9 +29,8 @@ namespace PrismOS
             Mouse.ScreenHeight = Canvas.Height;
 
             // Create "Headless" Objects
-            //_ = new PIT.PITTimer(new(() => { Heap.Collect(); }), 10000000000, true);
-            //_ = new PIT.PITTimer(() => { FPS = Frames; Frames = 0; }, 1000000000, true);
-            //_ = new AppTemplate1();
+            Cosmos.HAL.Global.PIT.RegisterTimer(new PIT.PITTimer(() => { FPS = Frames; Frames = 0; }, 1000000000, true));
+            _ = new AppTemplate1();
 
             // Play Startup Sound
             Play(Assets.Window98Startup);
@@ -55,12 +52,6 @@ namespace PrismOS
             }
 
             Frames++;
-            if ((DateTime.Now - LT).TotalSeconds >= 1)
-            {
-                FPS = Frames;
-                Frames = 0;
-                LT = DateTime.Now;
-            }
             Canvas.DrawImage((int)Mouse.X, (int)Mouse.Y, Assets.Cursor);
 
             MemoryOperations.Copy((uint*)VBE.getLfbOffset(), Canvas.Internal, (int)Canvas.Size);
