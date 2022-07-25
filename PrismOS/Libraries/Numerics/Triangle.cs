@@ -20,12 +20,5 @@ namespace PrismOS.Libraries.Numerics
 
         public Color Color = Color.White;
         public Vector3 P1, P2, P3;
-
-        public void Draw(FrameBuffer Canvas, uint X = 0, uint Y = 0)
-        {
-            Canvas.DrawTriangle(
-                (int)(X + P1.X), (int)(Y + P1.Y), (int)(X + P2.X),
-                (int)(Y + P2.Y), (int)(X + P3.X), (int)(Y + P3.Y), Color);
-        }
     }
 }

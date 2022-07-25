@@ -8,6 +8,7 @@ namespace PrismOS.Libraries.Graphics
     {
         public Engine(uint Width, uint Height, int FOV)
         {
+            Buffer = new(Width, Height);
             this.Width = Width;
             this.Height = Height;
             this.FOV = FOV;
@@ -50,7 +51,7 @@ namespace PrismOS.Libraries.Graphics
             for (int O = 0; O < Objects.Count; O++)
             {
                 // Temporary Object Values
-                Triangle[] DrawTriangles = new Triangle[Objects[O].Triangles.Count];
+                Triangle[] DrawTriangles = Objects[0].Triangles.ToArray();
 
                 // Calculate Object
                 for (int I = 0; I < Objects[O].Triangles.Count; I++)
@@ -58,44 +59,44 @@ namespace PrismOS.Libraries.Graphics
                     // Rotate
                     DrawTriangles[I] = new Triangle()
                     {
-                        P1 = Rotate(Objects[O].Triangles[I].P1, Objects[O].Rotation),
-                        P2 = Rotate(Objects[O].Triangles[I].P2, Objects[O].Rotation),
-                        P3 = Rotate(Objects[O].Triangles[I].P3, Objects[O].Rotation),
+                        P1 = Rotate(DrawTriangles[I].P1, Objects[O].Rotation),
+                        P2 = Rotate(DrawTriangles[I].P2, Objects[O].Rotation),
+                        P3 = Rotate(DrawTriangles[I].P3, Objects[O].Rotation),
                     };
 
                     // Translate
                     DrawTriangles[I] = new Triangle()
                     {
-                        P1 = Translate(Objects[O].Triangles[I].P1, Objects[O].Position),
-                        P2 = Translate(Objects[O].Triangles[I].P2, Objects[O].Position),
-                        P3 = Translate(Objects[O].Triangles[I].P3, Objects[O].Position),
+                        P1 = Translate(DrawTriangles[I].P1, Objects[O].Position),
+                        P2 = Translate(DrawTriangles[I].P2, Objects[O].Position),
+                        P3 = Translate(DrawTriangles[I].P3, Objects[O].Position),
                     };
 
                     // Perspective
                     DrawTriangles[I] = new Triangle()
                     {
-                        P1 = ApplyPerspective(Objects[O].Triangles[I].P1, Z0),
-                        P2 = ApplyPerspective(Objects[O].Triangles[I].P2, Z0),
-                        P3 = ApplyPerspective(Objects[O].Triangles[I].P3, Z0),
+                        P1 = ApplyPerspective(DrawTriangles[I].P1, Z0),
+                        P2 = ApplyPerspective(DrawTriangles[I].P2, Z0),
+                        P3 = ApplyPerspective(DrawTriangles[I].P3, Z0),
                     };
-
+                    
                     // Center
                     DrawTriangles[I] = new Triangle()
                     {
-                        P1 = Center(Objects[O].Triangles[I].P1, Width, Height),
-                        P2 = Center(Objects[O].Triangles[I].P2, Width, Height),
-                        P3 = Center(Objects[O].Triangles[I].P3, Width, Height),
+                        P1 = Center(DrawTriangles[I].P1, Width, Height),
+                        P2 = Center(DrawTriangles[I].P2, Width, Height),
+                        P3 = Center(DrawTriangles[I].P3, Width, Height),
                     };
                 }
 
                 // Draw Object
-                foreach (Triangle T in Objects[O].Triangles)
+                foreach (Triangle T in DrawTriangles)
                 {
-                    T.Draw(Buffer, Buffer.Width / 2, Buffer.Height / 2);
+                    Buffer.DrawTriangle((int)T.P1.X, (int)T.P1.Y, (int)T.P2.X, (int)T.P2.Y, (int)T.P3.X, (int)T.P3.Y, T.Color);
                 }
             }
 
-            Canvas.DrawImage(X, Y, Buffer);
+            Canvas.DrawImage(X, Y, Buffer, false);
         }
 
         public static Vector3 ApplyPerspective(Vector3 Original, double Z0)
@@ -174,8 +175,8 @@ namespace PrismOS.Libraries.Graphics
                     Triangles.Add(new(-(Width / 2), Height / 2, -(Length / 2), Width / 2, Height / 2, Length / 2, Width / 2, Height / 2, -(Length / 2), Color.GoogleGreen));
 
                     // Bottom
-                    Triangles.Add(new(Width / 2, -(Height / 2), Length / 2, -(Width / 2), -(Height / 2), Length / 2, -(Width / 2), -(Height / 2), -(Length / 2)));
-                    Triangles.Add(new(Width / 2, -(Height / 2), Length / 2, -(Width / 2), -(Height / 2), -(Length / 2), Width / 2, -(Height / 2), -(Length / 2)));
+                    Triangles.Add(new(Width / 2, -(Height / 2), Length / 2, -(Width / 2), -(Height / 2), Length / 2, -(Width / 2), -(Height / 2), -(Length / 2), Color.DeepBlue));
+                    Triangles.Add(new(Width / 2, -(Height / 2), Length / 2, -(Width / 2), -(Height / 2), -(Length / 2), Width / 2, -(Height / 2), -(Length / 2), Color.DeepBlue));
                 }
 
                 public void TestLogic(double ElapsedTime)
