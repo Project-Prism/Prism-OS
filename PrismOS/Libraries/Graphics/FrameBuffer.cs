@@ -352,7 +352,7 @@ namespace PrismOS.Libraries.Graphics
             public int Height;
         }
 
-        public void DrawString(int X, int Y, string Text, Font Font, Color Color, uint Padding = 2, bool Center = false)
+        public void DrawString(int X, int Y, string Text, Font Font, Color Color, bool Center = false)
         {
             if (Text == null || Text.Length == 0)
             {

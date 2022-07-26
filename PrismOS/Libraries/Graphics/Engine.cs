@@ -1,4 +1,6 @@
-﻿using PrismOS.Libraries.Numerics;
+﻿using PrismOS.Libraries.Graphics.Types.Shapes;
+using PrismOS.Libraries.Graphics.Types;
+using PrismOS.Libraries.Numerics;
 using System.Collections.Generic;
 using System;
 
@@ -6,18 +8,21 @@ namespace PrismOS.Libraries.Graphics
 {
     public class Engine
     {
+        // To-Do: Implement Camera Rotation
         public Engine(uint Width, uint Height, int FOV)
         {
             Buffer = new(Width, Height);
             this.Width = Width;
             this.Height = Height;
-            this.FOV = FOV;
             Objects = new();
+            Camera = new();
+            this.FOV = FOV;
         }
 
         public double Z0 => Width / 2 / Math.Tan(FOV / 2 * 3.14159265 / 180);
         public List<Shape> Objects;
         public FrameBuffer Buffer;
+        public Camera Camera;
         public int FOV;
 
         public uint Width
@@ -73,9 +78,9 @@ namespace PrismOS.Libraries.Graphics
                     // Translate
                     DrawTriangles[I] = new Triangle()
                     {
-                        P1 = Translate(DrawTriangles[I].P1, Objects[O].Position),
-                        P2 = Translate(DrawTriangles[I].P2, Objects[O].Position),
-                        P3 = Translate(DrawTriangles[I].P3, Objects[O].Position),
+                        P1 = Translate(DrawTriangles[I].P1, Objects[O].Position + Camera.Position),
+                        P2 = Translate(DrawTriangles[I].P2, Objects[O].Position + Camera.Position),
+                        P3 = Translate(DrawTriangles[I].P3, Objects[O].Position + Camera.Position),
                     };
 
                     // Perspective
@@ -98,7 +103,10 @@ namespace PrismOS.Libraries.Graphics
                 // Draw Object
                 foreach (Triangle T in DrawTriangles)
                 {
-                    Buffer.DrawTriangle((int)T.P1.X, (int)T.P1.Y, (int)T.P2.X, (int)T.P2.Y, (int)T.P3.X, (int)T.P3.Y, Color.White);
+                    if (T.NormalZ < 0)
+                    {
+                        Buffer.DrawTriangle((int)T.P1.X, (int)T.P1.Y, (int)T.P2.X, (int)T.P2.Y, (int)T.P3.X, (int)T.P3.Y, Color.White);
+                    }
                 }
             }
 
@@ -146,50 +154,6 @@ namespace PrismOS.Libraries.Graphics
             toReturn.V = Original.V;
             toReturn.W = Original.W;
             return toReturn;
-        }
-
-        public class Shape
-        {
-            public List<Triangle> Triangles = new();
-            public Vector3 Position = new(0, 0, 0, 0, 0, 0);
-            public Vector3 Rotation = new(0, 0, 0, 0, 0, 0);
-
-        }
-        public class Cube : Shape
-        {
-            public Cube(double Width, double Height, double Length)
-            {
-                Position = new(0, 0, 400);
-
-                // South
-                Triangles.Add(new(-(Width / 2), -(Height / 2), -(Length / 2), -(Width / 2), Height / 2, -(Length / 2), Width / 2, Height / 2, -(Length / 2), Color.White));
-                Triangles.Add(new(-(Width / 2), -(Height / 2), -(Length / 2), Width / 2, Height / 2, -(Length / 2), Width / 2, -(Height / 2), -(Length / 2), Color.White));
-
-                // East
-                Triangles.Add(new(Width / 2, -(Height / 2), -(Length / 2), Width / 2, Height / 2, -(Length / 2), Width / 2, Height / 2, Length / 2, Color.White));
-                Triangles.Add(new(Width / 2, -(Height / 2), -(Length / 2), Width / 2, Height / 2, Length / 2, Width / 2, -(Height / 2), Length / 2, Color.White));
-
-                // North
-                Triangles.Add(new(Width / 2, -(Height / 2), Length / 2, Width / 2, Height / 2, Length / 2, -(Width / 2), Height / 2, Length / 2, Color.White));
-                Triangles.Add(new(Width / 2, -(Height / 2), Length / 2, -(Width / 2), Height / 2, Length / 2, -(Width / 2), -(Height / 2), Length / 2, Color.White));
-
-                // West
-                Triangles.Add(new(-(Width / 2), -(Height / 2), Length / 2, Width / 2, Height / 2, Length / 2, -(Width / 2), Height / 2, -(Length / 2), Color.White));
-                Triangles.Add(new(-(Width / 2), -(Height / 2), Length / 2, -(Width / 2), Height / 2, -(Length / 2), -(Width / 2), -(Height / 2), -(Length / 2), Color.White));
-
-                // Top
-                Triangles.Add(new(-(Width / 2), Height / 2, -(Length / 2), -(Width / 2), Height / 2, Length / 2, Width / 2, Height / 2, Length / 2, Color.White));
-                Triangles.Add(new(-(Width / 2), Height / 2, -(Length / 2), Width / 2, Height / 2, Length / 2, Width / 2, Height / 2, -(Length / 2), Color.White));
-
-                // Bottom
-                Triangles.Add(new(Width / 2, -(Height / 2), Length / 2, -(Width / 2), -(Height / 2), Length / 2, -(Width / 2), -(Height / 2), -(Length / 2), Color.White));
-                Triangles.Add(new(Width / 2, -(Height / 2), Length / 2, -(Width / 2), -(Height / 2), -(Length / 2), Width / 2, -(Height / 2), -(Length / 2), Color.White));
-            }
-
-            public void TestLogic(double ElapsedTime)
-            {
-                Rotation.Y += ElapsedTime;
-            }
         }
     }
 }

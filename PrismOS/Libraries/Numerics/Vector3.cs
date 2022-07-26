@@ -22,5 +22,7 @@
         }
 
         public double X, Y, Z, U, V, W;
+
+        public static Vector3 operator +(Vector3 V1, Vector3 V2) => new(V1.X + V2.X, V1.Y + V2.Y, V1.Z + V2.Z);
     }
 }
