@@ -28,7 +28,10 @@ namespace PrismOS.Libraries.Graphics
             }
             set
             {
-                Buffer = new(value, Height);
+                if (Buffer.Width != value)
+                {
+                    Buffer = new(value, Height);
+                }
             }
         }
         public uint Height
@@ -39,11 +42,14 @@ namespace PrismOS.Libraries.Graphics
             }
             set
             {
-                Buffer = new(Width, value);
+                if (Buffer.Height != value)
+                {
+                    Buffer = new(Width, value);
+                }
             }
         }
 
-        public void Render(int X, int Y, FrameBuffer Canvas)
+        public void Render(FrameBuffer Canvas)
         {
             Buffer.Clear();
 
@@ -92,11 +98,11 @@ namespace PrismOS.Libraries.Graphics
                 // Draw Object
                 foreach (Triangle T in DrawTriangles)
                 {
-                    Buffer.DrawTriangle((int)T.P1.X, (int)T.P1.Y, (int)T.P2.X, (int)T.P2.Y, (int)T.P3.X, (int)T.P3.Y, T.Color);
+                    Buffer.DrawTriangle((int)T.P1.X, (int)T.P1.Y, (int)T.P2.X, (int)T.P2.Y, (int)T.P3.X, (int)T.P3.Y, Color.White);
                 }
             }
 
-            Canvas.DrawImage(X, Y, Buffer, false);
+            Canvas.DrawImage(0, 0, Buffer, false);
         }
 
         public static Vector3 ApplyPerspective(Vector3 Original, double Z0)
@@ -148,41 +154,41 @@ namespace PrismOS.Libraries.Graphics
             public Vector3 Position = new(0, 0, 0, 0, 0, 0);
             public Vector3 Rotation = new(0, 0, 0, 0, 0, 0);
 
-            public class Cube : Shape
+        }
+        public class Cube : Shape
+        {
+            public Cube(double Width, double Height, double Length)
             {
-                public Cube(double Width, double Height, double Length)
-                {
-                    Position = new(0, 0, 400);
+                Position = new(0, 0, 400);
 
-                    // South
-                    Triangles.Add(new(-(Width / 2), -(Height / 2), -(Length / 2), -(Width / 2), Height / 2, -(Length / 2), Width / 2, Height / 2, -(Length / 2), Color.Blue));
-                    Triangles.Add(new(-(Width / 2), -(Height / 2), -(Length / 2), Width / 2, Height / 2, -(Length / 2), Width / 2, -(Height / 2), -(Length / 2), Color.Blue));
+                // South
+                Triangles.Add(new(-(Width / 2), -(Height / 2), -(Length / 2), -(Width / 2), Height / 2, -(Length / 2), Width / 2, Height / 2, -(Length / 2), Color.White));
+                Triangles.Add(new(-(Width / 2), -(Height / 2), -(Length / 2), Width / 2, Height / 2, -(Length / 2), Width / 2, -(Height / 2), -(Length / 2), Color.White));
 
-                    // East
-                    Triangles.Add(new(Width / 2, -(Height / 2), -(Length / 2), Width / 2, Height / 2, -(Length / 2), Width / 2, Height / 2, Length / 2, Color.Red));
-                    Triangles.Add(new(Width / 2, -(Height / 2), -(Length / 2), Width / 2, Height / 2, Length / 2, Width / 2, -(Height / 2), Length / 2, Color.Red));
+                // East
+                Triangles.Add(new(Width / 2, -(Height / 2), -(Length / 2), Width / 2, Height / 2, -(Length / 2), Width / 2, Height / 2, Length / 2, Color.White));
+                Triangles.Add(new(Width / 2, -(Height / 2), -(Length / 2), Width / 2, Height / 2, Length / 2, Width / 2, -(Height / 2), Length / 2, Color.White));
 
-                    // North
-                    Triangles.Add(new(Width / 2, -(Height / 2), Length / 2, Width / 2, Height / 2, Length / 2, -(Width / 2), Height / 2, Length / 2, Color.Green));
-                    Triangles.Add(new(Width / 2, -(Height / 2), Length / 2, -(Width / 2), Height / 2, Length / 2, -(Width / 2), -(Height / 2), Length / 2, Color.Green));
+                // North
+                Triangles.Add(new(Width / 2, -(Height / 2), Length / 2, Width / 2, Height / 2, Length / 2, -(Width / 2), Height / 2, Length / 2, Color.White));
+                Triangles.Add(new(Width / 2, -(Height / 2), Length / 2, -(Width / 2), Height / 2, Length / 2, -(Width / 2), -(Height / 2), Length / 2, Color.White));
 
-                    // West
-                    Triangles.Add(new(-(Width / 2), -(Height / 2), Length / 2, Width / 2, Height / 2, Length / 2, -(Width / 2), Height / 2, -(Length / 2), Color.LightGray));
-                    Triangles.Add(new(-(Width / 2), -(Height / 2), Length / 2, -(Width / 2), Height / 2, -(Length / 2), -(Width / 2), -(Height / 2), -(Length / 2), Color.LightGray));
+                // West
+                Triangles.Add(new(-(Width / 2), -(Height / 2), Length / 2, Width / 2, Height / 2, Length / 2, -(Width / 2), Height / 2, -(Length / 2), Color.White));
+                Triangles.Add(new(-(Width / 2), -(Height / 2), Length / 2, -(Width / 2), Height / 2, -(Length / 2), -(Width / 2), -(Height / 2), -(Length / 2), Color.White));
 
-                    // Top
-                    Triangles.Add(new(-(Width / 2), Height / 2, -(Length / 2), -(Width / 2), Height / 2, Length / 2, Width / 2, Height / 2, Length / 2, Color.GoogleGreen));
-                    Triangles.Add(new(-(Width / 2), Height / 2, -(Length / 2), Width / 2, Height / 2, Length / 2, Width / 2, Height / 2, -(Length / 2), Color.GoogleGreen));
+                // Top
+                Triangles.Add(new(-(Width / 2), Height / 2, -(Length / 2), -(Width / 2), Height / 2, Length / 2, Width / 2, Height / 2, Length / 2, Color.White));
+                Triangles.Add(new(-(Width / 2), Height / 2, -(Length / 2), Width / 2, Height / 2, Length / 2, Width / 2, Height / 2, -(Length / 2), Color.White));
 
-                    // Bottom
-                    Triangles.Add(new(Width / 2, -(Height / 2), Length / 2, -(Width / 2), -(Height / 2), Length / 2, -(Width / 2), -(Height / 2), -(Length / 2), Color.DeepBlue));
-                    Triangles.Add(new(Width / 2, -(Height / 2), Length / 2, -(Width / 2), -(Height / 2), -(Length / 2), Width / 2, -(Height / 2), -(Length / 2), Color.DeepBlue));
-                }
+                // Bottom
+                Triangles.Add(new(Width / 2, -(Height / 2), Length / 2, -(Width / 2), -(Height / 2), Length / 2, -(Width / 2), -(Height / 2), -(Length / 2), Color.White));
+                Triangles.Add(new(Width / 2, -(Height / 2), Length / 2, -(Width / 2), -(Height / 2), -(Length / 2), Width / 2, -(Height / 2), -(Length / 2), Color.White));
+            }
 
-                public void TestLogic(double ElapsedTime)
-                {
-                    Rotation.Y += ElapsedTime;
-                }
+            public void TestLogic(double ElapsedTime)
+            {
+                Rotation.Y += ElapsedTime;
             }
         }
     }

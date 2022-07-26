@@ -5,41 +5,37 @@ using System;
 
 namespace PrismOS.Libraries.Compression
 {
-
     // https://docs.fileformat.com/compression/tar/
-    public class TAR
+    public unsafe class TAR
     {
-        public TAR(byte[] Binary)
+        public struct Header
         {
-            byte[] B = new byte[512];
-            for (int I = 512; I < Binary.Length; I += 512)
-            {
-                for (int IX = 0; IX < 512; IX++)
-                {
-                    B[IX] = Binary[I + IX];
-                }
-                //Buffers.Add(new(Binary[I..(I + 512)]));
-                Buffers.Add(new(B));
-            }
-        }
-
-        public struct Buffer
-        {
-            public Buffer(byte[] Binary)
+            public Header(byte[] Binary)
             {
                 BinaryReader R = new(new MemoryStream(Binary));
                 Name = Encoding.ASCII.GetString(R.ReadBytes(100)).Trim('\0');
                 Mode = R.ReadInt64();
                 OwnerUID = R.ReadInt64();
                 GroupUID = R.ReadInt64();
-                Size = Convert.ToInt64(R.ReadBytes(12).ToString().Trim('\0').Trim());
+                Size = Convert.ToInt64(Encoding.UTF8.GetString(R.ReadBytes(12)).Trim('\0').Trim(), 8);
                 LastModifyTime = R.ReadChars(12);
                 HRChecksum = R.ReadInt64();
                 Type = R.ReadByte();
                 LFName = R.ReadChars(100);
             }
 
-            public static int HeaderSize { get => 257; }
+            public enum Types
+            {
+                NormalFile = 0,
+                HardLink = 1,
+                SymbolicLink = 2,
+                DeviceOrSpecialFile = 3,
+                BlockDevice = 4,
+                Directory = 5,
+                NamedPipe = 6,
+            }
+
+            public static int HeaderSize { get => 512; }
             public char[] LastModifyTime { get; set; }
             public long HRChecksum { get; set; }
             public long OwnerUID { get; set; }
@@ -50,17 +46,18 @@ namespace PrismOS.Libraries.Compression
             public long Mode { get; set; }
             public byte Type { get; set; }
         }
-        public enum Types
+        public TAR(byte[] Binary)
         {
-            NormalFile = 0,
-            HardLink = 1,
-            SymbolicLink = 2,
-            DeviceOrSpecialFile = 3,
-            BlockDevice = 4,
-            Firectory = 5,
-            NamedPipe = 6,
+            BinaryReader R = new(new MemoryStream(Binary));
+
+            while (R.BaseStream.Position < Binary.Length + 512)
+            {
+                Header H = new(R.ReadBytes(512));
+                Console.WriteLine("Adding " + H.Name + ", Length of " + H.Size);
+                Blocks.Add(H.Name, R.ReadBytes((int)H.Size));
+            }
         }
 
-        public List<Buffer> Buffers { get; set; } = new();
+        public Dictionary<string, byte[]> Blocks { get; set; } = new();
     }
 }
