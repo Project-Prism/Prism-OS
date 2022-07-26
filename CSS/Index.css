@@ -1,11 +1,24 @@
-.Motto {
-    margin-top: -1cm;
-    font-size: 20px;
-}
+/*
+========Global CSS========
+*/
 
+
+/*
+========Header CSS========
+*/
+
+
+
+/*Settings button*/
+
+
+/*
+========Body CSS========
+*/
 h2 {
     text-decoration: underline;
     text-align: center;
+    font-size: 25px;
 }
 
 .ProjectInfo {
@@ -18,3 +31,7 @@ h2 {
 .CosmosLink {
     color: cyan;
 }
+
+/*
+========Footer CSS========
+*/

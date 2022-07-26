@@ -1,51 +1,90 @@
+/*
+========Global CSS========
+*/
 body {
     font-family: 'Work Sans', sans-serif;
     background-color: #35353f;
-    border-radius: 5px;
-    font-weight: 300;
-    color: white;
-    margin: 0;
-
-    /*For Footer To Work Properly*/
     flex-direction: column;
     min-height: 100vh;
+    font-size: 20px;
+    color: white;
     display: flex;
+    margin: 0;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/*
+========Header CSS========
+*/
 
 header {
-    /*Old Background*/
-    /*background: linear-gradient(to right, #77216f, #3f42e7 100%);*/
-    
-    /*New BG color?*/
     background: linear-gradient(to left top, #3a5a8a, #7f0bad, #480CA8);
-
-    /*
-        Other good option
-        background: linear-gradient(to left top, #3a5a8a, #7f0bad, #480CA8);
-    */
-    
-    /*border-radius: 10px;*/
     text-align: center;
+    display: inline;
     font-size: 30px;
-    padding: 10px;
+    padding: 15px;
 }
 
-details:hover {
+/*TODO Clean Code, Work On Settings Button, Add Drop Down Animation*/
+/*Settings button*/
+.dropdown {
+    vertical-align: middle;
+    border-radius: 15px;
+    min-width: 150px;
+}
+
+.dropdown:hover {
+    min-width: 190px;
+}
+
+.dropdown-content {
+    background-color: #d7ecf0;
+    margin: 0px 15px 15px 15px;
+    border-radius: 15px;
+    position: absolute;
+    padding: 20px;
+    display: none;
+    right: 0px;
+}
+
+.dropdown-content button {
+    border-radius: 15px;
+    height: 35px;
+    width: 150px;
+}
+
+.dropdown-content button:hover {
+    background-color: #d7ecf0;
+    transition-duration: 0.4s;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.dropdown:hover .dropdown-content {
+    border-radius: 15px;
     display: block;
 }
 
-.PageType {
-    margin-top: -1cm;
-    color: #d12ed6;
+header p {
+    margin-top: -0.5cm;
+    font-weight: bold;
+    font-size: 22px;
+    color: cyan;
 }
 
+/*
+========Body CSS========
+*/
 .OptionButtons button {
     border: 2px solid black;
     border-radius: 15px;
     text-align: center;
     margin-bottom: 1cm;
     margin-left: 30px;
-    margin-top: 3cm;
+    margin-top: 2.5cm;
     font-size: 20px;
     padding: 15px;
     width: 220px;
@@ -59,102 +98,52 @@ details:hover {
     cursor: pointer;
 }
 
-.SettingsButton button {
-    border: 2px solid black;
-    border-radius: 15px;
-    margin-right: 10px;
+main {
     text-align: center;
-    font-weight: bold;
-    line-height: 5px;
-    margin-top: 20px;
-    font-size: 15px;
-    padding: 15px;
-    width: 200px;
-    height: 10px;
 }
 
-.SettingsButton button:hover {
-    background-color: #d7ecf0;
-    transition-duration: 0.4s;
-    transform: scale(1.1);
-    cursor: pointer;
+/*
+========Footer CSS========
+*/
+footer {
+    background-color: #191922;
+    text-align: center;
+    margin-top: auto;
+    font-size: 16px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
+footer hr {
+    border-radius: 15px;
+    margin-bottom: 0;
+    margin-top: 0;
 }
 
+footer div {
+    margin: 15px 20px 0px 20px;
+    display: inline-block;
+}
+
+footer img {
+    margin: 0px 10px 0px 10px;
+    background-color: #bbb;
+    border-radius: 100%;
+    padding: 10px;
+    height: 30px;
+    width: 27px;
+}
+
+footer a {
+    color: cyan;
+}
+
+/*
+========LightMode CSS========
+*/
 .LightMode {
     background-color:antiquewhite;
     color: black;
 }
 
 .LightMode footer, h1{
-    color: white;
-}
-
-footer {
-    background-color: #191922;
-    text-align: center;
-    margin-top: auto;
-    font-size: 15px;
-}
-
-footer hr {
-    margin-top: 0;
-}
-
-footer h4 {
-    font-size: 20px;
-}
-
-footer img {
-    background-color: #bbb;
-    border-radius: 50%;
-    margin-bottom: 0;
-    padding: 10px;
-    margin-top: 0;
-    height: 1.2%;
-    margin: 10px;
-    width: 25px;
-}
-
-footer div {
-    margin: 5px 25px 5px 25px;
-    display: inline-block;
-}
-
-.InsideDiv {
-    margin-right: 0px;
-}
-
-.FooterImageText {
-    margin-top: 0px;
-}
-
-footer a {
-    font-size: 15px;
-    color: cyan;
-    margin: 0%;
-}
-
-footer a p {
-    margin-top: 0%;
-    margin-bottom: 0%;
-}
-
-footer img:hover {
-    transition: all .35s ease-in-out;
-    opacity: 0.7;
-}
-
-.FooterHR {
-    width: 70%;
-    border-radius: 15px;
-}
-
-/*Footer*/
-.FooterUser {
-    font-size: 15px;
     color: white;
 }
