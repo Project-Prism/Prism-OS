@@ -4,17 +4,15 @@ namespace PrismOS.Libraries.UI
 {
     public class Image : Control
     {
-        public FrameBuffer Source;
-
         public override void Update(Window Parent)
         {
-            if (Source != null && Visible)
+            if (FrameBuffer != null && Visible)
             {
-                if (Width != Source.Width || Height != Source.Height)
+                if (Width != FrameBuffer.Width || Height != FrameBuffer.Height)
                 {
-                    Source = Source.Resize((uint)Width, (uint)Height);
+                    FrameBuffer = FrameBuffer.Resize((uint)Width, (uint)Height);
                 }
-                Parent.FrameBuffer.DrawImage(X, Y, Source, true);
+                Parent.FrameBuffer.DrawImage(X, Y, FrameBuffer, true);
             }
         }
     }

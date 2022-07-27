@@ -1,4 +1,5 @@
 ﻿using Mouse = Cosmos.System.MouseManager;
+using PrismOS.Libraries.Graphics.Types.Shapes;
 using Cosmos.HAL.Drivers.PCI.Audio;
 using PrismOS.Libraries.Graphics;
 using PrismOS.Libraries.Runtime;

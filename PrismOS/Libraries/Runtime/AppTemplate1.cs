@@ -1,11 +1,16 @@
-﻿using PrismOS.Libraries.UI;
+﻿using PrismOS.Libraries.Graphics.Types.Shapes;
+using PrismOS.Libraries.Graphics;
+using PrismOS.Libraries.UI;
 
 namespace PrismOS.Libraries.Runtime
 {
     public unsafe class AppTemplate1 : Application
     {
         public Window Window = new();
-        public Label Label1 = new();
+        public Cube C2 = new(1000, 5, 1000);
+        public Cube C1 = new(150, 50, 150);
+        public Image Image1 = new();
+        public Engine E;
 
         public override void OnCreate()
         {
@@ -15,16 +20,21 @@ namespace PrismOS.Libraries.Runtime
             Window.Width = 200;
             Window.Height = 200;
             Window.Theme = Theme.DefaultDark;
-            Window.Text = "Performance Monitor";
+            Window.Text = "3D Testing";
 
-            // Label1
-            Label1.X = 12;
-            Label1.Y = 29;
-            Label1.Width = 38;
-            Label1.Height = 15;
-            Label1.Text = "";
+            // Image1
+            Image1.X = 0;
+            Image1.Y = 20;
+            Image1.Width = Window.Width;
+            Image1.Height = Window.Height - 20;
 
-            Window.Elements.Add(Label1);
+            // Engine1
+            E = new((uint)Image1.Width, (uint)Image1.Height, 45);
+            C2.Position = new(0, 50, 0);
+            E.Objects.Add(C1);
+            E.Objects.Add(C2);
+
+            Window.Elements.Add(Image1);
             Window.Windows.Add(Window);
         }
 
@@ -35,7 +45,8 @@ namespace PrismOS.Libraries.Runtime
 
         public override void OnUpdate()
         {
-            Label1.Text = $"FPS: {Kernel.FPS}";
+            E.Render(Image1.FrameBuffer);
+            C1.TestLogic(0.01);
         }
     }
 }
