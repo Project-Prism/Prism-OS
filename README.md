@@ -15,7 +15,8 @@
     <li>LZW Compression and Decompression</li>
     <li>Good Graphics API</li>
     <li>System Event Sounds</li>
-    <li>Much More.</li>
+    <li>Much More.
+    <h6>Note: Some Of These Items Might Not Be Implemented All The Way</h6>
 </ul>
 <hr>
 
