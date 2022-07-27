@@ -1,11 +1,11 @@
 # Prism OS
 
 Created on May 11th, 2021, 1:26 AM UTC-8
-Prism OS is a [Cosmos](https://github.com/CosmosOS/Cosmos) based operating system developed with C#. The operating system is a gui based operating system with a basic window manager and a mouse system. it also has basic networking as a (very buggy) file system
+Prism OS is a [Cosmos](https://github.com/CosmosOS/Cosmos) Based Operating System Developed With C#. It is Complete With a Basic 3D Rasteriser, HTML (incomplete), C# (incomplete), TAR (incomplete), Bitmap, and Targa parsers, A UI library, LZW Compression and Decompression, Large Graphics API, Event Sounds, And Much More.
 
 Website: https://project-prism.github.io/Prism-OS/index.html
 
-This project is made possible by Cosmos and the community around it, and we give a huge thanks to all of the developers that contribute to it.
+This Project is Made Possible by Cosmos and the Community Around it, We Give a Huge Thanks to All of the Developers that Contribute to and Support it, Our Work Would Not be Possible Without it.
 
 Have any problems? Found a bug? Just want to chat? [Join the discord](https://discord.gg/DdERgtGmF6)!
 
@@ -17,15 +17,14 @@ Have any problems? Found a bug? Just want to chat? [Join the discord](https://di
 ## Notable contributors
 | Name                                                  | Contribution(s)              |
 |-------------------------------------------------------|------------------------------|
-| [Cosmos team](https://github.com/CosmosOS/Cosmos)     | The entirety of cosmos       |
-| [Terminal.cs](https://github.com/terminal-cs)         | General development, logo    |
-| [theopcoder](https://github.com/theopcoder)           | Website developer            |																    |
+| [Cosmos team](https://github.com/CosmosOS/Cosmos)     | The Entirety of Cosmos       |
+| [Terminal.cs](https://github.com/terminal-cs)         | General Development, Logo    |
+| [theopcoder](https://github.com/theopcoder)           | Website Developer            |
 
 ## Contributing
 
-Want to add something new to Prism OS? Simply create a pull request and we'll review it.
-You can install "AppTemplate.zip" to add an item template to visual studio that pre-fills some boilerplate code.
+Want to Add Something New to Prism OS? Simply Create a Pull Request and We'll Review it. (Your Code Should Preferably Follow [These](https://github.com/Project-Prism/Prism-OS/blob/main/CONTRIBUTING.md) Guidelines)
 
 ## License
 
-This project is licensed under [GPL-2.0](https://github.com/Project-Prism/Prism-OS/blob/main/LICENSE).
+This Project is Licensed Under the [GPL-2.0](https://github.com/Project-Prism/Prism-OS/blob/main/LICENSE) Licence.

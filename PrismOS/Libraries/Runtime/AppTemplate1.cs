@@ -17,8 +17,8 @@ namespace PrismOS.Libraries.Runtime
             // Main window
             Window.X = 50;
             Window.Y = 50;
-            Window.Width = 200;
-            Window.Height = 200;
+            Window.Width = 600;
+            Window.Height = 300;
             Window.Theme = Theme.DefaultDark;
             Window.Text = "3D Testing";
 

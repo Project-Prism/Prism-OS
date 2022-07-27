@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
 
-namespace PrismOS.Libraries.Parsing.CSharp
+namespace PrismOS.Libraries.CSharp
 {
     public class Variable
     {

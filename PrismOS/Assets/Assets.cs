@@ -1,4 +1,5 @@
-﻿using PrismOS.Libraries.Graphics;
+﻿using PrismOS.Libraries.Graphics.Parsing;
+using PrismOS.Libraries.Graphics;
 using IL2CPU.API.Attribs;
 using Cosmos.System.Audio.IO;
 
@@ -17,15 +18,15 @@ namespace PrismOS
         [ManifestResourceStream(ResourceName = Base + "W98OFF.wav")] public static readonly byte[] W98OFFB;
 
         // Misc
-        public static FrameBuffer Wallpaper = FrameBuffer.FromBitmap(WallpaperB);
-        public static FrameBuffer Cursor = FrameBuffer.FromBitmap(CursorB);
+        public static FrameBuffer Wallpaper = BMP.FromBitmap(WallpaperB);
+        public static FrameBuffer Cursor = BMP.FromBitmap(CursorB);
 
         // System Sounds
         public static MemoryAudioStream Window98Startup = MemoryAudioStream.FromWave(W98B);
         public static MemoryAudioStream Window98Shutdown = MemoryAudioStream.FromWave(W98OFFB);
 
         // Pre-Sized Logos
-        public static FrameBuffer Logo = FrameBuffer.FromBitmap(LogoB);
+        public static FrameBuffer Logo = BMP.FromBitmap(LogoB);
         public static FrameBuffer Logo512 = Logo.Resize(512, 512);
         public static FrameBuffer Logo256 = Logo.Resize(256, 256);
         public static FrameBuffer Logo128 = Logo.Resize(128, 128);
