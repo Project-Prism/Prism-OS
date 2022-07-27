@@ -1,16 +1,22 @@
-﻿namespace PrismOS.Libraries.Numerics
+﻿using System.Collections.Generic;
+
+namespace PrismOS.Libraries.Numerics
 {
     public unsafe static class Math2
     {
-        // [0] = X, [1] = Y
-        public static (int, int) Lerp(int X1, int Y1, int X2, int Y2, double T)
+        // https://www.gabrielgambetta.com/computer-graphics-from-scratch/06-lines.html
+        public static int[] Lerp(int i0, int d0, int i1, int d1)
         {
-            return ((int, int))((1 - T) * X1 + T * Y1, (1 - T) * X2 + T * Y2);
-        }
-        public static (int, int) Lerp((int, int) P0, (int, int) P1, double T)
-        {
-            return ((int, int))((1 - T) * P0.Item1 + T * P0.Item2, (1 - T) * P1.Item1 + T * P1.Item2);
-        }
+            List<int> Values = new();
+            int A = (d1 - d0) / (i1 - i0);
+            int D = d0;
+            for (int I = i0; I < i1; I++)
+            {
+                Values.Add(D);
+                D += A;
+            }
+            return Values.ToArray();
+}
 
         public static float InverseSqrt(float Number)
         {

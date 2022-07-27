@@ -264,70 +264,71 @@ namespace PrismOS.Libraries.Graphics
         #endregion
 
         #region Triangle
-
-        private void FBTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
-        {
-            float invslope1 = (X2 - X1) / (Y2 - Y1);
-            float invslope2 = (X3 - X1) / (Y3 - Y1);
-
-            float curx1 = X1;
-            float curx2 = X1;
-
-            for (int scanlineY = Y1; scanlineY <= Y2; scanlineY++)
-            {
-                DrawLine((int)curx1, scanlineY, (int)curx2, scanlineY, Color);
-                curx1 += invslope1;
-                curx2 += invslope2;
-            }
-        }
-        private void FFTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
-        {
-            float invslope1 = (X3 - X1) / (Y3 - Y1);
-            float invslope2 = (X3 - X2) / (Y3 - Y2);
-
-            float curx1 = X3;
-            float curx2 = X3;
-
-            for (int scanlineY = Y3; scanlineY > Y1; scanlineY--)
-            {
-                DrawLine((int)curx1, scanlineY, (int)curx2, scanlineY, Color);
-                curx1 -= invslope1;
-                curx2 -= invslope2;
-            }
-        }
+        // https://www.gabrielgambetta.com/computer-graphics-from-scratch/07-filled-triangles.html
         public void DrawFilledTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
         {
-            /* at first sort the three vertices by y-coordinate ascending so v1 is the topmost vertice */
+            // Sort the points so that y0 <= y1 <= y2
+            if (Y2 < Y1)
+            {
+                (X2, X1) = (X1, X2);
+                (Y2, Y1) = (Y1, Y2);
+            }
+            if (Y3 < Y1)
+            {
+                (X3, X1) = (X1, X3);
+                (Y3, Y1) = (Y1, Y3);
+            }
             if (Y3 < Y2)
             {
-                (Y2, Y3) = (Y3, Y2);
-            }
-            if (Y1 < Y2)
-            {
-                (Y1, Y2) = (Y2, Y1);
-            }
-            if (Y1 < Y3)
-            {
-                (Y1, Y3) = (Y3, Y1);
+                (X3, X2) = (X2, X3);
+                (Y3, Y2) = (Y2, Y3);
             }
 
-            /* here we know that v1.y <= v2.y <= v3.y */
-            /* check for trivial case of bottom-flat triangle */
-            if (Y2 == Y3)
+            // Compute the x coordinates of the triangle edges
+            int[] X01 = Numerics.Math2.Lerp(Y1, X1, Y2, X2);
+            int[] X12 = Numerics.Math2.Lerp(Y2, X2, Y3, X3);
+            int[] X02 = Numerics.Math2.Lerp(Y1, X1, Y3, X3);
+
+            // Concatenate the short sides
+            
+            // Temporary Solution To Array Ranging Not Being Plugged
+            int[] T = new int[X01.Length - 1];
+            for (int I = 0; I < T.Length; I++)
             {
-                FBTriangle(X1, Y1, X2, Y2, X3, Y3, Color);
+                T[I] = X01[I];
             }
-            /* check for trivial case of top-flat triangle */
-            else if (Y1 == Y2)
+            X01 = T;
+
+            // X01 = X01[0..(X01.Length - 1)];
+
+            int[] X012 = new int[X01.Length];
+            for (int I = 0; I < X01.Length; I++)
             {
-                FFTriangle(X1, Y1, X2, Y2, X3, Y3, Color);
+                X012[I] = X01[I] + X12[I];
+            }
+
+            // Determine which is left and which is right
+            double M = Math.Floor((double)(X012.Length / 2));
+            int[] XLeft, XRight;
+
+            if (X02[(int)M] < X012[(int)M])
+            {
+                XLeft = X02;
+                XRight = X012;
             }
             else
             {
-                /* general case - split the triangle in a topflat and bottom-flat one */
-                int X4 = (int)(X1 + (float)(Y2 - Y1) / (Y3 - Y1) * (X3 - X1));
-                FBTriangle(X1, Y1, X2, Y2, X4, Y2, Color);
-                FFTriangle(X2, Y2, X4, Y2, X3, Y3, Color);
+                XLeft = X012;
+                XRight = X02;
+            }
+
+            // Draw the horizontal segments
+            for (int Y = Y1; Y < Y3; Y++)
+            {
+                for (int X = XLeft[Y - Y1]; X < XRight[Y - Y1]; X++)
+                {
+                    SetPixel(X, Y, Color);
+                }
             }
         }
         public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
