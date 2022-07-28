@@ -1,4 +1,6 @@
-﻿namespace PrismOS.Libraries.Text.CSharp
+﻿using System.Collections.Generic;
+
+namespace PrismOS.Libraries.Text.CSharp
 {
     public class File
     {
@@ -32,7 +34,7 @@
                         Usings.Add("");
                         while (Contents[I] != ';')
                         {
-                            Usings[Usings.Count - 1] += Contents[I++];
+                            Usings[^1] += Contents[I++];
                         }
                         continue;
                     }

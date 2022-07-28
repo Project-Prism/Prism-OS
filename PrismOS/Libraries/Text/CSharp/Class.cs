@@ -6,20 +6,15 @@ namespace PrismOS.Libraries.Text.CSharp
     {
         public Class()
         {
-            Name = "";
-            IsPublic = false;
-            IsStatic = false;
-            Contents = "";
-            Variables = new();
+            Classes = new();
+            Attributes = new();
             Functions = new();
+            Variables = new();
         }
 
-        public string Name { get; set; }
-        public bool IsPublic { get; set; }
-        public bool IsStatic { get; set; }
-        public string Contents { get; set; }
         public List<Class> Classes { get; set; }
-        public List<Variable> Variables { get; set; }
+        public Attributes Attributes { get; set; }
         public List<Function> Functions { get; set; }
+        public List<Attributes> Variables { get; set; }
     }
 }

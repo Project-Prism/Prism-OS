@@ -571,6 +571,18 @@ namespace PrismOS.Libraries.Graphics
             return FB;
         }
 
+        public static FrameBuffer FromAuto(byte[] Binary)
+        {
+            if (Binary[0] == 'B' && Binary[1] == 'M')
+            {
+                return Parsing.BMP.FromBitmap(Binary);
+            }
+            else
+            {
+                return Parsing.TGA.FromTGA(Binary);
+            }
+        }
+
         public void Dispose()
         {
             if (Size != 0)

@@ -73,6 +73,7 @@ namespace PrismOS.Libraries.Graphics
                         P1 = Rotate(DrawTriangles[I].P1, Objects[O].Rotation),
                         P2 = Rotate(DrawTriangles[I].P2, Objects[O].Rotation),
                         P3 = Rotate(DrawTriangles[I].P3, Objects[O].Rotation),
+                        Color = DrawTriangles[I].Color,
                     };
 
                     // Translate
@@ -81,6 +82,7 @@ namespace PrismOS.Libraries.Graphics
                         P1 = Translate(DrawTriangles[I].P1, Objects[O].Position + Camera.Position),
                         P2 = Translate(DrawTriangles[I].P2, Objects[O].Position + Camera.Position),
                         P3 = Translate(DrawTriangles[I].P3, Objects[O].Position + Camera.Position),
+                        Color = DrawTriangles[I].Color,
                     };
 
                     // Perspective
@@ -89,6 +91,7 @@ namespace PrismOS.Libraries.Graphics
                         P1 = ApplyPerspective(DrawTriangles[I].P1, Z0),
                         P2 = ApplyPerspective(DrawTriangles[I].P2, Z0),
                         P3 = ApplyPerspective(DrawTriangles[I].P3, Z0),
+                        Color = DrawTriangles[I].Color,
                     };
                     
                     // Center
@@ -97,6 +100,7 @@ namespace PrismOS.Libraries.Graphics
                         P1 = Center(DrawTriangles[I].P1, Width, Height),
                         P2 = Center(DrawTriangles[I].P2, Width, Height),
                         P3 = Center(DrawTriangles[I].P3, Width, Height),
+                        Color = DrawTriangles[I].Color,
                     };
                 }
 
@@ -105,7 +109,7 @@ namespace PrismOS.Libraries.Graphics
                 {
                     if (T.NormalZ < 0)
                     {
-                        Buffer.DrawTriangle((int)T.P1.X, (int)T.P1.Y, (int)T.P2.X, (int)T.P2.Y, (int)T.P3.X, (int)T.P3.Y, Color.White);
+                        Buffer.DrawTriangle((int)T.P1.X, (int)T.P1.Y, (int)T.P2.X, (int)T.P2.Y, (int)T.P3.X, (int)T.P3.Y, T.Color);
                     }
                 }
             }
