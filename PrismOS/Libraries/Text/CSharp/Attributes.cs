@@ -7,18 +7,24 @@ namespace PrismOS.Libraries.Text.CSharp
     {
         public Attributes()
         {
-            Type = typeof(void);
-            Name = "";
-            Value = null;
+            Variables = new();
             Arguments = new();
+            Classes = new();
+            Calls = new();
         }
 
         public Type Type { get; set; }
         public string Name { get; set; }
         public object Value { get; set; }
-        
+
+        // Use-Specific Variables, Won't Be Used All The Time
+        public List<Attributes> Variables { get; set; }
         public List<Attributes> Arguments { get; set; }
-        public bool IsConstructor { get; set; }
+        public List<Attributes> Classes { get; set; }
+        public List<Attributes> Usings { get; set; }
+        public List<Attributes> Calls { get; set; }
+
+        // Generic Values
         public bool HasArguments { get; set; }
         public bool IsReadOnly { get; set; }
         public bool IsPointer { get; set; }
@@ -29,7 +35,68 @@ namespace PrismOS.Libraries.Text.CSharp
         public bool IsMethod { get; set; }
         public bool IsExtern { get; set; }
         public bool IsConst { get; set; }
+        public bool IsClass { get; set; }
         public bool IsNull { get; set; }
         public bool IsCall { get; set; }
+
+        public static Attributes ParseClass(string Contents)
+        {
+            Attributes A = new();
+            string Builder = "";
+
+            bool IsDeeper = false;
+            for (int I = 0; Contents[I] != '}' || IsDeeper; I++)
+            {
+                if (Contents[I] == '\n' || Contents[I] == '\t')
+                {
+                    continue;
+                }
+                if (Contents[I] == ' ')
+                {
+                    if (Builder == "namespace")
+                    {
+                        Builder = "";
+                        while (Contents[I] != '{')
+                        {
+                            A.Classes[^1].Name += Contents[I++];
+                        }
+                        continue;
+                    }
+                    if (Builder == "using")
+                    {
+                        Builder = "";
+                        A.Classes[^1].Usings.Add(new());
+                        while (Contents[I] != ';')
+                        {
+                            A.Classes[^1].Usings[^1].Name += Contents[I++];
+                        }
+                        continue;
+                    }
+                    if (Builder == "public")
+                    {
+                        A.IsPublic = true;
+                        continue;
+                    }
+                    if (Builder == "static")
+                    {
+                        A.IsStatic = true;
+                        continue;
+                    }
+                    if (Builder == "const")
+                    {
+                        A.IsConst = true;
+                        continue;
+                    }
+                    if (Builder == "class")
+                    {
+                        A.Classes.Add(ParseClass(Contents[I..Contents.Length]));
+                        Builder = "";
+                        continue;
+                    }
+                }
+            }
+
+            return A;
+        }
     }
 }
