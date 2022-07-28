@@ -30,7 +30,7 @@ namespace PrismOS
 
             // Create "Headless" Objects
             Cosmos.HAL.Global.PIT.RegisterTimer(new PIT.PITTimer(() => { FPS = Frames; Frames = 0; }, 1000000000, true));
-            _ = new AppTemplate1();
+            _ = new Desktop();
 
             // Play Startup Sound
             Play(Assets.Window98Startup);
