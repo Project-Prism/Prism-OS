@@ -85,7 +85,7 @@ namespace PrismOS.Libraries.Graphics
 
         #region Line
 
-        public void DrawLine(int X1, int Y1, int X2, int Y2, Color Color)
+        public void DrawLine(int X1, int Y1, int X2, int Y2, Color Color, bool AntiAlias = false)
         {
             int DX = Math.Abs(X2 - X1), SX = X1 < X2 ? 1 : -1;
             int DY = Math.Abs(Y2 - Y1), SY = Y1 < Y2 ? 1 : -1;
@@ -94,6 +94,19 @@ namespace PrismOS.Libraries.Graphics
             while (X1 != X2 || Y1 != Y2)
             {
                 SetPixel(X1, Y1, Color);
+                if (AntiAlias)
+                {
+                    if (X1 + X2 > Y1 + Y2)
+                    {
+                        SetPixel(X1 + 1, Y1, Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B));
+                        SetPixel(X1 + 1, Y1, Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B));
+                    }
+                    else
+                    {
+                        SetPixel(X1, Y1 + 1, Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B));
+                        SetPixel(X1, Y1 - 1, Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B));
+                    }
+                }
                 int e2 = err;
                 if (e2 > -DX) { err -= DY; X1 += SX; }
                 if (e2 < DY) { err += DX; Y1 += SY; }

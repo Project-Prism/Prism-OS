@@ -73,15 +73,15 @@ namespace PrismOS.Libraries.Graphics
             get
             {
                 // Calculate the saturation of the color
-                int Max = System.Math.Max(_R, System.Math.Max(_G, _B));
-                int Min = System.Math.Min(_R, System.Math.Min(_G, _B));
+                int Max = Math.Max(_R, Math.Max(_G, _B));
+                int Min = Math.Min(_R, Math.Min(_G, _B));
                 return (Max - Min) / 255;
             }
             set
             {
                 // Set the saturation of the color
-                int Max = System.Math.Max(_R, System.Math.Max(_G, _B));
-                int Min = System.Math.Min(_R, System.Math.Min(_G, _B));
+                int Max = Math.Max(_R, Math.Max(_G, _B));
+                int Min = Math.Min(_R, Math.Min(_G, _B));
                 int Diff = Max - Min;
                 if (Diff == 0)
                 {
