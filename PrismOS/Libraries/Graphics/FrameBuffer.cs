@@ -264,71 +264,76 @@ namespace PrismOS.Libraries.Graphics
         #endregion
 
         #region Triangle
-        // https://www.gabrielgambetta.com/computer-graphics-from-scratch/07-filled-triangles.html
         public void DrawFilledTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
         {
-            // Sort the points so that y0 <= y1 <= y2
-            if (Y2 < Y1)
-            {
-                (X2, X1) = (X1, X2);
-                (Y2, Y1) = (Y1, Y2);
-            }
-            if (Y3 < Y1)
-            {
-                (X3, X1) = (X1, X3);
-                (Y3, Y1) = (Y1, Y3);
-            }
-            if (Y3 < Y2)
-            {
-                (X3, X2) = (X2, X3);
-                (Y3, Y2) = (Y2, Y3);
-            }
+            // 28.4 fixed-point coordinates
+            Y1 = (int)Math.Round(16.0f * Y1);
+            Y2 = (int)Math.Round(16.0f * Y2);
+            Y3 = (int)Math.Round(16.0f * Y3);
 
-            // Compute the x coordinates of the triangle edges
-            int[] X01 = Numerics.Math2.Lerp(Y1, X1, Y2, X2);
-            int[] X12 = Numerics.Math2.Lerp(Y2, X2, Y3, X3);
-            int[] X02 = Numerics.Math2.Lerp(Y1, X1, Y3, X3);
+            X1 = (int)Math.Round(16.0f * X1);
+            X2 = (int)Math.Round(16.0f * X2);
+            X3 = (int)Math.Round(16.0f * X3);
 
-            // Concatenate the short sides
-            
-            // Temporary Solution To Array Ranging Not Being Plugged
-            int[] T = new int[X01.Length - 1];
-            for (int I = 0; I < T.Length; I++)
+            // Deltas
+            int DX12 = X1 - X2;
+            int DX23 = X2 - X3;
+            int DX31 = X3 - X1;
+
+            int DY12 = Y1 - Y2;
+            int DY23 = Y2 - Y3;
+            int DY31 = Y3 - Y1;
+
+            // Fixed-point deltas
+            int FDX12 = DX12 << 4;
+            int FDX23 = DX23 << 4;
+            int FDX31 = DX31 << 4;
+
+            int FDY12 = DY12 << 4;
+            int FDY23 = DY23 << 4;
+            int FDY31 = DY31 << 4;
+
+            // Bounding rectangle
+            int minx = (Math.Min(Math.Min(X1, X2), X3) + 0xF) >> 4;
+            int maxx = (Math.Max(Math.Max(X1, X2), X3) + 0xF) >> 4;
+            int miny = (Math.Min(Math.Min(Y1, Y2), Y3) + 0xF) >> 4;
+            int maxy = (Math.Max(Math.Max(Y1, Y2), Y3) + 0xF) >> 4;
+
+            // Half-edge constants
+            int C1 = DY12 * X1 - DX12 * Y1;
+            int C2 = DY23 * X2 - DX23 * Y2;
+            int C3 = DY31 * X3 - DX31 * Y3;
+
+            // Correct for fill convention
+            if (DY12 < 0 || (DY12 == 0 && DX12 > 0)) C1++;
+            if (DY23 < 0 || (DY23 == 0 && DX23 > 0)) C2++;
+            if (DY31 < 0 || (DY31 == 0 && DX31 > 0)) C3++;
+
+            int CY1 = C1 + DX12 * (miny << 4) - DY12 * (minx << 4);
+            int CY2 = C2 + DX23 * (miny << 4) - DY23 * (minx << 4);
+            int CY3 = C3 + DX31 * (miny << 4) - DY31 * (minx << 4);
+
+            for (int Y = miny; Y < maxy; Y++)
             {
-                T[I] = X01[I];
-            }
-            X01 = T;
+                int CX1 = CY1;
+                int CX2 = CY2;
+                int CX3 = CY3;
 
-            // X01 = X01[0..(X01.Length - 1)];
-
-            int[] X012 = new int[X01.Length];
-            for (int I = 0; I < X01.Length; I++)
-            {
-                X012[I] = X01[I] + X12[I];
-            }
-
-            // Determine which is left and which is right
-            double M = Math.Floor((double)(X012.Length / 2));
-            int[] XLeft, XRight;
-
-            if (X02[(int)M] < X012[(int)M])
-            {
-                XLeft = X02;
-                XRight = X012;
-            }
-            else
-            {
-                XLeft = X012;
-                XRight = X02;
-            }
-
-            // Draw the horizontal segments
-            for (int Y = Y1; Y < Y3; Y++)
-            {
-                for (int X = XLeft[Y - Y1]; X < XRight[Y - Y1]; X++)
+                for (int X = minx; X < maxx; X++)
                 {
-                    SetPixel(X, Y, Color);
+                    if (CX1 > 0 && CX2 > 0 && CX3 > 0)
+                    {
+                        SetPixel(X, Y, Color);
+                    }
+
+                    CX1 -= FDY12;
+                    CX2 -= FDY23;
+                    CX3 -= FDY31;
                 }
+
+                CY1 += FDX12;
+                CY2 += FDX23;
+                CY3 += FDX31;
             }
         }
         public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)

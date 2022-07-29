@@ -105,7 +105,7 @@ namespace PrismOS.Libraries.Graphics
 
                     if (DrawTriangles[I].NormalZ < 0)
                     {
-                        Buffer.DrawTriangle(
+                        Buffer.DrawFilledTriangle(
                             (int)DrawTriangles[I].P1.X, (int)DrawTriangles[I].P1.Y,
                             (int)DrawTriangles[I].P2.X, (int)DrawTriangles[I].P2.Y,
                             (int)DrawTriangles[I].P3.X, (int)DrawTriangles[I].P3.Y,

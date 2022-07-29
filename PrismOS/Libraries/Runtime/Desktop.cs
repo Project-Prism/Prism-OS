@@ -18,6 +18,7 @@ namespace PrismOS.Libraries.Runtime
             Window.Theme = Theme.DefaultDark;
             Window.Text = "Desktop";
             Window.TitleVisible = false;
+            Window.Draggable = false;
 
             // Button
             Button.X = 0;
