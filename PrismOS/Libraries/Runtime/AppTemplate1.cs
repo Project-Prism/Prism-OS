@@ -45,18 +45,6 @@ namespace PrismOS.Libraries.Runtime
 
         public override void OnUpdate()
         {
-            if (Cosmos.System.KeyboardManager.TryReadKey(out var Key))
-            {
-                switch (Key.Key)
-                {
-                    case Cosmos.System.ConsoleKeyEx.E:
-                        E.Camera.Rotation.X++;
-                        break;
-                    case Cosmos.System.ConsoleKeyEx.Q:
-                        E.Camera.Rotation.X--;
-                        break;
-                }
-            }
             E.Render(Image1.FrameBuffer);
             C1.TestLogic(0.01);
         }
