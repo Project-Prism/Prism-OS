@@ -402,9 +402,9 @@ namespace PrismOS.Libraries.Graphics
 
         #endregion
 
-        #region Text
+        #region Font
 
-        public class Font
+        public class Font : IDisposable
         {
             public Font(string Charset, MemoryStream MS, int Width, int Height)
             {
@@ -421,7 +421,17 @@ namespace PrismOS.Libraries.Graphics
             public MemoryStream MS;
             public int Width;
             public int Height;
+
+            public void Dispose()
+            {
+                Cosmos.Core.GCImplementation.Free(this);
+                GC.SuppressFinalize(this);
+            }
         }
+
+        #endregion
+
+        #region Text
 
         public void DrawString(int X, int Y, string Text, Font Font, Color Color, bool Center = false)
         {
