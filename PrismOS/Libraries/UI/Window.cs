@@ -1,10 +1,11 @@
 ﻿using Mouse = Cosmos.System.MouseManager;
 using System.Collections.Generic;
 using PrismOS.Libraries.Graphics;
+using System;
 
 namespace PrismOS.Libraries.UI
 {
-    public class Window
+    public class Window : IDisposable
     {
         // Window Manager Variables
         public static List<Window> Windows { get; set; } = new();
@@ -91,7 +92,7 @@ namespace PrismOS.Libraries.UI
                 {
                     C.OnUpdate.Invoke();
 
-                    if (Mouse.X > X + C.X && Mouse.X <  X + C.X + C.Width && Mouse.Y > Y + C.Y && Mouse.Y < Y + C.Y + C.Height && this == Windows[^1])
+                    if (Mouse.X > X + C.X && Mouse.X <  X + C.X + C.Width && Mouse.Y > Y + C.Y && Mouse.Y < Y + C.Y + C.Height && (this == Windows[^1] || !Draggable))
                     {
                         C.Hover = true;
                         if (Mouse.MouseState == Cosmos.System.MouseState.Left)
@@ -117,6 +118,13 @@ namespace PrismOS.Libraries.UI
 
                 Canvas.DrawImage(X, Y, FrameBuffer, false);
             }
+        }
+
+        public void Dispose()
+        {
+            //FrameBuffer.Dispose();
+            Cosmos.Core.GCImplementation.Free(this);
+            GC.SuppressFinalize(this);
         }
     }
 }

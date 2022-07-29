@@ -1,5 +1,4 @@
-﻿using PrismOS.Libraries.Graphics.Types.Shapes;
-using PrismOS.Libraries.Graphics.Types;
+﻿using PrismOS.Libraries.Graphics.Types;
 using PrismOS.Libraries.Numerics;
 using System.Collections.Generic;
 using System;
@@ -93,7 +92,7 @@ namespace PrismOS.Libraries.Graphics
                         P3 = ApplyPerspective(DrawTriangles[I].P3, Z0),
                         Color = DrawTriangles[I].Color,
                     };
-                    
+
                     // Center
                     DrawTriangles[I] = new Triangle()
                     {
