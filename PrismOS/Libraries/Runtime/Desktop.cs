@@ -6,7 +6,7 @@ namespace PrismOS.Libraries.Runtime
     public unsafe class Desktop : Application
     {
         public Window Window = new();
-        public Button Button = new();
+        public Button Button1 = new();
 
         public override void OnCreate()
         {
@@ -20,14 +20,14 @@ namespace PrismOS.Libraries.Runtime
             Window.TitleVisible = false;
             Window.Draggable = false;
 
-            // Button
-            Button.X = 0;
-            Button.Y = 0;
-            Button.Width = 32;
-            Button.Height = 32;
-            Button.OnClick = new Action(() => { ButtonClick(); });
+            // Button1
+            Button1.X = 0;
+            Button1.Y = 0;
+            Button1.Width = 32;
+            Button1.Height = 32;
+            Button1.OnClick = new Action(() => { Button1Click(); });
 
-            Window.Elements.Add(Button);
+            Window.Elements.Add(Button1);
             Window.Windows.Add(Window);
         }
 
@@ -41,7 +41,7 @@ namespace PrismOS.Libraries.Runtime
 
         }
 
-        public void ButtonClick()
+        public void Button1Click()
         {
             _ = new AppTemplate1();
         }

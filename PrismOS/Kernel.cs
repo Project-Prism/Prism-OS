@@ -23,7 +23,10 @@ namespace PrismOS
             Canvas.DrawImage((int)((Canvas.Width / 2) - 128), (int)((Canvas.Height / 2) - 128), Assets.Logo256);
             MemoryOperations.Copy((uint*)VBE.getLfbOffset(), Canvas.Internal, (int)Canvas.Size);
 
-            // Setup Gui Stuff
+            // Setup Networking
+            new Cosmos.System.Network.IPv4.UDP.DHCP.DHCPClient().SendDiscoverPacket();
+
+            // Setup Gui
             Assets.Wallpaper = Assets.Wallpaper.Resize(Canvas.Width, Canvas.Height);
             Mouse.ScreenWidth = Canvas.Width;
             Mouse.ScreenHeight = Canvas.Height;
