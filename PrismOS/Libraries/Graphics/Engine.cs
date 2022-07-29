@@ -6,7 +6,7 @@ using System;
 
 namespace PrismOS.Libraries.Graphics
 {
-    public class Engine
+    public class Engine : IDisposable
     {
         // To-Do: Implement Camera Rotation
         public Engine(uint Width, uint Height, int FOV)
@@ -62,7 +62,7 @@ namespace PrismOS.Libraries.Graphics
             for (int O = 0; O < Objects.Count; O++)
             {
                 // Temporary Object Values
-                Triangle[] DrawTriangles = Objects[0].Triangles.ToArray();
+                Triangle[] DrawTriangles = Objects[O].Triangles.ToArray();
 
                 // Calculate Object
                 for (int I = 0; I < Objects[O].Triangles.Count; I++)
@@ -102,14 +102,14 @@ namespace PrismOS.Libraries.Graphics
                         P3 = Center(DrawTriangles[I].P3, Width, Height),
                         Color = DrawTriangles[I].Color,
                     };
-                }
 
-                // Draw Object
-                foreach (Triangle T in DrawTriangles)
-                {
-                    if (T.NormalZ < 0)
+                    if (DrawTriangles[I].NormalZ < 0)
                     {
-                        Buffer.DrawTriangle((int)T.P1.X, (int)T.P1.Y, (int)T.P2.X, (int)T.P2.Y, (int)T.P3.X, (int)T.P3.Y, T.Color);
+                        Buffer.DrawTriangle(
+                            (int)DrawTriangles[I].P1.X, (int)DrawTriangles[I].P1.Y,
+                            (int)DrawTriangles[I].P2.X, (int)DrawTriangles[I].P2.Y,
+                            (int)DrawTriangles[I].P3.X, (int)DrawTriangles[I].P3.Y,
+                            DrawTriangles[I].Color);
                     }
                 }
             }
@@ -158,6 +158,12 @@ namespace PrismOS.Libraries.Graphics
             toReturn.V = Original.V;
             toReturn.W = Original.W;
             return toReturn;
+        }
+
+        public void Dispose()
+        {
+            Cosmos.Core.GCImplementation.Free(this);
+            GC.SuppressFinalize(this);
         }
     }
 }

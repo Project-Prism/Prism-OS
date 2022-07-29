@@ -7,7 +7,7 @@ namespace PrismOS.Libraries.Runtime
     public unsafe class AppTemplate1 : Application
     {
         public Window Window = new();
-        public Cube C2 = new(1000, 5, 1000);
+        public Cube C2 = new(300, 1, 300);
         public Cube C1 = new(150, 50, 150);
         public Image Image1 = new();
         public Engine E;
@@ -45,6 +45,18 @@ namespace PrismOS.Libraries.Runtime
 
         public override void OnUpdate()
         {
+            if (Cosmos.System.KeyboardManager.TryReadKey(out var Key))
+            {
+                switch (Key.Key)
+                {
+                    case Cosmos.System.ConsoleKeyEx.E:
+                        E.Camera.Rotation.X++;
+                        break;
+                    case Cosmos.System.ConsoleKeyEx.Q:
+                        E.Camera.Rotation.X--;
+                        break;
+                }
+            }
             E.Render(Image1.FrameBuffer);
             C1.TestLogic(0.01);
         }

@@ -13,19 +13,6 @@ namespace PrismOS.Libraries.Graphics
             Internal = (uint*)GCImplementation.AllocNewObject(Size * 4);
         }
 
-        public uint this[long Index]
-        {
-            get
-            {
-                return Internal[Index];
-            }
-            set
-            {
-                Internal[Index] = value;
-                //MemoryOperations.Fill(Internal + Index, value, 1);
-            }
-        }
-
         public uint* Internal { get; set; }
         public uint Width { get; set; }
         public uint Height { get; set; }
@@ -49,7 +36,7 @@ namespace PrismOS.Libraries.Graphics
             {
                 Color.AlphaBlend(GetPixel(X, Y), Color);
             }
-            this[Y * Width + X] = Color.ARGB;
+            Internal[Y * Width + X] = Color.ARGB;
         }
         public void SetPixel(int Index, Color Color)
         {
@@ -61,7 +48,7 @@ namespace PrismOS.Libraries.Graphics
             {
                 Color.AlphaBlend(GetPixel(Index), Color);
             }
-            this[Index] = Color.ARGB;
+            Internal[Index] = Color.ARGB;
         }
         public Color GetPixel(int X, int Y)
         {
@@ -69,7 +56,7 @@ namespace PrismOS.Libraries.Graphics
             {
                 return Color.Black;
             }
-            return Color.FromARGB(this[Y * Width + X]);
+            return Color.FromARGB(Internal[Y * Width + X]);
         }
         public Color GetPixel(int Index)
         {
@@ -78,7 +65,7 @@ namespace PrismOS.Libraries.Graphics
                 return Color.Black;
             }
 
-            return Color.FromARGB(this[Index]);
+            return Color.FromARGB(Internal[Index]);
         }
 
         #endregion
@@ -578,7 +565,7 @@ namespace PrismOS.Libraries.Graphics
                 {
                     long X = IX / (this.Width / Width);
                     long Y = IY / (this.Height / Height);
-                    FB[(FB.Width * Y) + X] = this[(this.Width * IY) + IX];
+                    FB.Internal[(FB.Width * Y) + X] = Internal[(this.Width * IY) + IX];
                 }
             }
             return FB;

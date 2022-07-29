@@ -33,8 +33,8 @@ namespace PrismOS.Libraries.Graphics.Types
             Color = Color.White;
         }
 
-        public double AverageZ => (P1.Z + P2.Z + P3.Z) / 3.0;
         public double NormalZ => (P2.X - P1.X) * (P3.Y - P1.Y) - (P2.Y - P1.Y) * (P3.X - P1.X);
+        public double AverageZ => (P1.Z + P2.Z + P3.Z) / 3.0;
         public Vector3 P1, P2, P3;
         public Color Color;
     }
