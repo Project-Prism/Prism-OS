@@ -18,10 +18,10 @@ namespace PrismOS.Libraries.Graphics
             this.FOV = FOV;
         }
 
-        public double Z0 => Width / 2 / Math.Tan(FOV / 2 * 3.14159265 / 180);
         public List<Shape> Objects;
         public FrameBuffer Buffer;
         public Camera Camera;
+        public double Z0 = 0;
         public int FOV;
 
         public uint Width
@@ -56,6 +56,9 @@ namespace PrismOS.Libraries.Graphics
         public void Render(FrameBuffer Canvas)
         {
             Buffer.Clear();
+
+            // Set Z0
+            Z0 = Width / 2 / Math.Tan(FOV / 2 * 3.14159265 / 180);
 
             // Calculate Objects
             for (int O = 0; O < Objects.Count; O++)
