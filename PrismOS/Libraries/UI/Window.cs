@@ -5,7 +5,7 @@ using System;
 
 namespace PrismOS.Libraries.UI
 {
-    public class Window : IDisposable
+    public class Window : Control
     {
         // Window Manager Variables
         public static List<Window> Windows { get; set; } = new();
@@ -13,20 +13,14 @@ namespace PrismOS.Libraries.UI
 
         // Class Variables
         public List<Control> Elements { get; set; } = new();
-        public FrameBuffer FrameBuffer { get; set; }
         public bool TitleVisible { get; set; } = true;
         public bool Draggable { get; set; } = true;
-        public bool Visible { get; set; } = true;
-        public bool Pressed { get; set; } = false;
-        public bool Hover { get; set; } = false;
         public bool Moving { get; set; } = false;
         public string Text { get; set; } = "";
         public Theme Theme { get; set; }
         public int IX { get; set; }
         public int IY { get; set; }
-        public int Y { get; set; }
-        public int X { get; set; }
-        public int Height
+        public new int Height
         {
             get
             {
@@ -37,7 +31,7 @@ namespace PrismOS.Libraries.UI
                 FrameBuffer = new((uint)Width, (uint)value);
             }
         }
-        public int Width
+        public new int Width
         {
             get
             {
@@ -119,12 +113,17 @@ namespace PrismOS.Libraries.UI
                 Canvas.DrawImage(X, Y, FrameBuffer, false);
             }
         }
-
-        public void Dispose()
+        public override void Update(Window Parent)
         {
-            //FrameBuffer.Dispose();
-            Cosmos.Core.GCImplementation.Free(this);
-            GC.SuppressFinalize(this);
+            throw new NotImplementedException();
+        }
+
+        public override void OnKey(Cosmos.System.KeyEvent Key)
+        {
+            foreach (Control C in Elements)
+            {
+                C.OnKey(Key);
+            }
         }
     }
 }

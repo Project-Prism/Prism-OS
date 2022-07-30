@@ -1,6 +1,7 @@
 ﻿using PrismOS.Libraries.Graphics.Types;
 using PrismOS.Libraries.Graphics;
 using PrismOS.Libraries.UI;
+using Cosmos.System;
 
 namespace PrismOS.Libraries.Runtime
 {
@@ -57,6 +58,31 @@ namespace PrismOS.Libraries.Runtime
             E.Render(Image1.FrameBuffer);
             C1.TestLogic(-0.01);
             C2.TestLogic(0.05);
+        }
+
+        public override void OnKey(KeyEvent Key)
+        {
+            switch (Key.Key)
+            {
+                case ConsoleKeyEx.W:
+                    E.Camera.Position.Z += 5;
+                    break;
+                case ConsoleKeyEx.S:
+                    E.Camera.Position.Z =- 5;
+                    break;
+                case ConsoleKeyEx.A:
+                    E.Camera.Position.X -= 5;
+                    break;
+                case ConsoleKeyEx.D:
+                    E.Camera.Position.X += 5;
+                    break;
+                case ConsoleKeyEx.E:
+                    E.Camera.Position.Y += 5;
+                    break;
+                case ConsoleKeyEx.Q:
+                    E.Camera.Position.Y -= 5;
+                    break;
+            }
         }
     }
 }

@@ -19,9 +19,11 @@ namespace PrismOS.Libraries.Runtime
             Applications.Remove(this);
         }
 
+        public abstract void OnKey(Cosmos.System.KeyEvent Key);
         public abstract void OnUpdate();
         public abstract void OnDestroy();
         public abstract void OnCreate();
+
 
         public void Dispose()
         {

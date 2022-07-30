@@ -25,7 +25,7 @@ namespace PrismOS.Libraries.Runtime
             Button1.Y = 0;
             Button1.Width = 32;
             Button1.Height = 32;
-            Button1.OnClick = new Action(() => { Button1Click(); });
+            Button1.OnClick = new Action(() => { _ = new AppTemplate1(); });
 
             Window.Elements.Add(Button1);
             Window.Windows.Add(Window);
@@ -41,9 +41,8 @@ namespace PrismOS.Libraries.Runtime
 
         }
 
-        public void Button1Click()
+        public override void OnKey(Cosmos.System.KeyEvent Key)
         {
-            _ = new AppTemplate1();
         }
     }
 }

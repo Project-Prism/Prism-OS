@@ -42,12 +42,23 @@ namespace PrismOS
             Canvas.DrawFilledRectangle(0, 0, FrameBuffer.Font.Default.Width * $"FPS: {Canvas.FPS}".Length + 30, FrameBuffer.Font.Default.Height + 30, 0, Color.LightBlack);
             Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}", FrameBuffer.Font.Default, Color.White);
 
+            bool KeyPress = Cosmos.System.KeyboardManager.TryReadKey(out var Key);
+
             foreach (Application App in Application.Applications)
             {
+                if (KeyPress)
+                {
+                    App.OnKey(Key);
+                }
+
                 App.OnUpdate();
             }
             foreach (Window Window in Window.Windows)
             {
+                if (Window.Windows[^1] == Window && KeyPress)
+                {
+                    Window.OnKey(Key);
+                }
                 Window.Update(Canvas);
             }
 

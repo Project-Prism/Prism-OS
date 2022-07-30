@@ -1,4 +1,5 @@
-﻿using PrismOS.Libraries.Graphics;
+﻿using Cosmos.System;
+using PrismOS.Libraries.Graphics;
 
 namespace PrismOS.Libraries.UI
 {
@@ -12,6 +13,10 @@ namespace PrismOS.Libraries.UI
 
                 Parent.FrameBuffer.DrawImage(X, Y, FrameBuffer, false);
             }
+        }
+
+        public override void OnKey(KeyEvent Key)
+        {
         }
     }
 }

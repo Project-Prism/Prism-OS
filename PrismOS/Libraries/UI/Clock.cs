@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Cosmos.System;
+using System;
 
 namespace PrismOS.Libraries.UI
 {
@@ -27,6 +24,10 @@ namespace PrismOS.Libraries.UI
 
                 Parent.FrameBuffer.DrawImage(X, Y, FrameBuffer, false);
             }
+        }
+
+        public override void OnKey(KeyEvent Key)
+        {
         }
     }
 }

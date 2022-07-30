@@ -3,7 +3,7 @@ using System;
 
 namespace PrismOS.Libraries.UI
 {
-    public abstract class Control
+    public abstract class Control : IDisposable
     {
         public Action OnClick { get; set; } = () => { };
         public Action OnUpdate { get; set; } = () => { };
@@ -37,5 +37,13 @@ namespace PrismOS.Libraries.UI
         }
 
         public abstract void Update(Window Parent);
+
+        public abstract void OnKey(Cosmos.System.KeyEvent Key);
+
+        public void Dispose()
+        {
+            Cosmos.Core.GCImplementation.Free(this);
+            GC.SuppressFinalize(this);
+        }
     }
 }
