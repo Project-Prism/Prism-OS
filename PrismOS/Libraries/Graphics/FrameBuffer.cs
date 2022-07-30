@@ -463,6 +463,11 @@ namespace PrismOS.Libraries.Graphics
 
         public int DrawChar(int X, int Y, char Char, Font Font, Color Color)
         {
+            if (X > Width || Y > Height)
+            {
+                return 0;
+            }
+
             int Index = Font.Charset.IndexOf(Char);
             if (Index == -1) return Font.Height / 2;
 

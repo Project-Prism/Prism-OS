@@ -5,8 +5,6 @@ using PrismOS.Libraries.Runtime;
 using PrismOS.Libraries.UI;
 using Cosmos.System.Audio;
 using Cosmos.Core;
-using Cosmos.HAL;
-using System;
 
 namespace PrismOS
 {
@@ -21,16 +19,15 @@ namespace PrismOS
             Canvas.DrawImage((int)((Canvas.Width / 2) - 128), (int)((Canvas.Height / 2) - 128), Assets.Logo256);
             MemoryOperations.Copy((uint*)VBE.getLfbOffset(), Canvas.Internal, (int)Canvas.Size);
 
-            // Setup Networking
-            new Cosmos.System.Network.IPv4.UDP.DHCP.DHCPClient().SendDiscoverPacket();
-
             // Setup Gui
             Assets.Wallpaper = Assets.Wallpaper.Resize(Canvas.Width, Canvas.Height);
             Mouse.ScreenWidth = Canvas.Width;
             Mouse.ScreenHeight = Canvas.Height;
 
             // Create "Headless" Objects
-            _ = new Desktop();
+            Desktop D = new();
+            D.Add(() => { _ = new AppTemplate1(); });
+            D.Add(() => { _ = new Console(); });
 
             // Play Startup Sound
             Play(Assets.Window98Startup);
@@ -79,7 +76,7 @@ namespace PrismOS
                     Output = AC97.Initialize(4096),
                 }.Enable();
             }
-            catch (Exception E)
+            catch (System.Exception E)
             {
                 Cosmos.HAL.Debug.Serial.SendString($"[WARN] Unable To Play Audio! ({E.Message})");
             }
