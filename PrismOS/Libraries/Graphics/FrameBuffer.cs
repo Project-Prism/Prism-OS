@@ -1,4 +1,5 @@
 ﻿using Cosmos.Core;
+using Cosmos.HAL;
 using System.IO;
 using System;
 
@@ -10,12 +11,16 @@ namespace PrismOS.Libraries.Graphics
         {
             this.Width = Width;
             this.Height = Height;
+
+            Cosmos.HAL.Global.PIT.RegisterTimer(new PIT.PITTimer(() => { FPS = Frames; Frames = 0; }, 1000000000, true));
             Internal = (uint*)GCImplementation.AllocNewObject(Size * 4);
         }
 
         public uint* Internal { get; set; }
+        private uint Frames { get; set; }
         public uint Width { get; set; }
         public uint Height { get; set; }
+        public uint FPS { get; set; }
         public uint Size
         {
             get
@@ -424,7 +429,7 @@ namespace PrismOS.Libraries.Graphics
 
             public void Dispose()
             {
-                Cosmos.Core.GCImplementation.Free(this);
+                GCImplementation.Free(this);
                 GC.SuppressFinalize(this);
             }
         }
@@ -566,6 +571,12 @@ namespace PrismOS.Libraries.Graphics
             MemoryOperations.Fill(Internal, Color.ARGB, (int)Size);
         }
 
+        public void Copy(uint* Destination)
+        {
+            Frames++;
+            MemoryOperations.Copy(Destination, Internal, (int)Size);
+        }
+
         public FrameBuffer Resize(uint Width, uint Height)
         {
             if (Width <= 0 || Height <= 0 || Width == this.Width || Height == this.Height)
@@ -586,7 +597,7 @@ namespace PrismOS.Libraries.Graphics
             return FB;
         }
 
-        public static FrameBuffer FromAuto(byte[] Binary)
+        public static FrameBuffer FromImage(byte[] Binary)
         {
             if (Binary[0] == 'B' && Binary[1] == 'M')
             {

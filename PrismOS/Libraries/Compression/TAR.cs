@@ -20,11 +20,11 @@ namespace PrismOS.Libraries.Compression
                 Size = Convert.ToInt64(Encoding.UTF8.GetString(R.ReadBytes(12)).Trim('\0').Trim(), 8);
                 LastModifyTime = R.ReadChars(12);
                 HRChecksum = R.ReadInt64();
-                Type = R.ReadByte();
+                Type = (FileTypes)R.ReadByte();
                 LFName = R.ReadChars(100);
             }
 
-            public enum Types
+            public enum FileTypes
             {
                 NormalFile = 0,
                 HardLink = 1,
@@ -44,7 +44,7 @@ namespace PrismOS.Libraries.Compression
             public string Name { get; set; }
             public long Size { get; set; }
             public long Mode { get; set; }
-            public byte Type { get; set; }
+            public FileTypes Type { get; set; }
         }
         public TAR(byte[] Binary)
         {
@@ -55,6 +55,7 @@ namespace PrismOS.Libraries.Compression
                 Header H = new(R.ReadBytes(512));
                 Console.WriteLine("Adding " + H.Name + ", Length of " + H.Size);
                 Blocks.Add(H.Name, R.ReadBytes((int)H.Size));
+                R.BaseStream.Position += H.Size;
             }
         }
 

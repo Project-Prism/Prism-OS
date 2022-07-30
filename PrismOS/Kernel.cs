@@ -14,8 +14,6 @@ namespace PrismOS
     {
         public static FrameBuffer Canvas = new(VBE.getModeInfo().width, VBE.getModeInfo().height);
         public static AudioMixer Mixer = new();
-        private static uint Frames = 0;
-        public static uint FPS = 0;
 
         protected override void BeforeRun()
         {
@@ -32,7 +30,6 @@ namespace PrismOS
             Mouse.ScreenHeight = Canvas.Height;
 
             // Create "Headless" Objects
-            Cosmos.HAL.Global.PIT.RegisterTimer(new PIT.PITTimer(() => { FPS = Frames; Frames = 0; }, 1000000000, true));
             _ = new Desktop();
 
             // Play Startup Sound
@@ -42,8 +39,8 @@ namespace PrismOS
         protected override void Run()
         {
             Canvas.DrawImage(0, 0, Assets.Wallpaper, false);
-            Canvas.DrawFilledRectangle(0, 0, FrameBuffer.Font.Default.Width * $"FPS: {FPS}".Length + 30, FrameBuffer.Font.Default.Height + 30, 0, Color.LightBlack);
-            Canvas.DrawString(15, 15, $"FPS: {FPS}", FrameBuffer.Font.Default, Color.White);
+            Canvas.DrawFilledRectangle(0, 0, FrameBuffer.Font.Default.Width * $"FPS: {Canvas.FPS}".Length + 30, FrameBuffer.Font.Default.Height + 30, 0, Color.LightBlack);
+            Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}", FrameBuffer.Font.Default, Color.White);
 
             foreach (Application App in Application.Applications)
             {
@@ -54,10 +51,10 @@ namespace PrismOS
                 Window.Update(Canvas);
             }
 
-            Frames++;
             Canvas.DrawImage((int)Mouse.X, (int)Mouse.Y, Assets.Cursor);
 
-            MemoryOperations.Copy((uint*)VBE.getLfbOffset(), Canvas.Internal, (int)Canvas.Size);
+            // Update The Screen
+            Canvas.Copy((uint*)VBE.getLfbOffset());
         }
 
         public static void Play(AudioStream Stream)
