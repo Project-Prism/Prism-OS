@@ -39,7 +39,7 @@ namespace PrismOS.Libraries.Graphics
             }
             if (Color.A < 255)
             {
-                Color.AlphaBlend(GetPixel(X, Y), Color);
+                Color = Color.AlphaBlend(GetPixel(X, Y), Color);
             }
             Internal[Y * Width + X] = Color.ARGB;
         }
@@ -51,7 +51,7 @@ namespace PrismOS.Libraries.Graphics
             }
             if (Color.A < 255)
             {
-                Color.AlphaBlend(GetPixel(Index), Color);
+                Color = Color.AlphaBlend(GetPixel(Index), Color);
             }
             Internal[Index] = Color.ARGB;
         }
