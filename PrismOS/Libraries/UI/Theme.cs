@@ -15,7 +15,7 @@ namespace PrismOS.Libraries.UI
             ForegroundHover = Color.Black,
             ForegroundLight = Color.LighterBlack,
             Accent = Color.RubyRed,
-            Font = FrameBuffer.Font.Default,
+            Font = Font.Default,
             Radius = 0,
         };
         public static Theme DefaultDark = new()
@@ -29,7 +29,7 @@ namespace PrismOS.Libraries.UI
             ForegroundHover = Color.White,
             ForegroundLight = Color.LightGray,
             Accent = Color.RubyRed,
-            Font = FrameBuffer.Font.Default,
+            Font = Font.Default,
             Radius = 0,
         };
 
@@ -37,7 +37,7 @@ namespace PrismOS.Libraries.UI
         public Color BackgroundHover, ForegroundHover;
         public Color BackgroundLight, ForegroundLight;
         public Color Background, Foreground;
-        public FrameBuffer.Font Font;
+        public Font Font;
         public Color Accent;
         public int Radius;
     }

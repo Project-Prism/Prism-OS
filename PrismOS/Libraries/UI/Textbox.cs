@@ -22,6 +22,7 @@ namespace PrismOS.Libraries.UI
 
         public override void OnKey(KeyEvent Key)
         {
+            Text += Key.KeyChar;
         }
     }
 }

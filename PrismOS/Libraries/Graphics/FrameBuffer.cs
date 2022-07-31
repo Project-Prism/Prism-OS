@@ -407,35 +407,6 @@ namespace PrismOS.Libraries.Graphics
 
         #endregion
 
-        #region Font
-
-        public class Font : IDisposable
-        {
-            public Font(string Charset, MemoryStream MS, int Width, int Height)
-            {
-                this.Charset = Charset;
-                this.MS = MS;
-                this.Width = Width;
-                this.Height = Height;
-            }
-
-            public static string DefaultCharset = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
-            public static Font Default = new(DefaultCharset, new(Assets.Font1B), 8, 16);
-
-            public string Charset;
-            public MemoryStream MS;
-            public int Width;
-            public int Height;
-
-            public void Dispose()
-            {
-                GCImplementation.Free(this);
-                GC.SuppressFinalize(this);
-            }
-        }
-
-        #endregion
-
         #region Text
 
         public void DrawString(int X, int Y, string Text, Font Font, Color Color, bool Center = false)
@@ -457,6 +428,10 @@ namespace PrismOS.Libraries.Graphics
                 for (int Char = 0; Char < Lines[Line].Length; Char++)
                 {
                     IX += DrawChar(IX, IY, Lines[Line][Char], Font, Color) + 2;
+                    if (IX > Width)
+                    {
+                        return;
+                    }
                 }
             }
         }
