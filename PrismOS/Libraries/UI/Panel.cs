@@ -7,7 +7,7 @@ namespace PrismOS.Libraries.UI
     {
         public override void Update(Window Parent)
         {
-            if (Visible)
+            if (IsVisible)
             {
                 FrameBuffer.DrawFilledRectangle(0, 0, Width, Height, Parent.Theme.Radius, Parent.Theme.Background);
 

@@ -428,7 +428,7 @@ namespace PrismOS.Libraries.Graphics
                 for (int Char = 0; Char < Lines[Line].Length; Char++)
                 {
                     IX += DrawChar(IX, IY, Lines[Line][Char], Font, Color) + 2;
-                    if (IX > Width)
+                    if (IX > Width || IY > Height)
                     {
                         return;
                     }
@@ -438,11 +438,6 @@ namespace PrismOS.Libraries.Graphics
 
         public int DrawChar(int X, int Y, char Char, Font Font, Color Color)
         {
-            if (X > Width || Y > Height)
-            {
-                return 0;
-            }
-
             int Index = Font.Charset.IndexOf(Char);
             if (Index == -1) return Font.Height / 2;
 

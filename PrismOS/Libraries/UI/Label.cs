@@ -9,7 +9,7 @@ namespace PrismOS.Libraries.UI
 
         public override void Update(Window Parent)
         {
-            if (Visible)
+            if (IsVisible)
             {
                 FrameBuffer.Clear(Parent.Theme.Background);
                 FrameBuffer.DrawString(0, 0, Text, Parent.Theme.Font, Parent.Theme.Foreground);

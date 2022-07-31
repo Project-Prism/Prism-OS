@@ -37,8 +37,8 @@ namespace PrismOS.Libraries.UI
         public Color BackgroundHover, ForegroundHover;
         public Color BackgroundLight, ForegroundLight;
         public Color Background, Foreground;
-        public Font Font;
         public Color Accent;
+        public Font Font;
         public int Radius;
     }
 }

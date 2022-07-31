@@ -20,28 +20,6 @@ namespace PrismOS.Libraries.UI
         public Theme Theme { get; set; }
         public int IX { get; set; }
         public int IY { get; set; }
-        public new int Height
-        {
-            get
-            {
-                return (int)FrameBuffer.Height;
-            }
-            set
-            {
-                FrameBuffer = new((uint)Width, (uint)value);
-            }
-        }
-        public new int Width
-        {
-            get
-            {
-                return (int)FrameBuffer.Width;
-            }
-            set
-            {
-                FrameBuffer = new((uint)value, (uint)Height);
-            }
-        }
 
         public void Update(FrameBuffer Canvas)
         {
@@ -71,7 +49,7 @@ namespace PrismOS.Libraries.UI
                 }
             }
 
-            if (Visible)
+            if (IsVisible)
             {
                 FrameBuffer.DrawFilledRectangle(0, 0, Width, Height, Theme.Radius, Theme.Background);
 
@@ -88,23 +66,23 @@ namespace PrismOS.Libraries.UI
 
                     if (Mouse.X > X + C.X && Mouse.X <  X + C.X + C.Width && Mouse.Y > Y + C.Y && Mouse.Y < Y + C.Y + C.Height && (this == Windows[^1] || !Draggable))
                     {
-                        C.Hover = true;
+                        C.IsHovering = true;
                         if (Mouse.MouseState == Cosmos.System.MouseState.Left)
                         {
-                            C.Pressed = true;
+                            C.IsPressed = true;
                         }
                         else
                         {
-                            if (C.Pressed)
+                            if (C.IsPressed)
                             {
-                                C.Pressed = false;
+                                C.IsPressed = false;
                                 C.OnClick();
                             }
                         }
                     }
                     else
                     {
-                        C.Hover = false;
+                        C.IsHovering = false;
                     }
 
                     C.Update(this);

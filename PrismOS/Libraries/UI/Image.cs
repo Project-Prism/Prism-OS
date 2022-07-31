@@ -7,7 +7,7 @@ namespace PrismOS.Libraries.UI
     {
         public override void Update(Window Parent)
         {
-            if (FrameBuffer != null && Visible)
+            if (FrameBuffer != null && IsVisible)
             {
                 if (Width != FrameBuffer.Width || Height != FrameBuffer.Height)
                 {

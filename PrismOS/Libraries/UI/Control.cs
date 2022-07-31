@@ -5,12 +5,21 @@ namespace PrismOS.Libraries.UI
 {
     public abstract class Control : IDisposable
     {
+        public Control()
+        {
+            IsHovering = false;
+            IsPressed = false;
+            IsVisible = true;
+            HasBorder = true;
+        }
+
         public Action OnClick { get; set; } = () => { };
         public Action OnUpdate { get; set; } = () => { };
         public FrameBuffer FrameBuffer { get; set; }
-        public bool Visible { get; set; } = true;
-        public bool Pressed { get; set; } = false;
-        public bool Hover { get; set; } = false;
+        public bool IsHovering { get; set; }
+        public bool IsPressed { get; set; }
+        public bool IsVisible { get; set; }
+        public bool HasBorder { get; set; }
         public int Y { get; set; }
         public int X { get; set; }
         public int Height
