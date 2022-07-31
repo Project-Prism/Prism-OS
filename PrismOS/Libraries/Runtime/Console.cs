@@ -26,6 +26,7 @@ namespace PrismOS.Libraries.Runtime
             Button.Height = 20;
             Button.Text = "X";
             Button.OnClick = new(() => { Window.Windows.Remove(Window); Applications.Remove(this); });
+            Button.HasBorder = false;
 
             // Label1
             Label1.X = 1;

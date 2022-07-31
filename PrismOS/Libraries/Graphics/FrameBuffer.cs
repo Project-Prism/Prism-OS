@@ -1,6 +1,5 @@
 ﻿using Cosmos.Core;
 using Cosmos.HAL;
-using System.IO;
 using System;
 
 namespace PrismOS.Libraries.Graphics
@@ -421,115 +420,81 @@ namespace PrismOS.Libraries.Graphics
             for (int Line = 0; Line < Lines.Length; Line++)
             {
                 // Advanced Calculations To Determine Position
-                int IX = X - (Center ? (MeasureString(Text, Font) / 2) : 0);
-                int IY = Y + (Font.Height * Line) - (Center ? Font.Height * Lines.Length / 2 : 0);
+                int IX = X - (Center ? ((int)MeasureString(Text, Font) / 2) : 0);
+                int IY = (int)(Y + (Font.Size * Line) - (Center ? Font.Size * Lines.Length / 2 : 0));
 
                 // Loop Though Each Char In The Line
                 for (int Char = 0; Char < Lines[Line].Length; Char++)
                 {
-                    IX += DrawChar(IX, IY, Lines[Line][Char], Font, Color) + 2;
                     if (IX > Width || IY > Height)
                     {
-                        return;
+                        continue;
                     }
+                    IX += (int)(DrawChar(IX, IY, Lines[Line][Char], Font, Color, Center) + 2);
                 }
             }
         }
 
-        public int DrawChar(int X, int Y, char Char, Font Font, Color Color)
+        public uint DrawChar(int X, int Y, char Char, Font Font, Color Color, bool Center, bool Visible = true)
         {
-            int Index = Font.Charset.IndexOf(Char);
-            if (Index == -1) return Font.Height / 2;
-
-            int MaxX = 0;
-
-            bool LastPixelIsNotDrawn = false;
-
-            int SizePerFont = Font.Height * (Font.Height / Font.Width);
-            byte[] BFont = new byte[SizePerFont];
-            Font.MS.Seek(SizePerFont * Index, SeekOrigin.Begin);
-            Font.MS.Read(BFont, 0, BFont.Length);
-
-            for (int h = 0; h < Font.Height; h++)
+            uint Index = (uint)Font.Charset.IndexOf(Char);
+            if (Char == ' ')
             {
-                for (int aw = 0; aw < Font.Height / Font.Width; aw++)
-                {
+                return Font.Size2;
+            }
+            if (Char == '\t')
+            {
+                return Font.Size2 * 4;
+            }
+            if (Index < 0)
+            {
+                return Font.Size2;
+            }
+            if (Center)
+            {
+                X -= (int)Font.Size16;
+                Y -= (int)Font.Size8;
+            }
 
+            uint MaxX = 0;
+            uint SizePerFont = Font.Size * Font.Size8 * Index;
+
+            for (int h = 0; h < Font.Size; h++)
+            {
+                for (int aw = 0; aw < Font.Size8; aw++)
+                {
                     for (int ww = 0; ww < 8; ww++)
                     {
-                        if ((BFont[(h * (Font.Height / 8)) + aw] & (0x80 >> ww)) != 0)
+                        if ((Font.Binary[SizePerFont + (h * Font.Size8) + aw] & (0x80 >> ww)) != 0)
                         {
-                            SetPixel(X + (aw * 8) + ww, Y + h, Color);
+                            int max = (aw * 8) + ww;
 
-                            if ((aw * 8) + ww > MaxX)
+                            int x = X + max;
+                            int y = Y + h;
+
+                            if (Visible)
                             {
-                                MaxX = (aw * 8) + ww;
+                                SetPixel(x, y, Color);
                             }
 
-                            if (LastPixelIsNotDrawn)
+                            if (max > MaxX)
                             {
-                                SetPixel(X + (aw * 8) + ww - 1, Y + h, Color.FromARGB(255, (byte)(Color.R / 2), (byte)(Color.G / 2), (byte)(Color.B / 2)));
-                                LastPixelIsNotDrawn = false;
+                                MaxX = (uint)max;
                             }
-                        }
-                        else
-                        {
-                            LastPixelIsNotDrawn = true;
                         }
                     }
                 }
             }
-
             return MaxX;
         }
 
-        public static int MeasureString(string String, Font Font, uint Padding = 2)
+        public uint MeasureString(string String, Font Font)
         {
-            int Width = 0;
+            uint Width = 0;
             for (int I = 0; I < String.Length; I++)
             {
-                if (String[I] == ' ')
-                {
-                    Width += Font.Width;
-                    continue;
-                }
-                if (String[I] == '\t')
-                {
-                    Width += Font.Width * 4;
-                    continue;
-                }
-
-                int Index = Font.Charset.IndexOf(String[I]);
-                if (Index == -1) return Font.Height / 2;
-
-                int MaxX = 0;
-
-                int SizePerFont = Font.Height * (Font.Height / Font.Width);
-                byte[] BFont = new byte[SizePerFont];
-                Font.MS.Seek(SizePerFont * Index, SeekOrigin.Begin);
-                Font.MS.Read(BFont, 0, BFont.Length);
-
-                for (int h = 0; h < Font.Height; h++)
-                {
-                    for (int aw = 0; aw < Font.Height / Font.Width; aw++)
-                    {
-
-                        for (int ww = 0; ww < 8; ww++)
-                        {
-                            if ((BFont[(h * (Font.Height / 8)) + aw] & (0x80 >> ww)) != 0)
-                            {
-                                if ((aw * 8) + ww > MaxX)
-                                {
-                                    MaxX = (aw * 8) + ww;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                Width += MaxX;
+                Width += DrawChar(0, 0, String[I], Font, Color.White, false, false) + 2;
             }
-            Width += (int)(Padding * String.Length);
             return Width;
         }
 

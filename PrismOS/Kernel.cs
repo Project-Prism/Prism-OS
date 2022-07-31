@@ -36,7 +36,7 @@ namespace PrismOS
         protected override void Run()
         {
             Canvas.DrawImage(0, 0, Assets.Wallpaper, false);
-            Canvas.DrawFilledRectangle(0, 0, Font.Default.Width * $"FPS: {Canvas.FPS}".Length + 30, Font.Default.Height + 30, 0, Color.LightBlack);
+            Canvas.DrawFilledRectangle(0, 0, (int)Canvas.MeasureString($"FPS: {Canvas.FPS}", Font.Default) + 30, (int)Font.Default.Size + 30, 0, Color.LightBlack);
             Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}", Font.Default, Color.White);
 
             bool KeyPress = Cosmos.System.KeyboardManager.TryReadKey(out var Key);

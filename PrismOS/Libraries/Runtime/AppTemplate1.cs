@@ -36,6 +36,7 @@ namespace PrismOS.Libraries.Runtime
             Button.Height = 20;
             Button.Text = "X";
             Button.OnClick = new(() => { Window.Windows.Remove(Window); Applications.Remove(this); });
+            Button.HasBorder = false;
 
             // Engine1
             E = new((uint)Image1.Width, (uint)Image1.Height, 45);

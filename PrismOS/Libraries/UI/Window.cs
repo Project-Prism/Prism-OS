@@ -57,7 +57,6 @@ namespace PrismOS.Libraries.UI
                 {
                     FrameBuffer.DrawFilledRectangle(0, 0, Width, 20, Theme.Radius, Theme.Accent);
                     FrameBuffer.DrawString(Width / 2, 10, Text, Theme.Font, Theme.Foreground, true);
-                    FrameBuffer.DrawRectangle(0, 0, Width - 1, Height - 1, Theme.Radius, Theme.Foreground);
                 }
 
                 foreach (Control C in Elements)
@@ -86,6 +85,11 @@ namespace PrismOS.Libraries.UI
                     }
 
                     C.Update(this);
+                }
+
+                if (HasBorder)
+                {
+                    FrameBuffer.DrawRectangle(0, 0, Width - 1, Height - 1, Theme.Radius, Theme.Foreground);
                 }
 
                 Canvas.DrawImage(X, Y, FrameBuffer, false);
