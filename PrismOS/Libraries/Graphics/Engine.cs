@@ -58,7 +58,7 @@ namespace PrismOS.Libraries.Graphics
             Buffer.Clear();
 
             // Set Z0
-            Z0 = Width / 2 / Math.Tan(FOV / 2 * 3.14159265 / 180);
+            Z0 = Width / 2 / Math.Tan(FOV / 2 * 0.0174532925); // 0.0174532925 == pi / 180
 
             // Calculate Objects
             for (int O = 0; O < Objects.Count; O++)
@@ -114,6 +114,9 @@ namespace PrismOS.Libraries.Graphics
                             DrawTriangles[I].Color);
                     }
                 }
+
+                // Free Object
+                Cosmos.Core.GCImplementation.Free(DrawTriangles);
             }
 
             Canvas.DrawImage(0, 0, Buffer, false);
@@ -121,14 +124,15 @@ namespace PrismOS.Libraries.Graphics
 
         public static Vector3 ApplyPerspective(Vector3 Original, double Z0)
         {
+            double Cache = Z0 / (Z0 + Original.Z);
             return new Vector3
             (
-                Original.X * Z0 / (Z0 + Original.Z),
-                Original.Y * Z0 / (Z0 + Original.Z),
+                Original.X * Cache,
+                Original.Y * Cache,
                 Original.Z,
-                Original.U * Z0 / (Z0 + Original.Z),
-                Original.V * Z0 / (Z0 + Original.Z),
-                Original.W * Z0 / (Z0 + Original.Z)
+                Original.U * Cache,
+                Original.V * Cache,
+                Original.W * Cache
             );
         }
         public static Vector3 Translate(Vector3 Original, Vector3 Translated)
@@ -153,9 +157,16 @@ namespace PrismOS.Libraries.Graphics
         {
             Vector3 toReturn = new();
 
-            toReturn.X = Original.X * (Math.Cos(Rotation.Z) * Math.Cos(Rotation.Y)) + Original.Y * (Math.Cos(Rotation.Z) * Math.Sin(Rotation.Y) * Math.Sin(Rotation.X) - Math.Sin(Rotation.Z) * Math.Cos(Rotation.X)) + Original.Z * (Math.Cos(Rotation.Z) * Math.Sin(Rotation.Y) * Math.Cos(Rotation.X) + Math.Sin(Rotation.Z) * Math.Sin(Rotation.X));
-            toReturn.Y = Original.X * (Math.Sin(Rotation.Z) * Math.Cos(Rotation.Y)) + Original.Y * (Math.Sin(Rotation.Z) * Math.Sin(Rotation.Y) * Math.Sin(Rotation.X) + Math.Cos(Rotation.Z) * Math.Cos(Rotation.X)) + Original.Z * (Math.Sin(Rotation.Z) * Math.Sin(Rotation.Y) * Math.Cos(Rotation.X) - Math.Cos(Rotation.Z) * Math.Sin(Rotation.X));
-            toReturn.Z = Original.X * (-Math.Sin(Rotation.Y)) + Original.Y * (Math.Cos(Rotation.Y) * Math.Sin(Rotation.X)) + Original.Z * (Math.Cos(Rotation.Y) * Math.Cos(Rotation.X));
+            double CosRotX = Math.Cos(Rotation.X);
+            double CosRotY = Math.Cos(Rotation.Y);
+            double CosRotZ = Math.Cos(Rotation.Z);
+            double SinRotX = Math.Sin(Rotation.X);
+            double SinRotY = Math.Sin(Rotation.Y);
+            double SinRotZ = Math.Sin(Rotation.Z);
+
+            toReturn.X = Original.X * (CosRotZ * CosRotY) + Original.Y * (CosRotZ * SinRotY * SinRotX - SinRotZ * CosRotX) + Original.Z * (CosRotZ * SinRotY * CosRotX + SinRotZ * SinRotX);
+            toReturn.Y = Original.X * (SinRotZ * CosRotY) + Original.Y * (SinRotZ * SinRotY * SinRotX + CosRotZ * CosRotX) + Original.Z * (SinRotZ * SinRotY * CosRotX - CosRotZ * SinRotX);
+            toReturn.Z = Original.X * (-SinRotY) + Original.Y * (CosRotY * SinRotX) + Original.Z * (CosRotY * CosRotX);
             toReturn.U = Original.U;
             toReturn.V = Original.V;
             toReturn.W = Original.W;
