@@ -3,12 +3,15 @@ using System;
 
 namespace PrismOS.Libraries.Graphics
 {
-    public class Font : IDisposable
+    public unsafe class Font : IDisposable
     {
         public Font(string Charset, byte[] Binary, uint Size)
         {
             this.Charset = Charset;
-            this.Binary = Binary;
+            fixed (byte* PTR = Binary)
+            {
+                this.Binary = PTR;
+            }
             Size16 = Size / 16;
             Size8 = Size / 8;
             Size4 = Size / 4;
@@ -20,7 +23,7 @@ namespace PrismOS.Libraries.Graphics
         public static Font Default = new(DefaultCharset, Assets.Font1B, 16);
 
         public string Charset;
-        public byte[] Binary;
+        public byte* Binary;
         public uint Size16;
         public uint Size8;
         public uint Size4;
@@ -29,7 +32,7 @@ namespace PrismOS.Libraries.Graphics
 
         public void Dispose()
         {
-            GCImplementation.Free(Binary);
+            //GCImplementation.Free(Binary);
             GCImplementation.Free(this);
             GC.SuppressFinalize(this);
         }

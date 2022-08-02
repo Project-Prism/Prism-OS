@@ -423,10 +423,15 @@ namespace PrismOS.Libraries.Graphics
                 int IX = X - (Center ? ((int)MeasureString(Text, Font) / 2) : 0);
                 int IY = (int)(Y + (Font.Size * Line) - (Center ? Font.Size * Lines.Length / 2 : 0));
 
+                if (IY > Height)
+                {
+                    return;
+                }
+
                 // Loop Though Each Char In The Line
                 for (int Char = 0; Char < Lines[Line].Length; Char++)
                 {
-                    if (IX > Width || IY > Height)
+                    if (IX > Width)
                     {
                         continue;
                     }
