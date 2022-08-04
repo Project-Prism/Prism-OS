@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using Cosmos.Core;
+using System;
 
 namespace PrismOS.Libraries.Text.XML
 {
-    public class XMLTag
+    public class XMLTag : IDisposable
     {
         public XMLTag()
         {
@@ -20,5 +22,13 @@ namespace PrismOS.Libraries.Text.XML
         public string Name { get; set; }
         public string Value { get; set; }
         public List<XMLAttribute> Attributes { get; set; }
+
+        public void Dispose()
+        {
+            GCImplementation.Free(Name);
+            GCImplementation.Free(Value);
+            GCImplementation.Free(Attributes);
+            GC.SuppressFinalize(this);
+        }
     }
 }

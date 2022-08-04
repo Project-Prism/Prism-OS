@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using Cosmos.Core;
+using System;
 
 namespace PrismOS.Libraries.Text.XML
 {
     // TO-DO: Re-Do Lexer
-    public class XMLAttribute
+    public class XMLAttribute : IDisposable
     {
         public string Name { get; set; } = "";
         public string Value { get; set; } = "";
@@ -39,7 +41,6 @@ namespace PrismOS.Libraries.Text.XML
                 {
                     if (Contents[I] == '"')
                     {
-
                         Attributes.Add(new() { Name = NB, Value = VB, });
                         NB = "";
                         VB = "";
@@ -51,7 +52,17 @@ namespace PrismOS.Libraries.Text.XML
                 }
             }
 
+            GCImplementation.Free(NB);
+            GCImplementation.Free(VB);
+
             return Attributes;
+        }
+
+        public void Dispose()
+        {
+            GCImplementation.Free(Name);
+            GCImplementation.Free(Value);
+            GC.SuppressFinalize(this);
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Cosmos.Core;
+using System;
 
 namespace PrismOS.Libraries.Text.XML
 {
@@ -84,6 +86,12 @@ namespace PrismOS.Libraries.Text.XML
             }
 
             return Tags;
+        }
+
+        public void Dispose()
+        {
+            GCImplementation.Free(Tags);
+            GC.SuppressFinalize(this);
         }
     }
 }
