@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PrismOS.Libraries.Text.LUA
+namespace PrismOS.Libraries.Text.CSS
 {
     public class CSSFile
     {

@@ -2,7 +2,7 @@
 
 namespace PrismOS.Libraries.Network.Protocols
 {
-    public static class HTTP
+    public static class HTTPFile
     {
         public static string GetUserAgent()
         {

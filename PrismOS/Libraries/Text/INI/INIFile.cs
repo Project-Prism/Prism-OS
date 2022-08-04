@@ -2,7 +2,7 @@
 
 namespace PrismOS.Libraries.Text.INI
 {
-    public class INIFile : Dictionary<string, List<Entry>>
+    public class INIFile : Dictionary<string, List<INIEntry>>
     {
         public INIFile(string S)
         {

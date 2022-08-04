@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace PrismOS.Libraries.Text.CSharp
 {
-    public class Attributes
+    public class CSAttributes
     {
-        public Attributes()
+        public CSAttributes()
         {
             Variables = new();
             Arguments = new();
@@ -18,11 +18,11 @@ namespace PrismOS.Libraries.Text.CSharp
         public object Value { get; set; }
 
         // Use-Specific Variables, Won't Be Used All The Time
-        public List<Attributes> Variables { get; set; }
-        public List<Attributes> Arguments { get; set; }
-        public List<Attributes> Classes { get; set; }
-        public List<Attributes> Usings { get; set; }
-        public List<Attributes> Calls { get; set; }
+        public List<CSAttributes> Variables { get; set; }
+        public List<CSAttributes> Arguments { get; set; }
+        public List<CSAttributes> Classes { get; set; }
+        public List<CSAttributes> Usings { get; set; }
+        public List<CSAttributes> Calls { get; set; }
 
         // Generic Values
         public bool HasArguments { get; set; }
@@ -39,9 +39,9 @@ namespace PrismOS.Libraries.Text.CSharp
         public bool IsNull { get; set; }
         public bool IsCall { get; set; }
 
-        public static Attributes ParseClass(string Contents)
+        public static CSAttributes ParseClass(string Contents)
         {
-            Attributes A = new();
+            CSAttributes A = new();
             string Builder = "";
 
             bool IsDeeper = false;

@@ -2,9 +2,9 @@
 
 namespace PrismOS.Libraries.Text.INI
 {
-    public struct Entry
+    public struct INIEntry
     {
-        public Entry(Type Type, string Name, object Value)
+        public INIEntry(Type Type, string Name, object Value)
         {
             this.Type = Type;
             this.Name = Name;

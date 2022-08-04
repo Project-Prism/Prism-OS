@@ -1,20 +1,21 @@
 ﻿using System.Collections.Generic;
 
-namespace PrismOS.Libraries.Network.Web.HTML
+namespace PrismOS.Libraries.Text.XML
 {
-    public class Attribute
+    // TO-DO: Re-Do Lexer
+    public class XMLAttribute
     {
         public string Name { get; set; } = "";
         public string Value { get; set; } = "";
 
-        public static List<Attribute> Parse(string Contents)
+        public static List<XMLAttribute> Parse(string Contents)
         {
             if (Contents.Length == 0)
             {
                 return new();
             }
 
-            List<Attribute> Attributes = new();
+            List<XMLAttribute> Attributes = new();
             string NB = "", VB = "";
             bool InName = true;
 

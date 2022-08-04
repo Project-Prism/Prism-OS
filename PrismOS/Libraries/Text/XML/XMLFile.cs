@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 
-namespace PrismOS.Libraries.Network.Web.HTML
+namespace PrismOS.Libraries.Text.XML
 {
-    public class Page
+    public class XMLFile
     {
-        public List<Tag> Tags = new();
-        public string Title = "";
+        // TO-DO: Re-Do Lexer
+        public List<XMLTag> Tags = new();
 
-        public static List<Tag> GetTags(string HTML)
+        public static List<XMLTag> GetTags(string HTML)
         {
             bool InTag = false, InValue = false, InCSS = false, InComment = false;
             string TB = "", VB = "", CB = "", CMB = "";
-            List<Tag> Tags = new();
+            List<XMLTag> Tags = new();
 
             for (int I = 0; I < HTML.Length; I++)
             {
@@ -34,7 +34,7 @@ namespace PrismOS.Libraries.Network.Web.HTML
                         InTag = false;
                         InCSS = false;
                         I += TB.Length + 2;
-                        Tags.Add(new() { Name = TB, Value = VB, Attributes = Attribute.Parse(CB), });
+                        Tags.Add(new() { Name = TB, Value = VB, Attributes = XMLAttribute.Parse(CB), });
                         TB = "";
                         VB = "";
                         CB = "";
@@ -62,7 +62,7 @@ namespace PrismOS.Libraries.Network.Web.HTML
                 {
                     if (HTML[I] == '-' && HTML[I + 2] == '>')
                     {
-                        Tags.Add(new() { Name = "Comment", Value = CMB, Attributes = Attribute.Parse(CB), });
+                        Tags.Add(new() { Name = "Comment", Value = CMB, Attributes = XMLAttribute.Parse(CB), });
                         InComment = false;
                         continue;
                     }
