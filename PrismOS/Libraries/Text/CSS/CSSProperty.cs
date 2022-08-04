@@ -1,24 +1,21 @@
 ﻿using Cosmos.Core;
 using System;
 
-namespace PrismOS.Libraries.Text.INI
+namespace PrismOS.Libraries.Text.CSS
 {
-    public struct INIEntry : IDisposable
+    public class CSSProperty : IDisposable
     {
-        public INIEntry(Type Type, string Name, object Value)
+        public CSSProperty(string Name, string Value)
         {
-            this.Type = Type;
             this.Name = Name;
             this.Value = Value;
         }
 
-        public Type Type { get; set; }
         public string Name { get; set; }
-        public object Value { get; set; }
+        public string Value { get; set; }
 
         public void Dispose()
         {
-            GCImplementation.Free(Type);
             GCImplementation.Free(Name);
             GCImplementation.Free(Value);
             GC.SuppressFinalize(this);

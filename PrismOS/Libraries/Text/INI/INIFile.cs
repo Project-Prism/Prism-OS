@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using Cosmos.Core;
+using System;
 
 namespace PrismOS.Libraries.Text.INI
 {
-    public class INIFile : Dictionary<string, List<INIEntry>>
+    public class INIFile : Dictionary<string, List<INIEntry>>, IDisposable
     {
         public INIFile(string S)
         {
@@ -58,6 +60,24 @@ namespace PrismOS.Libraries.Text.INI
 
                 Builder += S[I];
             }
+
+            GCImplementation.Free(Selected);
+            GCImplementation.Free(Builder);
+        }
+
+        public void Dispose()
+        {
+            foreach (KeyValuePair<string, List<INIEntry>> KVP in this)
+            {
+                GCImplementation.Free(KVP.Value);
+                foreach (INIEntry INI in KVP.Value)
+                {
+                    INI.Dispose();
+                }
+                GCImplementation.Free(KVP.Value);
+                GCImplementation.Free(KVP);
+            }
+            GC.SuppressFinalize(this);
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using Cosmos.Core;
+using System;
 
 namespace PrismOS.Libraries.Text.CSS
 {
-    public class CSSFile
+    public class CSSFile : IDisposable
     {
         public CSSFile(string Contents)
         {
@@ -61,18 +63,12 @@ namespace PrismOS.Libraries.Text.CSS
             return false;
         }
 
-        public Dictionary<string, List<Property>> Properties { get; set; }
+        public Dictionary<string, List<CSSProperty>> Properties { get; set; }
 
-        public class Property
+        public void Dispose()
         {
-            public Property(string Name, string Value)
-            {
-                this.Name = Name;
-                this.Value = Value;
-            }
-
-            public string Name { get; set; }
-            public string Value { get; set; }
+            GCImplementation.Free(Properties);
+            GC.SuppressFinalize(this);
         }
     }
 }

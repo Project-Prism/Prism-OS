@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Cosmos.Core;
+using System;
 
 namespace PrismOS.Libraries.Text.CSharp
 {
-    public class CSAttributes
+    public class CSAttributes : IDisposable
     {
         public CSAttributes()
         {
@@ -97,6 +98,19 @@ namespace PrismOS.Libraries.Text.CSharp
             }
 
             return A;
+        }
+
+        public void Dispose()
+        {
+            GCImplementation.Free(Variables);
+            GCImplementation.Free(Arguments);
+            GCImplementation.Free(Classes);
+            GCImplementation.Free(Usings);
+            GCImplementation.Free(Calls);
+            GCImplementation.Free(Value);
+            GCImplementation.Free(Type);
+            GCImplementation.Free(Name);
+            GC.SuppressFinalize(this);
         }
     }
 }
