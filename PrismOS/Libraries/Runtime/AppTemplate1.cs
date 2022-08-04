@@ -66,10 +66,10 @@ namespace PrismOS.Libraries.Runtime
             switch (Key.Key)
             {
                 case ConsoleKeyEx.W:
-                    E.Camera.Position.Z += 5;
+                    E.Camera.Position.Z -= 5;
                     break;
                 case ConsoleKeyEx.S:
-                    E.Camera.Position.Z -= 5;
+                    E.Camera.Position.Z += 5;
                     break;
                 case ConsoleKeyEx.A:
                     E.Camera.Position.X -= 5;

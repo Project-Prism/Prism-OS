@@ -28,6 +28,7 @@ namespace PrismOS
             Desktop D = new();
             D.Add(() => { _ = new AppTemplate1(); });
             D.Add(() => { _ = new Console(); });
+            D.Add(() => { Cosmos.System.Power.Shutdown(); });
 
             // Play Startup Sound
             Play(Assets.Window98Startup);

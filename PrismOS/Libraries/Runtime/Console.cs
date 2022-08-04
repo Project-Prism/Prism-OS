@@ -66,6 +66,10 @@ namespace PrismOS.Libraries.Runtime
                     RunCommand(Input);
                     Input = "";
                     break;
+                case ConsoleKeyEx.Tab:
+                    Input += '\t';
+                    Label1.Text += '\t';
+                    break;
                 default:
                     Input += Key.KeyChar;
                     Label1.Text += Key.KeyChar;

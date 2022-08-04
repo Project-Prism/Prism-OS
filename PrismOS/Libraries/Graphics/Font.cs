@@ -32,7 +32,8 @@ namespace PrismOS.Libraries.Graphics
 
         public void Dispose()
         {
-            //GCImplementation.Free(Binary);
+            Cosmos.Core.Memory.Heap.Free(Binary);
+            GCImplementation.Free(Charset);
             GCImplementation.Free(this);
             GC.SuppressFinalize(this);
         }
