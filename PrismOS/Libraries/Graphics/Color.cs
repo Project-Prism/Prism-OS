@@ -97,7 +97,7 @@ namespace PrismOS.Libraries.Graphics
         }
 
         // Hidden values
-        private static Random _Random = new();
+        private static readonly Random _Random = new();
         private byte _A, _R, _G, _B;
         private uint _ARGB;
 
@@ -153,5 +153,23 @@ namespace PrismOS.Libraries.Graphics
         public static readonly Color LighterBlack = FromARGB(255, 50, 50, 50);
 
         #endregion
+
+        // Casting
+        public static implicit operator Color(uint ARGB)
+        {
+            return FromARGB(ARGB);
+        }
+        public static implicit operator Color(string Hex)
+        {
+            return FromHex(Hex);
+        }
+        public static implicit operator Color((byte, byte, byte) RGB)
+        {
+            return FromARGB(255, RGB.Item1, RGB.Item2, RGB.Item2);
+        }
+        public static implicit operator Color((byte, byte, byte, byte) ARGB)
+        {
+            return FromARGB(ARGB.Item1, ARGB.Item2, ARGB.Item3, ARGB.Item4);
+        }
     }
 }

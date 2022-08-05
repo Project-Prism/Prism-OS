@@ -17,7 +17,7 @@ namespace PrismOS
         {
             // Draw Boot Screen
             Canvas.DrawImage((int)((Canvas.Width / 2) - 128), (int)((Canvas.Height / 2) - 128), Assets.Logo256);
-            MemoryOperations.Copy((uint*)VBE.getLfbOffset(), Canvas.Internal, (int)Canvas.Size);
+            Canvas.Copy((uint*)VBE.getLfbOffset());
 
             // Setup Gui
             Assets.Wallpaper = Assets.Wallpaper.Resize(Canvas.Width, Canvas.Height);
