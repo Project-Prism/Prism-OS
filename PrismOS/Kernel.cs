@@ -55,9 +55,9 @@ namespace PrismOS
             {
                 if (Window.Windows[^1] == Window && KeyPress)
                 {
-                    Window.OnKey(Key);
+                    Window.OnKeyPress(Key);
                 }
-                Window.Update(Canvas);
+                Window.OnDraw(Canvas);
             }
 
             Canvas.DrawImage((int)Mouse.X, (int)Mouse.Y, Assets.Cursor);

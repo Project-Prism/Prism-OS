@@ -1,46 +1,31 @@
-﻿using Cosmos.System;
-using PrismOS.Libraries.Graphics;
+﻿using PrismOS.Libraries.Graphics;
+using Cosmos.System;
 using System;
 
 namespace PrismOS.Libraries.UI
 {
     public class Button : Control
     {
-        public string Text;
+        public string Text { get; set; }
 
-        public override void Update(Window Parent)
+        public override void OnClick(int X, int Y, MouseState State)
         {
-            if (IsVisible)
+            foreach (Action A in OnClickEvents)
             {
-                Color BG, FG;
-                if (IsPressed)
-                {
-                    BG = Parent.Theme.BackgroundClick;
-                    FG = Parent.Theme.ForegroundClick;
-                }
-                else if (IsHovering)
-                {
-                    BG = Parent.Theme.BackgroundHover;
-                    FG = Parent.Theme.ForegroundHover;
-                }
-                else
-                {
-                    BG = Parent.Theme.Background;
-                    FG = Parent.Theme.Foreground;
-                }
-
-                FrameBuffer.DrawFilledRectangle(0, 0, Width, Height, Parent.Theme.Radius, BG);
-                FrameBuffer.DrawString(Width / 2, Height / 2, Text, Parent.Theme.Font, FG, true);
-                if (HasBorder)
-                {
-                    FrameBuffer.DrawRectangle(0, 0, Width - 1, Height - 1, Parent.Theme.Radius, Parent.Theme.Foreground);
-                }
-
-                Parent.FrameBuffer.DrawImage(X, Y, FrameBuffer, false);
+                A();
             }
         }
 
-        public override void OnKey(KeyEvent Key)
+        public override void OnDraw(FrameBuffer Buffer)
+        {
+            this.Buffer.DrawFilledRectangle(0, 0, (int)Width, (int)Height, (int)Theme.Radius, Theme.GetBackground(IsPressed, IsHovering));
+            this.Buffer.DrawString((int)(Width / 2), (int)(Height / 2), Text, Font.Default, Theme.GetText(IsPressed, IsHovering), true);
+            this.Buffer.DrawRectangle(0, 0, (int)(Width - 1), (int)(Height - 1), (int)Theme.Radius, Theme.Foreground);
+
+            Buffer.DrawImage(X, Y, this.Buffer, false);
+        }
+
+        public override void OnKeyPress(KeyEvent Key)
         {
         }
     }

@@ -5,17 +5,18 @@ namespace PrismOS.Libraries.UI
 {
     public class Panel : Control
     {
-        public override void Update(Window Parent)
+        public override void OnClick(int X, int Y, MouseState State)
         {
-            if (IsVisible)
-            {
-                FrameBuffer.DrawFilledRectangle(0, 0, Width, Height, Parent.Theme.Radius, Parent.Theme.Background);
-
-                Parent.FrameBuffer.DrawImage(X, Y, FrameBuffer, false);
-            }
         }
 
-        public override void OnKey(KeyEvent Key)
+        public override void OnDraw(FrameBuffer Buffer)
+        {
+            this.Buffer.DrawFilledRectangle(0, 0, (int)Width, (int)Height, (int)Theme.Radius, Theme.Background);
+
+            Buffer.DrawImage(X, Y, this.Buffer, false);
+        }
+
+        public override void OnKeyPress(KeyEvent Key)
         {
         }
     }

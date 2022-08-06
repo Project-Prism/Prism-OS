@@ -12,9 +12,8 @@ namespace PrismOS.Libraries.Runtime
             // Main window
             Window.X = 0;
             Window.Y = (int)(Kernel.Canvas.Height - 32);
-            Window.Width = (int)Kernel.Canvas.Width;
+            Window.Width = Kernel.Canvas.Width;
             Window.Height = 32;
-            Window.Theme = Theme.DefaultDark;
             Window.Text = "Desktop";
             Window.TitleVisible = false;
             Window.Draggable = false;
@@ -44,7 +43,7 @@ namespace PrismOS.Libraries.Runtime
             Button1.Y = 0;
             Button1.Width = 32;
             Button1.Height = 32;
-            Button1.OnClick = OnClick;
+            Button1.OnClickEvents.Add(OnClick);
 
             Window.Elements.Add(Button1);
         }

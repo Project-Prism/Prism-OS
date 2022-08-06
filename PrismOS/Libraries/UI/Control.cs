@@ -1,4 +1,8 @@
 ﻿using PrismOS.Libraries.Graphics;
+using PrismOS.Libraries.UI.Types;
+using System.Collections.Generic;
+using Cosmos.System;
+using Cosmos.Core;
 using System;
 
 namespace PrismOS.Libraries.UI
@@ -7,51 +11,57 @@ namespace PrismOS.Libraries.UI
     {
         public Control()
         {
-            IsHovering = false;
-            IsPressed = false;
-            IsVisible = true;
-            HasBorder = true;
+            OnClickEvents = new();
+            OnDrawEvents = new();
+            OnKeyEvents = new();
+
+            Theme = Theme.Default;
         }
 
-        public Action OnClick { get; set; } = () => { };
-        public Action OnUpdate { get; set; } = () => { };
-        public FrameBuffer FrameBuffer { get; set; }
+        public List<Action> OnClickEvents { get; set; }
+        public List<Action> OnDrawEvents { get; set; }
+        public List<Action> OnKeyEvents { get; set; }
+        public FrameBuffer Buffer { get; set; }
+        public Theme Theme { get; set; }
+
         public bool IsHovering { get; set; }
         public bool IsPressed { get; set; }
-        public bool IsVisible { get; set; }
-        public bool HasBorder { get; set; }
+        public bool Hidden { get; set; }
         public int Y { get; set; }
         public int X { get; set; }
-        public int Height
+        public uint Height
         {
             get
             {
-                return (int)FrameBuffer.Height;
+                return Buffer.Height;
             }
             set
             {
-                FrameBuffer = new((uint)Width, (uint)value);
+                Buffer = new(Width, value);
             }
         }
-        public int Width
+        public uint Width
         {
             get
             {
-                return (int)FrameBuffer.Width;
+                return Buffer.Width;
             }
             set
             {
-                FrameBuffer = new((uint)value, (uint)Height);
+                Buffer = new(value, Height);
             }
         }
 
-        public abstract void Update(Window Parent);
-
-        public abstract void OnKey(Cosmos.System.KeyEvent Key);
+        public abstract void OnClick(int X, int Y, MouseState State);
+        public abstract void OnDraw(FrameBuffer Buffer);
+        public abstract void OnKeyPress(KeyEvent Key);
 
         public void Dispose()
         {
-            Cosmos.Core.GCImplementation.Free(this);
+            GCImplementation.Free(OnClickEvents);
+            GCImplementation.Free(OnDrawEvents);
+            GCImplementation.Free(OnKeyEvents);
+            GCImplementation.Free(this);
             GC.SuppressFinalize(this);
         }
     }

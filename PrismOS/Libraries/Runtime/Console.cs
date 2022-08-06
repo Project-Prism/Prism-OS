@@ -17,16 +17,14 @@ namespace PrismOS.Libraries.Runtime
             Window.Y = 75;
             Window.Width = 300;
             Window.Height = 200;
-            Window.Theme = Theme.DefaultDark;
             Window.Text = "Console";
 
             // Button
-            Button.X = Window.Width - 20;
+            Button.X = (int)(Window.Width - 20);
             Button.Width = 20;
             Button.Height = 20;
             Button.Text = "X";
-            Button.OnClick = new(() => { Window.Windows.Remove(Window); Applications.Remove(this); });
-            Button.HasBorder = false;
+            Button.OnClickEvents.Add(() => { Window.Windows.Remove(Window); Applications.Remove(this); });
 
             // Label1
             Label1.X = 1;

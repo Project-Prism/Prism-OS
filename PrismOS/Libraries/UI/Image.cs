@@ -1,23 +1,23 @@
-﻿using Cosmos.System;
-using PrismOS.Libraries.Graphics;
+﻿using PrismOS.Libraries.Graphics;
+using Cosmos.System;
 
 namespace PrismOS.Libraries.UI
 {
     public class Image : Control
     {
-        public override void Update(Window Parent)
+        public override void OnClick(int X, int Y, MouseState State)
         {
-            if (FrameBuffer != null && IsVisible)
+        }
+
+        public override void OnDraw(FrameBuffer Buffer)
+        {
+            if (this.Buffer != null)
             {
-                if (Width != FrameBuffer.Width || Height != FrameBuffer.Height)
-                {
-                    FrameBuffer = FrameBuffer.Resize((uint)Width, (uint)Height);
-                }
-                Parent.FrameBuffer.DrawImage(X, Y, FrameBuffer, true);
+                Buffer.DrawImage(X, Y, this.Buffer, false);
             }
         }
 
-        public override void OnKey(KeyEvent Key)
+        public override void OnKeyPress(KeyEvent Key)
         {
         }
     }

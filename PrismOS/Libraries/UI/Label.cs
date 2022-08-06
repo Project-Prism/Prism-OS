@@ -7,18 +7,19 @@ namespace PrismOS.Libraries.UI
     {
         public string Text;
 
-        public override void Update(Window Parent)
+        public override void OnClick(int X, int Y, MouseState State)
         {
-            if (IsVisible)
-            {
-                FrameBuffer.Clear(Parent.Theme.Background);
-                FrameBuffer.DrawString(0, 0, Text, Parent.Theme.Font, Parent.Theme.Foreground);
-
-                Parent.FrameBuffer.DrawImage(X, Y, FrameBuffer, false);
-            }
         }
 
-        public override void OnKey(KeyEvent Key)
+        public override void OnDraw(FrameBuffer Buffer)
+        {
+            this.Buffer.Clear(Theme.Background);
+            this.Buffer.DrawString(0, 0, Text, Font.Default, Theme.Text);
+
+            Buffer.DrawImage(X, Y, this.Buffer, false);
+        }
+
+        public override void OnKeyPress(KeyEvent Key)
         {
         }
     }

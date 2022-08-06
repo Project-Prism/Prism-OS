@@ -21,7 +21,6 @@ namespace PrismOS.Libraries.Runtime
             Window.Y = 50;
             Window.Width = 600;
             Window.Height = 300;
-            Window.Theme = Theme.DefaultDark;
             Window.Text = "3D Testing";
 
             // Image1
@@ -31,12 +30,11 @@ namespace PrismOS.Libraries.Runtime
             Image1.Height = Window.Height - 20;
 
             // Button
-            Button.X = Window.Width - 20;
+            Button.X = (int)(Window.Width - 20);
             Button.Width = 20;
             Button.Height = 20;
             Button.Text = "X";
-            Button.OnClick = new(() => { Window.Windows.Remove(Window); Applications.Remove(this); });
-            Button.HasBorder = false;
+            Button.OnClickEvents.Add(() => { Window.Windows.Remove(Window); Applications.Remove(this); });
 
             // Engine1
             E = new((uint)Image1.Width, (uint)Image1.Height, 45);
@@ -56,7 +54,7 @@ namespace PrismOS.Libraries.Runtime
 
         public override void OnUpdate()
         {
-            E.Render(Image1.FrameBuffer);
+            E.Render(Image1.Buffer);
             C1.TestLogic(-0.01);
             C2.TestLogic(0.05);
         }
