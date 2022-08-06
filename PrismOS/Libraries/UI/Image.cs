@@ -13,7 +13,7 @@ namespace PrismOS.Libraries.UI
         {
             if (this.Buffer != null)
             {
-                Buffer.DrawImage(X, Y, this.Buffer, false);
+                Buffer.DrawImage(X, Y, this.Buffer, Theme.Radius != 0);
             }
         }
 

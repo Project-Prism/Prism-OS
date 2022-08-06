@@ -22,7 +22,7 @@ namespace PrismOS.Libraries.UI
             this.Buffer.DrawString((int)(Width / 2), (int)(Height / 2), Text, Font.Default, Theme.GetText(IsPressed, IsHovering), true);
             this.Buffer.DrawRectangle(0, 0, (int)(Width - 1), (int)(Height - 1), (int)Theme.Radius, Theme.Foreground);
 
-            Buffer.DrawImage(X, Y, this.Buffer, false);
+            Buffer.DrawImage(X, Y, this.Buffer, Theme.Radius != 0);
         }
 
         public override void OnKeyPress(KeyEvent Key)

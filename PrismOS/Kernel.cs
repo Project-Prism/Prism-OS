@@ -18,7 +18,7 @@ namespace PrismOS
             #region Boot Screen
 
             Canvas.DrawImage((int)((Canvas.Width / 2) - 128), (int)((Canvas.Height / 2) - 128), Assets.Logo256);
-            Canvas.Copy((uint*)VBE.getLfbOffset());
+            Canvas.CopyTo((uint*)VBE.getLfbOffset());
 
             #endregion
 
@@ -74,7 +74,7 @@ namespace PrismOS
 
             // Draw Cursor And Update The Screen
             Canvas.DrawImage((int)Mouse.X, (int)Mouse.Y, Assets.Cursor);
-            Canvas.Copy((uint*)VBE.getLfbOffset());
+            Canvas.CopyTo((uint*)VBE.getLfbOffset());
         }
 
         public static void Play(AudioStream Stream)

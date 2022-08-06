@@ -95,7 +95,7 @@ namespace PrismOS.Libraries.UI
                     }
                 }
 
-                Buffer.DrawImage(X, Y, this.Buffer, false);
+                Buffer.DrawImage(X, Y, this.Buffer, Theme.Radius != 0);
             }
         }
 

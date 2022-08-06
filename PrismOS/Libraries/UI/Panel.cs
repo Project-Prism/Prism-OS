@@ -13,7 +13,7 @@ namespace PrismOS.Libraries.UI
         {
             this.Buffer.DrawFilledRectangle(0, 0, (int)Width, (int)Height, (int)Theme.Radius, Theme.Background);
 
-            Buffer.DrawImage(X, Y, this.Buffer, false);
+            Buffer.DrawImage(X, Y, this.Buffer, Theme.Radius != 0);
         }
 
         public override void OnKeyPress(KeyEvent Key)

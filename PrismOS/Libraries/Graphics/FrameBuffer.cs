@@ -153,10 +153,10 @@ namespace PrismOS.Libraries.Graphics
         {
             if (Radius > 0)
             {
-                DrawCircle(Radius + X, Radius + Y, Radius, Color, 180, 270); // Top left
-                DrawCircle(X + Width - Radius, Y + Height - Radius, Radius, Color, 0, 90); // Bottom right
-                DrawCircle(Radius + X, Y + Height - Radius, Radius, Color, 90, 180); // Bottom left
-                DrawCircle(X + Width - Radius, Radius + Y, Radius, Color, 270, 360);
+                DrawArc(Radius + X, Radius + Y, Radius, Color, 180, 270); // Top left
+                DrawArc(X + Width - Radius, Y + Height - Radius, Radius, Color, 0, 90); // Bottom right
+                DrawArc(Radius + X, Y + Height - Radius, Radius, Color, 90, 180); // Bottom left
+                DrawArc(X + Width - Radius, Radius + Y, Radius, Color, 270, 360);
             }
             DrawLine(X + Radius, Y, X + Width - Radius, Y, Color); // Top Line
             DrawLine(X + Radius, Y + Height, X + Width - Radius, Height + Y, Color); // Bottom Line
@@ -191,7 +191,6 @@ namespace PrismOS.Libraries.Graphics
                 }
                 return;
             }
-
             if (Radius == 0)
             {
                 for (int IX = X; IX < X + Width; IX++)
@@ -204,14 +203,14 @@ namespace PrismOS.Libraries.Graphics
             }
             else
             {
-                DrawFilledRectangle(X + Radius, Y, Width - Radius * 2, Height, 0, Color);
-                DrawFilledRectangle(X, Y + Radius, Width, Height - Radius * 2, 0, Color);
-
                 DrawFilledCircle(X + Radius, Y + Radius, Radius, Color);
                 DrawFilledCircle(X + Width - Radius - 1, Y + Radius, Radius, Color);
 
                 DrawFilledCircle(X + Radius, Y + Height - Radius - 1, Radius, Color);
                 DrawFilledCircle(X + Width - Radius - 1, Y + Height - Radius - 1, Radius, Color);
+
+                DrawFilledRectangle(X + Radius, Y, Width - Radius * 2, Height, 0, Color);
+                DrawFilledRectangle(X, Y + Radius, Width, Height - Radius * 2, 0, Color);
             }
         }
 
@@ -235,9 +234,72 @@ namespace PrismOS.Libraries.Graphics
 
         #endregion
 
-        #region Circle
+        #region Circle 
 
-        public void DrawCircle(int X, int Y, int Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
+        public void DrawCircle(int X, int Y, int Radius, Color Color)
+        {
+            int IX = 0, IY = Radius, DP = 3 - 2 * Radius;
+
+            while (IY >= IX)
+            {
+                SetPixel(X + IX, Y + IY, Color);
+                SetPixel(X - IX, Y + IY, Color);
+                SetPixel(X + IX, Y - IY, Color);
+                SetPixel(X - IX, Y - IY, Color);
+                SetPixel(X + IY, Y + IX, Color);
+                SetPixel(X - IY, Y + IX, Color);
+                SetPixel(X + IY, Y - IX, Color);
+                SetPixel(X - IY, Y - IX, Color);
+
+                IX++;
+                if (DP > 0)
+                {
+                    IY--;
+                    DP += 4 * (IX - IY) + 10;
+                }
+                else
+                {
+                    DP += 4 * IX + 6;
+                }
+            }
+        }
+        public void DrawFilledCircle(int X, int Y, int Radius, Color Color)
+        {
+            if (Radius == 0)
+            {
+                return;
+            }
+            if (Color.A == 255)
+            {
+                int R2 = Radius * Radius;
+                for (int IY = -Radius; IY <= Radius; IY++)
+                {
+                    int IX = (int)(Math.Sqrt(R2 - IY * IY) + 0.5);
+
+                    uint* Offset = Internal + (Width * (Y + IY)) + X - IX;
+
+                    MemoryOperations.Fill(Offset, Color.ARGB, IX * 2);
+                }
+            }
+            else
+            {
+                for (int IX = -Radius; IX < Radius; IX++)
+                {
+                    int Height = (int)Math.Sqrt((Radius * Radius) - (IX * IX));
+
+                    for (int IY = -Height; IY < Height; IY++)
+                    {
+                        SetPixel(IX + X, IY + Y, Color);
+                    }
+                }
+            }
+        }
+
+        #endregion
+
+        #region Arc
+
+        public void DrawArc(int X, int Y, int Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
         {
             if (Radius == 0)
             {
@@ -252,7 +314,7 @@ namespace PrismOS.Libraries.Graphics
                 SetPixel(X + IX, Y + IY, Color);
             }
         }
-        public void DrawFilledCircle(int X, int Y, int Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
+        public void DrawFilledArc(int X, int Y, int Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
         {
             if (Radius == 0)
             {
@@ -261,7 +323,7 @@ namespace PrismOS.Libraries.Graphics
 
             for (int I = 0; I < Radius; I++)
             {
-                DrawCircle(X, Y, I, Color, StartAngle, EndAngle);
+                DrawArc(X, Y, I, Color, StartAngle, EndAngle);
             }
         }
 
@@ -369,23 +431,26 @@ namespace PrismOS.Libraries.Graphics
                 uint PadX = 0;
                 uint PadY = 0;
 
-                if (X < 0)
+                if ((X + Image.Width) >= Width || (Y + Image.Height) >= Height)
                 {
-                    PadX = (uint)Math.Abs(X);
-                    TWidth -= PadX;
-                }
-                if (Y < 0)
-                {
-                    PadY = (uint)Math.Abs(Y);
-                    THeight -= PadY;
-                }
-                if (X + Image.Width >= Width)
-                {
-                    TWidth = Width - (uint)X;
-                }
-                if (Y + Image.Height >= Height)
-                {
-                    THeight = Height - (uint)Y;
+                    if (X < 0)
+                    {
+                        PadX = (uint)Math.Abs(X);
+                        TWidth -= PadX;
+                    }
+                    if (Y < 0)
+                    {
+                        PadY = (uint)Math.Abs(Y);
+                        THeight -= PadY;
+                    }
+                    if (X + Image.Width >= Width)
+                    {
+                        TWidth = Width - (uint)X;
+                    }
+                    if (Y + Image.Height >= Height)
+                    {
+                        THeight = Height - (uint)Y;
+                    }
                 }
 
                 for (uint IY = 0; IY < THeight; IY++)
@@ -516,7 +581,7 @@ namespace PrismOS.Libraries.Graphics
             MemoryOperations.Fill(Internal, Color.ARGB, (int)Size);
         }
 
-        public void Copy(uint* Destination)
+        public void CopyTo(uint* Destination)
         {
             Frames++;
             MemoryOperations.Copy(Destination, Internal, (int)Size);
