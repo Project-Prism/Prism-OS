@@ -37,7 +37,10 @@ namespace PrismOS.Libraries.UI
             }
             set
             {
-                Buffer = new(Width, value);
+                if (Width != 0)
+                {
+                    Buffer = new(Width, value);
+                }
             }
         }
         public uint Width
@@ -48,7 +51,10 @@ namespace PrismOS.Libraries.UI
             }
             set
             {
-                Buffer = new(value, Height);
+                if (Height != 0)
+                {
+                    Buffer = new(value, Height);
+                }
             }
         }
 

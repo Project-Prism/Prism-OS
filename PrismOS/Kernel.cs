@@ -15,23 +15,35 @@ namespace PrismOS
 
         protected override void BeforeRun()
         {
-            // Draw Boot Screen
+            #region Boot Screen
+
             Canvas.DrawImage((int)((Canvas.Width / 2) - 128), (int)((Canvas.Height / 2) - 128), Assets.Logo256);
             Canvas.Copy((uint*)VBE.getLfbOffset());
 
-            // Setup Gui
+            #endregion
+
+            #region Misc
+
             Assets.Wallpaper = Assets.Wallpaper.Resize(Canvas.Width, Canvas.Height);
             Mouse.ScreenWidth = Canvas.Width;
             Mouse.ScreenHeight = Canvas.Height;
 
-            // Create "Headless" Objects
+            #endregion
+
+            #region Apps
+
             Desktop D = new();
             D.Add(() => { _ = new AppTemplate1(); });
             D.Add(() => { _ = new Console(); });
             D.Add(() => { Cosmos.System.Power.Shutdown(); });
 
-            // Play Startup Sound
+            #endregion
+
+            #region Startup Sound
+
             Play(Assets.Window98Startup);
+
+            #endregion
         }
 
         protected override void Run()
@@ -60,9 +72,8 @@ namespace PrismOS
                 Window.OnDraw(Canvas);
             }
 
+            // Draw Cursor And Update The Screen
             Canvas.DrawImage((int)Mouse.X, (int)Mouse.Y, Assets.Cursor);
-
-            // Update The Screen
             Canvas.Copy((uint*)VBE.getLfbOffset());
         }
 
