@@ -27,5 +27,10 @@ namespace PrismOS.Libraries.Numerics
             Y *= 1.5f - (X2 * Y * Y);
             return Y;
         }
+
+        public static double Degrees(double Radians)
+        {
+            return Radians * 57.2957795;
+        }
     }
 }
