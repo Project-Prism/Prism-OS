@@ -18,6 +18,7 @@ namespace PrismOS.Libraries.Graphics
             this.FOV = FOV;
         }
 
+        public double Gravity = 1.0;
         public List<Shape> Objects;
         public FrameBuffer Buffer;
         public Camera Camera;
@@ -55,14 +56,20 @@ namespace PrismOS.Libraries.Graphics
 
         public void Render(FrameBuffer Canvas)
         {
-            Buffer.Clear();
-
             // Set Z0
             Z0 = Width / 2 / Math.Tan(FOV / 2 * 0.0174532925); // 0.0174532925 == pi / 180
+
+            Buffer.Clear();
 
             // Calculate Objects
             for (int O = 0; O < Objects.Count; O++)
             {
+                // Physics
+                if (Objects[O].HasPhysics)
+                {
+                    Objects[O].Step(Gravity, 1.0);
+                }
+                
                 // Temporary Object Values
                 Triangle[] DrawTriangles = Objects[O].Triangles.ToArray();
 
