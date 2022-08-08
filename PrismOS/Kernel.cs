@@ -1,9 +1,9 @@
-﻿using Mouse = Cosmos.System.MouseManager;
-using Cosmos.HAL.Drivers.PCI.Audio;
+﻿using Cosmos.HAL.Drivers.PCI.Audio;
 using PrismOS.Libraries.Graphics;
 using PrismOS.Libraries.Runtime;
 using PrismOS.Libraries.UI;
 using Cosmos.System.Audio;
+using Cosmos.System;
 using Cosmos.Core;
 
 namespace PrismOS
@@ -25,8 +25,8 @@ namespace PrismOS
             #region Misc
 
             Assets.Wallpaper = Assets.Wallpaper.Resize(Canvas.Width, Canvas.Height);
-            Mouse.ScreenWidth = Canvas.Width;
-            Mouse.ScreenHeight = Canvas.Height;
+            MouseManager.ScreenWidth = Canvas.Width;
+            MouseManager.ScreenHeight = Canvas.Height;
 
             #endregion
 
@@ -34,7 +34,7 @@ namespace PrismOS
 
             Desktop D = new();
             D.Add(() => { _ = new AppTemplate1(); });
-            D.Add(() => { _ = new Console(); });
+            D.Add(() => { _ = new Terminal(); });
             D.Add(() => { Cosmos.System.Power.Shutdown(); });
 
             #endregion
@@ -73,7 +73,7 @@ namespace PrismOS
             }
 
             // Draw Cursor And Update The Screen
-            Canvas.DrawImage((int)Mouse.X, (int)Mouse.Y, Assets.Cursor);
+            Canvas.DrawImage((int)MouseManager.X, (int)MouseManager.Y, Assets.Cursor);
             Canvas.CopyTo((uint*)VBE.getLfbOffset());
         }
 

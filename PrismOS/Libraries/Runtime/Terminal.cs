@@ -3,7 +3,7 @@ using Cosmos.System;
 
 namespace PrismOS.Libraries.Runtime
 {
-    public class Console : Application
+    public class Terminal : Application
     {
         public Window Window = new();
         public Button Button = new();
