@@ -16,6 +16,7 @@ namespace PrismOS.Libraries.UI
             OnKeyEvents = new();
 
             Theme = Theme.Default;
+            HasBorder = true;
         }
 
         public List<Action> OnClickEvents { get; set; }
@@ -26,7 +27,8 @@ namespace PrismOS.Libraries.UI
 
         public bool IsHovering { get; set; }
         public bool IsPressed { get; set; }
-        public bool Hidden { get; set; }
+        public bool HasBorder { get; set; }
+        public bool IsHidden { get; set; }
         public int Y { get; set; }
         public int X { get; set; }
         public uint Height

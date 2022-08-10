@@ -485,7 +485,7 @@ namespace PrismOS.Libraries.Graphics
             for (int Line = 0; Line < Lines.Length; Line++)
             {
                 // Advanced Calculations To Determine Position
-                int IX = X - (Center ? ((int)MeasureString(Text, Font) / 2) : 0);
+                int IX = X - (Center ? ((int)Font.MeasureString(Text) / 2) : 0);
                 int IY = (int)(Y + (Font.Size * Line) - (Center ? Font.Size * Lines.Length / 2 : 0));
 
                 if (IY > Height)
@@ -505,7 +505,7 @@ namespace PrismOS.Libraries.Graphics
             }
         }
 
-        public uint DrawChar(int X, int Y, char Char, Font Font, Color Color, bool Center, bool Visible = true)
+        public uint DrawChar(int X, int Y, char Char, Font Font, Color Color, bool Center)
         {
             uint Index = (uint)Font.Charset.IndexOf(Char);
             if (Char == ' ')
@@ -542,10 +542,7 @@ namespace PrismOS.Libraries.Graphics
                             int x = X + max;
                             int y = Y + h;
 
-                            if (Visible)
-                            {
-                                SetPixel(x, y, Color);
-                            }
+                            SetPixel(x, y, Color);
 
                             if (max > MaxX)
                             {
@@ -556,16 +553,6 @@ namespace PrismOS.Libraries.Graphics
                 }
             }
             return MaxX;
-        }
-
-        public uint MeasureString(string String, Font Font)
-        {
-            uint Width = 0;
-            for (int I = 0; I < String.Length; I++)
-            {
-                Width += DrawChar(0, 0, String[I], Font, Color.White, false, false) + 2;
-            }
-            return Width;
         }
 
         #endregion

@@ -35,7 +35,7 @@ namespace PrismOS
             Desktop D = new();
             D.Add(() => { _ = new AppTemplate1(); });
             D.Add(() => { _ = new Terminal(); });
-            D.Add(() => { Cosmos.System.Power.Shutdown(); });
+            D.Add(() => { Power.Shutdown(); });
 
             #endregion
 
@@ -49,10 +49,10 @@ namespace PrismOS
         protected override void Run()
         {
             Canvas.DrawImage(0, 0, Assets.Wallpaper, false);
-            Canvas.DrawFilledRectangle(0, 0, (int)Canvas.MeasureString($"FPS: {Canvas.FPS}", Font.Default) + 30, (int)Font.Default.Size + 30, 0, Color.LightBlack);
+            Canvas.DrawFilledRectangle(0, 0, (int)Font.Default.MeasureString($"FPS: {Canvas.FPS}") + 30, (int)Font.Default.Size + 30, 0, Color.LightBlack);
             Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}", Font.Default, Color.White);
 
-            bool KeyPress = Cosmos.System.KeyboardManager.TryReadKey(out var Key);
+            bool KeyPress = KeyboardManager.TryReadKey(out var Key);
 
             foreach (Application App in Application.Applications)
             {

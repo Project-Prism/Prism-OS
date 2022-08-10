@@ -15,7 +15,7 @@ namespace PrismOS.Libraries.Runtime
             Window.Width = Kernel.Canvas.Width;
             Window.Height = 32;
             Window.Text = "Desktop";
-            Window.TitleVisible = false;
+            Window.HasBorder = false;
             Window.Draggable = false;
 
             Window.Windows.Add(Window);

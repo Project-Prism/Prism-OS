@@ -7,13 +7,17 @@ namespace PrismOS.Libraries.UI
 {
     public class Window : Control
     {
+        public Window()
+        {
+            HasBorder = true;
+        }
+
         // Window Manager Variables
         public static List<Window> Windows { get; set; } = new();
         public static bool Dragging { get; set; } = false;
 
         // Class Variables
         public List<Control> Elements { get; set; } = new();
-        public bool TitleVisible { get; set; } = true;
         public bool Draggable { get; set; } = true;
         public bool Moving { get; set; } = false;
         public string Text { get; set; } = "";
@@ -52,11 +56,11 @@ namespace PrismOS.Libraries.UI
                 }
             }
 
-            if (!Hidden)
+            if (!IsHidden)
             {
                 this.Buffer.DrawFilledRectangle(0, 0, (int)Width, (int)Height, (int)Theme.Radius, Theme.Background);
 
-                if (TitleVisible)
+                if (HasBorder)
                 {
                     this.Buffer.DrawFilledRectangle(0, 0, (int)Width, 20, (int)Theme.Radius, Theme.Accent);
                     this.Buffer.DrawString((int)(Width / 2), 10, Text, Font.Default, Theme.Text, true);
@@ -65,7 +69,7 @@ namespace PrismOS.Libraries.UI
 
                 foreach (Control C in Elements)
                 {
-                    if (!C.Hidden)
+                    if (!C.IsHidden)
                     {
                         foreach (Action A in C.OnDrawEvents)
                         {
