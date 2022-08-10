@@ -1,19 +1,25 @@
-﻿using System.Collections.Generic;
-using Cosmos.Core;
-using System;
+﻿using PrismOS.Libraries.Text.Generic;
+using System.Collections.Generic;
 
 namespace PrismOS.Libraries.Text.XML
 {
-    public class XMLFile
+    // TO-DO: Re-Do Lexer, It's Not Designed Good
+    public class XMLFile : Lexer
     {
-        // TO-DO: Re-Do Lexer
-        public List<XMLTag> Tags = new();
+        public XMLFile(string XML)
+        {
+            List<Property> P = GetTags(XML);
+            for (int I = 0; I < P.Count; I++)
+            {
+                Add(P[I]);
+            }
+        }
 
-        public static List<XMLTag> GetTags(string HTML)
+        public static List<Property> GetTags(string HTML)
         {
             bool InTag = false, InValue = false, InCSS = false, InComment = false;
             string TB = "", VB = "", CB = "", CMB = "";
-            List<XMLTag> Tags = new();
+            List<Property> Tags = new();
 
             for (int I = 0; I < HTML.Length; I++)
             {
@@ -36,7 +42,7 @@ namespace PrismOS.Libraries.Text.XML
                         InTag = false;
                         InCSS = false;
                         I += TB.Length + 2;
-                        Tags.Add(new() { Name = TB, Value = VB, Attributes = XMLAttribute.Parse(CB), });
+                        Tags.Add(new(TB, VB, Parse(CB)));
                         TB = "";
                         VB = "";
                         CB = "";
@@ -64,7 +70,7 @@ namespace PrismOS.Libraries.Text.XML
                 {
                     if (HTML[I] == '-' && HTML[I + 2] == '>')
                     {
-                        Tags.Add(new() { Name = "Comment", Value = CMB, Attributes = XMLAttribute.Parse(CB), });
+                        Tags.Add(new("Comment", CMB, Parse(CB)));
                         InComment = false;
                         continue;
                     }
@@ -87,11 +93,49 @@ namespace PrismOS.Libraries.Text.XML
 
             return Tags;
         }
-
-        public void Dispose()
+        public static List<Property> Parse(string Contents)
         {
-            GCImplementation.Free(Tags);
-            GC.SuppressFinalize(this);
+            if (Contents.Length == 0)
+            {
+                return new();
+            }
+
+            List<Property> Attributes = new();
+            string NB = "", VB = "";
+            bool InName = true;
+
+            for (int I = 0; I < Contents.Length; I++)
+            {
+                if (InName)
+                {
+                    if (Contents[I] == ' ')
+                    {
+                        continue;
+                    }
+                    if (Contents[I] == '=')
+                    {
+                        I++;
+                        InName = false;
+                        continue;
+                    }
+                    NB += Contents[I];
+                }
+                else
+                {
+                    if (Contents[I] == '"')
+                    {
+                        Attributes.Add(new() { Name = NB, Value = VB, });
+                        NB = "";
+                        VB = "";
+                        InName = true;
+                        I++;
+                        continue;
+                    }
+                    VB += Contents[I];
+                }
+            }
+
+            return Attributes;
         }
     }
 }

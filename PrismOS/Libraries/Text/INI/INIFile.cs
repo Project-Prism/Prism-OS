@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using PrismOS.Libraries.Text.Generic;
 using Cosmos.Core;
-using System;
 
 namespace PrismOS.Libraries.Text.INI
 {
-    public class INIFile : Dictionary<string, List<INIEntry>>, IDisposable
+    public class INIFile : Lexer
     {
         public INIFile(string S)
         {
-            string Selected = "";
+            Property Selected = new();
             string Builder = "";
 
             for (int I = 0; I < S.Length; I++)
@@ -19,12 +18,13 @@ namespace PrismOS.Libraries.Text.INI
                 }
                 if (S[I] == '[')
                 {
+                    Selected = new();
                     while (S[++I] != ']')
                     {
                         Builder += S[I];
                     }
-                    Add(Builder, new());
-                    Selected = Builder;
+                    Add(new(Builder, ""));
+                    Selected.Name = Builder;
                     Builder = "";
                     continue;
                 }
@@ -37,16 +37,9 @@ namespace PrismOS.Libraries.Text.INI
                     {
                         Value += S[++I];
                     }
-                    if (Selected.Length != 0)
+                    if (Selected.Name.Length != 0)
                     {
-                        if (int.TryParse(Value, out var N))
-                        {
-                            this[Selected].Add(new(typeof(int), Name, N));
-                        }
-                        else
-                        {
-                            this[Selected].Add(new(typeof(string), Name, Value));
-                        }
+                        this[IndexOf(Selected)].Add(new(Name, Value));
                     }
                     continue;
                 }
@@ -63,21 +56,6 @@ namespace PrismOS.Libraries.Text.INI
 
             GCImplementation.Free(Selected);
             GCImplementation.Free(Builder);
-        }
-
-        public void Dispose()
-        {
-            foreach (KeyValuePair<string, List<INIEntry>> KVP in this)
-            {
-                GCImplementation.Free(KVP.Value);
-                foreach (INIEntry INI in KVP.Value)
-                {
-                    INI.Dispose();
-                }
-                GCImplementation.Free(KVP.Value);
-                GCImplementation.Free(KVP);
-            }
-            GC.SuppressFinalize(this);
         }
     }
 }
