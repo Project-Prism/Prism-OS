@@ -15,6 +15,82 @@ namespace PrismOS.Libraries.Graphics
             Internal = (uint*)GCImplementation.AllocNewObject(Size * 4);
         }
 
+        // Get/Set Pixels
+        public Color this[uint X, uint Y]
+        {
+            get
+            {
+                return this[(int)X, (int)Y];
+            }
+            set
+            {
+                this[(int)X, (int)Y] = value;
+            }
+        }
+        public Color this[int X, int Y]
+        {
+            get
+            {
+                if (X > Width || Y > Height || X < 0 || Y < 0)
+                {
+                    return Color.Black;
+                }
+                return Color.FromARGB(Internal[Y * Width + X]);
+            }
+            set
+            {
+                if (value.A == 0 || X > Width || Y > Height || X < 0 || Y < 0)
+                {
+                    return;
+                }
+                if (value.A < 255)
+                {
+                    value = Color.AlphaBlend(this[X, Y], value);
+                }
+                Internal[Y * Width + X] = value.ARGB;
+            }
+        }
+        public Color this[uint Index]
+        {
+            get
+            {
+                return this[(int)Index];
+            }
+            set
+            {
+                this[(int)Index] = value;
+            }
+        }
+        public Color this[int Index]
+        {
+            get
+            {
+                if (Index > Size)
+                {
+                    return Color.Black;
+                }
+                if (Index < 0)
+                {
+                    return Color.Black;
+                }
+
+                return Color.FromARGB(Internal[Index]);
+            }
+            set
+            {
+                if (value.A == 0 || Index > Size)
+                {
+                    return;
+                }
+                if (value.A < 255)
+                {
+                    value = Color.AlphaBlend(this[Index], value);
+                }
+
+                Internal[Index] = value.ARGB;
+            }
+        }
+
         public uint* Internal { get; set; }
         private uint Frames { get; set; }
         public uint Width { get; set; }
@@ -28,52 +104,6 @@ namespace PrismOS.Libraries.Graphics
             }
         }
 
-        #region Pixel
-
-        public void SetPixel(int X, int Y, Color Color)
-        {
-            if (Color.A == 0 || X > Width || Y > Height || X < 0 || Y < 0)
-            {
-                return;
-            }
-            if (Color.A < 255)
-            {
-                Color = Color.AlphaBlend(GetPixel(X, Y), Color);
-            }
-            Internal[Y * Width + X] = Color.ARGB;
-        }
-        public void SetPixel(int Index, Color Color)
-        {
-            if (Color.A == 0 || Index > Size)
-            {
-                return;
-            }
-            if (Color.A < 255)
-            {
-                Color = Color.AlphaBlend(GetPixel(Index), Color);
-            }
-            Internal[Index] = Color.ARGB;
-        }
-        public Color GetPixel(int X, int Y)
-        {
-            if (X > Width || Y > Height || X < 0 || Y < 0)
-            {
-                return Color.Black;
-            }
-            return Color.FromARGB(Internal[Y * Width + X]);
-        }
-        public Color GetPixel(int Index)
-        {
-            if (Index > Size)
-            {
-                return Color.Black;
-            }
-
-            return Color.FromARGB(Internal[Index]);
-        }
-
-        #endregion
-
         #region Line
 
         public void DrawLine(int X1, int Y1, int X2, int Y2, Color Color, bool AntiAlias = false)
@@ -84,18 +114,18 @@ namespace PrismOS.Libraries.Graphics
 
             while (X1 != X2 || Y1 != Y2)
             {
-                SetPixel(X1, Y1, Color);
+                this[X1, Y1] = Color;
                 if (AntiAlias)
                 {
                     if (X1 + X2 > Y1 + Y2)
                     {
-                        SetPixel(X1 + 1, Y1, Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B));
-                        SetPixel(X1 + 1, Y1, Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B));
+                        this[X1 + 1, Y1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
+                        this[X1 + 1, Y1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
                     }
                     else
                     {
-                        SetPixel(X1, Y1 + 1, Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B));
-                        SetPixel(X1, Y1 - 1, Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B));
+                        this[X1, Y1 + 1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
+                        this[X1, Y1 - 1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
                     }
                 }
                 int e2 = err;
@@ -146,7 +176,7 @@ namespace PrismOS.Libraries.Graphics
 
                 double XU = Power3V1 * X0 + 3 * U * Power2V1 * X1 + 3 * Power2V2 * (1 - U) * X2 + Power3V2 * X3;
                 double YU = Power3V1 * Y0 + 3 * U * Power2V1 * Y1 + 3 * Power2V2 * (1 - U) * Y2 + Power3V2 * Y3;
-                SetPixel((int)XU, (int)YU, Color);
+                this[(int)XU, (int)YU] = Color;
             }
         }
 
@@ -202,7 +232,7 @@ namespace PrismOS.Libraries.Graphics
                 {
                     for (int IY = Y; IY < Y + Height; IY++)
                     {
-                        SetPixel(IX, IY, Color);
+                        this[X, IY] = Color;
                     }
                 }
             }
@@ -247,14 +277,14 @@ namespace PrismOS.Libraries.Graphics
 
             while (IY >= IX)
             {
-                SetPixel(X + IX, Y + IY, Color);
-                SetPixel(X - IX, Y + IY, Color);
-                SetPixel(X + IX, Y - IY, Color);
-                SetPixel(X - IX, Y - IY, Color);
-                SetPixel(X + IY, Y + IX, Color);
-                SetPixel(X - IY, Y + IX, Color);
-                SetPixel(X + IY, Y - IX, Color);
-                SetPixel(X - IY, Y - IX, Color);
+                this[X + IX, Y + IY] = Color;
+                this[X - IX, Y + IY] = Color;
+                this[X + IX, Y - IY] = Color;
+                this[X - IX, Y - IY] = Color;
+                this[X + IY, Y + IX] = Color;
+                this[X - IY, Y + IX] = Color;
+                this[X + IY, Y - IX] = Color;
+                this[X - IY, Y - IX] = Color;
 
                 IX++;
                 if (DP > 0)
@@ -294,7 +324,7 @@ namespace PrismOS.Libraries.Graphics
 
                     for (int IY = -Height; IY < Height; IY++)
                     {
-                        SetPixel(IX + X, IY + Y, Color);
+                        this[IX + X, IY + Y] = Color;
                     }
                 }
             }
@@ -316,7 +346,7 @@ namespace PrismOS.Libraries.Graphics
                 double Angle1 = Math.PI * Angle / 180;
                 int IX = (int)(Radius * Math.Cos(Angle1));
                 int IY = (int)(Radius * Math.Sin(Angle1));
-                SetPixel(X + IX, Y + IY, Color);
+                this[X + IX, Y + IY] = Color;
             }
         }
         public void DrawFilledArc(int X, int Y, int Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
@@ -334,7 +364,7 @@ namespace PrismOS.Libraries.Graphics
 
         #endregion
 
-        #region Filled Triangle
+        #region Triangle
 
         public void DrawFilledTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
         {
@@ -395,7 +425,7 @@ namespace PrismOS.Libraries.Graphics
                 {
                     if (CX1 > 0 && CX2 > 0 && CX3 > 0)
                     {
-                        SetPixel(X, Y, Color);
+                        this[X, Y] = Color;
                     }
 
                     CX1 -= FDY12;
@@ -408,10 +438,6 @@ namespace PrismOS.Libraries.Graphics
                 CY3 += FDX31;
             }
         }
-
-        #endregion
-
-        #region Triangle
 
         public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
         {
@@ -472,7 +498,7 @@ namespace PrismOS.Libraries.Graphics
             {
                 for (int IY = 0; IY < Image.Height; IY++)
                 {
-                    SetPixel(X + IX, Y + IY, Image.GetPixel(IX, IY));
+                    this[X + IX, Y + IY] = Image[IX, IY];
                 }
             }
         }
@@ -550,7 +576,7 @@ namespace PrismOS.Libraries.Graphics
                             int x = X + max;
                             int y = Y + h;
 
-                            SetPixel(x, y, Color);
+                            this[x, y] = Color;
 
                             if (max > MaxX)
                             {
@@ -616,7 +642,7 @@ namespace PrismOS.Libraries.Graphics
                     int YP = (int)((X - CenterX) * Math.Sin(Angle) + (Y - CenterY) * Math.Cos(Angle) + CenterY);
                     if (0 <= XP || XP < Width && 0 <= YP && YP < Height)
                     {
-                        T.SetPixel(X, Y, GetPixel(XP, YP));
+                        T[X, Y] = this[XP, YP];
                     }
                 }
             }

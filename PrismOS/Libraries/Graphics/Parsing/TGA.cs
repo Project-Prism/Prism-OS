@@ -128,7 +128,7 @@ namespace PrismOS.Libraries.Graphics.Parsing
             FrameBuffer TMP = new(Data[0], Data[1]);
             for (int I = 0; I < TMP.Size; I++)
             {
-                TMP.SetPixel(I, Color.FromARGB(Data[I + 2]));
+                TMP[I] =  Color.FromARGB(Data[I + 2]);
             }
             return TMP;
         }
