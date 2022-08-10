@@ -109,6 +109,11 @@ namespace PrismOS.Libraries.Graphics
             int IY = (int)(Radius * Math.Sin(Math.PI * Angle / 180));
             DrawLine(X, Y, X + IX, Y + IY, Color);
         }
+
+        #endregion
+
+        #region Bezier Curves
+
         public void DrawQuadraticBezierLine(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, int N = 6)
         {
             // X2 and Y2 is where the curve should bend to.
@@ -329,7 +334,8 @@ namespace PrismOS.Libraries.Graphics
 
         #endregion
 
-        #region Triangle
+        #region Filled Triangle
+
         public void DrawFilledTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
         {
             // 28.4 fixed-point coordinates
@@ -402,6 +408,11 @@ namespace PrismOS.Libraries.Graphics
                 CY3 += FDX31;
             }
         }
+
+        #endregion
+
+        #region Triangle
+
         public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
         {
             DrawLine(X1, Y1, X2, Y2, Color);
@@ -431,26 +442,23 @@ namespace PrismOS.Libraries.Graphics
                 uint PadX = 0;
                 uint PadY = 0;
 
-                if ((X + Image.Width) >= Width || (Y + Image.Height) >= Height)
+                if (X < 0)
                 {
-                    if (X < 0)
-                    {
-                        PadX = (uint)Math.Abs(X);
-                        TWidth -= PadX;
-                    }
-                    if (Y < 0)
-                    {
-                        PadY = (uint)Math.Abs(Y);
-                        THeight -= PadY;
-                    }
-                    if (X + Image.Width >= Width)
-                    {
-                        TWidth = Width - (uint)X;
-                    }
-                    if (Y + Image.Height >= Height)
-                    {
-                        THeight = Height - (uint)Y;
-                    }
+                    PadX = (uint)Math.Abs(X);
+                    TWidth -= PadX;
+                }
+                if (Y < 0)
+                {
+                    PadY = (uint)Math.Abs(Y);
+                    THeight -= PadY;
+                }
+                if (X + Image.Width >= Width)
+                {
+                    TWidth = Width - (uint)X;
+                }
+                if (Y + Image.Height >= Height)
+                {
+                    THeight = Height - (uint)Y;
                 }
 
                 for (uint IY = 0; IY < THeight; IY++)
@@ -592,6 +600,27 @@ namespace PrismOS.Libraries.Graphics
                 }
             }
             return FB;
+        }
+        public FrameBuffer Rotate(int Degrees)
+        {
+            FrameBuffer T = new(Width, Height);
+            double Angle = Numerics.Math2.Degrees(Degrees);
+            uint CenterX = Width / 2;
+            uint CenterY = Height / 2;
+
+            for (int X = 0; X < Width; X++)
+            {
+                for (int Y = 0; Y < Height; Y++)
+                {
+                    int XP = (int)((X - CenterX) * Math.Cos(Angle) - (Y - CenterY) * Math.Sin(Angle) + CenterX);
+                    int YP = (int)((X - CenterX) * Math.Sin(Angle) + (Y - CenterY) * Math.Cos(Angle) + CenterY);
+                    if (0 <= XP || XP < Width && 0 <= YP && YP < Height)
+                    {
+                        T.SetPixel(X, Y, GetPixel(XP, YP));
+                    }
+                }
+            }
+            return T;
         }
 
         public static FrameBuffer FromImage(byte[] Binary)

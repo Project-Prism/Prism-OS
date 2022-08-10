@@ -16,7 +16,7 @@ namespace PrismOS.Libraries.Numerics
                 D += A;
             }
             return Values.ToArray();
-}
+        }
 
         public static float InverseSqrt(float Number)
         {

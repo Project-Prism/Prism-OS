@@ -13,7 +13,7 @@ namespace PrismOS
         public static FrameBuffer Canvas = new(VBE.getModeInfo().width, VBE.getModeInfo().height);
         public static AudioMixer Mixer = new();
 
-        protected override void BeforeRun()
+        protected override void BeforeRun() 
         {
             #region Boot Screen
 
