@@ -16,11 +16,10 @@ namespace PrismOS.Libraries.Rasterizer.Objects
 
         public void Step(double Gravity, double DT)
         {
-            Force += Mass * Gravity;
-            Velocity += Force / Mass * DT;
-            Position += Velocity * DT;
+            Force.Y += Mass * Gravity;
+            Velocity.Y += Force.Y / Mass * DT;
+            Position.Y += Velocity.Y * DT;
             Force = new(0, 0, 0, 0, 0, 0);
         }
-
     }
 }
