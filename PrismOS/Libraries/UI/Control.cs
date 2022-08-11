@@ -16,7 +16,6 @@ namespace PrismOS.Libraries.UI
             OnKeyEvents = new();
 
             Theme = Theme.Default;
-            HasBorder = true;
         }
 
         public List<Action> OnClickEvents { get; set; }

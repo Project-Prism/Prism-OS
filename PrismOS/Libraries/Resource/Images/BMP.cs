@@ -1,4 +1,6 @@
-﻿namespace PrismOS.Libraries.Graphics.Parsing
+﻿using PrismOS.Libraries.Graphics;
+
+namespace PrismOS.Libraries.Resource.Images
 {
     public static unsafe class BMP
     {

@@ -34,10 +34,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Assets\Audio.wav" />
       <None Remove="Assets\Cursor.bmp" />
-      <None Remove="Assets\Font1.bf" />
-      <None Remove="Assets\Logo.bmp" />
+      <None Remove="Assets\Default.btf" />
+      <None Remove="Assets\Splash.bmp" />
       <None Remove="Assets\W95.wav" />
       <None Remove="Assets\W98.wav" />
       <None Remove="Assets\W98OFF.wav" />
@@ -45,12 +44,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Assets\Audio.wav" />
       <EmbeddedResource Include="Assets\Cursor.bmp" />
-      <EmbeddedResource Include="Assets\Font1.bf" />
-      <EmbeddedResource Include="Assets\Logo.bmp" />
+      <EmbeddedResource Include="Assets\Default.btf" />
+      <EmbeddedResource Include="Assets\Splash.bmp" />
       <EmbeddedResource Include="Assets\W98.wav" />
-      <EmbeddedResource Include="Assets\W98OFF.wav" />
       <EmbeddedResource Include="Assets\Wallpaper.bmp" />
     </ItemGroup>
 

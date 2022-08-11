@@ -1,6 +1,6 @@
-﻿using PrismOS.Libraries.Numerics;
+﻿using PrismOS.Libraries.Graphics;
 
-namespace PrismOS.Libraries.Graphics.Types
+namespace PrismOS.Libraries.Numerics
 {
     public struct Triangle
     {

@@ -1,66 +1,67 @@
-﻿using PrismOS.Libraries.Graphics.Types;
+﻿using PrismOS.Libraries.Rasterizer.Objects;
+using PrismOS.Libraries.Rasterizer;
 using PrismOS.Libraries.Graphics;
 using PrismOS.Libraries.UI;
 using Cosmos.System;
 
-namespace PrismOS.Libraries.Runtime
+namespace PrismOS.Apps
 {
-    public unsafe class AppTemplate1 : Application
+    public unsafe class AppTemplate1 : Window
     {
-        public Window Window = new();
         public Button Button = new();
-        public Shape.Cube C2 = new(300, 1, 300);
-        public Shape.Cube C1 = new(150, 50, 150);
+        public Cube C2 = new(300, 1, 300);
+        public Cube C1 = new(150, 50, 150);
         public Image Image1 = new();
         public Engine E;
 
-        public override void OnCreate()
+        public AppTemplate1()
         {
             // Main window
-            Window.X = 50;
-            Window.Y = 50;
-            Window.Width = 600;
-            Window.Height = 300;
-            Window.Text = "3D Testing";
+            X = 50;
+            Y = 50;
+            Width = 600;
+            Height = 300;
+            Text = "3D Testing";
+            HasBorder = true;
 
             // Image1
             Image1.X = 0;
             Image1.Y = 20;
-            Image1.Width = Window.Width;
-            Image1.Height = Window.Height - 20;
+            Image1.Width = Width;
+            Image1.Height = Height - 20;
 
             // Button
-            Button.X = (int)(Window.Width - 20);
+            Button.X = (int)(Width - 20);
             Button.Width = 20;
             Button.Height = 20;
             Button.Text = "X";
-            Button.OnClickEvents.Add(() => { Window.Windows.Remove(Window); Applications.Remove(this); });
+            Button.HasBorder = true;
+            Button.OnClickEvents.Add(() => { Windows.Remove(this); });
 
             // Engine1
-            E = new((uint)Image1.Width, (uint)Image1.Height, 45);
+            E = new(Image1.Width, Image1.Height, 45);
             C2.Position = new(0, 50, 0);
             E.Objects.Add(C1);
             E.Objects.Add(C2);
 
-            Window.Elements.Add(Button);
-            Window.Elements.Add(Image1);
-            Window.Windows.Add(Window);
+            Elements.Add(Button);
+            Elements.Add(Image1);
+            Windows.Add(this);
         }
 
-        public override void OnDestroy()
+        public override void OnDraw(FrameBuffer buffer)
         {
+            base.OnDraw(buffer);
 
-        }
-
-        public override void OnUpdate()
-        {
             E.Render(Image1.Buffer);
             C1.TestLogic(-0.01);
             C2.TestLogic(0.05);
         }
 
-        public override void OnKey(KeyEvent Key)
+        public override void OnKeyPress(KeyEvent Key)
         {
+            base.OnKeyPress(Key);
+
             switch (Key.Key)
             {
                 case ConsoleKeyEx.W:

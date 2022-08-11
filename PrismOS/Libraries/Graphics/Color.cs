@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PrismOS.Libraries.Graphics
 {
@@ -170,6 +171,21 @@ namespace PrismOS.Libraries.Graphics
         public static implicit operator Color((byte, byte, byte, byte) ARGB)
         {
             return FromARGB(ARGB.Item1, ARGB.Item2, ARGB.Item3, ARGB.Item4);
+        }
+
+        // Equality
+        public static bool operator ==(Color C1, Color C2)
+        {
+            return C1.ARGB == C2.ARGB;
+        }
+        public static bool operator !=(Color C1, Color C2)
+        {
+            return C1.ARGB != C2.ARGB;
+        }
+
+        public override string ToString()
+        {
+            return $"PrismOS.Libraries.Graphics.Color [A: {A}, R: {R}, G: {G}, B: {B}]";
         }
     }
 }

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PrismOS.Libraries.Compression
+namespace PrismOS.Libraries.Resource.Compression
 {
     public static class LZW
     {

@@ -3,7 +3,7 @@ using System.Text;
 using System.IO;
 using System;
 
-namespace PrismOS.Libraries.Compression
+namespace PrismOS.Libraries.Resource.Archive
 {
     // https://docs.fileformat.com/compression/tar/
     public unsafe class TAR

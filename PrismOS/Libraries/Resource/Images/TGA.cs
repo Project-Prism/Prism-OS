@@ -1,7 +1,7 @@
 ﻿using PrismOS.Libraries.Graphics;
 using Cosmos.Core;
 
-namespace PrismOS.Libraries.Graphics.Parsing
+namespace PrismOS.Libraries.Resource.Images
 {
     public static class TGA
     {
@@ -128,7 +128,7 @@ namespace PrismOS.Libraries.Graphics.Parsing
             FrameBuffer TMP = new(Data[0], Data[1]);
             for (int I = 0; I < TMP.Size; I++)
             {
-                TMP[I] =  Color.FromARGB(Data[I + 2]);
+                TMP[I] = Color.FromARGB(Data[I + 2]);
             }
             return TMP;
         }

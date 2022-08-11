@@ -1,55 +1,48 @@
 ﻿using PrismOS.Libraries.UI;
 using Cosmos.System;
 
-namespace PrismOS.Libraries.Runtime
+namespace PrismOS.Apps
 {
-    public class Terminal : Application
+    public class Terminal : Window
     {
-        public Window Window = new();
         public Button Button = new();
         public Label Label1 = new();
         public string Input = "";
 
-        public override void OnCreate()
+        public Terminal()
         {
             // Window
-            Window.X = 75;
-            Window.Y = 75;
-            Window.Width = 300;
-            Window.Height = 200;
-            Window.Text = "Console";
+            X = 75;
+            Y = 75;
+            Width = 300;
+            Height = 200;
+            Text = "Console";
 
             // Button
-            Button.X = (int)(Window.Width - 20);
+            Button.X = (int)(Width - 20);
             Button.Width = 20;
             Button.Height = 20;
             Button.Text = "X";
-            Button.OnClickEvents.Add(() => { Window.Windows.Remove(Window); Applications.Remove(this); });
+            Button.HasBorder = true;
+            Button.OnClickEvents.Add(() => { Windows.Remove(this); });
 
             // Label1
             Label1.X = 1;
-            Label1.Y = 20;
-            Label1.Width = Window.Width - 2;
-            Label1.Height = Window.Height - 21;
+            Label1.Y = 21;
+            Label1.Width = Width - 2;
+            Label1.Height = Height - 22;
             Label1.Text = "";
 
             WriteLine("Prism OS CLI V1");
-            Window.Elements.Add(Button);
-            Window.Elements.Add(Label1);
-            Window.Windows.Add(Window);
+            Elements.Add(Button);
+            Elements.Add(Label1);
+            Windows.Add(this);
         }
 
-        public override void OnUpdate()
+        public override void OnKeyPress(KeyEvent Key)
         {
+            base.OnKeyPress(Key);
 
-        }
-
-        public override void OnDestroy()
-        {
-        }
-
-        public override void OnKey(KeyEvent Key)
-        {
             switch (Key.Key)
             {
                 case ConsoleKeyEx.Backspace:

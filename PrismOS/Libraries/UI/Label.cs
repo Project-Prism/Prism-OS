@@ -5,11 +5,6 @@ namespace PrismOS.Libraries.UI
 {
     public class Label : Control
     {
-        public Label()
-        {
-            HasBorder = false;
-        }
-
         public string Text
         {
             get

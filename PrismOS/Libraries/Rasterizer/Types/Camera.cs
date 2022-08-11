@@ -1,6 +1,6 @@
 ﻿using PrismOS.Libraries.Numerics;
 
-namespace PrismOS.Libraries.Graphics.Types
+namespace PrismOS.Libraries.Rasterizer.Types
 {
     public class Camera
     {

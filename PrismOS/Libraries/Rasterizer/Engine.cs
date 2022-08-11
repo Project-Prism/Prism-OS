@@ -1,16 +1,17 @@
-﻿using PrismOS.Libraries.Graphics.Types;
+﻿using PrismOS.Libraries.Rasterizer.Objects;
+using PrismOS.Libraries.Rasterizer.Types;
+using PrismOS.Libraries.Graphics;
 using PrismOS.Libraries.Numerics;
 using System.Collections.Generic;
 using System;
 
-namespace PrismOS.Libraries.Graphics
+namespace PrismOS.Libraries.Rasterizer
 {
     public class Engine : IDisposable
     {
         // To-Do: Implement Camera Rotation
         public Engine(uint Width, uint Height, int FOV)
         {
-            Buffer = new(Width, Height);
             this.Width = Width;
             this.Height = Height;
             Objects = new();
@@ -19,10 +20,9 @@ namespace PrismOS.Libraries.Graphics
         }
 
         public double Gravity = 1.0;
-        public List<Shape> Objects;
+        public List<Mesh> Objects;
         public FrameBuffer Buffer;
         public Camera Camera;
-        public double Z0 = 0;
         public int FOV;
 
         public uint Width
@@ -56,8 +56,7 @@ namespace PrismOS.Libraries.Graphics
 
         public void Render(FrameBuffer Canvas)
         {
-            // Set Z0
-            Z0 = Width / 2 / Math.Tan(FOV / 2 * 0.0174532925); // 0.0174532925 == pi / 180
+            double Z0 = Width / 2 / Math.Tan(FOV / 2 * 0.0174532925); // 0.0174532925 == pi / 180
 
             Buffer.Clear();
 

@@ -653,11 +653,11 @@ namespace PrismOS.Libraries.Graphics
         {
             if (Binary[0] == 'B' && Binary[1] == 'M')
             {
-                return Parsing.BMP.FromBitmap(Binary);
+                return Resource.Images.BMP.FromBitmap(Binary);
             }
             else
             {
-                return Parsing.TGA.FromTGA(Binary);
+                return Resource.Images.TGA.FromTGA(Binary);
             }
         }
 

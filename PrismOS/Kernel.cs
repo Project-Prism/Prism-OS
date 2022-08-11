@@ -1,9 +1,9 @@
 ﻿using Cosmos.HAL.Drivers.PCI.Audio;
 using PrismOS.Libraries.Graphics;
-using PrismOS.Libraries.Runtime;
 using PrismOS.Libraries.UI;
 using Cosmos.System.Audio;
 using Cosmos.System;
+using PrismOS.Apps;
 using Cosmos.Core;
 
 namespace PrismOS
@@ -53,16 +53,6 @@ namespace PrismOS
             Canvas.DrawString(15, 15, $"FPS: {Canvas.FPS}", Font.Default, Color.White);
 
             bool KeyPress = KeyboardManager.TryReadKey(out var Key);
-
-            foreach (Application App in Application.Applications)
-            {
-                if (KeyPress)
-                {
-                    App.OnKey(Key);
-                }
-
-                App.OnUpdate();
-            }
             foreach (Window Window in Window.Windows)
             {
                 if (Window.Windows[^1] == Window && KeyPress)

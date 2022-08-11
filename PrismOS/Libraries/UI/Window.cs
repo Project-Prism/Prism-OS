@@ -60,11 +60,11 @@ namespace PrismOS.Libraries.UI
             {
                 this.Buffer.DrawFilledRectangle(0, 0, (int)Width, (int)Height, (int)Theme.Radius, Theme.Background);
 
+                // Draw Title Bar
                 if (HasBorder)
                 {
                     this.Buffer.DrawFilledRectangle(0, 0, (int)Width, 20, (int)Theme.Radius, Theme.Accent);
                     this.Buffer.DrawString((int)(Width / 2), 10, Text, Font.Default, Theme.Text, true);
-                    this.Buffer.DrawRectangle(0, 0, (int)(Width - 1), (int)(Height - 1), (int)Theme.Radius, Theme.Foreground);
                 }
 
                 foreach (Control C in Elements)
@@ -79,15 +79,15 @@ namespace PrismOS.Libraries.UI
                         if (MouseManager.X > X + C.X && MouseManager.X < X + C.X + C.Width && MouseManager.Y > Y + C.Y && MouseManager.Y < Y + C.Y + C.Height && (this == Windows[^1] || !Draggable))
                         {
                             C.IsHovering = true;
-                            if (MouseManager.LastMouseState != MouseState.None && MouseManager.MouseState == MouseState.None)
-                            {
 
-                                C.OnClick((int)MouseManager.X, (int)MouseManager.Y, MouseManager.MouseState);
+                            if (MouseManager.MouseState != MouseState.None)
+                            {
                                 C.IsPressed = true;
                             }
-                            else
+                            else if (C.IsPressed)
                             {
                                 C.IsPressed = false;
+                                C.OnClick(X - (int)MouseManager.X, Y - (int)MouseManager.Y, MouseManager.LastMouseState);
                             }
                         }
                         else
@@ -97,6 +97,12 @@ namespace PrismOS.Libraries.UI
 
                         C.OnDraw(this.Buffer);
                     }
+                }
+
+                // Draw Surrounding Rectangle
+                if (HasBorder)
+                {
+                    this.Buffer.DrawRectangle(0, 0, (int)(Width - 1), (int)(Height - 1), (int)Theme.Radius, Theme.Foreground);
                 }
 
                 Buffer.DrawImage(X, Y, this.Buffer, Theme.Radius != 0);

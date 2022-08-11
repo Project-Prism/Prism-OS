@@ -1,4 +1,4 @@
-﻿using PrismOS.Libraries.Graphics.Parsing;
+﻿using PrismOS.Libraries.Resource.Images;
 using PrismOS.Libraries.Graphics;
 using IL2CPU.API.Attribs;
 using Cosmos.System.Audio.IO;
@@ -11,11 +11,9 @@ namespace PrismOS
         public const string Base = "PrismOS.Assets.";
         [ManifestResourceStream(ResourceName = Base + "Wallpaper.bmp")] public readonly static byte[] WallpaperB;
         [ManifestResourceStream(ResourceName = Base + "Cursor.bmp")] public readonly static byte[] CursorB;
-        [ManifestResourceStream(ResourceName = Base + "Logo.bmp")] public readonly static byte[] LogoB;
-        [ManifestResourceStream(ResourceName = Base + "Font1.bf")] public readonly static byte[] Font1B;
-        [ManifestResourceStream(ResourceName = Base + "Audio.wav")] public readonly static byte[] Audio;
+        [ManifestResourceStream(ResourceName = Base + "Splash.bmp")] public readonly static byte[] LogoB;
+        [ManifestResourceStream(ResourceName = Base + "Default.btf")] public readonly static byte[] Font1B;
         [ManifestResourceStream(ResourceName = Base + "W98.wav")] public static readonly byte[] W98B;
-        [ManifestResourceStream(ResourceName = Base + "W98OFF.wav")] public static readonly byte[] W98OFFB;
 
         // Misc
         public static FrameBuffer Wallpaper = BMP.FromBitmap(WallpaperB);
@@ -23,7 +21,6 @@ namespace PrismOS
 
         // System Sounds
         public static MemoryAudioStream Window98Startup = MemoryAudioStream.FromWave(W98B);
-        public static MemoryAudioStream Window98Shutdown = MemoryAudioStream.FromWave(W98OFFB);
 
         // Pre-Sized Logos
         public static FrameBuffer Logo = BMP.FromBitmap(LogoB);
