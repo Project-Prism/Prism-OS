@@ -5,3 +5,9 @@ dotnet_diagnostic.CA2211.severity = none
 
 # CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
 dotnet_diagnostic.CS8632.severity = none
+
+# CS0660: Type defines operator == or operator != but does not override Object.Equals(object o)
+dotnet_diagnostic.CS0660.severity = none
+
+# CS0661: Type defines operator == or operator != but does not override Object.GetHashCode()
+dotnet_diagnostic.CS0661.severity = none
