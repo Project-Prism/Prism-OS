@@ -34,7 +34,7 @@ namespace PrismOS.Libraries.UI
             {
                 if (MouseManager.MouseState == MouseState.Left)
                 {
-                    if (MouseManager.X > X && MouseManager.X < X + Width && MouseManager.Y > Y && MouseManager.Y < Y + 20 && !Moving && !Dragging)
+                    if (MouseManager.X >= X && MouseManager.X <= X + Width && MouseManager.Y >= Y && MouseManager.Y <= Y + 20 && !Moving && !Dragging)
                     {
                         Dragging = true;
                         Windows.Remove(this);
@@ -76,7 +76,7 @@ namespace PrismOS.Libraries.UI
                             A();
                         }
 
-                        if (MouseManager.X > X + C.X && MouseManager.X < X + C.X + C.Width && MouseManager.Y > Y + C.Y && MouseManager.Y < Y + C.Y + C.Height && (this == Windows[^1] || !Draggable))
+                        if (MouseManager.X >= X + C.X && MouseManager.X <= X + C.X + C.Width && MouseManager.Y >= Y + C.Y && MouseManager.Y <= Y + C.Y + C.Height && (this == Windows[^1] || !Draggable))
                         {
                             C.IsHovering = true;
 
