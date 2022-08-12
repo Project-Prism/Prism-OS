@@ -30,15 +30,26 @@
             <a href="https://github.com/Project-Prism/Prism-OS"><img align="left" src="../../Images/PrismOSLogo.png" alt="Prism OS Logo" width="75"></a>
 
             <!-- Light mode button -->
-            <button id="lightMode" onclick="myFunction()"><img align="center" src="../../Images/LightMode.png" alt="LightMode Icon" width="50"></button>
+            <button id="lightMode" onclick="toggleLightMode()"><img align="center" src="../../Images/LightMode.png" alt="LightMode Icon" width="50"></button>
             <script>
-                function myFunction() {
-                    var element = document.body;
-                    element.classList.toggle("LightMode");
+                const element = document.body
+                let cookie = document.cookie
+                if (cookie.includes("lightmode=true"))
+                    element.classList.toggle("LightMode")
+            
+                function toggleLightMode() {
+                    element.classList.toggle("LightMode")
 
-                    //The Weekend reference ;)
                     if (element.classList.contains("LightMode"))
-                        alert("And I say, OOOOOO, I'm blinded by the lights!");
+                    {
+                        //The Weekend reference ;)
+                        alert("And I say, OOOOOO, I'm blinded by the lights!")
+                        document.cookie = "lightmode=true; SameSite=Strict"
+                    }
+                    else
+                    {
+                        document.cookie = "lightmode=false; SameSite=Strict"
+                    }
                 }
             </script>
 
