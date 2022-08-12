@@ -127,6 +127,7 @@ footer a {
     background-color: antiquewhite;
 }
 
+/* Seperated td, th otherwise it won't work, idk why*/
 .LightMode td {
     border: 1px solid black;
 }
