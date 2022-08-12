@@ -126,3 +126,7 @@ footer a {
 .LightMode footer {
     background-color: antiquewhite;
 }
+
+.LightMode table, th, td {
+    border: 1px solid black;
+}
