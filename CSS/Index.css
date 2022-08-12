@@ -9,7 +9,10 @@
 
 
 
-/*Settings button*/
+/*Light mode button*/
+#lightMode {
+    float: right;
+}
 
 
 /*

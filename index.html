@@ -34,23 +34,19 @@
             <!--TODO Put settings button in the options for the settings when hovered-->
             <!--TODO Input new layout to all pages-->
 
-            <div class="dropdown" align="right">
-                <button class="dropdown"><img align="left" src="./Images/Settings.png" alt="Settings Logo" width="30">Settings</button>
-                <div class="dropdown-content">
-                    <button onclick="myFunction()"><img align="left" src="./Images/LightMode.png" alt="LightMode Icon" width="15">Toggle light mode</button>
-                    <script>
-                        function myFunction() {
-                            var element = document.body;
-                            element.classList.toggle("LightMode");
-                            //TODO Put footer-light into LightMode
-                            element.classList.toggle("footer-light");
-    
-                            //The Weekend reference ;)
-                            alert("And I say, OOOOOO, I'm blinded by the lights!");
-                        }
-                    </script>
-                </div>
-            </div>
+            <!-- Light mode button -->
+            <button id="lightMode" onclick="myFunction()"><img align="left" src="./Images/LightMode.png" alt="LightMode Icon" width="15">Toggle light mode</button>
+            <script>
+                function myFunction() {
+                    var element = document.body;
+                    element.classList.toggle("LightMode");
+                    //TODO Put footer-light into LightMode
+                    element.classList.toggle("footer-light");
+
+                    //The Weekend reference ;)
+                    alert("And I say, OOOOOO, I'm blinded by the lights!");
+                }
+            </script>
 
             <h1>Prism OS</h1>
             <p>The Future Of Computers</p>
