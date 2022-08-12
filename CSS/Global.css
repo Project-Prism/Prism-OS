@@ -35,46 +35,6 @@ header {
     float: right;
 }
 
-/*TODO Clean Code, Work On Settings Button, Add Drop Down Animation*/
-/*Settings button*/
-.dropdown {
-    vertical-align: middle;
-    border-radius: 15px;
-    min-width: 150px;
-}
-
-.dropdown:hover {
-    min-width: 190px;
-}
-
-.dropdown-content {
-    background-color: #d7ecf0;
-    margin: 0px 15px 15px 15px;
-    border-radius: 15px;
-    position: absolute;
-    padding: 20px;
-    display: none;
-    right: 0px;
-}
-
-.dropdown-content button {
-    border-radius: 15px;
-    height: 35px;
-    width: 150px;
-}
-
-.dropdown-content button:hover {
-    background-color: #d7ecf0;
-    transition-duration: 0.4s;
-    transform: scale(1.1);
-    cursor: pointer;
-}
-
-.dropdown:hover .dropdown-content {
-    border-radius: 15px;
-    display: block;
-}
-
 header p {
     margin-top: -0.5cm;
     font-weight: bold;
