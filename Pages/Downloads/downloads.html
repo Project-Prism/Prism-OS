@@ -1,65 +1,62 @@
 <!DOCTYPE html>
 <html>
     <head>
-
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-1N9HX0D21Y"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-1N9HX0D21Y');
-        </script>
-
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:900|Work+Sans:300" rel="stylesheet">
+        <!-- Meta -->
         <meta name="keywords" content="Downloads, Content, Information, OS Info, Releases">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Downloads page for Prism OS">
-        <link rel="icon" href="../../Images/PrismOSLogo.png">
-        <link rel="stylesheet" href="../../CSS/Global.css">
-        <link rel="stylesheet" href="./downloads.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
+        
+        <!-- CSS and fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:900|Work+Sans:300" rel="stylesheet">
+        <link rel="stylesheet" href="./downloads.css">
+        <link rel="stylesheet" href="../../CSS/Global.css">
+        
+        <!-- Other -->
+        <link rel="icon" href="../../Images/PrismOSLogo.png">
         <title>Prism OS - Downloads</title>
     </head>
-
     <body>
         <header>
-
             <a href="https://github.com/Project-Prism/Prism-OS"><img align="left" src="../../Images/PrismOSLogo.png" alt="Prism OS Logo" width="75"></a>
 
-            <!--Settings Button-->
-            <details align="right" class="SettingsButton"><summary>Settings</summary>
-                <button onclick="myFunction()">Toggle light mode</button>
-                <script>
-                    function myFunction() {
-                        var element = document.body;
-                        element.classList.toggle("LightMode");
-                        element.classList.toggle("footer-light");
+            <!-- Light mode button -->
+            <button id="lightMode" onclick="toggleLightMode()"><img align="center" src="../../Images/LightMode.png" alt="LightMode Icon" width="50"></button>
+            <script>
+                const element = document.body
+                let cookie = document.cookie
+                if (cookie.includes("lightmode=true"))
+                    element.classList.toggle("LightMode")
+            
+                function toggleLightMode() {
+                    element.classList.toggle("LightMode")
 
+                    if (element.classList.contains("LightMode"))
+                    {
                         //The Weekend reference ;)
-                        alert("And I say, OOOOOO, I'm blinded by the lights!");
+                        alert("And I say, OOOOOO, I'm blinded by the lights!")
+                        document.cookie = "lightmode=true; SameSite=Strict; path=/"
                     }
-                </script>
-            </details>
+                    else
+                    {
+                        document.cookie = "lightmode=false; SameSite=Strict; path=/"
+                    }
+                }
+            </script>
 
             <h1 align="center">Prism OS</h1>
             <h3 class="PageType">Downloads</h3>
 
             <nav>
                 <!--Buttons-->
-
                 <div align="center" class="OptionButtons">
                     <button onclick="window.location.href='../../index.html'"><img align="left" src="../..//Images/Home.png" alt="Home Icon" width="25">Home</button>
                     <button onclick="window.location.href='https://github.com/Project-Prism/Prism-OS'"><img align="left" src="../../Images/GitHubLogo.png" alt="GitHub Logo" width="25">View our GitHub</button>
                     <button onclick="window.location.href='../Developers/developers.html'"><img align="left" src="../../Images/Developer.png" alt="Developer Icon" width="25">Developers</button>
                 </div>
             </nav>
-
         </header>
-        
         <main>
-
             <!--
                 New Row Layout
 
@@ -72,12 +69,10 @@
             -->
 
             <!--Prism OS-->
-
             <div class="container">
-
                 <!--Left Side-->
                 <div class="fixed">
-                    <table align="center" id="hover">
+                    <table align="center">
                         <thead>
                             <tr>
                                 <th colspan="4" class="OSName">
@@ -151,15 +146,13 @@
 
                 <!--Right Side-->
                 <div class="flex-item">
-
-                    <table align="center" id="hover">
+                    <table align="center">
                         <thead>
                             <tr>
                                 <th colspan="4" class="OSName">
                                     Lemon-OS Releases<br>
                                     <a class="EOL">⚠ Lemon-OS Has Reached Its End Of Life! ⚠</a>
                                 </th>
-                                
                             </tr>
                             <tr>
                                 <th>Version</th>
@@ -186,14 +179,33 @@
                 </div>
 
             </div>
-
         </main>
-
         <footer>
-            <hr>
-            <h4>Social Media</h4>
-            <a href="https://discord.gg/DqNckqagMs"><img src="../../Images/DiscordBlue.png" alt="Discord Clyde Blue Logo"></a>
-            <a href="https://github.com/Project-Prism/Prism-OS"><img src="../../Images/GitHubLogo.png" alt="GitHub Logo"></a>
+            <hr width="70%">
+            <!--Social Media-->
+            <div>
+                <h3>Social Media</h3>
+                <div>
+                    <a href="https://discord.gg/DqNckqagMs"><img src="../../Images/DiscordBlue.png" alt="Discord Clyde Blue Logo"><p class="FooterImageText">Discord</p></a>
+                </div>
+                <div>
+                    <a href="https://github.com/Project-Prism/Prism-OS"><img src="../../Images/GitHubLogo.png" alt="GitHub Logo"><p class="FooterImageText">GitHub</p></a>
+                </div>
+            </div>
+            <!--Feedback & Data-->
+            <div>
+                <h3>Feedback & Data</h3>
+                <div>
+                    <a href="https://forms.gle/tR5eotAkviTjdKRY7"><img src="../../Images/Feedback.png" alt="Feedback"><p class="FooterImageText">Feedback</p></a>
+                </div>
+                <!--
+                    TODO Make information page. example, this site uses google fonts/icons
+                    <div>
+                        <a href="./WebsiteInfo.html"><img src="./Images/Info.png" alt="Info"><p class="FooterImageText">Info</p></a>
+                    </div>
+                -->
+            </div>
+            <hr width="60%">
             <p>Website designed by <a class="FooterUser" href="https://github.com/theopcoder">theopcoder.</a></p>
         </footer>
     </body>
