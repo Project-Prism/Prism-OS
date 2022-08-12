@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-1N9HX0D21Y"></script>
         <script>
@@ -22,26 +21,24 @@
         <meta charset="utf-8">
         <title>Prism OS - Developers</title>
     </head>
-
     <body>
         <header>
 
             <a href="https://github.com/Project-Prism/Prism-OS"><img align="left" src="../../Images/PrismOSLogo.png" alt="Prism OS Logo" width="75"></a>
 
-            <!--Settings Button-->
-            <details align="right" class="SettingsButton"><summary>Settings</summary>
-                <button onclick="myFunction()">Toggle light mode</button>
-                <script>
-                    function myFunction() {
-                        var element = document.body;
-                        element.classList.toggle("LightMode");
-                        element.classList.toggle("footer-light");
+            <!-- Light mode button -->
+            <button id="lightMode" onclick="myFunction()"><img align="left" src="../../Images/LightMode.png" alt="LightMode Icon" width="15">Toggle light mode</button>
+            <script>
+                function myFunction() {
+                    var element = document.body;
+                    element.classList.toggle("LightMode");
+                    //TODO Put footer-light into LightMode
+                    element.classList.toggle("footer-light");
 
-                        //The Weekend reference ;)
-                        alert("And I say, OOOOOO, I'm blinded by the lights!");
-                    }
-                </script>
-            </details>
+                    //The Weekend reference ;)
+                    alert("And I say, OOOOOO, I'm blinded by the lights!");
+                }
+            </script>
 
             <h1 align="center">Prism OS</h1>
             <h3 class="PageType">Developers</h3>
