@@ -33,15 +33,27 @@
             <!--TODO Input new layout to all pages-->
 
             <!-- Light mode button -->
-            <button id="lightMode" onclick="myFunction()"><img align="center" src="./Images/LightMode.png" alt="LightMode Icon" width="50"></button>
+            <button id="lightMode" onclick="toggleLightMode()"><img align="center" src="./Images/LightMode.png" alt="LightMode Icon" width="50"></button>
             <script>
-                function myFunction() {
-                    var element = document.body;
-                    element.classList.toggle("LightMode");
-                    
-                    //The Weekend reference ;)
+                const element = document.body
+                let cookie = document.cookie
+                if (cookie.includes("lightmode=true"))
+                    element.classList.toggle("LightMode")
+            
+                function toggleLightMode() {
+                    element.classList.toggle("LightMode")
+
                     if (element.classList.contains("LightMode"))
-                        alert("And I say, OOOOOO, I'm blinded by the lights!");
+                    {
+                        //The Weekend reference ;)
+                        alert("And I say, OOOOOO, I'm blinded by the lights!")
+                        document.cookie = "lightmode=true; SameSite=Strict"
+                    }
+                    else
+                    {
+                        document.cookie = "lightmode=false; SameSite=Strict"
+                    }
+                    console.log(document.cookie)
                 }
             </script>
 
