@@ -20,12 +20,19 @@ h1, h2, h3, h4, h5, h6 {
 ========Header CSS========
 */
 
+
+
 header {
     background: linear-gradient(to left top, #3a5a8a, #7f0bad, #480CA8);
     text-align: center;
     display: inline;
     font-size: 30px;
     padding: 15px;
+}
+
+/*Light mode button*/
+#lightMode {
+    float: right;
 }
 
 /*TODO Clean Code, Work On Settings Button, Add Drop Down Animation*/
