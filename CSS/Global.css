@@ -20,8 +20,6 @@ h1, h2, h3, h4, h5, h6 {
 ========Header CSS========
 */
 
-
-
 header {
     background: linear-gradient(to left top, #3a5a8a, #7f0bad, #480CA8);
     text-align: center;
@@ -30,9 +28,23 @@ header {
     padding: 15px;
 }
 
-/*Light mode button*/
+/* Keep white on "Prism OS" title when toggling light mode, black looks awful on the background */
+header, h1 {
+    color: white;
+}
+
+/* Light mode button */
 #lightMode {
     float: right;
+    border: 2px solid black;
+    border-radius: 15px;
+    height: 75px;
+    width: 75px;
+}
+
+#lightMode:hover {
+    background-color: #d7ecf0;
+    cursor: pointer;
 }
 
 header p {
@@ -107,10 +119,10 @@ footer a {
 ========LightMode CSS========
 */
 .LightMode {
-    background-color:antiquewhite;
+    background-color:white;
     color: black;
 }
 
-.LightMode footer, h1{
-    color: white;
+.LightMode footer {
+    background-color: antiquewhite;
 }
