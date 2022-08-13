@@ -9,10 +9,12 @@ html, body {
     margin: 0%;
     padding: 0%;
 
+    scrollbar-color: #191922 #35353f;
     /*overflow: hidden;*/
 }
 
-body {    
+body {
+    background-color: #35353f;
     background: linear-gradient(to left top, #3a5a8a, #7f0bad, #480CA8);
     background-attachment: fixed;
     
