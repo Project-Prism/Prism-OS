@@ -1,14 +1,22 @@
 /*
 ========Global CSS========
 */
-body {
-    height: 100%;
+
+html, body {
     width: 100%;
+    height: 100%;
+
     margin: 0%;
     padding: 0%;
-    
+
+    /*overflow: hidden;*/
+}
+
+body {    
     background: linear-gradient(to left top, #3a5a8a, #7f0bad, #480CA8);
+    background-attachment: fixed;
     
+    color: white;
     font-family: 'Work Sans', sans-serif;
 }
 
@@ -20,19 +28,41 @@ h1, h2, h3, h4, h5, h6 {
 ========Header CSS========
 */
 
-header p {
-    margin-top: -0.5cm;
-    font-weight: bold;
-    font-size: 22px;
-    color: cyan;
+header {
+    width: 100%;
+    height: 50%;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 4rem;
+
+    position: relative;
+    top: 50%;
+    width: 100%;
+
+    margin: 0%;
+    padding: 0%;
 }
 
 /*
-========Body CSS========
+========Main content CSS========
 */
 
 main {
-    text-align: center;
+    display: flex;
+    
+    background-color: #35353f;
+
+    margin: 0 6rem 6rem 6rem;
+    width: 90%;
+    height: 70%;
+
+    font-size: 2rem;
+}
+
+main p {
+    margin: 1em;
 }
 
 /*
@@ -40,33 +70,13 @@ main {
 */
 footer {
     background-color: #191922;
+
+    width: 90%;
+    height: 15%;
+
+    margin: 6rem 6rem 0 6rem;
+
     text-align: center;
-    margin-top: auto;
-    font-size: 16px;
-}
-
-footer hr {
-    border-radius: 15px;
-    margin-bottom: 0;
-    margin-top: 0;
-}
-
-footer div {
-    margin: 15px 20px 0px 20px;
-    display: inline-block;
-}
-
-footer img {
-    margin: 0px 10px 0px 10px;
-    background-color: #bbb;
-    border-radius: 100%;
-    padding: 10px;
-    height: 30px;
-    width: 27px;
-}
-
-footer a {
-    color: cyan;
 }
 
 /*
