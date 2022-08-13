@@ -63,7 +63,12 @@ main {
     font-size: 2rem;
 }
 
-main p {
+/* Override margin of internal elements, let .content do all the work */
+main .content * {
+    margin: 0%;
+}
+
+main .content {
     margin: 1em;
 }
 
