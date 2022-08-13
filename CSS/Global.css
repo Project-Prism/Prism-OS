@@ -26,6 +26,38 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
 }
 
+/* Nav bar */
+nav {
+    display: flex;
+
+    background-color: #191922;
+    
+    margin: auto;
+    
+    width: 90%;
+    min-height: 7%;
+}
+
+ul {
+    display: flex;
+
+    margin: 0%;
+    padding: 0%;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+
+    border-bottom: solid #7f0bad;
+    
+    margin: auto auto auto 1em;
+}
+
+a:hover {
+    border-bottom: solid #480CA8;
+}
+
 /*
 ========Header CSS========
 */
