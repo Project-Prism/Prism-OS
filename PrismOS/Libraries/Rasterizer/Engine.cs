@@ -19,6 +19,8 @@ namespace PrismOS.Libraries.Rasterizer
             this.FOV = FOV;
         }
 
+        #region Engine Data
+
         public double Gravity = 1.0;
         public List<Mesh> Objects;
         public FrameBuffer Buffer;
@@ -54,6 +56,8 @@ namespace PrismOS.Libraries.Rasterizer
             }
         }
 
+        #endregion
+
         public void Render(FrameBuffer Canvas)
         {
             double Z0 = Width / 2 / Math.Tan(FOV / 2 * 0.0174532925); // 0.0174532925 == pi / 180
@@ -63,68 +67,124 @@ namespace PrismOS.Libraries.Rasterizer
             // Calculate Objects
             for (int O = 0; O < Objects.Count; O++)
             {
-                // Physics
+                #region Physics
+
                 if (Objects[O].HasPhysics)
                 {
                     Objects[O].Step(Gravity, 1.0);
                 }
-                
-                // Temporary Object Values
+
+                #endregion
+
+                #region Temporary Values
+
                 Triangle[] DrawTriangles = Objects[O].Triangles.ToArray();
 
-                // Calculate Object
-                for (int I = 0; I < Objects[O].Triangles.Count; I++)
+                #endregion
+
+                #region Loop Triangles
+
+                for (int T = 0; T < Objects[O].Triangles.Count; T++)
                 {
-                    // Rotate
-                    DrawTriangles[I] = new Triangle()
+                    #region Rotate
+
+                    DrawTriangles[T] = new Triangle()
                     {
-                        P1 = Rotate(DrawTriangles[I].P1, Objects[O].Rotation),
-                        P2 = Rotate(DrawTriangles[I].P2, Objects[O].Rotation),
-                        P3 = Rotate(DrawTriangles[I].P3, Objects[O].Rotation),
-                        Color = DrawTriangles[I].Color,
+                        P1 = Rotate(DrawTriangles[T].P1, Objects[O].Rotation),
+                        P2 = Rotate(DrawTriangles[T].P2, Objects[O].Rotation),
+                        P3 = Rotate(DrawTriangles[T].P3, Objects[O].Rotation),
+                        T1 = DrawTriangles[T].T1,
+                        T2 = DrawTriangles[T].T2,
+                        T3 = DrawTriangles[T].T3,
+                        Color = DrawTriangles[T].Color,
                     };
 
-                    // Translate
-                    DrawTriangles[I] = new Triangle()
+                    #endregion
+
+                    #region Translate
+
+                    DrawTriangles[T] = new Triangle()
                     {
-                        P1 = Translate(DrawTriangles[I].P1, Objects[O].Position + Camera.Position),
-                        P2 = Translate(DrawTriangles[I].P2, Objects[O].Position + Camera.Position),
-                        P3 = Translate(DrawTriangles[I].P3, Objects[O].Position + Camera.Position),
-                        Color = DrawTriangles[I].Color,
+                        P1 = Translate(DrawTriangles[T].P1, Objects[O].Position + Camera.Position),
+                        P2 = Translate(DrawTriangles[T].P2, Objects[O].Position + Camera.Position),
+                        P3 = Translate(DrawTriangles[T].P3, Objects[O].Position + Camera.Position),
+                        T1 = DrawTriangles[T].T1,
+                        T2 = DrawTriangles[T].T2,
+                        T3 = DrawTriangles[T].T3,
+                        Color = DrawTriangles[T].Color,
                     };
 
-                    // Perspective
-                    DrawTriangles[I] = new Triangle()
+                    #endregion
+
+                    #region Perspective
+
+                    DrawTriangles[T] = new Triangle()
                     {
-                        P1 = ApplyPerspective(DrawTriangles[I].P1, Z0),
-                        P2 = ApplyPerspective(DrawTriangles[I].P2, Z0),
-                        P3 = ApplyPerspective(DrawTriangles[I].P3, Z0),
-                        Color = DrawTriangles[I].Color,
+                        P1 = ApplyPerspective(DrawTriangles[T].P1, Z0),
+                        P2 = ApplyPerspective(DrawTriangles[T].P2, Z0),
+                        P3 = ApplyPerspective(DrawTriangles[T].P3, Z0),
+                        T1 = DrawTriangles[T].T1,
+                        T2 = DrawTriangles[T].T2,
+                        T3 = DrawTriangles[T].T3,
+                        Color = DrawTriangles[T].Color,
                     };
 
-                    // Center
-                    DrawTriangles[I] = new Triangle()
+                    #endregion
+
+                    #region Center
+
+                    DrawTriangles[T] = new Triangle()
                     {
-                        P1 = Center(DrawTriangles[I].P1, Width, Height),
-                        P2 = Center(DrawTriangles[I].P2, Width, Height),
-                        P3 = Center(DrawTriangles[I].P3, Width, Height),
-                        Color = DrawTriangles[I].Color,
+                        P1 = Center(DrawTriangles[T].P1, Width, Height),
+                        P2 = Center(DrawTriangles[T].P2, Width, Height),
+                        P3 = Center(DrawTriangles[T].P3, Width, Height),
+                        T1 = DrawTriangles[T].T1,
+                        T2 = DrawTriangles[T].T2,
+                        T3 = DrawTriangles[T].T3,
+                        Color = DrawTriangles[T].Color,
                     };
 
-                    if (DrawTriangles[I].NormalZ < 0)
+                    #endregion
+
+                    #region Normalize
+
+                    double Normal =
+                        (DrawTriangles[T].P2.X - DrawTriangles[T].P1.X) *
+                        (DrawTriangles[T].P3.Y - DrawTriangles[T].P1.Y) -
+                        (DrawTriangles[T].P2.Y - DrawTriangles[T].P1.Y) *
+                        (DrawTriangles[T].P3.X - DrawTriangles[T].P1.X);
+
+                    #endregion
+
+                    #region Culling
+
+                    if (Normal < 0)
                     {
-                        Buffer.DrawFilledTriangle(
-                            (int)DrawTriangles[I].P1.X, (int)DrawTriangles[I].P1.Y,
-                            (int)DrawTriangles[I].P2.X, (int)DrawTriangles[I].P2.Y,
-                            (int)DrawTriangles[I].P3.X, (int)DrawTriangles[I].P3.Y,
-                            DrawTriangles[I].Color);
+
+                        #region Draw Triangle
+
+                        Buffer.DrawTriangle(
+                            (int)DrawTriangles[T].P1.X, (int)DrawTriangles[T].P1.Y,
+                            (int)DrawTriangles[T].P2.X, (int)DrawTriangles[T].P2.Y,
+                            (int)DrawTriangles[T].P3.X, (int)DrawTriangles[T].P3.Y,
+                            DrawTriangles[T].Color);
+
+                        #endregion
                     }
+
+                    #endregion
                 }
 
-                // Free Object
+                #endregion
+
+                #region Memory Managment
+
                 Cosmos.Core.GCImplementation.Free(DrawTriangles);
+
+                #endregion
             }
 
+            // Draw Buffer
             Canvas.DrawImage(0, 0, Buffer, false);
         }
 

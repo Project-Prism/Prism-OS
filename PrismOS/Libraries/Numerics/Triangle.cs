@@ -9,6 +9,9 @@ namespace PrismOS.Libraries.Numerics
             P1 = new(X1, Y1, Z1);
             P2 = new(X2, Y2, Z2);
             P3 = new(X3, Y3, Z3);
+            T1 = P1;
+            T2 = P2;
+            T3 = P3;
             this.Color = Color;
         }
         public Triangle(double X1, double Y1, double Z1, double X2, double Y2, double Z2, double X3, double Y3, double Z3)
@@ -16,6 +19,9 @@ namespace PrismOS.Libraries.Numerics
             P1 = new(X1, Y1, Z1);
             P2 = new(X2, Y2, Z2);
             P3 = new(X3, Y3, Z3);
+            T1 = P1;
+            T2 = P2;
+            T3 = P3;
             Color = Color.White;
         }
         public Triangle(Vector3 P1, Vector3 P2, Vector3 P3, Color Color)
@@ -23,6 +29,9 @@ namespace PrismOS.Libraries.Numerics
             this.P1 = P1;
             this.P2 = P2;
             this.P3 = P3;
+            T1 = P1;
+            T2 = P2;
+            T3 = P3;
             this.Color = Color;
         }
         public Triangle(Vector3 P1, Vector3 P2, Vector3 P3)
@@ -30,12 +39,19 @@ namespace PrismOS.Libraries.Numerics
             this.P1 = P1;
             this.P2 = P2;
             this.P3 = P3;
+            T1 = P1;
+            T2 = P2;
+            T3 = P3;
             Color = Color.White;
         }
 
-        public double NormalZ => (P2.X - P1.X) * (P3.Y - P1.Y) - (P2.Y - P1.Y) * (P3.X - P1.X);
-        public double AverageZ => (P1.Z + P2.Z + P3.Z) / 3.0;
+        #region Position Data
+
         public Vector3 P1, P2, P3;
+        public Vector3 T1, T2, T3;
+
+        #endregion
+
         public Color Color;
     }
 }

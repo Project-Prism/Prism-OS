@@ -12,8 +12,10 @@ namespace PrismOS
         [ManifestResourceStream(ResourceName = Base + "Wallpaper.bmp")] public readonly static byte[] WallpaperB;
         [ManifestResourceStream(ResourceName = Base + "Cursor.bmp")] public readonly static byte[] CursorB;
         [ManifestResourceStream(ResourceName = Base + "Splash.bmp")] public readonly static byte[] LogoB;
-        [ManifestResourceStream(ResourceName = Base + "Testing.xml")] public readonly static byte[] TestingB;
+        [ManifestResourceStream(ResourceName = Base + "Testing.xml")] public readonly static byte[] Testing1B;
+        [ManifestResourceStream(ResourceName = Base + "Testing.ini")] public readonly static byte[] Testing2B;
         [ManifestResourceStream(ResourceName = Base + "Default.btf")] public readonly static byte[] Font1B;
+        [ManifestResourceStream(ResourceName = Base + "Vista.wav")] public readonly static byte[] VistaB;
         [ManifestResourceStream(ResourceName = Base + "W98.wav")] public static readonly byte[] W98B;
 
         // Misc
@@ -21,7 +23,7 @@ namespace PrismOS
         public static FrameBuffer Cursor = BMP.FromBitmap(CursorB);
 
         // System Sounds
-        public static MemoryAudioStream Window98Startup = MemoryAudioStream.FromWave(W98B);
+        public static MemoryAudioStream Vista = MemoryAudioStream.FromWave(VistaB);
 
         // Pre-Sized Logos
         public static FrameBuffer Logo = BMP.FromBitmap(LogoB);

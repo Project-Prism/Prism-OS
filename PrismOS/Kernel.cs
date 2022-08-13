@@ -41,7 +41,7 @@ namespace PrismOS
 
             #region Startup Sound
 
-            Play(Assets.Window98Startup);
+            Play(Assets.Vista);
 
             #endregion
         }
