@@ -129,14 +129,32 @@ main .section b {
 */
 
 footer {
+    display: flex;
+    
     background-color: #191922;
 
     width: 90%;
-    height: 15%;
+    min-height: 10%;
 
     margin: auto;
+}
 
+footer * {
+    margin: 0%;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+footer p {
     text-align: center;
+    padding: 2em;
+}
+
+footer img {
+    max-width: 2em;
+    padding: 2em 2em 2em 0;
 }
 
 /*
