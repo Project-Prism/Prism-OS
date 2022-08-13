@@ -1,50 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!--Google Analytics-->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-1N9HX0D21Y"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-1N9HX0D21Y');
+        </script>
+
         <!--Meta-->
         <meta name="keywords" content="OS, Operating System, Open Source, Free, HomePage, Prism, PrismOS, GitHub">
         <meta name="description" content="Home page for Prism OS operating system.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
 
-        <!--CSS and Fonts-->
+        <!--CSS & Fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:900|Work+Sans:300" rel="stylesheet">
-        <link rel="stylesheet" href="./CSS/Index.css">
         <link rel="stylesheet" href="./CSS/Global.css">
+        <link rel="stylesheet" href="./CSS/Index.css">
 
         <!--Other-->
         <link rel="icon" href="./Images/PrismOSLogo.png">
         <title>Prism OS - Home</title>
     </head>
+
     <body>
         <header>
             <a href="https://github.com/Project-Prism/Prism-OS"><img align="left" src="./Images/PrismOSLogo.png" alt="Prism OS Logo" width="75"></a>
             
             <!--TODO Work On Cleaning-->
+            <!--TODO Put settings button in the options for the settings when hovered-->
             <!--TODO Input new layout to all pages-->
-            <!-- Light mode button -->
-            <button id="lightMode" onclick="toggleLightMode()"><img align="center" src="./Images/LightMode.png" alt="LightMode Icon" width="50"></button>
-            <script>
-                const element = document.body
-                let cookie = document.cookie
-                if (cookie.includes("lightmode=true"))
-                    element.classList.toggle("LightMode")
-            
-                function toggleLightMode() {
-                    element.classList.toggle("LightMode")
 
-                    if (element.classList.contains("LightMode"))
-                    {
-                        //The Weekend reference ;)
-                        alert("And I say, OOOOOO, I'm blinded by the lights!")
-                        document.cookie = "lightmode=true; SameSite=Strict; path=/"
-                    }
-                    else
-                    {
-                        document.cookie = "lightmode=false; SameSite=Strict; path=/"
-                    }
-                }
-            </script>
+            
+
+            <!--
             <div class="dropdown" align="right">
                 <button class="dropdown"><img align="left" src="./Images/Settings.png" alt="Settings Logo" width="30">Settings</button>
                 <div class="dropdown-content">
@@ -60,6 +52,7 @@
                     </script>
                 </div>
             </div>
+            -->
 
             <h1>Prism OS</h1>
             <p>The Future Of Computers</p>
@@ -72,18 +65,11 @@
                     <button onclick="window.location.href='./Pages/Developers/developers.html'"><img align="left" src="./Images/Developer.png" alt="Developer Icon" width="30">Developers</button>
                 </div>
             </nav>
+
         </header>
 
         <main>
-            <h2>What is Prism OS?</h2>
-            <p class="ProjectInfo">
-                Prism OS is a small open-source project created on May 11th, 2021 1:26AM UTC-8. Prism OS is made possible by the
-                <a class="CosmosLink" href="https://github.com/CosmosOS/Cosmos#cosmos">Cosmos</a> open source project alongside all the developers and community based around it. Prism OS uses
-                the developer kit which is based in C# to make a GUI based OS with a basic window manager and mouse system. The OS also contains a basic networking
-                configuration (although it's very buggy) alongside a basic file system.
-            </p>
-            <img src="./Images/OS1.png" alt="OS Clock">
-            <img src="./Images/OS2.png" alt="OS Fail Screen">
+            website info
         </main>
 
         <footer>
@@ -109,12 +95,6 @@
                 <div>
                     <a href="./website.html"><img src="./Images/Info.png" alt="Feedback"><p>Website Info</p></a>
                 </div>
-                <!--
-                    TODO Make information page. example, this site uses google fonts/icons
-                    <div>
-                        <a href="./WebsiteInfo.html"><img src="./Images/Info.png" alt="Info"><p class="FooterImageText">Info</p></a>
-                    </div>
-                -->
             </div>
 
             <hr width="60%">

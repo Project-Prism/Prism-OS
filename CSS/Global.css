@@ -37,6 +37,44 @@ header, h1 {
 #lightMode {
     float: right;
     border: 2px solid black;
+}
+
+header p {
+    margin-top: -0.5cm;
+    font-weight: bold;
+    font-size: 22px;
+    color: cyan;
+}
+
+/*TODO Clean Code, Work On Settings Button, Add Drop Down Animation*/
+/*Settings button*/
+.dropdown {
+    vertical-align: middle;
+    border-radius: 15px;
+    min-width: 150px;
+}
+
+.dropdown:hover {
+    min-width: 190px;
+}
+
+.dropdown-content {
+    background-color: #d7ecf0;
+    margin: 0px 15px 15px 15px;
+    border-radius: 0px 0px 15px 15px;
+    position: absolute;
+    padding: 20px;
+    display: none;
+    right: 0px;
+}
+
+.dropdown-content:hover .dropdown {
+    min-width: 190px;
+}
+
+/*==========================*/
+
+.dropdown-content button {
     border-radius: 15px;
     height: 75px;
     width: 75px;
@@ -52,6 +90,10 @@ header p {
     font-weight: bold;
     font-size: 22px;
     color: cyan;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
 /*
@@ -118,6 +160,7 @@ footer a {
 /*
 ========LightMode CSS========
 */
+
 .LightMode {
     background-color:white;
     color: black;
@@ -127,7 +170,7 @@ footer a {
     background-color: antiquewhite;
 }
 
-/* Seperated td, th otherwise it won't work, idk why*/
+/* Separated td, th otherwise it won't work, idk why*/
 .LightMode td {
     border: 1px solid black;
 }

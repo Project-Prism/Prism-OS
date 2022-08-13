@@ -27,6 +27,14 @@ h2 {
     color: cyan;
 }
 
+main img {
+    border: 1px solid black;
+    border-radius: 15px;
+    height: 400px;
+    width: 700px;
+    margin: 10px;
+}
+
 /*
 ========Footer CSS========
 */

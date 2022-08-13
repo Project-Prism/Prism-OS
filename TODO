@@ -3,6 +3,8 @@
 [X] Fix some items not showing right in light mode. ie: tables
 Add light mode image to all pages
 
+TODO redo README.md in HTML?
+
 <!--Gets latest commit name-->
 <!--
 <script>
