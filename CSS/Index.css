@@ -10,22 +10,6 @@
 /*
 ========Body CSS========
 */
-h2 {
-    text-decoration: underline;
-    text-align: center;
-    font-size: 25px;
-}
-
-.ProjectInfo {
-    text-align: center;
-    margin-top: 40px;
-    font-size: 20px;
-    margin: 20px;
-}
-
-.CosmosLink {
-    color: cyan;
-}
 
 /*
 ========Footer CSS========
