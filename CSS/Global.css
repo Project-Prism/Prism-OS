@@ -56,11 +56,15 @@ main {
     
     background-color: #35353f;
 
-    margin: 0 6rem 6rem 6rem;
+    margin: auto;
     width: 90%;
-    height: 70%;
+    min-height: 70%;
 
     font-size: 2rem;
+}
+
+main table, th, td {
+    border: 0.1em solid white;
 }
 
 /* Override margin of internal elements, let .content do all the work */
@@ -69,19 +73,27 @@ main .content * {
 }
 
 main .content {
+    display: flex;
+    flex-direction: column;
+
     margin: 1em;
+}
+
+main .section {
+    margin: 0% 0% 1em 0%;
 }
 
 /*
 ========Footer CSS========
 */
+
 footer {
     background-color: #191922;
 
     width: 90%;
     height: 15%;
 
-    margin: 6rem 6rem 0 6rem;
+    margin: auto;
 
     text-align: center;
 }
