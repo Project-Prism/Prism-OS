@@ -87,8 +87,6 @@ header h1 {
 main {
     display: flex;
     
-    background-color: #35353f;
-
     margin: auto;
     width: 90%;
     min-height: 70%;
@@ -100,21 +98,31 @@ main table, th, td {
     border: 0.1em solid white;
 }
 
-/* Override margin of internal elements, let .content do all the work */
-main .content * {
-    margin: 0%;
-}
-
 main .content {
     display: flex;
     flex-direction: column;
+}
 
-    margin: 1em;
+/* Override margin of internal elements, let .section do all the work */
+main .section * {
+    margin: 2.5rem;
 }
 
 main .section {
+    background-color: #35353f;
+    
     margin: 0% 0% 1em 0%;
 }
+
+main .section h2 {
+    border-bottom: solid #7f0bad;
+}
+
+/*
+main .section b {
+    margin-top: 0;
+}
+*/
 
 /*
 ========Footer CSS========
