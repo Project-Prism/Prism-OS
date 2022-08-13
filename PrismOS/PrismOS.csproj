@@ -13,6 +13,7 @@
         <StartCosmosGDB>False</StartCosmosGDB>
         <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
         <CosmosDebugPort>Serial: COM1</CosmosDebugPort>
+		<LangVersion>10</LangVersion>
         <Launch>ISO</Launch>
         <Profile>VMware</Profile>
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
@@ -37,6 +38,7 @@
       <None Remove="Assets\Cursor.bmp" />
       <None Remove="Assets\Default.btf" />
       <None Remove="Assets\Splash.bmp" />
+      <None Remove="Assets\Testing.xml" />
       <None Remove="Assets\W95.wav" />
       <None Remove="Assets\W98.wav" />
       <None Remove="Assets\W98OFF.wav" />
@@ -47,6 +49,7 @@
       <EmbeddedResource Include="Assets\Cursor.bmp" />
       <EmbeddedResource Include="Assets\Default.btf" />
       <EmbeddedResource Include="Assets\Splash.bmp" />
+      <EmbeddedResource Include="Assets\Testing.xml" />
       <EmbeddedResource Include="Assets\W98.wav" />
       <EmbeddedResource Include="Assets\Wallpaper.bmp" />
     </ItemGroup>

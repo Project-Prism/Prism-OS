@@ -101,13 +101,14 @@ namespace PrismOS.Libraries.Graphics
         private byte _A, _R, _G, _B;
         private uint _ARGB;
 
+        #region Methods
+
         public static Color AlphaBlend(Color Source, Color NewColor)
         {
-            return FromARGB(
-                (byte)((Source.A * (255 - NewColor.A) / 255) + NewColor.A),
-                (byte)((Source.R * (255 - NewColor.A) / 255) + NewColor.R),
-                (byte)((Source.G * (255 - NewColor.A) / 255) + NewColor.G),
-                (byte)((Source.B * (255 - NewColor.A) / 255) + NewColor.B));
+            return (
+                (byte)((((Source.R & 0xFF) * NewColor.A) + (NewColor.A & 0xFF) * (255 - NewColor.A)) / 255),
+                (byte)((((Source.G >> 8) & 0xFF) * NewColor.A + ((NewColor.G >> 8) & 0xFF) * (255 - NewColor.A)) / 255),
+                (byte)((((Source.B >> 16) & 0xFF) * NewColor.A + ((NewColor.B >> 16) & 0xFF) * (255 - NewColor.A)) / 255));
         }
         public static Color FromARGB(byte A, byte R, byte G, byte B)
         {
@@ -121,6 +122,8 @@ namespace PrismOS.Libraries.Graphics
         {
             return new() { ARGB = uint.Parse(Hex, System.Globalization.NumberStyles.HexNumber) };
         }
+
+        #endregion
 
         #region Known Colors
 
@@ -154,7 +157,8 @@ namespace PrismOS.Libraries.Graphics
 
         #endregion
 
-        // Casting
+        #region Casting
+
         public static implicit operator Color(uint ARGB)
         {
             return FromARGB(ARGB);
@@ -172,7 +176,10 @@ namespace PrismOS.Libraries.Graphics
             return FromARGB(ARGB.Item1, ARGB.Item2, ARGB.Item3, ARGB.Item4);
         }
 
-        // Equality
+        #endregion
+
+        #region Equality
+
         public static bool operator ==(Color C1, Color C2)
         {
             return C1.ARGB == C2.ARGB;
@@ -181,6 +188,8 @@ namespace PrismOS.Libraries.Graphics
         {
             return C1.ARGB != C2.ARGB;
         }
+
+        #endregion
 
         public override string ToString()
         {
