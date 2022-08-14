@@ -1,6 +1,7 @@
-# Features and content
+# New content
 [ ] Finish footer
 [ ] Add no js fallbacks
+[ ] Light mode
 
 # Improvements
 [ ] Do some content improvements
@@ -11,7 +12,7 @@
     - [ ] Get info from github releases
 - [ ] Do proper contributors section
     - [ ] Get info from github
-    
+
 [ ] Add copy button for section links
 [ ] Animate section selection from hyper link
 [ ] Animate background
@@ -23,6 +24,8 @@
 - If you resize the window to be very small the content section creates horizontal scroll
 
 # Review
+[ ] Search engine optimisation
+[ ] Colour palette
 [ ] My bad CSS
 [ ] HTML
 [ ] Javascript
