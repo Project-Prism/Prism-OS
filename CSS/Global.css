@@ -11,7 +11,6 @@ html, body {
 
     scroll-behavior: smooth;
     scrollbar-color: #191922 #35353f;
-    /*overflow: hidden;*/
 }
 
 body {
@@ -30,11 +29,13 @@ h1, h2, h3, h4, h5, h6 {
 /* Nav bar */
 nav {
     display: flex;
+    position: fixed;
 
     background-color: #191922;
     
-    margin: auto;
-    
+    z-index: 1;
+
+    left: 5%;
     width: 90%;
     min-height: 7%;
 }
@@ -76,7 +77,8 @@ header h1 {
     top: 50%;
     width: 100%;
 
-    margin: 0%;
+    margin: auto;
+    /*margin: 0%;*/
     padding: 0%;
 }
 
