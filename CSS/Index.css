@@ -97,24 +97,24 @@ main table, th, td {
     border: 0.1em solid white;
 }
 
-.content {
+main .content {
     display: flex;
     flex-direction: column;
 }
 
 /* Override margin of internal elements, let .section do all the work */
-.section * {
+main .section * {
     margin: 0%;
 }
 
-.section {
+main .section {
     background-color: #35353f;
   
     padding: 2.5rem;
     margin-bottom: 3rem;
 }
 
-.section h2 {
+main .section h2 {
     border-bottom: solid #7f0bad;
     margin-bottom: 2.5rem;
 }
@@ -124,8 +124,6 @@ main table, th, td {
 */
 
 footer {
-    display: flex;
-    
     background-color: #191922;
 
     width: 90%;
@@ -144,7 +142,28 @@ footer a {
 
 footer img {
     max-width: 2em;
-    padding: 2em 2em 2em 0;
+}
+
+footer .content {
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+
+    padding: 2rem;
+}
+
+footer #Discord {
+    display: flex;
+
+    margin: 0 1em 0 1em;
+
+    justify-content: center;
+    align-items: center;
+}
+
+footer #Discord img {
+    margin-right: 0.5em;
 }
 
 /*
