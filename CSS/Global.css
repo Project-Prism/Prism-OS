@@ -1,7 +1,6 @@
 /*
-========Global CSS========
+======== Global ========
 */
-
 html, body {
     width: 100%;
     height: 100%;
@@ -26,18 +25,19 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
 }
 
-/* Nav bar */
+/*
+======== Nav bar ========
+*/
 nav {
     display: flex;
     position: fixed;
-
-    background-color: #191922;
     
     z-index: 1;
-
     left: 5%;
     width: 90%;
     min-height: 7%;
+    
+    background-color: #191922;
 }
 
 nav ul {
@@ -51,9 +51,9 @@ nav a {
     text-decoration: none;
     color: white;
 
-    border-bottom: solid #7f0bad;
-    
     margin: auto auto auto 1em;
+    
+    border-bottom: solid #7f0bad;
 }
 
 nav a:hover {
@@ -61,29 +61,26 @@ nav a:hover {
 }
 
 /*
-========Header CSS========
+======== Header ========
 */
-
 header {
     width: 100%;
-    height: 50%;
-    text-align: center;
+    min-height: 60%;
+    
+    display: flex;
+
+    justify-content:center;
+    align-items: center;
 }
 
 header h1 {
     font-size: 6rem;
 
-    position: relative;
-    top: 50%;
-    width: 100%;
-
-    margin: auto;
-    /*margin: 0%;*/
-    padding: 0%;
+    margin: 0%;
 }
 
 /*
-========Main content CSS========
+======== Main content ========
 */
 
 main {
@@ -107,27 +104,23 @@ main .content {
 
 /* Override margin of internal elements, let .section do all the work */
 main .section * {
-    margin: 2.5rem;
+    margin: 0%;
 }
 
 main .section {
     background-color: #35353f;
-    
-    margin: 0% 0% 1em 0%;
+  
+    padding: 2.5rem;
+    margin-bottom: 3rem;
 }
 
 main .section h2 {
     border-bottom: solid #7f0bad;
+    margin-bottom: 2.5rem;
 }
 
 /*
-main .section b {
-    margin-top: 0;
-}
-*/
-
-/*
-========Footer CSS========
+======== Footer ========
 */
 
 footer {
@@ -160,5 +153,5 @@ footer img {
 }
 
 /*
-========LightMode CSS========
+======== Light mode ========
 */
