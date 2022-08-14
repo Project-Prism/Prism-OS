@@ -163,7 +163,7 @@ namespace PrismOS.Libraries.Rasterizer
 
                         #region Draw Triangle
 
-                        Buffer.DrawFilledTriangle(
+                        Buffer.DrawTriangle(
                             (int)DrawTriangles[T].P1.X, (int)DrawTriangles[T].P1.Y,
                             (int)DrawTriangles[T].P2.X, (int)DrawTriangles[T].P2.Y,
                             (int)DrawTriangles[T].P3.X, (int)DrawTriangles[T].P3.Y,
