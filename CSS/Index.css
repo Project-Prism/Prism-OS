@@ -119,6 +119,12 @@ main .section h2 {
     margin-bottom: 2.5rem;
 }
 
+main .PlaceHolder {
+    height: 40vh;
+    border: dashed white;
+    text-align: center;
+}
+
 /*
 ======== Footer ========
 */
