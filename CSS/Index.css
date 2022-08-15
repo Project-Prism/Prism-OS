@@ -13,7 +13,6 @@ html, body {
 }
 
 body {
-    background-color: #35353f;
     background: linear-gradient(to left top, #3a5a8a, #7f0bad, #480CA8);
     background-attachment: fixed;
     
@@ -93,8 +92,11 @@ main {
     font-size: 2rem;
 }
 
-main table, th, td {
-    border: 0.1em solid white;
+/* Table formatting */
+main table {
+    width: 100%;
+    background-color: #191922;
+    border: 0.1em dashed white;
 }
 
 main .content {
