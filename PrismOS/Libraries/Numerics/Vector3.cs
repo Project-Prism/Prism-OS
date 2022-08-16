@@ -24,11 +24,13 @@
         public double X, Y, Z, U, V, W;
 
         public static Vector3 operator +(Vector3 V1, Vector3 V2) => new(V1.X + V2.X, V1.Y + V2.Y, V1.Z + V2.Z);
+        public static Vector3 operator -(Vector3 V1, Vector3 V2) => new(V1.X - V2.X, V1.Y - V2.Y, V1.Z - V2.Z);
         public static Vector3 operator *(Vector3 V1, Vector3 V2) => new(V1.X * V2.X, V1.Y * V2.Y, V1.Z * V2.Z);
         public static Vector3 operator /(Vector3 V1, Vector3 V2) => new(V1.X / V2.X, V1.Y / V2.Y, V1.Z / V2.Z);
 
         public static Vector3 operator +(Vector3 V1, double V) => new(V1.X + V, V1.Y + V, V1.Z + V);
         public static Vector3 operator *(Vector3 V1, double V) => new(V1.X * V, V1.Y * V, V1.Z * V);
         public static Vector3 operator /(Vector3 V1, double V) => new(V1.X / V, V1.Y / V, V1.Z / V);
+        public static Vector3 operator -(Vector3 V1, double V) => new(V1.X - V, V1.Y - V, V1.Z - V);
     }
 }
