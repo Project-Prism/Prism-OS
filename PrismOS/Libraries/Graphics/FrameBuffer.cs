@@ -1,4 +1,4 @@
-﻿using Cosmos.Core;
+﻿ using Cosmos.Core;
 using Cosmos.HAL;
 using System;
 
@@ -593,13 +593,13 @@ namespace PrismOS.Libraries.Graphics
 
         #region Misc
 
-        public void Clear()
-        {
-            Clear(Color.Black);
-        }
         public void Clear(Color Color)
         {
             MemoryOperations.Fill(Internal, Color.ARGB, (int)Size);
+        }
+        public void Clear()
+        {
+            Clear(Color.Black);
         }
 
         public void CopyTo(uint* Destination)

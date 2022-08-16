@@ -13,7 +13,7 @@ namespace PrismOS.Libraries.Resource.Text.INI
 
             for (int I = 0; I < Source.Length; I++)
             {
-                if (Source[I] == '\n' || Source[I] != '\r')
+                if (Source[I] == '\n' || Source[I] == '\r')
                 {
                     T.IsNewLine = true;
                     Nodes.Add(T);
@@ -30,14 +30,11 @@ namespace PrismOS.Libraries.Resource.Text.INI
                 if (Source[I] == '#')
                 {
                     T.IsComment = true;
-                    string TMP = "";
                     while (Source[I] != '\n' && Source[I] != '\r')
                     {
-                        TMP += Source[I++];
+                        T.Name += Source[I++];
                     }
 
-                    T.Value = TMP;
-                    //GCImplementation.Free(TMP);
                     Nodes.Add(T);
                     T = new();
                     continue;
@@ -45,14 +42,11 @@ namespace PrismOS.Libraries.Resource.Text.INI
                 if (Source[I] == '[')
                 {
                     T.IsSection = true;
-                    string TMP = "";
                     while (Source[I] != ']')
                     {
-                        TMP += Source[I++];
+                        T.Name += Source[I++];
                     }
 
-                    T.Value = TMP;
-                    //GCImplementation.Free(TMP);
                     Nodes.Add(T);
                     T = new();
                     continue;
@@ -60,13 +54,13 @@ namespace PrismOS.Libraries.Resource.Text.INI
                 if (Source[I] == '=')
                 {
                     string TMP = "";
-                    while (Source[I] != '\n' && Source[I] != '\r')
+                    while (Source[I++] != '\n' && Source[I] != '\r')
                     {
-                        TMP += Source[I++];
+                        TMP += Source[I];
                     }
 
                     T.Value = TMP;
-                    //GCImplementation.Free(TMP);
+                    GCImplementation.Free(TMP);
                     Nodes.Add(T);
                     T = new();
                     continue;

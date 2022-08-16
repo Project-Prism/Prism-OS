@@ -11,7 +11,7 @@
 <ul>
 <h4>Prism OS's Feature List:</h4>
     <li>A Basic 3D Rasteriser</li>
-    <li>Parsing for Many File Formats (HTML, C#, TAR, Bitmap, and Targa)</li>
+    <li>Parsing for Many File Formats (TAR, Bitmap, and Targa)</li>
     <li>A UI library</li>
     <li>LZW Compression and Decompression</li>
     <li>Good Graphics API</li>

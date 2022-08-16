@@ -1,4 +1,5 @@
-﻿using Cosmos.Core;
+﻿using PrismOS.Libraries.Resource;
+using Cosmos.Core;
 using System;
 
 namespace PrismOS.Libraries.Graphics

@@ -35,27 +35,25 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Assets\Cursor.bmp" />
-      <None Remove="Assets\Default.btf" />
-      <None Remove="Assets\Splash.bmp" />
-      <None Remove="Assets\Testing.ini" />
-      <None Remove="Assets\Testing.xml" />
-      <None Remove="Assets\Vista.wav" />
-      <None Remove="Assets\W95.wav" />
-      <None Remove="Assets\W98.wav" />
-      <None Remove="Assets\W98OFF.wav" />
-      <None Remove="Assets\Wallpaper.bmp" />
+      <Compile Remove="Assets\**" />
+      <EmbeddedResource Remove="Assets\**" />
+      <None Remove="Assets\**" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Assets\Cursor.bmp" />
-      <EmbeddedResource Include="Assets\Default.btf" />
-      <EmbeddedResource Include="Assets\Splash.bmp" />
-      <EmbeddedResource Include="Assets\Testing.ini" />
-      <EmbeddedResource Include="Assets\Testing.xml" />
-      <EmbeddedResource Include="Assets\Vista.wav" />
-      <EmbeddedResource Include="Assets\W98.wav" />
-      <EmbeddedResource Include="Assets\Wallpaper.bmp" />
+      <None Remove="Libraries\Resource\Assets\Cursor.bmp" />
+      <None Remove="Libraries\Resource\Assets\Default.btf" />
+      <None Remove="Libraries\Resource\Assets\Splash.bmp" />
+      <None Remove="Libraries\Resource\Assets\Vista.wav" />
+      <None Remove="Libraries\Resource\Assets\Wallpaper.bmp" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Libraries\Resource\Assets\Cursor.bmp" />
+      <EmbeddedResource Include="Libraries\Resource\Assets\Default.btf" />
+      <EmbeddedResource Include="Libraries\Resource\Assets\Splash.bmp" />
+      <EmbeddedResource Include="Libraries\Resource\Assets\Vista.wav" />
+      <EmbeddedResource Include="Libraries\Resource\Assets\Wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>
@@ -71,6 +69,12 @@
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="DotNetParser" Version="0.5.9" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="XSharp">
+        <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\XSharp.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

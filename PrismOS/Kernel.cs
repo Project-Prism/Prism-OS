@@ -1,5 +1,6 @@
 ﻿using Cosmos.HAL.Drivers.PCI.Audio;
 using PrismOS.Libraries.Graphics;
+using PrismOS.Libraries.Resource;
 using PrismOS.Libraries.UI;
 using Cosmos.System.Audio;
 using Cosmos.System;
@@ -15,9 +16,9 @@ namespace PrismOS
 
         protected override void BeforeRun() 
         {
-            #region Boot Screen
+            #region Splash Screen
 
-            Canvas.DrawImage((int)((Canvas.Width / 2) - 128), (int)((Canvas.Height / 2) - 128), Assets.Logo256);
+            Canvas.DrawImage((int)((Canvas.Width / 2) - 128), (int)((Canvas.Height / 2) - 128), Assets.Splash256);
             Canvas.CopyTo((uint*)VBE.getLfbOffset());
 
             #endregion

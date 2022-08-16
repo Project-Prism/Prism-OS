@@ -105,10 +105,11 @@ namespace PrismOS.Libraries.Graphics
 
         public static Color AlphaBlend(Color Source, Color NewColor)
         {
-            return (
-                (byte)((((Source.R & 0xFF) * NewColor.A) + (NewColor.A & 0xFF) * (255 - NewColor.A)) / 255),
-                (byte)((((Source.G >> 8) & 0xFF) * NewColor.A + ((NewColor.G >> 8) & 0xFF) * (255 - NewColor.A)) / 255),
-                (byte)((((Source.B >> 16) & 0xFF) * NewColor.A + ((NewColor.B >> 16) & 0xFF) * (255 - NewColor.A)) / 255));
+            return FromARGB(
+                (byte)((Source.A * (255 - NewColor.A) / 255) + NewColor.A),
+                (byte)((Source.R * (255 - NewColor.A) / 255) + NewColor.R),
+                (byte)((Source.G * (255 - NewColor.A) / 255) + NewColor.G),
+                (byte)((Source.B * (255 - NewColor.A) / 255) + NewColor.B));
         }
         public static Color FromARGB(byte A, byte R, byte G, byte B)
         {
