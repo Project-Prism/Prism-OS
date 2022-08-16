@@ -30,9 +30,9 @@ namespace PrismOS.Libraries.Resource.Text.INI
                 if (Source[I] == '#')
                 {
                     T.IsComment = true;
-                    while (Source[I] != '\n' && Source[I] != '\r')
+                    while (Source[++I] != '\n' && Source[I] != '\r')
                     {
-                        T.Name += Source[I++];
+                        T.Name += Source[I];
                     }
 
                     Nodes.Add(T);
@@ -44,7 +44,13 @@ namespace PrismOS.Libraries.Resource.Text.INI
                     T.IsSection = true;
                     while (Source[I] != ']')
                     {
-                        T.Name += Source[I++];
+                        I++;
+                        if (Source[I] == '[')
+                        {
+                            throw new("Duplicate '[' Detected!");
+                        }
+
+                        T.Name += Source[I];
                     }
 
                     Nodes.Add(T);
@@ -54,7 +60,7 @@ namespace PrismOS.Libraries.Resource.Text.INI
                 if (Source[I] == '=')
                 {
                     string TMP = "";
-                    while (Source[I++] != '\n' && Source[I] != '\r')
+                    while (Source[++I] != '\n' && Source[I] != '\r')
                     {
                         TMP += Source[I];
                     }
