@@ -269,6 +269,90 @@ namespace PrismOS.Libraries.Graphics
 
         #endregion
 
+        #region Triangle
+
+        public void DrawFilledTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
+        {
+            // 28.4 fixed-point coordinates
+            Y1 = (int)Math.Round(16.0f * Y1);
+            Y2 = (int)Math.Round(16.0f * Y2);
+            Y3 = (int)Math.Round(16.0f * Y3);
+
+            X1 = (int)Math.Round(16.0f * X1);
+            X2 = (int)Math.Round(16.0f * X2);
+            X3 = (int)Math.Round(16.0f * X3);
+
+            // Deltas
+            int DX12 = X1 - X2;
+            int DX23 = X2 - X3;
+            int DX31 = X3 - X1;
+
+            int DY12 = Y1 - Y2;
+            int DY23 = Y2 - Y3;
+            int DY31 = Y3 - Y1;
+
+            // Fixed-point deltas
+            int FDX12 = DX12 << 4;
+            int FDX23 = DX23 << 4;
+            int FDX31 = DX31 << 4;
+
+            int FDY12 = DY12 << 4;
+            int FDY23 = DY23 << 4;
+            int FDY31 = DY31 << 4;
+
+            // Bounding rectangle
+            int minx = (Math.Min(Math.Min(X1, X2), X3) + 0xF) >> 4;
+            int maxx = (Math.Max(Math.Max(X1, X2), X3) + 0xF) >> 4;
+            int miny = (Math.Min(Math.Min(Y1, Y2), Y3) + 0xF) >> 4;
+            int maxy = (Math.Max(Math.Max(Y1, Y2), Y3) + 0xF) >> 4;
+
+            // Half-edge constants
+            int C1 = DY12 * X1 - DX12 * Y1;
+            int C2 = DY23 * X2 - DX23 * Y2;
+            int C3 = DY31 * X3 - DX31 * Y3;
+
+            // Correct for fill convention
+            if (DY12 < 0 || (DY12 == 0 && DX12 > 0)) C1++;
+            if (DY23 < 0 || (DY23 == 0 && DX23 > 0)) C2++;
+            if (DY31 < 0 || (DY31 == 0 && DX31 > 0)) C3++;
+
+            int CY1 = C1 + DX12 * (miny << 4) - DY12 * (minx << 4);
+            int CY2 = C2 + DX23 * (miny << 4) - DY23 * (minx << 4);
+            int CY3 = C3 + DX31 * (miny << 4) - DY31 * (minx << 4);
+
+            for (int Y = miny; Y < maxy; Y++)
+            {
+                int CX1 = CY1;
+                int CX2 = CY2;
+                int CX3 = CY3;
+
+                for (int X = minx; X < maxx; X++)
+                {
+                    if (CX1 > 0 && CX2 > 0 && CX3 > 0)
+                    {
+                        this[X, Y] = Color;
+                    }
+
+                    CX1 -= FDY12;
+                    CX2 -= FDY23;
+                    CX3 -= FDY31;
+                }
+
+                CY1 += FDX12;
+                CY2 += FDX23;
+                CY3 += FDX31;
+            }
+        }
+
+        public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
+        {
+            DrawLine(X1, Y1, X2, Y2, Color);
+            DrawLine(X1, Y1, X3, Y3, Color);
+            DrawLine(X2, Y2, X3, Y3, Color);
+        }
+
+        #endregion
+
         #region Circle 
 
         public void DrawCircle(int X, int Y, int Radius, Color Color)
@@ -360,90 +444,6 @@ namespace PrismOS.Libraries.Graphics
             {
                 DrawArc(X, Y, I, Color, StartAngle, EndAngle);
             }
-        }
-
-        #endregion
-
-        #region Triangle
-
-        public void DrawFilledTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
-        {
-            // 28.4 fixed-point coordinates
-            Y1 = (int)Math.Round(16.0f * Y1);
-            Y2 = (int)Math.Round(16.0f * Y2);
-            Y3 = (int)Math.Round(16.0f * Y3);
-
-            X1 = (int)Math.Round(16.0f * X1);
-            X2 = (int)Math.Round(16.0f * X2);
-            X3 = (int)Math.Round(16.0f * X3);
-
-            // Deltas
-            int DX12 = X1 - X2;
-            int DX23 = X2 - X3;
-            int DX31 = X3 - X1;
-
-            int DY12 = Y1 - Y2;
-            int DY23 = Y2 - Y3;
-            int DY31 = Y3 - Y1;
-
-            // Fixed-point deltas
-            int FDX12 = DX12 << 4;
-            int FDX23 = DX23 << 4;
-            int FDX31 = DX31 << 4;
-
-            int FDY12 = DY12 << 4;
-            int FDY23 = DY23 << 4;
-            int FDY31 = DY31 << 4;
-
-            // Bounding rectangle
-            int minx = (Math.Min(Math.Min(X1, X2), X3) + 0xF) >> 4;
-            int maxx = (Math.Max(Math.Max(X1, X2), X3) + 0xF) >> 4;
-            int miny = (Math.Min(Math.Min(Y1, Y2), Y3) + 0xF) >> 4;
-            int maxy = (Math.Max(Math.Max(Y1, Y2), Y3) + 0xF) >> 4;
-
-            // Half-edge constants
-            int C1 = DY12 * X1 - DX12 * Y1;
-            int C2 = DY23 * X2 - DX23 * Y2;
-            int C3 = DY31 * X3 - DX31 * Y3;
-
-            // Correct for fill convention
-            if (DY12 < 0 || (DY12 == 0 && DX12 > 0)) C1++;
-            if (DY23 < 0 || (DY23 == 0 && DX23 > 0)) C2++;
-            if (DY31 < 0 || (DY31 == 0 && DX31 > 0)) C3++;
-
-            int CY1 = C1 + DX12 * (miny << 4) - DY12 * (minx << 4);
-            int CY2 = C2 + DX23 * (miny << 4) - DY23 * (minx << 4);
-            int CY3 = C3 + DX31 * (miny << 4) - DY31 * (minx << 4);
-
-            for (int Y = miny; Y < maxy; Y++)
-            {
-                int CX1 = CY1;
-                int CX2 = CY2;
-                int CX3 = CY3;
-
-                for (int X = minx; X < maxx; X++)
-                {
-                    if (CX1 > 0 && CX2 > 0 && CX3 > 0)
-                    {
-                        this[X, Y] = Color;
-                    }
-
-                    CX1 -= FDY12;
-                    CX2 -= FDY23;
-                    CX3 -= FDY31;
-                }
-
-                CY1 += FDX12;
-                CY2 += FDX23;
-                CY3 += FDX31;
-            }
-        }
-
-        public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
-        {
-            DrawLine(X1, Y1, X2, Y2, Color);
-            DrawLine(X1, Y1, X3, Y3, Color);
-            DrawLine(X2, Y2, X3, Y3, Color);
         }
 
         #endregion
