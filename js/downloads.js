@@ -21,7 +21,7 @@ function onLoad(event)
 
     // Setup downloads section
     const downloads = document.getElementById("Downloads")
-    const placeholder = document.getElementById("PlaceHolder")
+    const placeholder = document.getElementById("DownloadPlaceHolder")
     // // Create html elements to replace the placeholder
     const rootNode = document.createElement("div")
     const table = document.createElement("table")
