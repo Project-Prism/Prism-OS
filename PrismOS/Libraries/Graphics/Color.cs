@@ -5,6 +5,48 @@ namespace PrismOS.Libraries.Graphics
     public struct Color
     {
         // Visible values
+        public int Saturation
+        {
+            get
+            {
+                // Calculate the saturation of the color
+                int Max = Math.Max(_R, Math.Max(_G, _B));
+                int Min = Math.Min(_R, Math.Min(_G, _B));
+                return (Max - Min) / 255;
+            }
+            set
+            {
+                // Set the saturation of the color
+                int Max = Math.Max(_R, Math.Max(_G, _B));
+                int Min = Math.Min(_R, Math.Min(_G, _B));
+                int Diff = Max - Min;
+                if (Diff == 0)
+                {
+                    _R = _G = _B = (byte)value;
+                }
+                else
+                {
+                    _R = (byte)((Max - _R) * value / Diff + _R);
+                    _G = (byte)((Max - _G) * value / Diff + _G);
+                    _B = (byte)((Max - _B) * value / Diff + _B);
+                }
+            }
+        }
+        public uint ARGB
+        {
+            get
+            {
+                return _ARGB;
+            }
+            set
+            {
+                _ARGB = value;
+                _A = (byte)(_ARGB >> 24);
+                _R = (byte)(_ARGB >> 16);
+                _G = (byte)(_ARGB >> 8);
+                _B = (byte)(_ARGB);
+            }
+        }
         public byte A
         {
             get
@@ -53,53 +95,21 @@ namespace PrismOS.Libraries.Graphics
                 _ARGB = (uint)(_A << 24 | _R << 16 | _G << 8 | _B);
             }
         }
-        public uint ARGB
-        {
-            get
-            {
-                return _ARGB;
-            }
-            set
-            {
-                _ARGB = value;
-                _A = (byte)(_ARGB >> 24);
-                _R = (byte)(_ARGB >> 16);
-                _G = (byte)(_ARGB >> 8);
-                _B = (byte)(_ARGB);
-            }
-        }
-        public int Saturation
-        {
-            get
-            {
-                // Calculate the saturation of the color
-                int Max = Math.Max(_R, Math.Max(_G, _B));
-                int Min = Math.Min(_R, Math.Min(_G, _B));
-                return (Max - Min) / 255;
-            }
-            set
-            {
-                // Set the saturation of the color
-                int Max = Math.Max(_R, Math.Max(_G, _B));
-                int Min = Math.Min(_R, Math.Min(_G, _B));
-                int Diff = Max - Min;
-                if (Diff == 0)
-                {
-                    _R = _G = _B = (byte)value;
-                }
-                else
-                {
-                    _R = (byte)((Max - _R) * value / Diff + _R);
-                    _G = (byte)((Max - _G) * value / Diff + _G);
-                    _B = (byte)((Max - _B) * value / Diff + _B);
-                }
-            }
-        }
 
-        // Hidden values
-        private static readonly Random _Random = new();
-        private byte _A, _R, _G, _B;
+        #region Properties
+
+        public enum ColorSpace
+        {
+            ARGB,
+            CYMK,
+        }
         private uint _ARGB;
+        private byte _A;
+        private byte _R;
+        private byte _G;
+        private byte _B;
+
+        #endregion
 
         #region Methods
 
@@ -110,6 +120,26 @@ namespace PrismOS.Libraries.Graphics
                 (byte)((Source.R * (255 - NewColor.A) / 255) + NewColor.R),
                 (byte)((Source.G * (255 - NewColor.A) / 255) + NewColor.G),
                 (byte)((Source.B * (255 - NewColor.A) / 255) + NewColor.B));
+        }
+        public static Color FromCYMK(byte C, byte Y, byte M, byte K)
+        {
+            Color T = new();
+
+            if (K != 255)
+            {
+                T.A = 255;
+                T.R = (byte)((255 - C) * (255 - K) / 255);
+                T.G = (byte)((255 - M) * (255 - K) / 255);
+                T.B = (byte)((255 - Y) * (255 - K) / 255);
+            }
+            else
+            {
+                T.A = 255;
+                T.R = (byte)(255 - C);
+                T.G = (byte)(255 - M);
+                T.B = (byte)(255 - Y);
+            }
+            return T;
         }
         public static Color FromARGB(byte A, byte R, byte G, byte B)
         {
@@ -133,7 +163,6 @@ namespace PrismOS.Libraries.Graphics
 
         #region Known Colors
 
-        public static Color Random => FromARGB(255, (byte)_Random.Next(0, 255), (byte)_Random.Next(0, 255), (byte)_Random.Next(0, 255));
         public static readonly Color White = FromARGB(255, 255, 255, 255);
         public static readonly Color Black = FromARGB(255, 0, 0, 0);
         public static readonly Color Red = FromARGB(255, 255, 0, 0);
@@ -165,21 +194,28 @@ namespace PrismOS.Libraries.Graphics
 
         #region Operators
 
-        public static implicit operator Color(uint ARGB)
+        public static implicit operator Color((byte, byte, byte, byte) Color)
         {
-            return FromARGB(ARGB);
-        }
-        public static implicit operator Color(string Hex)
-        {
-            return FromHex(Hex);
+            return FromARGB(Color.Item1, Color.Item2, Color.Item3, Color.Item4);
+
+            throw new ArgumentException("Unsuported Color Format!");
         }
         public static implicit operator Color((byte, byte, byte) RGB)
         {
             return FromARGB(255, RGB.Item1, RGB.Item2, RGB.Item2);
         }
-        public static implicit operator Color((byte, byte, byte, byte) ARGB)
+        public static implicit operator Color(string Color)
         {
-            return FromARGB(ARGB.Item1, ARGB.Item2, ARGB.Item3, ARGB.Item4);
+            if (Color.StartsWith('#'))
+            {
+                return FromHex(Color[1..]);
+            }
+
+            throw new ArgumentException("Not A Hex Color!");
+        }
+        public static implicit operator Color(uint ARGB)
+        {
+            return FromARGB(ARGB);
         }
 
         #endregion
