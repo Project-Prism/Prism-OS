@@ -96,7 +96,8 @@ main {
 main table {
     width: 100%;
     background-color: #191922;
-    border: 0.1em dashed white;
+    text-align: center;
+    border: 0.1em solid white;
 }
 
 main .content {
