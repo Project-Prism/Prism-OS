@@ -121,6 +121,11 @@ namespace PrismOS.Libraries.Graphics
         }
         public static Color FromHex(string Hex)
         {
+            if (Hex.StartsWith('#'))
+            {
+                Hex = Hex[1..];
+            }
+
             return new() { ARGB = uint.Parse(Hex, System.Globalization.NumberStyles.HexNumber) };
         }
 
@@ -158,7 +163,7 @@ namespace PrismOS.Libraries.Graphics
 
         #endregion
 
-        #region Casting
+        #region Operators
 
         public static implicit operator Color(uint ARGB)
         {
