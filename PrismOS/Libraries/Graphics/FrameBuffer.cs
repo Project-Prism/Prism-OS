@@ -1,4 +1,4 @@
-﻿ using Cosmos.Core;
+﻿using Cosmos.Core;
 using Cosmos.HAL;
 using System;
 
@@ -612,7 +612,7 @@ namespace PrismOS.Libraries.Graphics
         {
             if (Width <= 0 || Height <= 0 || Width == this.Width || Height == this.Height)
             {
-                return new(1, 1);
+                return this;
             }
 
             FrameBuffer FB = new(Width, Height);
