@@ -23,7 +23,11 @@ namespace PrismOS.Libraries.Resource.Archive.TAR
                     }
 
                     byte[] Data = new byte[OCS2L(H->Size)];
-                    Marshal.Copy(new IntPtr(T + 512), Data, 0, Data.Length);
+                    fixed (byte* P = Data)
+                    {
+                        Cosmos.Core.MemoryOperations.Copy(P, (byte*)((uint)T + 512), Data.Length);
+                    }
+                    //Marshal.Copy(new IntPtr(T + 512), Data, 0, Data.Length);
 
                     Files.Add(
                         Encoding.UTF8.GetString(H->Name, 100).Trim('\0'),
