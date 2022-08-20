@@ -13,6 +13,70 @@
 
         #endregion
 
+        #region Unsigned
+
+        public bool TryReadUShort(string Key, out ushort Value)
+        {
+            if (TryReadString(Key, out string S))
+            {
+                return ushort.TryParse(S, out Value);
+            }
+            Value = 0;
+            return false;
+        }
+        public bool TryReadUInt(string Key, out uint Value)
+        {
+            if (TryReadString(Key, out string S))
+            {
+                return uint.TryParse(S, out Value);
+            }
+            Value = 0;
+            return false;
+        }
+        public bool TryReadULong(string Key, out ulong Value)
+        {
+            if (TryReadString(Key, out string S))
+            {
+                return ulong.TryParse(S, out Value);
+            }
+            Value = 0;
+            return false;
+        }
+
+        #endregion
+
+        #region Signed
+
+        public bool TryReadShort(string Key, out short Value)
+        {
+            if (TryReadString(Key, out string S))
+            {
+                return short.TryParse(S, out Value);
+            }
+            Value = 0;
+            return false;
+        }
+        public bool TryReadInt(string Key, out int Value)
+        {
+            if (TryReadString(Key, out string S))
+            {
+                return int.TryParse(S, out Value);
+            }
+            Value = 0;
+            return false;
+        }
+        public bool TryReadLong(string Key, out long Value)
+        {
+            if (TryReadString(Key, out string S))
+            {
+                return long.TryParse(S, out Value);
+            }
+            Value = 0;
+            return false;
+        }
+
+        #endregion
+
         #region General
 
         public bool TryReadString(string Key, out string Value)
@@ -31,96 +95,36 @@
         }
         public bool TryReadByte(string Key, out byte Value)
         {
-            for (int I = 0; I < Source.Length; I++)
+            if (TryReadString(Key, out string S))
             {
-                if (Source[I] == '=' && Validate(Key, I))
-                {
-                    int II = Source.IndexOfAny(new char[] { '\n', '\r' }, ++I);
-                    return byte.TryParse(Source[I..II], out Value);
-                }
+                return byte.TryParse(S, out Value);
             }
             Value = 0;
             return false;
         }
         public bool TryReadChar(string Key, out char Value)
         {
-            for (int I = 0; I < Source.Length; I++)
+            if (TryReadString(Key, out string S))
             {
-                if (Source[I] == '=' && Validate(Key, I))
-                {
-                    int II = Source.IndexOfAny(new char[] { '\n', '\r' }, ++I);
-                    return char.TryParse(Source[I..II], out Value);
-                }
+                return char.TryParse(S, out Value);
             }
             Value = '\0';
             return false;
         }
-        public bool TryReaddouble(string Key, out double Value)
+        public bool TryReadDouble(string Key, out double Value)
         {
-            for (int I = 0; I < Source.Length; I++)
+            if (TryReadString(Key, out string S))
             {
-                if (Source[I] == '=' && Validate(Key, I))
-                {
-                    int II = Source.IndexOfAny(new char[] { '\n', '\r' }, ++I);
-                    return double.TryParse(Source[I..II], out Value);
-                }
+                return double.TryParse(S, out Value);
             }
-            Value = '\0';
+            Value = 0;
             return false;
         }
         public bool TryReadFloat(string Key, out float Value)
         {
-            for (int I = 0; I < Source.Length; I++)
+            if (TryReadString(Key, out string S))
             {
-                if (Source[I] == '=' && Validate(Key, I))
-                {
-                    int II = Source.IndexOfAny(new char[] { '\n', '\r' }, ++I);
-                    return float.TryParse(Source[I..II], out Value);
-                }
-            }
-            Value = '\0';
-            return false;
-        }
-
-        #endregion
-
-        #region Signed
-
-        public bool TryReadShort(string Key, out short Value)
-        {
-            for (int I = 0; I < Source.Length; I++)
-            {
-                if (Source[I] == '=' && Validate(Key, I))
-                {
-                    int II = Source.IndexOfAny(new char[] { '\n', '\r' }, ++I);
-                    return short.TryParse(Source[I..II], out Value);
-                }
-            }
-            Value = 0;
-            return false;
-        }
-        public bool TryReadInt(string Key, out int Value)
-        {
-            for (int I = 0; I < Source.Length; I++)
-            {
-                if (Source[I] == '=' && Validate(Key, I))
-                {
-                    int II = Source.IndexOfAny(new char[] { '\n', '\r' }, ++I);
-                    return int.TryParse(Source[I..II], out Value);
-                }
-            }
-            Value = 0;
-            return false;
-        }
-        public bool TryReadLong(string Key, out long Value)
-        {
-            for (int I = 0; I < Source.Length; I++)
-            {
-                if (Source[I] == '=' && Validate(Key, I))
-                {
-                    int II = Source.IndexOfAny(new char[] { '\n', '\r' }, ++I);
-                    return long.TryParse(Source[I..II], out Value);
-                }
+                return float.TryParse(S, out Value);
             }
             Value = 0;
             return false;
@@ -128,57 +132,13 @@
 
         #endregion
 
-        #region Unsigned
-
-        public bool TryReadUShort(string Key, out ushort Value)
-        {
-            for (int I = 0; I < Source.Length; I++)
-            {
-                if (Source[I] == '=' && Validate(Key, I))
-                {
-                    int II = Source.IndexOfAny(new char[] { '\n', '\r' }, ++I);
-                    return ushort.TryParse(Source[I..II], out Value);
-                }
-            }
-            Value = 0;
-            return false;
-        }
-        public bool TryReadUInt(string Key, out uint Value)
-        {
-            for (int I = 0; I < Source.Length; I++)
-            {
-                if (Source[I] == '=' && Validate(Key, I))
-                {
-                    int II = Source.IndexOfAny(new char[] { '\n', '\r' }, ++I);
-                    return uint.TryParse(Source[I..II], out Value);
-                }
-            }
-            Value = 0;
-            return false;
-        }
-        public bool TryReadULong(string Key, out ulong Value)
-        {
-            for (int I = 0; I < Source.Length; I++)
-            {
-                if (Source[I] == '=' && Validate(Key, I))
-                {
-                    int II = Source.IndexOfAny(new char[] { '\n', '\r' }, ++I);
-                    return ulong.TryParse(Source[I..II], out Value);
-                }
-            }
-            Value = 0;
-            return false;
-        }
-
-        #endregion
-
-        #region Write
+        #region Misc
 
         public bool TryWrite(string Key, object Value)
         {
             for (int I = 0; I < Source.Length; I++)
             {
-                if (Source[I] == '=' && Validate(I, Key))
+                if (Source[I] == '=' && Validate(Key, I))
                 {
                     int II = Source.IndexOfAny(new char[] { '\n', '\r' }, ++I);
                     Source = Source.Remove(I, II - I);
@@ -188,10 +148,6 @@
             }
             return false;
         }
-
-        #endregion
-
-        #region Misc
 
         public bool Validate(string Key, int Index)
         {
