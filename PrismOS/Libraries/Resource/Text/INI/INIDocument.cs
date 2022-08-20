@@ -93,24 +93,6 @@
             Value = string.Empty;
             return false;
         }
-        public bool TryReadByte(string Key, out byte Value)
-        {
-            if (TryReadString(Key, out string S))
-            {
-                return byte.TryParse(S, out Value);
-            }
-            Value = 0;
-            return false;
-        }
-        public bool TryReadChar(string Key, out char Value)
-        {
-            if (TryReadString(Key, out string S))
-            {
-                return char.TryParse(S, out Value);
-            }
-            Value = '\0';
-            return false;
-        }
         public bool TryReadDouble(string Key, out double Value)
         {
             if (TryReadString(Key, out string S))
@@ -127,6 +109,24 @@
                 return float.TryParse(S, out Value);
             }
             Value = 0;
+            return false;
+        }
+        public bool TryReadByte(string Key, out byte Value)
+        {
+            if (TryReadString(Key, out string S))
+            {
+                return byte.TryParse(S, out Value);
+            }
+            Value = 0;
+            return false;
+        }
+        public bool TryReadChar(string Key, out char Value)
+        {
+            if (TryReadString(Key, out string S))
+            {
+                return char.TryParse(S, out Value);
+            }
+            Value = '\0';
             return false;
         }
 
