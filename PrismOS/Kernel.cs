@@ -36,7 +36,7 @@ namespace PrismOS
             Desktop D = new();
             D.Add(() => { _ = new AppTemplate1(); });
             D.Add(() => { _ = new Terminal(); });
-            D.Add(() => { Power.Shutdown(); });
+            D.Add(() => { Shutdown(); });
 
             #endregion
 
@@ -83,6 +83,19 @@ namespace PrismOS
             {
                 Cosmos.HAL.Debug.Serial.SendString($"[WARN] Unable To Play Audio! ({E.Message})");
             }
+        }
+
+        public static void Shutdown()
+        {
+            // Try VBOX Method
+            IOPort P = new(0x4004);
+            P.DWord = 0x3400;
+
+            // Try QEMU Method
+            Power.QemuShutdown();
+
+            // Try Normal Method
+            Power.Shutdown();
         }
     }
 }
