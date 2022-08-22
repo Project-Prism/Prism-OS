@@ -2,13 +2,25 @@
 ======== Global ========
 */
 
+:root {
+    /* Variables */
+    --section-colour: #35353f;
+    --section-inner-colour: #191922;
+    --nav-colour: #191922;
+    --footer-colour: #191922;
+    --accent-colour: #7f0bad;
+    --secondary-colour: #480CA8;
+    
+    --text-colour: white;
+}
+
 * {
     /* Scroll */
     scroll-behavior: smooth;
     scrollbar-color: #191922 #35353f;
     
     /* Text and font */
-    color: white;
+    color: var(--text-colour);
     font-family: 'Work Sans', sans-serif;
 }
 
@@ -42,7 +54,7 @@ nav {
     left: 5%;
     z-index: 1;
     
-    background-color: #191922;
+    background-color: var(--nav-colour);
 }
 
 nav ul {
@@ -56,13 +68,13 @@ nav a {
     margin: auto auto auto 1em;
     
     text-decoration: none;
-    color: white;
+    color: var(--text-colour);
 
-    border-bottom: solid #7f0bad;
+    border-bottom: solid var(--accent-colour);
 }
 
 nav a:hover {
-    border-bottom: solid #480CA8;
+    border-bottom: solid var(--secondary-colour);
 }
 
 /*
@@ -91,9 +103,10 @@ header h1 {
 main {
     display: flex;
     
-    margin: auto;
     width: 90%;
     min-height: 70%;
+    
+    margin: auto;
 
     font-size: 2rem;
 }
@@ -101,8 +114,10 @@ main {
 /* Table formatting */
 main table {
     width: 100%;
-    background-color: #191922;
+    
     text-align: center;
+    
+    background-color: var(--section-inner-colour);
     border: 0.1em solid white;
 }
 
@@ -117,21 +132,23 @@ main .section * {
 }
 
 main .section {
-    background-color: #35353f;
-  
     padding: 2.5rem;
     margin-bottom: 3rem;
+    
+    background-color: var(--section-colour);
 }
 
 main .section h2 {
-    border-bottom: solid #7f0bad;
     margin-bottom: 2.5rem;
+    border-bottom: solid #7f0bad;
 }
 
 main .PlaceHolder {
     height: 40vh;
-    border: dashed white;
+    
     text-align: center;
+    
+    border: dashed white;
 }
 
 /* Contributor section */
@@ -146,16 +163,16 @@ main .PlaceHolder {
 .contributor {
     display: flex;
     flex-grow: 1;
-    
-    background-color: #191922;
-    border: 3px solid white;
-    
     padding: 0.5rem;
     min-height: 10rem;
+    
+    border: 3px solid white;
+    background-color: var(--section-inner-colour);
 }
 
 .contributor div {
     width: 100%;
+
     font-size: 1.5rem;
 }
 
@@ -164,20 +181,21 @@ main .PlaceHolder {
 }
 
 .contributor img {
-    border-radius: 50%;
-    margin-right: 0.5em;
-
     width: 7rem;
     height: 7rem;
+    
+    border-radius: 50%;
+    margin-right: 0.5em;
 }
 
 .contributor b {
     width: 100%;
-    height: fit-content;
+    
+    margin-bottom: 0.4em;
+    
     font-size: 2rem;
     
     border-bottom: 2px solid #35353f;
-    margin-bottom: 0.4em;
 }
 
 .contributor span {
@@ -194,12 +212,12 @@ main .PlaceHolder {
 */
 
 footer {
-    background-color: #191922;
-
     width: 90%;
     min-height: 10%;
-
+    
     margin: auto;
+    
+    background-color: var(--footer-colour);
 }
 
 footer * {
@@ -207,6 +225,7 @@ footer * {
 }
 
 footer a {
+    color: #215ebb;
     text-decoration: none;
 }
 
@@ -226,10 +245,10 @@ footer .content {
 footer #Discord {
     display: flex;
 
-    margin: 0 1em 0 1em;
-
     justify-content: center;
     align-items: center;
+    
+    margin: 0 1em 0 1em;
 }
 
 footer #Discord img {
