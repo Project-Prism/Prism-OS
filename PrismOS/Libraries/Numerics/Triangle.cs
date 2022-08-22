@@ -45,13 +45,8 @@ namespace PrismOS.Libraries.Numerics
             Color = Color.White;
         }
 
-        #region Position Data
-
         public Vector3 P1, P2, P3;
         public Vector3 T1, T2, T3;
-
-        #endregion
-
         public Color Color;
     }
 }
