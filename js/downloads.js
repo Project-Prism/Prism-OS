@@ -25,6 +25,7 @@ function onLoad(event)
     // // Create html elements to replace the placeholder
     const rootNode = document.createElement("div")
     const table = document.createElement("table")
+    table.classList.add("maxWidth", "innerSectionBorder")
     table.innerHTML= "<thead><tr><th>Version</th><th>Type</th><th>Date</th><th>Download</th><th>Github</th></tr></thead>" // Headings: Version, Type, Date, Download, Github
     const body = document.createElement("tbody")
 

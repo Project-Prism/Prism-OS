@@ -1,7 +1,6 @@
 /*
 ======== Global ========
 */
-
 :root {
     /* Variables */
     --section-colour: #35353f;
@@ -12,6 +11,10 @@
     --secondary-colour: #480CA8;
     
     --text-colour: white;
+}
+
+a {
+    color: #215ebb;
 }
 
 * {
@@ -25,7 +28,6 @@
 }
 
 html, body {
-    width: 100%;
     height: 100%;
 
     margin: 0%;
@@ -39,6 +41,21 @@ html {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
+}
+
+.flexCentre {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.maxWidth {
+    width: 100%;
+}
+
+.innerSectionBorder {
+    border: 3px solid white;
 }
 
 /*
@@ -81,13 +98,7 @@ nav a:hover {
 ======== Header ========
 */
 header {
-    display: flex;
-    
-    width: 100%;
     min-height: 60%;
-
-    justify-content:center;
-    align-items: center;
 }
 
 header h1 {
@@ -113,37 +124,34 @@ main {
 
 /* Table formatting */
 main table {
-    width: 100%;
-    
     text-align: center;
     
     background-color: var(--section-inner-colour);
-    border: 0.1em solid white;
 }
 
-main .content {
+.content {
     display: flex;
     flex-direction: column;
 }
 
 /* Override margin of internal elements, let .section do all the work */
-main .section * {
+.section * {
     margin: 0%;
 }
 
-main .section {
+.section {
     padding: 2.5rem;
     margin-bottom: 3rem;
     
     background-color: var(--section-colour);
 }
 
-main .section h2 {
+.section h2 {
     margin-bottom: 2.5rem;
     border-bottom: solid #7f0bad;
 }
 
-main .PlaceHolder {
+.PlaceHolder {
     height: 40vh;
     
     text-align: center;
@@ -156,8 +164,6 @@ main .PlaceHolder {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    
-    width: 100%;
 }
 
 .contributor {
@@ -165,14 +171,11 @@ main .PlaceHolder {
     flex-grow: 1;
     padding: 0.5rem;
     min-height: 10rem;
-    
-    border: 3px solid white;
+
     background-color: var(--section-inner-colour);
 }
 
 .contributor div {
-    width: 100%;
-
     font-size: 1.5rem;
 }
 
@@ -225,7 +228,6 @@ footer * {
 }
 
 footer a {
-    color: #215ebb;
     text-decoration: none;
 }
 
@@ -233,25 +235,16 @@ footer img {
     max-width: 2em;
 }
 
-footer .content {
-    display: flex;
-    
-    justify-content: center;
-    align-items: center;
-
+#footerContent {
     padding: 2rem;
 }
 
-footer #Discord {
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-    
+/* Discord link */
+#Discord {
     margin: 0 1em 0 1em;
 }
 
-footer #Discord img {
+#Discord img {
     margin-right: 0.5em;
 }
 
