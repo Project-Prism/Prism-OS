@@ -202,7 +202,7 @@ namespace PrismOS.Libraries.Graphics
         }
         public static implicit operator Color((byte, byte, byte) RGB)
         {
-            return FromARGB(255, RGB.Item1, RGB.Item2, RGB.Item2);
+            return FromARGB(255, RGB.Item1, RGB.Item2, RGB.Item3);
         }
         public static implicit operator Color(string Color)
         {
