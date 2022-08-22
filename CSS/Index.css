@@ -1,23 +1,28 @@
 /*
 ======== Global ========
 */
+
+* {
+    /* Scroll */
+    scroll-behavior: smooth;
+    scrollbar-color: #191922 #35353f;
+    
+    /* Text and font */
+    color: white;
+    font-family: 'Work Sans', sans-serif;
+}
+
 html, body {
     width: 100%;
     height: 100%;
 
     margin: 0%;
     padding: 0%;
-
-    scroll-behavior: smooth;
-    scrollbar-color: #191922 #35353f;
 }
 
-body {
+html {
     background: linear-gradient(to left top, #3a5a8a, #7f0bad, #480CA8);
     background-attachment: fixed;
-    
-    color: white;
-    font-family: 'Work Sans', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -29,12 +34,13 @@ h1, h2, h3, h4, h5, h6 {
 */
 nav {
     display: flex;
-    position: fixed;
     
-    z-index: 1;
-    left: 5%;
     width: 90%;
     min-height: 7%;
+    
+    position: fixed;
+    left: 5%;
+    z-index: 1;
     
     background-color: #191922;
 }
@@ -47,11 +53,11 @@ nav ul {
 }
 
 nav a {
+    margin: auto auto auto 1em;
+    
     text-decoration: none;
     color: white;
 
-    margin: auto auto auto 1em;
-    
     border-bottom: solid #7f0bad;
 }
 
@@ -63,19 +69,19 @@ nav a:hover {
 ======== Header ========
 */
 header {
+    display: flex;
+    
     width: 100%;
     min-height: 60%;
-    
-    display: flex;
 
     justify-content:center;
     align-items: center;
 }
 
 header h1 {
-    font-size: 6rem;
-
     margin: 0%;
+    
+    font-size: 6rem;
 }
 
 /*
@@ -126,6 +132,61 @@ main .PlaceHolder {
     height: 40vh;
     border: dashed white;
     text-align: center;
+}
+
+/* Contributor section */
+#Wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    
+    width: 100%;
+}
+
+.contributor {
+    display: flex;
+    flex-grow: 1;
+    
+    background-color: #191922;
+    border: 3px solid white;
+    
+    padding: 0.5rem;
+    min-height: 10rem;
+}
+
+.contributor div {
+    width: 100%;
+    font-size: 1.5rem;
+}
+
+.contributor div * {
+    display: block;
+}
+
+.contributor img {
+    border-radius: 50%;
+    margin-right: 0.5em;
+
+    width: 7rem;
+    height: 7rem;
+}
+
+.contributor b {
+    width: 100%;
+    height: fit-content;
+    font-size: 2rem;
+    
+    border-bottom: 2px solid #35353f;
+    margin-bottom: 0.4em;
+}
+
+.contributor span {
+    font-size: 0.75em;
+    font-style: italic;
+}
+
+.noName b {
+    padding-bottom: 1.75rem;
 }
 
 /*
