@@ -1,4 +1,4 @@
-﻿using Cosmos.Core;
+﻿using PrismOS.Libraries.Memory;
 using Cosmos.HAL;
 using System;
 
@@ -11,8 +11,8 @@ namespace PrismOS.Libraries.Graphics
             this.Width = Width;
             this.Height = Height;
 
-            Cosmos.HAL.Global.PIT.RegisterTimer(new PIT.PITTimer(() => { FPS = Frames; Frames = 0; }, 1000000000, true));
-            Internal = (uint*)GCImplementation.AllocNewObject(Size * 4);
+            Global.PIT.RegisterTimer(new PIT.PITTimer(() => { FPS = Frames; Frames = 0; }, 1000000000, true));
+            Internal = MemoryOperations.Allocate(Size * 4);
         }
 
         // Get/Set Pixels
@@ -222,7 +222,7 @@ namespace PrismOS.Libraries.Graphics
                 }
                 for (int IY = 0; IY < Height; IY++)
                 {
-                    MemoryOperations.Fill(Internal + ((Y + IY) * this.Width + X), Color.ARGB, Width);
+                    MemoryOperations.Fill(Internal + ((Y + IY) * this.Width + X), Color.ARGB, (uint)Width);
                 }
                 return;
             }
@@ -397,7 +397,7 @@ namespace PrismOS.Libraries.Graphics
 
                     uint* Offset = Internal + (Width * (Y + IY)) + X - IX;
 
-                    MemoryOperations.Fill(Offset, Color.ARGB, IX * 2);
+                    MemoryOperations.Fill(Offset, Color.ARGB, (uint)(IX * 2));
                 }
             }
             else
@@ -458,7 +458,7 @@ namespace PrismOS.Libraries.Graphics
             }
             if (!Alpha && X == 0 && Y == 0 && Image.Width == Width && Image.Height == Height)
             {
-                MemoryOperations.Copy(Internal, Image.Internal, (int)Size);
+                MemoryOperations.Copy(Internal, Image.Internal, Size);
                 return;
             }
             if (!Alpha)
@@ -489,7 +489,7 @@ namespace PrismOS.Libraries.Graphics
 
                 for (uint IY = 0; IY < THeight; IY++)
                 {
-                    MemoryOperations.Copy(Internal + PadX + X + ((PadY + Y + IY) * Width), Image.Internal + PadX + ((PadY + IY) * Image.Width), (int)TWidth);
+                    MemoryOperations.Copy(Internal + PadX + X + ((PadY + Y + IY) * Width), Image.Internal + PadX + ((PadY + IY) * Image.Width), TWidth);
                 }
                 return;
             }
@@ -595,7 +595,7 @@ namespace PrismOS.Libraries.Graphics
 
         public void Clear(Color Color)
         {
-            MemoryOperations.Fill(Internal, Color.ARGB, (int)Size);
+            MemoryOperations.Fill(Internal, Color.ARGB, Size);
         }
         public void Clear()
         {
@@ -605,7 +605,7 @@ namespace PrismOS.Libraries.Graphics
         public void CopyTo(uint* Destination)
         {
             Frames++;
-            MemoryOperations.Copy(Destination, Internal, (int)Size);
+            MemoryOperations.Copy(Destination, Internal, Size);
         }
 
         public FrameBuffer Resize(uint Width, uint Height)
@@ -665,9 +665,9 @@ namespace PrismOS.Libraries.Graphics
         {
             if (Size != 0)
             {
-                Cosmos.Core.Memory.Heap.Free(Internal);
+                MemoryOperations.Free(Internal);
             }
-            GCImplementation.Free(this);
+            MemoryOperations.Free(this);
             GC.SuppressFinalize(this);
         }
 
