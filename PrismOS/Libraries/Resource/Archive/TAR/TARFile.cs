@@ -1,12 +1,13 @@
 ﻿using System.Runtime.InteropServices;
 using System.Collections.Generic;
+using Cosmos.Core;
 using System.Text;
 using System;
 
 namespace PrismOS.Libraries.Resource.Archive.TAR
 {
     // https://docs.fileformat.com/compression/tar/
-    public unsafe class TARFile
+    public unsafe class TARFile : IDisposable
     {
         public TARFile(byte[] Binary)
         {
@@ -151,5 +152,11 @@ namespace PrismOS.Libraries.Resource.Archive.TAR
         }
 
         #endregion
+
+        public void Dispose()
+		{
+            GCImplementation.Free(Files);
+            GC.SuppressFinalize(this);
+		}
     }
 }

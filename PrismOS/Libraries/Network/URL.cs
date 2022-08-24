@@ -1,10 +1,11 @@
 ﻿using Cosmos.System.Network.IPv4.UDP.DNS;
-using GC = Cosmos.Core.GCImplementation;
 using Cosmos.System.Network.IPv4;
+using Cosmos.Core;
+using System;
 
 namespace PrismOS.Libraries.Network
 {
-    public class URL : System.IDisposable
+    public class URL : IDisposable
     {
         public URL(string FullURL)
         {
@@ -27,8 +28,9 @@ namespace PrismOS.Libraries.Network
 
         public void Dispose()
         {
-            GC.Free(FullURL);
-            GC.Free(this);
+            GCImplementation.Free(FullURL);
+            GCImplementation.Free(this);
+            GC.SuppressFinalize(this);
         }
     }
 }

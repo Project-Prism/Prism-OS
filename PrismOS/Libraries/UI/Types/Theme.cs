@@ -1,8 +1,10 @@
 ﻿using PrismOS.Libraries.Graphics;
+using Cosmos.Core;
+using System;
 
 namespace PrismOS.Libraries.UI.Types
 {
-    public class Theme
+    public class Theme : IDisposable
     {
         public static Theme Default = new()
         {
@@ -105,5 +107,26 @@ namespace PrismOS.Libraries.UI.Types
             }
             return Text;
         }
+
+        public void Dispose()
+		{
+            Background.Dispose();
+            Foreground.Dispose();
+            Accent.Dispose();
+            Text.Dispose();
+
+            BackgroundHover.Dispose();
+            ForegroundHover.Dispose();
+            AccentHover.Dispose();
+            TextHover.Dispose();
+
+            BackgroundClick.Dispose();
+            ForegroundClick.Dispose();
+            AccentClick.Dispose();
+            TextClick.Dispose();
+
+            GCImplementation.Free(Radius);
+            GC.SuppressFinalize(this);
+		}
     }
 }

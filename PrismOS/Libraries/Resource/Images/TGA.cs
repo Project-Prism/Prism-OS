@@ -3,30 +3,27 @@ using Cosmos.Core;
 
 namespace PrismOS.Libraries.Resource.Images
 {
-    public static class TGA
+    public unsafe class TGA : FrameBuffer
     {
-        public static FrameBuffer FromTGA(byte[] Binary)
+        public TGA(byte[] Binary) : base(1, 1)
         {
             uint i, j, k, x, y, w = (uint)((Binary[13] << 8) + Binary[12]), h = (uint)((Binary[15] << 8) + Binary[14]), o = (uint)((Binary[11] << 8) + Binary[10]);
             uint m = (uint)((Binary[1] != 0 ? (Binary[7] >> 3) * Binary[5] : 0) + 18);
 
-            if (w < 1 || h < 1)
+            if (w < 1 || h < 1 || (w * h + 2) * 4 == 0)
             {
-                return null;
+                return;
             }
 
-            uint[] Data = new uint[(w * h + 2) * 4];
-
-            if (Data.Length == 0)
-                return null;
+            uint* Data = (uint*)GCImplementation.AllocNewObject((w * h + 2) * 4);
 
             switch (Binary[2])
             {
                 case 1:
                     if (Binary[6] != 0 || Binary[4] != 0 || Binary[3] != 0 || (Binary[7] != 24 && Binary[7] != 32))
                     {
-                        GCImplementation.Free(Data);
-                        return null;
+                        Cosmos.Core.Memory.Heap.Free(Data);
+                        return;
                     }
                     for (y = i = 0; y < h; y++)
                     {
@@ -41,8 +38,8 @@ namespace PrismOS.Libraries.Resource.Images
                 case 2:
                     if (Binary[5] != 0 || Binary[6] != 0 || Binary[1] != 0 || (Binary[16] != 24 && Binary[16] != 32))
                     {
-                        GCImplementation.Free(Data);
-                        return null;
+                        Cosmos.Core.Memory.Heap.Free(Data);
+                        return;
                     }
                     for (y = i = 0; y < h; y++)
                     {
@@ -57,8 +54,8 @@ namespace PrismOS.Libraries.Resource.Images
                 case 9:
                     if (Binary[6] != 0 || Binary[4] != 0 || Binary[3] != 0 || (Binary[7] != 24 && Binary[7] != 32))
                     {
-                        GCImplementation.Free(Data);
-                        return null;
+                        Cosmos.Core.Memory.Heap.Free(Data);
+                        return;
                     }
                     y = i = 0;
                     for (x = 0; x < w * h && m < Binary.Length;)
@@ -89,8 +86,8 @@ namespace PrismOS.Libraries.Resource.Images
                 case 10:
                     if (Binary[5] != 0 || Binary[6] != 0 || Binary[1] != 0 || (Binary[16] != 24 && Binary[16] != 32))
                     {
-                        GCImplementation.Free(Data);
-                        return null;
+                        Cosmos.Core.Memory.Heap.Free(Data);
+                        return;
                     }
                     y = i = 0;
                     for (x = 0; x < w * h && m < Binary.Length;)
@@ -119,18 +116,13 @@ namespace PrismOS.Libraries.Resource.Images
                     }
                     break;
                 default:
-                    GCImplementation.Free(Data);
-                    return null;
+                    Cosmos.Core.Memory.Heap.Free(Data);
+                    return;
             }
-            Data[0] = w;
-            Data[1] = h;
 
-            FrameBuffer TMP = new(Data[0], Data[1]);
-            for (int I = 0; I < TMP.Size; I++)
-            {
-                TMP[I] = Color.FromARGB(Data[I + 2]);
-            }
-            return TMP;
+            Width = Data[0];
+            Height = Data[1];
+            MemoryOperations.Copy(Internal, Data + 2, (int)(Width * Height));
         }
     }
 }

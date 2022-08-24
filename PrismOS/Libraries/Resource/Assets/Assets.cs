@@ -14,16 +14,16 @@ namespace PrismOS.Libraries.Resource
         [ManifestResourceStream(ResourceName = Base + "Splash.bmp")] public readonly static byte[] LogoB;
         [ManifestResourceStream(ResourceName = Base + "Default.btf")] public readonly static byte[] Font1B;
         [ManifestResourceStream(ResourceName = Base + "Vista.wav")] public readonly static byte[] VistaB;
-
+        
         // Misc
-        public static FrameBuffer Wallpaper = BMP.FromBitmap(WallpaperB);
-        public static FrameBuffer Cursor = BMP.FromBitmap(CursorB);
+        public static FrameBuffer Wallpaper = new BMP(WallpaperB);
+        public static FrameBuffer Cursor = new BMP(CursorB);
 
         // System Sounds
         public static MemoryAudioStream Vista = MemoryAudioStream.FromWave(VistaB);
 
         // Pre-Sized Logos
-        public static FrameBuffer Splash = BMP.FromBitmap(LogoB);
+        public static FrameBuffer Splash = new BMP(LogoB);
         public static FrameBuffer Splash512 = Splash.Resize(512, 512);
         public static FrameBuffer Splash256 = Splash.Resize(256, 256);
         public static FrameBuffer Splash128 = Splash.Resize(128, 128);

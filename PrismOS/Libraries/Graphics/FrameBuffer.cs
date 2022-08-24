@@ -1,4 +1,5 @@
-﻿using PrismOS.Libraries.Memory;
+﻿using PrismOS.Libraries.Resource.Images;
+using PrismOS.Libraries.Memory;
 using Cosmos.HAL;
 using System;
 
@@ -651,13 +652,17 @@ namespace PrismOS.Libraries.Graphics
 
         public static FrameBuffer FromImage(byte[] Binary)
         {
-            if (Binary[0] == 'B' && Binary[1] == 'M')
+            if (PNG.Validate(Binary))
             {
-                return Resource.Images.BMP.FromBitmap(Binary);
+                return new PNG(Binary);
+            }
+            if (BMP.Validate(Binary))
+            {
+                return new BMP(Binary);
             }
             else
             {
-                return Resource.Images.TGA.FromTGA(Binary);
+                return new TGA(Binary);
             }
         }
 

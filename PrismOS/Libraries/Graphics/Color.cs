@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Cosmos.Core;
+using System;
 
 namespace PrismOS.Libraries.Graphics
 {
-    public struct Color
+    public struct Color : IDisposable
     {
         // Visible values
         public int Saturation
@@ -237,5 +238,13 @@ namespace PrismOS.Libraries.Graphics
         {
             return $"PrismOS.Libraries.Graphics.Color [A: {A}, R: {R}, G: {G}, B: {B}]";
         }
+        public void Dispose()
+		{
+            GCImplementation.Free(_ARGB);
+            GCImplementation.Free(_A);
+            GCImplementation.Free(_R);
+            GCImplementation.Free(_G);
+            GCImplementation.Free(_B);
+		}
     }
 }

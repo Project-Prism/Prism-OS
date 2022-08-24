@@ -1,11 +1,12 @@
-﻿using GC = Cosmos.Core.GCImplementation;
-using Cosmos.System.Network.IPv4.TCP;
+﻿using Cosmos.System.Network.IPv4.TCP;
 using Cosmos.System.Network.IPv4;
+using Cosmos.Core;
 using System.Text;
+using System;
 
 namespace PrismOS.Libraries.Network
 {
-    public class WebClient : System.IDisposable
+    public class WebClient : IDisposable
     {
         public WebClient()
         {
@@ -39,7 +40,8 @@ namespace PrismOS.Libraries.Network
         public void Dispose()
         {
             URL.Dispose();
-            GC.Free(this);
+            GCImplementation.Free(this);
+            GC.SuppressFinalize(this);
         }
     }
 }

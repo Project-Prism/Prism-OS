@@ -32,10 +32,5 @@ namespace PrismOS.Libraries.Numerics
         {
             return Radians * 57.2957795;
         }
-
-        public static double CrossProduct(Vector3 V1, Vector3 V2)
-        {
-            return V1.X * V2.Y - V1.Y * V2.X;
-        }
     }
 }

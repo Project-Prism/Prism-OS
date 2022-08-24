@@ -2,15 +2,23 @@
 
 namespace PrismOS.Libraries.Resource.Images
 {
-    public static unsafe class BMP
+    public unsafe class BMP : FrameBuffer
     {
-        public static FrameBuffer FromBitmap(byte[] Binary)
+        public BMP(byte[] Binary) : base(1, 1)
         {
             Cosmos.System.Graphics.Bitmap BMP = new(Binary);
+            Height = BMP.Height;
+            Width = BMP.Width;
+
             fixed (uint* PTR = (uint[])(object)BMP.rawData)
             {
-                return new FrameBuffer(BMP.Width, BMP.Height) { Internal = PTR };
+                Internal = PTR;
             }
+        }
+
+        public static bool Validate(byte[] Binary)
+        {
+            return Binary[0] == 'B' && Binary[1] == 'M';
         }
     }
 }
