@@ -5,9 +5,8 @@
 
 # Improvements
 [ ] Do some content improvements
-- [ ] Re work about me
-    - [ ] Improve grammar
-    - [ ] Add extra information
+- [X] Re work about me
+    - [X] Improve grammar
 - [X] Do proper downloads section
     - [X] Get info from github releases
 - [ ] Do proper contributors section
@@ -25,7 +24,7 @@
 
 # Review
 [ ] Search engine optimisation
-[ ] Colour palette
+[-] Colour palette
 [ ] My bad CSS
 [ ] HTML
 [ ] Javascript
