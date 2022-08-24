@@ -1,46 +1,25 @@
-/*
-======== Global ========
-*/
 :root {
-    /* Variables */
-    --section-colour: #35353f;
-    --section-inner-colour: #191922;
-    --nav-colour: #191922;
-    --footer-colour: #191922;
-    --accent-colour: #7f0bad;
-    --secondary-colour: #480CA8;
-    
     --text-colour: white;
+    --text-size: 2rem;
 }
 
-a {
-    color: #215ebb;
+/* Link colour when it's clicked, default is red which isn't that nice.
+Most browsers should support this, but it's minor anyway */
+:focus {
+    color: #3a5a8a;
 }
 
 * {
-    /* Scroll */
-    scroll-behavior: smooth;
-    scrollbar-color: #191922 #35353f;
-    
-    /* Text and font */
-    color: var(--text-colour);
-    font-family: 'Work Sans', sans-serif;
-}
-
-html, body {
-    height: 100%;
-
-    margin: 0%;
     padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+
+    font-family: "Work Sans", sans-serif;
+    scroll-behavior: smooth;
 }
 
-html {
-    background: linear-gradient(to left top, #3a5a8a, #7f0bad, #480CA8);
-    background-attachment: fixed;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
+.maxWidth {
+    width: 100%;
 }
 
 .flexCentre {
@@ -50,116 +29,107 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
 }
 
-.maxWidth {
+/*======== Text ========*/
+b, p, td, th, h1, h2, h3, h4, h5, h6 {
+    color: var(--text-colour);
+    font-size: var(--text-size);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Montserrat", sans-serif;
+}
+
+/*======== html/body ========*/
+
+html, body {
     width: 100%;
+    height: 100%;
 }
 
-.innerSectionBorder {
-    border: 3px solid white;
+html {
+    background: linear-gradient(to left top, #3a5a8a, #7f0bad, #480CA8);
+    background-attachment: fixed;
 }
 
-/*
-======== Nav bar ========
-*/
+body {
+    padding-left: 7rem;
+    padding-right: 7rem;
+}
+
+/*======== nav bar ========*/
 nav {
-    display: flex;
-    
-    width: 90%;
-    min-height: 7%;
-    
+    background-color: #191922;
+
     position: fixed;
-    left: 5%;
-    z-index: 1;
-    
-    background-color: var(--nav-colour);
+    padding: 1.25rem;
+
+    /* Stupid hack for position: fixed; having stupid padding rules */
+    width: calc(100% - 14rem); /* Takeaway double what the padding is because padding-left takes affect and shifts us to the right over the edge of the screen */
 }
 
 nav ul {
     display: flex;
-
-    margin: 0%;
-    padding: 0%;
+    gap: 1rem;
 }
 
 nav a {
-    margin: auto auto auto 1em;
-    
-    text-decoration: none;
     color: var(--text-colour);
 
-    border-bottom: solid var(--accent-colour);
+    /* Some browsers don't support this, use a border instead */
+    /*text-decoration-thickness: 2px;*/
+    /*text-decoration-color: #7f0bad;*/
+    text-decoration: none;
+    border-bottom: solid #7f0bad 3px;
 }
 
 nav a:hover {
-    border-bottom: solid var(--secondary-colour);
+    /*text-decoration-color: #7f0bad;*/
+    border-bottom: solid #480CA8 3px;
 }
 
-/*
-======== Header ========
-*/
+/*======== header ========*/
 header {
     min-height: 60%;
 }
 
 header h1 {
-    margin: 0%;
-    
-    font-size: 6rem;
+    font-size: 6.5rem;
 }
 
-/*
-======== Main content ========
-*/
-
+/*======== main/sections ========*/
 main {
     display: flex;
-    
-    width: 90%;
-    min-height: 70%;
-    
-    margin: auto;
-
-    font-size: 2rem;
-}
-
-/* Table formatting */
-main table {
-    text-align: center;
-    
-    background-color: var(--section-inner-colour);
-}
-
-.content {
-    display: flex;
     flex-direction: column;
-}
-
-/* Override margin of internal elements, let .section do all the work */
-.section * {
-    margin: 0%;
+    gap: 3rem;
 }
 
 .section {
     padding: 2.5rem;
-    margin-bottom: 3rem;
-    
-    background-color: var(--section-colour);
+    background-color: #35353f;
 }
 
 .section h2 {
+    font-size: 3rem;
+    border-bottom: solid #7f0bad 3px;
     margin-bottom: 2.5rem;
-    border-bottom: solid #7f0bad;
 }
 
+/* Place holder css for #Contributors and #Downloads, shows if data isn't loaded from github */
 .PlaceHolder {
-    height: 40vh;
-    
     text-align: center;
-    
-    border: dashed white;
+    border: dashed white 3px;
+    height: 40vh;
 }
 
-/* Contributor section */
+#Downloads table {
+    background-color: #191922;
+    border: solid white 3px;
+}
+
+#Downloads td, th {
+    text-align: center;
+}
+
 #Wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -168,86 +138,66 @@ main table {
 
 .contributor {
     display: flex;
+    gap: 1rem;
     flex-grow: 1;
-    padding: 0.5rem;
-    min-height: 10rem;
+    padding: 1rem;
 
-    background-color: var(--section-inner-colour);
-}
-
-.contributor div {
-    font-size: 1.5rem;
-}
-
-.contributor div * {
-    display: block;
+    border: solid white 3px;
+    background-color: #191922;
 }
 
 .contributor img {
+    border-radius: 50%;
+    
     width: 7rem;
     height: 7rem;
-    
-    border-radius: 50%;
-    margin-right: 0.5em;
 }
 
-.contributor b {
+.contributor .profile * {
+    display: block;
+}
+
+.contributor .profile p {
+    font-size: 1.5rem;
+}
+
+.contributor .profile b {
     width: 100%;
+    margin-bottom: 1.25rem;
     
-    margin-bottom: 0.4em;
-    
-    font-size: 2rem;
-    
-    border-bottom: 2px solid #35353f;
+    font-size: 2.25rem;
+    border-bottom: solid #35353f 2px;
 }
 
-.contributor span {
-    font-size: 0.75em;
+.contributor .profile b span {
     font-style: italic;
+    font-size: 1.75rem;
 }
 
 .noName b {
-    padding-bottom: 1.75rem;
+    padding-bottom: 2rem;
 }
 
-/*
-======== Footer ========
-*/
-
+/*======== footer ========*/
 footer {
-    width: 90%;
-    min-height: 10%;
-    
-    margin: auto;
-    
-    background-color: var(--footer-colour);
+    /* Maintain gap between ".section"s, footer isn't part of the same flex object as them */
+    margin-top: 3rem;
+
+    padding: 2.5rem;
+    background-color: #191922;
 }
 
 footer * {
-    margin: 0%;
-}
-
-footer a {
-    text-decoration: none;
-}
-
-footer img {
-    max-width: 2em;
+    font-size: 0.9rem;
 }
 
 #footerContent {
-    padding: 2rem;
-}
-
-/* Discord link */
-#Discord {
-    margin: 0 1em 0 1em;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
 }
 
 #Discord img {
-    margin-right: 0.5em;
+    max-width: 2rem;
+    margin-right: 0.25rem;
 }
-
-/*
-======== Light mode ========
-*/
