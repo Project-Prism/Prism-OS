@@ -15,7 +15,9 @@ Most browsers should support this, but it's minor anyway */
     box-sizing: border-box;
 
     font-family: "Work Sans", sans-serif;
+    
     scroll-behavior: smooth;
+    scrollbar-color:#35353f #191922; /* Not supported by all browsers but it's minor anyway */
 }
 
 .maxWidth {
