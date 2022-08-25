@@ -31,6 +31,13 @@ Most browsers should support this, but it's minor anyway */
     align-items: center;
 }
 
+/* Animated gradient */
+@keyframes gradientShift {
+    0%{background-position:0% 5%}
+    50%{background-position:100% 96%}
+    100%{background-position:0% 5%}
+}
+
 /*======== Text ========*/
 b, p, td, th, h1, h2, h3, h4, h5, h6 {
     color: var(--text-colour);
@@ -49,8 +56,10 @@ html, body {
 }
 
 html {
-    background: linear-gradient(to left top, #3a5a8a, #7f0bad, #480CA8);
+    background: radial-gradient(#3a5a8a, #7f0bad, #480CA8);
     background-attachment: fixed;
+    background-size: 500% 500%;
+    animation: gradientShift 100s ease infinite;
 }
 
 body {
