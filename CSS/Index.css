@@ -62,20 +62,13 @@ html {
     animation: gradientShift 100s ease infinite;
 }
 
-body {
-    padding-left: 7rem;
-    padding-right: 7rem;
-}
 
 /*======== nav bar ========*/
 nav {
     background-color: #191922;
-
+    
     position: fixed;
     padding: 1.25rem;
-
-    /* Stupid hack for position: fixed; having stupid padding rules */
-    width: calc(100% - 14rem); /* Takeaway double what the padding is because padding-left takes affect and shifts us to the right over the edge of the screen */
 }
 
 nav ul {
@@ -85,7 +78,7 @@ nav ul {
 
 nav a {
     color: var(--text-colour);
-
+    
     /* Some browsers don't support this, use a border instead */
     /*text-decoration-thickness: 2px;*/
     /*text-decoration-color: #7f0bad;*/
@@ -103,10 +96,6 @@ header {
     min-height: 60%;
 }
 
-header h1 {
-    font-size: 6.5rem;
-}
-
 /*======== main/sections ========*/
 main {
     display: flex;
@@ -115,14 +104,11 @@ main {
 }
 
 .section {
-    padding: 2.5rem;
     background-color: #35353f;
 }
 
 .section h2 {
-    font-size: 3rem;
     border-bottom: solid #7f0bad 3px;
-    margin-bottom: 2.5rem;
 }
 
 /* Place holder css for #Contributors and #Downloads, shows if data isn't loaded from github */
@@ -152,7 +138,7 @@ main {
     gap: 1rem;
     flex-grow: 1;
     padding: 1rem;
-
+    
     border: solid white 3px;
     background-color: #191922;
 }
@@ -193,7 +179,7 @@ main {
 footer {
     /* Maintain gap between ".section"s, footer isn't part of the same flex object as them */
     margin-top: 3rem;
-
+    
     padding: 2.5rem;
     background-color: #191922;
 }
@@ -211,4 +197,53 @@ footer * {
 #Discord img {
     max-width: 2rem;
     margin-right: 0.25rem;
+}
+
+@media only screen and (min-width: 1070px) {
+    body {
+        padding-left: 7rem;
+        padding-right: 7rem;
+    }
+
+    nav {
+        /* Stupid hack for position: fixed; having stupid padding rules */
+        width: calc(100% - 14rem); /* Takeaway double what the padding is because padding-left takes affect and shifts us to the right over the edge of the screen */
+    }
+
+    header h1 {
+        font-size: 6.5rem;
+    }
+
+    .section {
+        padding: 2.5rem;
+    }
+
+    .section h2 {
+        font-size: 3rem;
+        margin-bottom: 2.5rem;
+    }
+}
+
+/* Low screen size layout */
+@media only screen and (max-width: 1070px) and (max-height: 890px) {
+    :root {
+        --text-size: 1em;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    header h1 {
+        font-size: 4rem;
+    }
+
+    .section {
+        padding: 1.5rem;
+    }
+
+    .section h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
 }
