@@ -1,5 +1,5 @@
 # New content
-[ ] Finish footer
+[X] Finish footer
 [ ] Add no js fallbacks
 [ ] Light mode
 
@@ -14,7 +14,7 @@
 
 [ ] Add copy button for section links
 [ ] Animate section selection from hyper link
-[ ] Animate background
+[X] Animate background
 [ ] Mobile layout
 [ ] Fix bugs
 [ ] Clean up
