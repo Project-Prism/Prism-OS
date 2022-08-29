@@ -26,7 +26,15 @@ function onLoad(event)
     const rootNode = document.createElement("div")
     const table = document.createElement("table")
     table.classList.add("maxWidth", "innerSectionBorder")
-    table.innerHTML= "<thead><tr><th>Version</th><th>Type</th><th>Date</th><th>Download</th><th>Github</th></tr></thead>" // Headings: Version, Type, Date, Download, Github
+
+    if (window.innerWidth > 1070)
+    {
+        table.innerHTML= "<thead><tr><th>Version</th><th>Type</th><th>Date</th><th>Download</th><th>Github</th></tr></thead>" // Headings: Version, Type, Date, Download, Github
+    }
+    else
+    {
+        table.innerHTML= "<thead><tr><th>Version</th><th>Date</th><th>Download</th><th>Github</th></tr></thead>" // Headings: Version, Type, Date, Download, Github
+    }
     const body = document.createElement("tbody")
 
     // // Get the four most recent releases and create table data
@@ -69,7 +77,10 @@ function onLoad(event)
 
         // Link data fields to row
         row.appendChild(version)
-        row.appendChild(type)
+        if (window.innerWidth > 1070)
+        {
+            row.appendChild(type)
+        }
         row.appendChild(date)
         row.appendChild(download)
         row.appendChild(github)
