@@ -99,11 +99,6 @@ namespace PrismOS.Libraries.Graphics
 
         #region Properties
 
-        public enum ColorSpace
-        {
-            ARGB,
-            CYMK,
-        }
         private uint _ARGB;
         private byte _A;
         private byte _R;

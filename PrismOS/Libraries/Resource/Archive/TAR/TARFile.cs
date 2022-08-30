@@ -26,7 +26,7 @@ namespace PrismOS.Libraries.Resource.Archive.TAR
                     byte[] Data = new byte[OCS2L(H->Size)];
                     fixed (byte* P = Data)
                     {
-                        Cosmos.Core.MemoryOperations.Copy(P, (byte*)((uint)T + 512), Data.Length);
+                        MemoryOperations.Copy(P, (byte*)((uint)T + 512), Data.Length);
                     }
                     //Marshal.Copy(new IntPtr(T + 512), Data, 0, Data.Length);
 

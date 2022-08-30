@@ -1,5 +1,7 @@
 ﻿using PrismOS.Libraries.Resource.Images;
-using PrismOS.Libraries.Memory;
+using IL2CPU.API.Attribs;
+using XSharp.Assembler;
+using Cosmos.Core;
 using Cosmos.HAL;
 using System;
 
@@ -12,8 +14,8 @@ namespace PrismOS.Libraries.Graphics
             this.Width = Width;
             this.Height = Height;
 
-            Global.PIT.RegisterTimer(new PIT.PITTimer(() => { FPS = Frames; Frames = 0; }, 1000000000, true));
-            Internal = MemoryOperations.Allocate(Size * 4);
+            Cosmos.HAL.Global.PIT.RegisterTimer(new PIT.PITTimer(() => { FPS = Frames; Frames = 0; }, 1000000000, true));
+            Internal = (uint*)GCImplementation.AllocNewObject(Size * 4);
         }
 
         // Get/Set Pixels
@@ -104,7 +106,7 @@ namespace PrismOS.Libraries.Graphics
                 return Width * Height;
             }
         }
-
+        
         #region Line
 
         public void DrawLine(int X1, int Y1, int X2, int Y2, Color Color, bool AntiAlias = false)
@@ -223,7 +225,7 @@ namespace PrismOS.Libraries.Graphics
                 }
                 for (int IY = 0; IY < Height; IY++)
                 {
-                    MemoryOperations.Fill(Internal + ((Y + IY) * this.Width + X), Color.ARGB, (uint)Width);
+                    Fill(Internal + ((Y + IY) * this.Width + X), Color.ARGB, (uint)Width);
                 }
                 return;
             }
@@ -398,7 +400,7 @@ namespace PrismOS.Libraries.Graphics
 
                     uint* Offset = Internal + (Width * (Y + IY)) + X - IX;
 
-                    MemoryOperations.Fill(Offset, Color.ARGB, (uint)(IX * 2));
+                    Fill(Offset, Color.ARGB, (uint)(IX * 2));
                 }
             }
             else
@@ -449,6 +451,43 @@ namespace PrismOS.Libraries.Graphics
 
         #endregion
 
+        #region Memory
+
+        [PlugMethod(Assembler = typeof(AsmCopyUint))]
+        public static void Copy(uint* Destination, uint* Source, uint Length)
+        {
+            throw new NotImplementedException();
+        }
+        [PlugMethod(Assembler = typeof(AsmSetUint))]
+        public static void Fill(uint* Destination, uint Value, uint Length)
+        {
+            throw new NotImplementedException();
+        }
+        public class AsmSetUint : AssemblerMethod
+        {
+            public override void AssembleNew(Assembler aAssembler, object aMethodInfo)
+            {
+                _ = new LiteralAssemblerCode("mov eax, [esp+12]");
+                _ = new LiteralAssemblerCode("mov edi, [esp+16]");
+                _ = new LiteralAssemblerCode("cld");
+                _ = new LiteralAssemblerCode("mov ecx, [esp+8]");
+                _ = new LiteralAssemblerCode("rep stosd");
+            }
+        }
+        public class AsmCopyUint : AssemblerMethod
+        {
+            public override void AssembleNew(Assembler aAssembler, object aMethodInfo)
+            {
+                _ = new LiteralAssemblerCode("mov esi, [esp+12]");
+                _ = new LiteralAssemblerCode("mov edi, [esp+16]");
+                _ = new LiteralAssemblerCode("cld");
+                _ = new LiteralAssemblerCode("mov ecx, [esp+8]");
+                _ = new LiteralAssemblerCode("rep movsd");
+            }
+        }
+
+        #endregion
+
         #region Image
 
         public void DrawImage(int X, int Y, FrameBuffer Image, bool Alpha = true)
@@ -459,7 +498,7 @@ namespace PrismOS.Libraries.Graphics
             }
             if (!Alpha && X == 0 && Y == 0 && Image.Width == Width && Image.Height == Height)
             {
-                MemoryOperations.Copy(Internal, Image.Internal, Size);
+                Copy(Internal, Image.Internal, Size);
                 return;
             }
             if (!Alpha)
@@ -490,7 +529,7 @@ namespace PrismOS.Libraries.Graphics
 
                 for (uint IY = 0; IY < THeight; IY++)
                 {
-                    MemoryOperations.Copy(Internal + PadX + X + ((PadY + Y + IY) * Width), Image.Internal + PadX + ((PadY + IY) * Image.Width), TWidth);
+                    Copy(Internal + PadX + X + ((PadY + Y + IY) * Width), Image.Internal + PadX + ((PadY + IY) * Image.Width), TWidth);
                 }
                 return;
             }
@@ -596,7 +635,7 @@ namespace PrismOS.Libraries.Graphics
 
         public void Clear(Color Color)
         {
-            MemoryOperations.Fill(Internal, Color.ARGB, Size);
+            Fill(Internal, Color.ARGB, Size);
         }
         public void Clear()
         {
@@ -606,7 +645,7 @@ namespace PrismOS.Libraries.Graphics
         public void CopyTo(uint* Destination)
         {
             Frames++;
-            MemoryOperations.Copy(Destination, Internal, Size);
+            Copy(Destination, Internal, Size);
         }
 
         public FrameBuffer Resize(uint Width, uint Height)
@@ -670,9 +709,9 @@ namespace PrismOS.Libraries.Graphics
         {
             if (Size != 0)
             {
-                MemoryOperations.Free(Internal);
+                Cosmos.Core.Memory.Heap.Free(Internal);
             }
-            MemoryOperations.Free(this);
+            GCImplementation.Free(this);
             GC.SuppressFinalize(this);
         }
 
