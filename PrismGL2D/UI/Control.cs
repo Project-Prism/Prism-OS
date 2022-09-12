@@ -10,38 +10,87 @@ namespace PrismGL2D.UI
             OnClickEvents = new();
             OnDrawEvents = new();
             OnKeyEvents = new();
-            InputFeed = string.Empty;
+            Enabled = true;
+            Feed = string.Empty;
             Text = string.Empty;
-            Font = Font.Empty;
-
             Theme = Theme.Default;
+            Font = Font.Empty;
         }
 
-		#region Events
+        #region Methods
 
-		public List<Action<int, int, MouseState>> OnClickEvents { get; set; }
+        /// <summary>
+        /// Shows the control.
+        /// </summary>
+        public void Show()
+        {
+            Enabled = true;
+        }
+        
+        /// <summary>
+        /// Hides the control.
+        /// </summary>
+        public void Hide()
+		{
+            Enabled = false;
+		}
+
+        #endregion
+
+        #region Fields
+
+        /// <summary>
+        /// Check to see if the mouse is hovering over the element.
+        /// </summary>
+        public bool IsHovering;
+        /// <summary>
+        /// Check to see if the OnClickEvent needs to be fired.
+        /// </summary>
+        public bool IsPressed;
+        /// <summary>
+        /// Check to see if the control should have a border.
+        /// </summary>
+        public bool HasBorder;
+        /// <summary>
+        /// Visibility control.
+        /// </summary>
+        public bool Enabled;
+        /// <summary>
+        /// The char feed from the keyboard. (input)
+        /// </summary>
+        public string Feed;
+        /// <summary>
+        /// The text value of the control, if it uses it.
+        /// </summary>
+        public string Text;
+        /// <summary>
+        /// The theme used for the control.
+        /// </summary>
+        public Theme Theme;
+        /// <summary>
+        /// The font used for the control.
+        /// </summary>
+        public Font Font;
+        /// <summary>
+        /// The X position of the control.
+        /// </summary>
+        public int X;
+        /// <summary>
+        /// The Y position of the control.
+        /// </summary>
+        public int Y;
+
+        #endregion
+
+        #region Events
+
+        public List<Action<int, int, MouseState>> OnClickEvents { get; set; }
         public List<Action<ConsoleKeyInfo>> OnKeyEvents { get; set; }
         public List<Action<Graphics>> OnDrawEvents { get; set; }
 
-		#endregion
+        #endregion
 
-		#region Fields
-
-		public string InputFeed { get; set; }
-        public string Text { get; set; }
-        public Theme Theme { get; set; }
-        public Font Font { get; set; }
-
-        public bool IsHovering { get; set; }
-        public bool IsPressed { get; set; }
-        public bool HasBorder { get; set; }
-        public bool IsHidden { get; set; }
-        public int Y { get; set; }
-        public int X { get; set; }
-
-		#endregion
-
-		public virtual void OnClickEvent(int X, int Y, MouseState State)
+        public virtual void OnClickEvent(int X, int Y, MouseState State)
 		{
             for (int I = 0; I < OnClickEvents.Count; I++)
 			{
@@ -50,7 +99,7 @@ namespace PrismGL2D.UI
         }
         public virtual void OnKeyEvent(ConsoleKeyInfo Key)
         {
-            InputFeed += Key.KeyChar;
+            Feed += Key.KeyChar;
 
             for (int I = 0; I < OnKeyEvents.Count; I++)
             {

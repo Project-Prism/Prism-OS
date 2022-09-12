@@ -46,9 +46,9 @@ namespace PrismOS
             Canvas.DrawString(15, 15, $"FPS: {Canvas.GetFPS()}", Default, Color.White);
 
             bool KeyPress = TryReadKey(out ConsoleKeyInfo Key);
-            foreach (Frame Frame in Frame.Windows)
+            foreach (Frame Frame in Frame.Frames)
             {
-                if (Frame.Windows[^1] == Frame && KeyPress)
+                if (Frame.Frames[^1] == Frame && KeyPress)
                 {
                     Frame.OnKeyEvent(Key);
                 }
@@ -92,15 +92,15 @@ namespace PrismOS
         }
 
         public static bool TryReadKey(out ConsoleKeyInfo Key)
-		{
+        {
             if (KeyboardManager.TryReadKey(out var KeyX))
-			{
+            {
                 Key = new(KeyX.KeyChar, (ConsoleKey)KeyX.Key, KeyX.Modifiers == ConsoleModifiers.Shift, KeyX.Modifiers == ConsoleModifiers.Alt, KeyX.Modifiers == ConsoleModifiers.Control);
                 return true;
-			}
+            }
 
             Key = default;
             return false;
-		}
+        }
     }
 }

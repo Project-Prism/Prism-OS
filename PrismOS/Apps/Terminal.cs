@@ -25,7 +25,7 @@ namespace PrismOS.Apps
             Button.Height = 20;
             Button.Text = "X";
             Button.HasBorder = true;
-            Button.OnClickEvents.Add((int X, int Y, MouseState State) => { Windows.Remove(this); });
+            Button.OnClickEvents.Add((int X, int Y, MouseState State) => { Close(); });
 
             // Label1
             Label1.X = 1;
@@ -35,9 +35,9 @@ namespace PrismOS.Apps
             Label1.Text = "";
 
             WriteLine("Prism OS CLI V1");
-            Elements.Add(Button);
-            Elements.Add(Label1);
-            Windows.Add(this);
+            Controls.Add(Button);
+            Controls.Add(Label1);
+            Frames.Add(this);
         }
 
         public override void OnKeyEvent(ConsoleKeyInfo Key)

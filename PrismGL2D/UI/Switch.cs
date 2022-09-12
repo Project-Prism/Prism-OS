@@ -4,7 +4,7 @@ namespace PrismGL2D.UI
 {
     public class Switch : Control
     {
-        public bool Enabled { get; set; }
+        public bool Toggled { get; set; }
 
         public override void OnClickEvent(int X, int Y, MouseState State)
         {
@@ -17,7 +17,7 @@ namespace PrismGL2D.UI
             base.OnDrawEvent(this);
 
             DrawFilledRectangle(1, 1, (int)(Width - 2), (int)(Height - 2), (int)Theme.Radius, Theme.Background);
-            DrawFilledRectangle((int)(Enabled ? 2 : Width / 2 + 2), 0, (int)(Width / 2), (int)(Width - 2), (int)Theme.Radius, Theme.Accent);
+            DrawFilledRectangle((int)(Toggled ? 2 : Width / 2 + 2), 0, (int)(Width / 2), (int)(Width - 2), (int)Theme.Radius, Theme.Accent);
 
             if (HasBorder)
             {

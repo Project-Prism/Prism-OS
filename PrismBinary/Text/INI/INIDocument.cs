@@ -142,7 +142,7 @@
                 {
                     int II = Source.IndexOfAny(new char[] { '\n', '\r' }, ++I);
                     Source = Source.Remove(I, II - I);
-                    Source = Source.Insert(I, Value.ToString());
+                    Source = Source.Insert(I, Value.ToString() + "");
                     return true;
                 }
             }

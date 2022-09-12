@@ -36,7 +36,7 @@ namespace PrismOS.Apps
             Button.Height = 20;
             Button.Text = "X";
             Button.HasBorder = true;
-            Button.OnClickEvents.Add((int X, int Y, Cosmos.System.MouseState State) => { Windows.Remove(this); });
+            Button.OnClickEvents.Add((int X, int Y, Cosmos.System.MouseState State) => { Close(); });
 
             // Engine1
             E = new(Image1.Width, Image1.Height, 45);
@@ -44,9 +44,9 @@ namespace PrismOS.Apps
             E.Objects.Add(C1);
             E.Objects.Add(C2);
 
-            Elements.Add(Button);
-            Elements.Add(Image1);
-            Windows.Add(this);
+            Controls.Add(Button);
+            Controls.Add(Image1);
+            Frames.Add(this);
         }
 
         public override void OnDrawEvent(Graphics buffer)
