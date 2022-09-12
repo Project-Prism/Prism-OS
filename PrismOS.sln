@@ -18,7 +18,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismGL3D", "PrismGL3D\Pris
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismMemory", "PrismMemory\PrismMemory.csproj", "{ACAA3888-69FD-4C6F-ACF5-78874E9075D2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismNework", "PrismNework\PrismNework.csproj", "{C9E68E44-10D7-4DBB-A6BE-D4DEFA36C952}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismNetwork", "PrismNetwork\PrismNetwork.csproj", "{C9E68E44-10D7-4DBB-A6BE-D4DEFA36C952}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
