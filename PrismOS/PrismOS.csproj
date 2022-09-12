@@ -70,7 +70,7 @@
       <ProjectReference Include="..\PrismGL2D\PrismGL2D.csproj" />
       <ProjectReference Include="..\PrismGL3D\PrismGL3D.csproj" />
       <ProjectReference Include="..\PrismMemory\PrismMemory.csproj" />
-      <ProjectReference Include="..\PrismNework\PrismNework.csproj" />
+      <ProjectReference Include="..\PrismNetwork\PrismNetwork.csproj" />
     </ItemGroup>
 
 </Project>
