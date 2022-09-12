@@ -21,6 +21,16 @@
 </ul>
 <hr>
 
+## Build Status
+| Name         | Status        |
+|--------------|---------------|
+| PrismBinary  | [x] Passing   |
+| PrismGL2D    | [ ] Broken    |
+| PrismGL3D    | [x] Passing   |
+| PrismMemory  | [x] Passing   |
+| PrismNetwork | [x] Passing   |
+| Kernel       | [ ] Broken    |
+
 ## Notable contributors
 | Name                                                  | Contribution(s)              |
 |-------------------------------------------------------|------------------------------|
