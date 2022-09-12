@@ -66,7 +66,7 @@ namespace PrismBinary.Compression
 
             foreach (int k in Compressed)
             {
-                string entry = null;
+                string entry = string.Empty;
                 if (Dictionary.ContainsKey(k))
                     entry = Dictionary[k];
                 else if (k == Dictionary.Count)

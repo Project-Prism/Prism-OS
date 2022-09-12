@@ -67,15 +67,15 @@ namespace PrismBinary.Compression
         private static readonly byte[] DefaultLength = new byte[288];
         private static readonly byte[] DefaultDistance = new byte[32];
 
-        private List<byte> Out;
-        private UInt32 CodeBuffer;
+        private IList<byte> In = new List<byte>();
+        private List<byte> Out = new();
+        private uint CodeBuffer;
         private int NumBits;
 
-        private Huffman Distance;
-        private Huffman Length;
+        private Huffman Distance = new(new());
+        private Huffman Length = new(new());
 
         private int InPos;
-        private IList<byte> In;
 
         private static void InitDefaults()
         {
@@ -253,10 +253,7 @@ namespace PrismBinary.Compression
             if (nlen != (len ^ 0xffff)) throw new Exception("zlib corrupt");
             if (InPos + len > In.Count) throw new Exception("read past buffer");
 
-            // TODO: this sucks. DON'T USE LINQ.
-            var tmp = new List<byte>();
-
-            for (int i = InPos; i < InPos + len; i++)
+			for (int i = InPos; i < InPos + len; i++)
             {
                 Out.Add(In[i]);
             }
@@ -304,15 +301,20 @@ namespace PrismBinary.Compression
 
         private class Huffman
         {
-            public readonly UInt16[] Fast = new UInt16[1 << FastBits];
-            public readonly UInt16[] FirstCode = new UInt16[16];
-            public readonly UInt16[] FirstSymbol = new UInt16[16];
+            public readonly ushort[] Fast = new ushort[1 << FastBits];
+            public readonly ushort[] FirstCode = new ushort[16];
+            public readonly ushort[] FirstSymbol = new ushort[16];
             public readonly int[] MaxCode = new int[17];
-            public readonly Byte[] Size = new Byte[288];
-            public readonly UInt16[] Value = new UInt16[288];
+            public readonly byte[] Size = new byte[288];
+            public readonly ushort[] Value = new UInt16[288];
 
             public Huffman(ArraySegment<byte> sizeList)
             {
+                if (sizeList.Array == null)
+				{
+                    return;
+				}
+
                 int i;
                 int k = 0;
                 var nextCode = new int[16];
@@ -331,7 +333,7 @@ namespace PrismBinary.Compression
                     nextCode[i] = code;
                     FirstCode[i] = (UInt16)code;
                     FirstSymbol[i] = (UInt16)k;
-                    code = (code + sizes[i]);
+                    code += sizes[i];
                     if (sizes[i] != 0)
                         if (code - 1 >= (1 << i)) throw new Exception("bad codelengths");
                     MaxCode[i] = code << (16 - i); // preshift for inner loop
