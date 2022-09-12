@@ -23,7 +23,7 @@ namespace PrismBinary.Archive.TAR
                     byte[] Data = new byte[OCS2L(H->Size)];
                     fixed (byte* P = Data)
                     {
-                        IO.Copy8(P, (byte*)((uint)T + 512), (uint)Data.Length);
+                        IO.Copy(P, (byte*)((uint)T + 512), (uint)Data.Length);
                     }
 
                     Files.Add(

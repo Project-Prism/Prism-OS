@@ -1,6 +1,5 @@
-﻿using Cosmos.Core;
+﻿using PrismMemory;
 using Cosmos.HAL;
-using PrismMemory;
 
 namespace PrismGL2D
 {
@@ -11,11 +10,11 @@ namespace PrismGL2D
             this.Width = Width;
             this.Height = Height;
 
-            Cosmos.HAL.Global.PIT.RegisterTimer(new PIT.PITTimer(() => { _FPS = _Frames; _Frames = 0; }, 1000000000, true));
+            Global.PIT.RegisterTimer(new PIT.PITTimer(() => { _FPS = _Frames; _Frames = 0; }, 1000000000, true));
 
             if (Width > 0 && Height > 0)
             {
-                Internal = (uint*)GCImplementation.AllocNewObject(Size * 4);
+                Internal = IO.Allocate(Size * 4);
             }
         }
 
@@ -265,7 +264,7 @@ namespace PrismGL2D
                 }
                 for (int IY = 0; IY < Height; IY++)
                 {
-                    IO.Fill32(Internal + ((Y + IY) * this.Width + X), Color.ARGB, (uint)Width);
+                    IO.Fill(Internal + ((Y + IY) * this.Width + X), Color.ARGB, (uint)Width);
                 }
                 return;
             }
@@ -440,7 +439,7 @@ namespace PrismGL2D
 
                     uint* Offset = Internal + (Width * (Y + IY)) + X - IX;
 
-                    IO.Fill32(Offset, Color.ARGB, (uint)(IX * 2));
+                    IO.Fill(Offset, Color.ARGB, (uint)(IX * 2));
                 }
             }
             else
@@ -501,7 +500,7 @@ namespace PrismGL2D
             }
             if (!Alpha && X == 0 && Y == 0 && Image.Width == Width && Image.Height == Height)
             {
-                IO.Copy32(Internal, Image.Internal, Size);
+                IO.Copy(Internal, Image.Internal, Size);
                 return;
             }
             if (!Alpha)
@@ -532,7 +531,7 @@ namespace PrismGL2D
 
                 for (uint IY = 0; IY < THeight; IY++)
                 {
-                    IO.Copy32(Internal + PadX + X + ((PadY + Y + IY) * Width), Image.Internal + PadX + ((PadY + IY) * Image.Width), TWidth);
+                    IO.Copy(Internal + PadX + X + ((PadY + Y + IY) * Width), Image.Internal + PadX + ((PadY + IY) * Image.Width), TWidth);
                 }
                 return;
             }
@@ -682,7 +681,7 @@ namespace PrismGL2D
 
         public void Clear(Color Color)
         {
-            IO.Fill32(Internal, Color.ARGB, Size);
+            IO.Fill(Internal, Color.ARGB, Size);
         }
         public void Clear()
         {
@@ -692,8 +691,7 @@ namespace PrismGL2D
         public void CopyTo(uint* Destination)
         {
             _Frames++;
-            Cosmos.Core.MemoryOperations.Copy(Destination, Internal, (int)Size);
-            //IO.Copy32(Destination, Internal, Size);
+            IO.Copy(Destination, Internal, Size);
         }
 
         public uint GetFPS()
@@ -705,9 +703,9 @@ namespace PrismGL2D
         {
             if (Size != 0)
             {
-                Cosmos.Core.Memory.Heap.Free(Internal);
+                IO.Free(Internal);
             }
-            GCImplementation.Free(this);
+            IO.Free(this);
             GC.SuppressFinalize(this);
         }
 

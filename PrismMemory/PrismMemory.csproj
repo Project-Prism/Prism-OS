@@ -8,6 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Reference Include="Cosmos.Core">
+      <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.Core.dll</HintPath>
+    </Reference>
     <Reference Include="IL2CPU.API">
       <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\IL2CPU.API.dll</HintPath>
     </Reference>

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace PrismBinary.Compression
+﻿namespace PrismBinary.Compression
 {
     /// <summary>
     /// public domain zlib decode    
