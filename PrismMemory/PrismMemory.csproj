@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="IL2CPU.API">
+      <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\IL2CPU.API.dll</HintPath>
+    </Reference>
+    <Reference Include="XSharp">
+      <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\XSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

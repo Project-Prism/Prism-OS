@@ -28,6 +28,7 @@
         <ExtractMapFile>False</ExtractMapFile>
         <StackCorruptionDetectionLevel>AllInstructions</StackCorruptionDetectionLevel>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <DebugType>none</DebugType>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -35,25 +36,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Remove="Assets\**" />
-      <EmbeddedResource Remove="Assets\**" />
-      <None Remove="Assets\**" />
+      <None Remove="Assets\Cursor.bmp" />
+      <None Remove="Assets\Default.btf" />
+      <None Remove="Assets\Splash.bmp" />
+      <None Remove="Assets\Vista.wav" />
+      <None Remove="Assets\Wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Libraries\Resource\Assets\Cursor.bmp" />
-      <None Remove="Libraries\Resource\Assets\Default.btf" />
-      <None Remove="Libraries\Resource\Assets\Splash.bmp" />
-      <None Remove="Libraries\Resource\Assets\Vista.wav" />
-      <None Remove="Libraries\Resource\Assets\Wallpaper.bmp" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Include="Libraries\Resource\Assets\Cursor.bmp" />
-      <EmbeddedResource Include="Libraries\Resource\Assets\Default.btf" />
-      <EmbeddedResource Include="Libraries\Resource\Assets\Splash.bmp" />
-      <EmbeddedResource Include="Libraries\Resource\Assets\Vista.wav" />
-      <EmbeddedResource Include="Libraries\Resource\Assets\Wallpaper.bmp" />
+      <EmbeddedResource Include="Assets\Cursor.bmp" />
+      <EmbeddedResource Include="Assets\Default.btf" />
+      <EmbeddedResource Include="Assets\Splash.bmp" />
+      <EmbeddedResource Include="Assets\Vista.wav" />
+      <EmbeddedResource Include="Assets\Wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>
@@ -68,13 +63,14 @@
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
-        <PackageReference Include="DotNetParser" Version="0.5.9" />
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="XSharp">
-        <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\XSharp.dll</HintPath>
-      </Reference>
+      <ProjectReference Include="..\PrismBinary\PrismBinary.csproj" />
+      <ProjectReference Include="..\PrismGL2D\PrismGL2D.csproj" />
+      <ProjectReference Include="..\PrismGL3D\PrismGL3D.csproj" />
+      <ProjectReference Include="..\PrismMemory\PrismMemory.csproj" />
+      <ProjectReference Include="..\PrismNework\PrismNework.csproj" />
     </ItemGroup>
 
 </Project>

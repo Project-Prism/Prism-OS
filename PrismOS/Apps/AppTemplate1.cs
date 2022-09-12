@@ -1,12 +1,12 @@
-﻿using PrismOS.Libraries.Rasterizer.Objects;
-using PrismOS.Libraries.Rasterizer;
-using PrismOS.Libraries.Graphics;
-using PrismOS.Libraries.UI;
-using Cosmos.System;
+﻿using PrismGL3D.Objects;
+using PrismGL2D.UI;
+using PrismGL2D;
+using PrismGL3D;
+using System;
 
 namespace PrismOS.Apps
 {
-    public unsafe class AppTemplate1 : Window
+    public unsafe class AppTemplate1 : Frame
     {
         public Button Button = new();
         public Cube C2 = new(300, 1, 300);
@@ -36,7 +36,7 @@ namespace PrismOS.Apps
             Button.Height = 20;
             Button.Text = "X";
             Button.HasBorder = true;
-            Button.OnClickEvents.Add(() => { Windows.Remove(this); });
+            Button.OnClickEvents.Add((int X, int Y, Cosmos.System.MouseState State) => { Windows.Remove(this); });
 
             // Engine1
             E = new(Image1.Width, Image1.Height, 45);
@@ -49,37 +49,37 @@ namespace PrismOS.Apps
             Windows.Add(this);
         }
 
-        public override void OnDraw(FrameBuffer buffer)
+        public override void OnDrawEvent(Graphics buffer)
         {
-            base.OnDraw(buffer);
+            base.OnDrawEvent(buffer);
 
-            E.Render(Image1.Buffer);
+            E.Render(Image1.Source);
             C1.TestLogic(-0.01);
             C2.TestLogic(0.05);
         }
 
-        public override void OnKeyPress(KeyEvent Key)
+        public override void OnKeyEvent(ConsoleKeyInfo Key)
         {
-            base.OnKeyPress(Key);
+            base.OnKeyEvent(Key);
 
             switch (Key.Key)
             {
-                case ConsoleKeyEx.W:
+                case ConsoleKey.W:
                     E.Camera.Position.Z -= 5;
                     break;
-                case ConsoleKeyEx.S:
+                case ConsoleKey.S:
                     E.Camera.Position.Z += 5;
                     break;
-                case ConsoleKeyEx.A:
+                case ConsoleKey.A:
                     E.Camera.Position.X -= 5;
                     break;
-                case ConsoleKeyEx.D:
+                case ConsoleKey.D:
                     E.Camera.Position.X += 5;
                     break;
-                case ConsoleKeyEx.E:
+                case ConsoleKey.E:
                     E.Camera.Position.Y += 5;
                     break;
-                case ConsoleKeyEx.Q:
+                case ConsoleKey.Q:
                     E.Camera.Position.Y -= 5;
                     break;
             }

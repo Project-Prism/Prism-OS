@@ -1,9 +1,10 @@
-﻿using PrismOS.Libraries.UI;
+﻿using PrismGL2D.UI;
 using Cosmos.System;
+using System;
 
 namespace PrismOS.Apps
 {
-    public class Terminal : Window
+    public class Terminal : Frame
     {
         public Button Button = new();
         public Label Label1 = new();
@@ -24,7 +25,7 @@ namespace PrismOS.Apps
             Button.Height = 20;
             Button.Text = "X";
             Button.HasBorder = true;
-            Button.OnClickEvents.Add(() => { Windows.Remove(this); });
+            Button.OnClickEvents.Add((int X, int Y, MouseState State) => { Windows.Remove(this); });
 
             // Label1
             Label1.X = 1;
@@ -39,25 +40,25 @@ namespace PrismOS.Apps
             Windows.Add(this);
         }
 
-        public override void OnKeyPress(KeyEvent Key)
+        public override void OnKeyEvent(ConsoleKeyInfo Key)
         {
-            base.OnKeyPress(Key);
+            base.OnKeyEvent(Key);
 
             switch (Key.Key)
             {
-                case ConsoleKeyEx.Backspace:
+                case ConsoleKey.Backspace:
                     if (Input.Length != 0)
                     {
                         Input = Input[0..(Input.Length - 1)];
                         Label1.Text = Label1.Text[0..(Label1.Text.Length - 1)];
                     }
                     break;
-                case ConsoleKeyEx.Enter:
+                case ConsoleKey.Enter:
                     WriteLine("");
                     RunCommand(Input);
                     Input = "";
                     break;
-                case ConsoleKeyEx.Tab:
+                case ConsoleKey.Tab:
                     Input += '\t';
                     Label1.Text += '\t';
                     break;
