@@ -19,15 +19,18 @@
     <li>Much More.
     <h6>Note: Some Of These Items Might Not Be Implemented All The Way</h6>
 </ul>
-<hr>
+<hr/>
 
-> ## Build Status
+- ## Build Status
 - [x] PrismBinary
 - [ ] PrismGL2D
 - [x] PrismGL3D
 - [x] PrismMemory
 - [x] PrismNetwork
 - [ ] Kernel
+
+
+<hr/>
 
 ## Notable contributors
 | Name                                                  | Contribution(s)              |
@@ -36,9 +39,13 @@
 | [Terminal.cs](https://github.com/terminal-cs)         | General Development, Logo    |
 | [theopcoder](https://github.com/theopcoder)           | Website Developer            |
 
+<hr/>
+
 ## Contributing
 
 #### Want to Add Something New to Prism OS? Simply Create a Pull Request and We'll Review it. (Your Code Should Preferably Follow [These](https://github.com/Project-Prism/Prism-OS/blob/main/CONTRIBUTING.md) Guidelines)
+
+<hr/>
 
 ## License
 
