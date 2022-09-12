@@ -15,18 +15,11 @@ namespace PrismOS
         public static AudioMixer Mixer = new();
         protected override void BeforeRun()
         {
-            #region Startup Sound
-
-            Play(Assets.Vista);
-
-            #endregion
-
-            Canvas.Clear(Color.Red); Canvas.CopyTo((uint*)VBE.getLfbOffset());
-
             #region Splash Screen
 
             Canvas.DrawImage((int)((Canvas.Width / 2) - 128), (int)((Canvas.Height / 2) - 128), Assets.Splash256);
             Canvas.CopyTo((uint*)VBE.getLfbOffset());
+            Play(Assets.Vista);
 
             #endregion
 
