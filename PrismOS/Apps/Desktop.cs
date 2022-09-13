@@ -15,6 +15,7 @@ namespace PrismOS.Apps
             Text = "Desktop";
             HasBorder = false;
             Draggable = false;
+            Font = Kernel.Default;
 
             Frames.Add(this);
         }
@@ -29,6 +30,7 @@ namespace PrismOS.Apps
             Button1.Height = 32;
             Button1.HasBorder = true;
             Button1.OnClickEvents.Add(new((int X, int Y, Cosmos.System.MouseState State) => OnClick()));
+            Button1.Font = Kernel.Default;
 
             Controls.Add(Button1);
         }

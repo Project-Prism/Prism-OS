@@ -12,7 +12,7 @@ namespace PrismGL2D
 
             Global.PIT.RegisterTimer(new PIT.PITTimer(() => { _FPS = _Frames; _Frames = 0; }, 1000000000, true));
 
-            if (Width > 0 && Height > 0)
+            if (Width != 0 && Height != 0)
             {
                 Internal = IO.Allocate(Size * 4);
             }
@@ -34,7 +34,7 @@ namespace PrismGL2D
         {
             get
             {
-                if (X > Width || Y > Height || X < 0 || Y < 0)
+                if (X >= Width || Y >= Height || X < 0 || Y < 0)
                 {
                     return Color.Black;
                 }
@@ -42,7 +42,7 @@ namespace PrismGL2D
             }
             set
             {
-                if (value.A == 0 || X > Width || Y > Height || X < 0 || Y < 0)
+                if (value.A == 0 || X >= Width || Y >= Height || X < 0 || Y < 0)
                 {
                     return;
                 }
@@ -68,7 +68,7 @@ namespace PrismGL2D
         {
             get
             {
-                if (Index > Size)
+                if (Index >= Size)
                 {
                     return Color.Black;
                 }
@@ -81,7 +81,7 @@ namespace PrismGL2D
             }
             set
             {
-                if (value.A == 0 || Index > Size)
+                if (value.A == 0 || Index >= Size)
                 {
                     return;
                 }
@@ -103,12 +103,11 @@ namespace PrismGL2D
             }
             set
             {
-                if (Width <= 0)
+                if (_Width != 0)
 				{
-                    return;
-				}
+                    Internal = Resize(Width, value).Internal;
+                }
 
-                Internal = Resize(Width, value).Internal;
                 _Height = value;
             }
         }
@@ -120,12 +119,11 @@ namespace PrismGL2D
             }
             set
             {
-                if (Height <= 0)
-				{
-                    return;
-				}
+                if (_Height != 0)
+                {
+                    Internal = Resize(value, Height).Internal;
+                }
 
-                Internal = Resize(value, Height).Internal;
                 _Width = value;
             }
         }
@@ -133,7 +131,7 @@ namespace PrismGL2D
         {
             get
             {
-                return Width * Height;
+                return _Width * _Height;
             }
         }
 
@@ -491,12 +489,11 @@ namespace PrismGL2D
         #endregion
 
         #region Image
-
         public void DrawImage(int X, int Y, Graphics Image, bool Alpha = true)
         {
-            if (Image == null || Width == 0 || Height == 0)
+            if (Image == null)
             {
-                return;
+                throw new Exception("Cannot draw a null image file.");
             }
             if (!Alpha && X == 0 && Y == 0 && Image.Width == Width && Image.Height == Height)
             {

@@ -23,11 +23,11 @@
 
 - ## Build Status
 - [x] PrismBinary
-- [ ] PrismGL2D
-- [x] PrismGL3D
+- [x] PrismGL2D (Partial)
+- [x] PrismGL3D (Partial)
 - [x] PrismMemory
 - [x] PrismNetwork
-- [ ] Kernel
+- [X] Kernel (Partial)
 
 
 <hr/>

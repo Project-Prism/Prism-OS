@@ -2,6 +2,7 @@
 using Cosmos.System.Audio;
 using Cosmos.System;
 using Cosmos.Core;
+using PrismOS.Apps;
 using PrismGL2D.UI;
 using PrismGL2D;
 using System;
@@ -13,17 +14,23 @@ namespace PrismOS
         public static Graphics Canvas = new(VBE.getModeInfo().width, VBE.getModeInfo().height);
         public static Font Default = new(Font.DefaultCharset, Assets.Font1B, 16);
         public static AudioMixer Mixer = new();
+
         protected override void BeforeRun()
         {
             #region Splash Screen
 
             Canvas.DrawImage((int)((Canvas.Width / 2) - 128), (int)((Canvas.Height / 2) - 128), Assets.Splash256);
             Canvas.CopyTo((uint*)VBE.getLfbOffset());
-            Play(Assets.Vista);
+            //Play(Assets.Vista);
 
             #endregion
 
             #region Misc
+
+            //Desktop D = new();
+            //D.Add(() => { _ = new AppTemplate1(); });
+            //D.Add(() => { _ = new Terminal(); });
+            //D.Add(() => { Shutdown(); });
 
             Assets.Wallpaper = Assets.Wallpaper.Resize(Canvas.Width, Canvas.Height);
             MouseManager.ScreenWidth = Canvas.Width;
@@ -78,7 +85,7 @@ namespace PrismOS
                     Output = AC97.Initialize(4096),
                 }.Enable();
             }
-            catch (System.Exception E)
+            catch (Exception E)
             {
                 Cosmos.HAL.Debug.Serial.SendString($"[WARN] Unable to play audio! ({E.Message})");
             }

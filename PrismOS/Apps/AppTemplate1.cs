@@ -23,6 +23,7 @@ namespace PrismOS.Apps
             Height = 300;
             Text = "3D Testing";
             HasBorder = true;
+            Font = Kernel.Default;
 
             // Image1
             Image1.X = 0;
@@ -37,6 +38,7 @@ namespace PrismOS.Apps
             Button.Text = "X";
             Button.HasBorder = true;
             Button.OnClickEvents.Add((int X, int Y, Cosmos.System.MouseState State) => { Close(); });
+            Button.Font = Kernel.Default;
 
             // Engine1
             E = new(Image1.Width, Image1.Height, 45);
@@ -49,9 +51,9 @@ namespace PrismOS.Apps
             Frames.Add(this);
         }
 
-        public override void OnDrawEvent(Graphics buffer)
+        public override void OnDrawEvent(Graphics Buffer)
         {
-            base.OnDrawEvent(buffer);
+            base.OnDrawEvent(this);
 
             E.Render(Image1.Source);
             C1.TestLogic(-0.01);

@@ -18,6 +18,7 @@ namespace PrismOS.Apps
             Width = 300;
             Height = 200;
             Text = "Console";
+            Font = Kernel.Default;
 
             // Button
             Button.X = (int)(Width - 20);
@@ -26,6 +27,7 @@ namespace PrismOS.Apps
             Button.Text = "X";
             Button.HasBorder = true;
             Button.OnClickEvents.Add((int X, int Y, MouseState State) => { Close(); });
+            Button.Font = Kernel.Default;
 
             // Label1
             Label1.X = 1;
@@ -33,6 +35,7 @@ namespace PrismOS.Apps
             Label1.Width = Width - 2;
             Label1.Height = Height - 22;
             Label1.Text = "";
+            Label1.Font = Kernel.Default;
 
             WriteLine("Prism OS CLI V1");
             Controls.Add(Button);

@@ -38,7 +38,7 @@ namespace PrismGL2D.UI
 		public override void OnDrawEvent(Graphics Buffer)
 		{
 			base.OnDrawEvent(this);
-
+			
 			if (Draggable)
 			{
 				if (MouseManager.MouseState == MouseState.Left)

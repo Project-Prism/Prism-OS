@@ -16,7 +16,6 @@ namespace PrismGL3D
             Objects = new();
             Camera = new();
             this.FOV = FOV;
-
         }
 
         #region Engine Data
@@ -60,6 +59,12 @@ namespace PrismGL3D
 
         public void Render(Graphics Graphics)
         {
+            if (Width != Graphics.Width || Height != Graphics.Height)
+            {
+                Width = Graphics.Width;
+                Height = Graphics.Height;
+            }
+
             double Z0 = Width / 2 / Math.Tan(FOV / 2 * 0.0174532925); // 0.0174532925 == pi / 180
 
             Buffer.Clear();
