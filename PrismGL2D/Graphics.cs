@@ -220,11 +220,11 @@ namespace PrismGL2D
             }
         }
 
-        #endregion
+		#endregion
 
-        #region Rectangle
+		#region Rectangle
 
-        public void DrawRectangle(int X, int Y, int Width, int Height, int Radius, Color Color)
+		public void DrawRectangle(int X, int Y, int Width, int Height, int Radius, Color Color)
         {
             if (Radius > 0)
             {
@@ -272,7 +272,7 @@ namespace PrismGL2D
                 {
                     for (int IY = Y; IY < Y + Height; IY++)
                     {
-                        this[X, IY] = Color;
+                        this[IX, IY] = Color;
                     }
                 }
             }
