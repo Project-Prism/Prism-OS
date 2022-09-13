@@ -1,17 +1,17 @@
 ﻿namespace PrismBinary.Text.NBT
 {
 	// WIP, not finished!
-	public class NBTTag
+	public class NBTNode
 	{
-		public NBTTag(string Name, object Value)
+		public NBTNode(string Name, object Value)
 		{
 			this.Value = Value;
 			this.Name = Name;
 		}
-		public NBTTag(string Source)
+		public NBTNode(string Source)
 		{
 			string T = "";
-			NBTTag TT;
+			NBTNode TT;
 
 			// Start at 1 to skip the first '{'
 			// Exclude last to skip the last '}'

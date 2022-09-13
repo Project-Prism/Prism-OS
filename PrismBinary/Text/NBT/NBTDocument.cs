@@ -4,12 +4,22 @@
 	{
 		public NBTDocument(string Source)
 		{
-			Tags = new();
+			Nodes = new();
 		}
+
+
+		#region Methods
+
+		public NBTNode[] GetNodes()
+		{
+			return Nodes.ToArray();
+		}
+
+		#endregion
 
 		#region Fields
 
-		private List<NBTTag> Tags;
+		private List<NBTNode> Nodes;
 
 		#endregion
 	}
