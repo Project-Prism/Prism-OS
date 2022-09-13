@@ -12,7 +12,6 @@ namespace PrismOS
     public unsafe class Kernel : Cosmos.System.Kernel
     {
         public static Graphics Canvas = new(VBE.getModeInfo().width, VBE.getModeInfo().height);
-        public static Font Default = new(Font.DefaultCharset, Assets.Font1B, 16);
         public static AudioMixer Mixer = new();
 
         protected override void BeforeRun()
@@ -27,10 +26,11 @@ namespace PrismOS
 
             #region Misc
 
-            //Desktop D = new();
-            //D.Add(() => { _ = new AppTemplate1(); });
-            //D.Add(() => { _ = new Terminal(); });
-            //D.Add(() => { Shutdown(); });
+            Control.Config.Font = new(Font.DefaultCharset, Assets.Font1B, 16);
+            Desktop D = new();
+            D.Add(() => { _ = new AppTemplate1(); });
+            D.Add(() => { _ = new Terminal(); });
+            D.Add(() => { Shutdown(); });
 
             Assets.Wallpaper = Assets.Wallpaper.Resize(Canvas.Width, Canvas.Height);
             MouseManager.ScreenWidth = Canvas.Width;
@@ -42,8 +42,8 @@ namespace PrismOS
         protected override void Run()
         {
             Canvas.DrawImage(0, 0, Assets.Wallpaper, false);
-            Canvas.DrawFilledRectangle(0, 0, (int)Default.MeasureString($"FPS: {Canvas.GetFPS()}") + 30, (int)Default.Size + 30, 0, Color.LightBlack);
-            Canvas.DrawString(15, 15, $"FPS: {Canvas.GetFPS()}", Default, Color.White);
+            Canvas.DrawFilledRectangle(0, 0, (int)Control.Config.Font.MeasureString($"FPS: {Canvas.GetFPS()}") + 30, (int)Control.Config.Font.Size + 30, 0, Color.LightBlack);
+            Canvas.DrawString(15, 15, $"FPS: {Canvas.GetFPS()}", Control.Config.Font, Color.White);
 
             bool KeyPress = TryReadKey(out ConsoleKeyInfo Key);
             foreach (Frame Frame in Frame.Frames)
@@ -58,7 +58,6 @@ namespace PrismOS
             // Draw Cursor And Update The Screen
             Canvas.DrawImage((int)MouseManager.X, (int)MouseManager.Y, Assets.Cursor);
             Canvas.CopyTo((uint*)VBE.getLfbOffset());
-
         }
 
         public static void Shutdown()

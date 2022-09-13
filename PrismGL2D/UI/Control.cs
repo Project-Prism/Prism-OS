@@ -13,8 +13,78 @@ namespace PrismGL2D.UI
             Enabled = true;
             Feed = string.Empty;
             Text = string.Empty;
-            Theme = Theme.Default;
-            Font = Font.Empty;
+        }
+
+        public static class Config
+        {
+            /// <summary>
+            /// Background color for the control.
+            /// </summary>
+            public static Color BackColorClick = Color.LightGray, BackColorHover = Color.LighterBlack, BackColor = Color.Black;
+            /// <summary>
+            /// Foreground color for the control.
+            /// </summary>
+            public static Color ForeColorClick = Color.Black, ForeColorHover = Color.White, ForeColor = Color.White;
+            /// <summary>
+            /// Accent color for the control.
+            /// </summary>
+            public static Color AccentColor = Color.UbuntuPurple;
+            /// <summary>
+            /// The global radius factor.
+            /// </summary>
+            public static uint Radius = 0;
+            /// <summary>
+            /// The global scaling factor.
+            /// </summary>
+            public static uint Scale = 35;
+            /// <summary>
+            /// The global default font.
+            /// </summary>
+            public static Font Font = Font.Empty;
+
+
+            /// <summary>
+            /// Gets the correct color based on the mouse status.
+            /// </summary>
+            /// <param name="Click"></param>
+            /// <param name="Hover"></param>
+            /// <returns>Correct background color.</returns>
+            public static Color GetBackground(bool Click, bool Hover)
+            {
+                if (Hover)
+                {
+                    if (Click)
+                    {
+                        return BackColorClick;
+                    }
+                    else
+                    {
+                        return BackColorHover;
+                    }
+                }
+                return BackColor;
+            }
+            /// <summary>
+            /// Gets the correct color based on the mouse status.
+            /// </summary>
+            /// <param name="Click"></param>
+            /// <param name="Hover"></param>
+            /// <returns>The correct foreground color.</returns>
+            public static Color GetForeground(bool Click, bool Hover)
+            {
+                if (Hover)
+                {
+                    if (Click)
+                    {
+                        return ForeColorClick;
+                    }
+                    else
+                    {
+                        return ForeColorHover;
+                    }
+                }
+                return ForeColor;
+            }
         }
 
         #region Methods
@@ -63,14 +133,6 @@ namespace PrismGL2D.UI
         /// The text value of the control, if it uses it.
         /// </summary>
         public string Text;
-        /// <summary>
-        /// The theme used for the control.
-        /// </summary>
-        public Theme Theme;
-        /// <summary>
-        /// The font used for the control.
-        /// </summary>
-        public Font Font;
         /// <summary>
         /// The X position of the control.
         /// </summary>

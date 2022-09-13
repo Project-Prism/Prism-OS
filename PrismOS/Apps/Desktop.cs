@@ -9,13 +9,12 @@ namespace PrismOS.Apps
         {
             // Main window
             X = 0;
-            Y = (int)(Kernel.Canvas.Height - 32);
+            Y = (int)(Kernel.Canvas.Height - Config.Scale);
             Width = Kernel.Canvas.Width;
-            Height = 32;
+            Height = Config.Scale;
             Text = "Desktop";
             HasBorder = false;
             Draggable = false;
-            Font = Kernel.Default;
 
             Frames.Add(this);
         }
@@ -24,13 +23,12 @@ namespace PrismOS.Apps
         {
             Button Button1 = new();
 
-            Button1.X = 32 * Controls.Count;
+            Button1.X = (int)Config.Scale * Controls.Count;
             Button1.Y = 0;
-            Button1.Width = 32;
-            Button1.Height = 32;
+            Button1.Width = Config.Scale;
+            Button1.Height = Config.Scale;
             Button1.HasBorder = true;
             Button1.OnClickEvents.Add(new((int X, int Y, Cosmos.System.MouseState State) => OnClick()));
-            Button1.Font = Kernel.Default;
 
             Controls.Add(Button1);
         }

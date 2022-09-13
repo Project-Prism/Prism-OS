@@ -19,7 +19,7 @@
 			}
 
 			DrawImage(0, 0, Source, true);
-			DrawString((int)(Source.Width + 15), (int)(Height / 2), Text, Font, Theme.Foreground);
+			DrawString((int)(Source.Width + 15), (int)(Height / 2), Text, Config.Font, Config.GetForeground(IsPressed, IsHovering));
 
 			Buffer.DrawImage(X, Y, Source, true);
 		}

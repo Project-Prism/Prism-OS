@@ -6,14 +6,14 @@
         {
             base.OnDrawEvent(this);
 
-            DrawFilledRectangle(0, 0, (int)Width, (int)Height, (int)Theme.Radius, Theme.Background);
+            DrawFilledRectangle(0, 0, (int)Width, (int)Height, (int)Config.Radius, Config.BackColor);
 
             if (HasBorder)
             {
-                DrawRectangle(0, 0, (int)Width - 1, (int)Height - 1, (int)Theme.Radius, Theme.Accent);
+                DrawRectangle(0, 0, (int)Width - 1, (int)Height - 1, (int)Config.Radius, Config.AccentColor);
             }
 
-            Buffer.DrawImage(X, Y, this, Theme.Radius != 0);
+            Buffer.DrawImage(X, Y, this, Config.Radius != 0);
         }
     }
 }

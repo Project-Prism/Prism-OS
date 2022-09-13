@@ -11,7 +11,6 @@ namespace PrismOS.Apps
         public Button Button = new();
         public Cube C2 = new(300, 1, 300);
         public Cube C1 = new(150, 50, 150);
-        public Image Image1 = new();
         public Engine E;
 
         public AppTemplate1()
@@ -23,41 +22,34 @@ namespace PrismOS.Apps
             Height = 300;
             Text = "3D Testing";
             HasBorder = true;
-            Font = Kernel.Default;
-
-            // Image1
-            Image1.X = 0;
-            Image1.Y = 20;
-            Image1.Width = Width;
-            Image1.Height = Height - 20;
 
             // Button
-            Button.X = (int)(Width - 20);
-            Button.Width = 20;
-            Button.Height = 20;
+            Button.X = (int)(Width - Config.Scale);
+            Button.Width = Config.Scale;
+            Button.Height = Config.Scale;
             Button.Text = "X";
             Button.HasBorder = true;
             Button.OnClickEvents.Add((int X, int Y, Cosmos.System.MouseState State) => { Close(); });
-            Button.Font = Kernel.Default;
 
             // Engine1
-            E = new(Image1.Width, Image1.Height, 45);
+            E = new(Width, Height - Config.Scale, 45);
+            E.Y = (int)Config.Scale;
             C2.Position = new(0, 50, 0);
             E.Objects.Add(C1);
             E.Objects.Add(C2);
 
             Controls.Add(Button);
-            Controls.Add(Image1);
+            Controls.Add(E);
             Frames.Add(this);
         }
 
         public override void OnDrawEvent(Graphics Buffer)
         {
-            base.OnDrawEvent(this);
-
-            E.Render(Image1.Source);
+            E.Render(this);
             C1.TestLogic(-0.01);
             C2.TestLogic(0.05);
+
+            base.OnDrawEvent(this);
         }
 
         public override void OnKeyEvent(ConsoleKeyInfo Key)

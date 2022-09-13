@@ -14,7 +14,7 @@
         {
             base.OnDrawEvent(this);
 
-            Clear(Theme.Background);
+            Clear(Config.BackColor);
 
             int UsedY = -Scroll;
             for (int I = 0; I < List.Count; I++)
@@ -26,7 +26,7 @@
 
             if (HasBorder)
             {
-                DrawRectangle(0, 0, (int)Width - 1, (int)Height - 1, (int)Theme.Radius, Theme.Accent);
+                DrawRectangle(0, 0, (int)Width - 1, (int)Height - 1, (int)Config.Radius, Config.AccentColor);
             }
 
             Buffer.DrawImage(X, Y, this, false);

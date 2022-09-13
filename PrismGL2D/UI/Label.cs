@@ -13,13 +13,13 @@
                 string[] S = value.Split('\n');
                 for (int I = 0; I < S.Length; I++)
                 {
-                    uint TW = Font.MeasureString(S[I]);
+                    uint TW = Config.Font.MeasureString(S[I]);
                     if (TW > Width)
                     {
                         Width = TW;
                     }
                 }
-                Height = (uint)(Font.Size * value.Split('\n').Length);
+                Height = (uint)(Config.Font.Size * value.Split('\n').Length);
                 base.Text = value;
             }
         }
@@ -28,12 +28,12 @@
         {
             base.OnDrawEvent(this);
 
-            Clear(Theme.Background);
-            DrawString(0, 0, Text, Font, Theme.Text);
+            Clear(Config.BackColor);
+            DrawString(0, 0, Text, Config.Font, Config.ForeColor);
 
             if (HasBorder)
             {
-                DrawRectangle(0, 0, (int)Width - 1, (int)Height - 1, (int)Theme.Radius, Theme.Accent);
+                DrawRectangle(0, 0, (int)Width - 1, (int)Height - 1, (int)Config.Radius, Config.AccentColor);
             }
 
             Buffer.DrawImage(X, Y, this, false);

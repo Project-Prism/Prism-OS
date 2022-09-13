@@ -66,13 +66,13 @@ namespace PrismGL2D.UI
 
 			if (Enabled)
 			{
-				DrawFilledRectangle(0, 0, (int)Width, (int)Height, (int)Theme.Radius, Theme.Background);
+				DrawFilledRectangle(0, 0, (int)Width, (int)Height, (int)Config.Radius, Config.BackColor);
 
 				// Draw Title Bar
 				if (HasBorder)
 				{
-					DrawFilledRectangle(0, 0, (int)Width, 20, (int)Theme.Radius, Theme.Accent);
-					DrawString((int)(Width / 2), 10, Text, Font, Theme.Text, true);
+					DrawFilledRectangle(0, 0, (int)Width, (int)Config.Scale, (int)Config.Radius, Config.AccentColor);
+					DrawString((int)(Width / 2), (int)(Config.Scale / 2), Text, Config.Font, Config.GetForeground(false, false), true);
 				}
 
 				foreach (Control C in Controls)
@@ -105,10 +105,10 @@ namespace PrismGL2D.UI
 				// Draw Surrounding Rectangle
 				if (HasBorder)
 				{
-					DrawRectangle(0, 0, (int)(Width - 1), (int)(Height - 1), (int)Theme.Radius, Theme.Foreground);
+					DrawRectangle(0, 0, (int)(Width - 1), (int)(Height - 1), (int)Config.Radius, Config.ForeColor);
 				}
 
-				Buffer.DrawImage(X, Y, this, Theme.Radius != 0);
+				Buffer.DrawImage(X, Y, this, Config.Radius != 0);
 			}
 		}
 

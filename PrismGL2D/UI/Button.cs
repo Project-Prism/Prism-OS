@@ -6,15 +6,15 @@
         {
             base.OnDrawEvent(this);
 
-            DrawFilledRectangle(0, 0, (int)Width, (int)Height, (int)Theme.Radius, Theme.GetBackground(IsPressed, IsHovering));
-            DrawString((int)(Width / 2), (int)(Height / 2), Text, Font, Theme.GetText(IsPressed, IsHovering), true);
+            DrawFilledRectangle(0, 0, (int)Width, (int)Height, (int)Config.Radius, Config.GetBackground(IsPressed, IsHovering));
+            DrawString((int)(Width / 2), (int)(Height / 2), Text, Config.Font, Config.GetForeground(IsPressed, IsHovering), true);
 
             if (HasBorder)
             {
-                DrawRectangle(0, 0, (int)(Width - 1), (int)(Height - 1), (int)Theme.Radius, Theme.Foreground);
+                DrawRectangle(0, 0, (int)(Width - 1), (int)(Height - 1), (int)Config.Radius, Config.GetForeground(IsPressed, IsHovering));
             }
 
-            Buffer.DrawImage(X, Y, this, Theme.Radius != 0);
+            Buffer.DrawImage(X, Y, this, Config.Radius != 0);
         }
     }
 }
