@@ -108,6 +108,11 @@
 
         public static Color AlphaBlend(Color Source, Color NewColor)
         {
+            if (NewColor.A == 0)
+			{
+                return Source;
+			}
+
             return FromARGB(
                 (byte)((Source.A * (255 - NewColor.A) / 255) + NewColor.A),
                 (byte)((Source.R * (255 - NewColor.A) / 255) + NewColor.R),
