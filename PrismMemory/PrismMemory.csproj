@@ -20,7 +20,7 @@
       <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\IL2CPU.API.dll</HintPath>
     </Reference>
     <Reference Include="XSharp">
-      <HintPath>C:\Users\Kevin\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\XSharp.dll</HintPath>
+      <HintPath>..\XSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
 
