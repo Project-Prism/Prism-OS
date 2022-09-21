@@ -220,26 +220,16 @@ namespace PrismGL2D
             }
         }
 
-		#endregion
+        #endregion
 
-		#region Rectangle
+        #region Rectangle
 
-		public void DrawRectangle(int X, int Y, int Width, int Height, int Radius, Color Color)
-        {
-            if (Radius > 0)
-            {
-                DrawArc(Radius + X, Radius + Y, Radius, Color, 180, 270); // Top left
-                DrawArc(X + Width - Radius, Y + Height - Radius, Radius, Color, 0, 90); // Bottom right
-                DrawArc(Radius + X, Y + Height - Radius, Radius, Color, 90, 180); // Bottom left
-                DrawArc(X + Width - Radius, Radius + Y, Radius, Color, 270, 360);
-            }
-            DrawLine(X + Radius, Y, X + Width - Radius, Y, Color); // Top Line
-            DrawLine(X + Radius, Y + Height, X + Width - Radius, Height + Y, Color); // Bottom Line
-            DrawLine(X, Y + Radius, X, Y + Height - Radius, Color); // Left Line
-            DrawLine(X + Width, Y + Radius, Width + X, Y + Height - Radius, Color); // Right Line
-        }
         public void DrawFilledRectangle(int X, int Y, int Width, int Height, int Radius, Color Color)
         {
+            if (X == 0 && Y == 0 && Width == this.Width && Height == this.Height && Radius == 0 && Color.A == 255)
+			{
+                Clear(Color);
+			}
             if (Radius == 0 && Color.A == 255)
             {
                 if (X < 0)
@@ -287,6 +277,20 @@ namespace PrismGL2D
                 DrawFilledRectangle(X + Radius, Y, Width - Radius * 2, Height, 0, Color);
                 DrawFilledRectangle(X, Y + Radius, Width, Height - Radius * 2, 0, Color);
             }
+        }
+        public void DrawRectangle(int X, int Y, int Width, int Height, int Radius, Color Color)
+        {
+            if (Radius > 0)
+            {
+                DrawArc(Radius + X, Radius + Y, Radius, Color, 180, 270); // Top left
+                DrawArc(X + Width - Radius, Y + Height - Radius, Radius, Color, 0, 90); // Bottom right
+                DrawArc(Radius + X, Y + Height - Radius, Radius, Color, 90, 180); // Bottom left
+                DrawArc(X + Width - Radius, Radius + Y, Radius, Color, 270, 360);
+            }
+            DrawLine(X + Radius, Y, X + Width - Radius, Y, Color); // Top Line
+            DrawLine(X + Radius, Y + Height, X + Width - Radius, Height + Y, Color); // Bottom Line
+            DrawLine(X, Y + Radius, X, Y + Height - Radius, Color); // Left Line
+            DrawLine(X + Width, Y + Radius, Width + X, Y + Height - Radius, Color); // Right Line
         }
 
         public void DrawRectangleGrid(int X, int Y, int BlockCountX, int BlockCountY, int BlockSize, Color BlockType1, Color BlockType2)
@@ -632,12 +636,19 @@ namespace PrismGL2D
 
         #region Misc
 
-        public Graphics Resize(uint Width, uint Height)
+        public Graphics Resize(uint Width, uint Height, bool KeepContents = true)
         {
             if (Width <= 0 || Height <= 0 || Width == this.Width || Height == this.Height)
             {
                 return this;
             }
+            if (!KeepContents)
+			{
+                Internal = IO.Allocate(Width * Height * 4);
+                this.Width = Width;
+                this.Height = Height;
+                return this;
+			}
 
             Graphics FB = new(Width, Height);
             for (int IX = 0; IX < this.Width; IX++)

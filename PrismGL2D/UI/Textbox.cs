@@ -8,15 +8,15 @@
         {
             base.OnDrawEvent(this);
 
-            DrawFilledRectangle(0, 0, (int)Width, (int)Height, (int)Config.Radius, Config.BackColor);
-            DrawString((int)(Width / 2), (int)(Height / 2), Text.Length == 0 ? Hint : Text, Config.Font, Config.ForeColor, true);
+            DrawFilledRectangle(0, 0, (int)Width, (int)Height, (int)Config.Radius, Config.GetBackground(false, false));
+            DrawString((int)(Width / 2), (int)(Height / 2), Text.Length == 0 ? Hint : Text, Config.Font, Config.GetForeground(false, false), true);
 
             if (HasBorder)
             {
-                DrawRectangle(0, 0, (int)(Width - 1), (int)(Height - 1), (int)Config.Radius, Config.ForeColor);
+                DrawRectangle(0, 0, (int)(Width - 1), (int)(Height - 1), (int)Config.Radius, Config.GetForeground(false, false));
             }
 
-            Buffer.DrawImage(X, Y, this, Config.Radius != 0);
+            Buffer.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
         }
     }
 }

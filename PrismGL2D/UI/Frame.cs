@@ -12,6 +12,7 @@ namespace PrismGL2D.UI
 			Y = (int)((VBE.getModeInfo().height / 2) - (Height / 2) + (Frames.Count * Config.Scale));
 			X = (int)((VBE.getModeInfo().width / 2) - (Width / 2) + (Frames.Count * Config.Scale));
 
+			Draggable = true;
 			Icon = new(Config.Scale, Config.Scale);
 			Icon.Clear(Color.Red);
 			Controls = new();
@@ -26,6 +27,7 @@ namespace PrismGL2D.UI
 			Y = (int)(Height - (Height / 2) + (Frames.Count * Config.Scale));
 			X = (int)(Width - (Width / 2) + (Frames.Count * Config.Scale));
 
+			Draggable = true;
 			Icon = new(Config.Scale, Config.Scale);
 			Icon.Clear(Color.Red);
 			Controls = new();
@@ -40,6 +42,7 @@ namespace PrismGL2D.UI
 			Y = (int)(Height - (Height / 2) + (Frames.Count * Config.Scale));
 			X = (int)(Width - (Width / 2) + (Frames.Count * Config.Scale));
 
+			Draggable = true;
 			Icon = new(Config.Scale, Config.Scale);
 			Icon.Clear(Color.Red);
 			Controls = new();
@@ -104,7 +107,7 @@ namespace PrismGL2D.UI
 
 			if (IsEnabled)
 			{
-				DrawFilledRectangle(0, 0, (int)Width, (int)Height, (int)Config.Radius, Config.BackColor);
+				DrawFilledRectangle(0, 0, (int)Width, (int)Height, (int)Config.Radius, Config.GetBackground(false, false));
 
 				// Draw Title Bar
 				if (HasBorder)
@@ -143,10 +146,10 @@ namespace PrismGL2D.UI
 				// Draw Surrounding Rectangle
 				if (HasBorder)
 				{
-					DrawRectangle(0, 0, (int)(Width - 1), (int)(Height - 1), (int)Config.Radius, Config.ForeColor);
+					DrawRectangle(0, 0, (int)(Width - 1), (int)(Height - 1), (int)Config.Radius, Config.GetForeground(false, false));
 				}
 
-				G.DrawImage(X, Y, this, Config.Radius != 0);
+				G.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
 			}
 		}
 

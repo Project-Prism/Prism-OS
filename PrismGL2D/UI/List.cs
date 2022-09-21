@@ -14,7 +14,7 @@
         {
             base.OnDrawEvent(this);
 
-            Clear(Config.BackColor);
+            Clear(Config.GetBackground(false, false));
 
             int UsedY = -Scroll;
             for (int I = 0; I < List.Count; I++)
@@ -29,7 +29,7 @@
                 DrawRectangle(0, 0, (int)Width - 1, (int)Height - 1, (int)Config.Radius, Config.AccentColor);
             }
 
-            Buffer.DrawImage(X, Y, this, false);
+            Buffer.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
         }
     }
 }

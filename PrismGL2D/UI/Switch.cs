@@ -16,7 +16,7 @@ namespace PrismGL2D.UI
         {
             base.OnDrawEvent(this);
 
-            DrawFilledRectangle(1, 1, (int)(Width - 2), (int)(Height - 2), (int)Config.Radius, Config.BackColor);
+            DrawFilledRectangle(1, 1, (int)(Width - 2), (int)(Height - 2), (int)Config.Radius, Config.GetBackground(false, false));
             DrawFilledRectangle((int)(Toggled ? 2 : Width / 2 + 2), 0, (int)(Width / 2), (int)(Width - 2), (int)Config.Radius, Config.AccentColor);
 
             if (HasBorder)
@@ -24,7 +24,7 @@ namespace PrismGL2D.UI
                 DrawRectangle(0, 0, (int)(Width - 1), (int)(Height - 1), (int)Config.Radius, Config.AccentColor);
             }
 
-            Buffer.DrawImage(X, Y, this, Config.Radius != 0);
+            Buffer.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
         }
     }
 }

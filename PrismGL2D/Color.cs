@@ -156,6 +156,11 @@
 
             return new() { ARGB = uint.Parse(Hex, System.Globalization.NumberStyles.HexNumber) };
         }
+        public Color ToGrayscale(bool UseAlpha)
+		{
+            byte Average = (byte)((R / 3) + (G / 3) + (B / 3));
+            return FromARGB(UseAlpha ? A : (byte)255, Average, Average, Average);
+		}
 
         #endregion
 

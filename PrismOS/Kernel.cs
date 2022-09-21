@@ -23,7 +23,9 @@ namespace PrismOS
 
             #endregion
 
-            _ = new Frame("Testing Frame");
+            _ = new Frame("Frame Testing");
+            _ = new Frame("Frame Testing");
+            _ = new Frame("Frame Testing");
 
             #region Misc
 

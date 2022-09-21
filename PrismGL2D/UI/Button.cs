@@ -14,7 +14,7 @@
                 DrawRectangle(0, 0, (int)(Width - 1), (int)(Height - 1), (int)Config.Radius, Config.GetForeground(IsPressed, IsHovering));
             }
 
-            Buffer.DrawImage(X, Y, this, Config.Radius != 0);
+            Buffer.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
         }
     }
 }

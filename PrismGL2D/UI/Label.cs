@@ -28,15 +28,15 @@
         {
             base.OnDrawEvent(this);
 
-            Clear(Config.BackColor);
-            DrawString(0, 0, Text, Config.Font, Config.ForeColor);
+            Clear(Color.Transparent);
+            DrawString(0, 0, Text, Config.Font, Config.GetForeground(false, false));
 
             if (HasBorder)
             {
                 DrawRectangle(0, 0, (int)Width - 1, (int)Height - 1, (int)Config.Radius, Config.AccentColor);
             }
 
-            Buffer.DrawImage(X, Y, this, false);
+            Buffer.DrawImage(X, Y, this, true);
         }
     }
 }

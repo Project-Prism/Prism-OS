@@ -21,11 +21,11 @@ namespace PrismGL2D.UI
             /// <summary>
             /// Background color for the control.
             /// </summary>
-            public static Color BackColorClick = Color.LightGray, BackColorHover = Color.LighterBlack, BackColor = Color.Black;
+            private static Color BackColorClick = Color.LightGray, BackColorHover = Color.LighterBlack, BackColor = Color.Black;
             /// <summary>
             /// Foreground color for the control.
             /// </summary>
-            public static Color ForeColorClick = Color.Black, ForeColorHover = Color.White, ForeColor = Color.White;
+            private static Color ForeColorClick = Color.Black, ForeColorHover = Color.White, ForeColor = Color.White;
             /// <summary>
             /// Accent color for the control.
             /// </summary>
@@ -43,6 +43,19 @@ namespace PrismGL2D.UI
             /// </summary>
             public static Font Font = Font.Empty;
 
+            /// <summary>
+            /// Check to see if the element should contain alpha transparency at the last copy to the main buffer.
+            /// </summary>
+            /// <param name="C"></param>
+            /// <returns>true or false.</returns>
+            public static bool ShouldContainAlpha(Control C)
+			{
+                if (GetBackground(C.IsPressed, C.IsHovering).A == 255 && Radius == 0)
+				{
+                    return false;
+				}
+                return true;
+			}
 
             /// <summary>
             /// Gets the correct color based on the mouse status.
