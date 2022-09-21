@@ -1,13 +1,51 @@
 ﻿using Cosmos.System;
+using Cosmos.Core;
 
 namespace PrismGL2D.UI
 {
 	public class Frame : Control
 	{
-		public Frame()
+		public Frame(uint Width, uint Height, string Title)
 		{
+			this.Height = Height;
+			this.Width = Width;
+			Y = (int)((VBE.getModeInfo().height / 2) - (Height / 2) + (Frames.Count * Config.Scale));
+			X = (int)((VBE.getModeInfo().width / 2) - (Width / 2) + (Frames.Count * Config.Scale));
+
+			Icon = new(Config.Scale, Config.Scale);
+			Icon.Clear(Color.Red);
 			Controls = new();
 			HasBorder = true;
+			Text = Title;
+			Frames.Add(this);
+		}
+		public Frame (string Title)
+		{
+			Height = (uint)(VBE.getModeInfo().height / 2);
+			Width = (uint)(VBE.getModeInfo().width / 2);
+			Y = (int)(Height - (Height / 2) + (Frames.Count * Config.Scale));
+			X = (int)(Width - (Width / 2) + (Frames.Count * Config.Scale));
+
+			Icon = new(Config.Scale, Config.Scale);
+			Icon.Clear(Color.Red);
+			Controls = new();
+			HasBorder = true;
+			Text = Title;
+			Frames.Add(this);
+		}
+		public Frame()
+		{
+			Height = (uint)(VBE.getModeInfo().height / 2);
+			Width = (uint)(VBE.getModeInfo().width / 2);
+			Y = (int)(Height - (Height / 2) + (Frames.Count * Config.Scale));
+			X = (int)(Width - (Width / 2) + (Frames.Count * Config.Scale));
+
+			Icon = new(Config.Scale, Config.Scale);
+			Icon.Clear(Color.Red);
+			Controls = new();
+			HasBorder = true;
+			Text = "Frame 1";
+			Frames.Add(this);
 		}
 
 		// Window Manager Variables
@@ -35,19 +73,19 @@ namespace PrismGL2D.UI
 			base.OnKeyEvent(Key);
 		}
 
-		public override void OnDrawEvent(Graphics Buffer)
+		public override void OnDrawEvent(Graphics G)
 		{
 			base.OnDrawEvent(this);
-			
+
 			if (Draggable)
 			{
 				if (MouseManager.MouseState == MouseState.Left)
 				{
-					if (MouseManager.X >= X && MouseManager.X <= X + Width && MouseManager.Y >= Y && MouseManager.Y <= Y + 20 && !Moving && !Dragging)
+					if (MouseManager.X >= X && MouseManager.X <= X + Width && MouseManager.Y >= Y && MouseManager.Y <= Y + 20 && !IsMoving && !Dragging)
 					{
 						Dragging = true;
 						Select();
-						Moving = true;
+						IsMoving = true;
 						IX = (int)MouseManager.X - X;
 						IY = (int)MouseManager.Y - Y;
 					}
@@ -55,16 +93,16 @@ namespace PrismGL2D.UI
 				else
 				{
 					Dragging = false;
-					Moving = false;
+					IsMoving = false;
 				}
-				if (Moving)
+				if (IsMoving)
 				{
 					X = (int)MouseManager.X - IX;
 					Y = (int)MouseManager.Y - IY;
 				}
 			}
 
-			if (Enabled)
+			if (IsEnabled)
 			{
 				DrawFilledRectangle(0, 0, (int)Width, (int)Height, (int)Config.Radius, Config.BackColor);
 
@@ -77,7 +115,7 @@ namespace PrismGL2D.UI
 
 				foreach (Control C in Controls)
 				{
-					if (C.Enabled)
+					if (C.IsEnabled)
 					{
 						if (MouseManager.X >= X + C.X && MouseManager.X <= X + C.X + C.Width && MouseManager.Y >= Y + C.Y && MouseManager.Y <= Y + C.Y + C.Height && (this == Frames[^1] || !Draggable))
 						{
@@ -108,12 +146,26 @@ namespace PrismGL2D.UI
 					DrawRectangle(0, 0, (int)(Width - 1), (int)(Height - 1), (int)Config.Radius, Config.ForeColor);
 				}
 
-				Buffer.DrawImage(X, Y, this, Config.Radius != 0);
+				G.DrawImage(X, Y, this, Config.Radius != 0);
 			}
 		}
 
 		#region Methods
 
+		/// <summary>
+		/// Shows the control.
+		/// </summary>
+		public override void Show()
+		{
+			Frames.Add(this);
+		}
+		/// <summary>
+		/// Hides the control.
+		/// </summary>
+		public override void Hide()
+		{
+			Frames.Remove(this);
+		}
 		/// <summary>
 		/// Activates the frame.
 		/// </summary>
@@ -156,17 +208,21 @@ namespace PrismGL2D.UI
 		/// </summary>
 		public bool Draggable;
 		/// <summary>
+		/// The icon to be displayed in the taskbar if ShowInTaskbar is true.
+		/// </summary>
+		public Graphics Icon;
+		/// <summary>
 		/// The temporary variable to check if the windoww is moving already.
 		/// </summary>
-		internal bool Moving;
+		public bool IsMoving;
 		/// <summary>
-		/// The temporary X offset for moving windows.
+		/// Buffer X for dragging.
 		/// </summary>
-		internal int IX;
+		public int IX;
 		/// <summary>
-		/// The temporary Y offset for moving windows.
+		/// Buffer Y for dragging.
 		/// </summary>
-		internal int IY;
+		public int IY;
 
 		#endregion
 	}

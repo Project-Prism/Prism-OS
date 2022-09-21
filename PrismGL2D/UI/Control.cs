@@ -10,7 +10,8 @@ namespace PrismGL2D.UI
             OnClickEvents = new();
             OnDrawEvents = new();
             OnKeyEvents = new();
-            Enabled = true;
+
+            IsEnabled = true;
             Feed = string.Empty;
             Text = string.Empty;
         }
@@ -92,23 +93,27 @@ namespace PrismGL2D.UI
         /// <summary>
         /// Shows the control.
         /// </summary>
-        public void Show()
+        public virtual void Show()
         {
-            Enabled = true;
+            IsEnabled = true;
         }
         
         /// <summary>
         /// Hides the control.
         /// </summary>
-        public void Hide()
+        public virtual void Hide()
 		{
-            Enabled = false;
+            IsEnabled = false;
 		}
 
         #endregion
 
         #region Fields
 
+        /// <summary>
+        /// Check to see if the control can be ineteracted with.
+        /// </summary>
+        public bool CanInteract;
         /// <summary>
         /// Check to see if the mouse is hovering over the element.
         /// </summary>
@@ -118,17 +123,21 @@ namespace PrismGL2D.UI
         /// </summary>
         public bool IsPressed;
         /// <summary>
+        /// The visibility of the control;
+        /// </summary>
+        public bool IsEnabled;
+        /// <summary>
+        /// The char feed from the keyboard. (input)
+        /// </summary>
+        internal string Feed;
+        /// <summary>
         /// Check to see if the control should have a border.
         /// </summary>
         public bool HasBorder;
         /// <summary>
-        /// Visibility control.
+        /// Check to see if the control can be drug across the parent window.
         /// </summary>
-        public bool Enabled;
-        /// <summary>
-        /// The char feed from the keyboard. (input)
-        /// </summary>
-        public string Feed;
+        public bool CanDrag;
         /// <summary>
         /// The text value of the control, if it uses it.
         /// </summary>
@@ -168,13 +177,14 @@ namespace PrismGL2D.UI
                 OnKeyEvents[I](Key);
             }
         }
-        public virtual void OnDrawEvent(Graphics Graphics)
+        public virtual void OnDrawEvent(Graphics G)
         {
-            // Need to call Base.OnDrawEvent for this to fire.
+            // Need to call Base.OnDrawEvent for events and dragging to work.
 
+            // Fire events
             for (int I = 0; I < OnDrawEvents.Count; I++)
 			{
-                OnDrawEvents[I](Graphics);
+                OnDrawEvents[I](G);
 			}
         }
 

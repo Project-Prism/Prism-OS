@@ -2,7 +2,6 @@
 using Cosmos.System.Audio;
 using Cosmos.System;
 using Cosmos.Core;
-using PrismOS.Apps;
 using PrismGL2D.UI;
 using PrismGL2D;
 using System;
@@ -24,13 +23,11 @@ namespace PrismOS
 
             #endregion
 
+            _ = new Frame("Testing Frame");
+
             #region Misc
 
             Control.Config.Font = new(Font.DefaultCharset, Assets.Font1B, 16);
-            Desktop D = new();
-            D.Add(() => { _ = new AppTemplate1(); });
-            D.Add(() => { _ = new Terminal(); });
-            D.Add(() => { Shutdown(); });
 
             Assets.Wallpaper = Assets.Wallpaper.Resize(Canvas.Width, Canvas.Height);
             MouseManager.ScreenWidth = Canvas.Width;

@@ -8,11 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cosmos.HAL2" Version="0.1.0-localbuild20220915070123" />
-    <PackageReference Include="Cosmos.System2" Version="0.1.0-localbuild20220915070123" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PrismMemory\PrismMemory.csproj" />
   </ItemGroup>
 
@@ -33,7 +28,7 @@
       <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\IL2CPU.API.dll</HintPath>
     </Reference>
     <Reference Include="XSharp">
-      <HintPath>..\XSharp.dll</HintPath>
+      <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\XSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
 

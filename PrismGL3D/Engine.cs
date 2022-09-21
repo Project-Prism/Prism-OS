@@ -1,15 +1,14 @@
 ﻿using PrismGL3D.Numerics;
 using PrismGL3D.Objects;
 using PrismGL3D.Types;
-using PrismGL2D.UI;
 using PrismGL2D;
 
 namespace PrismGL3D
 {
-    public class Engine : Control
+    public class Engine : Graphics
     {
         // To-Do: Implement Camera Rotation
-        public Engine(uint Width, uint Height, int FOV)
+        public Engine(uint Width, uint Height, int FOV) : base(Width, Height)
         {
             this.Width = Width;
             this.Height = Height;
@@ -20,6 +19,7 @@ namespace PrismGL3D
 
         #region Engine Data
 
+        public Color SkyColor = Color.GoogleBlue;
         public double Gravity = 1.0;
         public List<Mesh> Objects;
         public Camera Camera;
@@ -27,17 +27,11 @@ namespace PrismGL3D
 
         #endregion
 
-        public void Render(Graphics Graphics)
+        public void Render()
         {
-            if (Width != Graphics.Width || Height != Graphics.Height)
-            {
-                Width = Graphics.Width;
-                Height = Graphics.Height;
-            }
-
             double Z0 = Width / 2 / Math.Tan(FOV / 2 * 0.0174532925); // 0.0174532925 == pi / 180
 
-            Clear();
+            Clear(SkyColor);
 
             // Calculate Objects
             for (int O = 0; O < Objects.Count; O++)
@@ -59,7 +53,7 @@ namespace PrismGL3D
                     DrawTriangles[T] = DrawTriangles[T].Translate(Objects[O].Position + Camera.Position);
                     DrawTriangles[T] = DrawTriangles[T].ApplyPerspective(Z0);
                     DrawTriangles[T] = DrawTriangles[T].Center(Width, Height);
-
+                    
                     if (DrawTriangles[T].GetNormal() < 0)
                     {
                         DrawFilledTriangle(
@@ -70,9 +64,6 @@ namespace PrismGL3D
                     }
                 }
             }
-
-            // Draw Buffer
-            Graphics.DrawImage(X, Y, this, false);
         }
     }
 }

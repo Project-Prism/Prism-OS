@@ -8,7 +8,7 @@ namespace PrismGL2D.UI
 
         public override void OnClickEvent(int X, int Y, MouseState State)
         {
-            Enabled = !Enabled;
+            IsEnabled = !IsEnabled;
             base.OnClickEvent(X, Y, State);
         }
 
