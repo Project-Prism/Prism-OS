@@ -4,23 +4,37 @@
 	{
 		public NBTDocument(string Source)
 		{
-			Nodes = new();
+			if (!NBTList.TryParse(Source, out RootList))
+			{
+				throw new Exception("Error parsing NBT data.");
+			}
 		}
-
 
 		#region Methods
 
-		public NBTNode[] GetNodes()
+		public NBTList GetRoot()
 		{
-			return Nodes.ToArray();
+			return RootList;
 		}
 
 		#endregion
 
 		#region Fields
 
-		private List<NBTNode> Nodes;
+		private readonly NBTList RootList;
 
 		#endregion
+
+		public override string ToString()
+		{
+			string S = "";
+
+			foreach (NBTList L in GetRoot())
+			{
+				S += L.ToString() + '\n';
+			}
+
+			return S;
+		}
 	}
 }

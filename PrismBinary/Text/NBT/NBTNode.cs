@@ -1,6 +1,5 @@
 ﻿namespace PrismBinary.Text.NBT
 {
-	// WIP, not finished!
 	public class NBTNode
 	{
 		public NBTNode(string Name, object Value)
@@ -8,36 +7,10 @@
 			this.Value = Value;
 			this.Name = Name;
 		}
-		public NBTNode(string Source)
+		public NBTNode()
 		{
-			string T = "";
-			NBTNode TT;
-
-			// Start at 1 to skip the first '{'
-			// Exclude last to skip the last '}'
-			for (int I = 1; I < Source.Length - 1; I++)
-			{
-				if (Source[I] == '\"')
-				{
-					TT = new(string.Empty, new());
-					while (Source[I] != '\"')
-					{
-						T += Source[I++];
-					}
-					TT.SetName(T);
-					T = "";
-					continue;
-				}
-				if (Source[I] == ':')
-				{
-					if (Source[I + 1] == ' ')
-					{
-						I++;
-					} // Skip space if it exists
-
-					//while (Source[I + ] == ' ')
-				}
-			}
+			Value = string.Empty;
+			Name = string.Empty;
 		}
 
 		#region Fields
