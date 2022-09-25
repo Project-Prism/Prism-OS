@@ -2,6 +2,7 @@
 using Cosmos.System.Audio;
 using Cosmos.System;
 using Cosmos.Core;
+using PrismGL2D.Formats;
 using PrismGL2D.UI;
 using PrismGL2D;
 using System;
@@ -13,7 +14,7 @@ namespace PrismOS
         public static Graphics Canvas = new(VBE.getModeInfo().width, VBE.getModeInfo().height);
         public static AudioMixer Mixer = new();
 
-        protected override void BeforeRun()
+		protected override void BeforeRun()
         {
             #region Splash Screen
 
@@ -29,9 +30,7 @@ namespace PrismOS
 
             #region Misc
 
-            Control.Config.Font = new(Font.DefaultCharset, Assets.Font1B, 16);
-
-            Assets.Wallpaper = Assets.Wallpaper.Resize(Canvas.Width, Canvas.Height);
+            Assets.Wallpaper = (Bitmap)Assets.Wallpaper.Resize(Canvas.Width, Canvas.Height);
             MouseManager.ScreenWidth = Canvas.Width;
             MouseManager.ScreenHeight = Canvas.Height;
 

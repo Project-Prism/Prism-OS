@@ -12,7 +12,6 @@ namespace PrismOS
         [ManifestResourceStream(ResourceName = Base + "Wallpaper.bmp")] public readonly static byte[] WallpaperB;
         [ManifestResourceStream(ResourceName = Base + "Cursor.bmp")] public readonly static byte[] CursorB;
         [ManifestResourceStream(ResourceName = Base + "Splash.bmp")] public readonly static byte[] LogoB;
-        [ManifestResourceStream(ResourceName = Base + "Default.btf")] public readonly static byte[] Font1B;
         [ManifestResourceStream(ResourceName = Base + "Vista.wav")] public readonly static byte[] VistaB;
         
         // Misc

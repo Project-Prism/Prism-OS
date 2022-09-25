@@ -41,7 +41,7 @@ namespace PrismGL2D.UI
             /// <summary>
             /// The global default font.
             /// </summary>
-            public static Font Font = Font.Empty;
+            public static Font Font = Font.Fallback;
 
             /// <summary>
             /// Check to see if the element should contain alpha transparency at the last copy to the main buffer.
