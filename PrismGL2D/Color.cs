@@ -143,6 +143,24 @@
         {
             return new() { A = A, R = R, G = G, B = B };
         }
+        public static Color Mix(Color[] Colors, float[] Values)
+        {
+            if (Colors.Length != Values.Length)
+            {
+                throw new("Every color must have an asociated percent value.");
+            }
+
+            Color T = new();
+            for (int I = 0; I < Colors.Length; I++)
+            {
+                T.A += (byte)(Values[I] * Colors[I].A / Colors[I].A);
+                T.R += (byte)(Values[I] * Colors[I].R / Colors[I].R);
+                T.G += (byte)(Values[I] * Colors[I].G / Colors[I].G);
+                T.B += (byte)(Values[I] * Colors[I].B / Colors[I].B);
+
+            }
+            return T;
+        }
         public static Color FromARGB(uint ARGB)
         {
             return new() { ARGB = ARGB };
