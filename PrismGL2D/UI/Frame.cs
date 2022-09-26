@@ -78,7 +78,7 @@ namespace PrismGL2D.UI
 			{
 				if (MouseManager.MouseState == MouseState.Left)
 				{
-					if (MouseManager.X >= X && MouseManager.X <= X + Width && MouseManager.Y >= Y && MouseManager.Y <= Y + 20 && !IsMoving && !Dragging)
+					if (MouseManager.X >= X && MouseManager.X <= X + Width && MouseManager.Y >= Y && MouseManager.Y <= Y + Config.Scale && !IsMoving && !Dragging)
 					{
 						Dragging = true;
 						Select();
