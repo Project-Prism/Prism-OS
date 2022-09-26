@@ -15,7 +15,6 @@ namespace PrismGL2D.UI
 			Icon = new(Config.Scale, Config.Scale);
 			Icon.Clear(Color.Red);
 			Controls = new();
-			HasBorder = true;
 			Text = Title;
 			Frames.Add(this);
 		}
@@ -29,7 +28,6 @@ namespace PrismGL2D.UI
 			Icon = new(Config.Scale, Config.Scale);
 			Icon.Clear(Color.Red);
 			Controls = new();
-			HasBorder = true;
 			Text = Title;
 			Frames.Add(this);
 		}
@@ -43,7 +41,6 @@ namespace PrismGL2D.UI
 			Icon = new(Config.Scale, Config.Scale);
 			Icon.Clear(Color.Red);
 			Controls = new();
-			HasBorder = true;
 			Text = "Frame 1";
 			Frames.Add(this);
 		}

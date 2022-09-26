@@ -11,9 +11,10 @@ namespace PrismGL2D.UI
             OnDrawEvents = new();
             OnKeyEvents = new();
 
-            CanInteract = true;
             HasBackground = true;
+            CanInteract = true;
             IsEnabled = true;
+            HasBorder = true;
             Feed = string.Empty;
             Text = string.Empty;
         }
