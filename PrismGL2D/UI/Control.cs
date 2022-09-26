@@ -11,10 +11,9 @@ namespace PrismGL2D.UI
             OnDrawEvents = new();
             OnKeyEvents = new();
 
-            HasBackground = true;
             CanInteract = true;
+            HasBackground = true;
             IsEnabled = true;
-			HasBorder = true;
             Feed = string.Empty;
             Text = string.Empty;
         }
@@ -154,10 +153,6 @@ namespace PrismGL2D.UI
         /// Check to see if the control should have a border.
         /// </summary>
         public bool HasBorder;
-        /// <summary>
-        /// Check to see if the control can be drug across the parent window.
-        /// </summary>
-        public bool CanDrag;
         /// <summary>
         /// The text value of the control, if it uses it.
         /// </summary>
