@@ -144,44 +144,6 @@ namespace PrismGL2D
 
         #endregion
 
-        #region Line
-
-        public void DrawLine(int X1, int Y1, int X2, int Y2, Color Color, bool AntiAlias = false)
-        {
-            int DX = Math.Abs(X2 - X1), SX = X1 < X2 ? 1 : -1;
-            int DY = Math.Abs(Y2 - Y1), SY = Y1 < Y2 ? 1 : -1;
-            int err = (DX > DY ? DX : -DY) / 2;
-
-            while (X1 != X2 || Y1 != Y2)
-            {
-                this[X1, Y1] = Color;
-                if (AntiAlias)
-                {
-                    if (X1 + X2 > Y1 + Y2)
-                    {
-                        this[X1 + 1, Y1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
-                        this[X1 + 1, Y1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
-                    }
-                    else
-                    {
-                        this[X1, Y1 + 1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
-                        this[X1, Y1 - 1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
-                    }
-                }
-                int e2 = err;
-                if (e2 > -DX) { err -= DY; X1 += SX; }
-                if (e2 < DY) { err += DX; Y1 += SY; }
-            }
-        }
-        public void DrawAngledLine(int X, int Y, int Angle, int Radius, Color Color)
-        {
-            int IX = (int)(Radius * Math.Cos(Math.PI * Angle / 180));
-            int IY = (int)(Radius * Math.Sin(Math.PI * Angle / 180));
-            DrawLine(X, Y, X + IX, Y + IY, Color);
-        }
-
-        #endregion
-
         #region Bezier Curves
 
         public void DrawQuadraticBezierLine(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, int N = 6)
@@ -224,7 +186,7 @@ namespace PrismGL2D
 
         #region Rectangle
 
-        public void DrawFilledRectangle(int X, int Y, int Width, int Height, int Radius, Color Color)
+        public void DrawFilledRectangle(int X, int Y, uint Width, uint Height, uint Radius, Color Color)
         {
             if (X == 0 && Y == 0 && Width == this.Width && Height == this.Height && Radius == 0 && Color.A == 255)
 			{
@@ -234,25 +196,25 @@ namespace PrismGL2D
             {
                 if (X < 0)
                 {
-                    Width -= Math.Abs(X);
+                    Width -= (uint)Math.Abs(X);
                     X = 0;
                 }
                 if (Y < 0)
                 {
-                    Height -= Math.Abs(Y);
+                    Height -= (uint)Math.Abs(Y);
                     Y = 0;
                 }
                 if (X + Width >= this.Width)
                 {
-                    Width -= X;
+                    Width -= (uint)X;
                 }
                 if (Y + Height >= this.Height)
                 {
-                    Height -= Y;
+                    Height -= (uint)Y;
                 }
                 for (int IY = 0; IY < Height; IY++)
                 {
-                    IO.Fill(Internal + ((Y + IY) * this.Width + X), Color.ARGB, (uint)Width);
+                    IO.Fill(Internal + ((Y + IY) * this.Width + X), Color.ARGB, Width);
                 }
                 return;
             }
@@ -268,32 +230,33 @@ namespace PrismGL2D
             }
             else
             {
-                DrawFilledCircle(X + Radius, Y + Radius, Radius, Color);
-                DrawFilledCircle(X + Width - Radius - 1, Y + Radius, Radius, Color);
+                DrawFilledCircle((int)(X + Radius), (int)(Y + Radius), Radius, Color);
+                DrawFilledCircle((int)(X + Width - Radius - 1), (int)(Y + Radius), Radius, Color);
 
-                DrawFilledCircle(X + Radius, Y + Height - Radius - 1, Radius, Color);
-                DrawFilledCircle(X + Width - Radius - 1, Y + Height - Radius - 1, Radius, Color);
+                DrawFilledCircle((int)(X + Radius), (int)(Y + Height - Radius - 1), Radius, Color);
+                DrawFilledCircle((int)(X + Width - Radius - 1), (int)(Y + Height - Radius - 1), Radius, Color);
 
-                DrawFilledRectangle(X + Radius, Y, Width - Radius * 2, Height, 0, Color);
-                DrawFilledRectangle(X, Y + Radius, Width, Height - Radius * 2, 0, Color);
+                DrawFilledRectangle((int)(X + Radius), Y, Width - Radius * 2, Height, 0, Color);
+                DrawFilledRectangle(X, (int)(Y + Radius), Width, Height - Radius * 2, 0, Color);
             }
         }
-        public void DrawRectangle(int X, int Y, int Width, int Height, int Radius, Color Color)
-        {
+        public void DrawRectangle(int X, int Y, uint Width, uint Height, uint Radius, Color Color)
+        { // This is essentialy just incomprehensible garbage that should never be touched, don't ever worry about it as i have worked out the corrdinates already and have verified it to be 100% correct.
+
             if (Radius > 0)
             {
-                DrawArc(Radius + X, Radius + Y, Radius, Color, 180, 270); // Top left
-                DrawArc(X + Width - Radius, Y + Height - Radius, Radius, Color, 0, 90); // Bottom right
-                DrawArc(Radius + X, Y + Height - Radius, Radius, Color, 90, 180); // Bottom left
-                DrawArc(X + Width - Radius, Radius + Y, Radius, Color, 270, 360);
+                DrawArc((int)(Radius + X), (int)(Radius + Y), Radius, Color, 180, 270); // Top left
+                DrawArc((int)(X + Width - Radius), (int)(Y + Height - Radius), Radius, Color, 0, 90); // Bottom right
+                DrawArc((int)(Radius + X), (int)(Y + Height - Radius), Radius, Color, 90, 180); // Bottom left
+                DrawArc((int)(X + Width - Radius), (int)(Radius + Y), Radius, Color, 270, 360);
             }
-            DrawLine(X + Radius, Y, X + Width - Radius, Y, Color); // Top Line
-            DrawLine(X + Radius, Y + Height, X + Width - Radius, Height + Y, Color); // Bottom Line
-            DrawLine(X, Y + Radius, X, Y + Height - Radius, Color); // Left Line
-            DrawLine(X + Width, Y + Radius, Width + X, Y + Height - Radius, Color); // Right Line
+            DrawLine((int)(X + Radius), Y, (int)(X + Width - Radius), Y, Color); // Top Line
+            DrawLine((int)(X + Radius), (int)(Y + Height), (int)(X + Width - Radius), (int)(Height + Y), Color); // Bottom Line
+            DrawLine(X, (int)(Y + Radius), X, (int)(Y + Height - Radius), Color); // Left Line
+            DrawLine((int)(X + Width), (int)(Y + Radius), (int)(Width + X), (int)(Y + Height - Radius), Color); // Right Line
         }
 
-        public void DrawRectangleGrid(int X, int Y, int BlockCountX, int BlockCountY, int BlockSize, Color BlockType1, Color BlockType2)
+        public void DrawRectangleGrid(int X, int Y, uint BlockCountX, uint BlockCountY, uint BlockSize, Color BlockType1, Color BlockType2)
         {
             for (int IX = 0; IX < BlockCountX; IX++)
             {
@@ -301,11 +264,11 @@ namespace PrismGL2D
                 {
                     if ((IX + IY) % 2 == 0)
                     {
-                        DrawFilledRectangle(X + IX * BlockSize, Y + IY * BlockSize, BlockSize, BlockSize, 0, BlockType1);
+                        DrawFilledRectangle((int)(X + IX * BlockSize), (int)(Y + IY * BlockSize), BlockSize, BlockSize, 0, BlockType1);
                     }
                     else
                     {
-                        DrawFilledRectangle(X + IX * BlockSize, Y + IY * BlockSize, BlockSize, BlockSize, 0, BlockType2);
+                        DrawFilledRectangle((int)(X + IX * BlockSize), (int)(Y + IY * BlockSize), BlockSize, BlockSize, 0, BlockType2);
                     }
                 }
             }
@@ -387,7 +350,6 @@ namespace PrismGL2D
                 CY3 += FDX31;
             }
         }
-
         public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
         {
             DrawLine(X1, Y1, X2, Y2, Color);
@@ -399,9 +361,39 @@ namespace PrismGL2D
 
         #region Circle 
 
-        public void DrawCircle(int X, int Y, int Radius, Color Color)
+        public void DrawFilledCircle(int X, int Y, uint Radius, Color Color)
         {
-            int IX = 0, IY = Radius, DP = 3 - 2 * Radius;
+            if (Radius == 0)
+            {
+                return;
+            }
+            if (Color.A == 255)
+            { // This method fills the length of the circle from the correct X and Length values for every Y pixel in the circle, it uses memcpy to make it fast.
+                uint R2 = Radius * Radius;
+                for (int IY = (int)-Radius; IY <= Radius; IY++)
+                {
+                    uint IX = (uint)(Math.Sqrt(R2 - IY * IY) + 0.5);
+                    uint* Offset = Internal + (Width * (Y + IY)) + X - IX;
+
+                    IO.Fill(Offset, Color.ARGB, IX * 2);
+                }
+            }
+            else
+            {
+                for (int IX = (int)-Radius; IX < Radius; IX++)
+                {
+                    int Height = (int)Math.Sqrt((Radius * Radius) - (IX * IX));
+
+                    for (int IY = -Height; IY < Height; IY++)
+                    {
+                        this[IX + X, IY + Y] = Color;
+                    }
+                }
+            }
+        }
+        public void DrawCircle(int X, int Y, uint Radius, Color Color)
+        {
+            int IX = 0, IY = (int)Radius, DP = (int)(3 - 2 * Radius);
 
             while (IY >= IX)
             {
@@ -426,43 +418,62 @@ namespace PrismGL2D
                 }
             }
         }
-        public void DrawFilledCircle(int X, int Y, int Radius, Color Color)
+
+        #endregion
+
+        #region Line
+
+        public void DrawLine(int X1, int Y1, int X2, int Y2, Color Color, bool AntiAlias = false)
         {
-            if (Radius == 0)
+            int DX = Math.Abs(X2 - X1), SX = X1 < X2 ? 1 : -1;
+            int DY = Math.Abs(Y2 - Y1), SY = Y1 < Y2 ? 1 : -1;
+            int err = (DX > DY ? DX : -DY) / 2;
+
+            while (X1 != X2 || Y1 != Y2)
             {
-                return;
-            }
-            if (Color.A == 255)
-            {
-                int R2 = Radius * Radius;
-                for (int IY = -Radius; IY <= Radius; IY++)
+                this[X1, Y1] = Color;
+                if (AntiAlias)
                 {
-                    int IX = (int)(Math.Sqrt(R2 - IY * IY) + 0.5);
-
-                    uint* Offset = Internal + (Width * (Y + IY)) + X - IX;
-
-                    IO.Fill(Offset, Color.ARGB, (uint)(IX * 2));
-                }
-            }
-            else
-            {
-                for (int IX = -Radius; IX < Radius; IX++)
-                {
-                    int Height = (int)Math.Sqrt((Radius * Radius) - (IX * IX));
-
-                    for (int IY = -Height; IY < Height; IY++)
+                    if (X1 + X2 > Y1 + Y2)
                     {
-                        this[IX + X, IY + Y] = Color;
+                        this[X1 + 1, Y1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
+                        this[X1 + 1, Y1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
+                    }
+                    else
+                    {
+                        this[X1, Y1 + 1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
+                        this[X1, Y1 - 1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
                     }
                 }
+                int e2 = err;
+                if (e2 > -DX) { err -= DY; X1 += SX; }
+                if (e2 < DY) { err += DX; Y1 += SY; }
             }
+        }
+        public void DrawAngledLine(int X, int Y, int Angle, int Radius, Color Color)
+        {
+            int IX = (int)(Radius * Math.Cos(Math.PI * Angle / 180));
+            int IY = (int)(Radius * Math.Sin(Math.PI * Angle / 180));
+            DrawLine(X, Y, X + IX, Y + IY, Color);
         }
 
         #endregion
 
         #region Arc
 
-        public void DrawArc(int X, int Y, int Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
+        public void DrawFilledArc(int X, int Y, uint Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
+        {
+            if (Radius == 0)
+            {
+                return;
+            }
+
+            for (uint I = 0; I < Radius; I++)
+            {
+                DrawArc(X, Y, I, Color, StartAngle, EndAngle);
+            }
+        }
+        public void DrawArc(int X, int Y, uint Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
         {
             if (Radius == 0)
             {
@@ -477,22 +488,11 @@ namespace PrismGL2D
                 this[X + IX, Y + IY] = Color;
             }
         }
-        public void DrawFilledArc(int X, int Y, int Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
-        {
-            if (Radius == 0)
-            {
-                return;
-            }
-
-            for (int I = 0; I < Radius; I++)
-            {
-                DrawArc(X, Y, I, Color, StartAngle, EndAngle);
-            }
-        }
-
+        
         #endregion
 
         #region Image
+
         public void DrawImage(int X, int Y, Graphics Image, bool Alpha = true)
         {
             if (Image == null)

@@ -24,9 +24,21 @@ namespace PrismOS
 
             #endregion
 
-            _ = new Frame("Frame Testing");
-            _ = new Frame("Frame Testing");
-            _ = new Frame("Frame Testing");
+            Control.Config.Radius = 5;
+            _ = new Frame("Frame Testing")
+            {
+                Controls = new()
+                {
+                    new Button()
+					{
+                        X = 0,
+                        Y = (int)Control.Config.Scale,
+                        Width = 200,
+                        Height = 25,
+                        Text = "Click me!",
+					},
+				}
+            };
 
             #region Misc
 
@@ -40,7 +52,7 @@ namespace PrismOS
         protected override void Run()
         {
             Canvas.DrawImage(0, 0, Assets.Wallpaper, false);
-            Canvas.DrawFilledRectangle(0, 0, (int)Control.Config.Font.MeasureString($"FPS: {Canvas.GetFPS()}") + 30, (int)Control.Config.Font.Size + 30, 0, Color.LightBlack);
+            Canvas.DrawFilledRectangle(0, 0, Control.Config.Font.MeasureString($"FPS: {Canvas.GetFPS()}") + 30, Control.Config.Font.Size + 30, 0, Color.LightBlack);
             Canvas.DrawString(15, 15, $"FPS: {Canvas.GetFPS()}", Control.Config.Font, Color.White);
 
             bool KeyPress = TryReadKey(out ConsoleKeyInfo Key);

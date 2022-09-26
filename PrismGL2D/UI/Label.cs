@@ -33,7 +33,7 @@
 
             if (HasBorder)
             {
-                DrawRectangle(0, 0, (int)Width - 1, (int)Height - 1, (int)Config.Radius, Config.AccentColor);
+                DrawRectangle(0, 0, Width - 1, Height - 1, Config.Radius, Config.AccentColor);
             }
 
             Buffer.DrawImage(X, Y, this, true);

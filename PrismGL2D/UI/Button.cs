@@ -2,19 +2,19 @@
 {
     public class Button : Control
     {
-        public override void OnDrawEvent(Graphics Buffer)
+        public override void OnDrawEvent(Graphics G)
         {
             base.OnDrawEvent(this);
 
-            DrawFilledRectangle(0, 0, (int)Width, (int)Height, (int)Config.Radius, Config.GetBackground(IsPressed, IsHovering));
+            DrawFilledRectangle(0, 0, Width, Height, Config.Radius, Config.GetBackground(IsPressed, IsHovering));
             DrawString((int)(Width / 2), (int)(Height / 2), Text, Config.Font, Config.GetForeground(IsPressed, IsHovering), true);
 
             if (HasBorder)
             {
-                DrawRectangle(0, 0, (int)(Width - 1), (int)(Height - 1), (int)Config.Radius, Config.GetForeground(IsPressed, IsHovering));
+                DrawRectangle(0, 0, Width - 1, Height - 1, Config.Radius, Config.GetForeground(IsPressed, IsHovering));
             }
 
-            Buffer.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
+            G.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
         }
     }
 }

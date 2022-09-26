@@ -11,6 +11,8 @@ namespace PrismGL2D.UI
             OnDrawEvents = new();
             OnKeyEvents = new();
 
+            CanInteract = true;
+            HasBackground = true;
             IsEnabled = true;
             Feed = string.Empty;
             Text = string.Empty;
@@ -124,6 +126,10 @@ namespace PrismGL2D.UI
         #region Fields
 
         /// <summary>
+        /// Check to see if the control should have a background drawn.
+        /// </summary>
+        public bool HasBackground;
+        /// <summary>
         /// Check to see if the control can be ineteracted with.
         /// </summary>
         public bool CanInteract;
@@ -198,6 +204,24 @@ namespace PrismGL2D.UI
             for (int I = 0; I < OnDrawEvents.Count; I++)
 			{
                 OnDrawEvents[I](G);
+			}
+
+            // Clear
+            if (HasBackground)
+			{
+                if (Config.Radius == 0)
+				{
+                    Clear(Config.GetBackground(IsPressed, IsHovering));
+				}
+                else
+				{
+                    Clear(Color.Transparent);
+                    DrawFilledRectangle(0, 0, Width, Height, Config.Radius, Config.GetBackground(IsPressed, IsHovering));
+				}
+			}
+            else
+			{
+                Clear(Color.Transparent);
 			}
         }
 

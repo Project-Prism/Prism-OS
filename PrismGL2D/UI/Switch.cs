@@ -12,19 +12,19 @@ namespace PrismGL2D.UI
             base.OnClickEvent(X, Y, State);
         }
 
-        public override void OnDrawEvent(Graphics Buffer)
+        public override void OnDrawEvent(Graphics G)
         {
             base.OnDrawEvent(this);
 
-            DrawFilledRectangle(1, 1, (int)(Width - 2), (int)(Height - 2), (int)Config.Radius, Config.GetBackground(false, false));
-            DrawFilledRectangle((int)(Toggled ? 2 : Width / 2 + 2), 0, (int)(Width / 2), (int)(Width - 2), (int)Config.Radius, Config.AccentColor);
+            DrawFilledRectangle(1, 1, Width - 2, Height - 2, Config.Radius, Config.GetBackground(false, false));
+            DrawFilledRectangle((int)(Toggled ? 2 : Width / 2 + 2), 0, (Width / 2), (Width - 2), Config.Radius, Config.AccentColor);
 
             if (HasBorder)
             {
-                DrawRectangle(0, 0, (int)(Width - 1), (int)(Height - 1), (int)Config.Radius, Config.AccentColor);
+                DrawRectangle(0, 0, Width - 1, Height - 1, Config.Radius, Config.AccentColor);
             }
 
-            Buffer.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
+            G.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
         }
     }
 }

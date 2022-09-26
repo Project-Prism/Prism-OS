@@ -12,7 +12,6 @@ namespace PrismGL2D.UI
 			Y = (int)((VBE.getModeInfo().height / 2) - (Height / 2) + (Frames.Count * Config.Scale));
 			X = (int)((VBE.getModeInfo().width / 2) - (Width / 2) + (Frames.Count * Config.Scale));
 
-			Draggable = true;
 			Icon = new(Config.Scale, Config.Scale);
 			Icon.Clear(Color.Red);
 			Controls = new();
@@ -27,7 +26,6 @@ namespace PrismGL2D.UI
 			Y = (int)(Height - (Height / 2) + (Frames.Count * Config.Scale));
 			X = (int)(Width - (Width / 2) + (Frames.Count * Config.Scale));
 
-			Draggable = true;
 			Icon = new(Config.Scale, Config.Scale);
 			Icon.Clear(Color.Red);
 			Controls = new();
@@ -42,7 +40,6 @@ namespace PrismGL2D.UI
 			Y = (int)(Height - (Height / 2) + (Frames.Count * Config.Scale));
 			X = (int)(Width - (Width / 2) + (Frames.Count * Config.Scale));
 
-			Draggable = true;
 			Icon = new(Config.Scale, Config.Scale);
 			Icon.Clear(Color.Red);
 			Controls = new();
@@ -77,10 +74,10 @@ namespace PrismGL2D.UI
 		}
 
 		public override void OnDrawEvent(Graphics G)
-		{
+		{ // tbh i do not really understand my logic behind this, it needs to be re-done eventualy but for the time being, it works okay enough.
 			base.OnDrawEvent(this);
 
-			if (Draggable)
+			if (CanInteract)
 			{
 				if (MouseManager.MouseState == MouseState.Left)
 				{
@@ -104,15 +101,12 @@ namespace PrismGL2D.UI
 					Y = (int)MouseManager.Y - IY;
 				}
 			}
-
 			if (IsEnabled)
 			{
-				DrawFilledRectangle(0, 0, (int)Width, (int)Height, (int)Config.Radius, Config.GetBackground(false, false));
-
 				// Draw Title Bar
 				if (HasBorder)
 				{
-					DrawFilledRectangle(0, 0, (int)Width, (int)Config.Scale, (int)Config.Radius, Config.AccentColor);
+					DrawFilledRectangle(0, 0, Width, Config.Scale, Config.Radius, Config.AccentColor);
 					DrawString((int)(Width / 2), (int)(Config.Scale / 2), Text, Config.Font, Config.GetForeground(false, false), true);
 				}
 
@@ -120,23 +114,26 @@ namespace PrismGL2D.UI
 				{
 					if (C.IsEnabled)
 					{
-						if (MouseManager.X >= X + C.X && MouseManager.X <= X + C.X + C.Width && MouseManager.Y >= Y + C.Y && MouseManager.Y <= Y + C.Y + C.Height && (this == Frames[^1] || !Draggable))
+						if (C.CanInteract)
 						{
-							C.IsHovering = true;
+							if (MouseManager.X >= X + C.X && MouseManager.X <= X + C.X + C.Width && MouseManager.Y >= Y + C.Y && MouseManager.Y <= Y + C.Y + C.Height && (this == Frames[^1] || !CanInteract))
+							{
+								C.IsHovering = true;
 
-							if (MouseManager.MouseState != MouseState.None)
-							{
-								C.IsPressed = true;
+								if (MouseManager.MouseState != MouseState.None)
+								{
+									C.IsPressed = true;
+								}
+								else if (C.IsPressed)
+								{
+									C.IsPressed = false;
+									C.OnClickEvent(X - (int)MouseManager.X, Y - (int)MouseManager.Y, MouseManager.LastMouseState);
+								}
 							}
-							else if (C.IsPressed)
+							else
 							{
-								C.IsPressed = false;
-								C.OnClickEvent(X - (int)MouseManager.X, Y - (int)MouseManager.Y, MouseManager.LastMouseState);
+								C.IsHovering = false;
 							}
-						}
-						else
-						{
-							C.IsHovering = false;
 						}
 
 						C.OnDrawEvent(this);
@@ -146,7 +143,7 @@ namespace PrismGL2D.UI
 				// Draw Surrounding Rectangle
 				if (HasBorder)
 				{
-					DrawRectangle(0, 0, (int)(Width - 1), (int)(Height - 1), (int)Config.Radius, Config.GetForeground(false, false));
+					DrawRectangle(0, 0, Width - 1, Height - 1, Config.Radius, Config.GetForeground(false, false));
 				}
 
 				G.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
@@ -206,10 +203,6 @@ namespace PrismGL2D.UI
 		/// Tells the OS wether to show the app in the task bar.
 		/// </summary>
 		public bool ShowInTaskbar;
-		/// <summary>
-		/// Check to see if the frame is draggable.
-		/// </summary>
-		public bool Draggable;
 		/// <summary>
 		/// The icon to be displayed in the taskbar if ShowInTaskbar is true.
 		/// </summary>
