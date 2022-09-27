@@ -191,6 +191,7 @@ namespace PrismGL2D
             if (X == 0 && Y == 0 && Width == this.Width && Height == this.Height && Radius == 0 && Color.A == 255)
 			{
                 Clear(Color);
+                return;
 			}
             if (Radius == 0 && Color.A == 255)
             {
