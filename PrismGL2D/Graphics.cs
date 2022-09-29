@@ -474,6 +474,21 @@ namespace PrismGL2D
                 DrawArc(X, Y, I, Color, StartAngle, EndAngle);
             }
         }
+        public void DrawArc(int X, int Y, uint Width, uint Height, Color Color, int StartAngle = 0, int EndAngle = 360)
+        {
+            if (Width == 0 || Height == 0)
+            {
+                return;
+            }
+
+            for (double Angle = StartAngle; Angle < EndAngle; Angle += 0.5)
+            {
+                double Angle1 = Math.PI * Angle / 180;
+                int IX = (int)(Width * Math.Cos(Angle1));
+                int IY = (int)(Height * Math.Sin(Angle1));
+                this[X + IX, Y + IY] = Color;
+            }
+        }
         public void DrawArc(int X, int Y, uint Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
         {
             if (Radius == 0)
