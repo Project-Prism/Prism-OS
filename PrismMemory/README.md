@@ -1,2 +1,0 @@
-﻿### PrismMemory
-PrismMemory is an partial abstraction layer on top of cosmos's memory system that prism should use instead of it directly, doing so will allow us to be more flexable and reduce maintainance time.

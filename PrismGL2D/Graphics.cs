@@ -1,685 +1,671 @@
-﻿using PrismMemory;
+﻿using Cosmos.Core;
 using Cosmos.HAL;
 
 namespace PrismGL2D
 {
-    public unsafe class Graphics : IDisposable
-    {
-        public Graphics(uint Width, uint Height)
-        {
-            this.Width = Width;
-            this.Height = Height;
+	public unsafe class Graphics : IDisposable
+	{
+		public Graphics(uint Width, uint Height)
+		{
+			this.Width = Width;
+			this.Height = Height;
 
-            Global.PIT.RegisterTimer(new PIT.PITTimer(() => { _FPS = _Frames; _Frames = 0; }, 1000000000, true));
+			Cosmos.HAL.Global.PIT.RegisterTimer(new PIT.PITTimer(() => { _FPS = _Frames; _Frames = 0; }, 1000000000, true));
 
-            if (Width != 0 && Height != 0)
-            {
-                Internal = IO.Allocate(Size * 4);
-            }
-        }
+			if (Width != 0 && Height != 0)
+			{
+				Internal = (uint*)GCImplementation.AllocNewObject(Size * 4);
+			}
+		}
 
-        // Get/Set Pixels
-        public Color this[uint X, uint Y]
-        {
-            get
-            {
-                return this[(int)X, (int)Y];
-            }
-            set
-            {
-                this[(int)X, (int)Y] = value;
-            }
-        }
-        public Color this[int X, int Y]
-        {
-            get
-            {
-                if (X >= Width || Y >= Height || X < 0 || Y < 0)
-                {
-                    return Color.Black;
-                }
-                return Color.FromARGB(Internal[Y * Width + X]);
-            }
-            set
-            {
-                if (value.A == 0 || X >= Width || Y >= Height || X < 0 || Y < 0)
-                {
-                    return;
-                }
-                if (value.A < 255)
-                {
-                    value = Color.AlphaBlend(this[X, Y], value);
-                }
-                Internal[Y * Width + X] = value.ARGB;
-            }
-        }
-        public Color this[uint Index]
-        {
-            get
-            {
-                return this[(int)Index];
-            }
-            set
-            {
-                this[(int)Index] = value;
-            }
-        }
-        public Color this[int Index]
-        {
-            get
-            {
-                if (Index >= Size)
-                {
-                    return Color.Black;
-                }
-                if (Index < 0)
-                {
-                    return Color.Black;
-                }
-
-                return Color.FromARGB(Internal[Index]);
-            }
-            set
-            {
-                if (value.A == 0 || Index >= Size)
-                {
-                    return;
-                }
-                if (value.A < 255)
-                {
-                    value = Color.AlphaBlend(this[Index], value);
-                }
-
-                Internal[Index] = value.ARGB;
-            }
-        }
-
-        public uint* Internal { get; set; }
-        public uint Height
-        {
-            get
-            {
-                return _Height;
-            }
-            set
-            {
-                if (_Width != 0)
+		// Get/Set Pixels
+		public Color this[uint X, uint Y]
+		{
+			get
+			{
+				return this[(int)X, (int)Y];
+			}
+			set
+			{
+				this[(int)X, (int)Y] = value;
+			}
+		}
+		public Color this[int X, int Y]
+		{
+			get
+			{
+				if (X >= Width || Y >= Height || X < 0 || Y < 0)
 				{
-                    Internal = Resize(Width, value).Internal;
-                }
-
-                _Height = value;
-            }
-        }
-        public uint Width
-        {
-            get
-            {
-                return _Width;
-            }
-            set
-            {
-                if (_Height != 0)
-                {
-                    Internal = Resize(value, Height).Internal;
-                }
-
-                _Width = value;
-            }
-        }
-        public uint Size
-        {
-            get
-            {
-                return _Width * _Height;
-            }
-        }
-
-        #region Private Fields
-
-        private uint _Height;
-        private uint _Width;
-        private uint _Frames;
-        private uint _FPS;
-
-        #endregion
-
-        #region Bezier Curves
-
-        public void DrawQuadraticBezierLine(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, int N = 6)
-        {
-            // X2 and Y2 is where the curve should bend to.
-            if (N > 0)
-            {
-                int X12 = (X1 + X2) / 2;
-                int Y12 = (Y1 + Y2) / 2;
-                int X23 = (X2 + X3) / 2;
-                int Y23 = (Y2 + Y3) / 2;
-                int X123 = (X12 + X23) / 2;
-                int Y123 = (Y12 + Y23) / 2;
-
-                DrawQuadraticBezierLine(X1, Y1, X12, Y12, X123, Y123, Color, N - 1);
-                DrawQuadraticBezierLine(X123, Y123, X23, Y23, X3, Y3, Color, N - 1);
-            }
-            else
-            {
-                DrawLine(X1, Y1, X2, Y2, Color);
-                DrawLine(X2, Y2, X3, Y3, Color);
-            }
-        }
-        public void DrawCubicBezierLine(int X0, int Y0, int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
-        {
-            for (double U = 0.0; U <= 1.0; U += 0.0001)
-            {
-                double Power3V1 = (1 - U) * (1 - U) * (1 - U);
-                double Power2V1 = (1 - U) * (1 - U);
-                double Power3V2 = U * U * U;
-                double Power2V2 = U * U;
-
-                double XU = Power3V1 * X0 + 3 * U * Power2V1 * X1 + 3 * Power2V2 * (1 - U) * X2 + Power3V2 * X3;
-                double YU = Power3V1 * Y0 + 3 * U * Power2V1 * Y1 + 3 * Power2V2 * (1 - U) * Y2 + Power3V2 * Y3;
-                this[(int)XU, (int)YU] = Color;
-            }
-        }
-
-        #endregion
-
-        #region Rectangle
-
-        public void DrawFilledRectangle(int X, int Y, uint Width, uint Height, uint Radius, Color Color)
-        {
-            if (X == 0 && Y == 0 && Width == this.Width && Height == this.Height && Radius == 0 && Color.A == 255)
-			{
-                Clear(Color);
-                return;
+					return Color.Black;
+				}
+				return Color.FromARGB(Internal[Y * Width + X]);
 			}
-            if (Radius == 0 && Color.A == 255)
-            {
-                if (X < 0)
-                {
-                    Width -= (uint)Math.Abs(X);
-                    X = 0;
-                }
-                if (Y < 0)
-                {
-                    Height -= (uint)Math.Abs(Y);
-                    Y = 0;
-                }
-                if (X + Width >= this.Width)
-                {
-                    Width -= (uint)X;
-                }
-                if (Y + Height >= this.Height)
-                {
-                    Height -= (uint)Y;
-                }
-                for (int IY = 0; IY < Height; IY++)
-                {
-                    IO.Fill(Internal + ((Y + IY) * this.Width + X), Color.ARGB, Width);
-                }
-                return;
-            }
-            if (Radius == 0)
-            {
-                for (int IX = X; IX < X + Width; IX++)
-                {
-                    for (int IY = Y; IY < Y + Height; IY++)
-                    {
-                        this[IX, IY] = Color;
-                    }
-                }
-            }
-            else
-            {
-                DrawFilledCircle((int)(X + Radius), (int)(Y + Radius), Radius, Color);
-                DrawFilledCircle((int)(X + Width - Radius - 1), (int)(Y + Radius), Radius, Color);
-
-                DrawFilledCircle((int)(X + Radius), (int)(Y + Height - Radius - 1), Radius, Color);
-                DrawFilledCircle((int)(X + Width - Radius - 1), (int)(Y + Height - Radius - 1), Radius, Color);
-
-                DrawFilledRectangle((int)(X + Radius), Y, Width - Radius * 2, Height, 0, Color);
-                DrawFilledRectangle(X, (int)(Y + Radius), Width, Height - Radius * 2, 0, Color);
-            }
-        }
-        public void DrawRectangle(int X, int Y, uint Width, uint Height, uint Radius, Color Color)
-        { // This is essentialy just incomprehensible garbage that should never be touched, don't ever worry about it as i have worked out the corrdinates already and have verified it to be 100% correct.
-
-            if (Radius > 0)
-            {
-                DrawArc((int)(Radius + X), (int)(Radius + Y), Radius, Color, 180, 270); // Top left
-                DrawArc((int)(X + Width - Radius), (int)(Y + Height - Radius), Radius, Color, 0, 90); // Bottom right
-                DrawArc((int)(Radius + X), (int)(Y + Height - Radius), Radius, Color, 90, 180); // Bottom left
-                DrawArc((int)(X + Width - Radius), (int)(Radius + Y), Radius, Color, 270, 360);
-            }
-            DrawLine((int)(X + Radius), Y, (int)(X + Width - Radius), Y, Color); // Top Line
-            DrawLine((int)(X + Radius), (int)(Y + Height), (int)(X + Width - Radius), (int)(Height + Y), Color); // Bottom Line
-            DrawLine(X, (int)(Y + Radius), X, (int)(Y + Height - Radius), Color); // Left Line
-            DrawLine((int)(X + Width), (int)(Y + Radius), (int)(Width + X), (int)(Y + Height - Radius), Color); // Right Line
-        }
-
-        public void DrawRectangleGrid(int X, int Y, uint BlockCountX, uint BlockCountY, uint BlockSize, Color BlockType1, Color BlockType2)
-        {
-            for (int IX = 0; IX < BlockCountX; IX++)
-            {
-                for (int IY = 0; IY < BlockCountY; IY++)
-                {
-                    if ((IX + IY) % 2 == 0)
-                    {
-                        DrawFilledRectangle((int)(X + IX * BlockSize), (int)(Y + IY * BlockSize), BlockSize, BlockSize, 0, BlockType1);
-                    }
-                    else
-                    {
-                        DrawFilledRectangle((int)(X + IX * BlockSize), (int)(Y + IY * BlockSize), BlockSize, BlockSize, 0, BlockType2);
-                    }
-                }
-            }
-        }
-
-        #endregion
-
-        #region Triangle
-
-        public void DrawFilledTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
-        {
-            // 28.4 fixed-point coordinates
-            Y1 = (int)Math.Round(16.0f * Y1);
-            Y2 = (int)Math.Round(16.0f * Y2);
-            Y3 = (int)Math.Round(16.0f * Y3);
-
-            X1 = (int)Math.Round(16.0f * X1);
-            X2 = (int)Math.Round(16.0f * X2);
-            X3 = (int)Math.Round(16.0f * X3);
-
-            // Deltas
-            int DX12 = X1 - X2;
-            int DX23 = X2 - X3;
-            int DX31 = X3 - X1;
-
-            int DY12 = Y1 - Y2;
-            int DY23 = Y2 - Y3;
-            int DY31 = Y3 - Y1;
-
-            // Fixed-point deltas
-            int FDX12 = DX12 << 4;
-            int FDX23 = DX23 << 4;
-            int FDX31 = DX31 << 4;
-
-            int FDY12 = DY12 << 4;
-            int FDY23 = DY23 << 4;
-            int FDY31 = DY31 << 4;
-
-            // Bounding rectangle
-            int minx = (Math.Min(Math.Min(X1, X2), X3) + 0xF) >> 4;
-            int maxx = (Math.Max(Math.Max(X1, X2), X3) + 0xF) >> 4;
-            int miny = (Math.Min(Math.Min(Y1, Y2), Y3) + 0xF) >> 4;
-            int maxy = (Math.Max(Math.Max(Y1, Y2), Y3) + 0xF) >> 4;
-
-            // Half-edge constants
-            int C1 = DY12 * X1 - DX12 * Y1;
-            int C2 = DY23 * X2 - DX23 * Y2;
-            int C3 = DY31 * X3 - DX31 * Y3;
-
-            // Correct for fill convention
-            if (DY12 < 0 || (DY12 == 0 && DX12 > 0)) C1++;
-            if (DY23 < 0 || (DY23 == 0 && DX23 > 0)) C2++;
-            if (DY31 < 0 || (DY31 == 0 && DX31 > 0)) C3++;
-
-            int CY1 = C1 + DX12 * (miny << 4) - DY12 * (minx << 4);
-            int CY2 = C2 + DX23 * (miny << 4) - DY23 * (minx << 4);
-            int CY3 = C3 + DX31 * (miny << 4) - DY31 * (minx << 4);
-
-            for (int Y = miny; Y < maxy; Y++)
-            {
-                int CX1 = CY1;
-                int CX2 = CY2;
-                int CX3 = CY3;
-
-                for (int X = minx; X < maxx; X++)
-                {
-                    if (CX1 > 0 && CX2 > 0 && CX3 > 0)
-                    {
-                        this[X, Y] = Color;
-                    }
-
-                    CX1 -= FDY12;
-                    CX2 -= FDY23;
-                    CX3 -= FDY31;
-                }
-
-                CY1 += FDX12;
-                CY2 += FDX23;
-                CY3 += FDX31;
-            }
-        }
-        public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
-        {
-            DrawLine(X1, Y1, X2, Y2, Color);
-            DrawLine(X1, Y1, X3, Y3, Color);
-            DrawLine(X2, Y2, X3, Y3, Color);
-        }
-
-        #endregion
-
-        #region Circle 
-
-        public void DrawFilledCircle(int X, int Y, uint Radius, Color Color)
-        {
-            if (Radius == 0)
-            {
-                return;
-            }
-            if (Color.A == 255)
-            { // This method fills the length of the circle from the correct X and Length values for every Y pixel in the circle, it uses memcpy to make it fast.
-                uint R2 = Radius * Radius;
-                for (int IY = (int)-Radius; IY <= Radius; IY++)
-                {
-                    uint IX = (uint)(Math.Sqrt(R2 - IY * IY) + 0.5);
-                    uint* Offset = Internal + (Width * (Y + IY)) + X - IX;
-
-                    IO.Fill(Offset, Color.ARGB, IX * 2);
-                }
-            }
-            else
-            {
-                for (int IX = (int)-Radius; IX < Radius; IX++)
-                {
-                    int Height = (int)Math.Sqrt((Radius * Radius) - (IX * IX));
-
-                    for (int IY = -Height; IY < Height; IY++)
-                    {
-                        this[IX + X, IY + Y] = Color;
-                    }
-                }
-            }
-        }
-        public void DrawCircle(int X, int Y, uint Radius, Color Color)
-        {
-            int IX = 0, IY = (int)Radius, DP = (int)(3 - 2 * Radius);
-
-            while (IY >= IX)
-            {
-                this[X + IX, Y + IY] = Color;
-                this[X - IX, Y + IY] = Color;
-                this[X + IX, Y - IY] = Color;
-                this[X - IX, Y - IY] = Color;
-                this[X + IY, Y + IX] = Color;
-                this[X - IY, Y + IX] = Color;
-                this[X + IY, Y - IX] = Color;
-                this[X - IY, Y - IX] = Color;
-
-                IX++;
-                if (DP > 0)
-                {
-                    IY--;
-                    DP += 4 * (IX - IY) + 10;
-                }
-                else
-                {
-                    DP += 4 * IX + 6;
-                }
-            }
-        }
-
-        #endregion
-
-        #region Line
-
-        public void DrawLine(int X1, int Y1, int X2, int Y2, Color Color, bool AntiAlias = false)
-        {
-            int DX = Math.Abs(X2 - X1), SX = X1 < X2 ? 1 : -1;
-            int DY = Math.Abs(Y2 - Y1), SY = Y1 < Y2 ? 1 : -1;
-            int err = (DX > DY ? DX : -DY) / 2;
-
-            while (X1 != X2 || Y1 != Y2)
-            {
-                this[X1, Y1] = Color;
-                if (AntiAlias)
-                {
-                    if (X1 + X2 > Y1 + Y2)
-                    {
-                        this[X1 + 1, Y1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
-                        this[X1 + 1, Y1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
-                    }
-                    else
-                    {
-                        this[X1, Y1 + 1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
-                        this[X1, Y1 - 1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
-                    }
-                }
-                int e2 = err;
-                if (e2 > -DX) { err -= DY; X1 += SX; }
-                if (e2 < DY) { err += DX; Y1 += SY; }
-            }
-        }
-        public void DrawAngledLine(int X, int Y, int Angle, int Radius, Color Color)
-        {
-            int IX = (int)(Radius * Math.Cos(Math.PI * Angle / 180));
-            int IY = (int)(Radius * Math.Sin(Math.PI * Angle / 180));
-            DrawLine(X, Y, X + IX, Y + IY, Color);
-        }
-
-        #endregion
-
-        #region Arc
-
-        public void DrawFilledArc(int X, int Y, uint Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
-        {
-            if (Radius == 0)
-            {
-                return;
-            }
-
-            for (uint I = 0; I < Radius; I++)
-            {
-                DrawArc(X, Y, I, Color, StartAngle, EndAngle);
-            }
-        }
-        public void DrawArc(int X, int Y, uint Width, uint Height, Color Color, int StartAngle = 0, int EndAngle = 360)
-        {
-            if (Width == 0 || Height == 0)
-            {
-                return;
-            }
-
-            for (double Angle = StartAngle; Angle < EndAngle; Angle += 0.5)
-            {
-                double Angle1 = Math.PI * Angle / 180;
-                int IX = (int)(Width * Math.Cos(Angle1));
-                int IY = (int)(Height * Math.Sin(Angle1));
-                this[X + IX, Y + IY] = Color;
-            }
-        }
-        public void DrawArc(int X, int Y, uint Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
-        {
-            if (Radius == 0)
-            {
-                return;
-            }
-
-            for (double Angle = StartAngle; Angle < EndAngle; Angle += 0.5)
-            {
-                double Angle1 = Math.PI * Angle / 180;
-                int IX = (int)(Radius * Math.Cos(Angle1));
-                int IY = (int)(Radius * Math.Sin(Angle1));
-                this[X + IX, Y + IY] = Color;
-            }
-        }
-        
-        #endregion
-
-        #region Image
-
-        public void DrawImage(int X, int Y, Graphics Image, bool Alpha = true)
-        {
-            if (Image == null)
-            {
-                throw new Exception("Cannot draw a null image file.");
-            }
-            if (!Alpha && X == 0 && Y == 0 && Image.Width == Width && Image.Height == Height)
-            {
-                IO.Copy(Internal, Image.Internal, Size);
-                return;
-            }
-            if (!Alpha)
-            {
-                uint TWidth = Image.Width;
-                uint THeight = Image.Height;
-                uint PadX = 0;
-                uint PadY = 0;
-
-                if (X < 0)
-                {
-                    PadX = (uint)Math.Abs(X);
-                    TWidth -= PadX;
-                }
-                if (Y < 0)
-                {
-                    PadY = (uint)Math.Abs(Y);
-                    THeight -= PadY;
-                }
-                if (X + Image.Width >= Width)
-                {
-                    TWidth = Width - (uint)X;
-                }
-                if (Y + Image.Height >= Height)
-                {
-                    THeight = Height - (uint)Y;
-                }
-
-                for (uint IY = 0; IY < THeight; IY++)
-                {
-                    IO.Copy(Internal + PadX + X + ((PadY + Y + IY) * Width), Image.Internal + PadX + ((PadY + IY) * Image.Width), TWidth);
-                }
-                return;
-            }
-
-            for (int IX = 0; IX < Image.Width; IX++)
-            {
-                for (int IY = 0; IY < Image.Height; IY++)
-                {
-                    this[X + IX, Y + IY] = Image[IX, IY];
-                }
-            }
-        }
-
-        #endregion
-
-        #region Text
-
-        public void DrawString(int X, int Y, string Text, Font Font, Color Color, bool Center = false)
-        {
-            if (Text == null || Text.Length == 0)
-            {
-                return;
-            }
-            string[] Lines = Text.Split('\n');
-
-            // Loop Through Each Line Of Text
-            for (int Line = 0; Line < Lines.Length; Line++)
-            {
-                // Advanced Calculations To Determine Position
-                int IX = X - (Center ? ((int)Font.MeasureString(Text) / 2) : 0);
-                int IY = (int)(Y + (Font.Size * Line) - (Center ? Font.Size * Lines.Length / 2 : 0));
-
-                if (IY > Height)
-                {
-                    return;
-                }
-
-                // Loop Though Each Char In The Line
-                for (int Char = 0; Char < Lines[Line].Length; Char++)
-                {
-                    if (IX > Width)
-                    {
-                        continue;
-                    }
-                    IX += (int)(DrawChar(IX, IY, Lines[Line][Char], Font, Color, Center) + 2);
-                }
-            }
-        }
-
-        public uint DrawChar(int X, int Y, char Char, Font Font, Color Color, bool Center)
-        {
-            uint Index = (uint)Font.Charset.IndexOf(Char);
-            if (Char == ' ')
-            {
-                return Font.Size2;
-            }
-            if (Char == '\t')
-            {
-                return Font.Size2 * 4;
-            }
-            if (Index < 0)
-            {
-                return Font.Size2;
-            }
-            if (Center)
-            {
-                X -= (int)Font.Size16;
-                Y -= (int)Font.Size8;
-            }
-
-            uint MaxX = 0;
-            uint SizePerFont = Font.Size * Font.Size8 * Index;
-
-            for (int h = 0; h < Font.Size; h++)
-            {
-                for (int aw = 0; aw < Font.Size8; aw++)
-                {
-                    for (int ww = 0; ww < 8; ww++)
-                    {
-                        if ((Font.Binary[SizePerFont + (h * Font.Size8) + aw] & (0x80 >> ww)) != 0)
-                        {
-                            int max = (aw * 8) + ww;
-
-                            int x = X + max;
-                            int y = Y + h;
-
-                            this[x, y] = Color;
-
-                            if (max > MaxX)
-                            {
-                                MaxX = (uint)max;
-                            }
-                        }
-                    }
-                }
-            }
-            return MaxX;
-        }
-
-        #endregion
-
-        #region Misc
-
-        public Graphics Resize(uint Width, uint Height, bool KeepContents = true)
-        {
-            if (Width <= 0 || Height <= 0 || Width == this.Width || Height == this.Height)
-            {
-                return this;
-            }
-            if (!KeepContents)
+			set
 			{
-                Internal = IO.Allocate(Width * Height * 4);
-                this.Width = Width;
-                this.Height = Height;
-                return this;
+				if (value.A == 0 || X >= Width || Y >= Height || X < 0 || Y < 0)
+				{
+					return;
+				}
+				if (value.A < 255)
+				{
+					value = Color.AlphaBlend(this[X, Y], value);
+				}
+				Internal[Y * Width + X] = value.ARGB;
+			}
+		}
+		public Color this[uint Index]
+		{
+			get
+			{
+				return this[(int)Index];
+			}
+			set
+			{
+				this[(int)Index] = value;
+			}
+		}
+		public Color this[int Index]
+		{
+			get
+			{
+				if (Index >= Size || Index < 0)
+				{
+					return Color.Black;
+				}
+
+				return Color.FromARGB(Internal[Index]);
+			}
+			set
+			{
+				if (value.A == 0 || Index >= Size || Index < 0)
+				{
+					return;
+				}
+				if (value.A < 255)
+				{
+					value = Color.AlphaBlend(this[Index], value);
+				}
+
+				Internal[Index] = value.ARGB;
+			}
+		}
+
+		public uint* Internal { get; set; }
+		public uint Height
+		{
+			get
+			{
+				return _Height;
+			}
+			set
+			{
+				if (_Width != 0)
+				{
+					Internal = Resize(Width, value).Internal;
+				}
+
+				_Height = value;
+			}
+		}
+		public uint Width
+		{
+			get
+			{
+				return _Width;
+			}
+			set
+			{
+				if (_Height != 0)
+				{
+					Internal = Resize(value, Height).Internal;
+				}
+
+				_Width = value;
+			}
+		}
+		public uint Size
+		{
+			get
+			{
+				return _Width * _Height;
+			}
+		}
+
+		#region Private Fields
+
+		private uint _Height;
+		private uint _Width;
+		private uint _Frames;
+		private uint _FPS;
+
+		#endregion
+
+		#region Bezier Curves
+
+		public void DrawQuadraticBezierLine(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, int N = 6)
+		{
+			// X2 and Y2 is where the curve should bend to.
+			if (N > 0)
+			{
+				int X12 = (X1 + X2) / 2;
+				int Y12 = (Y1 + Y2) / 2;
+				int X23 = (X2 + X3) / 2;
+				int Y23 = (Y2 + Y3) / 2;
+				int X123 = (X12 + X23) / 2;
+				int Y123 = (Y12 + Y23) / 2;
+
+				DrawQuadraticBezierLine(X1, Y1, X12, Y12, X123, Y123, Color, N - 1);
+				DrawQuadraticBezierLine(X123, Y123, X23, Y23, X3, Y3, Color, N - 1);
+			}
+			else
+			{
+				DrawLine(X1, Y1, X2, Y2, Color);
+				DrawLine(X2, Y2, X3, Y3, Color);
+			}
+		}
+		public void DrawCubicBezierLine(int X0, int Y0, int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
+		{
+			for (double U = 0.0; U <= 1.0; U += 0.0001)
+			{
+				double Power3V1 = (1 - U) * (1 - U) * (1 - U);
+				double Power2V1 = (1 - U) * (1 - U);
+				double Power3V2 = U * U * U;
+				double Power2V2 = U * U;
+
+				double XU = Power3V1 * X0 + 3 * U * Power2V1 * X1 + 3 * Power2V2 * (1 - U) * X2 + Power3V2 * X3;
+				double YU = Power3V1 * Y0 + 3 * U * Power2V1 * Y1 + 3 * Power2V2 * (1 - U) * Y2 + Power3V2 * Y3;
+				this[(int)XU, (int)YU] = Color;
+			}
+		}
+
+		#endregion
+
+		#region Rectangle
+
+		public void DrawFilledRectangle(int X, int Y, uint Width, uint Height, uint Radius, Color Color)
+		{
+			if (X == 0 && Y == 0 && Width == this.Width && Height == this.Height && Radius == 0 && Color.A == 255)
+			{
+				Clear(Color);
+				return;
+			}
+			if (Radius == 0 && Color.A == 255)
+			{
+				if (X < 0)
+				{
+					Width -= (uint)Math.Abs(X);
+					X = 0;
+				}
+				if (Y < 0)
+				{
+					Height -= (uint)Math.Abs(Y);
+					Y = 0;
+				}
+				if (X + Width >= this.Width)
+				{
+					Width -= (uint)X;
+				}
+				if (Y + Height >= this.Height)
+				{
+					Height -= (uint)Y;
+				}
+				for (int IY = 0; IY < Height; IY++)
+				{
+					MemoryOperations.Fill(Internal + ((Y + IY) * this.Width + X), Color.ARGB, (int)Width);
+				}
+				return;
+			}
+			if (Radius == 0)
+			{
+				for (int IX = X; IX < X + Width; IX++)
+				{
+					for (int IY = Y; IY < Y + Height; IY++)
+					{
+						this[IX, IY] = Color;
+					}
+				}
+			}
+			else
+			{
+				DrawFilledCircle((int)(X + Radius), (int)(Y + Radius), Radius, Color);
+				DrawFilledCircle((int)(X + Width - Radius - 1), (int)(Y + Radius), Radius, Color);
+
+				DrawFilledCircle((int)(X + Radius), (int)(Y + Height - Radius - 1), Radius, Color);
+				DrawFilledCircle((int)(X + Width - Radius - 1), (int)(Y + Height - Radius - 1), Radius, Color);
+
+				DrawFilledRectangle((int)(X + Radius), Y, Width - Radius * 2, Height, 0, Color);
+				DrawFilledRectangle(X, (int)(Y + Radius), Width, Height - Radius * 2, 0, Color);
+			}
+		}
+		public void DrawRectangle(int X, int Y, uint Width, uint Height, uint Radius, Color Color)
+		{ // This is essentialy just incomprehensible garbage that should never be touched, don't ever worry about it as i have worked out the corrdinates already and have verified it to be 100% correct.
+
+			if (Radius > 0)
+			{
+				DrawArc((int)(Radius + X), (int)(Radius + Y), Radius, Color, 180, 270); // Top left
+				DrawArc((int)(X + Width - Radius), (int)(Y + Height - Radius), Radius, Color, 0, 90); // Bottom right
+				DrawArc((int)(Radius + X), (int)(Y + Height - Radius), Radius, Color, 90, 180); // Bottom left
+				DrawArc((int)(X + Width - Radius), (int)(Radius + Y), Radius, Color, 270, 360);
+			}
+			DrawLine((int)(X + Radius), Y, (int)(X + Width - Radius), Y, Color); // Top Line
+			DrawLine((int)(X + Radius), (int)(Y + Height), (int)(X + Width - Radius), (int)(Height + Y), Color); // Bottom Line
+			DrawLine(X, (int)(Y + Radius), X, (int)(Y + Height - Radius), Color); // Left Line
+			DrawLine((int)(X + Width), (int)(Y + Radius), (int)(Width + X), (int)(Y + Height - Radius), Color); // Right Line
+		}
+
+		public void DrawRectangleGrid(int X, int Y, uint BlockCountX, uint BlockCountY, uint BlockSize, Color BlockType1, Color BlockType2)
+		{
+			for (int IX = 0; IX < BlockCountX; IX++)
+			{
+				for (int IY = 0; IY < BlockCountY; IY++)
+				{
+					if ((IX + IY) % 2 == 0)
+					{
+						DrawFilledRectangle((int)(X + IX * BlockSize), (int)(Y + IY * BlockSize), BlockSize, BlockSize, 0, BlockType1);
+					}
+					else
+					{
+						DrawFilledRectangle((int)(X + IX * BlockSize), (int)(Y + IY * BlockSize), BlockSize, BlockSize, 0, BlockType2);
+					}
+				}
+			}
+		}
+
+		#endregion
+
+		#region Triangle
+
+		public void DrawFilledTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
+		{
+			// 28.4 fixed-point coordinates
+			Y1 = (int)Math.Round(16.0f * Y1);
+			Y2 = (int)Math.Round(16.0f * Y2);
+			Y3 = (int)Math.Round(16.0f * Y3);
+
+			X1 = (int)Math.Round(16.0f * X1);
+			X2 = (int)Math.Round(16.0f * X2);
+			X3 = (int)Math.Round(16.0f * X3);
+
+			// Deltas
+			int DX12 = X1 - X2;
+			int DX23 = X2 - X3;
+			int DX31 = X3 - X1;
+
+			int DY12 = Y1 - Y2;
+			int DY23 = Y2 - Y3;
+			int DY31 = Y3 - Y1;
+
+			// Fixed-point deltas
+			int FDX12 = DX12 << 4;
+			int FDX23 = DX23 << 4;
+			int FDX31 = DX31 << 4;
+
+			int FDY12 = DY12 << 4;
+			int FDY23 = DY23 << 4;
+			int FDY31 = DY31 << 4;
+
+			// Bounding rectangle
+			int minx = (Math.Min(Math.Min(X1, X2), X3) + 0xF) >> 4;
+			int maxx = (Math.Max(Math.Max(X1, X2), X3) + 0xF) >> 4;
+			int miny = (Math.Min(Math.Min(Y1, Y2), Y3) + 0xF) >> 4;
+			int maxy = (Math.Max(Math.Max(Y1, Y2), Y3) + 0xF) >> 4;
+
+			// Half-edge constants
+			int C1 = DY12 * X1 - DX12 * Y1;
+			int C2 = DY23 * X2 - DX23 * Y2;
+			int C3 = DY31 * X3 - DX31 * Y3;
+
+			// Correct for fill convention
+			if (DY12 < 0 || (DY12 == 0 && DX12 > 0)) C1++;
+			if (DY23 < 0 || (DY23 == 0 && DX23 > 0)) C2++;
+			if (DY31 < 0 || (DY31 == 0 && DX31 > 0)) C3++;
+
+			int CY1 = C1 + DX12 * (miny << 4) - DY12 * (minx << 4);
+			int CY2 = C2 + DX23 * (miny << 4) - DY23 * (minx << 4);
+			int CY3 = C3 + DX31 * (miny << 4) - DY31 * (minx << 4);
+
+			for (int Y = miny; Y < maxy; Y++)
+			{
+				int CX1 = CY1;
+				int CX2 = CY2;
+				int CX3 = CY3;
+
+				for (int X = minx; X < maxx; X++)
+				{
+					if (CX1 > 0 && CX2 > 0 && CX3 > 0)
+					{
+						this[X, Y] = Color;
+					}
+
+					CX1 -= FDY12;
+					CX2 -= FDY23;
+					CX3 -= FDY31;
+				}
+
+				CY1 += FDX12;
+				CY2 += FDX23;
+				CY3 += FDX31;
+			}
+		}
+		public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
+		{
+			DrawLine(X1, Y1, X2, Y2, Color);
+			DrawLine(X1, Y1, X3, Y3, Color);
+			DrawLine(X2, Y2, X3, Y3, Color);
+		}
+
+		#endregion
+
+		#region Circle 
+
+		public void DrawFilledCircle(int X, int Y, uint Radius, Color Color)
+		{
+			if (Radius == 0)
+			{
+				return;
+			}
+			if (Color.A == 255)
+			{ // This method fills the length of the circle from the correct X and Length values for every Y pixel in the circle, it uses memcpy to make it fast.
+				uint R2 = Radius * Radius;
+				for (int IY = (int)-Radius; IY <= Radius; IY++)
+				{
+					uint IX = (uint)(Math.Sqrt(R2 - IY * IY) + 0.5);
+					uint* Offset = Internal + (Width * (Y + IY)) + X - IX;
+
+					MemoryOperations.Fill(Offset, Color.ARGB, (int)IX * 2);
+				}
+			}
+			else
+			{
+				for (int IX = (int)-Radius; IX < Radius; IX++)
+				{
+					int Height = (int)Math.Sqrt((Radius * Radius) - (IX * IX));
+
+					for (int IY = -Height; IY < Height; IY++)
+					{
+						this[IX + X, IY + Y] = Color;
+					}
+				}
+			}
+		}
+		public void DrawCircle(int X, int Y, uint Radius, Color Color)
+		{
+			int IX = 0, IY = (int)Radius, DP = (int)(3 - 2 * Radius);
+
+			while (IY >= IX)
+			{
+				this[X + IX, Y + IY] = Color;
+				this[X - IX, Y + IY] = Color;
+				this[X + IX, Y - IY] = Color;
+				this[X - IX, Y - IY] = Color;
+				this[X + IY, Y + IX] = Color;
+				this[X - IY, Y + IX] = Color;
+				this[X + IY, Y - IX] = Color;
+				this[X - IY, Y - IX] = Color;
+
+				IX++;
+				if (DP > 0)
+				{
+					IY--;
+					DP += 4 * (IX - IY) + 10;
+				}
+				else
+				{
+					DP += 4 * IX + 6;
+				}
+			}
+		}
+
+		#endregion
+
+		#region Line
+
+		public void DrawLine(int X1, int Y1, int X2, int Y2, Color Color, bool AntiAlias = false)
+		{
+			int DX = Math.Abs(X2 - X1), SX = X1 < X2 ? 1 : -1;
+			int DY = Math.Abs(Y2 - Y1), SY = Y1 < Y2 ? 1 : -1;
+			int err = (DX > DY ? DX : -DY) / 2;
+
+			while (X1 != X2 || Y1 != Y2)
+			{
+				this[X1, Y1] = Color;
+				if (AntiAlias)
+				{
+					if (X1 + X2 > Y1 + Y2)
+					{
+						this[X1 + 1, Y1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
+						this[X1 + 1, Y1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
+					}
+					else
+					{
+						this[X1, Y1 + 1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
+						this[X1, Y1 - 1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
+					}
+				}
+				int e2 = err;
+				if (e2 > -DX) { err -= DY; X1 += SX; }
+				if (e2 < DY) { err += DX; Y1 += SY; }
+			}
+		}
+		public void DrawAngledLine(int X, int Y, int Angle, int Radius, Color Color)
+		{
+			int IX = (int)(Radius * Math.Cos(Math.PI * Angle / 180));
+			int IY = (int)(Radius * Math.Sin(Math.PI * Angle / 180));
+			DrawLine(X, Y, X + IX, Y + IY, Color);
+		}
+
+		#endregion
+
+		#region Arc
+
+		public void DrawFilledArc(int X, int Y, uint Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
+		{
+			if (Radius == 0)
+			{
+				return;
 			}
 
-            Graphics FB = new(Width, Height);
-            for (int IX = 0; IX < this.Width; IX++)
-            {
-                for (int IY = 0; IY < this.Height; IY++)
-                {
-                    long X = IX / (this.Width / Width);
-                    long Y = IY / (this.Height / Height);
-                    FB.Internal[(FB.Width * Y) + X] = Internal[(this.Width * IY) + IX];
-                }
-            }
-            return FB;
-        }
+			for (uint I = 0; I < Radius; I++)
+			{
+				DrawArc(X, Y, I, Color, StartAngle, EndAngle);
+			}
+		}
+		public void DrawArc(int X, int Y, uint Width, uint Height, Color Color, int StartAngle = 0, int EndAngle = 360)
+		{
+			for (double Angle = StartAngle; Angle < EndAngle; Angle += 0.5)
+			{
+				double Angle1 = Math.PI * Angle / 180;
+				int IX = (int)(Width * Math.Cos(Angle1));
+				int IY = (int)(Height * Math.Sin(Angle1));
+				this[X + IX, Y + IY] = Color;
+			}
+		}
+		public void DrawArc(int X, int Y, uint Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
+		{
+			for (double Angle = StartAngle; Angle < EndAngle; Angle += 0.5)
+			{
+				double Angle1 = Math.PI * Angle / 180;
+				int IX = (int)(Radius * Math.Cos(Angle1));
+				int IY = (int)(Radius * Math.Sin(Angle1));
+				this[X + IX, Y + IY] = Color;
+			}
+		}
 
-        /*
+		#endregion
+
+		#region Image
+
+		public void DrawImage(int X, int Y, Graphics Image, bool Alpha = true)
+		{
+			if (Image == null)
+			{
+				throw new Exception("Cannot draw a null image file.");
+			}
+			if (!Alpha && X == 0 && Y == 0 && Image.Width == Width && Image.Height == Height)
+			{
+				MemoryOperations.Copy(Internal, Image.Internal, (int)Size);
+				return;
+			}
+			if (!Alpha)
+			{
+				uint TWidth = Image.Width;
+				uint THeight = Image.Height;
+				uint PadX = 0;
+				uint PadY = 0;
+
+				if (X < 0)
+				{
+					PadX = (uint)Math.Abs(X);
+					TWidth -= PadX;
+				}
+				if (Y < 0)
+				{
+					PadY = (uint)Math.Abs(Y);
+					THeight -= PadY;
+				}
+				if (X + Image.Width >= Width)
+				{
+					TWidth = Width - (uint)X;
+				}
+				if (Y + Image.Height >= Height)
+				{
+					THeight = Height - (uint)Y;
+				}
+
+				for (uint IY = 0; IY < THeight; IY++)
+				{
+					MemoryOperations.Copy(Internal + PadX + X + ((PadY + Y + IY) * Width), Image.Internal + PadX + ((PadY + IY) * Image.Width), (int)TWidth);
+				}
+				return;
+			}
+
+			for (int IX = 0; IX < Image.Width; IX++)
+			{
+				for (int IY = 0; IY < Image.Height; IY++)
+				{
+					this[X + IX, Y + IY] = Image[IX, IY];
+				}
+			}
+		}
+
+		#endregion
+
+		#region Text
+
+		public void DrawString(int X, int Y, string Text, Font Font, Color Color, bool Center = false)
+		{
+			if (Text == null || Text.Length == 0)
+			{
+				return;
+			}
+			string[] Lines = Text.Split('\n');
+
+			// Loop Through Each Line Of Text
+			for (int Line = 0; Line < Lines.Length; Line++)
+			{
+				// Advanced Calculations To Determine Position
+				int IX = X - (Center ? ((int)Font.MeasureString(Text) / 2) : 0);
+				int IY = (int)(Y + (Font.Size * Line) - (Center ? Font.Size * Lines.Length / 2 : 0));
+
+				if (IY > Height)
+				{
+					return;
+				}
+
+				// Loop Though Each Char In The Line
+				for (int Char = 0; Char < Lines[Line].Length; Char++)
+				{
+					if (IX > Width)
+					{
+						continue;
+					}
+					IX += (int)(DrawChar(IX, IY, Lines[Line][Char], Font, Color, Center) + 2);
+				}
+			}
+		}
+
+		public uint DrawChar(int X, int Y, char Char, Font Font, Color Color, bool Center)
+		{
+			uint Index = (uint)Font.Charset.IndexOf(Char);
+			if (Char == ' ')
+			{
+				return Font.Size2;
+			}
+			if (Char == '\t')
+			{
+				return Font.Size2 * 4;
+			}
+			if (Index < 0)
+			{
+				return Font.Size2;
+			}
+			if (Center)
+			{
+				X -= (int)Font.Size16;
+				Y -= (int)Font.Size8;
+			}
+
+			uint MaxX = 0;
+			uint SizePerFont = Font.Size * Font.Size8 * Index;
+
+			for (int h = 0; h < Font.Size; h++)
+			{
+				for (int aw = 0; aw < Font.Size8; aw++)
+				{
+					for (int ww = 0; ww < 8; ww++)
+					{
+						if ((Font.Binary[SizePerFont + (h * Font.Size8) + aw] & (0x80 >> ww)) != 0)
+						{
+							int max = (aw * 8) + ww;
+
+							int x = X + max;
+							int y = Y + h;
+
+							this[x, y] = Color;
+
+							if (max > MaxX)
+							{
+								MaxX = (uint)max;
+							}
+						}
+					}
+				}
+			}
+			return MaxX;
+		}
+
+		#endregion
+
+		#region Misc
+
+		public Graphics Resize(uint Width, uint Height, bool KeepContents = true)
+		{
+			if (Width <= 0 || Height <= 0 || Width == this.Width || Height == this.Height)
+			{
+				return this;
+			}
+			if (!KeepContents)
+			{
+				Internal = (uint*)GCImplementation.AllocNewObject(Size * 4);
+				this.Width = Width;
+				this.Height = Height;
+				return this;
+			}
+
+			Graphics FB = new(Width, Height);
+			for (int IX = 0; IX < this.Width; IX++)
+			{
+				for (int IY = 0; IY < this.Height; IY++)
+				{
+					long X = IX / (this.Width / Width);
+					long Y = IY / (this.Height / Height);
+					FB.Internal[(FB.Width * Y) + X] = Internal[(this.Width * IY) + IX];
+				}
+			}
+			return FB;
+		}
+
+		/*
         public Graphics Rotate(int Degrees)
         {
             Graphics T = new(Width, Height);
@@ -703,36 +689,36 @@ namespace PrismGL2D
         }
         */
 
-        public void Clear(Color Color)
-        {
-            IO.Fill(Internal, Color.ARGB, Size);
-        }
-        public void Clear()
-        {
-            Clear(Color.Black);
-        }
-
-        public void CopyTo(uint* Destination)
-        {
-            _Frames++;
-            IO.Copy(Destination, Internal, Size);
-        }
-
-        public uint GetFPS()
+		public void Clear(Color Color)
 		{
-            return _FPS;
+			MemoryOperations.Fill(Internal, Color.ARGB, (int)Size);
+		}
+		public void Clear()
+		{
+			Clear(Color.Black);
 		}
 
-        public void Dispose()
-        {
-            if (Size != 0)
-            {
-                IO.Free(Internal);
-            }
-            IO.Free(this);
-            GC.SuppressFinalize(this);
-        }
+		public void CopyTo(uint* Destination)
+		{
+			_Frames++;
+			MemoryOperations.Copy(Destination, Internal, (int)Size);
+		}
 
-        #endregion
-    }
+		public uint GetFPS()
+		{
+			return _FPS;
+		}
+
+		public void Dispose()
+		{
+			if (Size != 0)
+			{
+				Cosmos.Core.Memory.Heap.Free(Internal);
+			}
+			GCImplementation.Free(this);
+			GC.SuppressFinalize(this);
+		}
+
+		#endregion
+	}
 }

@@ -24,7 +24,6 @@ namespace PrismOS
 
 			#endregion
 
-			Control.Config.Radius = 5;
 			_ = new Frame("Frame Testing")
 			{
 				Controls = new()

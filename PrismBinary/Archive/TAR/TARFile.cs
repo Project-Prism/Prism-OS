@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using PrismMemory;
 
 namespace PrismBinary.Archive.TAR
 {
@@ -23,7 +22,7 @@ namespace PrismBinary.Archive.TAR
                     byte[] Data = new byte[OCS2L(H->Size)];
                     fixed (byte* P = Data)
                     {
-                        IO.Copy(P, (byte*)((uint)T + 512), (uint)Data.Length);
+                        Cosmos.Core.MemoryOperations.Copy(P, (byte*)((uint)T + 512), Data.Length);
                     }
 
                     Files.Add(

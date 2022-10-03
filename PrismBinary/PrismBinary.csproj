@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PrismMemory\PrismMemory.csproj" />
+    <Reference Include="Cosmos.Core">
+      <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
