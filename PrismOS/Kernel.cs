@@ -11,8 +11,8 @@ namespace PrismOS
 {
 	public unsafe class Kernel : Cosmos.System.Kernel
 	{
-		public static VBECanvas Canvas = new();
 		public static AudioMixer Mixer = new();
+		public static VBECanvas Canvas = new();
 
 		protected override void BeforeRun()
 		{
@@ -30,8 +30,8 @@ namespace PrismOS
 				{
 					new Button()
 					{
-						X = 0,
-						Y = (int)Control.Config.Scale,
+						X = 50,
+						Y = (int)Control.Config.Scale + 50,
 						Width = 200,
 						Height = 25,
 						Text = "Click me!",
