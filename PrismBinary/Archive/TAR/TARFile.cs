@@ -22,12 +22,10 @@ namespace PrismBinary.Archive.TAR
                     byte[] Data = new byte[OCS2L(H->Size)];
                     fixed (byte* P = Data)
                     {
-                        Cosmos.Core.MemoryOperations.Copy(P, (byte*)((uint)T + 512), Data.Length);
+                        Cosmos.Core.MemoryOperations.Copy(P, T + 512, Data.Length);
                     }
 
-                    Files.Add(
-                        Encoding.UTF8.GetString(H->Name, 100).Trim('\0'),
-                        Data);
+                    Files.Add(Encoding.UTF8.GetString(H->Name, 100).Trim('\0'), Data);
 
                     T += SizeToSec((ulong)Data.Length) * 512;
                 }
@@ -46,6 +44,10 @@ namespace PrismBinary.Archive.TAR
 
         #region Reading
 
+        public string[] ReadAllLines(string File)
+        {
+            return ReadAllText(File).Split('\n');
+        }
         public byte[] ReadAllBytes(string File)
         {
             File = Format(File);
@@ -78,6 +80,15 @@ namespace PrismBinary.Archive.TAR
 
         #region Writing
 
+        public void WriteAllLines(string File, string[] Lines)
+		{
+            string S = "";
+            for (int I = 0; I < Lines.Length; I++)
+			{
+                S += Lines[I] + 'n';
+			}
+            WriteAllText(File, S[0..(S.Length - 1)]);
+		}
         public void WriteAllBytes(string File, byte[] Binary)
         {
             File = Format(File);
