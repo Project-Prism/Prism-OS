@@ -665,30 +665,6 @@ namespace PrismGL2D
 			return FB;
 		}
 
-		/*
-        public Graphics Rotate(int Degrees)
-        {
-            Graphics T = new(Width, Height);
-            double Angle = Numerics.Math2.Degrees(Degrees);
-            uint CenterX = Width / 2;
-            uint CenterY = Height / 2;
-
-            for (int X = 0; X < Width; X++)
-            {
-                for (int Y = 0; Y < Height; Y++)
-                {
-                    int XP = (int)((X - CenterX) * Math.Cos(Angle) - (Y - CenterY) * Math.Sin(Angle) + CenterX);
-                    int YP = (int)((X - CenterX) * Math.Sin(Angle) + (Y - CenterY) * Math.Cos(Angle) + CenterY);
-                    if (0 <= XP || XP < Width && 0 <= YP && YP < Height)
-                    {
-                        T[X, Y] = this[XP, YP];
-                    }
-                }
-            }
-            return T;
-        }
-        */
-
 		public void Clear(Color Color)
 		{
 			MemoryOperations.Fill(Internal, Color.ARGB, (int)Size);

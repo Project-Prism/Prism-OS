@@ -1,17 +1,17 @@
 ﻿using Cosmos.HAL.Drivers.PCI.Audio;
 using Cosmos.System.Audio;
 using Cosmos.System;
-using Cosmos.Core;
-using PrismGL2D.Formats;
-using PrismGL2D.UI;
-using PrismGL2D;
 using System;
+using PrismOS.Extentions;
+using PrismGL2D.Formats;
+using PrismGL2D;
+using PrismUI;
 
 namespace PrismOS
 {
 	public unsafe class Kernel : Cosmos.System.Kernel
 	{
-		public static Graphics Canvas = new(VBE.getModeInfo().width, VBE.getModeInfo().height);
+		public static VBECanvas Canvas = new();
 		public static AudioMixer Mixer = new();
 
 		protected override void BeforeRun()
@@ -19,7 +19,7 @@ namespace PrismOS
 			#region Splash Screen
 
 			Canvas.DrawImage((int)((Canvas.Width / 2) - 128), (int)((Canvas.Height / 2) - 128), Assets.Splash256);
-			Canvas.CopyTo((uint*)VBE.getLfbOffset());
+			Canvas.Update();
 			//Play(Assets.Vista);
 
 			#endregion
@@ -66,7 +66,7 @@ namespace PrismOS
 
 			// Draw Cursor And Update The Screen
 			Canvas.DrawImage((int)MouseManager.X, (int)MouseManager.Y, Assets.Cursor);
-			Canvas.CopyTo((uint*)VBE.getLfbOffset());
+			Canvas.Update();
 		}
 
 		public static void Play(AudioStream Stream)

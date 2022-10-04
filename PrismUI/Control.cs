@@ -1,7 +1,9 @@
 ﻿using Cosmos.System;
 using Cosmos.Core;
 
-namespace PrismGL2D.UI
+using PrismGL2D;
+
+namespace PrismUI
 {
     public class Control : Graphics, IDisposable
     {

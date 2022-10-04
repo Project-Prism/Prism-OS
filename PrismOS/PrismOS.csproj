@@ -69,6 +69,7 @@
       <ProjectReference Include="..\PrismGL2D\PrismGL2D.csproj" />
       <ProjectReference Include="..\PrismGL3D\PrismGL3D.csproj" />
       <ProjectReference Include="..\PrismNetwork\PrismNetwork.csproj" />
+      <ProjectReference Include="..\PrismUI\PrismUI.csproj" />
     </ItemGroup>
 
 </Project>

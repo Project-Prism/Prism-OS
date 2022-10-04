@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PrismGL2D\PrismGL2D.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Cosmos.Core">
+      <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cosmos.System2">
+      <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

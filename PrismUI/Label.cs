@@ -1,4 +1,6 @@
-﻿namespace PrismGL2D.UI
+﻿using PrismGL2D;
+
+namespace PrismUI
 {
     public class Label : Control
     {

@@ -1,7 +1,7 @@
 ﻿using static Cosmos.Core.INTs;
 using IL2CPU.API.Attribs;
 
-namespace PrismOS.Plugs
+namespace PrismOS.Extentions
 {
     [Plug(Target = typeof(Cosmos.Core.INTs))]
     public class INTs
@@ -27,13 +27,13 @@ namespace PrismOS.Plugs
                 LastKnownAddress += xHex[(int)(lastKnownAddressValue & 0xF)];
             }
 
-            _ = new PrismGL2D.UI.Frame("Critical kernel error")
+            _ = new PrismUI.Frame("Critical kernel error")
             {
                 Controls = new()
                 {
-                    new PrismGL2D.UI.Label()
+                    new PrismUI.Label()
                     {
-                        Text = $"{aName}\n{aDescription}\nLast known address: {LastKnownAddress}\nCTX Interupt: {CTXInterupt}",
+                        Text = $"{aName}\n{aDescription}\nLast known address: {LastKnownAddress}\nCTX Interupt: {CTXInterupt}\nEIP: {aEIP}",
 					},
 				},
             };

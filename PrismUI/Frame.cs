@@ -1,7 +1,8 @@
 ﻿using Cosmos.System;
 using Cosmos.Core;
+using PrismGL2D;
 
-namespace PrismGL2D.UI
+namespace PrismUI
 {
 	public class Frame : Control
 	{
