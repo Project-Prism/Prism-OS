@@ -1,4 +1,5 @@
-﻿using Cosmos.Core;
+﻿using Cosmos.Core.Memory;
+using Cosmos.Core;
 using Cosmos.HAL;
 
 namespace PrismGL2D
@@ -14,7 +15,7 @@ namespace PrismGL2D
 
 			if (Width != 0 && Height != 0)
 			{
-				Internal = (uint*)GCImplementation.AllocNewObject(Size * 4);
+				Internal = (uint*)Heap.Alloc(Size * 4);
 			}
 		}
 
@@ -646,7 +647,8 @@ namespace PrismGL2D
 			}
 			if (!KeepContents)
 			{
-				Internal = (uint*)GCImplementation.AllocNewObject(Size * 4);
+				// Heap.Free(Internal);
+				Internal = (uint*)Heap.Alloc(Size * 4);
 				this.Width = Width;
 				this.Height = Height;
 				return this;
@@ -689,7 +691,7 @@ namespace PrismGL2D
 		{
 			if (Size != 0)
 			{
-				Cosmos.Core.Memory.Heap.Free(Internal);
+				Heap.Free(Internal);
 			}
 			GCImplementation.Free(this);
 			GC.SuppressFinalize(this);

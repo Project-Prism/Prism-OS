@@ -69,6 +69,17 @@ namespace PrismOS
 			Canvas.Update();
 		}
 
+		public static bool TryReadKey(out ConsoleKeyInfo Key)
+		{
+			if (KeyboardManager.TryReadKey(out var KeyX))
+			{
+				Key = new(KeyX.KeyChar, (ConsoleKey)KeyX.Key, KeyX.Modifiers == ConsoleModifiers.Shift, KeyX.Modifiers == ConsoleModifiers.Alt, KeyX.Modifiers == ConsoleModifiers.Control);
+				return true;
+			}
+
+			Key = default;
+			return false;
+		}
 		public static void Play(AudioStream Stream)
 		{
 			try
@@ -84,18 +95,6 @@ namespace PrismOS
 			{
 				Cosmos.HAL.Debug.Serial.SendString($"[WARN] Unable to play audio! ({E.Message})");
 			}
-		}
-
-		public static bool TryReadKey(out ConsoleKeyInfo Key)
-		{
-			if (KeyboardManager.TryReadKey(out var KeyX))
-			{
-				Key = new(KeyX.KeyChar, (ConsoleKey)KeyX.Key, KeyX.Modifiers == ConsoleModifiers.Shift, KeyX.Modifiers == ConsoleModifiers.Alt, KeyX.Modifiers == ConsoleModifiers.Control);
-				return true;
-			}
-
-			Key = default;
-			return false;
 		}
 	}
 }

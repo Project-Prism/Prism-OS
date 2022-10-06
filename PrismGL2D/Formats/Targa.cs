@@ -1,4 +1,5 @@
-﻿using Cosmos.Core;
+﻿using Cosmos.Core.Memory;
+using Cosmos.Core;
 
 namespace PrismGL2D.Formats
 {
@@ -14,14 +15,14 @@ namespace PrismGL2D.Formats
                 return;
             }
 
-            uint* Data = (uint*)GCImplementation.AllocNewObject((w * h + 2) * 4);
+            uint* Data = (uint*)Heap.Alloc((w * h + 2) * 4);
 
             switch (Binary[2])
             {
                 case 1:
                     if (Binary[6] != 0 || Binary[4] != 0 || Binary[3] != 0 || (Binary[7] != 24 && Binary[7] != 32))
                     {
-                        Cosmos.Core.Memory.Heap.Free(Data);
+                        Heap.Free(Data);
                         return;
                     }
                     for (y = i = 0; y < h; y++)
@@ -37,7 +38,7 @@ namespace PrismGL2D.Formats
                 case 2:
                     if (Binary[5] != 0 || Binary[6] != 0 || Binary[1] != 0 || (Binary[16] != 24 && Binary[16] != 32))
                     {
-                        Cosmos.Core.Memory.Heap.Free(Data);
+                        Heap.Free(Data);
                         return;
                     }
                     for (y = i = 0; y < h; y++)
@@ -53,7 +54,7 @@ namespace PrismGL2D.Formats
                 case 9:
                     if (Binary[6] != 0 || Binary[4] != 0 || Binary[3] != 0 || (Binary[7] != 24 && Binary[7] != 32))
                     {
-                        Cosmos.Core.Memory.Heap.Free(Data);
+                        Heap.Free(Data);
                         return;
                     }
                     y = i = 0;
@@ -85,7 +86,7 @@ namespace PrismGL2D.Formats
                 case 10:
                     if (Binary[5] != 0 || Binary[6] != 0 || Binary[1] != 0 || (Binary[16] != 24 && Binary[16] != 32))
                     {
-                        Cosmos.Core.Memory.Heap.Free(Data);
+                        Heap.Free(Data);
                         return;
                     }
                     y = i = 0;
@@ -115,7 +116,7 @@ namespace PrismGL2D.Formats
                     }
                     break;
                 default:
-                    Cosmos.Core.Memory.Heap.Free(Data);
+                    Heap.Free(Data);
                     return;
             }
 
