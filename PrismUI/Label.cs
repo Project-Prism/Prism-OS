@@ -26,7 +26,7 @@ namespace PrismUI
             }
         }
 
-        public override void OnDrawEvent(Graphics Buffer)
+        public override void OnDrawEvent(Control C)
         {
             base.OnDrawEvent(this);
 
@@ -38,7 +38,7 @@ namespace PrismUI
                 DrawRectangle(0, 0, Width - 1, Height - 1, Config.Radius, Config.AccentColor);
             }
 
-            Buffer.DrawImage(X, Y, this, true);
+            C.DrawImage(X, Y, this, true);
         }
     }
 }

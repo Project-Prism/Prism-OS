@@ -2,7 +2,7 @@
 using Cosmos.System.Audio;
 using Cosmos.System;
 using System;
-using PrismOS.Extentions;
+using PrismGL2D.Extentions;
 using PrismGL2D.Formats;
 using PrismGL2D;
 using PrismUI;
@@ -41,7 +41,7 @@ namespace PrismOS
 
 			#region Misc
 
-			Assets.Wallpaper = (Bitmap)Assets.Wallpaper.Resize(Canvas.Width, Canvas.Height);
+			Assets.Wallpaper = (Bitmap)Assets.Wallpaper.Scale(Canvas.Width, Canvas.Height);
 			MouseManager.ScreenWidth = Canvas.Width;
 			MouseManager.ScreenHeight = Canvas.Height;
 
@@ -51,8 +51,10 @@ namespace PrismOS
 		protected override void Run()
 		{
 			Canvas.DrawImage(0, 0, Assets.Wallpaper, false);
-			Canvas.DrawFilledRectangle(0, 0, Control.Config.Font.MeasureString($"FPS: {Canvas.GetFPS()}") + 30, Control.Config.Font.Size + 30, 0, Color.LightBlack);
-			Canvas.DrawString(15, 15, $"FPS: {Canvas.GetFPS()}", Control.Config.Font, Color.White);
+
+			// Display FPS
+			Canvas.DrawFilledRectangle(0, 0, Font.Fallback.MeasureString($"FPS: {Canvas.GetFPS()}") + 30, Font.Fallback.Size + 30, 0, Color.LightBlack);
+			Canvas.DrawString(15, 15, $"FPS: {Canvas.GetFPS()}", Font.Fallback, Color.White);
 
 			bool KeyPress = TryReadKey(out ConsoleKeyInfo Key);
 			foreach (Frame Frame in Frame.Frames)

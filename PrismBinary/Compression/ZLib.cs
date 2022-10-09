@@ -9,7 +9,7 @@
     /// - all output is written to a single output buffer
     /// - Warning: This is SLOW. It's no miracle .NET as well as Mono implement DeflateStream natively.
     /// </summary>
-    public class ZLib
+    public class ZLIB
     {
         /// <summary>
         /// Decode deflated data
@@ -18,7 +18,7 @@
         /// <returns>uncompressed output</returns>
         public static List<byte> Inflate(IList<byte> compressed)
         {
-            return new ZLib { In = compressed }.Inflate();
+            return new ZLIB { In = compressed }.Inflate();
         }
 
         #region internal

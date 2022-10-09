@@ -1,12 +1,10 @@
-﻿using PrismGL2D;
-
-namespace PrismUI
+﻿namespace PrismUI
 {
     public class Textbox : Control
     {
         public string Hint = "";
 
-        public override void OnDrawEvent(Graphics Buffer)
+        public override void OnDrawEvent(Control C)
         {
             base.OnDrawEvent(this);
 
@@ -17,7 +15,7 @@ namespace PrismUI
                 DrawRectangle(0, 0, Width - 1, Height - 1, Config.Radius, Config.GetForeground(false, false));
             }
 
-            Buffer.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
+            C.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
         }
     }
 }

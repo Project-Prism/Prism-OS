@@ -1,6 +1,5 @@
 ﻿using Cosmos.System;
 using Cosmos.Core;
-
 using PrismGL2D;
 
 namespace PrismUI
@@ -13,6 +12,7 @@ namespace PrismUI
             OnDrawEvents = new();
             OnKeyEvents = new();
 
+            Controls = new();
             HasBackground = true;
             CanInteract = true;
             IsEnabled = true;
@@ -129,6 +129,10 @@ namespace PrismUI
         #region Fields
 
         /// <summary>
+        /// A list containing all sub-elements for the control.
+        /// </summary>
+        public List<Control> Controls;
+        /// <summary>
         /// Check to see if the control should have a background drawn.
         /// </summary>
         public bool HasBackground;
@@ -175,7 +179,7 @@ namespace PrismUI
 
         public List<Action<int, int, MouseState>> OnClickEvents { get; set; }
         public List<Action<ConsoleKeyInfo>> OnKeyEvents { get; set; }
-        public List<Action<Graphics>> OnDrawEvents { get; set; }
+        public List<Action<Control>> OnDrawEvents { get; set; }
 
         #endregion
 
@@ -195,14 +199,12 @@ namespace PrismUI
                 OnKeyEvents[I](Key);
             }
         }
-        public virtual void OnDrawEvent(Graphics G)
+        public virtual void OnDrawEvent(Control C)
         {
-            // Need to call Base.OnDrawEvent for events and dragging to work.
-
             // Fire events
             for (int I = 0; I < OnDrawEvents.Count; I++)
 			{
-                OnDrawEvents[I](G);
+                OnDrawEvents[I](this);
 			}
 
             // Clear
@@ -221,7 +223,13 @@ namespace PrismUI
             else
 			{
                 Clear(Color.Transparent);
-			}
+            }
+
+            // Update sub-elements
+            for (int I = 0; I < Controls.Count; I++)
+            {
+                Controls[I].OnDrawEvent(this);
+            }
         }
 
         public new void Dispose()

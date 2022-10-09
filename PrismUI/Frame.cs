@@ -71,7 +71,11 @@ namespace PrismUI
 			base.OnKeyEvent(Key);
 		}
 
-		public override void OnDrawEvent(Graphics G)
+		public override void OnDrawEvent(Control C)
+		{
+			base.OnDrawEvent(C);
+		}
+		public void OnDrawEvent(Graphics G)
 		{ // tbh i do not really understand my logic behind this, it needs to be re-done eventualy but for the time being, it works okay enough.
 			base.OnDrawEvent(this);
 
@@ -185,10 +189,6 @@ namespace PrismUI
 
 		#region Fields
 
-		/// <summary>
-		/// The controls inside of the frame.
-		/// </summary>
-		public List<Control> Controls;
 		/// <summary>
 		/// The button that is fired when the Enter key is pressed.
 		/// </summary>

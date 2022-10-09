@@ -11,13 +11,13 @@ namespace PrismUI
 
         public Graphics Source { get; set; }
 
-        public unsafe override void OnDrawEvent(Graphics Buffer)
+        public unsafe override void OnDrawEvent(Control C)
         {
             base.OnDrawEvent(this);
 
             if (Source != null)
             {
-                Buffer.DrawImage(X, Y, Source, false);
+                C.DrawImage(X, Y, Source, false);
             }
         }
     }

@@ -11,19 +11,19 @@ namespace PrismUI
 
 		public Graphics Source { get; set; }
 
-		public override void OnDrawEvent(Graphics Buffer)
+		public override void OnDrawEvent(Control C)
 		{
 			base.OnDrawEvent(this);
 
 			if (Source.Width != Width || Source.Height != Height)
 			{
-				Source = Source.Resize(Width, Height);
+				Source = Source.Scale(Width, Height);
 			}
 
 			DrawImage(0, 0, Source, true);
 			DrawString((int)(Source.Width + 15), (int)(Height / 2), Text, Config.Font, Config.GetForeground(IsPressed, IsHovering));
 
-			Buffer.DrawImage(X, Y, Source, Config.ShouldContainAlpha(this));
+			C.DrawImage(X, Y, Source, Config.ShouldContainAlpha(this));
 		}
 	}
 }

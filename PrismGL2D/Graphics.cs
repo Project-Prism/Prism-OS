@@ -1,4 +1,5 @@
-﻿using Cosmos.Core.Memory;
+﻿using PrismGL2D.Structure;
+using Cosmos.Core.Memory;
 using Cosmos.Core;
 using Cosmos.HAL;
 
@@ -102,7 +103,7 @@ namespace PrismGL2D
 			{
 				if (_Width != 0)
 				{
-					Internal = Resize(Width, value).Internal;
+					Internal = Scale(Width, value).Internal;
 				}
 
 				_Height = value;
@@ -118,7 +119,7 @@ namespace PrismGL2D
 			{
 				if (_Height != 0)
 				{
-					Internal = Resize(value, Height).Internal;
+					Internal = Scale(value, Height).Internal;
 				}
 
 				_Width = value;
@@ -638,33 +639,39 @@ namespace PrismGL2D
 		#endregion
 
 		#region Misc
-
-		public Graphics Resize(uint Width, uint Height, bool KeepContents = true)
+		
+		public Graphics Scale(uint Width, uint Height, ScaleMode Mode = ScaleMode.Normal)
 		{
-			if (Width <= 0 || Height <= 0 || Width == this.Width || Height == this.Height)
+			switch (Mode)
 			{
-				return this;
-			}
-			if (!KeepContents)
-			{
-				// Heap.Free(Internal);
-				Internal = (uint*)Heap.Alloc(Size * 4);
-				this.Width = Width;
-				this.Height = Height;
-				return this;
-			}
+				#region DontKeep
+				case ScaleMode.DontKeep:
+					Internal = (uint*)Heap.Realloc((byte*)Internal, Size * 4);
+					this.Width = Width;
+					this.Height = Height;
+					return this;
+				#endregion
+				#region Normal
+				case ScaleMode.Normal:
+					if (Width <= 0 || Height <= 0 || Width == this.Width || Height == this.Height)
+					{
+						return this;
+					}
 
-			Graphics FB = new(Width, Height);
-			for (int IX = 0; IX < this.Width; IX++)
-			{
-				for (int IY = 0; IY < this.Height; IY++)
-				{
-					long X = IX / (this.Width / Width);
-					long Y = IY / (this.Height / Height);
-					FB.Internal[(FB.Width * Y) + X] = Internal[(this.Width * IY) + IX];
-				}
+					Graphics FB = new(Width, Height);
+					for (int IX = 0; IX < this.Width; IX++)
+					{
+						for (int IY = 0; IY < this.Height; IY++)
+						{
+							long X = IX / (this.Width / Width);
+							long Y = IY / (this.Height / Height);
+							FB.Internal[(FB.Width * Y) + X] = Internal[(this.Width * IY) + IX];
+						}
+					}
+					return FB;
+				#endregion
 			}
-			return FB;
+			throw new NotImplementedException($"Mode '{(byte)Mode}' is not implemented.");
 		}
 
 		public void Clear(Color Color)

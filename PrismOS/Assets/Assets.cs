@@ -23,9 +23,9 @@ namespace PrismOS
 
         // Pre-Sized Logos
         public static Graphics Splash = new Bitmap(LogoB);
-        public static Graphics Splash512 = Splash.Resize(512, 512);
-        public static Graphics Splash256 = Splash.Resize(256, 256);
-        public static Graphics Splash128 = Splash.Resize(128, 128);
-        public static Graphics Splash64 = Splash.Resize(64, 64);
+        public static Graphics Splash512 = Splash.Scale(512, 512);
+        public static Graphics Splash256 = Splash.Scale(256, 256);
+        public static Graphics Splash128 = Splash.Scale(128, 128);
+        public static Graphics Splash64 = Splash.Scale(64, 64);
     }
 }

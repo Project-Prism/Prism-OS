@@ -1,5 +1,4 @@
 ﻿using Cosmos.System;
-using PrismGL2D;
 
 namespace PrismUI
 {
@@ -13,7 +12,7 @@ namespace PrismUI
             base.OnClickEvent(X, Y, State);
         }
 
-        public override void OnDrawEvent(Graphics G)
+        public override void OnDrawEvent(Control C)
         {
             base.OnDrawEvent(this);
 
@@ -25,7 +24,7 @@ namespace PrismUI
                 DrawRectangle(0, 0, Width - 1, Height - 1, Config.Radius, Config.AccentColor);
             }
 
-            G.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
+            C.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
         }
     }
 }

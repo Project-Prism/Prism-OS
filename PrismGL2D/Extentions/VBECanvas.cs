@@ -1,7 +1,6 @@
 ﻿using Cosmos.Core;
-using PrismGL2D;
 
-namespace PrismOS.Extentions
+namespace PrismGL2D.Extentions
 {
 	public class VBECanvas : Graphics
 	{

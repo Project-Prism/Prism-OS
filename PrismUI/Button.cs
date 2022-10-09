@@ -1,10 +1,8 @@
-﻿using PrismGL2D;
-
-namespace PrismUI
+﻿namespace PrismUI
 {
-    public class Button : Control
+	public class Button : Control
     {
-        public override void OnDrawEvent(Graphics G)
+        public override void OnDrawEvent(Control C)
         {
             base.OnDrawEvent(this);
 
@@ -16,7 +14,7 @@ namespace PrismUI
                 DrawRectangle(0, 0, Width - 1, Height - 1, Config.Radius, Config.GetForeground(IsPressed, IsHovering));
             }
 
-            G.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
+            C.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
         }
     }
 }
