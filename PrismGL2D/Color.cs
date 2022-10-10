@@ -108,6 +108,10 @@
 
         public static Color AlphaBlend(Color Source, Color NewColor)
         {
+            if (NewColor.A == 255)
+			{
+                return NewColor;
+			}
             if (NewColor.A == 0)
 			{
                 return Source;
