@@ -19,6 +19,7 @@ namespace PrismOS
 			#region Splash Screen
 
 			Canvas.DrawImage((int)((Canvas.Width / 2) - 128), (int)((Canvas.Height / 2) - 128), Assets.Splash256);
+			//Canvas.DrawQuadraticBezierLine(0, 0, 0, (int)Canvas.Height, (int)Canvas.Width, (int)Canvas.Height, Color.White);
 			Canvas.Update();
 			//Play(Assets.Vista);
 
@@ -38,6 +39,7 @@ namespace PrismOS
 					},
 				}
 			};
+			//_ = new Snake();
 
 			#region Misc
 

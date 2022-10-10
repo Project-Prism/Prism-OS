@@ -73,7 +73,7 @@ namespace PrismUI
 
 		public override void OnDrawEvent(Control C)
 		{
-			base.OnDrawEvent(C);
+			OnDrawEvent(C);
 		}
 		public void OnDrawEvent(Graphics G)
 		{ // tbh i do not really understand my logic behind this, it needs to be re-done eventualy but for the time being, it works okay enough.
