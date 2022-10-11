@@ -8,15 +8,10 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - name: Checkout PrismOS
-      uses: actions/checkout@v2.4.2
-      with:
-        repository: Project-Prism
-        path: Cosmos
     - name: Checkout Prism-OS
       uses: actions/checkout@v2.4.2
       with:
-        repository: Project-Prism
+        repository: Project-Prism/Prism-OS
         path: Prism-OS
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2.0.0
