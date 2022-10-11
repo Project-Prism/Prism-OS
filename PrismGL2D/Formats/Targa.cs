@@ -3,8 +3,15 @@ using Cosmos.Core;
 
 namespace PrismGL2D.Formats
 {
+    /// <summary>
+    /// Targa (TGA) image class.
+    /// </summary>
     public unsafe class Targa : Graphics
     {
+        /// <summary>
+        /// Creates a new instance of the <see cref="Targa"/> class.
+        /// </summary>
+        /// <param name="Binary">Binary of the image.</param>
         public Targa(byte[] Binary) : base(1, 1)
         {
             uint i, j, k, x, y, w = (uint)((Binary[13] << 8) + Binary[12]), h = (uint)((Binary[15] << 8) + Binary[14]), o = (uint)((Binary[11] << 8) + Binary[10]);

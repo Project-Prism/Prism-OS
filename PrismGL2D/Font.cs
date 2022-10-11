@@ -1,10 +1,17 @@
 ﻿namespace PrismGL2D
 {
+	/// <summary>
+	/// Nifanfa's bitfont class.
+	/// </summary>
 	public unsafe class Font
 	{
-		public Font(string Charset, byte[] Binary, uint Size)
+		/// <summary>
+		/// Creates a new instance of the <see cref="Font"/> class.
+		/// </summary>
+		/// <param name="Binary">Binary of the font file.</param>
+		/// <param name="Size">Height of the font.</param>
+		public Font(byte[] Binary, uint Size)
 		{
-			this.Charset = Charset;
 			fixed (byte* PTR = Binary)
 			{
 				this.Binary = PTR;
@@ -16,8 +23,14 @@
 			this.Size = Size;
 		}
 
+		/// <summary>
+		/// The standard charset of all fonts.
+		/// </summary>
 		public static string DefaultCharset = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
-		public static readonly Font Fallback = new(DefaultCharset, new byte[]
+		/// <summary>
+		/// The default font used before other fonts can be loaded.
+		/// </summary>
+		public static readonly Font Fallback = new(new byte[]
 		{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x00, 0x20, 0x00,
 0x20, 0x00, 0x20, 0x00, 0x20, 0x00, 0x20, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -209,17 +222,42 @@
 0x00, 0x00, 0x3A, 0x00, 0x2C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 		}, 16);
 
-		public string Charset;
+		/// <summary>
+		/// The pointer to the raw memory for the font file.
+		/// </summary>
 		public byte* Binary;
+		/// <summary>
+		/// Size divided by 16.
+		/// </summary>
 		public uint Size16;
+		/// <summary>
+		/// Size divided by 8.
+		/// </summary>
 		public uint Size8;
+		/// <summary>
+		/// Size divided by 4.
+		/// </summary>
 		public uint Size4;
+		/// <summary>
+		/// Size divided by 2.
+		/// </summary>
 		public uint Size2;
+		/// <summary>
+		/// Size (Height) of the font.
+		/// </summary>
 		public uint Size;
 
+		/// <summary>
+		/// Draws an invisive character, used for measuring the font.
+		/// </summary>
+		/// <param name="X">X position of the char.</param>
+		/// <param name="Y">Y position of the char.</param>
+		/// <param name="Char">Char to draw.</param>
+		/// <param name="Center">Option to center in X and Y.</param>
+		/// <returns>Width of the char.</returns>
 		private uint DrawChar(int X, int Y, char Char, bool Center)
 		{
-			uint Index = (uint)Charset.IndexOf(Char);
+			uint Index = (uint)DefaultCharset.IndexOf(Char);
 			if (Char == ' ')
 			{
 				return Size2;
@@ -261,6 +299,11 @@
 			return MaxX;
 		}
 
+		/// <summary>
+		/// Measures a string's total width.
+		/// </summary>
+		/// <param name="String">String to measure.</param>
+		/// <returns>Width of the input string.</returns>
 		public uint MeasureString(string String)
 		{
 			uint Width = 0;

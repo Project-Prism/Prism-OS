@@ -7,6 +7,10 @@
 	/// <param name="Binary"></param>
 	public class PPM : Graphics
 	{
+		/// <summary>
+		/// Creates a new <see cref="PPM"/> class.
+		/// </summary>
+		/// <param name="Binary">Raw data of input image.</param>
 		public PPM(byte[] Binary) : base(0, 0)
 		{
 			BinaryReader Reader = new(new MemoryStream(Binary));

@@ -784,7 +784,7 @@ namespace PrismGL2D
 		/// <returns>Width of the drawn character.</returns>
 		public uint DrawChar(int X, int Y, char Char, Font Font, Color Color, bool Center)
 		{
-			uint Index = (uint)Font.Charset.IndexOf(Char);
+			uint Index = (uint)Font.DefaultCharset.IndexOf(Char);
 			if (Char == ' ')
 			{
 				return Font.Size2;
