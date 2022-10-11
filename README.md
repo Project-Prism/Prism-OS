@@ -29,6 +29,15 @@
 - [x] PrismNetwork
 - [X] Kernel (Partial)
 
+<hr/>
+
+- ## Documentation TO-DO
+- [ ] PrismBinary
+- [ ] PrismGL2D (partial)
+- [ ] PrismGL3D
+- [ ] PrismNetwork
+- [ ] PrismUI
+
 
 <hr/>
 

@@ -1,8 +1,13 @@
 ﻿namespace PrismGL2D
 {
+    /// <summary>
+    /// Color class, used for drawing.
+    /// </summary>
     public struct Color
     {
-        // Visible values
+        /// <summary>
+        /// Saturation of the color.
+        /// </summary>
         public int Saturation
         {
             get
@@ -30,6 +35,9 @@
                 }
             }
         }
+        /// <summary>
+        /// Packed ARGB value of the color.
+        /// </summary>
         public uint ARGB
         {
             get
@@ -45,6 +53,9 @@
                 _B = (byte)(_ARGB);
             }
         }
+        /// <summary>
+        /// Alpha channel of the color.
+        /// </summary>
         public byte A
         {
             get
@@ -57,6 +68,9 @@
                 _ARGB = (uint)(_A << 24 | _R << 16 | _G << 8 | _B);
             }
         }
+        /// <summary>
+        /// Red channel of the color.
+        /// </summary>
         public byte R
         {
             get
@@ -69,6 +83,9 @@
                 _ARGB = (uint)(_A << 24 | _R << 16 | _G << 8 | _B);
             }
         }
+        /// <summary>
+        /// Green channel of the color.
+        /// </summary>
         public byte G
         {
             get
@@ -81,6 +98,9 @@
                 _ARGB = (uint)(_A << 24 | _R << 16 | _G << 8 | _B);
             }
         }
+        /// <summary>
+        /// Blue channel of the color.
+        /// </summary>
         public byte B
         {
             get
@@ -106,6 +126,12 @@
 
         #region Methods
 
+        /// <summary>
+        /// Blends two colors together based on their alpha values.
+        /// </summary>
+        /// <param name="Source">The original color.</param>
+        /// <param name="NewColor">The new color to mix.</param>
+        /// <returns>Mixed color.</returns>
         public static Color AlphaBlend(Color Source, Color NewColor)
         {
             if (NewColor.A == 255)
@@ -123,6 +149,14 @@
                 (byte)((Source.G * (255 - NewColor.A) / 255) + NewColor.G),
                 (byte)((Source.B * (255 - NewColor.A) / 255) + NewColor.B));
         }
+        /// <summary>
+        /// Loads color from printer CYMK colorspace.
+        /// </summary>
+        /// <param name="C">Cyan value.</param>
+        /// <param name="Y">Yellow value.</param>
+        /// <param name="M">Magenta value.</param>
+        /// <param name="K">Black value</param>
+        /// <returns>ARGB color from CYMK colorspace.</returns>
         public static Color FromCYMK(byte C, byte Y, byte M, byte K)
         {
             Color T = new();
@@ -143,10 +177,24 @@
             }
             return T;
         }
+        /// <summary>
+        /// Loads color from ARGB colorspace.
+        /// </summary>
+        /// <param name="A">Alpha value.</param>
+        /// <param name="R">Red value.</param>
+        /// <param name="G">Green value.</param>
+        /// <param name="B">Blue value.</param>
+        /// <returns>ARGB color from values.</returns>
         public static Color FromARGB(byte A, byte R, byte G, byte B)
         {
             return new() { A = A, R = R, G = G, B = B };
         }
+        /// <summary>
+        /// Mixes colors together based on their weights in the Values array.
+        /// </summary>
+        /// <param name="Colors">Colors array.</param>
+        /// <param name="Values">Weights array.</param>
+        /// <returns>Mixed color.</returns>
         public static Color Mix(Color[] Colors, float[] Values)
         {
             if (Colors.Length != Values.Length)
@@ -165,10 +213,20 @@
             }
             return T;
         }
+        /// <summary>
+        /// Gets ARGB color from packed value.
+        /// </summary>
+        /// <param name="ARGB">Packed ARGB value.</param>
+        /// <returns>Color class from ARGB value.</returns>
         public static Color FromARGB(uint ARGB)
         {
             return new() { ARGB = ARGB };
         }
+        /// <summary>
+        /// Gets ARGB color from string hex value.
+        /// </summary>
+        /// <param name="Hex">Hex color value (like #FFFFFFFF)</param>
+        /// <returns>ARGB color from hex value.</returns>
         public static Color FromHex(string Hex)
         {
             if (Hex.StartsWith('#'))
@@ -178,6 +236,11 @@
 
             return new() { ARGB = uint.Parse(Hex, System.Globalization.NumberStyles.HexNumber) };
         }
+        /// <summary>
+        /// Converts the color to be only in grayscale.
+        /// </summary>
+        /// <param name="UseAlpha">Allow alpha when converting.</param>
+        /// <returns>Grayscale color.</returns>
         public Color ToGrayscale(bool UseAlpha)
 		{
             byte Average = (byte)((R / 3) + (G / 3) + (B / 3));

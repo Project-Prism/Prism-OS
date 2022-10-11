@@ -1,5 +1,8 @@
 ﻿namespace PrismGL2D.Structure
 {
+	/// <summary>
+	/// The available modes for re-scaling images.
+	/// </summary>
 	public enum ScaleMode
 	{
 		/// <summary>
