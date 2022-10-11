@@ -30,6 +30,7 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <DebugType>none</DebugType>
         <CompressionType>Gzip</CompressionType>
+        <GenerateDocumentationFile>False</GenerateDocumentationFile>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

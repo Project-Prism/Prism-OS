@@ -2,15 +2,21 @@
 {
     public unsafe class Bitmap : Graphics
     {
-        public Bitmap(byte[] Binary) : base(1, 1)
+        /// <summary>
+        /// Creates a new instance of the <see cref="Bitmap"/> class.
+        /// </summary>
+        /// <param name="Binary">Raw binary of a bitmap file.</param>
+        /// <exception cref="Exception"></exception>
+        /// <exception cref="NotImplementedException">Thrown if ColorDepth mode not implemented.</exception>
+        public Bitmap(byte[] Binary) : base(0, 0)
         {
             Cosmos.System.Graphics.Bitmap BMP = new(Binary);
             Height = BMP.Height;
             Width = BMP.Width;
 
-            fixed (uint* PTR = (uint[])(object)BMP.rawData)
+            fixed (int* PTR = BMP.rawData)
             {
-                Internal = PTR;
+                Internal = (uint*)PTR;
             }
         }
 
