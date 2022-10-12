@@ -1,10 +1,11 @@
-﻿using Cosmos.HAL.Drivers.PCI.Audio;
+﻿using Cosmos.System.Network.IPv4.UDP.DHCP;
+using Cosmos.HAL.Drivers.PCI.Audio;
 using Cosmos.System.Audio;
 using Cosmos.System;
 using System;
 using PrismGL2D.Extentions;
+using PrismOS.Extentions;
 using PrismGL2D.Formats;
-using PrismGL2D;
 using PrismUI;
 
 namespace PrismOS
@@ -13,6 +14,7 @@ namespace PrismOS
 	{
 		public static AudioMixer Mixer = new();
 		public static VBECanvas Canvas = new();
+		public static Overlay Overlay = new();
 
 		protected override void BeforeRun()
 		{
@@ -23,6 +25,14 @@ namespace PrismOS
 			//Play(Assets.Vista);
 
 			#endregion
+
+			#region Networking
+
+			_ = new DHCPClient().SendDiscoverPacket();
+
+			#endregion
+
+			#region Desktop
 
 			_ = new Frame("Frame Testing")
 			{
@@ -40,6 +50,8 @@ namespace PrismOS
 			};
 			//_ = new Snake();
 
+			#endregion
+
 			#region Misc
 
 			Assets.Wallpaper = (Bitmap)Assets.Wallpaper.Scale(Canvas.Width, Canvas.Height);
@@ -48,14 +60,10 @@ namespace PrismOS
 
 			#endregion
 		}
-
 		protected override void Run()
 		{
+			// Draw wallpaper
 			Canvas.DrawImage(0, 0, Assets.Wallpaper, false);
-
-			// Display FPS
-			Canvas.DrawFilledRectangle(0, 0, Font.Fallback.MeasureString($"FPS: {Canvas.GetFPS()}") + 30, Font.Fallback.Size + 30, 0, Color.LightBlack);
-			Canvas.DrawString(15, 15, $"FPS: {Canvas.GetFPS()}", Font.Fallback, Color.White);
 
 			bool KeyPress = TryReadKey(out ConsoleKeyInfo Key);
 			foreach (Frame Frame in Frame.Frames)
@@ -66,6 +74,7 @@ namespace PrismOS
 				}
 				Frame.OnDrawEvent(Canvas);
 			}
+			Overlay.OnUpdate(Canvas);
 
 			// Draw Cursor And Update The Screen
 			Canvas.DrawImage((int)MouseManager.X, (int)MouseManager.Y, Assets.Cursor);
