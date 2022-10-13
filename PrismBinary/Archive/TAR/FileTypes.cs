@@ -1,5 +1,8 @@
 ﻿namespace PrismBinary.Archive.TAR
 {
+    /// <summary>
+    /// Enum filled with the different possible file types in a tar file.
+    /// </summary>
     public enum FileTypes
     {
         NormalFile = 0,

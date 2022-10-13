@@ -2,16 +2,17 @@
 using Cosmos.HAL.Drivers.PCI.Audio;
 using Cosmos.System.Audio;
 using Cosmos.System;
-using System;
 using PrismGL2D.Extentions;
 using PrismOS.Extentions;
 using PrismGL2D.Formats;
+using PrismTools;
 using PrismUI;
 
 namespace PrismOS
 {
 	public unsafe class Kernel : Cosmos.System.Kernel
 	{
+		public static Debugger Debugger = new("Kernel");
 		public static AudioMixer Mixer = new();
 		public static VBECanvas Canvas = new();
 		public static Overlay Overlay = new();
@@ -20,15 +21,18 @@ namespace PrismOS
 		{
 			#region Splash Screen
 
+			System.Console.Clear();
 			Canvas.DrawImage((int)((Canvas.Width / 2) - 128), (int)((Canvas.Height / 2) - 128), Assets.Splash256);
 			Canvas.Update();
-			//Play(Assets.Vista);
+			Play(Assets.Vista);
+			Debugger.Log("Initialized boot screen", Debugger.Severity.Ok);
 
 			#endregion
 
 			#region Networking
 
 			_ = new DHCPClient().SendDiscoverPacket();
+			Debugger.Log("Initialized networking", Debugger.Severity.Ok);
 
 			#endregion
 
@@ -49,6 +53,7 @@ namespace PrismOS
 				}
 			};
 			//_ = new Snake();
+			Debugger.Log("Initialized desktop", Debugger.Severity.Ok);
 
 			#endregion
 
@@ -57,6 +62,7 @@ namespace PrismOS
 			Assets.Wallpaper = (Bitmap)Assets.Wallpaper.Scale(Canvas.Width, Canvas.Height);
 			MouseManager.ScreenWidth = Canvas.Width;
 			MouseManager.ScreenHeight = Canvas.Height;
+			Debugger.Log("Initialized boot resources", Debugger.Severity.Ok);
 
 			#endregion
 		}
@@ -105,7 +111,7 @@ namespace PrismOS
 			}
 			catch (Exception E)
 			{
-				Cosmos.HAL.Debug.Serial.SendString($"[WARN] Unable to play audio! ({E.Message})");
+				Debugger.Log($"Unable to play audio! ({E.Message})", Debugger.Severity.Warning);
 			}
 		}
 	}

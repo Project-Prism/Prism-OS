@@ -2,9 +2,16 @@
 
 namespace PrismBinary.Archive.TAR
 {
-    // https://docs.fileformat.com/compression/tar/
+    /// <summary>
+    /// Class used for loading TAR files
+    /// <seealso cref="https://docs.fileformat.com/compression/tar/"/>
+    /// </summary>
     public unsafe class TARFile
     {
+        /// <summary>
+        /// Creates a new instance of the <see cref="TARFile"/> class.
+        /// </summary>
+        /// <param name="Binary">Ray binary of a tar file.</param>
         public TARFile(byte[] Binary)
         {
             Files = new();
@@ -34,6 +41,10 @@ namespace PrismBinary.Archive.TAR
 
         #region TAR Data
 
+        /// <summary>
+        /// Gets all files in the tar file.
+        /// </summary>
+        /// <returns>All files bundled in the tar.</returns>
         public Dictionary<string, byte[]> GetFiles()
         {
             return Files;
@@ -44,16 +55,31 @@ namespace PrismBinary.Archive.TAR
 
         #region Reading
 
+        /// <summary>
+        /// Reads all text and splits it by \n
+        /// </summary>
+        /// <param name="File">Name of the file to read.</param>
+        /// <returns>Text of 'File' split by \n.</returns>
         public string[] ReadAllLines(string File)
         {
             return ReadAllText(File).Split('\n');
         }
+        /// <summary>
+        /// Reads all the bytes of the file.
+        /// </summary>
+        /// <param name="File">Name of the file to read.</param>
+        /// <returns>All bytes of 'File'.</returns>
         public byte[] ReadAllBytes(string File)
         {
             File = Format(File);
 
             return Files[File];
         }
+        /// <summary>
+        /// Reads all text from the file.
+        /// </summary>
+        /// <param name="File">file to read from.</param>
+        /// <returns>UTF-8 text read from 'File'.</returns>
         public string ReadAllText(string File)
         {
             File = Format(File);
@@ -61,6 +87,11 @@ namespace PrismBinary.Archive.TAR
             return Encoding.UTF8.GetString(Files[File]);
         }
 
+        /// <summary>
+        /// Lists all file names from the tar bundle.
+        /// </summary>
+        /// <param name="Path">Path to search in (Recusrive)</param>
+        /// <returns>All files in the path specified.</returns>
         public string[] ListFiles(string Path)
         {
             Path = Format(Path);
@@ -80,6 +111,11 @@ namespace PrismBinary.Archive.TAR
 
         #region Writing
 
+        /// <summary>
+        /// Writes all lines in 'Lines' to the file.
+        /// </summary>
+        /// <param name="File">File to write to.</param>
+        /// <param name="Lines">Line to write.</param>
         public void WriteAllLines(string File, string[] Lines)
 		{
             string S = "";
@@ -89,6 +125,11 @@ namespace PrismBinary.Archive.TAR
 			}
             WriteAllText(File, S[0..(S.Length - 1)]);
 		}
+        /// <summary>
+        /// Writes all bytes om 'Binary' to the file.
+        /// </summary>
+        /// <param name="File">File to write to.</param>
+        /// <param name="Binary">Binary to write.</param>
         public void WriteAllBytes(string File, byte[] Binary)
         {
             File = Format(File);
@@ -102,6 +143,11 @@ namespace PrismBinary.Archive.TAR
                 Files.Add(File, Binary);
             }
         }
+        /// <summary>
+        /// Writes all text in 'Contents' to the file.
+        /// </summary>
+        /// <param name="File">File to write to.</param>
+        /// <param name="Contents">String to write.</param>
         public void WriteAllText(string File, string Contents)
         {
             File = Format(File);
@@ -116,12 +162,20 @@ namespace PrismBinary.Archive.TAR
             }
         }
 
+        /// <summary>
+        /// Deletes a file.
+        /// </summary>
+        /// <param name="File">File to delete, must be full path.</param>
         public void Delete(string File)
         {
             File = Format(File);
 
             Files.Remove(File);
         }
+        /// <summary>
+        /// Creates an empty file, mush be full path.
+        /// </summary>
+        /// <param name="File">Path to new file.</param>
         public void Create(string File)
         {
             File = Format(File);
@@ -133,11 +187,11 @@ namespace PrismBinary.Archive.TAR
 
         #region Misc
 
-        public static ulong SizeToSec(ulong size)
+        private static ulong SizeToSec(ulong size)
         {
             return ((size - (size % 512)) / 512) + ((size % 512) != 0 ? 1ul : 0);
         }
-        public static string Format(string Base)
+        private static string Format(string Base)
         {
             while (Base.Contains('\\'))
             {
@@ -152,7 +206,7 @@ namespace PrismBinary.Archive.TAR
 
             return Base;
         }
-        public static long OCS2L(byte* PTR)
+        private static long OCS2L(byte* PTR)
         {
             return Convert.ToInt64(Encoding.UTF8.GetString(PTR, 12).Trim('\0'), 8);
         }

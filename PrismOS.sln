@@ -18,7 +18,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismGL3D", "PrismGL3D\Pris
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismNetwork", "PrismNetwork\PrismNetwork.csproj", "{C9E68E44-10D7-4DBB-A6BE-D4DEFA36C952}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismUI", "PrismUI\PrismUI.csproj", "{F77B80F7-8C36-4645-AB07-97F1C2360D2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismUI", "PrismUI\PrismUI.csproj", "{F77B80F7-8C36-4645-AB07-97F1C2360D2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismTools", "PrismTools\PrismTools.csproj", "{E3FFDE4A-0328-4722-9744-B7DD68B83A19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -76,6 +78,14 @@ Global
 		{F77B80F7-8C36-4645-AB07-97F1C2360D2E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F77B80F7-8C36-4645-AB07-97F1C2360D2E}.Release|x86.ActiveCfg = Release|Any CPU
 		{F77B80F7-8C36-4645-AB07-97F1C2360D2E}.Release|x86.Build.0 = Release|Any CPU
+		{E3FFDE4A-0328-4722-9744-B7DD68B83A19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3FFDE4A-0328-4722-9744-B7DD68B83A19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3FFDE4A-0328-4722-9744-B7DD68B83A19}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E3FFDE4A-0328-4722-9744-B7DD68B83A19}.Debug|x86.Build.0 = Debug|Any CPU
+		{E3FFDE4A-0328-4722-9744-B7DD68B83A19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3FFDE4A-0328-4722-9744-B7DD68B83A19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3FFDE4A-0328-4722-9744-B7DD68B83A19}.Release|x86.ActiveCfg = Release|Any CPU
+		{E3FFDE4A-0328-4722-9744-B7DD68B83A19}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

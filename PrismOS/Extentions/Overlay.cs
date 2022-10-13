@@ -1,5 +1,6 @@
 ﻿using Cosmos.System.Network.Config;
 using Cosmos.Core;
+using PrismTools;
 using PrismGL2D;
 
 namespace PrismOS.Extentions

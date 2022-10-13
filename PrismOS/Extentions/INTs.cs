@@ -1,11 +1,14 @@
 ﻿using static Cosmos.Core.INTs;
 using IL2CPU.API.Attribs;
+using PrismTools;
 
 namespace PrismOS.Extentions
 {
     [Plug(Target = typeof(Cosmos.Core.INTs))]
     public class INTs
     {
+        public static Debugger Debugger = new("System");
+
         public static void HandleException(uint aEIP, string aDescription, string aName, ref IRQContext ctx, uint lastKnownAddressValue = 0)
         {
             const string xHex = "0123456789ABCDEF";
@@ -27,16 +30,7 @@ namespace PrismOS.Extentions
                 LastKnownAddress += xHex[(int)(lastKnownAddressValue & 0xF)];
             }
 
-            _ = new PrismUI.Frame("Critical kernel error")
-            {
-                Controls = new()
-                {
-                    new PrismUI.Label()
-                    {
-                        Text = $"{aName}\n{aDescription}\nLast known address: {LastKnownAddress}\nCTX Interupt: {CTXInterupt}\nEIP: {aEIP}",
-					},
-				},
-            };
+            Debugger.Log($"CPU Exception: {aName} [{CTXInterupt}, {aEIP}], LKA: {LastKnownAddress}\n{aDescription}");
         }
     }
 }

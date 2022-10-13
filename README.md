@@ -33,9 +33,10 @@
 
 - ## Documentation TO-DO
 - [ ] PrismBinary
-- [x] PrismGL2D (partial)
+- [x] PrismGL2D
 - [ ] PrismGL3D
 - [ ] PrismNetwork
+- [x] PrismTools
 - [ ] PrismUI
 
 
