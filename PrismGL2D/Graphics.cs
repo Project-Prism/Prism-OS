@@ -835,7 +835,7 @@ namespace PrismGL2D
 		#endregion
 
 		#region Misc
-		
+
 		/// <summary>
 		/// Re-scales the image to the desired size.
 		/// </summary>
@@ -873,7 +873,7 @@ namespace PrismGL2D
 						}
 					}
 					return FB;
-				#endregion
+					#endregion
 			}
 			throw new NotImplementedException($"Mode '{(byte)Mode}' is not implemented.");
 		}

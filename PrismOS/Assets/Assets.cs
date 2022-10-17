@@ -1,7 +1,6 @@
 ﻿using Cosmos.System.Audio.IO;
 using IL2CPU.API.Attribs;
 using PrismGL2D.Formats;
-using PrismGL2D;
 
 namespace PrismOS
 {
@@ -15,17 +14,14 @@ namespace PrismOS
         [ManifestResourceStream(ResourceName = Base + "Vista.wav")] public readonly static byte[] VistaB;
         
         // Misc
-        public static Graphics Wallpaper = new Bitmap(WallpaperB);
-        public static Graphics Cursor = new Bitmap(CursorB);
+        public static Bitmap Wallpaper = new(WallpaperB);
+        public static Bitmap Cursor = new(CursorB);
 
         // System Sounds
         public static MemoryAudioStream Vista = MemoryAudioStream.FromWave(VistaB);
 
         // Pre-Sized Logos
-        public static Graphics Splash = new Bitmap(LogoB);
-        public static Graphics Splash512 = Splash.Scale(512, 512);
-        public static Graphics Splash256 = Splash.Scale(256, 256);
-        public static Graphics Splash128 = Splash.Scale(128, 128);
-        public static Graphics Splash64 = Splash.Scale(64, 64);
+        public static Bitmap Splash = new(LogoB);
+        public static Bitmap Splash256 = (Bitmap)Splash.Scale(256, 256);
     }
 }
