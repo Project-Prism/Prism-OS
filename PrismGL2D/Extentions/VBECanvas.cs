@@ -1,4 +1,5 @@
 ﻿using Cosmos.Core;
+using Cosmos.HAL;
 
 namespace PrismGL2D.Extentions
 {
@@ -10,14 +11,34 @@ namespace PrismGL2D.Extentions
 		/// <summary>
 		/// Creates a new instance of the <see cref="VBECanvas"/> class.
 		/// </summary>
-		public VBECanvas() : base(VBE.getModeInfo().width, VBE.getModeInfo().height) { }
+		public VBECanvas() : base(VBE.getModeInfo().width, VBE.getModeInfo().height)
+		{
+			Cosmos.HAL.Global.PIT.RegisterTimer(new PIT.PITTimer(() => { _FPS = _Frames; _Frames = 0; }, 1000000000, true));
+		}
+
+		#region Fields
+
+		private uint _Frames;
+		private uint _FPS;
+
+		#endregion
 
 		/// <summary>
 		/// Coppies the linear buffer to vram.
 		/// </summary>
 		public unsafe void Update()
 		{
+			_Frames++;
 			CopyTo((uint*)VBE.getLfbOffset());
+		}
+
+		/// <summary>
+		/// Gets the FPS of the canvas.
+		/// </summary>
+		/// <returns>Canvas's FPS.</returns>
+		public uint GetFPS()
+		{
+			return _FPS;
 		}
 	}
 }

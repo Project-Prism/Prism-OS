@@ -1,7 +1,6 @@
 ﻿using PrismGL2D.Structure;
 using Cosmos.Core.Memory;
 using Cosmos.Core;
-using Cosmos.HAL;
 
 namespace PrismGL2D
 {
@@ -19,9 +18,7 @@ namespace PrismGL2D
 		{
 			this.Width = Width;
 			this.Height = Height;
-
-			Cosmos.HAL.Global.PIT.RegisterTimer(new PIT.PITTimer(() => { _FPS = _Frames; _Frames = 0; }, 1000000000, true));
-
+			
 			if (Width != 0 && Height != 0)
 			{
 				Internal = (uint*)Heap.Alloc(Size * 4);
@@ -73,8 +70,6 @@ namespace PrismGL2D
 
 		private uint _Height;
 		private uint _Width;
-		private uint _Frames;
-		private uint _FPS;
 
 		#endregion
 
@@ -901,17 +896,7 @@ namespace PrismGL2D
 		/// <param name="Destination">Desination address to copy to.</param>
 		public void CopyTo(uint* Destination)
 		{
-			_Frames++;
 			MemoryOperations.Copy(Destination, Internal, (int)Size);
-		}
-
-		/// <summary>
-		/// Gets the FPS of the canvas.
-		/// </summary>
-		/// <returns>Canvas's FPS.</returns>
-		public uint GetFPS()
-		{
-			return _FPS;
 		}
 
 		/// <summary>
