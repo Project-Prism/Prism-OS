@@ -1,12 +1,21 @@
 ﻿using Cosmos.System.Network.Config;
+using PrismGL2D.Extentions;
 using Cosmos.Core;
-using PrismTools;
 using PrismGL2D;
 
-namespace PrismOS.Extentions
+namespace PrismTools
 {
+	/// <summary>
+	/// Overlay class, used for displaying debug information.
+	/// </summary>
 	public class Overlay
 	{
+		/// <summary>
+		/// Creates a new instance of the <see cref="Overlay"/> class.
+		/// </summary>
+		/// <param name="ShowNetworkInfo">Wether to show network info.</param>
+		/// <param name="ShowMemoryInfo">Wether to show memory info.</param>
+		/// <param name="ShowVideoInfo">Wether to show video info.</param>
 		public Overlay(bool ShowNetworkInfo = true, bool ShowMemoryInfo = true, bool ShowVideoInfo = true)
 		{
 			this.ShowNetworkInfo = ShowNetworkInfo;
@@ -40,8 +49,8 @@ namespace PrismOS.Extentions
 			}
 			if (ShowVideoInfo)
 			{
-				DrawOverlay($"Video [{Kernel.Canvas.Width}x{Kernel.Canvas.Height}@32]", ref TY, G);
-				DrawOverlay($"FPS [{Kernel.Canvas.GetFPS()}]", ref TY, G);
+				DrawOverlay($"Video [{G.Width}x{G.Height}@32]", ref TY, G);
+				DrawOverlay($"FPS [{((VBECanvas)G).GetFPS()}]", ref TY, G);
 			}
 		}
 	}
