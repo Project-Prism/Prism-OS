@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PrismGL2D\PrismGL2D.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Cosmos.Core">
+      <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Cosmos.System2">
       <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>
     </Reference>
