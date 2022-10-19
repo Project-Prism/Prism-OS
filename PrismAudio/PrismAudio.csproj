@@ -7,16 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PrismTools\PrismTools.csproj" />
+    <PackageReference Include="Cosmos.System2" Version="0.1.0-localbuild20221009092857" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Cosmos.HAL2">
-      <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
-    </Reference>
-    <Reference Include="Cosmos.System2">
-      <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\PrismTools\PrismTools.csproj" />
   </ItemGroup>
 
 </Project>

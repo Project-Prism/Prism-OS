@@ -8,9 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="Cosmos.Core">
-      <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.Core.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Cosmos.System2" Version="0.1.0-localbuild20221009092857" />
   </ItemGroup>
 
 </Project>

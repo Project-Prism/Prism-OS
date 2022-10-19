@@ -2,7 +2,6 @@
 using Cosmos.System.Audio;
 using Cosmos.System;
 using PrismGL2D.Extentions;
-using PrismOS.Extentions;
 using PrismGL2D.Formats;
 using PrismAudio;
 using PrismTools;

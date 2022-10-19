@@ -8,15 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="Cosmos.Core">
-      <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Cosmos.HAL2">
-      <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
-    </Reference>
-    <Reference Include="Cosmos.System2">
-      <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Cosmos.System2" Version="0.1.0-localbuild20221009092857" />
   </ItemGroup>
 
 </Project>
