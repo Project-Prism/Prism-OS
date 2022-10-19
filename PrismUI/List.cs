@@ -1,6 +1,4 @@
-﻿using PrismGL2D;
-
-namespace PrismUI
+﻿namespace PrismUI
 {
     public class ListBox<T> : Control where T : Control
     {
@@ -12,9 +10,9 @@ namespace PrismUI
         public List<T> List { get; set; }
         public int Scroll { get; set; }
 
-        public override void OnDrawEvent(Control C)
+        public override void OnDraw(Control C)
         {
-            base.OnDrawEvent(this);
+            base.OnDraw(this);
 
             Clear(Config.GetBackground(false, false));
 

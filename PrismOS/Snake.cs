@@ -17,10 +17,7 @@ namespace PrismOS
 				Width = 128,
 				Height = Config.Scale,
 				Text = "re-try",
-				OnClickEvents = new()
-				{
-					(int X, int Y, MouseState State) => { IsRunning = true; Controls.Remove(RestartButton); },
-				},
+				OnClickEvent = (int X, int Y, MouseState State) => { IsRunning = true; Controls.Remove(RestartButton); }
 			};
 			Objects = new()
 			{
@@ -61,9 +58,9 @@ namespace PrismOS
 
 		#region Methods
 
-		public override void OnDrawEvent(Control C)
+		public override void OnDraw(Control C)
 		{
-			OnDrawEvent(C);
+			OnDraw(this);
 
 			if (IsRunning)
 			{

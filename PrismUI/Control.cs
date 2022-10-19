@@ -8,9 +8,9 @@ namespace PrismUI
     {
         public Control() : base(0, 0)
         {
-            OnClickEvents = new();
-            OnDrawEvents = new();
-            OnKeyEvents = new();
+            OnClickEvent = (int X, int Y, MouseState State) => { };
+            OnKeyEvent = (ConsoleKeyInfo Key) => { };
+            OnDrawEvent = (Control C) => { };
 
             Controls = new();
             HasBackground = true;
@@ -108,6 +108,44 @@ namespace PrismUI
 
         #region Methods
 
+        public virtual void OnClick(int X, int Y, MouseState State)
+        {
+            OnClickEvent?.Invoke(X, Y, State);
+        }
+        public virtual void OnKey(ConsoleKeyInfo Key)
+        {
+            Feed += Key.KeyChar;
+            OnKeyEvent?.Invoke(Key);
+        }
+        public virtual void OnDraw(Control C)
+        {
+            OnDrawEvent?.Invoke(C);
+
+            // Clear
+            if (HasBackground)
+            {
+                if (Config.Radius == 0)
+                {
+                    Clear(Config.GetBackground(IsPressed, IsHovering));
+                }
+                else
+                {
+                    Clear(Color.Transparent);
+                    DrawFilledRectangle(0, 0, Width, Height, Config.Radius, Config.GetBackground(IsPressed, IsHovering));
+                }
+            }
+            else
+            {
+                Clear(Color.Transparent);
+            }
+
+            // Update sub-elements
+            for (int I = 0; I < Controls.Count; I++)
+            {
+                Controls[I].OnDrawEvent(this);
+            }
+        }
+
         /// <summary>
         /// Shows the control.
         /// </summary>
@@ -177,66 +215,17 @@ namespace PrismUI
 
         #region Events
 
-        public List<Action<int, int, MouseState>> OnClickEvents { get; set; }
-        public List<Action<ConsoleKeyInfo>> OnKeyEvents { get; set; }
-        public List<Action<Control>> OnDrawEvents { get; set; }
+        public Action<int, int, MouseState> OnClickEvent;
+        public Action<ConsoleKeyInfo> OnKeyEvent;
+        public Action<Control> OnDrawEvent;
 
         #endregion
 
-        public virtual void OnClickEvent(int X, int Y, MouseState State)
-		{
-            for (int I = 0; I < OnClickEvents.Count; I++)
-			{
-                OnClickEvents[I](X, Y, State);
-			}
-        }
-        public virtual void OnKeyEvent(ConsoleKeyInfo Key)
-        {
-            Feed += Key.KeyChar;
-
-            for (int I = 0; I < OnKeyEvents.Count; I++)
-            {
-                OnKeyEvents[I](Key);
-            }
-        }
-        public virtual void OnDrawEvent(Control C)
-        {
-            // Fire events
-            for (int I = 0; I < OnDrawEvents.Count; I++)
-			{
-                OnDrawEvents[I](this);
-			}
-
-            // Clear
-            if (HasBackground)
-			{
-                if (Config.Radius == 0)
-				{
-                    Clear(Config.GetBackground(IsPressed, IsHovering));
-				}
-                else
-				{
-                    Clear(Color.Transparent);
-                    DrawFilledRectangle(0, 0, Width, Height, Config.Radius, Config.GetBackground(IsPressed, IsHovering));
-				}
-			}
-            else
-			{
-                Clear(Color.Transparent);
-            }
-
-            // Update sub-elements
-            for (int I = 0; I < Controls.Count; I++)
-            {
-                Controls[I].OnDrawEvent(this);
-            }
-        }
-
         public new void Dispose()
         {
-            GCImplementation.Free(OnClickEvents);
-            GCImplementation.Free(OnDrawEvents);
-            GCImplementation.Free(OnKeyEvents);
+            GCImplementation.Free(OnClickEvent);
+            GCImplementation.Free(OnDrawEvent);
+            GCImplementation.Free(OnKeyEvent);
             GC.SuppressFinalize(this);
         }
     }

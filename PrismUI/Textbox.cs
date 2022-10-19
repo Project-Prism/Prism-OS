@@ -4,9 +4,9 @@
     {
         public string Hint = "";
 
-        public override void OnDrawEvent(Control C)
+        public override void OnDraw(Control C)
         {
-            base.OnDrawEvent(this);
+            base.OnDraw(this);
 
             DrawString((int)(Width / 2), (int)(Height / 2), Text.Length == 0 ? Hint : Text, Config.Font, Config.GetForeground(false, false), true);
 

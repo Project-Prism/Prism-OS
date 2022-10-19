@@ -277,6 +277,7 @@
         public static readonly Color BloodOrange = FromARGB(255, 255, 123, 0);
         public static readonly Color LightBlack = FromARGB(255, 25, 25, 25);
         public static readonly Color LighterBlack = FromARGB(255, 50, 50, 50);
+        public static readonly Color LimeGreen = "#00ca4e";
 
         #endregion
 

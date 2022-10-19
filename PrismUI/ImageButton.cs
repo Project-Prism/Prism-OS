@@ -11,9 +11,9 @@ namespace PrismUI
 
 		public Graphics Source { get; set; }
 
-		public override void OnDrawEvent(Control C)
+		public override void OnDraw(Control C)
 		{
-			base.OnDrawEvent(this);
+			base.OnDraw(this);
 
 			if (Source.Width != Width || Source.Height != Height)
 			{

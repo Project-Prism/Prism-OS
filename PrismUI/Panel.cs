@@ -2,9 +2,9 @@
 {
     public class Panel : Control
     {
-        public override void OnDrawEvent(Control C)
+        public override void OnDraw(Control C)
         {
-            base.OnDrawEvent(this);
+            base.OnDraw(this);
 
             DrawFilledRectangle(0, 0, Width, Height, Config.Radius, Config.GetBackground(false, false));
 

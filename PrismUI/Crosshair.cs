@@ -9,9 +9,9 @@ namespace PrismUI
 			HasBackground = false;
 		}
 
-		public override void OnDrawEvent(Control C)
+		public override void OnDraw(Control C)
 		{
-			base.OnDrawEvent(this);
+			base.OnDraw(this);
 
 			DrawFilledRectangle(0, (int)Height / 2 - (int)Config.Scale, Width, Height / 2 + Config.Scale, 0, Color.White);
 			DrawFilledRectangle((int)Width / 2 - (int)Config.Scale, 0, Height, Width / 2 + Config.Scale, 0, Color.White);

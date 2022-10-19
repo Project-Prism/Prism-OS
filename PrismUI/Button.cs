@@ -2,9 +2,9 @@
 {
 	public class Button : Control
     {
-        public override void OnDrawEvent(Control C)
+        public override void OnDraw(Control C)
         {
-            base.OnDrawEvent(this);
+            base.OnDraw(this);
 
             DrawFilledRectangle(0, 0, Width, Height, Config.Radius, Config.GetBackground(IsPressed, IsHovering));
             DrawString((int)(Width / 2), (int)(Height / 2), Text, Config.Font, Config.GetForeground(IsPressed, IsHovering), true);

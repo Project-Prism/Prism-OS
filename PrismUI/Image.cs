@@ -11,9 +11,9 @@ namespace PrismUI
 
         public Graphics Source { get; set; }
 
-        public unsafe override void OnDrawEvent(Control C)
+        public unsafe override void OnDraw(Control C)
         {
-            base.OnDrawEvent(this);
+            base.OnDraw(this);
 
             if (Source != null)
             {

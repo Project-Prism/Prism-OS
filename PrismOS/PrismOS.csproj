@@ -19,7 +19,7 @@
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <CompileVBEMultiboot>False</CompileVBEMultiboot>
+        <CompileVBEMultiboot>True</CompileVBEMultiboot>
         <VBEResolution>1024x768x32</VBEResolution>
         <VMWareEdition>Workstation</VMWareEdition>
         <DebugEnabled>False</DebugEnabled>

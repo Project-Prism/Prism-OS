@@ -50,7 +50,7 @@ namespace PrismUI
 		public static List<Frame> Frames { get; set; } = new();
 		public static bool Dragging { get; set; } = false;
 
-		public override void OnKeyEvent(ConsoleKeyInfo Key)
+		public override void OnKey(ConsoleKeyInfo Key)
 		{
 			switch (Key.Key)
 			{
@@ -68,16 +68,15 @@ namespace PrismUI
 					break;
 			}
 
-			base.OnKeyEvent(Key);
+			base.OnKey(Key);
 		}
-
-		public override void OnDrawEvent(Control C)
+		public override void OnDraw(Control C)
 		{
-			OnDrawEvent(C);
+			OnDraw(C);
 		}
-		public void OnDrawEvent(Graphics G)
+		public void OnDraw(Graphics G)
 		{ // tbh i do not really understand my logic behind this, it needs to be re-done eventualy but for the time being, it works okay enough.
-			base.OnDrawEvent(this);
+			base.OnDraw(this);
 
 			if (CanInteract)
 			{

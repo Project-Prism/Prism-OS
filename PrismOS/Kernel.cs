@@ -58,7 +58,6 @@ namespace PrismOS
 					},
 				}
 			};
-			//_ = new Snake();
 			Debugger.Log("Initialized desktop", Debugger.Severity.Ok);
 
 			#endregion
@@ -82,9 +81,9 @@ namespace PrismOS
 			{
 				if (Frame.Frames[^1] == Frame && KeyPress)
 				{
-					Frame.OnKeyEvent(Key);
+					Frame.OnKey(Key);
 				}
-				Frame.OnDrawEvent(Canvas);
+				Frame.OnDraw(Canvas);
 			}
 			Overlay.OnUpdate(Canvas);
 

@@ -26,9 +26,9 @@ namespace PrismUI
             }
         }
 
-        public override void OnDrawEvent(Control C)
+        public override void OnDraw(Control C)
         {
-            base.OnDrawEvent(this);
+            base.OnDraw(this);
 
             Clear(Color.Transparent);
             DrawString(0, 0, Text, Config.Font, Config.GetForeground(false, false));
