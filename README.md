@@ -10,7 +10,8 @@
 <hr/>
 
 # Donations
-#### Donations aren't really needed at the moment but they would show me support and give me more motivation to continue the project, you can donate to our monero wallet: 44WnT2itBkUWzNEHE2xcAEJcSR8jpBmuaPujVNFZvh1PHjPkH9pi2QnJXEd1vU8J4vUZAKpVJTtuAA1CzA7XqFGoMzmuomy
+#### Donations aren't really needed at the moment but they would show me support and give me more motivation to continue the project, you can donate to our monero wallet:
+###### 44WnT2itBkUWzNEHE2xcAEJcSR8jpBmuaPujVNFZvh1PHjPkH9pi2QnJXEd1vU8J4vUZAKpVJTtuAA1CzA7XqFGoMzmuomy
 
 <hr/>
 
