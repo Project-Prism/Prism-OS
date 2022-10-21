@@ -27,6 +27,7 @@ namespace PrismUI
                 {
                     Controls.Add(new Button(128, 32)
                     {
+                        HasBorder = false,
                         Y = I * 32,
                         Text = value[I],
                         OnClickEvent = (int X, int Y, MouseState State) => { Index = I; },
