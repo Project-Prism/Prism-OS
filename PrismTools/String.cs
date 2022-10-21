@@ -8,7 +8,7 @@
 		/// <param name="S">The string to search</param>
 		/// <param name="C">The char to find.</param>
 		/// <returns>int containing how many times C was found in S.</returns>
-		public static int NumberOf(this string S, char C)
+		public static int NumberOf(string S, char C)
 		{
 			int N = 0;
 			for (int I = 0; I < S.Length; I++)

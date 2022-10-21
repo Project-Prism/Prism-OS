@@ -10,19 +10,22 @@ namespace PrismGL3D
         // To-Do: Implement Camera Rotation
         public Engine(uint Width, uint Height, int FOV) : base(Width, Height)
         {
-            this.Width = Width;
             this.Height = Height;
+            this.Width = Width;
+            this.FOV = FOV;
+
+            SkyColor = Color.GoogleBlue;
             Objects = new();
             Camera = new();
-            this.FOV = FOV;
+            Gravity = 1.0;
         }
 
-        #region Engine Data
+        #region Fields
 
-        public Color SkyColor = Color.GoogleBlue;
-        public double Gravity = 1.0;
+        public Color SkyColor;
         public List<Mesh> Objects;
         public Camera Camera;
+        public double Gravity;
         public int FOV;
 
         #endregion

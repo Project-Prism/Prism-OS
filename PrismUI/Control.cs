@@ -6,11 +6,11 @@ namespace PrismUI
 {
     public class Control : Graphics, IDisposable
     {
-        public Control() : base(0, 0)
+        public Control(uint Width, uint Height) : base(Width, Height)
         {
             OnClickEvent = (int X, int Y, MouseState State) => { };
             OnKeyEvent = (ConsoleKeyInfo Key) => { };
-            OnDrawEvent = (Control C) => { };
+            OnDrawEvent = (Graphics G) => { };
 
             Controls = new();
             HasBackground = true;
@@ -108,19 +108,17 @@ namespace PrismUI
 
         #region Methods
 
-        public virtual void OnClick(int X, int Y, MouseState State)
+        internal virtual void OnClick(int X, int Y, MouseState State)
         {
             OnClickEvent?.Invoke(X, Y, State);
         }
-        public virtual void OnKey(ConsoleKeyInfo Key)
+        internal virtual void OnKey(ConsoleKeyInfo Key)
         {
             Feed += Key.KeyChar;
             OnKeyEvent?.Invoke(Key);
         }
-        public virtual void OnDraw(Control C)
+        internal virtual void OnDraw(Graphics G)
         {
-            OnDrawEvent?.Invoke(C);
-
             // Clear
             if (HasBackground)
             {
@@ -142,8 +140,12 @@ namespace PrismUI
             // Update sub-elements
             for (int I = 0; I < Controls.Count; I++)
             {
-                Controls[I].OnDrawEvent(this);
+                if (Controls[I].IsEnabled)
+                {
+                    Controls[I].OnDrawEvent(this);
+                }
             }
+            OnDrawEvent?.Invoke(this);
         }
 
         /// <summary>
@@ -217,7 +219,7 @@ namespace PrismUI
 
         public Action<int, int, MouseState> OnClickEvent;
         public Action<ConsoleKeyInfo> OnKeyEvent;
-        public Action<Control> OnDrawEvent;
+        public Action<Graphics> OnDrawEvent;
 
         #endregion
 

@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PrismGL2D\PrismGL2D.csproj" />
+    <ProjectReference Include="..\PrismTools\PrismTools.csproj" />
   </ItemGroup>
 
 </Project>

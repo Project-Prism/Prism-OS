@@ -1,19 +1,23 @@
-﻿namespace PrismUI
+﻿using PrismGL2D;
+
+namespace PrismUI
 {
     public class Panel : Control
     {
-        public override void OnDraw(Control C)
+        public Panel(uint Width, uint Height) : base(Width, Height) { }
+
+        internal override void OnDraw(Graphics G)
         {
-            base.OnDraw(this);
+            base.OnDraw(G);
 
             DrawFilledRectangle(0, 0, Width, Height, Config.Radius, Config.GetBackground(false, false));
 
             if (HasBorder)
             {
-                DrawRectangle(0, 0, Width - 1, Height - 1, Config.Radius, Config.AccentColor);
+                G.DrawRectangle(X - 1, Y - 1, Width + 2, Height + 2, Config.Radius, Config.GetForeground(false, false));
             }
 
-            C.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
+            G.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
         }
     }
 }

@@ -30,7 +30,7 @@ namespace PrismOS.Extentions
                 LastKnownAddress += xHex[(int)(lastKnownAddressValue & 0xF)];
             }
 
-            Debugger.Log($"CPU Exception: {aName} [{CTXInterupt}, {aEIP}], LKA: {LastKnownAddress}\n{aDescription}");
+            Debugger.Log($"CPU Exception: {aName} [{CTXInterupt}, {aEIP}], LKA: {LastKnownAddress}\n{aDescription}", Debugger.Severity.Warning);
         }
     }
 }

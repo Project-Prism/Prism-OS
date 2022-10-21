@@ -4,6 +4,12 @@ namespace PrismUI
 {
     public class Label : Control
     {
+        public Label() : base(0, 0)
+        {
+            HasBackground = false;
+            HasBorder = false;
+        }
+
         public new string Text
         {
             get
@@ -26,19 +32,18 @@ namespace PrismUI
             }
         }
 
-        public override void OnDraw(Control C)
+        internal override void OnDraw(Graphics G)
         {
-            base.OnDraw(this);
+            base.OnDraw(G);
 
-            Clear(Color.Transparent);
             DrawString(0, 0, Text, Config.Font, Config.GetForeground(false, false));
 
             if (HasBorder)
             {
-                DrawRectangle(0, 0, Width - 1, Height - 1, Config.Radius, Config.AccentColor);
+                G.DrawRectangle(X - 1, Y - 1, Width + 2, Height + 2, Config.Radius, Config.GetForeground(false, false));
             }
 
-            C.DrawImage(X, Y, this, true);
+            G.DrawImage(X, Y, this, true);
         }
     }
 }

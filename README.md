@@ -22,20 +22,23 @@
 <hr/>
 
 - ## Build Status
+- [x] PrismAudio
 - [x] PrismBinary
-- [x] PrismGL2D (Partial)
-- [x] PrismGL3D (Partial)
-- [x] PrismMemory
+- [x] PrismGL2D
+- [x] PrismGL3D
 - [x] PrismNetwork
 - [X] Kernel (Partial)
+- [X] PrismTools
+- [X] PrismUI (Bugged!)
 
 <hr/>
 
 - ## Documentation TO-DO
+- [ ] PrismAudio
 - [ ] PrismBinary
 - [x] PrismGL2D
 - [ ] PrismGL3D
-- [ ] PrismNetwork
+- [x] PrismNetwork
 - [x] PrismTools
 - [ ] PrismUI
 

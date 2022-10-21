@@ -4,16 +4,20 @@ namespace PrismUI
 {
 	public class ImageButton : Button
 	{
-		public ImageButton()
+		public ImageButton(Graphics Source, string Text) : base(Source.Width + Config.Scale + Font.Fallback.MeasureString(Text), Source.Height)
 		{
-			Source = new(0, 0);
+			this.Source = Source;
+		}
+		public ImageButton(uint Width, uint Height) : base(Width, Height)
+		{
+			Source = new(Height, Width);
 		}
 
 		public Graphics Source { get; set; }
 
-		public override void OnDraw(Control C)
+		internal override void OnDraw(Graphics G)
 		{
-			base.OnDraw(this);
+			base.OnDraw(G);
 
 			if (Source.Width != Width || Source.Height != Height)
 			{
@@ -23,7 +27,12 @@ namespace PrismUI
 			DrawImage(0, 0, Source, true);
 			DrawString((int)(Source.Width + 15), (int)(Height / 2), Text, Config.Font, Config.GetForeground(IsPressed, IsHovering));
 
-			C.DrawImage(X, Y, Source, Config.ShouldContainAlpha(this));
+			if (HasBorder)
+			{
+				G.DrawRectangle(X - 1, Y - 1, Width + 2, Height + 2, Config.Radius, Config.GetForeground(false, false));
+			}
+
+			G.DrawImage(X, Y, Source, Config.ShouldContainAlpha(this));
 		}
 	}
 }

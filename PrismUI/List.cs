@@ -1,8 +1,10 @@
-﻿namespace PrismUI
+﻿using PrismGL2D;
+
+namespace PrismUI
 {
     public class ListBox<T> : Control where T : Control
     {
-        public ListBox()
+        public ListBox() : base(0, 0)
         {
             List = new();
         }
@@ -10,11 +12,9 @@
         public List<T> List { get; set; }
         public int Scroll { get; set; }
 
-        public override void OnDraw(Control C)
+        internal override void OnDraw(Graphics G)
         {
-            base.OnDraw(this);
-
-            Clear(Config.GetBackground(false, false));
+            base.OnDraw(G);
 
             int UsedY = -Scroll;
             for (int I = 0; I < List.Count; I++)
@@ -26,10 +26,10 @@
 
             if (HasBorder)
             {
-                DrawRectangle(0, 0, Width - 1, Height - 1, Config.Radius, Config.AccentColor);
+                G.DrawRectangle(X - 1, Y - 1, Width + 2, Height + 2, Config.Radius, Config.GetForeground(false, false));
             }
 
-            C.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
+            G.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
         }
     }
 }

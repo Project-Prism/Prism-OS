@@ -1,21 +1,17 @@
-﻿using System.Collections.Generic;
-using Cosmos.System;
+﻿using Cosmos.System;
 using PrismGL2D;
 using PrismUI;
-using System;
 
-namespace PrismOS
+namespace PrismOS.Apps
 {
 	public class Snake : Frame
 	{
-		public Snake()
+		public Snake() : base("Snake!")
 		{
-			RestartButton = new()
+			RestartButton = new(128, Config.Scale)
 			{
 				X = 0,
 				Y = (int)Font.Fallback.Size,
-				Width = 128,
-				Height = Config.Scale,
 				Text = "re-try",
 				OnClickEvent = (int X, int Y, MouseState State) => { IsRunning = true; Controls.Remove(RestartButton); }
 			};
@@ -37,6 +33,9 @@ namespace PrismOS
 				},
 			};
 			Random = new();
+			OnDrawEvent = (Graphics G) => Next();
+			Image = new(Width, Height);
+			Controls.Add(Image);
 		}
 
 		#region Structure
@@ -58,10 +57,8 @@ namespace PrismOS
 
 		#region Methods
 
-		public override void OnDraw(Control C)
+		public void Next()
 		{
-			OnDraw(this);
-
 			if (IsRunning)
 			{
 				switch (System.Console.ReadKey().Key)
@@ -143,11 +140,11 @@ namespace PrismOS
 
 						if (Objects[I].ObjectType == ObjectType.Snake)
 						{
-							DrawFilledRectangle(OX, OY, Config.Scale, Config.Scale, Config.Radius, Color.GoogleYellow);
+							Image.DrawFilledRectangle(OX, OY, Config.Scale, Config.Scale, Config.Radius, Color.GoogleYellow);
 						}
 						if (Objects[I].ObjectType == ObjectType.Food)
 						{
-							DrawFilledRectangle(OX, OY, Config.Scale, Config.Scale, Config.Radius, Color.Red);
+							Image.DrawFilledRectangle(OX, OY, Config.Scale, Config.Scale, Config.Radius, Color.Red);
 						}
 					}
 				}
@@ -186,6 +183,7 @@ namespace PrismOS
 		public bool IsRunning;
 		public byte Direction;
 		public Random Random;
+		public Image Image;
 		public uint Score;
 
 		#endregion

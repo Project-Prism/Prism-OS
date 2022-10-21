@@ -1,48 +1,30 @@
 ﻿using Cosmos.System;
 using Cosmos.Core;
+using PrismTools;
 using PrismGL2D;
 
 namespace PrismUI
 {
 	public class Frame : Control
 	{
-		public Frame(uint Width, uint Height, string Title)
+		public Frame(uint Width, uint Height, string Title) : base(Width, Height)
 		{
-			this.Height = Height;
-			this.Width = Width;
 			Y = (int)((VBE.getModeInfo().height / 2) - (Height / 2) + (Frames.Count * Config.Scale));
 			X = (int)((VBE.getModeInfo().width / 2) - (Width / 2) + (Frames.Count * Config.Scale));
 
 			Icon = new(Config.Scale, Config.Scale);
 			Icon.Clear(Color.Red);
-			Controls = new();
 			Text = Title;
 			Frames.Add(this);
 		}
-		public Frame (string Title)
+		public Frame(string Title) : base((uint)(VBE.getModeInfo().width / 2), (uint)(VBE.getModeInfo().height / 2))
 		{
-			Height = (uint)(VBE.getModeInfo().height / 2);
-			Width = (uint)(VBE.getModeInfo().width / 2);
 			Y = (int)(Height - (Height / 2) + (Frames.Count * Config.Scale));
 			X = (int)(Width - (Width / 2) + (Frames.Count * Config.Scale));
 
 			Icon = new(Config.Scale, Config.Scale);
 			Icon.Clear(Color.Red);
-			Controls = new();
 			Text = Title;
-			Frames.Add(this);
-		}
-		public Frame()
-		{
-			Height = (uint)(VBE.getModeInfo().height / 2);
-			Width = (uint)(VBE.getModeInfo().width / 2);
-			Y = (int)(Height - (Height / 2) + (Frames.Count * Config.Scale));
-			X = (int)(Width - (Width / 2) + (Frames.Count * Config.Scale));
-
-			Icon = new(Config.Scale, Config.Scale);
-			Icon.Clear(Color.Red);
-			Controls = new();
-			Text = "Frame 1";
 			Frames.Add(this);
 		}
 
@@ -50,7 +32,7 @@ namespace PrismUI
 		public static List<Frame> Frames { get; set; } = new();
 		public static bool Dragging { get; set; } = false;
 
-		public override void OnKey(ConsoleKeyInfo Key)
+		internal override void OnKey(ConsoleKeyInfo Key)
 		{
 			switch (Key.Key)
 			{
@@ -70,13 +52,9 @@ namespace PrismUI
 
 			base.OnKey(Key);
 		}
-		public override void OnDraw(Control C)
-		{
-			OnDraw(C);
-		}
-		public void OnDraw(Graphics G)
+		internal override void OnDraw(Graphics G)
 		{ // tbh i do not really understand my logic behind this, it needs to be re-done eventualy but for the time being, it works okay enough.
-			base.OnDraw(this);
+			base.OnDraw(G);
 
 			if (CanInteract)
 			{
@@ -110,41 +88,36 @@ namespace PrismUI
 					DrawFilledRectangle(0, 0, Width, Config.Scale, Config.Radius, Config.AccentColor);
 					DrawString((int)(Width / 2), (int)(Config.Scale / 2), Text, Config.Font, Config.GetForeground(false, false), true);
 				}
-
-				foreach (Control C in Controls)
+				for (int I = 0; I < Controls.Count; I++)
 				{
-					if (C.IsEnabled)
+					if (Controls[I].IsEnabled)
 					{
-						if (C.CanInteract)
+						if (Controls[I].CanInteract)
 						{
-							if (MouseManager.X >= X + C.X && MouseManager.X <= X + C.X + C.Width && MouseManager.Y >= Y + C.Y && MouseManager.Y <= Y + C.Y + C.Height && (this == Frames[^1] || !CanInteract))
+							if (MouseManager.X >= X + Controls[I].X && MouseManager.X <= X + Controls[I].X + Controls[I].Width && MouseManager.Y >= Y + Controls[I].Y && MouseManager.Y <= Y + Controls[I].Y + Controls[I].Height && (this == Frames[^1] || !CanInteract))
 							{
-								C.IsHovering = true;
+								Controls[I].IsHovering = true;
 
 								if (MouseManager.MouseState != MouseState.None)
 								{
-									C.IsPressed = true;
+									Controls[I].IsPressed = true;
 								}
-								else if (C.IsPressed)
+								else if (Controls[I].IsPressed)
 								{
-									C.IsPressed = false;
-									C.OnClickEvent(X - (int)MouseManager.X, Y - (int)MouseManager.Y, MouseManager.LastMouseState);
+									Controls[I].IsPressed = false;
+									Controls[I].OnClickEvent(X - (int)MouseManager.X, Y - (int)MouseManager.Y, MouseManager.LastMouseState);
 								}
 							}
 							else
 							{
-								C.IsHovering = false;
+								Controls[I].IsHovering = false;
 							}
 						}
-
-						C.OnDrawEvent(this);
 					}
 				}
-
-				// Draw Surrounding Rectangle
 				if (HasBorder)
 				{
-					DrawRectangle(0, 0, Width - 1, Height - 1, Config.Radius, Config.GetForeground(false, false));
+					G.DrawRectangle(X - 1, Y - 1, Width + 2, Height + 2, Config.Radius, Config.GetForeground(false, false));
 				}
 
 				G.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
@@ -153,6 +126,18 @@ namespace PrismUI
 
 		#region Methods
 
+		/// <summary>
+		/// Draw the frame onto a buffer.
+		/// </summary>
+		/// <param name="G">Buffer to draw to.</param>
+		public void Update(Graphics G)
+		{
+			if (Frames[^1] == this && Keyboard.TryReadKey(out ConsoleKeyInfo Key))
+			{
+				OnKey(Key);
+			}
+			OnDraw(G);
+		}
 		/// <summary>
 		/// Shows the control.
 		/// </summary>
@@ -175,7 +160,6 @@ namespace PrismUI
 			Frames.Remove(this);
 			Frames.Add(this);
 		}
-
 		/// <summary>
 		/// Close the frame.
 		/// </summary>
