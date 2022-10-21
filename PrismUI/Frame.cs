@@ -54,8 +54,6 @@ namespace PrismUI
 		}
 		internal override void OnDraw(Graphics G)
 		{ // tbh i do not really understand my logic behind this, it needs to be re-done eventualy but for the time being, it works okay enough.
-			base.OnDraw(G);
-
 			if (CanInteract)
 			{
 				if (MouseManager.MouseState == MouseState.Left)
@@ -80,8 +78,10 @@ namespace PrismUI
 					Y = (int)MouseManager.Y - IY;
 				}
 			}
+
 			if (IsEnabled)
 			{
+				base.OnDraw(G);
 				// Draw Title Bar
 				if (HasBorder)
 				{

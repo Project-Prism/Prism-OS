@@ -22,9 +22,7 @@ namespace PrismUI
         {
             base.OnDraw(G);
 
-            DrawFilledRectangle(1, 1, Width - 2, Height - 2, Config.Radius, Config.GetBackground(false, false));
             DrawFilledRectangle((int)(Toggled ? 2 : Width / 2 + 2), 0, Width / 2, Width - 2, Config.Radius, Config.AccentColor);
-
 
             if (HasBorder)
             {
