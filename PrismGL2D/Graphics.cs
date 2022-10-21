@@ -858,13 +858,15 @@ namespace PrismGL2D
 					}
 
 					Graphics FB = new(Width, Height);
-					for (int IX = 0; IX < this.Width; IX++)
+					double XRatio = (double)this.Width / Width;
+					double YRatio = (double)this.Height / Height;
+					for (uint Y = 0; Y < Height; Y++)
 					{
-						for (int IY = 0; IY < this.Height; IY++)
+						double PY = Math.Floor(Y * YRatio);
+						for (uint X = 0; X < Width; X++)
 						{
-							long X = IX / (this.Width / Width);
-							long Y = IY / (this.Height / Height);
-							FB.Internal[(FB.Width * Y) + X] = Internal[(this.Width * IY) + IX];
+							double PX = Math.Floor(X * XRatio);
+							FB[Y * Width + X] = Internal[(int)((PY * this.Width) + PX)];
 						}
 					}
 					return FB;
