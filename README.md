@@ -8,6 +8,12 @@
 ###### Visit our website [here](https://project-prism.github.io/Prism-OS/)!
 
 <hr/>
+
+# Donations
+#### Donations aren't really needed at the moment but they would show me support and give me more motivation to continue the project, you can donate to our monero wallet: 44WnT2itBkUWzNEHE2xcAEJcSR8jpBmuaPujVNFZvh1PHjPkH9pi2QnJXEd1vU8J4vUZAKpVJTtuAA1CzA7XqFGoMzmuomy
+
+<hr/>
+
 <ul>
 <h4>Prism OS's Feature List:</h4>
     <li>A Basic 3D Rasteriser</li>
@@ -19,6 +25,7 @@
     <li>Much More.
     <h6>Note: Some Of These Items Might Not Be Implemented All The Way</h6>
 </ul>
+
 <hr/>
 
 - ## Build Status
