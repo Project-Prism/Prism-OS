@@ -1,6 +1,7 @@
 ﻿using Cosmos.System.Network.IPv4.UDP.DHCP;
+using Cosmos.System.FileSystem.VFS;
+using Cosmos.System.FileSystem;
 using Cosmos.System;
-using PrismGL2D.Formats;
 using PrismOS.Apps;
 using PrismTools;
 
@@ -8,8 +9,10 @@ namespace PrismOS
 {
 	public unsafe class Program : Kernel
 	{
-		public Debugger Debugger;
-		public Desktop Desktop;
+		public static Debugger Debugger;
+		public static Desktop Desktop;
+		public static bool IsNETReady;
+		public static bool IsFSReady;
 
 		protected override void BeforeRun()
 		{
@@ -20,16 +23,22 @@ namespace PrismOS
 			{
 				_ = new DHCPClient().SendDiscoverPacket();
 				Debugger.Log("Initialized networking", Debugger.Severity.Ok);
+				IsNETReady = true;
 			}
 			catch
 			{
 				Debugger.Log("Unable to initialize networking!", Debugger.Severity.Warning);
 			}
-
-			Assets.Wallpaper = (Bitmap)Assets.Wallpaper.Scale(Desktop.Canvas.Width, Desktop.Canvas.Height);
-			MouseManager.ScreenWidth = Desktop.Canvas.Width;
-			MouseManager.ScreenHeight = Desktop.Canvas.Height;
-			Debugger.Log("Initialized boot resources", Debugger.Severity.Ok);
+			try
+			{
+				VFSManager.RegisterVFS(new CosmosVFS(), false, false);
+				Debugger.Log("Initilized filesystem", Debugger.Severity.Ok);
+				IsFSReady = true;
+			}
+			catch
+			{
+				Debugger.Log("Unable to initialize filesystem!", Debugger.Severity.Warning);
+			}
 		}
 		protected override void Run()
 		{

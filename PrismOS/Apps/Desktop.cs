@@ -1,6 +1,6 @@
 ﻿using PrismGL2D.Extentions;
-using PrismGL3D.Objects;
-using PrismGL3D;
+using PrismGL2D.Formats;
+using PrismGL2D;
 using Cosmos.System;
 using PrismAudio;
 using PrismTools;
@@ -16,37 +16,41 @@ namespace PrismOS.Apps
 		public Desktop()
 		{
 			Debugger = new("Desktop");
+			System.Console.Clear();
+
+			#region Initial setup
+
 			Canvas = new();
 			Overlay = new();
+			Wallpaper = (Bitmap)Assets.Wallpaper.Scale(Canvas.Width, Canvas.Height);
+			MouseManager.ScreenWidth = Canvas.Width;
+			MouseManager.ScreenHeight = Canvas.Height;
+			Debugger.Log("Initialized desktop drawing", Debugger.Severity.Ok);
 
-			System.Console.Clear();
+			#endregion
+
+			#region Splash Screen
+
 			Canvas.DrawImage((int)((Canvas.Width / 2) - 128), (int)((Canvas.Height / 2) - 128), Assets.Splash256);
 			Canvas.Update();
 			AudioPlayer.Play(Assets.Vista);
 
-			Engine = new(200, 200, 90);
-			Cube = new(300, 300, 100);
+			#endregion
 
-			Engine.Objects.Add(Cube);
+			#region Apps
 
 			//_ = new Test3D();
 			//_ = new Snake();
-			Debugger.Log("Initialized desktop", Debugger.Severity.Ok);
+			Debugger.Log("Initialized startup apps", Debugger.Severity.Ok);
+
+			#endregion
 		}
 
-		public Debugger Debugger;
-		public VBECanvas Canvas;
-		public Overlay Overlay;
-		public Engine Engine;
-		public Cube Cube;
+		#region Methods
 
 		public void Update()
 		{
-			Canvas.DrawImage(0, 0, Assets.Wallpaper, false);
-
-			Cube.TestLogic(0.01);
-			Engine.Render();
-			Canvas.DrawImage(200, 200, Engine);
+			Canvas.DrawImage(0, 0, Wallpaper, false);
 
 			foreach (Frame F in Frame.Frames)
 			{
@@ -58,5 +62,16 @@ namespace PrismOS.Apps
 			Canvas.DrawImage((int)MouseManager.X, (int)MouseManager.Y, Assets.Cursor);
 			Canvas.Update();
 		}
+
+		#endregion
+
+		#region Fields
+
+		public Graphics Wallpaper;
+		public Debugger Debugger;
+		public VBECanvas Canvas;
+		public Overlay Overlay;
+
+		#endregion
 	}
 }
