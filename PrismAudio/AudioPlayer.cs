@@ -23,7 +23,7 @@ namespace PrismAudio
 			}
 			catch (Exception E)
 			{
-				Debugger.Log($"Unable to play audio! ({E.Message})", Debugger.Severity.Warning);
+				Debugger.Log(E.Message, Debugger.Severity.Warning);
 			}
 		}
 		public static void OnUpdate()

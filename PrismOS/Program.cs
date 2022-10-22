@@ -32,7 +32,7 @@ namespace PrismOS
 			try
 			{
 				VFSManager.RegisterVFS(new CosmosVFS(), false, false);
-				Debugger.Log("Initilized filesystem", Debugger.Severity.Ok);
+				Debugger.Log("Initialized filesystem", Debugger.Severity.Ok);
 				IsFSReady = true;
 			}
 			catch

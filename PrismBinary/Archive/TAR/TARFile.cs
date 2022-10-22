@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime.InteropServices;
+using System.Text;
 
 namespace PrismBinary.Archive.TAR
 {
@@ -27,10 +28,7 @@ namespace PrismBinary.Archive.TAR
                     }
 
                     byte[] Data = new byte[OCS2L(H->Size)];
-                    fixed (byte* P = Data)
-                    {
-                        Cosmos.Core.MemoryOperations.Copy(P, T + 512, Data.Length);
-                    }
+                    Marshal.Copy((IntPtr)(T + 512), Data, 0, Data.Length);
 
                     Files.Add(Encoding.UTF8.GetString(H->Name, 100).Trim('\0'), Data);
 
