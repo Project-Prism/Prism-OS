@@ -35,9 +35,9 @@
 - [x] PrismGL2D
 - [x] PrismGL3D
 - [x] PrismNetwork
-- [X] Kernel (Partial)
+- [X] Kernel
 - [X] PrismTools
-- [X] PrismUI (Bugged!)
+- [X] PrismUI
 
 <hr/>
 

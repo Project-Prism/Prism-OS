@@ -12,6 +12,13 @@ namespace PrismUI
 			Y = (int)((VBE.getModeInfo().height / 2) - (Height / 2) + (Frames.Count * Config.Scale));
 			X = (int)((VBE.getModeInfo().width / 2) - (Width / 2) + (Frames.Count * Config.Scale));
 
+			Controls.Add(new Button(Config.Scale, Config.Scale)
+			{
+				Y = (int)(Width - Config.Scale),
+				HasBorder = false,
+				Text = "X",
+				OnClickEvent = (int X, int Y, MouseState State) => { Close(); },
+			});
 			Icon = new(Config.Scale, Config.Scale);
 			Icon.Clear(Color.Red);
 			Text = Title;
@@ -22,6 +29,13 @@ namespace PrismUI
 			Y = (int)(Height - (Height / 2) + (Frames.Count * Config.Scale));
 			X = (int)(Width - (Width / 2) + (Frames.Count * Config.Scale));
 
+			Controls.Add(new Button(Config.Scale, Config.Scale)
+			{
+				Y = (int)(Width - Config.Scale),
+				HasBorder = false,
+				Text = "X",
+				OnClickEvent = (int X, int Y, MouseState State) => { Close(); },
+			});
 			Icon = new(Config.Scale, Config.Scale);
 			Icon.Clear(Color.Red);
 			Text = Title;
@@ -54,6 +68,44 @@ namespace PrismUI
 		}
 		internal override void OnDraw(Graphics G)
 		{ // tbh i do not really understand my logic behind this, it needs to be re-done eventualy but for the time being, it works okay enough.
+			base.OnDraw(G);
+
+			for (int I = 0; I < Controls.Count; I++)
+			{
+				if (Controls[I].IsEnabled)
+				{
+					if (Controls[I].CanInteract)
+					{
+						if (MouseManager.X >= X + Controls[I].X && MouseManager.X <= X + Controls[I].X + Controls[I].Width && MouseManager.Y >= Y + Controls[I].Y && MouseManager.Y <= Y + Controls[I].Y + Controls[I].Height && (this == Frames[^1] || !CanInteract))
+						{
+							Controls[I].IsHovering = true;
+
+							if (MouseManager.MouseState != MouseState.None)
+							{
+								Controls[I].IsPressed = true;
+							}
+							else if (Controls[I].IsPressed)
+							{
+								Controls[I].IsPressed = false;
+								Controls[I].OnClickEvent(X - (int)MouseManager.X, Y - (int)MouseManager.Y, MouseManager.LastMouseState);
+							}
+						}
+						else
+						{
+							Controls[I].IsHovering = false;
+						}
+					}
+				}
+			}
+			if (HasBorder)
+			{
+				DrawFilledRectangle(0, 0, Width, Config.Scale, Config.Radius, Config.AccentColor);
+				DrawString((int)(Width / 2), (int)(Config.Scale / 2), Text, Config.Font, Config.GetForeground(false, false), true);
+			}
+
+			G.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
+
+			// Run intaraction after drawing to prevent border from becoming de-synced
 			if (CanInteract)
 			{
 				if (MouseManager.MouseState == MouseState.Left)
@@ -77,50 +129,6 @@ namespace PrismUI
 					X = (int)MouseManager.X - IX;
 					Y = (int)MouseManager.Y - IY;
 				}
-			}
-
-			if (IsEnabled)
-			{
-				base.OnDraw(G);
-				// Draw Title Bar
-				if (HasBorder)
-				{
-					DrawFilledRectangle(0, 0, Width, Config.Scale, Config.Radius, Config.AccentColor);
-					DrawString((int)(Width / 2), (int)(Config.Scale / 2), Text, Config.Font, Config.GetForeground(false, false), true);
-				}
-				for (int I = 0; I < Controls.Count; I++)
-				{
-					if (Controls[I].IsEnabled)
-					{
-						if (Controls[I].CanInteract)
-						{
-							if (MouseManager.X >= X + Controls[I].X && MouseManager.X <= X + Controls[I].X + Controls[I].Width && MouseManager.Y >= Y + Controls[I].Y && MouseManager.Y <= Y + Controls[I].Y + Controls[I].Height && (this == Frames[^1] || !CanInteract))
-							{
-								Controls[I].IsHovering = true;
-
-								if (MouseManager.MouseState != MouseState.None)
-								{
-									Controls[I].IsPressed = true;
-								}
-								else if (Controls[I].IsPressed)
-								{
-									Controls[I].IsPressed = false;
-									Controls[I].OnClickEvent(X - (int)MouseManager.X, Y - (int)MouseManager.Y, MouseManager.LastMouseState);
-								}
-							}
-							else
-							{
-								Controls[I].IsHovering = false;
-							}
-						}
-					}
-				}
-				if (HasBorder)
-				{
-					G.DrawRectangle(X - 1, Y - 1, Width + 2, Height + 2, Config.Radius, Config.GetForeground(false, false));
-				}
-
-				G.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
 			}
 		}
 

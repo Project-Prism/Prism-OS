@@ -22,14 +22,10 @@ namespace PrismUI
         internal unsafe override void OnDraw(Graphics G)
         {
             // Possibly not needed
-            base.OnDraw(G);
+            // base.OnDraw(G);
 
             if (Source != null)
             {
-                if (HasBorder)
-                {
-                    G.DrawRectangle(X - 1, Y - 1, Width + 2, Height + 2, Config.Radius, Config.GetForeground(false, false));
-                }
                 G.DrawImage(X, Y, Source, false);
             }
         }

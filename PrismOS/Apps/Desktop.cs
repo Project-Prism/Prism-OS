@@ -38,7 +38,7 @@ namespace PrismOS.Apps
 			#endregion
 
 			#region Apps
-
+			
 			_ = new Test3D();
 			// _ = new Snake();
 			Debugger.Log("Initialized startup apps", Debugger.Severity.Ok);
@@ -54,7 +54,10 @@ namespace PrismOS.Apps
 
 			foreach (Frame F in Frame.Frames)
 			{
-				F.Update(Canvas);
+				if (F.IsEnabled)
+				{
+					F.Update(Canvas);
+				}
 			}
 			Overlay.OnUpdate(Canvas);
 

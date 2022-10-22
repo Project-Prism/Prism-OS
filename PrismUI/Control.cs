@@ -146,6 +146,10 @@ namespace PrismUI
                 }
             }
             OnDrawEvent?.Invoke(this);
+            if (HasBorder)
+            {
+                G.DrawRectangle(X - 1, Y - 1, Width + 1, Height + 1, Config.Radius, Config.GetForeground(false, false));
+            }
         }
 
         /// <summary>

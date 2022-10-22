@@ -27,11 +27,6 @@ namespace PrismUI
 			DrawImage(0, 0, Source, true);
 			DrawString((int)(Source.Width + 15), (int)(Height / 2), Text, Config.Font, Config.GetForeground(IsPressed, IsHovering));
 
-			if (HasBorder)
-			{
-				G.DrawRectangle(X - 1, Y - 1, Width + 2, Height + 2, Config.Radius, Config.GetForeground(false, false));
-			}
-
 			G.DrawImage(X, Y, Source, Config.ShouldContainAlpha(this));
 		}
 	}
