@@ -6,6 +6,7 @@ namespace PrismUI
     {
         public TextBox(uint Width, uint Height) : base(Width, Height)
 		{
+            CanInteract = false;
             Hint = "";
 		}
 
@@ -15,7 +16,13 @@ namespace PrismUI
         {
             base.OnDraw(G);
 
-            DrawString((int)(Width / 2), (int)(Height / 2), Text.Length == 0 ? Hint : Text, Config.Font, Config.GetForeground(false, false), true);
+            if (Feed.Length != 0)
+			{
+                Text += Feed;
+                Feed = "";
+			}
+
+            DrawString(0, 0, Text.Length == 0 ? Hint : Text, Config.Font, Config.GetForeground(false, false));
 
             G.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
         }

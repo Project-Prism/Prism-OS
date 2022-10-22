@@ -11,10 +11,10 @@ namespace PrismUI
 		{
 			Y = (int)((VBE.getModeInfo().height / 2) - (Height / 2) + (Frames.Count * Config.Scale));
 			X = (int)((VBE.getModeInfo().width / 2) - (Width / 2) + (Frames.Count * Config.Scale));
-
+			
 			Controls.Add(new Button(Config.Scale, Config.Scale)
 			{
-				Y = (int)(Width - Config.Scale),
+				X = (int)(Width - Config.Scale),
 				HasBorder = false,
 				Text = "X",
 				OnClickEvent = (int X, int Y, MouseState State) => { Close(); },
@@ -31,7 +31,7 @@ namespace PrismUI
 
 			Controls.Add(new Button(Config.Scale, Config.Scale)
 			{
-				Y = (int)(Width - Config.Scale),
+				X = (int)(Width - Config.Scale),
 				HasBorder = false,
 				Text = "X",
 				OnClickEvent = (int X, int Y, MouseState State) => { Close(); },
@@ -70,6 +70,11 @@ namespace PrismUI
 		{ // tbh i do not really understand my logic behind this, it needs to be re-done eventualy but for the time being, it works okay enough.
 			base.OnDraw(G);
 
+			if (HasBorder)
+			{
+				DrawFilledRectangle(0, 0, Width, Config.Scale, Config.Radius, Config.AccentColor);
+				DrawString((int)(Width / 2), (int)(Config.Scale / 2), Text, Config.Font, Config.GetForeground(false, false), true);
+			}
 			for (int I = 0; I < Controls.Count; I++)
 			{
 				if (Controls[I].IsEnabled)
@@ -96,11 +101,6 @@ namespace PrismUI
 						}
 					}
 				}
-			}
-			if (HasBorder)
-			{
-				DrawFilledRectangle(0, 0, Width, Config.Scale, Config.Radius, Config.AccentColor);
-				DrawString((int)(Width / 2), (int)(Config.Scale / 2), Text, Config.Font, Config.GetForeground(false, false), true);
 			}
 
 			G.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));

@@ -137,6 +137,7 @@ namespace PrismUI
                 Clear(Color.Transparent);
             }
 
+            OnDrawEvent?.Invoke(this);
             // Update sub-elements
             for (int I = 0; I < Controls.Count; I++)
             {
@@ -145,7 +146,6 @@ namespace PrismUI
                     Controls[I].OnDraw(this);
                 }
             }
-            OnDrawEvent?.Invoke(this);
             if (HasBorder)
             {
                 G.DrawRectangle(X - 1, Y - 1, Width + 1, Height + 1, Config.Radius, Config.GetForeground(false, false));
