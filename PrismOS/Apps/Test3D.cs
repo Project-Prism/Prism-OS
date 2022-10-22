@@ -10,23 +10,20 @@ namespace PrismOS.Apps
 		public Test3D() : base(300, 300, nameof(Test3D))
 		{
 			Engine = new(Width, Height - Config.Scale, 90);
-			Image = new(Width, Height - Config.Scale);
 			Cube = new(300, 300, 100);
-
 			Engine.Objects.Add(Cube);
-			Controls.Add(Image);
-			OnDrawEvent = (Graphics G) => Next();
+
+			OnDrawEvent = (Graphics G) => Next(G);
 		}
 
 		public Engine Engine;
-		public Image Image;
 		public Cube Cube;
 
-		public void Next()
+		public void Next(Graphics G)
 		{
 			Cube.TestLogic(0.01);
 			Engine.Render();
-			Image.Source.DrawImage(0, 0, Engine);
+			G.DrawImage(0, (int)Config.Scale, Engine, false);
 		}
 	}
 }

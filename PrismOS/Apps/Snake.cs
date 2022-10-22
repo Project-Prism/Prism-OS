@@ -10,7 +10,6 @@ namespace PrismOS.Apps
 		{
 			RestartButton = new(128, Config.Scale)
 			{
-				X = 0,
 				Y = (int)Font.Fallback.Size,
 				Text = "re-try",
 				OnClickEvent = (int X, int Y, MouseState State) => { IsRunning = true; Controls.Remove(RestartButton); }
@@ -34,7 +33,8 @@ namespace PrismOS.Apps
 			};
 			Random = new();
 			OnDrawEvent = (Graphics G) => Next();
-			Image = new(Width, Height);
+			Image = new(Width, Height - Config.Scale);
+			Image.Y = (int)Config.Scale;
 			Controls.Add(Image);
 		}
 

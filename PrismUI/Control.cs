@@ -142,7 +142,7 @@ namespace PrismUI
             {
                 if (Controls[I].IsEnabled)
                 {
-                    Controls[I].OnDrawEvent(this);
+                    Controls[I].OnDraw(this);
                 }
             }
             OnDrawEvent?.Invoke(this);
