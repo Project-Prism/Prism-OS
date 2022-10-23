@@ -22,6 +22,7 @@ namespace PrismUI
 			OnDrawEvent = (Graphics G) => DrawTitle();
 			Icon = new(Config.Scale, Config.Scale);
 			Icon.Clear(Color.Red);
+			CanDrag = true;
 			Text = Title;
 			Frames.Add(this);
 		}
@@ -40,6 +41,7 @@ namespace PrismUI
 			OnDrawEvent = (Graphics G) => DrawTitle();
 			Icon = new(Config.Scale, Config.Scale);
 			Icon.Clear(Color.Red);
+			CanDrag = true;
 			Text = Title;
 			Frames.Add(this);
 		}
@@ -76,7 +78,7 @@ namespace PrismUI
 			{
 				if (Controls[I].IsEnabled)
 				{
-					if (Controls[I].CanInteract)
+					if (Controls[I].CanInteract && CanInteract)
 					{
 						if (MouseManager.X >= X + Controls[I].X && MouseManager.X <= X + Controls[I].X + Controls[I].Width && MouseManager.Y >= Y + Controls[I].Y && MouseManager.Y <= Y + Controls[I].Y + Controls[I].Height && (this == Frames[^1] || !CanInteract))
 						{
@@ -104,7 +106,7 @@ namespace PrismUI
 			G.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
 
 			// Run intaraction after drawing to prevent border from becoming de-synced
-			if (CanInteract)
+			if (CanDrag)
 			{
 				if (MouseManager.MouseState == MouseState.Left)
 				{
@@ -134,7 +136,7 @@ namespace PrismUI
 			if (HasBorder)
 			{
 				DrawFilledRectangle(0, 0, Width, Config.Scale, Config.Radius, Config.AccentColor);
-				DrawString((int)(Width / 2), (int)(Config.Scale / 2), Text, Config.Font, Config.GetForeground(false, false), true);
+				DrawString((int)(Width / 2), (int)(Config.Scale / 2), Text, Config.Font, Config.ForeColor, true);
 			}
 		}
 
@@ -206,6 +208,10 @@ namespace PrismUI
 		/// The temporary variable to check if the windoww is moving already.
 		/// </summary>
 		public bool IsMoving;
+		/// <summary>
+		/// Check to see if the frame can be moved.
+		/// </summary>
+		public bool CanDrag;
 		/// <summary>
 		/// Buffer X for dragging.
 		/// </summary>

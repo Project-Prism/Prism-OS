@@ -27,11 +27,11 @@ namespace PrismUI
             /// <summary>
             /// Background color for the control.
             /// </summary>
-            private static Color BackColorClick = Color.LightGray, BackColorHover = Color.LighterBlack, BackColor = Color.Black;
+            public static Color BackColorClick = Color.LightGray, BackColorHover = Color.LighterBlack, BackColor = Color.Black;
             /// <summary>
             /// Foreground color for the control.
             /// </summary>
-            private static Color ForeColorClick = Color.Black, ForeColorHover = Color.White, ForeColor = Color.White;
+            public static Color ForeColorClick = Color.Black, ForeColorHover = Color.White, ForeColor = Color.White;
             /// <summary>
             /// Accent color for the control.
             /// </summary>
@@ -56,7 +56,7 @@ namespace PrismUI
             /// <returns>true or false.</returns>
             public static bool ShouldContainAlpha(Control C)
 			{
-                if (GetBackground(C.IsPressed, C.IsHovering).A == 255 && Radius == 0)
+                if (GetBackground(C).A == 255 && Radius == 0)
 				{
                     return false;
 				}
@@ -69,11 +69,11 @@ namespace PrismUI
             /// <param name="Click"></param>
             /// <param name="Hover"></param>
             /// <returns>Correct background color.</returns>
-            public static Color GetBackground(bool Click, bool Hover)
+            public static Color GetBackground(Control C)
             {
-                if (Hover)
+                if (C.IsHovering)
                 {
-                    if (Click)
+                    if (C.IsPressed)
                     {
                         return BackColorClick;
                     }
@@ -90,11 +90,11 @@ namespace PrismUI
             /// <param name="Click"></param>
             /// <param name="Hover"></param>
             /// <returns>The correct foreground color.</returns>
-            public static Color GetForeground(bool Click, bool Hover)
+            public static Color GetForeground(Control C)
             {
-                if (Hover)
+                if (C.IsHovering)
                 {
-                    if (Click)
+                    if (C.IsPressed)
                     {
                         return ForeColorClick;
                     }
@@ -124,12 +124,12 @@ namespace PrismUI
             {
                 if (Config.Radius == 0)
                 {
-                    Clear(Config.GetBackground(IsPressed, IsHovering));
+                    Clear(Config.GetBackground(this));
                 }
                 else
                 {
                     Clear(Color.Transparent);
-                    DrawFilledRectangle(0, 0, Width, Height, Config.Radius, Config.GetBackground(IsPressed, IsHovering));
+                    DrawFilledRectangle(0, 0, Width, Height, Config.Radius, Config.GetBackground(this));
                 }
             }
             else
@@ -148,7 +148,7 @@ namespace PrismUI
             }
             if (HasBorder)
             {
-                G.DrawRectangle(X - 1, Y - 1, Width + 1, Height + 1, Config.Radius, Config.GetForeground(false, false));
+                G.DrawRectangle(X - 1, Y - 1, Width + 1, Height + 1, Config.Radius, Config.ForeColor);
             }
         }
 

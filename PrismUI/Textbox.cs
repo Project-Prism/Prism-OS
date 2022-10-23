@@ -17,7 +17,7 @@ namespace PrismUI
         {
             base.OnDraw(G);
 
-            DrawString(0, 0, Text.Length == 0 ? Hint : Text, Config.Font, Config.GetForeground(false, false));
+            DrawString(0, 0, Text.Length == 0 ? Hint : Text, Config.Font, Config.ForeColor);
 
             G.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
         }

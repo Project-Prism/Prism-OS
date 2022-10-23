@@ -37,12 +37,27 @@ namespace PrismOS.Apps
 
 			#endregion
 
-			#region Apps
+			#region Launcher
 
-			_ = new Explorer();
-			_ = new Test3D();
-			// _ = new Snake();
-			Debugger.Log("Initialized startup apps", Debugger.Severity.Ok);
+			Launcher = new(Canvas.Width, Control.Config.Scale, Launcher.GetType().FullName)
+			{
+				Y = (int)(Canvas.Height - Control.Config.Scale),
+				HasBorder = false,
+				CanDrag = false,
+			};
+			Launcher.Controls.Add(new Button(Control.Config.Scale, Control.Config.Scale)
+			{
+				Text = "/",
+				OnClickEvent = (int X, int Y, MouseState State) => { _ = new Explorer(); },
+			});
+			Launcher.Controls.Add(new Button(Control.Config.Scale, Control.Config.Scale)
+			{
+				X = (int)Control.Config.Scale,
+				Text = "3D",
+				OnClickEvent = (int X, int Y, MouseState State) => { _ = new Test3D(); },
+			});
+			Launcher.Controls.RemoveAt(0); // Remove close button
+			Debugger.Log("Initialized launcher", Debugger.Severity.Ok);
 
 			#endregion
 		}
@@ -75,6 +90,7 @@ namespace PrismOS.Apps
 		public Debugger Debugger;
 		public VBECanvas Canvas;
 		public Overlay Overlay;
+		public Frame Launcher;
 
 		#endregion
 	}

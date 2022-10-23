@@ -16,7 +16,7 @@ namespace PrismUI
         {
             base.OnDraw(G);
 
-            DrawFilledRectangle((int)(Toggled ? 2 : Width / 2 + 2), 0, Width / 2, Width - 2, Config.Radius, Config.AccentColor);
+            DrawFilledRectangle((int)(Toggled ? Width / 2 : 0), 0, Width / 2, Height, Config.Radius, Config.AccentColor);
 
             G.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
         }

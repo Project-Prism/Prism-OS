@@ -37,7 +37,7 @@ namespace PrismUI
         {
             base.OnDraw(G);
 
-            DrawString(0, 0, Text, Config.Font, Config.GetForeground(false, false));
+            DrawString(0, 0, Text, Config.Font, Config.ForeColor);
 
             G.DrawImage(X, Y, this, true);
         }
