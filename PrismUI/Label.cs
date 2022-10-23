@@ -4,10 +4,11 @@ namespace PrismUI
 {
     public class Label : Control
     {
-        public Label() : base(0, 0)
+        public Label(string Text) : base(0, 0)
         {
             HasBackground = false;
             HasBorder = false;
+            this.Text = Text;
         }
 
         public new string Text

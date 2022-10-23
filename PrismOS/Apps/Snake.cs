@@ -6,7 +6,7 @@ namespace PrismOS.Apps
 {
 	public class Snake : Frame
 	{
-		public Snake() : base("Snake!")
+		public Snake() : base(400, 400, "Snake!")
 		{
 			RestartButton = new(128, Config.Scale)
 			{

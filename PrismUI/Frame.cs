@@ -19,6 +19,7 @@ namespace PrismUI
 				Text = "X",
 				OnClickEvent = (int X, int Y, MouseState State) => { Close(); },
 			});
+			OnDrawEvent = (Graphics G) => DrawTitle();
 			Icon = new(Config.Scale, Config.Scale);
 			Icon.Clear(Color.Red);
 			Text = Title;
@@ -36,6 +37,7 @@ namespace PrismUI
 				Text = "X",
 				OnClickEvent = (int X, int Y, MouseState State) => { Close(); },
 			});
+			OnDrawEvent = (Graphics G) => DrawTitle();
 			Icon = new(Config.Scale, Config.Scale);
 			Icon.Clear(Color.Red);
 			Text = Title;
@@ -98,11 +100,6 @@ namespace PrismUI
 					Controls[I].OnDraw(this);
 				}
 			}
-			if (HasBorder)
-			{
-				DrawFilledRectangle(0, 0, Width, Config.Scale, Config.Radius, Config.AccentColor);
-				DrawString((int)(Width / 2), (int)(Config.Scale / 2), Text, Config.Font, Config.GetForeground(false, false), true);
-			}
 
 			G.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
 
@@ -130,6 +127,14 @@ namespace PrismUI
 					X = (int)MouseManager.X - IX;
 					Y = (int)MouseManager.Y - IY;
 				}
+			}
+		}
+		internal void DrawTitle()
+		{
+			if (HasBorder)
+			{
+				DrawFilledRectangle(0, 0, Width, Config.Scale, Config.Radius, Config.AccentColor);
+				DrawString((int)(Width / 2), (int)(Config.Scale / 2), Text, Config.Font, Config.GetForeground(false, false), true);
 			}
 		}
 

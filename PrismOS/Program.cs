@@ -4,6 +4,7 @@ using Cosmos.System.FileSystem;
 using Cosmos.System;
 using PrismOS.Apps;
 using PrismTools;
+using PrismUI;
 
 namespace PrismOS
 {
@@ -18,6 +19,8 @@ namespace PrismOS
 		{
 			Debugger = new("Kernel");
 			Desktop = new();
+
+			DialogBox.ShowMessageDialog("Welcome", "Welcome to prism OS!\nIf you are wondering...\nThe seal in the background is named shawn.");
 
 			try
 			{
