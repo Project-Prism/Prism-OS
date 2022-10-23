@@ -1,9 +1,10 @@
-﻿using Cosmos.System;
+﻿using PrismUI.Structure;
+using Cosmos.System;
 using Cosmos.Core;
 using PrismTools;
 using PrismGL2D;
 
-namespace PrismUI
+namespace PrismUI.Controls
 {
 	public class Frame : Control
 	{
@@ -11,39 +12,15 @@ namespace PrismUI
 		{
 			Y = (int)((VBE.getModeInfo().height / 2) - (Height / 2) + (Frames.Count * Config.Scale));
 			X = (int)((VBE.getModeInfo().width / 2) - (Width / 2) + (Frames.Count * Config.Scale));
-
-			Controls.Add(new Button(Config.Scale, Config.Scale)
-			{
-				X = (int)(Width - Config.Scale),
-				HasBorder = false,
-				Text = "X",
-				OnClickEvent = (int X, int Y, MouseState State) => { Close(); },
-			});
-			OnDrawEvent = (Graphics G) => DrawTitle();
-			Icon = new(Config.Scale, Config.Scale);
-			Icon.Clear(Color.Red);
-			CanDrag = true;
 			Text = Title;
-			Frames.Add(this);
+			Generate();
 		}
 		public Frame(string Title) : base((uint)(VBE.getModeInfo().width / 2), (uint)(VBE.getModeInfo().height / 2))
 		{
 			Y = (int)(Height - (Height / 2) + (Frames.Count * Config.Scale));
 			X = (int)(Width - (Width / 2) + (Frames.Count * Config.Scale));
-
-			Controls.Add(new Button(Config.Scale, Config.Scale)
-			{
-				X = (int)(Width - Config.Scale),
-				HasBorder = false,
-				Text = "X",
-				OnClickEvent = (int X, int Y, MouseState State) => { Close(); },
-			});
-			OnDrawEvent = (Graphics G) => DrawTitle();
-			Icon = new(Config.Scale, Config.Scale);
-			Icon.Clear(Color.Red);
-			CanDrag = true;
 			Text = Title;
-			Frames.Add(this);
+			Generate();
 		}
 
 		// Window Manager Variables
@@ -80,23 +57,25 @@ namespace PrismUI
 				{
 					if (Controls[I].CanInteract && CanInteract)
 					{
-						if (MouseManager.X >= X + Controls[I].X && MouseManager.X <= X + Controls[I].X + Controls[I].Width && MouseManager.Y >= Y + Controls[I].Y && MouseManager.Y <= Y + Controls[I].Y + Controls[I].Height && (this == Frames[^1] || !CanInteract))
+						if (MouseManager.X >= X + Controls[I].X && MouseManager.X <= X + Controls[I].X + Controls[I].Width && MouseManager.Y >= Y + Controls[I].Y && MouseManager.Y <= Y + Controls[I].Y + Controls[I].Height && (this == Frames[^1] || !NeedsFront || !CanInteract))
 						{
-							Controls[I].IsHovering = true;
-
 							if (MouseManager.MouseState != MouseState.None)
 							{
-								Controls[I].IsPressed = true;
+								Controls[I].ClickState = ClickState.Clicked;
 							}
-							else if (Controls[I].IsPressed)
+							else if (Controls[I].ClickState == ClickState.Clicked)
 							{
-								Controls[I].IsPressed = false;
+								Controls[I].ClickState = ClickState.Neutral;
 								Controls[I].OnClickEvent(X - (int)MouseManager.X, Y - (int)MouseManager.Y, MouseManager.LastMouseState);
+							}
+							else
+							{
+								Controls[I].ClickState = ClickState.Hovering;
 							}
 						}
 						else
 						{
-							Controls[I].IsHovering = false;
+							Controls[I].ClickState = ClickState.Neutral;
 						}
 					}
 					Controls[I].OnDraw(this);
@@ -142,6 +121,23 @@ namespace PrismUI
 
 		#region Methods
 
+		/// <summary>
+		/// Generate generic properties.
+		/// </summary>
+		private void Generate()
+		{
+			Controls.Add(new Button(Config.Scale, Config.Scale)
+			{
+				X = (int)(Width - Config.Scale),
+				HasBorder = false,
+				Text = "X",
+				OnClickEvent = (int X, int Y, MouseState State) => { Close(); },
+			});
+			OnDrawEvent = (Graphics G) => DrawTitle();
+			NeedsFront = true;
+			CanDrag = true;
+			Frames.Add(this);
+		}
 		/// <summary>
 		/// Draw the frame onto a buffer.
 		/// </summary>
@@ -197,13 +193,9 @@ namespace PrismUI
 		/// </summary>
 		public Button? CancelButton;
 		/// <summary>
-		/// Tells the OS wether to show the app in the task bar.
+		/// Check to see if the window must be selected in order to interact with it.
 		/// </summary>
-		public bool ShowInTaskbar;
-		/// <summary>
-		/// The icon to be displayed in the taskbar if ShowInTaskbar is true.
-		/// </summary>
-		public Graphics Icon;
+		public bool NeedsFront;
 		/// <summary>
 		/// The temporary variable to check if the windoww is moving already.
 		/// </summary>

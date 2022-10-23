@@ -1,10 +1,10 @@
 ﻿using PrismGL2D.Extentions;
 using PrismGL2D.Formats;
+using PrismUI.Controls;
 using PrismGL2D;
 using Cosmos.System;
 using PrismAudio;
 using PrismTools;
-using PrismUI;
 
 namespace PrismOS.Apps
 {
@@ -42,6 +42,7 @@ namespace PrismOS.Apps
 			Launcher = new(Canvas.Width, Control.Config.Scale, Launcher.GetType().FullName)
 			{
 				Y = (int)(Canvas.Height - Control.Config.Scale),
+				NeedsFront = false,
 				HasBorder = false,
 				CanDrag = false,
 			};

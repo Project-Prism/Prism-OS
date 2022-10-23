@@ -1,6 +1,6 @@
 ﻿using PrismGL2D;
 
-namespace PrismUI
+namespace PrismUI.Controls
 {
     public class Image : Control
     {
@@ -26,6 +26,11 @@ namespace PrismUI
 
             if (Source != null)
             {
+                if (Source.Width != Width || Source.Height != Height)
+				{
+                    Source = Source.Scale(Width, Height);
+				}
+
                 G.DrawImage(X, Y, Source, false);
             }
         }

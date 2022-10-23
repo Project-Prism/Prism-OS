@@ -1,6 +1,6 @@
-﻿using Cosmos.System;
+﻿using PrismUI.Controls;
+using Cosmos.System;
 using PrismGL2D;
-using PrismUI;
 
 namespace PrismOS.Apps
 {

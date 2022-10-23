@@ -1,6 +1,6 @@
 ﻿using Cosmos.System;
 
-namespace PrismUI
+namespace PrismUI.Controls
 {
     public class ListBox : Control
     {

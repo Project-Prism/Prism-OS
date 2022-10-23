@@ -1,8 +1,9 @@
-﻿using Cosmos.System;
+﻿using PrismUI.Structure;
+using Cosmos.System;
 using Cosmos.Core;
 using PrismGL2D;
 
-namespace PrismUI
+namespace PrismUI.Controls
 {
     public class Control : Graphics, IDisposable
     {
@@ -71,18 +72,13 @@ namespace PrismUI
             /// <returns>Correct background color.</returns>
             public static Color GetBackground(Control C)
             {
-                if (C.IsHovering)
+                return C.ClickState switch
                 {
-                    if (C.IsPressed)
-                    {
-                        return BackColorClick;
-                    }
-                    else
-                    {
-                        return BackColorHover;
-                    }
-                }
-                return BackColor;
+                    ClickState.Neutral => BackColor,
+                    ClickState.Hovering => BackColorHover,
+                    ClickState.Clicked => BackColorClick,
+                    _ => Color.Black,
+                };
             }
             /// <summary>
             /// Gets the correct color based on the mouse status.
@@ -92,19 +88,14 @@ namespace PrismUI
             /// <returns>The correct foreground color.</returns>
             public static Color GetForeground(Control C)
             {
-                if (C.IsHovering)
-                {
-                    if (C.IsPressed)
-                    {
-                        return ForeColorClick;
-                    }
-                    else
-                    {
-                        return ForeColorHover;
-                    }
-                }
-                return ForeColor;
-            }
+				return C.ClickState switch
+				{
+					ClickState.Neutral => ForeColor,
+					ClickState.Hovering => ForeColorHover,
+					ClickState.Clicked => ForeColorClick,
+					_ => Color.Black,
+				};
+			}
         }
 
         #region Methods
@@ -177,6 +168,10 @@ namespace PrismUI
         /// </summary>
         public List<Control> Controls;
         /// <summary>
+        /// The click status of the control.
+        /// </summary>
+        public ClickState ClickState;
+        /// <summary>
         /// Check to see if the control should have a background drawn.
         /// </summary>
         public bool HasBackground;
@@ -184,14 +179,6 @@ namespace PrismUI
         /// Check to see if the control can be ineteracted with.
         /// </summary>
         public bool CanInteract;
-        /// <summary>
-        /// Check to see if the mouse is hovering over the element.
-        /// </summary>
-        public bool IsHovering;
-        /// <summary>
-        /// Check to see if the OnClickEvent needs to be fired.
-        /// </summary>
-        public bool IsPressed;
         /// <summary>
         /// The visibility of the control;
         /// </summary>

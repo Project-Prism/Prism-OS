@@ -1,12 +1,26 @@
 ﻿using PrismGL2D;
 
-namespace PrismUI
+namespace PrismUI.Controls
 {
     public class TextBox : Control
     {
         public TextBox(uint Width, uint Height) : base(Width, Height)
 		{
-            OnKeyEvent = (ConsoleKeyInfo Key) => { Text += Key.KeyChar; };
+            OnKeyEvent = (ConsoleKeyInfo Key) =>
+            {
+                switch (Key.Key)
+				{
+                    case ConsoleKey.Enter:
+                        Text += "\r\n";
+                        break;
+                    case ConsoleKey.Backspace:
+                        Text = Text[..^2];
+                        break;
+                    default:
+                        Text += Key.KeyChar;
+                        break;
+				}
+            };
             CanInteract = false;
             Hint = "";
 		}

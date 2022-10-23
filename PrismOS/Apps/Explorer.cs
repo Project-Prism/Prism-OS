@@ -1,4 +1,6 @@
-﻿using PrismUI;
+﻿using PrismUI.Controls;
+using Cosmos.System;
+using PrismUI;
 
 namespace PrismOS.Apps
 {
@@ -14,6 +16,8 @@ namespace PrismOS.Apps
 				{
 					Controls.Add(new Button(128, Config.Scale)
 					{
+						OnClickEvent = (int X, int Y, MouseState State) => { _ = new Notepad("0:\\" + File); },
+						HasBorder = false,
 						Text = File,
 						Y = (int)(YOffset += Config.Scale),
 					});

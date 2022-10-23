@@ -1,6 +1,6 @@
 ﻿using PrismGL2D;
 
-namespace PrismUI
+namespace PrismUI.Controls
 {
 	public class Crosshair : Control
 	{
