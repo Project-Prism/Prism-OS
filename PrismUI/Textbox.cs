@@ -6,6 +6,7 @@ namespace PrismUI
     {
         public TextBox(uint Width, uint Height) : base(Width, Height)
 		{
+            OnKeyEvent = (ConsoleKeyInfo Key) => { Text += Key.KeyChar; };
             CanInteract = false;
             Hint = "";
 		}
@@ -15,12 +16,6 @@ namespace PrismUI
         internal override void OnDraw(Graphics G)
         {
             base.OnDraw(G);
-
-            if (Feed.Length != 0)
-			{
-                Text += Feed;
-                Feed = "";
-			}
 
             DrawString(0, 0, Text.Length == 0 ? Hint : Text, Config.Font, Config.GetForeground(false, false));
 

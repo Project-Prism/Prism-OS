@@ -11,7 +11,7 @@ namespace PrismUI
 		{
 			Y = (int)((VBE.getModeInfo().height / 2) - (Height / 2) + (Frames.Count * Config.Scale));
 			X = (int)((VBE.getModeInfo().width / 2) - (Width / 2) + (Frames.Count * Config.Scale));
-			
+
 			Controls.Add(new Button(Config.Scale, Config.Scale)
 			{
 				X = (int)(Width - Config.Scale),
@@ -70,11 +70,6 @@ namespace PrismUI
 		{ // tbh i do not really understand my logic behind this, it needs to be re-done eventualy but for the time being, it works okay enough.
 			base.OnDraw(G);
 
-			if (HasBorder)
-			{
-				DrawFilledRectangle(0, 0, Width, Config.Scale, Config.Radius, Config.AccentColor);
-				DrawString((int)(Width / 2), (int)(Config.Scale / 2), Text, Config.Font, Config.GetForeground(false, false), true);
-			}
 			for (int I = 0; I < Controls.Count; I++)
 			{
 				if (Controls[I].IsEnabled)
@@ -100,7 +95,13 @@ namespace PrismUI
 							Controls[I].IsHovering = false;
 						}
 					}
+					Controls[I].OnDraw(this);
 				}
+			}
+			if (HasBorder)
+			{
+				DrawFilledRectangle(0, 0, Width, Config.Scale, Config.Radius, Config.AccentColor);
+				DrawString((int)(Width / 2), (int)(Config.Scale / 2), Text, Config.Font, Config.GetForeground(false, false), true);
 			}
 
 			G.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
@@ -140,7 +141,7 @@ namespace PrismUI
 		/// <param name="G">Buffer to draw to.</param>
 		public void Update(Graphics G)
 		{
-			if (Frames[^1] == this && Keyboard.TryReadKey(out ConsoleKeyInfo Key))
+			if (Frames[^1] == this && CanType && Keyboard.TryReadKey(out ConsoleKeyInfo Key))
 			{
 				OnKey(Key);
 			}

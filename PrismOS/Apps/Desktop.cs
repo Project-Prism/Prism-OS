@@ -39,7 +39,6 @@ namespace PrismOS.Apps
 
 			#region Apps
 
-			_ = new Notepad();
 			_ = new Test3D();
 			// _ = new Snake();
 			Debugger.Log("Initialized startup apps", Debugger.Severity.Ok);

@@ -13,11 +13,12 @@ namespace PrismUI
             OnDrawEvent = (Graphics G) => { };
 
             Controls = new();
+
             HasBackground = true;
             CanInteract = true;
             IsEnabled = true;
             HasBorder = true;
-            Feed = string.Empty;
+            CanType = true;
             Text = string.Empty;
         }
 
@@ -114,7 +115,6 @@ namespace PrismUI
         }
         internal virtual void OnKey(ConsoleKeyInfo Key)
         {
-            Feed += Key.KeyChar;
             OnKeyEvent?.Invoke(Key);
         }
         internal virtual void OnDraw(Graphics G)
@@ -197,13 +197,13 @@ namespace PrismUI
         /// </summary>
         public bool IsEnabled;
         /// <summary>
-        /// The char feed from the keyboard. (input)
-        /// </summary>
-        internal string Feed;
-        /// <summary>
         /// Check to see if the control should have a border.
         /// </summary>
         public bool HasBorder;
+        /// <summary>
+        /// Check to see if the element can be typed into.
+        /// </summary>
+        public bool CanType;
         /// <summary>
         /// The text value of the control, if it uses it.
         /// </summary>
