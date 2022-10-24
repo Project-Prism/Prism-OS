@@ -1,10 +1,10 @@
-﻿using PrismGL2D.Extentions;
-using PrismGL2D.Formats;
-using PrismUI.Controls;
-using PrismGL2D;
-using Cosmos.System;
+﻿using Cosmos.System;
 using PrismAudio;
+using PrismGL2D;
+using PrismGL2D.Extentions;
+using PrismGL2D.Formats;
 using PrismTools;
+using PrismUI.Controls;
 
 namespace PrismOS.Apps
 {
@@ -56,6 +56,12 @@ namespace PrismOS.Apps
 				X = (int)Control.Config.Scale,
 				Text = "3D",
 				OnClickEvent = (int X, int Y, MouseState State) => { _ = new Test3D(); },
+			});
+			Launcher.Controls.Add(new Button(Control.Config.Scale, Control.Config.Scale)
+			{
+				X = (int)Control.Config.Scale * 2,
+				Text = "OX",
+				OnClickEvent = (int X, int Y, MouseState State) => { _ = new TTT(); },
 			});
 			Launcher.Controls.RemoveAt(0); // Remove close button
 			Debugger.Log("Initialized launcher", Debugger.Severity.Ok);
