@@ -178,6 +178,7 @@ namespace PrismUI.Controls
 		public void Close()
 		{
 			Frames.Remove(this);
+			Dispose();
 		}
 
 		#endregion
