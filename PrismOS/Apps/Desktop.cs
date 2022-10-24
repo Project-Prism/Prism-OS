@@ -46,30 +46,11 @@ namespace PrismOS.Apps
 				HasBorder = false,
 				CanDrag = false,
 			};
-			Launcher.Controls.Add(new Button(Control.Config.Scale, Control.Config.Scale)
-			{
-				Text = "SD",
-				OnClickEvent = (int X, int Y, MouseState State) => { Power.Shutdown(); },
-			});
-			Launcher.Controls.Add(new Button(Control.Config.Scale, Control.Config.Scale)
-			{
-				X = (int)Control.Config.Scale,
-				Text = "/",
-				OnClickEvent = (int X, int Y, MouseState State) => { _ = new Explorer(); },
-			});
-			Launcher.Controls.Add(new Button(Control.Config.Scale, Control.Config.Scale)
-			{
-				X = (int)Control.Config.Scale * 2,
-				Text = "3D",
-				OnClickEvent = (int X, int Y, MouseState State) => { _ = new Test3D(); },
-			});
-			Launcher.Controls.Add(new Button(Control.Config.Scale, Control.Config.Scale)
-			{
-				X = (int)Control.Config.Scale * 3,
-				Text = "OX",
-				OnClickEvent = (int X, int Y, MouseState State) => { _ = new TTT(); },
-			});
 			Launcher.Controls.RemoveAt(0); // Remove close button
+			Install("SD", () => Power.Shutdown());
+			Install("EX", () => _ = new Explorer());
+			Install("3D", () => _ = new Test3D());
+			Install("OX", () => _ = new TTT());
 			Debugger.Log("Initialized launcher", Debugger.Severity.Ok);
 
 			#endregion
@@ -77,6 +58,15 @@ namespace PrismOS.Apps
 
 		#region Methods
 
+		public void Install(string Label, Action A)
+		{
+			Launcher.Controls.Add(new Button(Control.Config.Scale, Control.Config.Scale)
+			{
+				Text = Label,
+				X = (int)(Control.Config.Scale * Launcher.Controls.Count),
+				OnClickEvent = (int X, int Y, MouseState State) => { A(); },
+			});
+		}
 		public void Update()
 		{
 			Canvas.DrawImage(0, 0, Wallpaper, false);
