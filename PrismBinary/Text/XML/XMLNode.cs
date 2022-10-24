@@ -1,64 +1,86 @@
 ﻿namespace PrismBinary.Text.XML
 {
-    public unsafe struct XMLNode
-    {
-        public XMLNode(string Source, ref int I)
-        {
-            Children = new();
-            Value = "";
-            Tag = "";
+	public unsafe class XMLNode : List<XMLNode>
+	{
+		public XMLNode(string Source, ref int I)
+		{
+			Attribs = new();
+			TagName = "";
 
-            for (; I < Source.Length; I++)
-            {
-                if (Source[I] == '<')
-                {
-                    while (Source[I] != '>')
-                    {
-                        Tag += Source[I++];
-                    }
+			for (; I < Source.Length; I++)
+			{
+				if (Source[I] == '<')
+				{
+					while (Source[I] != '>')
+					{
+						TagName += Source[I++];
+					}
 
-                    while(I < Source.Length)
-                    {
-                        if (Source[I] == '<' && Source[I] != '/')
-                        {
-                            I++;
-                            Children.Add(new(Source, ref I));
-                            continue;
-                        }
-                        if (Source[I] == '<' && Source[I] == '/')
-                        {
-                            I += Tag.Length + 2;
-                            continue;
-                        }
-                        
-                        while (Source[I] != '<')
-                        {
-                            Value += Source[I++];
-                        }
-                    }
-                }
-            }
-        }
+					while (I < Source.Length)
+					{
+						if (Source[I] == '<' && Source[I] != '/')
+						{
+							I++;
+							Add(new(Source, ref I));
+							continue;
+						}
+						if (Source[I] == '<' && Source[I] == '/')
+						{
+							I += TagName.Length + 2;
+							continue;
+						}
 
-        #region Definitions
+						while (Source[I] != '<')
+						{
+							SetAttribute("Value", GetAttribute("Value") + Source[I++]);
+						}
+					}
+				}
+			}
+		}
+		public XMLNode()
+		{
+			Attribs = new();
+			TagName = "";
+		}
 
-        internal List<XMLNode> Children;
-        internal string Value;
-        internal string Tag;
+		#region Methods
 
-        #endregion
+		public void SetAttribute(string Attribute, string Value)
+		{
+			if (!Attribs.ContainsKey(Attribute))
+			{
+				Attribs.Add(Attribute, Value);
+				return;
+			}
 
-        public List<XMLNode> GetChildren()
-        {
-            return Children;
-        }
-        public string GetValue()
-        {
-            return Value;
-        }
-        public string GetTag()
-        {
-            return Tag;
-        }
-    }
+			Attribs[Attribute] = Value;
+		}
+		public string GetAttribute(string Attribute)
+		{
+			if (!Attribs.ContainsKey(Attribute))
+			{
+				return string.Empty;
+			}
+
+			return Attribs[Attribute];
+		}
+		public void SetTagName(string Value)
+		{
+			TagName = Value;
+		}
+		public string GetTagName()
+		{
+			return TagName;
+		}
+
+		#endregion
+
+		#region Fields
+
+		internal Dictionary<string, string> Attribs;
+		internal string TagName;
+
+		#endregion
+	}
 }

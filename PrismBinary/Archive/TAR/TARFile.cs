@@ -15,7 +15,7 @@ namespace PrismBinary.Archive.TAR
         /// <param name="Binary">Ray binary of a tar file.</param>
         public TARFile(byte[] Binary)
         {
-            Files = new();
+            _Files = new();
 
             fixed (byte* PTR = Binary)
             {
@@ -30,35 +30,23 @@ namespace PrismBinary.Archive.TAR
                     byte[] Data = new byte[OCS2L(H->Size)];
                     Marshal.Copy((IntPtr)(T + 512), Data, 0, Data.Length);
 
-                    Files.Add(Encoding.UTF8.GetString(H->Name, 100).Trim('\0'), Data);
+                    _Files.Add(Encoding.UTF8.GetString(H->Name, 100).Trim('\0'), Data);
 
                     T += SizeToSec((ulong)Data.Length) * 512;
                 }
             }
         }
 
-        #region TAR Data
+		#region Methods
 
-        /// <summary>
-        /// Gets all files in the tar file.
-        /// </summary>
-        /// <returns>All files bundled in the tar.</returns>
-        public Dictionary<string, byte[]> GetFiles()
-        {
-            return Files;
-        }
-        internal Dictionary<string, byte[]> Files;
+		#region Reading
 
-        #endregion
-
-        #region Reading
-
-        /// <summary>
-        /// Reads all text and splits it by \n
-        /// </summary>
-        /// <param name="File">Name of the file to read.</param>
-        /// <returns>Text of 'File' split by \n.</returns>
-        public string[] ReadAllLines(string File)
+		/// <summary>
+		/// Reads all text and splits it by \n
+		/// </summary>
+		/// <param name="File">Name of the file to read.</param>
+		/// <returns>Text of 'File' split by \n.</returns>
+		public string[] ReadAllLines(string File)
         {
             return ReadAllText(File).Split('\n');
         }
@@ -71,7 +59,7 @@ namespace PrismBinary.Archive.TAR
         {
             File = Format(File);
 
-            return Files[File];
+            return _Files[File];
         }
         /// <summary>
         /// Reads all text from the file.
@@ -82,27 +70,24 @@ namespace PrismBinary.Archive.TAR
         {
             File = Format(File);
 
-            return Encoding.UTF8.GetString(Files[File]);
+            return Encoding.UTF8.GetString(_Files[File]);
         }
-
+        /// <summary>
+        /// Gets all files in the tar file.
+        /// </summary>
+        /// <returns>All files bundled in the tar.</returns>
+        public Dictionary<string, byte[]> GetFiles()
+        {
+            return _Files;
+        }
         /// <summary>
         /// Lists all file names from the tar bundle.
         /// </summary>
         /// <param name="Path">Path to search in (Recusrive)</param>
         /// <returns>All files in the path specified.</returns>
-        public string[] ListFiles(string Path)
+        public string[] ListFiles()
         {
-            Path = Format(Path);
-
-            List<string> TFiles = new();
-            foreach (string N in Files.Keys)
-            {
-                if (N.StartsWith(Path))
-                {
-                    TFiles.Add(N);
-                }
-            }
-            return TFiles.ToArray();
+            return _Files.Keys.ToArray();
         }
 
         #endregion
@@ -115,14 +100,16 @@ namespace PrismBinary.Archive.TAR
         /// <param name="File">File to write to.</param>
         /// <param name="Lines">Line to write.</param>
         public void WriteAllLines(string File, string[] Lines)
-		{
+        {
+            File = Format(File);
+
             string S = "";
             for (int I = 0; I < Lines.Length; I++)
-			{
-                S += Lines[I] + 'n';
-			}
+            {
+                S += Lines[I] + '\n';
+            }
             WriteAllText(File, S[0..(S.Length - 1)]);
-		}
+        }
         /// <summary>
         /// Writes all bytes om 'Binary' to the file.
         /// </summary>
@@ -132,13 +119,13 @@ namespace PrismBinary.Archive.TAR
         {
             File = Format(File);
 
-            if (Files.ContainsKey(File))
+            if (_Files.ContainsKey(File))
             {
-                Files[File] = Binary;
+                _Files[File] = Binary;
             }
             else
             {
-                Files.Add(File, Binary);
+                _Files.Add(File, Binary);
             }
         }
         /// <summary>
@@ -150,13 +137,13 @@ namespace PrismBinary.Archive.TAR
         {
             File = Format(File);
 
-            if (Files.ContainsKey(File))
+            if (_Files.ContainsKey(File))
             {
-                Files[File] = Encoding.UTF8.GetBytes(Contents);
+                _Files[File] = Encoding.UTF8.GetBytes(Contents);
             }
             else
             {
-                Files.Add(File, Encoding.UTF8.GetBytes(Contents));
+                _Files.Add(File, Encoding.UTF8.GetBytes(Contents));
             }
         }
 
@@ -168,7 +155,7 @@ namespace PrismBinary.Archive.TAR
         {
             File = Format(File);
 
-            Files.Remove(File);
+            _Files.Remove(File);
         }
         /// <summary>
         /// Creates an empty file, mush be full path.
@@ -178,7 +165,7 @@ namespace PrismBinary.Archive.TAR
         {
             File = Format(File);
 
-            Files.Add(File, Array.Empty<byte>());
+            _Files.Add(File, Array.Empty<byte>());
         }
 
         #endregion
@@ -200,14 +187,20 @@ namespace PrismBinary.Archive.TAR
                 return Base[1..];
             }
 
-            Console.WriteLine("Format " + Base + "...");
-
             return Base;
         }
         private static long OCS2L(byte* PTR)
         {
             return Convert.ToInt64(Encoding.UTF8.GetString(PTR, 12).Trim('\0'), 8);
         }
+
+        #endregion
+
+        #endregion
+
+        #region Fields
+
+        private readonly Dictionary<string, byte[]> _Files;
 
         #endregion
     }

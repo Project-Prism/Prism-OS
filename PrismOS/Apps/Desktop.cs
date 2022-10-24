@@ -48,18 +48,24 @@ namespace PrismOS.Apps
 			};
 			Launcher.Controls.Add(new Button(Control.Config.Scale, Control.Config.Scale)
 			{
+				Text = "SD",
+				OnClickEvent = (int X, int Y, MouseState State) => { Power.Shutdown(); },
+			});
+			Launcher.Controls.Add(new Button(Control.Config.Scale, Control.Config.Scale)
+			{
+				X = (int)Control.Config.Scale,
 				Text = "/",
 				OnClickEvent = (int X, int Y, MouseState State) => { _ = new Explorer(); },
 			});
 			Launcher.Controls.Add(new Button(Control.Config.Scale, Control.Config.Scale)
 			{
-				X = (int)Control.Config.Scale,
+				X = (int)Control.Config.Scale * 2,
 				Text = "3D",
 				OnClickEvent = (int X, int Y, MouseState State) => { _ = new Test3D(); },
 			});
 			Launcher.Controls.Add(new Button(Control.Config.Scale, Control.Config.Scale)
 			{
-				X = (int)Control.Config.Scale * 2,
+				X = (int)Control.Config.Scale * 3,
 				Text = "OX",
 				OnClickEvent = (int X, int Y, MouseState State) => { _ = new TTT(); },
 			});

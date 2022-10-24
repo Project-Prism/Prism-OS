@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PrismBinary\PrismBinary.csproj" />
     <ProjectReference Include="..\PrismGL2D\PrismGL2D.csproj" />
   </ItemGroup>
 

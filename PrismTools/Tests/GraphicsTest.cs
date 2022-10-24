@@ -1,6 +1,6 @@
 ﻿using PrismGL2D;
 
-namespace PrismTools
+namespace PrismTools.Tests
 {
 	public static class GraphicsTest
 	{

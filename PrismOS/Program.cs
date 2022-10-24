@@ -21,6 +21,7 @@ namespace PrismOS
 			Desktop = new();
 
 			DialogBox.ShowMessageDialog("Welcome", "Welcome to prism OS!\nIf you are wondering...\nThe seal in the background is named shawn.");
+			Debugger.Log("Kernel initialized", Debugger.Severity.Ok);
 
 			try
 			{
