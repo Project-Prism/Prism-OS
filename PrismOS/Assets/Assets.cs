@@ -21,6 +21,6 @@ namespace PrismOS
         public static MemoryAudioStream Vista = MemoryAudioStream.FromWave(VistaB);
 
         // Pre-Sized Logo
-        public static Bitmap Splash = (Bitmap)new Bitmap(LogoB).Scale(256, 256);
+        public static Bitmap Splash = new(LogoB);
     }
 }

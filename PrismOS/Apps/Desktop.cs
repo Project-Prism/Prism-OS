@@ -31,7 +31,7 @@ namespace PrismOS.Apps
 
 			#region Splash Screen
 
-			Canvas.DrawImage((int)((Canvas.Width / 2) - 128), (int)((Canvas.Height / 2) - 128), Assets.Splash);
+			Canvas.DrawImage((int)((Canvas.Width / 2) - 128), (int)((Canvas.Height / 2) - 128), Assets.Splash.Scale(Canvas.Height / 3, Canvas.Height / 3));
 			Canvas.Update();
 			AudioPlayer.Play(Assets.Vista);
 

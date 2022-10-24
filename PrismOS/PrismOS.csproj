@@ -20,7 +20,7 @@
         <PxeInterface>192.168.0.8</PxeInterface>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <CompileVBEMultiboot>True</CompileVBEMultiboot>
-        <VBEResolution>1024x768x32</VBEResolution>
+        <VBEResolution>1280x720x32</VBEResolution>
         <VMWareEdition>Workstation</VMWareEdition>
         <DebugEnabled>False</DebugEnabled>
         <EnableBochsDebug>True</EnableBochsDebug>
