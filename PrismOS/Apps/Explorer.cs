@@ -1,5 +1,7 @@
-﻿using PrismUI.Controls;
+﻿using Cosmos.System.Audio.IO;
+using PrismUI.Controls;
 using Cosmos.System;
+using PrismAudio;
 using PrismUI;
 
 namespace PrismOS.Apps
@@ -12,13 +14,30 @@ namespace PrismOS.Apps
 			{
 				uint YOffset = 0;
 				Text += " - Viewing '0:\\'";
-				foreach (string File in Directory.GetFiles("0:\\"))
+				foreach (string Name in Directory.GetFiles("0:\\"))
 				{
 					Controls.Add(new Button(128, Config.Scale)
 					{
-						OnClickEvent = (int X, int Y, MouseState State) => { _ = new Notepad("0:\\" + File); },
+						OnClickEvent = (int X, int Y, MouseState State) =>
+						{
+							switch (Path.GetExtension(Name))
+							{
+								case ".bmp":
+									_ = new Gallery("0:\\" + Name);
+									break;
+								case ".txt":
+									_ = new Notepad("0:\\" + Name);
+									break;
+								case ".wav":
+									AudioPlayer.Play(MemoryAudioStream.FromWave(File.ReadAllBytes(Name)));
+									break;
+								default:
+									DialogBox.ShowMessageDialog("File load error", $"No app ascociated with the '{Path.GetExtension(Name)}' extention.");
+									break;
+							}
+						},
 						HasBorder = false,
-						Text = File,
+						Text = Name,
 						Y = (int)(YOffset += Config.Scale),
 					});
 				}
