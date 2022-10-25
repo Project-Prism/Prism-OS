@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -17,6 +17,7 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
+        
     - name: Clone cosmos
       run: git clone https://github.com/CosmosOS/Cosmos
     - name: Clone IL2CPU
@@ -25,11 +26,24 @@ jobs:
       run: git clone https://github.com/CosmosOS/XSharp
     - name: Clone Common
       run: git clone https://github.com/CosmosOS/Common
+      
+    - name: Build IL2CPU
+      run: cd Il2cpu; dotnet build; cd ..
+      
+    - name: Build XSharp
+      run: cd XSharp; dotnet build; cd ..
+      
+    - name: Build Common
+      run: cd Common; dotnet build; cd ..
+      
     - name: Build cosmos
       run: cd Cosmos; make build; make install; cd ..
+      
     - name: Restore dependencies
       run: dotnet restore
+      
     - name: Build
       run: dotnet build --no-restore
+      
     - name: Test
       run: dotnet test --no-build --verbosity normal
