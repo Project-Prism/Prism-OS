@@ -9,7 +9,6 @@ namespace PrismOS.Apps
 		{
 			try
 			{
-
 				TextBox = new(Width, Height - Config.Scale);
 				TextBox.Y = (int)Config.Scale;
 				TextBox.Text = File.ReadAllText(PathTo);
