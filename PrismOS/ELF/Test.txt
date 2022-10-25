@@ -1,0 +1,23 @@
+﻿
+			fixed (byte* ptr = Assets.ELF)
+			{
+				var exe = new UnmanagedExecutible(ptr);
+				exe.Load();
+				exe.Link();
+
+				_ = new ArgumentWriter();
+				exe.Invoke("tty_clear");
+
+				new ArgumentWriter()
+					.Push(5)  //fg
+					.Push(15); //bg
+				exe.Invoke("tty_set_color");
+
+				fixed (byte* str = System.Text.Encoding.UTF8.GetBytes("Hello, World!"))
+				{
+					new ArgumentWriter()
+						.Push((uint)str);
+					exe.Invoke("tty_puts");
+				}
+			}
+			while (true) { }

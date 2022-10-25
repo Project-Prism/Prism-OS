@@ -19,7 +19,7 @@
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <CompileVBEMultiboot>True</CompileVBEMultiboot>
+        <CompileVBEMultiboot>False</CompileVBEMultiboot>
         <VBEResolution>1280x720x32</VBEResolution>
         <VMWareEdition>Workstation</VMWareEdition>
         <DebugEnabled>False</DebugEnabled>
@@ -41,6 +41,7 @@
     <ItemGroup>
       <None Remove="Assets\Cursor.bmp" />
       <None Remove="Assets\Splash.bmp" />
+      <None Remove="Assets\Test.elf" />
       <None Remove="Assets\Vista.wav" />
       <None Remove="Assets\Wallpaper.bmp" />
     </ItemGroup>
@@ -48,6 +49,7 @@
     <ItemGroup>
       <EmbeddedResource Include="Assets\Cursor.bmp" />
       <EmbeddedResource Include="Assets\Splash.bmp" />
+      <EmbeddedResource Include="Assets\Test.elf" />
       <EmbeddedResource Include="Assets\Vista.wav" />
       <EmbeddedResource Include="Assets\Wallpaper.bmp" />
     </ItemGroup>
@@ -75,6 +77,12 @@
       <ProjectReference Include="..\PrismNetwork\PrismNetwork.csproj" />
       <ProjectReference Include="..\PrismTools\PrismTools.csproj" />
       <ProjectReference Include="..\PrismUI\PrismUI.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="XSharp">
+        <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\XSharp.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cosmos.System2" Version="0.1.0-localbuild20221009092857" />
+    <PackageReference Include="Cosmos.System2" Version="0.1.0-localbuild20221024075635" />
   </ItemGroup>
 
   <ItemGroup>
