@@ -31,7 +31,7 @@ jobs:
       run: cd Il2cpu; dotnet build; cd ..
       
     - name: Build XSharp
-      run: cd XSharp; dotnet build; cd ..
+      run: cd XSharp/source/XSharp/XSharp/; dotnet build; cd ..; cd ..; cd ..; cd ..
       
     - name: Build Common
       run: cd Common; dotnet build; cd ..
