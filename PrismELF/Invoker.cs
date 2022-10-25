@@ -2,7 +2,7 @@
 using IL2CPU.API.Attribs;
 using XSharp.Assembler;
 
-namespace PrismOS.ELF
+namespace PrismELF
 {
 	public static unsafe class Invoker
 	{
@@ -44,11 +44,11 @@ namespace PrismOS.ELF
 	{
 		public override void AssembleNew(Assembler aAssembler, object aMethodInfo)
 		{
-			_ = new LiteralAssemblerCode("mov [static_field__PrismOS_ELF_Invoker_eax], eax");
-			_ = new LiteralAssemblerCode("mov [static_field__PrismOS_ELF_Invoker_ebx], ebx");
-			_ = new LiteralAssemblerCode("mov [static_field__PrismOS_ELF_Invoker_ecx], ecx");
-			_ = new LiteralAssemblerCode("mov [static_field__PrismOS_ELF_Invoker_edx], edx");
-			_ = new LiteralAssemblerCode("mov [static_field__PrismOS_ELF_Invoker_edi], edi");
+			_ = new LiteralAssemblerCode("mov [static_field__PrismELF_Invoker_eax], eax");
+			_ = new LiteralAssemblerCode("mov [static_field__PrismELF_Invoker_ebx], ebx");
+			_ = new LiteralAssemblerCode("mov [static_field__PrismELF_Invoker_ecx], ecx");
+			_ = new LiteralAssemblerCode("mov [static_field__PrismELF_Invoker_edx], edx");
+			_ = new LiteralAssemblerCode("mov [static_field__PrismELF_Invoker_edi], edi");
 		}
 	}
 
@@ -57,11 +57,11 @@ namespace PrismOS.ELF
 	{
 		public override void AssembleNew(Assembler aAssembler, object aMethodInfo)
 		{
-			_ = new LiteralAssemblerCode("mov eax, [static_field__PrismOS_ELF_Invoker_eax]");
-			_ = new LiteralAssemblerCode("mov ebx, [static_field__PrismOS_ELF_Invoker_ebx]");
-			_ = new LiteralAssemblerCode("mov ecx, [static_field__PrismOS_ELF_Invoker_ecx]");
-			_ = new LiteralAssemblerCode("mov edx, [static_field__PrismOS_ELF_Invoker_edx]");
-			_ = new LiteralAssemblerCode("mov edi, [static_field__PrismOS_ELF_Invoker_edi]");
+			_ = new LiteralAssemblerCode("mov eax, [static_field__PrismELF_Invoker_eax]");
+			_ = new LiteralAssemblerCode("mov ebx, [static_field__PrismELF_Invoker_ebx]");
+			_ = new LiteralAssemblerCode("mov ecx, [static_field__PrismELF_Invoker_ecx]");
+			_ = new LiteralAssemblerCode("mov edx, [static_field__PrismELF_Invoker_edx]");
+			_ = new LiteralAssemblerCode("mov edi, [static_field__PrismELF_Invoker_edi]");
 		}
 	}
 
@@ -70,21 +70,21 @@ namespace PrismOS.ELF
 	{
 		public override void AssembleNew(Assembler aAssembler, object aMethodInfo)
 		{
-			_ = new LiteralAssemblerCode("mov [static_field__PrismOS_ELF_Invoker_esp], esp");
-			_ = new LiteralAssemblerCode("mov [static_field__PrismOS_ELF_Invoker_ebp], ebp");
+			_ = new LiteralAssemblerCode("mov [static_field__PrismELF_Invoker_esp], esp");
+			_ = new LiteralAssemblerCode("mov [static_field__PrismELF_Invoker_ebp], ebp");
 
-			_ = new LiteralAssemblerCode("mov eax, [static_field__PrismOS_ELF_Invoker_Stack]");
+			_ = new LiteralAssemblerCode("mov eax, [static_field__PrismELF_Invoker_Stack]");
 			_ = new LiteralAssemblerCode("add eax, 50");
 			_ = new LiteralAssemblerCode("mov esp, eax");
 			_ = new LiteralAssemblerCode("mov ebp, eax");
-			_ = new LiteralAssemblerCode("mov eax, [static_field__PrismOS_ELF_Invoker_Offset]");
+			_ = new LiteralAssemblerCode("mov eax, [static_field__PrismELF_Invoker_Offset]");
 			_ = new LiteralAssemblerCode("Call eax");
 
-			_ = new LiteralAssemblerCode("mov ecx, [static_field__PrismOS_ELF_Invoker_Stack]");
+			_ = new LiteralAssemblerCode("mov ecx, [static_field__PrismELF_Invoker_Stack]");
 			_ = new LiteralAssemblerCode("mov dword [ecx], eax");
 
-			_ = new LiteralAssemblerCode("mov esp, [static_field__PrismOS_ELF_Invoker_esp]");
-			_ = new LiteralAssemblerCode("mov ebp, [static_field__PrismOS_ELF_Invoker_ebp]");
+			_ = new LiteralAssemblerCode("mov esp, [static_field__PrismELF_Invoker_esp]");
+			_ = new LiteralAssemblerCode("mov ebp, [static_field__PrismELF_Invoker_ebp]");
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿namespace PrismOS.ELF.Structure
+﻿namespace PrismELF.Structure
 {
     public enum SymbolBinding
     {

@@ -1,4 +1,4 @@
-﻿namespace PrismOS.ELF
+﻿namespace PrismELF
 {
 	public unsafe class ArgumentWriter
 	{

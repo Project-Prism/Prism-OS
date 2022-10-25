@@ -1,4 +1,4 @@
-﻿namespace PrismOS.ELF.Structure
+﻿namespace PrismELF.Structure
 {
     [Flags]
     public enum SectionAttributes

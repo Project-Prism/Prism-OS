@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace PrismOS.ELF.Structure
+namespace PrismELF.Structure
 {
     [StructLayout(LayoutKind.Explicit, Pack = 1)]
     public struct Elf32Rel

@@ -1,7 +1,7 @@
-﻿using PrismOS.ELF.Structure;
+﻿using PrismELF.Structure;
 using Cosmos.Core.Memory;
 
-namespace PrismOS.ELF
+namespace PrismELF
 {
     public unsafe class UnmanagedExecutible
     {

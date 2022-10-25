@@ -1,6 +1,6 @@
-﻿using PrismOS.ELF.Structure;
+﻿using PrismELF.Structure;
 
-namespace PrismOS.ELF
+namespace PrismELF
 {
 	public unsafe class ElfFile
 	{
