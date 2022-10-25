@@ -34,7 +34,7 @@ jobs:
       run: cd XSharp/source/XSharp/XSharp/; dotnet build; cd ..; cd ..; cd ..; cd ..
       
     - name: Build Common
-      run: cd Common; dotnet build; cd ..
+      run: cd Common/source/Cosmos.Build.Common/; dotnet build; cd ..; cd ..; cd ..
       
     - name: Build cosmos
       run: cd Cosmos; make build; make install; cd ..
