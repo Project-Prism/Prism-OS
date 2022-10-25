@@ -37,7 +37,7 @@ jobs:
       run: cd Common/source/Cosmos.Build.Common/; dotnet build; cd ..; cd ..; cd ..
       
     - name: Build cosmos
-      run: cd Cosmos; dotnet build; dotnet publish; cd ..
+      run: cd Cosmos; dotnet build Build.sln; dotnet publish Build.sln; cd ..
       
     - name: Restore dependencies
       run: dotnet restore
