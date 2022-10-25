@@ -9,6 +9,7 @@ namespace PrismELF
         {
             // Use max value as we will not read past the size
             Stream = new UnmanagedMemoryStream(Binary, long.MaxValue);
+            ELF = new(new((byte*)0, 0));
         }
 
         private readonly UnmanagedMemoryStream Stream;
@@ -98,7 +99,6 @@ namespace PrismELF
             }
         }
 
-
         public void Link()
         {
             foreach (var rel in ELF.RelocationInformation)
@@ -115,10 +115,10 @@ namespace PrismELF
                 switch (rel.Type)
                 {
                     case RelocationType.R38632:
-                        *refr = (symval + *refr) + memOffset; // Symbol + Offset
+                        *refr = symval + *refr + memOffset; // Symbol + Offset
                         break;
                     case RelocationType.R386Pc32:
-                        *refr = (symval + *refr - (uint)refr) + memOffset; // Symbol + Offset - Section Offset
+                        *refr = symval + *refr - (uint)refr + memOffset; // Symbol + Offset - Section Offset
                         break;
                     case RelocationType.R386None:
                         //nop

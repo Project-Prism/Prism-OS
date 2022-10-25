@@ -4,6 +4,7 @@
     {
         public Elf32ShdrC(Elf32Shdr* st)
         {
+            Name = string.Empty;
             NameOffset = st->sh_name;
             Type = (SectionType)st->sh_type;
             Flag = (SectionAttributes)st->sh_flags;

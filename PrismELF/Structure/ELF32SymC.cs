@@ -4,6 +4,7 @@
     {
         public Elf32SymC(Elf32Sym* st)
         {
+            Name = String.Empty;
             NameOffset = st->st_name;
             Value = st->st_value;
             Size = st->st_size;
