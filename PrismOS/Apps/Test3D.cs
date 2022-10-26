@@ -1,5 +1,5 @@
-﻿using PrismGL3D.Objects;
-using PrismUI.Controls;
+﻿using PrismUI.Controls;
+using PrismGL3D.Types;
 using PrismGL3D;
 using PrismGL2D;
 
@@ -10,14 +10,14 @@ namespace PrismOS.Apps
 		public Test3D() : base(300, 300, nameof(Test3D))
 		{
 			Engine = new(Width, Height - Config.Scale, 90);
-			Cube = new(300, 300, 100);
+			Cube = Mesh.GetCube(300, 300, 100);
 			Engine.Objects.Add(Cube);
 
 			OnDrawEvent = (Graphics G) => Next(G);
 		}
 
 		public Engine Engine;
-		public Cube Cube;
+		public Mesh Cube;
 
 		public void Next(Graphics G)
 		{

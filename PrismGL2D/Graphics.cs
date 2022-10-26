@@ -390,11 +390,11 @@ namespace PrismGL2D
 		/// <param name="X3">X position 3.</param>
 		/// <param name="Y3">Y position 3.</param>
 		/// <param name="Color">Color to draw with.</param>
-		public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
+		public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, bool UseAntiAliasing = false)
 		{
-			DrawLine(X1, Y1, X2, Y2, Color);
-			DrawLine(X1, Y1, X3, Y3, Color);
-			DrawLine(X2, Y2, X3, Y3, Color);
+			DrawLine(X1, Y1, X2, Y2, Color, UseAntiAliasing);
+			DrawLine(X1, Y1, X3, Y3, Color, UseAntiAliasing);
+			DrawLine(X2, Y2, X3, Y3, Color, UseAntiAliasing);
 		}
 
 		#endregion

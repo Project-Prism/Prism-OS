@@ -2,16 +2,13 @@
 
 namespace PrismGL3D.Numerics
 {
-	public struct Triangle
+	public class Triangle
 	{
 		public Triangle(double X1, double Y1, double Z1, double X2, double Y2, double Z2, double X3, double Y3, double Z3, Color Color)
 		{
 			P1 = new(X1, Y1, Z1);
 			P2 = new(X2, Y2, Z2);
 			P3 = new(X3, Y3, Z3);
-			T1 = P1;
-			T2 = P2;
-			T3 = P3;
 			this.Color = Color;
 		}
 		public Triangle(double X1, double Y1, double Z1, double X2, double Y2, double Z2, double X3, double Y3, double Z3)
@@ -19,9 +16,6 @@ namespace PrismGL3D.Numerics
 			P1 = new(X1, Y1, Z1);
 			P2 = new(X2, Y2, Z2);
 			P3 = new(X3, Y3, Z3);
-			T1 = P1;
-			T2 = P2;
-			T3 = P3;
 			Color = Color.White;
 		}
 		public Triangle(Vector3 P1, Vector3 P2, Vector3 P3, Color Color)
@@ -29,9 +23,6 @@ namespace PrismGL3D.Numerics
 			this.P1 = P1;
 			this.P2 = P2;
 			this.P3 = P3;
-			T1 = P1;
-			T2 = P2;
-			T3 = P3;
 			this.Color = Color;
 		}
 		public Triangle(Vector3 P1, Vector3 P2, Vector3 P3)
@@ -39,11 +30,29 @@ namespace PrismGL3D.Numerics
 			this.P1 = P1;
 			this.P2 = P2;
 			this.P3 = P3;
-			T1 = P1;
-			T2 = P2;
-			T3 = P3;
 			Color = Color.White;
 		}
+		public Triangle()
+		{
+			P1 = new();
+			P2 = new();
+			P3 = new();
+		}
+
+		#region Operators
+
+		public static Triangle operator *(Triangle T1, Matrix M1)
+		{
+			return new()
+			{
+				P1 = T1.P1 * M1,
+				P2 = T1.P2 * M1,
+				P3 = T1.P3 * M1,
+				Color = T1.Color,
+			};
+		}
+
+		#endregion
 
 		#region Methods
 
@@ -81,12 +90,10 @@ namespace PrismGL3D.Numerics
 				P1 = P1,
 				P2 = P2,
 				P3 = P3,
-				T1 = T1,
-				T2 = T2,
-				T3 = T3,
 				Color = Color
 			};
 		}
+
 		/// <summary>
 		/// Applies Z0 to the triangle.
 		/// </summary>
@@ -130,12 +137,10 @@ namespace PrismGL3D.Numerics
 				P1 = P1,
 				P2 = P2,
 				P3 = P3,
-				T1 = T1,
-				T2 = T2,
-				T3 = T3,
 				Color = Color
 			};
 		}
+
 		/// <summary>
 		/// Rotates the triangle.
 		/// </summary>
@@ -179,11 +184,13 @@ namespace PrismGL3D.Numerics
 			};
 			return new()
 			{
-				P1 = P1, P2 = P2, P3 = P3,
-				T1 = T1, T2 = T2, T3 = T3,
+				P1 = P1,
+				P2 = P2,
+				P3 = P3,
 				Color = Color,
 			};
 		}
+
 		/// <summary>
 		/// Translates or "moves" the triangle based on the input translation.
 		/// </summary>
@@ -223,9 +230,6 @@ namespace PrismGL3D.Numerics
 				P1 = P1,
 				P2 = P2,
 				P3 = P3,
-				T1 = T1,
-				T2 = T2,
-				T3 = T3,
 				Color = Color,
 			};
 		}
@@ -251,10 +255,6 @@ namespace PrismGL3D.Numerics
 		/// A point of the triangle.
 		/// </summary>
 		public Vector3 P1, P2, P3;
-		/// <summary>
-		/// Testing
-		/// </summary>
-		public Vector3 T1, T2, T3;
 		/// <summary>
 		/// Color of the triangle.
 		/// </summary>

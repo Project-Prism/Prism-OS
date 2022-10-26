@@ -1,5 +1,4 @@
 ﻿using PrismGL3D.Numerics;
-using PrismGL3D.Objects;
 using PrismGL3D.Types;
 using PrismGL2D;
 
@@ -22,10 +21,10 @@ namespace PrismGL3D
 
         #region Fields
 
-        public Color SkyColor;
         public List<Mesh> Objects;
-        public Camera Camera;
         public double Gravity;
+        public Color SkyColor;
+        public Camera Camera;
         public int FOV;
 
         #endregion
