@@ -15,7 +15,6 @@ namespace PrismNetwork
 			DateTime T = DateTime.Now;
 			new TcpClient(80).Connect(A, 80);
 			return (ulong)(DateTime.Now - T).TotalMilliseconds;
-
 		}
 	}
 }
