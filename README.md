@@ -76,4 +76,5 @@
 ## License
 
 > This project is licensed Under the [GPL-2.0](https://github.com/Project-Prism/Prism-OS/blob/main/LICENSE) licence.
+
 > This project's logo, 'Daimond', was created by Nicole Hammonds from The Noun Project.
