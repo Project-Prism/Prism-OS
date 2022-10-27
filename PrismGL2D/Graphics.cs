@@ -36,6 +36,10 @@ namespace PrismGL2D
 			}
 			set
 			{
+				if (_Height == value)
+				{
+					return;
+				}
 				if (_Width != 0)
 				{
 					Internal = Scale(Width, value).Internal;
@@ -52,6 +56,10 @@ namespace PrismGL2D
 			}
 			set
 			{
+				if (_Width == value)
+				{
+					return;
+				}
 				if (_Height != 0)
 				{
 					Internal = Scale(value, Height).Internal;
@@ -886,7 +894,11 @@ namespace PrismGL2D
 		/// <param name="Color">Color to clear the canvas with.</param>
 		public void Clear(Color Color)
 		{
-			MemoryOperations.Fill(Internal, Color.ARGB, (int)Size);
+			for (uint I = 0; I < Size; I++)
+			{
+				this[I] = Color.ARGB;
+			}
+			//MemoryOperations.Fill(Internal, Color.ARGB, (int)Size);
 		}
 
 		/// <summary>
@@ -903,7 +915,11 @@ namespace PrismGL2D
 		/// <param name="Destination">Desination address to copy to.</param>
 		public void CopyTo(uint* Destination)
 		{
-			MemoryOperations.Copy(Destination, Internal, (int)Size);
+			for (uint I = 0; I < Size; I++)
+			{
+				Destination[I] = Internal[I];
+			}
+			//MemoryOperations.Copy(Destination, Internal, (int)Size);
 		}
 
 		/// <summary>
