@@ -78,7 +78,6 @@ namespace PrismUI.Controls
 							Controls[I].ClickState = ClickState.Neutral;
 						}
 					}
-					Controls[I].OnDraw(this);
 				}
 			}
 

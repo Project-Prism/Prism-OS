@@ -894,11 +894,7 @@ namespace PrismGL2D
 		/// <param name="Color">Color to clear the canvas with.</param>
 		public void Clear(Color Color)
 		{
-			for (uint I = 0; I < Size; I++)
-			{
-				this[I] = Color.ARGB;
-			}
-			//MemoryOperations.Fill(Internal, Color.ARGB, (int)Size);
+			MemoryOperations.Fill(Internal, Color.ARGB, (int)Size);
 		}
 
 		/// <summary>
@@ -915,11 +911,7 @@ namespace PrismGL2D
 		/// <param name="Destination">Desination address to copy to.</param>
 		public void CopyTo(uint* Destination)
 		{
-			for (uint I = 0; I < Size; I++)
-			{
-				Destination[I] = Internal[I];
-			}
-			//MemoryOperations.Copy(Destination, Internal, (int)Size);
+			MemoryOperations.Copy(Destination, Internal, (int)Size);
 		}
 
 		/// <summary>
