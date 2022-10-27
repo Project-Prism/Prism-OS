@@ -5,7 +5,7 @@
 #### Prism OS is a [Cosmos](https://github.com/CosmosOS/Cosmos) Based Operating System Developed With C#.
 #### This Project is Made Possible by Cosmos and the Community Around it, We Give a Huge Thanks to All of the Developers that Contribute to and Support it, Our Work Would Not be Possible Without it.
 ###### Have any problems? Found a bug? Just want to chat? [Join the discord](https://discord.gg/DdERgtGmF6)!
-###### Visit our website [here](https://project-prism.github.io/Prism-OS/)!
+###### Visit our website [here](https://prism-project.net/)!
 
 <hr/>
 
