@@ -1,5 +1,8 @@
 ﻿namespace PrismGL2D.Formats
 {
+    /// <summary>
+    /// Bitmap image class.
+    /// </summary>
     public unsafe class Bitmap : Graphics
     {
         /// <summary>
@@ -20,6 +23,11 @@
             }
         }
 
+        /// <summary>
+        /// Validate that a set of bytes is a valid bitmap file.
+        /// </summary>
+        /// <param name="Binary">Binary to test.</param>
+        /// <returns>Validity of binary.</returns>
         public static bool Validate(byte[] Binary)
         {
             return Binary[0] == 'B' && Binary[1] == 'M';

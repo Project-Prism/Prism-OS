@@ -2,13 +2,13 @@
 {
 	/// <summary>
 	/// A PPM image file loader, original design by myvar.
-	/// https://github.com/Myvar/CosmosGL/blob/master/CosmosGL.System/Imaging/Formats/PPM.cs
+	/// Licensed under MIT.
+	/// Original: https://github.com/Myvar/CosmosGL/blob/master/CosmosGL.System/Imaging/Formats/PPM.cs
 	/// </summary>
-	/// <param name="Binary"></param>
 	public class PPM : Graphics
 	{
 		/// <summary>
-		/// Creates a new <see cref="PPM"/> class.
+		/// Creates a new instance of the <see cref="PPM"/> class.
 		/// </summary>
 		/// <param name="Binary">Raw data of input image.</param>
 		public PPM(byte[] Binary) : base(0, 0)

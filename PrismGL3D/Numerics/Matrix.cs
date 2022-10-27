@@ -15,7 +15,7 @@
 		/// <returns>3D Projection matrix.</returns>
 		public static Matrix GetProjectionMatrix(uint Width, uint Height, double FOV = 90.0, double Far = 1000.0, double Near = 0.1)
 		{
-			double FOVRadius = 1 / Math.Tan(FOV * 0.5 / 180 * 3.14159);
+			double FOVRadius = 1.0 / Math.Tan(FOV * 0.5 / 180.0 * 3.14159);
 
 			return new Matrix()
 			{
