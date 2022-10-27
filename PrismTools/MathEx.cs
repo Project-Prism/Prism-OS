@@ -3,9 +3,9 @@
 	public static class MathEx
 	{
 		public static string Eval(string Input)
-		{
+		{ 
 			string Temporary = "";
-			string Result = "0";
+			string Result = "";
 
 			for (int I = 0; I < Input.Length; I++)
 			{
@@ -13,31 +13,61 @@
 				{
 					continue;
 				}
-				if (ulong.TryParse(Input[I].ToString(), out _))
+				if (Input[I] == '.' || ulong.TryParse(Input[I].ToString(), out _))
 				{
-					Temporary += Input[I];
+					Result += Input[I];
 					continue;
-				}
-
-				for (int I2 = I; long.TryParse(Input[I2].ToString(), out _); I2++)
-				{
-					Temporary += Input[I2];
-					I++;
 				}
 
 				switch (Input[I])
 				{
 					case '*':
+						for (int I2 = I; long.TryParse(Input[I2].ToString(), out _); I2++)
+						{
+							Temporary += Input[I2];
+							I++;
+						}
 						Result = (long.Parse(Result) * long.Parse(Temporary)).ToString();
 						break;
 					case '/':
+						for (int I2 = I; long.TryParse(Input[I2].ToString(), out _); I2++)
+						{
+							Temporary += Input[I2];
+							I++;
+						}
 						Result = (long.Parse(Result) / long.Parse(Temporary)).ToString();
 						break;
 					case '+':
+						for (int I2 = I; long.TryParse(Input[I2].ToString(), out _); I2++)
+						{
+							Temporary += Input[I2];
+							I++;
+						}
 						Result = (long.Parse(Result) + long.Parse(Temporary)).ToString();
 						break;
 					case '-':
+						for (int I2 = I; long.TryParse(Input[I2].ToString(), out _); I2++)
+						{
+							Temporary += Input[I2];
+							I++;
+						}
 						Result = (long.Parse(Result) - long.Parse(Temporary)).ToString();
+						break;
+					case '^':
+						for (int I2 = I; double.TryParse(Input[I2].ToString(), out _); I2++)
+						{
+							Temporary += Input[I2];
+							I++;
+						}
+						Result = (long.Parse(Result) ^ long.Parse(Temporary)).ToString();
+						break;
+					case '%':
+						for (int I2 = I; double.TryParse(Input[I2].ToString(), out _); I2++)
+						{
+							Temporary += Input[I2];
+							I++;
+						}
+						Result = (long.Parse(Result) & long.Parse(Temporary)).ToString();
 						break;
 					default:
 						continue;
