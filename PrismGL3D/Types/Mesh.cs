@@ -3,7 +3,7 @@ using PrismGL2D;
 
 namespace PrismGL3D.Types
 {
-	public struct Mesh
+	public class Mesh
 	{
 		public Mesh()
 		{
@@ -13,6 +13,7 @@ namespace PrismGL3D.Types
 
 			Velocity = new(0, 0, 0, 0, 0, 0);
 			Force = new(0, 0, 0, 0, 0, 0);
+			LTime = DateTime.Now;
 			HasCollision = true;
 			HasPhysics = false;
 			Mass = 1.0;
@@ -60,6 +61,8 @@ namespace PrismGL3D.Types
 		}
 		public void TestLogic(double ElapsedTime)
 		{
+			//Rotation.Y += (DateTime.Now - LTime).TotalSeconds;
+			//LTime = DateTime.Now;
 			Rotation.Y += ElapsedTime;
 		}
 		public void Step(double Gravity, double DT)
@@ -80,6 +83,7 @@ namespace PrismGL3D.Types
 		public Vector3 Velocity { get; set; }
 		public bool HasCollision { get; set; }
 		public bool HasPhysics { get; set; }
+		private DateTime LTime { get; set; }
 		public Vector3 Force { get; set; }
 		public double Mass { get; set; }
 

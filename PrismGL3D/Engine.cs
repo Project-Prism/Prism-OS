@@ -7,7 +7,7 @@ namespace PrismGL3D
     public class Engine : Graphics
     {
         // To-Do: Implement Camera Rotation
-        public Engine(uint Width, uint Height, int FOV) : base(Width, Height)
+        public Engine(uint Width, uint Height, double FOV) : base(Width, Height)
         {
             this.Height = Height;
             this.Width = Width;
@@ -25,13 +25,14 @@ namespace PrismGL3D
         public double Gravity;
         public Color SkyColor;
         public Camera Camera;
-        public int FOV;
+        public double Zoom;
+        public double FOV;
 
         #endregion
 
         public void Render()
         {
-            double Z0 = Width / 2 / Math.Tan(FOV / 2 * 0.0174532925); // 0.0174532925 == pi / 180
+            double Z0 = Width / 2 / Math.Tan((FOV + Zoom) / 2 * 0.0174532925); // 0.0174532925 == pi / 180
 
             Clear(SkyColor);
 

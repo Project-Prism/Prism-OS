@@ -307,7 +307,7 @@ namespace PrismGL2D
 		/// <param name="X3">X position 3.</param>
 		/// <param name="Y3">Y position 3.</param>
 		/// <param name="Color">Color to draw with.</param>
-		public void DrawFilledTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
+		public void DrawFilledTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, bool UseAntiAliasing = false)
 		{
 			// 28.4 fixed-point coordinates
 			Y1 = (int)Math.Round(16.0f * Y1);
@@ -377,6 +377,11 @@ namespace PrismGL2D
 				CY1 += FDX12;
 				CY2 += FDX23;
 				CY3 += FDX31;
+			}
+
+			if (UseAntiAliasing)
+			{
+				DrawTriangle(X1, Y1, X2, Y2, X3, Y3, Color, true);
 			}
 		}
 		

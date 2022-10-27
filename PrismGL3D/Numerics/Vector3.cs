@@ -16,9 +16,6 @@
             this.X = X;
             this.Y = Y;
             this.Z = Z;
-            U = 0;
-            V = 0;
-            W = 0;
         }
         public Vector3() { }
 
