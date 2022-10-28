@@ -21,6 +21,53 @@ namespace PrismGL3D.Types
 
 		#region Methods
 
+		// https://docs.fileformat.com/3d/obj/
+		public static Mesh FromObject(byte[] Object, double Scale = 1.0)
+		{
+			StreamReader Stream = new(new MemoryStream(Object));
+
+			// Local cache of verts
+			List<Vector3> Vertexes = new();
+			Mesh Mesh = new();
+
+			while (!Stream.EndOfStream)
+			{
+				string? S = Stream.ReadLine();
+				if (S == null)
+				{
+					return Mesh;
+				}
+				string[] Line = S.Split(' ');
+
+				switch (Line[0])
+				{
+					case "v":
+						Vector3 VResult = new();
+
+						VResult.X = double.Parse(Line[1]) * Scale;
+						VResult.Y = double.Parse(Line[2]) * Scale;
+						VResult.Z = double.Parse(Line[3]) * Scale;
+
+						Vertexes.Add(VResult);
+						break;
+					case "f":
+						Triangle TResult = new();
+
+						TResult.P1 = Vertexes[(int)(int.Parse(Line[1]) * Scale) - 1];
+						TResult.P2 = Vertexes[(int)(int.Parse(Line[2]) * Scale) - 1];
+						TResult.P3 = Vertexes[(int)(int.Parse(Line[3]) * Scale) - 1];
+
+						Mesh.Triangles.Add(TResult);
+						break;
+				}
+			}
+
+			return Mesh;
+		}
+		public static Mesh FromObject(string PathTo, double Scale = 1.0)
+		{
+			return FromObject(File.ReadAllBytes(PathTo), Scale);
+		}
 		public static Mesh GetPlane(double Width, double Length)
 		{
 			return GetCube(Width, 1, Length);
@@ -59,6 +106,7 @@ namespace PrismGL3D.Types
 				},
 			};
 		}
+
 		public void TestLogic(double ElapsedTime)
 		{
 			//Rotation.Y += (DateTime.Now - LTime).TotalSeconds;

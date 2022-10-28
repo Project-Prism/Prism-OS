@@ -19,16 +19,7 @@ namespace PrismGL3D
             Gravity = 1.0;
         }
 
-        #region Fields
-
-        public List<Mesh> Objects;
-        public double Gravity;
-        public Color SkyColor;
-        public Camera Camera;
-        public double Zoom;
-        public double FOV;
-
-        #endregion
+        #region Methods
 
         public void Render()
         {
@@ -56,7 +47,7 @@ namespace PrismGL3D
                     DrawTriangles[T] = DrawTriangles[T].Translate(Objects[O].Position + Camera.Position);
                     DrawTriangles[T] = DrawTriangles[T].ApplyPerspective(Z0);
                     DrawTriangles[T] = DrawTriangles[T].Center(Width, Height);
-                    
+
                     if (DrawTriangles[T].GetNormal() < 0)
                     {
                         DrawFilledTriangle(
@@ -68,5 +59,18 @@ namespace PrismGL3D
                 }
             }
         }
+
+        #endregion
+
+        #region Fields
+
+        public List<Mesh> Objects;
+        public double Gravity;
+        public Color SkyColor;
+        public Camera Camera;
+        public double Zoom;
+        public double FOV;
+
+        #endregion
     }
 }
