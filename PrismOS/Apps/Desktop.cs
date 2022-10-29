@@ -51,6 +51,7 @@ namespace PrismOS.Apps
 			Install("EX", () => _ = new Explorer());
 			Install("3D", () => _ = new Test3D());
 			Install("OX", () => _ = new TTT());
+			Install("BS", () => _ = new BallSimulator());
 			Debugger.Log("Initialized launcher", Debugger.Severity.Ok);
 
 			#endregion
@@ -60,10 +61,9 @@ namespace PrismOS.Apps
 
 		public void Install(string Label, Action A)
 		{
-			Launcher.Controls.Add(new Button(Control.Config.Scale, Control.Config.Scale)
+			Launcher.Controls.Add(new Button(Label)
 			{
-				Text = Label,
-				X = (int)(Control.Config.Scale * Launcher.Controls.Count),
+				X = (int)(Launcher.Controls.Count > 1 ? Launcher.Controls[^1].X + Launcher.Controls[^1].Width : 00),
 				OnClickEvent = (int X, int Y, MouseState State) => { A(); },
 			});
 		}

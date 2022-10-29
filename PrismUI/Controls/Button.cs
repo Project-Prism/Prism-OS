@@ -5,6 +5,12 @@ namespace PrismUI.Controls
 	public class Button : Control
     {
         public Button(uint Width, uint Height) : base(Width, Height) { }
+        public Button(string Text) : base(0, 0)
+		{
+            Width = Font.Fallback.MeasureString(Text) + Config.Scale;
+            Height = Config.Scale;
+            this.Text = Text;
+		}
 
         internal override void OnDraw(Graphics G)
         {

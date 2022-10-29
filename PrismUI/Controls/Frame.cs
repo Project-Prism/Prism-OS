@@ -109,6 +109,9 @@ namespace PrismUI.Controls
 				}
 			}
 		}
+
+		#region Methods
+
 		internal void DrawTitle()
 		{
 			if (HasBorder)
@@ -117,9 +120,6 @@ namespace PrismUI.Controls
 				DrawString((int)(Width / 2), (int)(Config.Scale / 2), Text, Config.Font, Config.ForeColor, true);
 			}
 		}
-
-		#region Methods
-
 		/// <summary>
 		/// Generate generic properties.
 		/// </summary>
@@ -141,7 +141,7 @@ namespace PrismUI.Controls
 		/// Draw the frame onto a buffer.
 		/// </summary>
 		/// <param name="G">Buffer to draw to.</param>
-		public void Update(Graphics G)
+		public virtual void Update(Graphics G)
 		{
 			if (Frames[^1] == this && CanType && Keyboard.TryReadKey(out ConsoleKeyInfo Key))
 			{
