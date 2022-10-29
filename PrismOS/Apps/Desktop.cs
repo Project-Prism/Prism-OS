@@ -47,11 +47,11 @@ namespace PrismOS.Apps
 				CanDrag = false,
 			};
 			Launcher.Controls.RemoveAt(0); // Remove close button
-			Install("SD", () => Power.Shutdown());
-			Install("EX", () => _ = new Explorer());
+			Install("Shutdown", () => Power.Shutdown());
+			Install("Explorer", () => _ = new Explorer());
 			Install("3D", () => _ = new Test3D());
-			Install("OX", () => _ = new TTT());
-			Install("BS", () => _ = new BallSimulator());
+			Install("TTT", () => _ = new TTT());
+			Install("Balls", () => _ = new BallSimulator());
 			Debugger.Log("Initialized launcher", Debugger.Severity.Ok);
 
 			#endregion
@@ -63,7 +63,7 @@ namespace PrismOS.Apps
 		{
 			Launcher.Controls.Add(new Button(Label)
 			{
-				X = (int)(Launcher.Controls.Count > 1 ? Launcher.Controls[^1].X + Launcher.Controls[^1].Width : 00),
+				X = (int)(Launcher.Controls.Count == 0 ? 0 : Launcher.Controls[^1].X + Launcher.Controls[^1].Width),
 				OnClickEvent = (int X, int Y, MouseState State) => { A(); },
 			});
 		}
@@ -94,6 +94,7 @@ namespace PrismOS.Apps
 		public VBECanvas Canvas;
 		public Overlay Overlay;
 		public Frame Launcher;
+		public Frame Menu;
 
 		#endregion
 	}

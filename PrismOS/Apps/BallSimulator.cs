@@ -13,10 +13,12 @@ namespace PrismOS.Apps
 
 			Random R = new();
 
-			for (int I = 0; I < R.Next(10, 20); I++)
+			for (int I = 0; I < R.Next(5, 10); I++)
 			{
 				AddBall(R.Next(0, 100), R.Next(0, 100), R.Next(0, 100));
 			}
+
+			OnDrawEvent = (Graphics G) => Next(G);
 		}
 
 		#region Structure
@@ -63,18 +65,16 @@ namespace PrismOS.Apps
 				((C1.X - C2.X) * (C1.X - C2.X)) +
 				((C1.Y - C2.Y) * (C1.Y - C2.Y)));
 		}
-		public override void Update(Graphics G)
+		public void Next(Graphics G)
 		{
-			base.Update(G);
-
 			if (MouseManager.MouseState == MouseState.Left && SelectedIndex == -1)
 			{
 				for (int I = 0; I < Circles.Count; I++)
 				{
-					if (MouseManager.X > (Circles[I].X - Circles[I].Radius) &&
-						MouseManager.X < (Circles[I].X + Circles[I].Radius) &&
-						MouseManager.Y > (Circles[I].Y - Circles[I].Radius) &&
-						MouseManager.Y < (Circles[I].Y + Circles[I].Radius))
+					if (MouseManager.X - X > (Circles[I].X - Circles[I].Radius) &&
+						MouseManager.X - X < (Circles[I].X + Circles[I].Radius) &&
+						MouseManager.Y - Y > (Circles[I].Y - Circles[I].Radius) &&
+						MouseManager.Y - Y < (Circles[I].Y + Circles[I].Radius))
 					{
 						SelectedIndex = I;
 						break;
@@ -87,8 +87,8 @@ namespace PrismOS.Apps
 			}
 			else
 			{
-				Circles[SelectedIndex].X = MouseManager.X;
-				Circles[SelectedIndex].Y = MouseManager.Y;
+				Circles[SelectedIndex].X = X + MouseManager.X;
+				Circles[SelectedIndex].Y = Y + MouseManager.Y;
 			}
 
 			for (int I1 = 0; I1 < Circles.Count; I1++)
@@ -114,7 +114,7 @@ namespace PrismOS.Apps
 					}
 				}
 
-				DrawCircle(
+				G.DrawCircle(
 					X: (int)Circles[I1].X,
 					Y: (int)Circles[I1].Y,
 					Radius: (uint)Circles[I1].Radius,
