@@ -112,14 +112,6 @@ namespace PrismUI.Controls
 
 		#region Methods
 
-		internal void DrawTitle()
-		{
-			if (HasBorder)
-			{
-				DrawFilledRectangle(0, 0, Width, Config.Scale, Config.Radius, Config.AccentColor);
-				DrawString((int)(Width / 2), (int)(Config.Scale / 2), Text, Config.Font, Config.ForeColor, true);
-			}
-		}
 		/// <summary>
 		/// Generate generic properties.
 		/// </summary>
@@ -132,10 +124,17 @@ namespace PrismUI.Controls
 				Text = "X",
 				OnClickEvent = (int X, int Y, MouseState State) => { Close(); },
 			});
-			OnDrawEvent = (Graphics G) => DrawTitle();
 			NeedsFront = true;
 			CanDrag = true;
 			Frames.Add(this);
+			OnDrawEvent = (Graphics G) =>
+			{
+				if (CanDrag)
+				{
+					DrawFilledRectangle(0, 0, Width, Config.Scale, Config.Radius, Config.AccentColor);
+					DrawString((int)(Width / 2), (int)(Config.Scale / 2), Text, Config.Font, Config.ForeColor, true);
+				}
+			};
 		}
 		/// <summary>
 		/// Draw the frame onto a buffer.

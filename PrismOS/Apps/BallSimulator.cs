@@ -87,8 +87,8 @@ namespace PrismOS.Apps
 			}
 			else
 			{
-				Circles[SelectedIndex].X = X + MouseManager.X;
-				Circles[SelectedIndex].Y = Y + MouseManager.Y;
+				Circles[SelectedIndex].X = MouseManager.X - X;
+				Circles[SelectedIndex].Y = MouseManager.Y - Y;
 			}
 
 			for (int I1 = 0; I1 < Circles.Count; I1++)

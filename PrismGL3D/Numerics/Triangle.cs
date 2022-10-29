@@ -34,6 +34,7 @@ namespace PrismGL3D.Numerics
 		}
 		public Triangle()
 		{
+			Color = Color.White;
 			P1 = new();
 			P2 = new();
 			P3 = new();

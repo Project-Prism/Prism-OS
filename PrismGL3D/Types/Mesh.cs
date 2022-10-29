@@ -13,7 +13,6 @@ namespace PrismGL3D.Types
 
 			Velocity = new(0, 0, 0, 0, 0, 0);
 			Force = new(0, 0, 0, 0, 0, 0);
-			LTime = DateTime.Now;
 			HasCollision = true;
 			HasPhysics = false;
 			Mass = 1.0;
@@ -56,11 +55,14 @@ namespace PrismGL3D.Types
 						TResult.P1 = Vertexes[(int)(int.Parse(Line[1]) * Scale) - 1];
 						TResult.P2 = Vertexes[(int)(int.Parse(Line[2]) * Scale) - 1];
 						TResult.P3 = Vertexes[(int)(int.Parse(Line[3]) * Scale) - 1];
+						TResult.Color = Color.White;
 
 						Mesh.Triangles.Add(TResult);
 						break;
 				}
 			}
+
+			Mesh.Position.Z = 400;
 
 			return Mesh;
 		}
@@ -131,7 +133,6 @@ namespace PrismGL3D.Types
 		public Vector3 Velocity { get; set; }
 		public bool HasCollision { get; set; }
 		public bool HasPhysics { get; set; }
-		private DateTime LTime { get; set; }
 		public Vector3 Force { get; set; }
 		public double Mass { get; set; }
 
