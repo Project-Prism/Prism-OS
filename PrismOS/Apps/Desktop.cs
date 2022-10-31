@@ -45,13 +45,14 @@ namespace PrismOS.Apps
 				NeedsFront = false,
 				HasBorder = false,
 				CanDrag = false,
+				CanType = false,
 			};
 			Launcher.Controls.RemoveAt(0); // Remove close button
 			Install("Shutdown", () => Power.Shutdown());
 			Install("Explorer", () => _ = new Explorer());
-			Install("3D", () => _ = new Test3D());
-			Install("TTT", () => _ = new TTT());
-			Install("Balls", () => _ = new BallSimulator());
+			Install("GFXTest", () => _ = new GFXTest());
+			Install("TickTackToe", () => _ = new TickTackToe());
+			Install("Physics", () => _ = new Physics());
 			Debugger.Log("Initialized launcher", Debugger.Severity.Ok);
 
 			#endregion

@@ -3,9 +3,9 @@ using Cosmos.System;
 
 namespace PrismOS.Apps
 {
-	public class TTT : Frame
+	public class TickTackToe : Frame
 	{
-		public TTT() : base("TickTackToe")
+		public TickTackToe() : base("TickTackToe")
 		{
 			Random = new();
 			Score = 0;

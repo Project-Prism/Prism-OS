@@ -4,9 +4,9 @@ using PrismGL2D;
 
 namespace PrismOS.Apps
 {
-	public class BallSimulator : Frame
+	public class Physics : Frame
 	{
-		public BallSimulator() : base(nameof(BallSimulator))
+		public Physics() : base(nameof(Physics))
 		{
 			Circles = new();
 			SelectedIndex = -1;
