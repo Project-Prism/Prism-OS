@@ -12,9 +12,11 @@ namespace PrismUI
 				Y = (int)Control.Config.Scale,
 			};
 			Frame F = new(L.Width + Control.Config.Scale * 2, L.Height + (uint)(Control.Config.Scale * 3.5), Title);
+			
 			L.Y = (int)((F.Height / 2) - (L.Height / 2));
 			L.X = (int)((F.Width / 2) - (L.Width / 2));
-			F.Controls.Add(new Button(128, 32)
+			
+			F.Controls.Add(F.AcceptButton = new Button(128, 32)
 			{
 				X = (int)(F.Width - 128 - (Control.Config.Scale / 2)),
 				Y = (int)(F.Height - 32 - (Control.Config.Scale / 2)),
@@ -22,6 +24,7 @@ namespace PrismUI
 				OnClickEvent = (int X, int Y, MouseState State) => { F.Close(); },
 			});
 			F.Controls.Add(L);
+
 			return F;
 		}
 	}
