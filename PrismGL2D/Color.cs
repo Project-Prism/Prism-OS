@@ -307,6 +307,32 @@
             return FromARGB(ARGB);
         }
 
+        public static Color operator +(Color Original, Color ToAdd)
+		{
+            Original.R += ToAdd.R;
+            Original.G += ToAdd.G;
+            Original.B += ToAdd.B;
+
+            return Original;
+		}
+        public static Color operator -(Color Original, Color ToAdd)
+        {
+            Original.R -= ToAdd.R;
+            Original.G -= ToAdd.G;
+            Original.B -= ToAdd.B;
+
+            return Original;
+        }
+
+        public static Color operator *(Color Original, double Value)
+        {
+            Original.R = (byte)(Original.R * Value);
+            Original.G = (byte)(Original.G * Value);
+            Original.B = (byte)(Original.B * Value);
+
+            return Original;
+        }
+
         #endregion
 
         #region Equality

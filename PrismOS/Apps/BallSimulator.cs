@@ -104,13 +104,14 @@ namespace PrismOS.Apps
 					{
 						double Distance = GetDistance(Circles[I1], Circles[I2]);
 						double Overlap = 0.5 * (Distance - Circles[I1].Radius - Circles[I2].Radius);
-						double Cache = Overlap * (Circles[I1].X - Circles[I2].X) / Distance;
+						double CacheX = Overlap * (Circles[I1].X - Circles[I2].X) / Distance;
+						double CacheY = Overlap * (Circles[I1].Y - Circles[I2].Y) / Distance;
 
-						Circles[I1].X -= Cache;
-						Circles[I1].Y -= Cache;
+						Circles[I1].X -= CacheX;
+						Circles[I1].Y -= CacheY;
 
-						Circles[I2].X += Cache;
-						Circles[I2].Y += Cache;
+						Circles[I2].X += CacheX;
+						Circles[I2].Y += CacheY;
 					}
 				}
 

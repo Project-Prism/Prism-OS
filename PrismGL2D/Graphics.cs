@@ -860,6 +860,29 @@ namespace PrismGL2D
 		#region Misc
 
 		/// <summary>
+		/// Rotates the image to the desired angle.
+		/// </summary>
+		/// <param name="Angle">Angle to rotate in.</param>
+		/// <returns>Rotated image.</returns>
+		public Graphics Rotate(double Angle)
+		{
+			Graphics Result = new(Width, Height);
+
+			for (int X = 0; X < Width; X++)
+			{
+				for (int Y = 0; Y < Height; Y++)
+				{
+					int X2 = (int)(Math.Cos(Angle) * X - Math.Sin(Angle) * Y);
+					int Y2 = (int)(Math.Sin(Angle) * X + Math.Cos(Angle) * Y);
+
+					Result[X2, Y2] = this[X, Y];
+				}
+			}
+
+			return Result;
+		}
+
+		/// <summary>
 		/// Re-scales the image to the desired size.
 		/// </summary>
 		/// <param name="Width">New width to scale to.</param>

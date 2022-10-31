@@ -88,7 +88,7 @@ namespace PrismUI.Controls
 			{
 				if (MouseManager.MouseState == MouseState.Left)
 				{
-					if (MouseManager.X >= X && MouseManager.X <= X + Width && MouseManager.Y >= Y && MouseManager.Y <= Y + Config.Scale && !IsMoving && !Dragging)
+					if (MouseManager.LastMouseState != MouseState.Left && MouseManager.X >= X && MouseManager.X <= X + Width && MouseManager.Y >= Y && MouseManager.Y <= Y + Config.Scale && !IsMoving && !Dragging)
 					{
 						Dragging = true;
 						Select();
