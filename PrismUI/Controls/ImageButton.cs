@@ -4,7 +4,7 @@ namespace PrismUI.Controls
 {
 	public class ImageButton : Button
 	{
-		public ImageButton(Graphics Source, string Text) : base(Source.Width + Config.Scale + Font.Fallback.MeasureString(Text), Source.Height)
+		public ImageButton(Image Source, string Text) : base(Source.Width + Config.Scale + Font.Fallback.MeasureString(Text), Source.Height)
 		{
 			this.Source = Source;
 		}
@@ -13,7 +13,7 @@ namespace PrismUI.Controls
 			Source = new(Height, Width);
 		}
 
-		public Graphics Source { get; set; }
+		public Image Source { get; set; }
 
 		internal override void OnDraw(Graphics G)
 		{
@@ -21,7 +21,7 @@ namespace PrismUI.Controls
 
 			if (Source.Width != Width || Source.Height != Height)
 			{
-				Source = Source.Scale(Width, Height);
+				Source = (Image)Source.Scale(Width, Height);
 			}
 
 			DrawImage(0, 0, Source, true);

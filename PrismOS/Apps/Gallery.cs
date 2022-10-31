@@ -1,4 +1,4 @@
-﻿using PrismGL2D.Formats;
+﻿using PrismGL2D;
 using PrismUI.Controls;
 using PrismUI;
 
@@ -10,7 +10,7 @@ namespace PrismOS.Apps
 		{
 			try
 			{
-				Image I = new(new Bitmap(File.ReadAllBytes(PathTo)));
+				ImageBox I = new(Image.FromBitmap(File.ReadAllBytes(PathTo)));
 				I.Height = Height - Config.Scale;
 				I.Width = Width;
 				I.Y = (int)Config.Scale;

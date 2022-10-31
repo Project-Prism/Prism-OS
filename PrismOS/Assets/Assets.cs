@@ -1,6 +1,6 @@
 ﻿using Cosmos.System.Audio.IO;
 using IL2CPU.API.Attribs;
-using PrismGL2D.Formats;
+using PrismGL2D;
 
 namespace PrismOS
 {
@@ -15,13 +15,13 @@ namespace PrismOS
         [ManifestResourceStream(ResourceName = Base + "Test.elf")] public readonly static byte[] ELF;
         
         // Misc
-        public static Bitmap Wallpaper = new(WallpaperB);
-        public static Bitmap Cursor = new(CursorB);
+        public static Image Wallpaper = Image.FromBitmap(WallpaperB);
+        public static Image Cursor = Image.FromBitmap(CursorB);
 
         // System Sounds
         public static MemoryAudioStream Vista = MemoryAudioStream.FromWave(VistaB);
 
         // Pre-Sized Logo
-        public static Bitmap Splash = new(LogoB);
+        public static Image Splash = Image.FromBitmap(LogoB);
     }
 }

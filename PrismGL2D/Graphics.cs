@@ -1,5 +1,4 @@
-﻿using PrismGL2D.Structure;
-using Cosmos.Core.Memory;
+﻿using Cosmos.Core.Memory;
 using Cosmos.Core;
 
 namespace PrismGL2D
@@ -16,8 +15,8 @@ namespace PrismGL2D
 		/// <param name="Height">Height of the canvas.</param>
 		public Graphics(uint Width, uint Height)
 		{
-			this.Width = Width;
-			this.Height = Height;
+			_Width = Width;
+			_Height = Height;
 			
 			if (Width != 0 && Height != 0)
 			{
@@ -40,12 +39,20 @@ namespace PrismGL2D
 				{
 					return;
 				}
-				if (_Width != 0)
-				{
-					Internal = Scale(Width, value).Internal;
-				}
 
 				_Height = value;
+
+				if (_Width != 0)
+				{
+					if (Internal == (uint*)0)
+					{
+						Internal = (uint*)Heap.Alloc(Size * 4);
+					}
+					else
+					{
+						Internal = (uint*)Heap.Realloc((byte*)Internal, Size * 4);
+					}
+				}
 			}
 		}
 		public uint Width
@@ -60,12 +67,20 @@ namespace PrismGL2D
 				{
 					return;
 				}
-				if (_Height != 0)
-				{
-					Internal = Scale(value, Height).Internal;
-				}
 
 				_Width = value;
+
+				if (_Height != 0)
+				{
+					if (Internal == (uint*)0)
+					{
+						Internal = (uint*)Heap.Alloc(Size * 4);
+					}
+					else
+					{
+						Internal = (uint*)Heap.Realloc((byte*)Internal, Size * 4);
+					}
+				}
 			}
 		}
 		public uint Size
@@ -852,40 +867,26 @@ namespace PrismGL2D
 		/// <param name="Mode"></param>
 		/// <returns>Scaled image.</returns>
 		/// <exception cref="NotImplementedException">Thrown if scale method does not exist.</exception>
-		public Graphics Scale(uint Width, uint Height, ScaleMode Mode = ScaleMode.Normal)
+		public Graphics Scale(uint Width, uint Height)
 		{
-			switch (Mode)
+			if (Width <= 0 || Height <= 0 || Width == this.Width || Height == this.Height)
 			{
-				#region DontKeep
-				case ScaleMode.DontKeep:
-					Internal = (uint*)Heap.Realloc((byte*)Internal, Size * 4);
-					this.Width = Width;
-					this.Height = Height;
-					return this;
-				#endregion
-				#region Normal
-				case ScaleMode.Normal:
-					if (Width <= 0 || Height <= 0 || Width == this.Width || Height == this.Height)
-					{
-						return this;
-					}
-
-					Graphics FB = new(Width, Height);
-					double XRatio = (double)this.Width / Width;
-					double YRatio = (double)this.Height / Height;
-					for (uint Y = 0; Y < Height; Y++)
-					{
-						double PY = Math.Floor(Y * YRatio);
-						for (uint X = 0; X < Width; X++)
-						{
-							double PX = Math.Floor(X * XRatio);
-							FB[Y * Width + X] = Internal[(int)((PY * this.Width) + PX)];
-						}
-					}
-					return FB;
-					#endregion
+				return this;
 			}
-			throw new NotImplementedException($"Mode '{(byte)Mode}' is not implemented.");
+
+			Graphics FB = new(Width, Height);
+			double XRatio = (double)this.Width / Width;
+			double YRatio = (double)this.Height / Height;
+			for (uint Y = 0; Y < Height; Y++)
+			{
+				double PY = Math.Floor(Y * YRatio);
+				for (uint X = 0; X < Width; X++)
+				{
+					double PX = Math.Floor(X * XRatio);
+					FB[Y * Width + X] = Internal[(int)((PY * this.Width) + PX)];
+				}
+			}
+			return FB;
 		}
 
 		/// <summary>
@@ -923,7 +924,6 @@ namespace PrismGL2D
 			{
 				Heap.Free(Internal);
 			}
-			GCImplementation.Free(this);
 			GC.SuppressFinalize(this);
 		}
 

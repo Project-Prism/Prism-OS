@@ -2,22 +2,22 @@
 
 namespace PrismUI.Controls
 {
-    public class Image : Control
+    public class ImageBox : Control
     {
-        public Image(uint Width, uint Height) : base(Width, Height)
+        public ImageBox(uint Width, uint Height) : base(Width, Height)
 		{
             Source = new(Width, Height);
             HasBackground = false;
             HasBorder = false;
         }
-        public Image(Graphics Source) : base(Source.Width, Source.Height)
+        public ImageBox(Image Source) : base(Source.Width, Source.Height)
 		{
             this.Source = Source;
             HasBackground = false;
             HasBorder = false;
 		}
 
-        public Graphics Source { get; set; }
+        public Image Source { get; set; }
 
         internal unsafe override void OnDraw(Graphics G)
         {
@@ -28,7 +28,7 @@ namespace PrismUI.Controls
             {
                 if (Source.Width != Width || Source.Height != Height)
 				{
-                    Source = Source.Scale(Width, Height);
+                    Source = (Image)Source.Scale(Width, Height);
 				}
 
                 G.DrawImage(X, Y, Source, false);

@@ -182,8 +182,8 @@ namespace PrismOS.Apps
 		public DateTime LastUpdate;
 		public bool IsRunning;
 		public byte Direction;
+		public ImageBox Image;
 		public Random Random;
-		public Image Image;
 		public uint Score;
 
 		#endregion

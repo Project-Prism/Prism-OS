@@ -1,10 +1,9 @@
-﻿using Cosmos.System;
-using PrismAudio;
-using PrismGL2D;
-using PrismGL2D.Extentions;
-using PrismGL2D.Formats;
-using PrismTools;
+﻿using PrismGL2D.Extentions;
 using PrismUI.Controls;
+using Cosmos.System;
+using PrismAudio;
+using PrismTools;
+using PrismGL2D;
 
 namespace PrismOS.Apps
 {
@@ -22,7 +21,7 @@ namespace PrismOS.Apps
 
 			Canvas = new();
 			Overlay = new();
-			Wallpaper = (Bitmap)Assets.Wallpaper.Scale(Canvas.Width, Canvas.Height);
+			Wallpaper = Assets.Wallpaper.Scale(Canvas.Width, Canvas.Height);
 			MouseManager.ScreenWidth = Canvas.Width;
 			MouseManager.ScreenHeight = Canvas.Height;
 			Debugger.Log("Initialized desktop drawing", Debugger.Severity.Ok);
@@ -31,7 +30,8 @@ namespace PrismOS.Apps
 
 			#region Splash Screen
 
-			Canvas.DrawImage((int)((Canvas.Width / 2) - 128), (int)((Canvas.Height / 2) - 128), Assets.Splash.Scale(Canvas.Height / 3, Canvas.Height / 3));
+			Splash = (Image)Assets.Splash.Scale(Canvas.Height / 3, Canvas.Height / 3);
+			Canvas.DrawImage((int)((Canvas.Width / 2) - (Splash.Height / 2)), (int)((Canvas.Height / 2) - Splash.Height / 2), Splash);
 			Canvas.Update();
 			AudioPlayer.Play(Assets.Vista);
 
@@ -94,6 +94,7 @@ namespace PrismOS.Apps
 		public VBECanvas Canvas;
 		public Overlay Overlay;
 		public Frame Launcher;
+		public Image Splash;
 		public Frame Menu;
 
 		#endregion
