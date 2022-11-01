@@ -53,31 +53,34 @@ namespace PrismUI.Controls
 
 			for (int I = 0; I < Controls.Count; I++)
 			{
-				if (Controls[I].IsEnabled)
+				if (!Controls[I].CanInteract || !CanInteract)
 				{
-					if (Controls[I].CanInteract && CanInteract)
+					continue;
+				}
+				if (!Controls[I].IsEnabled)
+				{
+					continue;
+				}
+
+				if (MouseManager.X >= X + Controls[I].X && MouseManager.X <= X + Controls[I].X + Controls[I].Width && MouseManager.Y >= Y + Controls[I].Y && MouseManager.Y <= Y + Controls[I].Y + Controls[I].Height && (this == Frames[^1] || !NeedsFront || !CanInteract))
+				{
+					if (MouseManager.MouseState != MouseState.None)
 					{
-						if (MouseManager.X >= X + Controls[I].X && MouseManager.X <= X + Controls[I].X + Controls[I].Width && MouseManager.Y >= Y + Controls[I].Y && MouseManager.Y <= Y + Controls[I].Y + Controls[I].Height && (this == Frames[^1] || !NeedsFront || !CanInteract))
-						{
-							if (MouseManager.MouseState != MouseState.None)
-							{
-								Controls[I].ClickState = ClickState.Clicked;
-							}
-							else if (Controls[I].ClickState == ClickState.Clicked)
-							{
-								Controls[I].ClickState = ClickState.Neutral;
-								Controls[I].OnClickEvent(X - (int)MouseManager.X, Y - (int)MouseManager.Y, MouseManager.LastMouseState);
-							}
-							else
-							{
-								Controls[I].ClickState = ClickState.Hovering;
-							}
-						}
-						else
-						{
-							Controls[I].ClickState = ClickState.Neutral;
-						}
+						Controls[I].ClickState = ClickState.Clicked;
 					}
+					else if (Controls[I].ClickState == ClickState.Clicked)
+					{
+						Controls[I].ClickState = ClickState.Neutral;
+						Controls[I].OnClickEvent((int)MouseManager.X - X, (int)MouseManager.Y - Y, MouseManager.LastMouseState);
+					}
+					else
+					{
+						Controls[I].ClickState = ClickState.Hovering;
+					}
+				}
+				else
+				{
+					Controls[I].ClickState = ClickState.Neutral;
 				}
 			}
 

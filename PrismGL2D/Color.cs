@@ -149,6 +149,7 @@
                 (byte)((Source.G * (255 - NewColor.A) / 255) + NewColor.G),
                 (byte)((Source.B * (255 - NewColor.A) / 255) + NewColor.B));
         }
+
         /// <summary>
         /// Loads color from printer CYMK colorspace.
         /// </summary>
@@ -177,6 +178,7 @@
             }
             return T;
         }
+
         /// <summary>
         /// Loads color from ARGB colorspace.
         /// </summary>
@@ -189,6 +191,7 @@
         {
             return new() { A = A, R = R, G = G, B = B };
         }
+
         /// <summary>
         /// Mixes colors together based on their weights in the Values array.
         /// </summary>
@@ -213,6 +216,7 @@
             }
             return T;
         }
+
         /// <summary>
         /// Gets ARGB color from packed value.
         /// </summary>
@@ -222,6 +226,7 @@
         {
             return new() { ARGB = ARGB };
         }
+
         /// <summary>
         /// Gets ARGB color from string hex value.
         /// </summary>
@@ -236,6 +241,7 @@
 
             return new() { ARGB = uint.Parse(Hex, System.Globalization.NumberStyles.HexNumber) };
         }
+
         /// <summary>
         /// Converts the color to be only in grayscale.
         /// </summary>
@@ -246,6 +252,19 @@
             byte Average = (byte)((R / 3) + (G / 3) + (B / 3));
             return FromARGB(UseAlpha ? A : (byte)255, Average, Average, Average);
 		}
+
+        /// <summary>
+        /// Converts an ARGB color to it's packed ARGB format.
+        /// </summary>
+        /// <param name="A">Alpha channel.</param>
+        /// <param name="R">Red channel.</param>
+        /// <param name="G">Green channel.</param>
+        /// <param name="B">Blue channel.</param>
+        /// <returns>Packed value.</returns>
+        public static uint GetPacked(byte A, byte R, byte G, byte B)
+        {
+            return (uint)(A << 24 | R << 16 | G << 8 | B);
+        }
 
         #endregion
 
@@ -324,7 +343,15 @@
             return Original;
         }
 
-        public static Color operator *(Color Original, double Value)
+        public static Color operator /(Color Original, uint Value)
+        {
+            Original.R = (byte)(Original.R / Value);
+            Original.G = (byte)(Original.G / Value);
+            Original.B = (byte)(Original.B / Value);
+
+            return Original;
+        }
+        public static Color operator *(Color Original, int Value)
         {
             Original.R = (byte)(Original.R * Value);
             Original.G = (byte)(Original.G * Value);
