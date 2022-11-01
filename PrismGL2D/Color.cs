@@ -343,7 +343,7 @@
             return Original;
         }
 
-        public static Color operator /(Color Original, uint Value)
+        public static Color operator /(Color Original, double Value)
         {
             Original.R = (byte)(Original.R / Value);
             Original.G = (byte)(Original.G / Value);
@@ -351,7 +351,24 @@
 
             return Original;
         }
-        public static Color operator *(Color Original, int Value)
+        public static Color operator *(Color Original, double Value)
+        {
+            Original.R = (byte)(Original.R * Value);
+            Original.G = (byte)(Original.G * Value);
+            Original.B = (byte)(Original.B * Value);
+
+            return Original;
+        }
+
+        public static Color operator /(Color Original, long Value)
+        {
+            Original.R = (byte)(Original.R / Value);
+            Original.G = (byte)(Original.G / Value);
+            Original.B = (byte)(Original.B / Value);
+
+            return Original;
+        }
+        public static Color operator *(Color Original, long Value)
         {
             Original.R = (byte)(Original.R * Value);
             Original.G = (byte)(Original.G * Value);
