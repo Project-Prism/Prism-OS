@@ -5,13 +5,13 @@ namespace PrismUI
 {
 	public static class DialogBox
 	{
-		public static Frame ShowMessageDialog(string Title, string Message)
+		public static Window ShowMessageDialog(string Title, string Message)
 		{
 			Label L = new(Message)
 			{
 				Y = (int)Control.Config.Scale,
 			};
-			Frame F = new(L.Width + Control.Config.Scale * 2, L.Height + (uint)(Control.Config.Scale * 3.5), Title);
+			Window F = new(L.Width + Control.Config.Scale * 2, L.Height + (uint)(Control.Config.Scale * 3.5), Title);
 			
 			L.Y = (int)((F.Height / 2) - (L.Height / 2));
 			L.X = (int)((F.Width / 2) - (L.Width / 2));

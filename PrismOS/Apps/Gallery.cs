@@ -4,7 +4,7 @@ using PrismUI;
 
 namespace PrismOS.Apps
 {
-	public class Gallery : Frame
+	public class Gallery : Window
 	{
 		public Gallery(string PathTo) : base(nameof(Gallery) + Path.GetFileName(PathTo))
 		{

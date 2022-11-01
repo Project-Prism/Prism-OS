@@ -3,7 +3,7 @@ using PrismUI;
 
 namespace PrismOS.Apps
 {
-	public class Notepad : Frame
+	public class Notepad : Window
 	{
 		public Notepad(string PathTo) : base($"{nameof(Notepad)} - { Path.GetFileName(PathTo)} (read-only)")
 		{

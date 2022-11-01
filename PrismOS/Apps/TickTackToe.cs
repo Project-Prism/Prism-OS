@@ -1,9 +1,10 @@
 ﻿using PrismUI.Controls;
 using Cosmos.System;
+using PrismUI;
 
 namespace PrismOS.Apps
 {
-	public class TickTackToe : Frame
+	public class TickTackToe : Window
 	{
 		public TickTackToe() : base("TickTackToe")
 		{

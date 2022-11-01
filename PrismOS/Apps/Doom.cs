@@ -1,10 +1,10 @@
 ﻿using PrismGL3D.Raycaster;
-using PrismUI.Controls;
 using PrismGL2D;
+using PrismUI;
 
 namespace PrismOS.Apps
 {
-	public class Doom : Frame
+	public class Doom : Window
 	{
 		public Doom() : base("Doom")
 		{

@@ -1,11 +1,11 @@
-﻿using PrismUI.Controls;
-using PrismGL3D.Types;
+﻿using PrismGL3D.Types;
 using PrismGL3D;
 using PrismGL2D;
+using PrismUI;
 
 namespace PrismOS.Apps
 {
-	public class GFXTest : Frame
+	public class GFXTest : Window
 	{
 		public GFXTest() : base(300, 300, nameof(GFXTest))
 		{

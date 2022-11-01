@@ -1,10 +1,10 @@
-﻿using PrismUI.Controls;
-using Cosmos.System;
+﻿using Cosmos.System;
 using PrismGL2D;
+using PrismUI;
 
 namespace PrismOS.Apps
 {
-	public class Physics : Frame
+	public class Physics : Window
 	{
 		public Physics() : base(nameof(Physics))
 		{

@@ -4,6 +4,7 @@ using Cosmos.System;
 using PrismAudio;
 using PrismTools;
 using PrismGL2D;
+using PrismUI;
 
 namespace PrismOS.Apps
 {
@@ -72,7 +73,7 @@ namespace PrismOS.Apps
 		{
 			Canvas.DrawImage(0, 0, Wallpaper, false);
 
-			foreach (Frame F in Frame.Frames)
+			foreach (Window F in Window.Frames)
 			{
 				if (F.IsEnabled)
 				{
@@ -94,9 +95,9 @@ namespace PrismOS.Apps
 		public Debugger Debugger;
 		public VBECanvas Canvas;
 		public Overlay Overlay;
-		public Frame Launcher;
+		public Window Launcher;
 		public Image Splash;
-		public Frame Menu;
+		public Window Menu;
 
 		#endregion
 	}

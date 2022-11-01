@@ -1,10 +1,11 @@
 ﻿using PrismUI.Controls;
 using Cosmos.System;
 using PrismGL2D;
+using PrismUI;
 
 namespace PrismOS.Apps
 {
-	public class Snake : Frame
+	public class Snake : Window
 	{
 		public Snake() : base(400, 400, "Snake!")
 		{

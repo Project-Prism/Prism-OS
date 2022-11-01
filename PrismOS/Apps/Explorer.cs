@@ -6,7 +6,7 @@ using PrismUI;
 
 namespace PrismOS.Apps
 {
-	public class Explorer : Frame
+	public class Explorer : Window
 	{
 		public Explorer() : base(nameof(Explorer))
 		{

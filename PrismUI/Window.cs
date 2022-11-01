@@ -1,21 +1,22 @@
 ﻿using PrismUI.Structure;
+using PrismUI.Controls;
 using Cosmos.System;
 using Cosmos.Core;
 using PrismTools;
 using PrismGL2D;
 
-namespace PrismUI.Controls
+namespace PrismUI
 {
-	public class Frame : Control
+	public class Window : Control
 	{
-		public Frame(uint Width, uint Height, string Title) : base(Width, Height)
+		public Window(uint Width, uint Height, string Title) : base(Width, Height)
 		{
 			Y = (int)((VBE.getModeInfo().height / 2) - (Height / 2) + (Frames.Count * Config.Scale));
 			X = (int)((VBE.getModeInfo().width / 2) - (Width / 2) + (Frames.Count * Config.Scale));
 			Text = Title;
 			Generate();
 		}
-		public Frame(string Title) : base((uint)(VBE.getModeInfo().width / 2), (uint)(VBE.getModeInfo().height / 2))
+		public Window(string Title) : base((uint)(VBE.getModeInfo().width / 2), (uint)(VBE.getModeInfo().height / 2))
 		{
 			Y = (int)(Height - (Height / 2) + (Frames.Count * Config.Scale));
 			X = (int)(Width - (Width / 2) + (Frames.Count * Config.Scale));
@@ -24,7 +25,7 @@ namespace PrismUI.Controls
 		}
 
 		// Window Manager Variables
-		public static List<Frame> Frames { get; set; } = new();
+		public static List<Window> Frames { get; set; } = new();
 		public static bool Dragging { get; set; } = false;
 
 		internal override void OnKey(ConsoleKeyInfo Key)
