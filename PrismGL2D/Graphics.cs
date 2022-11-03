@@ -20,7 +20,10 @@ namespace PrismGL2D
 			
 			if (Width != 0 && Height != 0)
 			{
-				Internal = (uint*)Heap.Alloc(Size * 4);
+				fixed (uint* P = new uint[Size])
+				{
+					Internal = P;
+				}
 			}
 		}
 

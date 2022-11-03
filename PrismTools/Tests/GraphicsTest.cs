@@ -12,7 +12,7 @@ namespace PrismTools.Tests
 		public static void Run(Graphics G)
 		{
 			G.Clear("#1e1e32");
-			G.DrawFilledRectangle(15, 15, 128, 32, 20, Color.LimeGreen);
+			G.DrawFilledRectangle(15, 15, 128, 32, 20, Color.FromName("Lime"));
 			G.DrawRectangle(30, 30, 50, 20, 40, Color.Black);
 			G.DrawString(15, 15, "Graphics Testing!", Font.Fallback, Color.White);
 			G.DrawArc(500, 500, 20, Color.White, 45, 270);
