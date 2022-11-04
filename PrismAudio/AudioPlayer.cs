@@ -4,10 +4,18 @@ using PrismTools;
 
 namespace PrismAudio
 {
+    	/// <summary>
+    	/// Plays audio.
+    	/// </summary>
 	public static class AudioPlayer
 	{
+		// Debugger
 		private static Debugger Debugger { get; set; } = new("Audio");
+		
+		// Audio mixer
 		public static AudioMixer Mixer { get; set; } = new();
+		
+		// Audio manager
 		private static AudioManager AM { get; set; } = new()
 		{
 			Output = AC97.Initialize(4096),
@@ -15,6 +23,9 @@ namespace PrismAudio
 			Enabled = true,
 		};
 
+    		/// <summary>
+    		/// Plays an wave file imported from ManifestResourceStream attribute.
+    		/// </summary>
 		public static void Play(AudioStream Stream)
 		{
 			try
@@ -26,6 +37,10 @@ namespace PrismAudio
 				Debugger.Log(E.Message, Debugger.Severity.Warning);
 			}
 		}
+		
+		/// <summary>
+    		/// Update the audio manager
+    		/// </summary>
 		public static void OnUpdate()
 		{
 			if (AM.Stream.Depleted)
