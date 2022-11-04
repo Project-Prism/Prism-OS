@@ -1,4 +1,4 @@
-﻿using Cosmos.HAL.Drivers.PCI.Audio;
+using Cosmos.HAL.Drivers.PCI.Audio;
 using Cosmos.System.Audio;
 using PrismTools;
 
@@ -24,7 +24,7 @@ namespace PrismAudio
 		};
 
     		/// <summary>
-    		/// Plays an wave file imported from ManifestResourceStream attribute.
+    		/// Plays a wave file imported from ManifestResourceStream attribute.
     		/// </summary>
 		public static void Play(AudioStream Stream)
 		{
