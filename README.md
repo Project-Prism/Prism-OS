@@ -67,6 +67,25 @@
 
 <hr/>
 
+## Syscalls
+| Name    | EAX  | EBX         | ECX      | EDX  | ESI | EDI |
+|---------|------|-------------|----------|------|-----|-----|
+| Realloc | 0x0  | Old Pointer | New Size |  -   |  -  |  -  |
+| Alloc   | 0x1  | Size        |     -    |  -   |  -  |  -  |
+| Free    | 0x2  | Pointer     |     -    |  -   |  -  |  -  |
+| Copy64  | 0x3  | Destination |  Source  | Size |  -  |  -  |
+| Copy32  | 0x4  | Destination |  Source  | Size |  -  |  -  |
+| Copy16  | 0x5  | Destination |  Source  | Size |  -  |  -  |
+| Copy8   | 0x6  | Destination |  Source  | Size |  -  |  -  |
+| Fill64  | 0x7  | Destination |  Value   | Size |  -  |  -  |
+| Fill32  | 0x8  | Destination |  Value   | Size |  -  |  -  |
+| Fill16  | 0x9  | Destination |  Value   | Size |  -  |  -  |
+| Fill8   | 0x10 | Destination |  Value   | Size |  -  |  -  |
+| Prompt  | 0x11 | Title       |  Message |  -   |  -  |  -  |
+| Print   | 0x12 | Text        |     -    |  -   |  -  |  -  |
+
+<hr/>
+
 ## Contributing
 
 #### Want to Add Something New to Prism OS? Simply Create a Pull Request and We'll Review it. (Your Code Should Preferably Follow [These](https://github.com/Project-Prism/Prism-OS/blob/main/CONTRIBUTING.md) Guidelines)

@@ -1,6 +1,6 @@
-﻿namespace PrismOS.Extentions
+﻿namespace PrismTools
 {
-	public static class String
+	public static unsafe class StringEx
 	{
 		/// <summary>
 		/// Get the number of instances that the char 'C' is found in the string.
@@ -19,6 +19,21 @@
 				}
 			}
 			return N;
+		}
+
+		/// <summary>
+		/// Converts an ascii string pointer to a normal string.
+		/// </summary>
+		/// <param name="C">String pointer.</param>
+		/// <returns>Converted string.</returns>
+		public static string GetString(char* C)
+		{
+			string S = "";
+			for (int I = 0; C[I] != 0; I++)
+			{
+				S += C[I];
+			}
+			return S[..^1];
 		}
 	}
 }
