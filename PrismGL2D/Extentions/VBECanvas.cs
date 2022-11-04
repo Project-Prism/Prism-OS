@@ -16,12 +16,7 @@ namespace PrismGL2D.Extentions
 			Cosmos.HAL.Global.PIT.RegisterTimer(new PIT.PITTimer(() => { _FPS = _Frames; _Frames = 0; }, 1000000000, true));
 		}
 
-		#region Fields
-
-		private uint _Frames;
-		private uint _FPS;
-
-		#endregion
+		#region Methods
 
 		/// <summary>
 		/// Coppies the linear buffer to vram.
@@ -40,5 +35,14 @@ namespace PrismGL2D.Extentions
 		{
 			return _FPS;
 		}
+
+		#endregion
+
+		#region Fields
+
+		private uint _Frames;
+		private uint _FPS;
+
+		#endregion
 	}
 }

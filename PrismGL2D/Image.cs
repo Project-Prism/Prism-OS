@@ -35,6 +35,11 @@ namespace PrismGL2D
 
 		#region Loaders
 
+		/// <summary>
+		/// Loads a bitmap file.
+		/// </summary>
+		/// <param name="Binary">Raw file data.</param>
+		/// <returns>Bitmap file as an <see cref="Image"/>.</returns>
 		public static Image FromBitmap(byte[] Binary)
 		{
 			Cosmos.System.Graphics.Bitmap BMP = new(Binary);
@@ -46,6 +51,12 @@ namespace PrismGL2D
 			}
 			return Result;
 		}
+
+		/// <summary>
+		/// Loads a PNG file.
+		/// </summary>
+		/// <param name="Binary">Raw file data.</param>
+		/// <returns>PNG file as an <see cref="Image"/>.</returns>
 		public static Image FromPNG(byte[] Binary)
 		{
 			if (Binary[0] != 137 ||
@@ -155,6 +166,12 @@ namespace PrismGL2D
 
 			return Result;
 		}
+
+		/// <summary>
+		/// Loads a TGA file.
+		/// </summary>
+		/// <param name="Binary">Raw file data.</param>
+		/// <returns>TGA file as an <see cref="Image"/>.</returns>
 		public static Image FromTGA(byte[] Binary)
 		{
 			Image Result = new(0, 0);
@@ -186,6 +203,12 @@ namespace PrismGL2D
 
 			return Result;
 		}
+
+		/// <summary>
+		/// Loads a PPM file.
+		/// </summary>
+		/// <param name="Binary">Raw file data.</param>
+		/// <returns>PPM file as an <see cref="Image"/>.</returns>
 		public static Image FromPPM(byte[] Binary)
 		{
 			BinaryReader Reader = new(new MemoryStream(Binary));

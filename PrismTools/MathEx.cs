@@ -1,7 +1,15 @@
 ﻿namespace PrismTools
 {
+	/// <summary>
+	/// Prism OS Math extentions class.
+	/// </summary>
 	public static class MathEx
 	{
+		/// <summary>
+		/// Evaluate a string.
+		/// </summary>
+		/// <param name="Input">Math operation input.</param>
+		/// <returns>Evaluated string.</returns>
 		public static string Eval(string Input)
 		{ 
 			string Temporary = "";

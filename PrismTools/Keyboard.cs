@@ -2,8 +2,16 @@
 
 namespace PrismTools
 {
+	/// <summary>
+	/// Keyboard conversion class.
+	/// </summary>
 	public static class Keyboard
 	{
+		/// <summary>
+		/// Attempts to read a key, returns true if a key is pressed.
+		/// </summary>
+		/// <param name="Key">Key read, if key is available.</param>
+		/// <returns>True when key is read.</returns>
 		public static bool TryReadKey(out ConsoleKeyInfo Key)
 		{
 			if (KeyboardManager.TryReadKey(out var KeyX))
