@@ -2,13 +2,13 @@
 using Cosmos.Core;
 using PrismUI;
 
-namespace PrismOS
+namespace PrismRuntime
 {
 	public static unsafe class Global
 	{
 		public static void SystemCall(ref uint* EAX, ref uint* EBX, ref uint* ECX, ref uint* EDX, ref uint* ESI, ref uint* EDI)
 		{
-			switch ((byte)EAX)
+			switch ((uint)EAX)
 			{
 				case 0x0: // Realloc
 					EAX = (uint*)Heap.Realloc((byte*)EBX, (uint)EDX);
@@ -52,14 +52,14 @@ namespace PrismOS
 				case 0x11: // Print
 					Console.WriteLine(GetString((char*)EBX));
 					break;
-				case 0x12: // Read
+				case 0x12: // FRead
 					fixed (byte* PTR = File.ReadAllBytes(GetString((char*)EBX)))
 					{
 						EAX = (uint*)(uint)new FileInfo(GetString((char*)EBX)).Length;
 						MemoryOperations.Copy(ECX, (uint*)PTR, (int)EAX);
 					}
 					break;
-				case 0x13: // Write
+				case 0x13: // FWrite
 					byte[] Buffer = new byte[(uint)EDX];
 					fixed (byte* PTR = Buffer)
 					{
@@ -67,7 +67,7 @@ namespace PrismOS
 					}
 					File.WriteAllBytes(GetString((char*)EBX), Buffer);
 					break;
-				case 0x14: // Delete
+				case 0x14: // FDelete
 					try
 					{
 						if ((uint)ECX == 0)
@@ -81,7 +81,7 @@ namespace PrismOS
 					}
 					catch { }
 					break;
-				case 0x15:
+				case 0x15: // FMake
 					if ((uint)ECX == 0)
 					{
 						Directory.CreateDirectory(GetString((char*)EBX));
@@ -91,7 +91,7 @@ namespace PrismOS
 						File.Create(GetString((char*)EBX));
 					}
 					break;
-				case 0x16:
+				case 0x16: // FExists
 					if (Directory.Exists(GetString((char*)EBX)))
 					{
 						EAX = (uint*)1;
@@ -105,7 +105,10 @@ namespace PrismOS
 						EAX = (uint*)0;
 					}
 					break;
-				case 0x17:
+				case 0x17: // FSize
+					EAX = (uint*)new FileInfo(GetString((char*)EBX)).Length;
+					break;
+				case 0x18: // Prompt
 					DialogBox.ShowMessageDialog(
 						GetString((char*)EBX),
 						GetString((char*)ECX));

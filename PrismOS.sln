@@ -24,7 +24,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismTools", "PrismTools\Pr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismAudio", "PrismAudio\PrismAudio.csproj", "{9721BB37-0F8C-4583-A3D6-8B18F6877187}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismELF", "PrismELF\PrismELF.csproj", "{15ADDBAF-91F1-424E-969D-DCDAE048FC8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismELF", "PrismELF\PrismELF.csproj", "{15ADDBAF-91F1-424E-969D-DCDAE048FC8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismRuntime", "PrismRuntime\PrismRuntime.csproj", "{27714E33-5547-497E-98F4-17BD0C5CA4A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -106,6 +108,14 @@ Global
 		{15ADDBAF-91F1-424E-969D-DCDAE048FC8B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{15ADDBAF-91F1-424E-969D-DCDAE048FC8B}.Release|x86.ActiveCfg = Release|Any CPU
 		{15ADDBAF-91F1-424E-969D-DCDAE048FC8B}.Release|x86.Build.0 = Release|Any CPU
+		{27714E33-5547-497E-98F4-17BD0C5CA4A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27714E33-5547-497E-98F4-17BD0C5CA4A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27714E33-5547-497E-98F4-17BD0C5CA4A0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{27714E33-5547-497E-98F4-17BD0C5CA4A0}.Debug|x86.Build.0 = Debug|Any CPU
+		{27714E33-5547-497E-98F4-17BD0C5CA4A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27714E33-5547-497E-98F4-17BD0C5CA4A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27714E33-5547-497E-98F4-17BD0C5CA4A0}.Release|x86.ActiveCfg = Release|Any CPU
+		{27714E33-5547-497E-98F4-17BD0C5CA4A0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
