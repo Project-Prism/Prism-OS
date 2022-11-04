@@ -22,7 +22,7 @@ jobs:
       run: git clone https://github.com/CosmosOS/Cosmos
       
     - name: Building cosmos
-      run: cd Cosmos; .\\install-VS2022.bat; cd ..
+      run: cd Cosmos\\source\\Cosmos.Build.Builder\\; dotnet build; .\\bin\\Debug\\Cosmos.Build.Builder.exe; cd ..
       
     - name: Restore dependencies
       run: dotnet restore
