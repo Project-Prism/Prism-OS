@@ -68,6 +68,9 @@
 <hr/>
 
 ## Syscalls
+
+These are the avalable syscalls Prism OS offers, the EAX value will always become the return value after calling.
+
 | Name    | EAX  | EBX         | ECX      | EDX  | ESI | EDI |
 |---------|------|-------------|----------|------|-----|-----|
 | Realloc | 0x0  | Old Pointer | New Size |  -   |  -  |  -  |

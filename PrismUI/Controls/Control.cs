@@ -28,7 +28,7 @@ namespace PrismUI.Controls
             /// <summary>
             /// Background color for the control.
             /// </summary>
-            public static Color BackColorClick = Color.LightGray, BackColorHover = Color.LighterBlack, BackColor = Color.Black;
+            public static Color BackColorClick = Color.LightGray, BackColorHover = Color.LighterBlack, BackColor = Color.LightBlack;
             /// <summary>
             /// Foreground color for the control.
             /// </summary>
