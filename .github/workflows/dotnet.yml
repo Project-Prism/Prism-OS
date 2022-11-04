@@ -18,26 +18,11 @@ jobs:
       with:
         dotnet-version: 6.0.x
         
-    - name: Clone cosmos
+    - name: Cloning cosmos
       run: git clone https://github.com/CosmosOS/Cosmos
-    - name: Clone IL2CPU
-      run: git clone https://github.com/CosmosOS/IL2CPU
-    - name: Clone X#
-      run: git clone https://github.com/CosmosOS/XSharp
-    - name: Clone Common
-      run: git clone https://github.com/CosmosOS/Common
       
-    - name: Build IL2CPU
-      run: cd Il2cpu; dotnet build; cd ..
-      
-    - name: Build XSharp
-      run: cd XSharp/source/XSharp/XSharp/; dotnet build; cd ..; cd ..; cd ..; cd ..
-      
-    - name: Build Common
-      run: cd Common/source/Cosmos.Build.Common/; dotnet build; cd ..; cd ..; cd ..
-      
-    - name: Build cosmos
-      run: cd Cosmos; dotnet build Build.sln; dotnet publish Build.sln; cd ..
+    - name: Building cosmos
+      run: cd Cosmos; run install-VS2022.bat; cd ..
       
     - name: Restore dependencies
       run: dotnet restore
