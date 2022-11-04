@@ -95,7 +95,7 @@ These are the avalable syscalls Prism OS offers, the EAX value will always becom
 
 <hr/>
 
-## License
+## Licensing
 
 > This project is licensed Under the [GPL-2.0](https://github.com/Project-Prism/Prism-OS/blob/main/LICENSE) licence.
 
