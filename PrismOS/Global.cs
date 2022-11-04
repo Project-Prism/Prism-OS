@@ -1,6 +1,5 @@
 ﻿using Cosmos.Core.Memory;
 using Cosmos.Core;
-using PrismTools;
 using PrismUI;
 
 namespace PrismOS
@@ -51,12 +50,12 @@ namespace PrismOS
 					MemoryOperations.Fill((byte*)EBX, (byte)(byte*)ECX, (int)(int*)EDX);
 					break;
 				case 0x11: // Print
-					System.Console.WriteLine(StringEx.GetString((char*)EBX));
+					Console.WriteLine(GetString((char*)EBX));
 					break;
 				case 0x12: // Read
-					fixed (byte* PTR = File.ReadAllBytes(new string((char*)EBX)))
+					fixed (byte* PTR = File.ReadAllBytes(GetString((char*)EBX)))
 					{
-						EAX = (uint*)(uint)new FileInfo(new string((char*)EBX)).Length;
+						EAX = (uint*)(uint)new FileInfo(GetString((char*)EBX)).Length;
 						MemoryOperations.Copy(ECX, (uint*)PTR, (int)EAX);
 					}
 					break;
@@ -66,18 +65,18 @@ namespace PrismOS
 					{
 						MemoryOperations.Copy(PTR, (byte*)ECX, Buffer.Length);
 					}
-					File.WriteAllBytes(new string((char*)EBX), Buffer);
+					File.WriteAllBytes(GetString((char*)EBX), Buffer);
 					break;
 				case 0x14: // Delete
 					try
 					{
 						if ((uint)ECX == 0)
 						{
-							Directory.Delete(new((char*)EBX));
+							Directory.Delete(GetString((char*)EBX));
 						}
 						else
 						{
-							File.Delete(new((char*)EBX));
+							File.Delete(GetString((char*)EBX));
 						}
 					}
 					catch { }
@@ -85,19 +84,19 @@ namespace PrismOS
 				case 0x15:
 					if ((uint)ECX == 0)
 					{
-						Directory.CreateDirectory(new((char*)EBX));
+						Directory.CreateDirectory(GetString((char*)EBX));
 					}
 					else
 					{
-						File.Create(new((char*)EBX));
+						File.Create(GetString((char*)EBX));
 					}
 					break;
 				case 0x16:
-					if (Directory.Exists(new((char*)EBX)))
+					if (Directory.Exists(GetString((char*)EBX)))
 					{
 						EAX = (uint*)1;
 					}
-					if (File.Exists(new((char*)EBX)))
+					if (File.Exists(GetString((char*)EBX)))
 					{
 						EAX = (uint*)2;
 					}
@@ -107,9 +106,16 @@ namespace PrismOS
 					}
 					break;
 				case 0x17:
-					DialogBox.ShowMessageDialog(new((char*)EBX), new((char*)ECX));
+					DialogBox.ShowMessageDialog(
+						GetString((char*)EBX),
+						GetString((char*)ECX));
 					break;
 			}
+		}
+
+		private static string GetString(char* PTR)
+		{
+			return new string(PTR)[..^1];
 		}
 	}
 }

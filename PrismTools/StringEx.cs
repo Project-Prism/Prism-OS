@@ -1,4 +1,6 @@
-﻿namespace PrismTools
+﻿using System.Runtime.InteropServices;
+
+namespace PrismTools
 {
 	public static unsafe class StringEx
 	{
@@ -19,21 +21,6 @@
 				}
 			}
 			return N;
-		}
-
-		/// <summary>
-		/// Converts an ascii string pointer to a normal string.
-		/// </summary>
-		/// <param name="C">String pointer.</param>
-		/// <returns>Converted string.</returns>
-		public static string GetString(char* C)
-		{
-			string S = "";
-			for (int I = 0; C[I] != 0; I++)
-			{
-				S += C[I];
-			}
-			return S[..^1];
 		}
 	}
 }
