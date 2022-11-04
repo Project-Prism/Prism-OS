@@ -61,9 +61,9 @@
 ## Notable contributors
 | Name                                                  | Contribution(s)              |
 |-------------------------------------------------------|------------------------------|
-| [Cosmos team](https://github.com/CosmosOS/Cosmos)     | The Entirety of Cosmos       |
-| [Terminal.cs](https://github.com/terminal-cs)         | General Development, Logo    |
-| [theopcoder](https://github.com/theopcoder)           | Website Developer            |
+| [Cosmos team](https://github.com/CosmosOS/Cosmos)     | The entirety of Cosmos       |
+| [Terminal.cs](https://github.com/terminal-cs)         | Founder, Main developer      |
+| [theopcoder](https://github.com/theopcoder)           | Website developer            |
 
 <hr/>
 
