@@ -5,17 +5,25 @@ using PrismTools;
 namespace PrismAudio
 {
     	/// <summary>
-    	/// Plays audio.
+    	/// Audio player class for playing audio.
     	/// </summary>
 	public static class AudioPlayer
 	{
-		// Debugger
+    		/// <summary>
+    		/// Debugger
+    		/// </summary>
 		private static Debugger Debugger { get; set; } = new("Audio");
 		
-		// Audio mixer
+		
+    		/// <summary>
+    		/// Audio mixer
+    		/// </summary>
 		public static AudioMixer Mixer { get; set; } = new();
 		
-		// Audio manager
+		
+    		/// <summary>
+    		/// Audio manager
+    		/// </summary>
 		private static AudioManager AM { get; set; } = new()
 		{
 			Output = AC97.Initialize(4096),
