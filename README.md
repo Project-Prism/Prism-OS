@@ -71,26 +71,27 @@
 
 These are the avalable syscalls Prism OS offers, the EAX value will always become the return value after calling.
 
-| Name       | EAX  | EBX         | ECX              | EDX    | ESI | EDI | Returns                      |
-|------------|------|-------------|------------------|--------|-----|-----|------------------------------|
-| Realloc    | 0x0  | Old Pointer | New Size         | -      | -   | -   | New Pointer                  |
-| Alloc      | 0x1  | Size        | -                | -      | -   | -   | Pointer                      |
-| Free       | 0x2  | Pointer     | -                | -      | -   | -   | -                            |
-| Copy64     | 0x3  | Destination | Source           | Size   | -   | -   | -                            |
-| Copy32     | 0x4  | Destination | Source           | Size   | -   | -   | -                            |
-| Copy16     | 0x5  | Destination | Source           | Size   | -   | -   | -                            |
-| Copy8      | 0x6  | Destination | Source           | Size   | -   | -   | -                            |
-| Fill64     | 0x7  | Destination | Value            | Size   | -   | -   | -                            |
-| Fill32     | 0x8  | Destination | Value            | Size   | -   | -   | -                            |
-| Fill16     | 0x9  | Destination | Value            | Size   | -   | -   | -                            |
-| Fill8      | 0x10 | Destination | Value            | Size   | -   | -   | -                            |
-| Print      | 0x11 | Text        | -                | -      | -   | -   | -                            |
-| FSRead     | 0x12 | FullPath    | Write Buffer ptr | -      | -   | -   | Length                       |
-| FSWrite    | 0x13 | FullPath    | Read Buffer ptr  | Length | -   | -   | -                            |
-| FSDelete   | 0x14 | FullPath    | 0=Folder, 1=File | -      | -   | -   | -                            |
-| FSMake     | 0x15 | FullPath    | 0=Folder, 1=File | -      | -   | -   | 0=Exists,1=NoPath, 1=Success |
+| Name       | EAX  | EBX         | ECX              | EDX    | ESI | EDI | Returns                            |
+|------------|------|-------------|------------------|--------|-----|-----|------------------------------------|
+| Realloc    | 0x0  | Old Pointer | New Size         | -      | -   | -   | New Pointer                        |
+| Alloc      | 0x1  | Size        | -                | -      | -   | -   | Pointer                            |
+| Free       | 0x2  | Pointer     | -                | -      | -   | -   | -                                  |
+| Copy64     | 0x3  | Destination | Source           | Size   | -   | -   | -                                  |
+| Copy32     | 0x4  | Destination | Source           | Size   | -   | -   | -                                  |
+| Copy16     | 0x5  | Destination | Source           | Size   | -   | -   | -                                  |
+| Copy8      | 0x6  | Destination | Source           | Size   | -   | -   | -                                  |
+| Fill64     | 0x7  | Destination | Value            | Size   | -   | -   | -                                  |
+| Fill32     | 0x8  | Destination | Value            | Size   | -   | -   | -                                  |
+| Fill16     | 0x9  | Destination | Value            | Size   | -   | -   | -                                  |
+| Fill8      | 0x10 | Destination | Value            | Size   | -   | -   | -                                  |
+| Print      | 0x11 | Text        | -                | -      | -   | -   | -                                  |
+| FSRead     | 0x12 | FullPath    | Write Buffer ptr | -      | -   | -   | Length                             |
+| FSWrite    | 0x13 | FullPath    | Read Buffer ptr  | Length | -   | -   | -                                  |
+| FSDelete   | 0x14 | FullPath    | 0=Folder, 1=File | -      | -   | -   | -                                  |
+| FSMake     | 0x15 | FullPath    | 0=Folder, 1=File | -      | -   | -   | 0=Exists,1=NoPath, 1=Success       |
 | FSExists   | 0x16 | FullPath    | -                | -      | -   | -   | 0=False, 1=Folder, 2=foldFileer    |
-| Prompt     | 0x17 | Title       | Message          | -      | -   | -   | -                            |
+| FSize      | 0x17 | FullPath    | -                | -      | -   | -   | Size of file in bytes              |
+| Prompt     | 0x18 | Title       | Message          | -      | -   | -   | -                                  |
 
 <hr/>
 
