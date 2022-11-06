@@ -8,11 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cosmos.System2" Version="0.1.0-localbuild20221024075635" />
+    <ProjectReference Include="..\PrismBinary\PrismBinary.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PrismBinary\PrismBinary.csproj" />
+    <Reference Include="Cosmos.Core">
+      <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cosmos.HAL2">
+      <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
+    </Reference>
+    <Reference Include="Cosmos.System2">
+      <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

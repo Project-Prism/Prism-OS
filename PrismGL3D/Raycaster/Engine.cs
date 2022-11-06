@@ -13,7 +13,7 @@ namespace PrismGL3D.Raycaster
 
 		#region Methods
 
-		public Vector2 GetMapPosition(List<bool[]> Map, Player P)
+		public Vector2 GetMapPosition(List<int[]> Map, Player P)
 		{
 			return new()
 			{
@@ -21,7 +21,7 @@ namespace PrismGL3D.Raycaster
 				Y = Height / Map[0].Length / P.Position.Y,
 			};
 		}
-		public Vector2 GetMapScale(List<bool[]> Map)
+		public Vector2 GetMapScale(List<int[]> Map)
 		{
 			return new()
 			{
@@ -30,7 +30,7 @@ namespace PrismGL3D.Raycaster
 			};
 		}
 
-		public void Render(List<bool[]> Map)
+		public void Render(List<int[]> Map)
 		{
 			Clear();
 
@@ -40,7 +40,7 @@ namespace PrismGL3D.Raycaster
 			{
 				for (int Y = 0; Y < Map[X].Length; Y++)
 				{
-					if (!Map[X][Y])
+					if (Map[X][Y] == 0)
 					{
 						continue;
 					}

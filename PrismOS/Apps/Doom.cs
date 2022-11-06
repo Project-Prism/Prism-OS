@@ -26,18 +26,18 @@ namespace PrismOS.Apps
 
 		#region Fields
 
-		public List<bool[]> Map = new()
+		public List<int[]> Map = new()
 		{
-			new bool[] { true, true, true, true, true, true, true, true, true, true },
-			new bool[] { true, false, false, false, false, false, false, false, false, true },
-			new bool[] { true, false, false, false, false, false, false, false, false, true },
-			new bool[] { true, false, false, false, false, false, false, false, false, true },
-			new bool[] { true, false, false, false, false, false, false, false, false, true },
-			new bool[] { true, false, false, false, false, false, false, false, false, true },
-			new bool[] { true, false, false, false, false, false, false, false, false, true },
-			new bool[] { true, false, false, false, false, false, false, false, false, true },
-			new bool[] { true, false, false, false, false, false, false, false, false, true },
-			new bool[] { true, true, true, true, true, true, true, true, true, true },
+			new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+			new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+			new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+			new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+			new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+			new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+			new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+			new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+			new int[] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+			new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 		};
 		public Engine Engine;
 
