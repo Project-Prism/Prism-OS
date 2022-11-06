@@ -19,6 +19,7 @@ namespace PrismAudio
 		{
 			try
 			{
+				OnUpdate();
 				Mixer.Streams.Add(Stream);
 			}
 			catch (Exception E)

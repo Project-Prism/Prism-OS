@@ -26,7 +26,7 @@ namespace PrismUI.Controls
 		{
 			G.DrawFilledRectangle(X, Y + (int)TY, 192, Font.Fallback.Size + 5, 0, Color.LightBlack);
 			G.DrawString(X, Y + (int)TY + 5, Text, Font.Fallback, Color.White);
-			TY += (uint)(Font.Fallback.Size * 1.5);
+			TY += Font.Fallback.Size + 5;
 		}
 		public void OnUpdate(Graphics G)
 		{
