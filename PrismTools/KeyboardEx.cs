@@ -5,7 +5,7 @@ namespace PrismTools
 	/// <summary>
 	/// Keyboard conversion class.
 	/// </summary>
-	public static class Keyboard
+	public static class KeyboardEx
 	{
 		/// <summary>
 		/// Attempts to read a key, returns true if a key is pressed.

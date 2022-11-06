@@ -9,11 +9,8 @@ using PrismUI;
 namespace PrismOS
 {
 	public unsafe class Program : Kernel
-	{
-		public static Debugger Debugger;
-		public static Desktop Desktop;
-		public static bool IsNETReady;
-		public static bool IsFSReady;
+	{ // TO-DO: PrismGL2D.Extentions.VBEConsole
+		#region Methods
 
 		protected override void BeforeRun()
 		{
@@ -48,5 +45,16 @@ namespace PrismOS
 		{
 			Desktop.Update();
 		}
+
+		#endregion
+
+		#region Fields
+
+		public static Debugger Debugger;
+		public static Desktop Desktop;
+		public static bool IsNETReady;
+		public static bool IsFSReady;
+
+		#endregion
 	}
 }

@@ -94,8 +94,8 @@ namespace PrismOS.Apps
 		public Graphics Wallpaper;
 		public Debugger Debugger;
 		public VBECanvas Canvas;
-		public Overlay Overlay;
 		public Window Launcher;
+		public Status Overlay;
 		public Image Splash;
 		public Window Menu;
 

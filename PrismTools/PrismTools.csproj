@@ -11,9 +11,4 @@
     <PackageReference Include="Cosmos.System2" Version="0.1.0-localbuild20221024075635" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\PrismBinary\PrismBinary.csproj" />
-    <ProjectReference Include="..\PrismGL2D\PrismGL2D.csproj" />
-  </ItemGroup>
-
 </Project>

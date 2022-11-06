@@ -63,7 +63,7 @@ namespace PrismUI
 					continue;
 				}
 
-				if (MouseManager.X >= X + Controls[I].X && MouseManager.X <= X + Controls[I].X + Controls[I].Width && MouseManager.Y >= Y + Controls[I].Y && MouseManager.Y <= Y + Controls[I].Y + Controls[I].Height && (this == Frames[^1] || !NeedsFront || !CanInteract))
+				if (MouseEx.IsMouseWithin(X + Controls[I].X, Y + Controls[I].Y, Controls[I].Width, Controls[I].Height) && (this == Frames[^1] || !NeedsFront || !CanInteract))
 				{
 					if (MouseManager.MouseState != MouseState.None)
 					{
@@ -92,7 +92,7 @@ namespace PrismUI
 			{
 				if (MouseManager.MouseState == MouseState.Left)
 				{
-					if (MouseManager.LastMouseState != MouseState.Left && MouseManager.X >= X && MouseManager.X <= X + Width && MouseManager.Y >= Y && MouseManager.Y <= Y + Config.Scale && !IsMoving && !Dragging)
+					if (MouseManager.LastMouseState != MouseState.Left && MouseEx.IsMouseWithin(X, Y, Width, Config.Scale) && !IsMoving && !Dragging)
 					{
 						Dragging = true;
 						Select();
@@ -146,7 +146,7 @@ namespace PrismUI
 		/// <param name="G">Buffer to draw to.</param>
 		public void Update(Graphics G)
 		{
-			if (Frames[^1] == this && CanType && Keyboard.TryReadKey(out ConsoleKeyInfo Key))
+			if (Frames[^1] == this && CanType && KeyboardEx.TryReadKey(out ConsoleKeyInfo Key))
 			{
 				OnKey(Key);
 			}
