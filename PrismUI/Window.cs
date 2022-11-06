@@ -9,24 +9,20 @@ namespace PrismUI
 {
 	public class Window : Control
 	{
-		public Window(uint Width, uint Height, string Title) : base(Width, Height)
+		public Window(uint Width, uint Height, string Title, bool IsDraggable = true) : base(Width, Height)
 		{
-			Y = (int)((VBE.getModeInfo().height / 2) - (Height / 2) + (Frames.Count * Config.Scale));
-			X = (int)((VBE.getModeInfo().width / 2) - (Width / 2) + (Frames.Count * Config.Scale));
-			Text = Title;
-			Generate();
+			Y = (int)((VBE.getModeInfo().height / 2) - (Height / 2) + (Windows.Count * Config.Scale));
+			X = (int)((VBE.getModeInfo().width / 2) - (Width / 2) + (Windows.Count * Config.Scale));
+			Generate(Title, IsDraggable);
 		}
-		public Window(string Title) : base((uint)(VBE.getModeInfo().width / 2), (uint)(VBE.getModeInfo().height / 2))
+		public Window(string Title, bool IsDraggable = true) : base((uint)(VBE.getModeInfo().width / 2), (uint)(VBE.getModeInfo().height / 2))
 		{
-			Y = (int)(Height - (Height / 2) + (Frames.Count * Config.Scale));
-			X = (int)(Width - (Width / 2) + (Frames.Count * Config.Scale));
-			Text = Title;
-			Generate();
+			Y = (int)(Height - (Height / 2) + (Windows.Count * Config.Scale));
+			X = (int)(Width - (Width / 2) + (Windows.Count * Config.Scale));
+			Generate(Title, IsDraggable);
 		}
 
-		// Window Manager Variables
-		public static List<Window> Frames { get; set; } = new();
-		public static bool Dragging { get; set; } = false;
+		#region Methods
 
 		internal override void OnKey(ConsoleKeyInfo Key)
 		{
@@ -63,7 +59,7 @@ namespace PrismUI
 					continue;
 				}
 
-				if (MouseEx.IsMouseWithin(X + Controls[I].X, Y + Controls[I].Y, Controls[I].Width, Controls[I].Height) && (this == Frames[^1] || !NeedsFront || !CanInteract))
+				if (MouseEx.IsMouseWithin(X + Controls[I].X, Y + Controls[I].Y, Controls[I].Width, Controls[I].Height) && (this == Windows[^1] || !NeedsFront || !CanInteract))
 				{
 					if (MouseManager.MouseState != MouseState.None)
 					{
@@ -86,100 +82,64 @@ namespace PrismUI
 			}
 
 			G.DrawImage(X, Y, this, Config.ShouldContainAlpha(this));
-
-			// Run intaraction after drawing to prevent border from becoming de-synced
-			if (CanDrag)
-			{
-				if (MouseManager.MouseState == MouseState.Left)
-				{
-					if (MouseManager.LastMouseState != MouseState.Left && MouseEx.IsMouseWithin(X, Y, Width, Config.Scale) && !IsMoving && !Dragging)
-					{
-						Dragging = true;
-						Select();
-						IsMoving = true;
-						IX = (int)MouseManager.X - X;
-						IY = (int)MouseManager.Y - Y;
-					}
-				}
-				else
-				{
-					Dragging = false;
-					IsMoving = false;
-				}
-				if (IsMoving)
-				{
-					X = (int)MouseManager.X - IX;
-					Y = (int)MouseManager.Y - IY;
-				}
-			}
 		}
-
-		#region Methods
 
 		/// <summary>
 		/// Generate generic properties.
 		/// </summary>
-		private void Generate()
+		private void Generate(string Title, bool IsDraggable)
 		{
-			Controls.Add(new Button(Config.Scale, Config.Scale)
+			if (IsDraggable)
 			{
-				X = (int)(Width - Config.Scale),
-				HasBorder = false,
-				Text = "X",
-				OnClickEvent = (int X, int Y, MouseState State) => { Close(); },
-			});
-			NeedsFront = true;
-			CanDrag = true;
-			Frames.Add(this);
-			OnDrawEvent = (Graphics G) =>
-			{
-				if (CanDrag)
+				Controls.Add(new DragPanel(Width, Config.Scale, this));
+				Controls.Add(new Button(Config.Scale, Config.Scale)
 				{
-					DrawFilledRectangle(0, 0, Width, Config.Scale, Config.Radius, Config.AccentColor);
-					DrawString((int)(Width / 2), (int)(Config.Scale / 2), Text, Config.Font, Config.ForeColor, true);
-				}
-			};
+					X = (int)(Width - Config.Scale),
+					HasBorder = false,
+					Text = "X",
+					OnClickEvent = (int X, int Y, MouseState State) => { Close(); },
+				});
+			}
+
+			NeedsFront = true;
+			Text = Title;
+
+			Windows.Add(this);
 		}
+
 		/// <summary>
 		/// Draw the frame onto a buffer.
 		/// </summary>
 		/// <param name="G">Buffer to draw to.</param>
 		public void Update(Graphics G)
 		{
-			if (Frames[^1] == this && CanType && KeyboardEx.TryReadKey(out ConsoleKeyInfo Key))
+			if (Windows[^1] == this && CanType && KeyboardEx.TryReadKey(out ConsoleKeyInfo Key))
 			{
 				OnKey(Key);
 			}
 			OnDraw(G);
 		}
-		/// <summary>
-		/// Shows the control.
-		/// </summary>
-		public override void Show()
-		{
-			Frames.Add(this);
-		}
-		/// <summary>
-		/// Hides the control.
-		/// </summary>
-		public override void Hide()
-		{
-			Frames.Remove(this);
-		}
+
 		/// <summary>
 		/// Activates the frame.
 		/// </summary>
 		public void Select()
 		{
-			Frames.Remove(this);
-			Frames.Add(this);
+			if (Windows[^1] == this)
+			{
+				return;
+			}
+
+			Windows.Remove(this);
+			Windows.Add(this);
 		}
+
 		/// <summary>
 		/// Close the frame.
 		/// </summary>
 		public void Close()
 		{
-			Frames.Remove(this);
+			Windows.Remove(this);
 			Dispose();
 		}
 
@@ -187,6 +147,8 @@ namespace PrismUI
 
 		#region Fields
 
+		// Window Manager Variables
+		public static List<Window> Windows { get; set; } = new();
 		/// <summary>
 		/// The button that is fired when the Enter key is pressed.
 		/// </summary>
@@ -199,22 +161,6 @@ namespace PrismUI
 		/// Check to see if the window must be selected in order to interact with it.
 		/// </summary>
 		public bool NeedsFront;
-		/// <summary>
-		/// The temporary variable to check if the windoww is moving already.
-		/// </summary>
-		public bool IsMoving;
-		/// <summary>
-		/// Check to see if the frame can be moved.
-		/// </summary>
-		public bool CanDrag;
-		/// <summary>
-		/// Buffer X for dragging.
-		/// </summary>
-		public int IX;
-		/// <summary>
-		/// Buffer Y for dragging.
-		/// </summary>
-		public int IY;
 
 		#endregion
 	}

@@ -216,9 +216,6 @@ namespace PrismUI.Controls
 
         public new void Dispose()
         {
-            GCImplementation.Free(OnClickEvent);
-            GCImplementation.Free(OnDrawEvent);
-            GCImplementation.Free(OnKeyEvent);
             GC.SuppressFinalize(this);
         }
     }

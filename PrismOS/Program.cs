@@ -9,8 +9,11 @@ using PrismUI;
 namespace PrismOS
 {
 	public unsafe class Program : Kernel
-	{ // TO-DO: PrismGL2D.Extentions.VBEConsole
-		#region Methods
+	{
+		// TO-DO: Color config class
+		// TO-DO: PrismGL2D.Extentions.VBEConsole
+		// TO-DO: Debug key presses
+		// TO-DO: General cleaning
 
 		protected override void BeforeRun()
 		{
@@ -45,8 +48,6 @@ namespace PrismOS
 		{
 			Desktop.Update();
 		}
-
-		#endregion
 
 		#region Fields
 

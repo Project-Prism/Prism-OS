@@ -40,15 +40,13 @@ namespace PrismOS.Apps
 
 			#region Launcher
 
-			Launcher = new(Canvas.Width, Control.Config.Scale, Launcher.GetType().FullName)
+			Launcher = new(Canvas.Width, Control.Config.Scale, Launcher.GetType().FullName, false)
 			{
 				Y = (int)(Canvas.Height - Control.Config.Scale),
 				NeedsFront = false,
 				HasBorder = false,
-				CanDrag = false,
 				CanType = false,
 			};
-			Launcher.Controls.RemoveAt(0); // Remove close button
 			Install("Shutdown", () => Power.Shutdown());
 			Install("Explorer", () => _ = new Explorer());
 			Install("GFXTest", () => _ = new GFXTest());
@@ -73,7 +71,7 @@ namespace PrismOS.Apps
 		{
 			Canvas.DrawImage(0, 0, Wallpaper, false);
 
-			foreach (Window F in Window.Frames)
+			foreach (Window F in Window.Windows)
 			{
 				if (F.IsEnabled)
 				{
