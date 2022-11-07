@@ -11,89 +11,350 @@ namespace PrismOS.Apps
 			Random = new();
 			Score = 0;
 
-			for (int X = 0; X < 3; X++)
+			int OCount = Controls.Count;
+			int H3 = (int)Height / 3;
+			int W3 = (int)Width / 3;
+
+			Controls.Add(B11 = new((uint)W3, (uint)H3)
 			{
-				for (int Y = 0; Y < 3; Y++)
+				X = 0,
+				Y = (int)Config.Scale,
+				OnClickEvent = (int X, int Y, MouseState State) =>
 				{
-					Button B = new(Width / 3, (Height - Config.Scale) / 3)
+					if (B11.Text.Length != 0)
 					{
-						X = (int)(Width / 3 * X),
-						Y = (int)((Height - Config.Scale) / 3 * Y + Config.Scale),
-					};
-					B.OnClickEvent = (int X, int Y, MouseState State) =>
+						return;
+					}
+					B11.Text = "X";
+
+					if (RunCheck("O"))
 					{
-						if (B.Text.Length != 0)
-						{
-							return;
-						}
-						B.Text = "X";
+						Reset(false);
+						return;
+					}
+					if (RunCheck("X"))
+					{
+						Reset(true);
+						return;
+					}
+					if (IsFull())
+					{
+						Reset(false);
+						return;
+					}
 
-						if (RunCheck("O"))
-						{
-							Reset(false);
-							return;
-						}
-						if (RunCheck("X"))
-						{
-							Reset(true);
-							return;
-						}
-						if (IsFull())
-						{
-							Reset(false);
-							return;
-						}
-
-						int RIndex = 0;
-						while (Controls[RIndex = Random.Next(1, 9)].Text.Length != 0) ;
-						Controls[RIndex].Text = "O";
-					};
-					Controls.Add(B);
+					int RIndex = 0;
+					while (Controls[RIndex = Random.Next(OCount, OCount + 8)].Text.Length != 0) ;
+					Controls[RIndex].Text = "O";
 				}
-			}
+			});
+			Controls.Add(B12 = new((uint)W3, (uint)H3)
+			{
+				X = W3,
+				Y = (int)Config.Scale,
+				OnClickEvent = (int X, int Y, MouseState State) =>
+				{
+					if (B12.Text.Length != 0)
+					{
+						return;
+					}
+					B12.Text = "X";
+
+					if (RunCheck("O"))
+					{
+						Reset(false);
+						return;
+					}
+					if (RunCheck("X"))
+					{
+						Reset(true);
+						return;
+					}
+					if (IsFull())
+					{
+						Reset(false);
+						return;
+					}
+
+					int RIndex = 0;
+					while (Controls[RIndex = Random.Next(OCount, OCount + 8)].Text.Length != 0) ;
+					Controls[RIndex].Text = "O";
+				}
+			});
+			Controls.Add(B13 = new((uint)W3, (uint)H3)
+			{
+				X = W3 * 2,
+				Y = (int)Config.Scale,
+				OnClickEvent = (int X, int Y, MouseState State) =>
+				{
+					if (B13.Text.Length != 0)
+					{
+						return;
+					}
+					B13.Text = "X";
+
+					if (RunCheck("O"))
+					{
+						Reset(false);
+						return;
+					}
+					if (RunCheck("X"))
+					{
+						Reset(true);
+						return;
+					}
+					if (IsFull())
+					{
+						Reset(false);
+						return;
+					}
+
+					int RIndex = 0;
+					while (Controls[RIndex = Random.Next(OCount, OCount + 8)].Text.Length != 0) ;
+					Controls[RIndex].Text = "O";
+				}
+			});
+			Controls.Add(B21 = new((uint)W3, (uint)H3)
+			{
+				X = 0,
+				Y = (int)Config.Scale + H3,
+				OnClickEvent = (int X, int Y, MouseState State) =>
+				{
+					if (B21.Text.Length != 0)
+					{
+						return;
+					}
+					B21.Text = "X";
+
+					if (RunCheck("O"))
+					{
+						Reset(false);
+						return;
+					}
+					if (RunCheck("X"))
+					{
+						Reset(true);
+						return;
+					}
+					if (IsFull())
+					{
+						Reset(false);
+						return;
+					}
+
+					int RIndex = 0;
+					while (Controls[RIndex = Random.Next(OCount, OCount + 8)].Text.Length != 0) ;
+					Controls[RIndex].Text = "O";
+				}
+			});
+			Controls.Add(B22 = new((uint)W3, (uint)H3)
+			{
+				X = W3,
+				Y = (int)Config.Scale + H3,
+				OnClickEvent = (int X, int Y, MouseState State) =>
+				{
+					if (B22.Text.Length != 0)
+					{
+						return;
+					}
+					B22.Text = "X";
+
+					if (RunCheck("O"))
+					{
+						Reset(false);
+						return;
+					}
+					if (RunCheck("X"))
+					{
+						Reset(true);
+						return;
+					}
+					if (IsFull())
+					{
+						Reset(false);
+						return;
+					}
+
+					int RIndex = 0;
+					while (Controls[RIndex = Random.Next(OCount, OCount + 8)].Text.Length != 0) ;
+					Controls[RIndex].Text = "O";
+				}
+			});
+			Controls.Add(B23 = new((uint)W3, (uint)H3)
+			{
+				X = W3 * 2,
+				Y = (int)Config.Scale + H3,
+				OnClickEvent = (int X, int Y, MouseState State) =>
+				{
+					if (B23.Text.Length != 0)
+					{
+						return;
+					}
+					B23.Text = "X";
+
+					if (RunCheck("O"))
+					{
+						Reset(false);
+						return;
+					}
+					if (RunCheck("X"))
+					{
+						Reset(true);
+						return;
+					}
+					if (IsFull())
+					{
+						Reset(false);
+						return;
+					}
+
+					int RIndex = 0;
+					while (Controls[RIndex = Random.Next(OCount, OCount + 8)].Text.Length != 0) ;
+					Controls[RIndex].Text = "O";
+				}
+			});
+			Controls.Add(B31 = new((uint)W3, (uint)H3)
+			{
+				X = 0,
+				Y = (int)Config.Scale + (H3 * 2),
+				OnClickEvent = (int X, int Y, MouseState State) =>
+				{
+					if (B31.Text.Length != 0)
+					{
+						return;
+					}
+					B31.Text = "X";
+
+					if (RunCheck("O"))
+					{
+						Reset(false);
+						return;
+					}
+					if (RunCheck("X"))
+					{
+						Reset(true);
+						return;
+					}
+					if (IsFull())
+					{
+						Reset(false);
+						return;
+					}
+
+					int RIndex = 0;
+					while (Controls[RIndex = Random.Next(OCount, OCount + 8)].Text.Length != 0) ;
+					Controls[RIndex].Text = "O";
+				}
+			});
+			Controls.Add(B32 = new((uint)W3, (uint)H3)
+			{
+				X = W3,
+				Y = (int)Config.Scale + (H3 * 2),
+				OnClickEvent = (int X, int Y, MouseState State) =>
+				{
+					if (B32.Text.Length != 0)
+					{
+						return;
+					}
+					B32.Text = "X";
+
+					if (RunCheck("O"))
+					{
+						Reset(false);
+						return;
+					}
+					if (RunCheck("X"))
+					{
+						Reset(true);
+						return;
+					}
+					if (IsFull())
+					{
+						Reset(false);
+						return;
+					}
+
+					int RIndex = 0;
+					while (Controls[RIndex = Random.Next(OCount, OCount + 8)].Text.Length != 0) ;
+					Controls[RIndex].Text = "O";
+				}
+			});
+			Controls.Add(B33 = new((uint)W3, (uint)H3)
+			{
+				X = W3 * 2,
+				Y = (int)Config.Scale + (H3 * 2),
+				OnClickEvent = (int X, int Y, MouseState State) =>
+				{
+					if (B33.Text.Length != 0)
+					{
+						return;
+					}
+					B33.Text = "X";
+
+					if (RunCheck("O"))
+					{
+						Reset(false);
+						return;
+					}
+					if (RunCheck("X"))
+					{
+						Reset(true);
+						return;
+					}
+					if (IsFull())
+					{
+						Reset(false);
+						return;
+					}
+
+					int RIndex = 0;
+					while (Controls[RIndex = Random.Next(OCount, OCount + 8)].Text.Length != 0) ;
+					Controls[RIndex].Text = "O";
+				}
+			});
+
 		}
 
-		public Random Random;
-		public uint Score;
+		#region Methods
 
 		public bool RunCheck(string Name)
 		{
 			// Diagonal
-			if (Controls[1].Text == Name && Controls[4].Text == Name && Controls[7].Text == Name)
+			if (B11.Text == Name && B12.Text == Name && B13.Text == Name)
 			{
 				return true;
 			}
-			if (Controls[2].Text == Name && Controls[5].Text == Name && Controls[8].Text == Name)
+			if (B21.Text == Name && B22.Text == Name && B23.Text == Name)
 			{
 				return true;
 			}
-			if (Controls[3].Text == Name && Controls[6].Text == Name && Controls[9].Text == Name)
+			if (B31.Text == Name && B32.Text == Name && B33.Text == Name)
 			{
 				return true;
 			}
 
 			// Vertical
-			if (Controls[1].Text == Name && Controls[2].Text == Name && Controls[3].Text == Name)
+			if (B11.Text == Name && B12.Text == Name && B13.Text == Name)
 			{
 				return true;
 			}
-			if (Controls[4].Text == Name && Controls[5].Text == Name && Controls[6].Text == Name)
+			if (B21.Text == Name && B22.Text == Name && B23.Text == Name)
 			{
 				return true;
 			}
-			if (Controls[7].Text == Name && Controls[8].Text == Name && Controls[9].Text == Name)
+			if (B31.Text == Name && B32.Text == Name && B33.Text == Name)
 			{
 				return true;
 			}
 
 			// Top left to bottom right
-			if (Controls[1].Text == Name && Controls[5].Text == Name && Controls[9].Text == Name)
+			if (B11.Text == Name && B22.Text == Name && B33.Text == Name)
 			{
 				return true;
 			}
 
 			// Top right to bottom left
-			if (Controls[3].Text == Name && Controls[5].Text == Name && Controls[7].Text == Name)
+			if (B31.Text == Name && B22.Text == Name && B13.Text == Name)
 			{
 				return true;
 			}
@@ -108,21 +369,44 @@ namespace PrismOS.Apps
 				Text = $"TickTackToe - {Score} Points";
 			}
 
-			for (int I = 1; I < Controls.Count; I++)
-			{
-				Controls[I].Text = "";
-			}
+			B11.Text = string.Empty;
+			B12.Text = string.Empty;
+			B13.Text = string.Empty;
+			B21.Text = string.Empty;
+			B22.Text = string.Empty;
+			B23.Text = string.Empty;
+			B31.Text = string.Empty;
+			B32.Text = string.Empty;
+			B33.Text = string.Empty;
 		}
 		public bool IsFull()
 		{
-			for (int I = 1; I < Controls.Count; I++)
+			if (B11.Text.Length == 0 || B12.Text.Length == 0 || B13.Text.Length == 0)
 			{
-				if (Controls[I].Text.Length == 0)
-				{
-					return false;
-				}
+				return false;
 			}
+			if (B21.Text.Length == 0 || B22.Text.Length == 0 || B23.Text.Length == 0)
+			{
+				return false;
+			}
+			if (B31.Text.Length == 0 || B32.Text.Length == 0 || B33.Text.Length == 0)
+			{
+				return false;
+			}
+
 			return true;
 		}
+
+		#endregion
+
+		#region Fields
+
+		public Button B11, B12, B13;
+		public Button B21, B22, B23;
+		public Button B31, B32, B33;
+		public Random Random;
+		public uint Score;
+
+		#endregion
 	}
 }
