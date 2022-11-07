@@ -32,7 +32,7 @@ namespace PrismAudio
 		};
 
     		/// <summary>
-    		/// Plays a wave file imported from ManifestResourceStream attribute.
+    		/// Plays a wave file. 
     		/// </summary>
 		public static void Play(AudioStream Stream)
 		{
