@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PrismBinary\PrismBinary.csproj" />
+    <ProjectReference Include="..\PrismTools\PrismTools.csproj" />
   </ItemGroup>
 
   <ItemGroup>

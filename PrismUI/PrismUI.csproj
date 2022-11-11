@@ -8,12 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cosmos.System2" Version="0.1.0-localbuild20221024075635" />
+    <ProjectReference Include="..\PrismGL2D\PrismGL2D.csproj" />
+    <ProjectReference Include="..\PrismTools\PrismTools.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PrismGL2D\PrismGL2D.csproj" />
-    <ProjectReference Include="..\PrismTools\PrismTools.csproj" />
+    <Reference Include="Cosmos.Core">
+      <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

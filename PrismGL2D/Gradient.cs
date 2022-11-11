@@ -4,7 +4,7 @@
 	/// Gradient class, used for generating gradients.
 	/// INCOMPLETE/BROKEN: https://dev.to/ndesmic/linear-color-gradients-from-scratch-1a0e
 	/// </summary>
-	public class Gradient : Graphics
+	public unsafe class Gradient : Graphics
 	{
 		/// <summary>
 		/// Creates a new instance of the <see cref="Gradient"/> class.
@@ -18,67 +18,53 @@
 			{
 				for (int X = 0; X < Width; X++)
 				{
-					this[Y, X] = Lerp(Colors[0], Colors[1], Normalize(Y, 0, Height));
+					this[X, Y] = InterpolateColors(Colors, 1 / Height * Y);
 				}
 			}
 		}
 
 		/// <summary>
-		/// Normalizes a value to be inbetween 0.0 and 1.1.
+		/// Interpolate between several colors in a normal going from 0.0 to 1.0.
 		/// </summary>
-		/// <param name="Value">Index inbetween Min and Max.</param>
-		/// <param name="Minimum">Minimum value.</param>
-		/// <param name="Maximum">Maximum value.</param>
-		/// <returns>Narmalized value.</returns>
-		private static double Normalize(long Minimum, long Maximum, long Value)
-		{
-			if (Value >= Maximum)
-			{
-				return 1.0;
-			}
-			if (Value <= Minimum)
-			{
-				return 0.0;
-			}
-
-			return (Value - Minimum) / (Maximum - Minimum);
-		}
-
-		/// <summary>
-		/// Lerp from one point in a gradient to another.
-		/// </summary>
-		/// <param name="C1">Color 1 to lerp.</param>
-		/// <param name="C2">Color 2 to lerp.</param>
-		/// <param name="Value">0.0-1.0</param>
-		/// <returns>Mixed color at index.</returns>
-		internal static Color Lerp(Color C1, Color C2, double Value)
-		{
-			if (Value < 0.0 || Value > 1.0)
-			{
-				throw new IndexOutOfRangeException("'Value' expects 0.0-1.0.");
-			}
-
-			return C1 + (C2 - C1) * Value;
-		}
-
-		/// <summary>
-		/// Lerp from one point in a gradient to another.
-		/// </summary>
-		/// <param name="Colors">Colors to lerp.</param>
-		/// <param name="Value">0.0-1.0</param>
-		/// <returns>Mixed color at index.</returns>
-		internal static Color Lerp(Color[] Colors, double Value)
-		{
-			int stopLength = 1 / (Colors.Length - 1);
-			double valueRatio = Value / stopLength;
-			int stopIndex = (int)Math.Floor(valueRatio);
-
+		/// <param name="Colors">Colors to interpolate.</param>
+		/// <param name="Normal">Index between 0.0 and 1.1.</param>
+		/// <returns>Interpolated color.</returns>
+		internal static Color InterpolateColors(Color[] Colors, double Normal)
+		{ 
+			double valueRatio = Normal / (1 / (Colors.Length - 1));
+			double stopIndex = Math.Floor(valueRatio);
 			if (stopIndex == (Colors.Length - 1))
 			{
 				return Colors[^1];
 			}
 			double stopFraction = valueRatio % 1;
-			return Lerp(Colors[stopIndex], Colors[stopIndex + 1], stopFraction);
+			return InterpolateColor(Colors[(int)stopIndex], Colors[(int)stopIndex + 1], stopFraction);
+		}
+		/// <summary>
+		/// Interpolate between two colors in a normal going from 0.0 to 1.0.
+		/// </summary>
+		/// <param name="C1">Color #1.</param>
+		/// <param name="C2">Color #1.</param>
+		/// <param name="Normal">Index between 0.0 and 1.0.</param>
+		/// <returns>Interpolated color.</returns>
+		internal static Color InterpolateColor(Color C1, Color C2, double Normal)
+		{
+			if (Normal > 1)
+			{
+				return C2;
+			}
+			if (Normal < 0)
+			{
+				return C1;
+			}
+
+			return new()
+			{
+				A = (byte)(C1.A + (C2.A - C1.A) * Normal),
+				R = (byte)(C1.R + (C2.R - C1.R) * Normal),
+				G = (byte)(C1.G + (C2.G - C1.G) * Normal),
+				B = (byte)(C1.B + (C2.B - C1.B) * Normal),
+			};
 		}
 	}
 }

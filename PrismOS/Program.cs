@@ -10,10 +10,11 @@ namespace PrismOS
 {
 	public unsafe class Program : Kernel
 	{
-		// TO-DO: Color config class
+		// TO-DO: Color config class (maybe?)
 		// TO-DO: PrismGL2D.Extentions.VBEConsole
-		// TO-DO: Debug key presses
+		// TO-DO: Debug key presses (not firing events?
 		// TO-DO: General cleaning
+		// TO-DO: fix gradients
 
 		protected override void BeforeRun()
 		{
