@@ -23,5 +23,15 @@ namespace PrismTools
 			Key = default;
 			return false;
 		}
+
+		/// <summary>
+		/// A non-blocking key read method.
+		/// </summary>
+		/// <returns>The currently pressed key.</returns>
+		public static ConsoleKeyInfo ReadKey()
+		{
+			TryReadKey(out ConsoleKeyInfo Key);
+			return Key;
+		}
 	}
 }

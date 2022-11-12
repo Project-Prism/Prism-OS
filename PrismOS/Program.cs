@@ -11,7 +11,7 @@ namespace PrismOS
 	public unsafe class Program : Kernel
 	{
 		// TO-DO: Color config class (maybe?)
-		// TO-DO: PrismGL2D.Extentions.VBEConsole
+		// TO-DO: fix PrismGL2D.Extentions.VBEConsole
 		// TO-DO: Debug key presses (not firing events?
 		// TO-DO: General cleaning
 		// TO-DO: fix gradients
