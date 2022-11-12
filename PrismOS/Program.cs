@@ -28,6 +28,7 @@ namespace PrismOS
 				Desktop.Install("GFXTest", () => _ = new GFXTest());
 				Desktop.Install("TickTackToe", () => _ = new TickTackToe());
 				Desktop.Install("Physics", () => _ = new Physics());
+				Desktop.Install("Doom", () => _ = new Doom());
 			}
 			catch
 			{

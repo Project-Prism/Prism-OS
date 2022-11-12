@@ -21,7 +21,7 @@ namespace PrismUI
 			X = (int)(Width - (Width / 2) + (Windows.Count * Config.Scale));
 			Generate(Title, IsDraggable);
 		}
-
+		
 		#region Methods
 
 		public override void OnKey(ConsoleKeyInfo Key)

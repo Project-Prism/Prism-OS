@@ -82,8 +82,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="XSharp">
-        <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\XSharp.dll</HintPath>
+      <Reference Include="Cosmos.HAL2">
+        <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
       </Reference>
     </ItemGroup>
 
