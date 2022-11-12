@@ -15,7 +15,7 @@ namespace PrismUI.Controls
 
 		#region Methods
 
-		internal override void OnDraw(Graphics G)
+		public override void OnDraw(Graphics G)
 		{
 			base.OnDraw(G);
 

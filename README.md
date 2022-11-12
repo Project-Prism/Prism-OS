@@ -15,6 +15,11 @@
 
 <hr/>
 
+# Quick note
+You may see projects nested in one another in references tab, and it looks confusing. However this is only for that project's sake and will not need to be included in external projects unless using calls or variables that include those library types. For instance, you might want to use PrismUI in your own project, but it references PrismGL2D, which references PrismBinary. As long as you don't using anything withing PrismGL2D that depends on PrismBinary, you will only need to import PrismGL2D.dll.
+
+<hr/>
+
 # Screenshots
 ![image](https://user-images.githubusercontent.com/76945439/197369522-348d341a-20ba-4209-80d1-10a5cb489f7a.png)
 

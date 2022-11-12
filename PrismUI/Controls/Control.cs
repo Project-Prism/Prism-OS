@@ -100,15 +100,15 @@ namespace PrismUI.Controls
 
         #region Methods
 
-        internal virtual void OnClick(int X, int Y, MouseState State)
+        public virtual void OnClick(int X, int Y, MouseState State)
         {
             OnClickEvent?.Invoke(X, Y, State);
         }
-        internal virtual void OnKey(ConsoleKeyInfo Key)
+        public virtual void OnKey(ConsoleKeyInfo Key)
         {
             OnKeyEvent?.Invoke(Key);
         }
-        internal virtual void OnDraw(Graphics G)
+        public virtual void OnDraw(Graphics G)
         {
             // Clear
             if (HasBackground)

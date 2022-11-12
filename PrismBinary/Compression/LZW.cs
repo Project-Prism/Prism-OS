@@ -2,9 +2,17 @@
 
 namespace PrismBinary.Compression
 {
+    /// <summary>
+    /// LZW (De)compression class.
+    /// </summary>
     public static class LZW
     {
-        public static byte[] LZWCompress(byte[] RawData)
+        /// <summary>
+        /// Compresses an array or bytes using LZW compression.
+        /// </summary>
+        /// <param name="Binary">The binary data to be compressed.</param>
+        /// <returns>The compressed version of the input.</returns>
+        public static byte[] LZWCompress(byte[] Binary)
         {
             // build the dictionary
             Dictionary<string, int> Dictionary = new();
@@ -16,7 +24,7 @@ namespace PrismBinary.Compression
                 Dictionary.Add(((char)I).ToString(), I);
             }
 
-            foreach (char C in RawData)
+            foreach (char C in Binary)
             {
                 string WC = W + C;
                 if (Dictionary.ContainsKey(WC))
@@ -42,12 +50,17 @@ namespace PrismBinary.Compression
             return ReturnBytes;
         }
 
-        public static byte[] LZWDecompress(byte[] CompressedRawData)
+        /// <summary>
+        /// Decompresses an array of bytes originaly compressed with LZW compression.
+        /// </summary>
+        /// <param name="Binary">The binary data to be decompressed.</param>
+        /// <returns>the decompressed version of the input.</returns>
+        public static byte[] LZWDecompress(byte[] Binary)
         {
             Dictionary<int, string> Dictionary = new();
 
-            int[] CompressedTemp = new int[CompressedRawData.Length * sizeof(byte)];
-            Buffer.BlockCopy(CompressedRawData, 0, CompressedTemp, 0, CompressedTemp.GetLength(0));
+            int[] CompressedTemp = new int[Binary.Length * sizeof(char)];
+            Buffer.BlockCopy(Binary, 0, CompressedTemp, 0, CompressedTemp.GetLength(0));
             List<int> Compressed = new();
             for (int I = 0; I < CompressedTemp.Length; I++)
             {

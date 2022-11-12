@@ -24,7 +24,7 @@ namespace PrismUI
 
 		#region Methods
 
-		internal override void OnKey(ConsoleKeyInfo Key)
+		public override void OnKey(ConsoleKeyInfo Key)
 		{
 			switch (Key.Key)
 			{
@@ -44,7 +44,7 @@ namespace PrismUI
 
 			base.OnKey(Key);
 		}
-		internal override void OnDraw(Graphics G)
+		public override void OnDraw(Graphics G)
 		{ // tbh i do not really understand my logic behind this, it needs to be re-done eventualy but for the time being, it works okay enough.
 			base.OnDraw(G);
 
@@ -105,19 +105,6 @@ namespace PrismUI
 			Text = Title;
 
 			Windows.Add(this);
-		}
-
-		/// <summary>
-		/// Draw the frame onto a buffer.
-		/// </summary>
-		/// <param name="G">Buffer to draw to.</param>
-		public void Update(Graphics G)
-		{
-			if (Windows[^1] == this && CanType && KeyboardEx.TryReadKey(out ConsoleKeyInfo Key))
-			{
-				OnKey(Key);
-			}
-			OnDraw(G);
 		}
 
 		/// <summary>

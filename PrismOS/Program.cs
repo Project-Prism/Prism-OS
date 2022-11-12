@@ -4,6 +4,7 @@ using Cosmos.System.FileSystem;
 using Cosmos.System;
 using PrismOS.Apps;
 using PrismTools;
+using PrismUI.UX;
 using PrismUI;
 
 namespace PrismOS
@@ -12,18 +13,26 @@ namespace PrismOS
 	{
 		// TO-DO: Color config class (maybe?)
 		// TO-DO: fix PrismGL2D.Extentions.VBEConsole
-		// TO-DO: Debug key presses (not firing events?
 		// TO-DO: General cleaning
 		// TO-DO: fix gradients
 
 		protected override void BeforeRun()
 		{
 			Debugger = new("Kernel");
-			Desktop = new();
 
-			DialogBox.ShowMessageDialog("Welcome", "Welcome to prism OS!\nIf you are wondering...\nThe seal in the background is named shawn.");
-			Debugger.Log("Kernel initialized", Debugger.Severity.Ok);
-
+			try
+			{
+				Desktop = new(Assets.Wallpaper, Assets.Splash, Assets.Cursor, Assets.Vista);
+				Desktop.Install("Shutdown", () => Power.Shutdown());
+				Desktop.Install("Explorer", () => _ = new Explorer());
+				Desktop.Install("GFXTest", () => _ = new GFXTest());
+				Desktop.Install("TickTackToe", () => _ = new TickTackToe());
+				Desktop.Install("Physics", () => _ = new Physics());
+			}
+			catch
+			{
+				Debugger.Log("Unable to initialize the desktop!");
+			}
 			try
 			{
 				_ = new DHCPClient().SendDiscoverPacket();
@@ -44,6 +53,9 @@ namespace PrismOS
 			{
 				Debugger.Log("Unable to initialize filesystem!", Debugger.Severity.Warning);
 			}
+
+			DialogBox.ShowMessageDialog("Welcome", "Welcome to prism OS!\nIf you are wondering...\nThe seal in the background is named shawn.");
+			Debugger.Log("Kernel initialized", Debugger.Severity.Ok);
 		}
 		protected override void Run()
 		{

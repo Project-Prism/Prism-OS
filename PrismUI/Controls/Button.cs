@@ -12,7 +12,7 @@ namespace PrismUI.Controls
             this.Text = Text;
 		}
 
-        internal override void OnDraw(Graphics G)
+        public override void OnDraw(Graphics G)
         {
             base.OnDraw(G);
 

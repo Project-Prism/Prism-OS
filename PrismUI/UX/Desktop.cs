@@ -1,19 +1,19 @@
-﻿using PrismGL2D.Extentions;
+﻿using Cosmos.System.Audio.IO;
+using PrismGL2D.Extentions;
 using PrismUI.Controls;
 using Cosmos.System;
 using PrismAudio;
 using PrismTools;
 using PrismGL2D;
-using PrismUI;
 
-namespace PrismOS.Apps
+namespace PrismUI.UX
 {
 	public class Desktop
 	{
 		/// <summary>
 		/// Creates a new instance of the <see cref="Desktop"/> class.
 		/// </summary>
-		public Desktop()
+		public Desktop(Image Wallpaper, Image Splash, Image Cursor, MemoryAudioStream Chime)
 		{
 			Debugger = new("Desktop");
 			System.Console.Clear();
@@ -21,38 +21,34 @@ namespace PrismOS.Apps
 			#region Initial setup
 
 			Canvas = new();
-			Overlay = new();
-			Wallpaper = Assets.Wallpaper.Scale(Canvas.Width, Canvas.Height);
-			MouseManager.ScreenWidth = Canvas.Width;
+			this.Wallpaper = Wallpaper.Scale(Canvas.Width, Canvas.Height);
 			MouseManager.ScreenHeight = Canvas.Height;
-			Debugger.Log("Initialized desktop drawing", Debugger.Severity.Ok);
+			MouseManager.ScreenWidth = Canvas.Width;
+			this.Cursor = Cursor;
+			Debugger.Log("Initialized desktop drawing.", Debugger.Severity.Ok);
 
 			#endregion
 
 			#region Splash Screen
 
-			Splash = (Image)Assets.Splash.Scale(Canvas.Height / 3, Canvas.Height / 3);
+			Splash = (Image)Splash.Scale(Canvas.Height / 3, Canvas.Height / 3);
 			Canvas.DrawImage((int)((Canvas.Width / 2) - (Splash.Height / 2)), (int)((Canvas.Height / 2) - Splash.Height / 2), Splash);
 			Canvas.Update();
-			AudioPlayer.Play(Assets.Vista);
+			AudioPlayer.Play(Chime);
 
 			#endregion
 
 			#region Launcher
 
-			Launcher = new(Canvas.Width, Control.Config.Scale, Launcher.GetType().FullName, false)
+			Launcher = new(Canvas.Width, Control.Config.Scale, "PrismUI.UX.Launcher", false)
 			{
 				Y = (int)(Canvas.Height - Control.Config.Scale),
+				X = 0,
 				NeedsFront = false,
 				HasBorder = false,
 				CanType = false,
 			};
-			Install("Shutdown", () => Power.Shutdown());
-			Install("Explorer", () => _ = new Explorer());
-			Install("GFXTest", () => _ = new GFXTest());
-			Install("TickTackToe", () => _ = new TickTackToe());
-			Install("Physics", () => _ = new Physics());
-			Debugger.Log("Initialized launcher", Debugger.Severity.Ok);
+			Debugger.Log("Initialized launcher.", Debugger.Severity.Ok);
 
 			#endregion
 		}
@@ -71,17 +67,24 @@ namespace PrismOS.Apps
 		{
 			Canvas.DrawImage(0, 0, Wallpaper, false);
 
+			bool CallKeyEvent = KeyboardEx.TryReadKey(out ConsoleKeyInfo Key);
 			foreach (Window F in Window.Windows)
 			{
-				if (F.IsEnabled)
+				if (!F.IsEnabled)
 				{
-					F.Update(Canvas);
+					continue;
 				}
+
+				if (CallKeyEvent && Window.Windows[^1] == F && F.CanType)
+				{
+					F.OnKey(Key);
+				}
+				F.OnDraw(Canvas);
 			}
-			Overlay.OnUpdate(Canvas);
+			Status.DrawStatus(Canvas);
 
 			// Draw Cursor And Update The Screen
-			Canvas.DrawImage((int)MouseManager.X, (int)MouseManager.Y, Assets.Cursor);
+			Canvas.DrawImage((int)MouseManager.X, (int)MouseManager.Y, Cursor);
 			Canvas.Update();
 		}
 
@@ -93,9 +96,7 @@ namespace PrismOS.Apps
 		public Debugger Debugger;
 		public VBECanvas Canvas;
 		public Window Launcher;
-		public Status Overlay;
-		public Image Splash;
-		public Window Menu;
+		public Image Cursor;
 
 		#endregion
 	}

@@ -15,7 +15,7 @@ namespace PrismUI.Controls
 
 		public Image Source { get; set; }
 
-		internal override void OnDraw(Graphics G)
+		public override void OnDraw(Graphics G)
 		{
 			base.OnDraw(G);
 

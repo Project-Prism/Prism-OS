@@ -19,7 +19,7 @@ namespace PrismUI.Controls
 
         public Image Source { get; set; }
 
-        internal unsafe override void OnDraw(Graphics G)
+        public unsafe override void OnDraw(Graphics G)
         {
             // Possibly not needed
             // base.OnDraw(G);

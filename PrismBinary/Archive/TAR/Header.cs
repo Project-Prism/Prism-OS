@@ -3,7 +3,7 @@
 namespace PrismBinary.Archive.TAR
 {
     /// <summary>
-    /// TAR file header, used for loading TAR files.
+    /// The header file for posix tar files.
     /// </summary>
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public unsafe struct Header

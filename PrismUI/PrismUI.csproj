@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PrismAudio\PrismAudio.csproj" />
     <ProjectReference Include="..\PrismGL2D\PrismGL2D.csproj" />
     <ProjectReference Include="..\PrismTools\PrismTools.csproj" />
   </ItemGroup>

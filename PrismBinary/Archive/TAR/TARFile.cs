@@ -12,7 +12,7 @@ namespace PrismBinary.Archive.TAR
         /// <summary>
         /// Creates a new instance of the <see cref="TARFile"/> class.
         /// </summary>
-        /// <param name="Binary">Ray binary of a tar file.</param>
+        /// <param name="Binary">Raw binary of a tar file.</param>
         public TARFile(byte[] Binary)
         {
             _Files = new();
