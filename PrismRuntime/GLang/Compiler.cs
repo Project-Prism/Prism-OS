@@ -41,27 +41,27 @@ namespace PrismRuntime.GLang
 							switch (ReadArgument(ref I, Input))
 							{
 								case "FilledRectangle":
-									Output.Write((byte)DrawMode.FilledRectangle);
+									Output.Write((byte)DrawCode.FilledRectangle);
 									Output.Write(Read32(ref I, Input)); // X
 									Output.Write(Read32(ref I, Input)); // Y
 									Output.Write(Read32(ref I, Input)); // Width
 									Output.Write(Read32(ref I, Input)); // Height
 									break;
 								case "Rectangle":
-									Output.Write((byte)DrawMode.Rectangle);
+									Output.Write((byte)DrawCode.Rectangle);
 									Output.Write(Read32(ref I, Input)); // X
 									Output.Write(Read32(ref I, Input)); // Y
 									Output.Write(Read32(ref I, Input)); // Width
 									Output.Write(Read32(ref I, Input)); // Height
 									break;
 								case "FilledCircle":
-									Output.Write((byte)DrawMode.FilledCircle);
+									Output.Write((byte)DrawCode.FilledCircle);
 									Output.Write(Read32(ref I, Input)); // X
 									Output.Write(Read32(ref I, Input)); // Y
 									Output.Write(Read32(ref I, Input)); // Radius
 									break;
 								case "Circle":
-									Output.Write((byte)DrawMode.Circle);
+									Output.Write((byte)DrawCode.Circle);
 									Output.Write(Read32(ref I, Input)); // X
 									Output.Write(Read32(ref I, Input)); // Y
 									Output.Write(Read32(ref I, Input)); // Radius

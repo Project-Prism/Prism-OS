@@ -1,6 +1,6 @@
 ﻿namespace PrismRuntime.GLang.Structure
 {
-	public enum DrawMode
+	public enum DrawCode
 	{
 		FilledRectangle,
 		Rectangle,

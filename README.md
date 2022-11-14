@@ -2,16 +2,17 @@
 <h4>Created on May 11th, 2021, 1:26 AM UTC-8</h4>
 
 # About
-#### Prism OS is a [Cosmos](https://github.com/CosmosOS/Cosmos) Based Operating System Developed With C#.
-#### This Project is Made Possible by Cosmos and the Community Around it, We Give a Huge Thanks to All of the Developers that Contribute to and Support it, Our Work Would Not be Possible Without it.
-###### Have any problems? Found a bug? Just want to chat? [Join the discord](https://discord.gg/DdERgtGmF6)!
-###### Visit our website [here](https://prism-project.net/)!
+Prism OS is a [Cosmos](https://github.com/CosmosOS/Cosmos) Based Operating System Developed With C#.
+
+This Project is Made Possible by Cosmos and the Community Around it, We Give a Huge Thanks to All of the Developers that Contribute to and Support it, Our Work Would Not be Possible Without it.
+
+>Have any problems? Found a bug? Just want to chat? [Join the discord](https://discord.gg/DdERgtGmF6)!
 
 <hr/>
 
 # Donations
-#### Donations aren't needed at the moment but they would show me support and give me motivation to continue the project. You can donate to our monero wallet:
-###### 44WnT2itBkUWzNEHE2xcAEJcSR8jpBmuaPujVNFZvh1PHjPkH9pi2QnJXEd1vU8J4vUZAKpVJTtuAA1CzA7XqFGoMzmuomy
+Donations aren't needed at the moment but they would show me support and give me motivation to continue the project. You can donate to our monero wallet:
+> 44WnT2itBkUWzNEHE2xcAEJcSR8jpBmuaPujVNFZvh1PHjPkH9pi2QnJXEd1vU8J4vUZAKpVJTtuAA1CzA7XqFGoMzmuomy
 
 <hr/>
 
@@ -102,7 +103,12 @@ These are the avalable syscalls Prism OS offers, the EAX value will always becom
 
 ## Contributing
 
-#### Want to Add Something New to Prism OS? Simply Create a Pull Request and We'll Review it. (Your Code Should Preferably Follow [These](https://github.com/Project-Prism/Prism-OS/blob/main/CONTRIBUTING.md) Guidelines)
+Want to Add Something New to Prism OS? Simply Create a Pull Request and We'll Review it. (Your Code Should Preferably Follow [These](https://github.com/Project-Prism/Prism-OS/blob/main/CONTRIBUTING.md) Guidelines)
+
+<hr/>
+
+## See also:
+[GLang documentation](https://github.com/Project-Prism/Prism-OS/tree/main/PrismRuntime/GLang/README.md)
 
 <hr/>
 

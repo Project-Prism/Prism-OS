@@ -35,10 +35,10 @@ namespace PrismRuntime.GLang
 						Canvas.Clear(Reader.ReadUInt32());
 						break;
 					case OPCode.Draw:
-						switch ((DrawMode)Reader.ReadByte())
+						switch ((DrawCode)Reader.ReadByte())
 						{
 							#region Rectangle
-							case DrawMode.FilledRectangle:
+							case DrawCode.FilledRectangle:
 								X = Reader.ReadUInt32();
 								Y = Reader.ReadUInt32();
 								Width = Reader.ReadUInt32();
@@ -47,7 +47,7 @@ namespace PrismRuntime.GLang
 								Canvas.DrawFilledRectangle((int)X, (int)Y, Width, Height, 0, Color);
 								break;
 
-							case DrawMode.Rectangle:
+							case DrawCode.Rectangle:
 								X = Reader.ReadUInt32();
 								Y = Reader.ReadUInt32();
 								Width = Reader.ReadUInt32();
@@ -58,15 +58,15 @@ namespace PrismRuntime.GLang
 							#endregion
 
 							#region Triangle
-							case DrawMode.FilledTriangle:
+							case DrawCode.FilledTriangle:
 								break;
 
-							case DrawMode.Triangle:
+							case DrawCode.Triangle:
 								break;
 							#endregion
 
 							#region Circle
-							case DrawMode.FilledCircle:
+							case DrawCode.FilledCircle:
 								X = Reader.ReadUInt32();
 								Y = Reader.ReadUInt32();
 								Radius = Reader.ReadUInt32();
@@ -74,7 +74,7 @@ namespace PrismRuntime.GLang
 								Canvas.DrawFilledCircle((int)X, (int)Y, Radius, Color);
 								break;
 
-							case DrawMode.Circle:
+							case DrawCode.Circle:
 								X = Reader.ReadUInt32();
 								Y = Reader.ReadUInt32();
 								Radius = Reader.ReadUInt32();
@@ -85,14 +85,14 @@ namespace PrismRuntime.GLang
 
 							#region Misc
 
-							case DrawMode.Pixel:
+							case DrawCode.Pixel:
 								X = Reader.ReadUInt32();
 								Y = Reader.ReadUInt32();
 								Color = Reader.ReadUInt32();
 								Canvas[X, Y] = Color;
 								break;
 
-							case DrawMode.Line:
+							case DrawCode.Line:
 								break;
 
 							#endregion
