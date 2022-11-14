@@ -1,5 +1,4 @@
 ﻿using PrismRuntime.GLang.Structure;
-using PrismGL2D;
 
 namespace PrismRuntime.GLang
 {
@@ -34,13 +33,20 @@ namespace PrismRuntime.GLang
 							break;
 						case "Clear":
 							Output.Write((byte)OPCode.Clear);
-							Output.Write(ReadARGB(ref I, Input)); // Color
+							Output.Write(Read32(ref I, Input)); // Color
 							break;
 						case "Draw":
 							Output.Write((byte)OPCode.Draw);
-							
+
 							switch (ReadArgument(ref I, Input))
 							{
+								case "FilledRectangle":
+									Output.Write((byte)DrawMode.FilledRectangle);
+									Output.Write(Read32(ref I, Input)); // X
+									Output.Write(Read32(ref I, Input)); // Y
+									Output.Write(Read32(ref I, Input)); // Width
+									Output.Write(Read32(ref I, Input)); // Height
+									break;
 								case "Rectangle":
 									Output.Write((byte)DrawMode.Rectangle);
 									Output.Write(Read32(ref I, Input)); // X
@@ -48,15 +54,31 @@ namespace PrismRuntime.GLang
 									Output.Write(Read32(ref I, Input)); // Width
 									Output.Write(Read32(ref I, Input)); // Height
 									break;
+								case "FilledCircle":
+									Output.Write((byte)DrawMode.FilledCircle);
+									Output.Write(Read32(ref I, Input)); // X
+									Output.Write(Read32(ref I, Input)); // Y
+									Output.Write(Read32(ref I, Input)); // Radius
+									break;
+								case "Circle":
+									Output.Write((byte)DrawMode.Circle);
+									Output.Write(Read32(ref I, Input)); // X
+									Output.Write(Read32(ref I, Input)); // Y
+									Output.Write(Read32(ref I, Input)); // Radius
+									break;
 							}
 
-							Output.Write(ReadARGB(ref I, Input)); // Color
+							Output.Write(Read32(ref I, Input)); // Color
 							break;
 						case "Exit":
 							Output.Write((byte)OPCode.Exit);
 							break;
 						default:
 							throw new($"Invalid command '{T}'!");
+					}
+					while (Input[I] == ')' || Input[I] == ';' || Input[I] == ' ' || Input[I] == '\n')
+					{
+						I++;
 					}
 					T = "";
 				}
@@ -75,27 +97,15 @@ namespace PrismRuntime.GLang
 			}
 
 			string T = string.Empty;
-			while (Input[I] != ',')
+			while (Input[I] != ',' && Input[I] != ')')
 			{
-				T += Input[I];
+				T += Input[I++];
 			}
 			return T;
-		}
-		private static uint ReadARGB(ref int I, string Input)
-		{
-			return Color.GetPacked(
-				Read8(ref I, Input),
-				Read8(ref I, Input),
-				Read8(ref I, Input),
-				Read8(ref I, Input));
 		}
 		private static uint Read32(ref int I, string Input)
 		{
 			return uint.Parse(ReadArgument(ref I, Input));
-		}
-		private static byte Read8(ref int I, string Input)
-		{
-			return byte.Parse(ReadArgument(ref I, Input));
 		}
 	}
 }

@@ -2,9 +2,12 @@
 {
 	public enum DrawMode
 	{
+		FilledRectangle,
 		Rectangle,
+		FilledTriangle,
 		Triangle,
-		Cirlce,
+		FilledCircle,
+		Circle,
 		Pixel,
 		Line,
 	}

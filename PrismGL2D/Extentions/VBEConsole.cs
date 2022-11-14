@@ -25,6 +25,7 @@ namespace PrismGL2D.Extentions
 		public void Write(string Text)
 		{
 			Buffer += Text;
+			Update();
 		}
 		public void Write(char Char)
 		{
