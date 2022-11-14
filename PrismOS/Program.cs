@@ -15,6 +15,8 @@ namespace PrismOS
 		// TO-DO: fix PrismGL2D.Extentions.VBEConsole
 		// TO-DO: General cleaning
 		// TO-DO: fix gradients
+		// TO-DO: hex colors for glang
+		// TO-DO: mov, pop, push, syscall for glang
 
 		protected override void BeforeRun()
 		{
