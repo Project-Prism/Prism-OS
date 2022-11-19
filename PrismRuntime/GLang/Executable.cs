@@ -16,95 +16,101 @@ namespace PrismRuntime.GLang
 
 		public void Next()
 		{
-			if (IsEnabled)
+			if (Reader.BaseStream.Position == Reader.BaseStream.Length)
 			{
-				uint X;
-				uint Y;
-				uint Width;
-				uint Height;
-				uint Radius;
-				uint Color;
+				IsEnabled = false;
+			}
+			if (!IsEnabled)
+			{
+				return;
+			}
 
-				switch ((OPCode)Reader.ReadByte())
-				{
-					case OPCode.SetMode:
-						Canvas.Width = Reader.ReadUInt32();
-						Canvas.Height = Reader.ReadUInt32();
-						break;
-					case OPCode.Clear:
-						Canvas.Clear(Reader.ReadUInt32());
-						break;
-					case OPCode.Draw:
-						switch ((DrawCode)Reader.ReadByte())
-						{
-							#region Rectangle
-							case DrawCode.FilledRectangle:
-								X = Reader.ReadUInt32();
-								Y = Reader.ReadUInt32();
-								Width = Reader.ReadUInt32();
-								Height = Reader.ReadUInt32();
-								Color = Reader.ReadUInt32();
-								Canvas.DrawFilledRectangle((int)X, (int)Y, Width, Height, 0, Color);
-								break;
+			uint X;
+			uint Y;
+			uint Width;
+			uint Height;
+			uint Radius;
+			uint Color;
 
-							case DrawCode.Rectangle:
-								X = Reader.ReadUInt32();
-								Y = Reader.ReadUInt32();
-								Width = Reader.ReadUInt32();
-								Height = Reader.ReadUInt32();
-								Color = Reader.ReadUInt32();
-								Canvas.DrawRectangle((int)X, (int)Y, Width, Height, 0, Color);
-								break;
-							#endregion
+			switch ((OPCode)Reader.ReadByte())
+			{
+				case OPCode.SetMode:
+					Canvas.Width = Reader.ReadUInt32();
+					Canvas.Height = Reader.ReadUInt32();
+					break;
+				case OPCode.Clear:
+					Canvas.Clear(Reader.ReadUInt32());
+					break;
+				case OPCode.Draw:
+					switch ((DrawCode)Reader.ReadByte())
+					{
+						#region Rectangle
+						case DrawCode.FilledRectangle:
+							X = Reader.ReadUInt32();
+							Y = Reader.ReadUInt32();
+							Width = Reader.ReadUInt32();
+							Height = Reader.ReadUInt32();
+							Color = Reader.ReadUInt32();
+							Canvas.DrawFilledRectangle((int)X, (int)Y, Width, Height, 0, Color);
+							break;
 
-							#region Triangle
-							case DrawCode.FilledTriangle:
-								break;
+						case DrawCode.Rectangle:
+							X = Reader.ReadUInt32();
+							Y = Reader.ReadUInt32();
+							Width = Reader.ReadUInt32();
+							Height = Reader.ReadUInt32();
+							Color = Reader.ReadUInt32();
+							Canvas.DrawRectangle((int)X, (int)Y, Width, Height, 0, Color);
+							break;
+						#endregion
 
-							case DrawCode.Triangle:
-								break;
-							#endregion
+						#region Triangle
+						case DrawCode.FilledTriangle:
+							break;
 
-							#region Circle
-							case DrawCode.FilledCircle:
-								X = Reader.ReadUInt32();
-								Y = Reader.ReadUInt32();
-								Radius = Reader.ReadUInt32();
-								Color = Reader.ReadUInt32();
-								Canvas.DrawFilledCircle((int)X, (int)Y, Radius, Color);
-								break;
+						case DrawCode.Triangle:
+							break;
+						#endregion
 
-							case DrawCode.Circle:
-								X = Reader.ReadUInt32();
-								Y = Reader.ReadUInt32();
-								Radius = Reader.ReadUInt32();
-								Color = Reader.ReadUInt32();
-								Canvas.DrawCircle((int)X, (int)Y, Radius, Color);
-								break;
-							#endregion
+						#region Circle
+						case DrawCode.FilledCircle:
+							X = Reader.ReadUInt32();
+							Y = Reader.ReadUInt32();
+							Radius = Reader.ReadUInt32();
+							Color = Reader.ReadUInt32();
+							Canvas.DrawFilledCircle((int)X, (int)Y, Radius, Color);
+							break;
 
-							#region Misc
+						case DrawCode.Circle:
+							X = Reader.ReadUInt32();
+							Y = Reader.ReadUInt32();
+							Radius = Reader.ReadUInt32();
+							Color = Reader.ReadUInt32();
+							Canvas.DrawCircle((int)X, (int)Y, Radius, Color);
+							break;
+						#endregion
 
-							case DrawCode.Pixel:
-								X = Reader.ReadUInt32();
-								Y = Reader.ReadUInt32();
-								Color = Reader.ReadUInt32();
-								Canvas[X, Y] = Color;
-								break;
+						#region Misc
 
-							case DrawCode.Line:
-								break;
+						case DrawCode.Pixel:
+							X = Reader.ReadUInt32();
+							Y = Reader.ReadUInt32();
+							Color = Reader.ReadUInt32();
+							Canvas[X, Y] = Color;
+							break;
 
-							#endregion
+						case DrawCode.Line:
+							break;
 
-							default:
-								throw new("Unsupported OPCode.");
-						}
-						break;
-					case OPCode.Exit:
-						IsEnabled = false;
-						break;
-				}
+						#endregion
+
+						default:
+							throw new("Unsupported OPCode.");
+					}
+					break;
+				case OPCode.Exit:
+					IsEnabled = false;
+					break;
 			}
 		}
 

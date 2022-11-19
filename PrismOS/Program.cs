@@ -16,7 +16,6 @@ namespace PrismOS
 		// TO-DO: General cleaning
 		// TO-DO: fix gradients
 		// TO-DO: hex colors for glang
-		// TO-DO: mov, pop, push, syscall for glang
 
 		protected override void BeforeRun()
 		{

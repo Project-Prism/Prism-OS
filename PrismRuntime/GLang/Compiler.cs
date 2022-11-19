@@ -86,6 +86,8 @@ namespace PrismRuntime.GLang
 				T += Input[I];
 			}
 
+			Output.Write((byte)OPCode.Exit);
+
 			return new(((MemoryStream)Output.BaseStream).ToArray());
 		}
 

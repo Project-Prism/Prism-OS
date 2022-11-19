@@ -83,15 +83,18 @@ namespace PrismGL2D
 					R = byte.Parse(Hex[2..4], NumberStyles.HexNumber);
 					G = byte.Parse(Hex[4..6], NumberStyles.HexNumber);
 					B = byte.Parse(Hex[6..8], NumberStyles.HexNumber);
-					return FromARGB(A, R, G, B);
+					break;
 				case 6:
+					A = 255;
 					R = byte.Parse(Hex[0..2], NumberStyles.HexNumber);
 					G = byte.Parse(Hex[2..4], NumberStyles.HexNumber);
 					B = byte.Parse(Hex[4..6], NumberStyles.HexNumber);
-					return FromARGB(255, R, G, B);
+					break;
 				default:
 					throw new FormatException("Hex value is not in correct format!");
 			}
+
+			return FromARGB(A, R, G ,B);
 		}
 
 		/// <summary>
