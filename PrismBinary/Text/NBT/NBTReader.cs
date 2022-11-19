@@ -1,8 +1,8 @@
 ﻿namespace PrismBinary.Text.NBT
 {
-	public class NBTDocument
+	public class NBTReader
 	{
-		public NBTDocument(string Source)
+		public NBTReader(string Source)
 		{
 			if (!NBTList.TryParse(Source, out RootList))
 			{

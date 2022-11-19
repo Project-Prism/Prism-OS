@@ -1,8 +1,8 @@
 ﻿namespace PrismBinary.Text.INI
 {
-	public class INIDocument
+	public class INIReader
 	{
-		public INIDocument(string Source)
+		public INIReader(string Source)
 		{
 			this.Source = Source;
 		}

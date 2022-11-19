@@ -15,6 +15,7 @@ namespace PrismOS
 		// TO-DO: fix PrismGL2D.Extentions.VBEConsole
 		// TO-DO: General cleaning
 		// TO-DO: fix gradients
+		// TO-DO: raycaster engine
 		// TO-DO: hex colors for glang
 
 		protected override void BeforeRun()
@@ -29,7 +30,6 @@ namespace PrismOS
 				Desktop.Install("GFXTest", () => _ = new GFXTest());
 				Desktop.Install("TickTackToe", () => _ = new TickTackToe());
 				Desktop.Install("Physics", () => _ = new Physics());
-				Desktop.Install("Doom", () => _ = new Doom());
 			}
 			catch
 			{

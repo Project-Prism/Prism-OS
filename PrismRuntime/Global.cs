@@ -1,76 +1,122 @@
 ﻿using Cosmos.Core.Memory;
 using Cosmos.Core;
+using PrismUI.Controls;
 using PrismUI;
 
 namespace PrismRuntime
 {
 	public static unsafe class Global
 	{
-		public static void SystemCall(ref uint* EAX, ref uint* EBX, ref uint* ECX, ref uint* EDX, ref uint* ESI, ref uint* EDI)
+		public static void SystemCall(ref uint EAX, ref uint EBX, ref uint ECX, ref uint EDX, ref uint ESI, ref uint EDI)
 		{
-			switch ((uint)EAX)
+			switch (EAX)
 			{
-				case 0x0: // Realloc
-					EAX = (uint*)Heap.Realloc((byte*)EBX, (uint)EDX);
+				#region Console
+
+				case 0x00: // WriteLine
+					Console.WriteLine(GetString((char*)EBX));
 					break;
-				case 0x1: // Alloc
-					EAX = (uint*)Heap.Alloc((uint)EBX);
+				case 0x01: // Write
+					Console.Write(GetString((char*)EBX));
 					break;
-				case 0x2: // Free
-					Heap.Free(EBX);
+				case 0x02: // Clear
+					Console.Clear();
 					break;
-				case 0x3: // Copy64
+				case 0x03: // Set Color
+					Console.ForegroundColor = (ConsoleColor)EBX;
+					Console.BackgroundColor = (ConsoleColor)ECX;
+					break;
+				case 0x04: // Reset Color
+					Console.ResetColor();
+					break;
+
+				#endregion
+
+				#region Memory
+
+				case 0x05: // Realloc
+					EAX = (uint)Heap.Realloc((byte*)EBX, EDX);
+					break;
+
+				case 0x06: // Alloc
+					EAX = (uint)Heap.Alloc(EBX);
+					break;
+
+				case 0x07: // Free
+					Heap.Free((uint*)EBX);
+					break;
+
+				case 0x08: // Set
+					*(uint*)EBX = ECX;
+					break;
+
+				case 0x09: // Get
+					EAX = *(uint*)EBX;
+					break;
+
+				case 0x10: // Copy64
 					for (int I = 0; I < (int)(int*)EDX; I++)
 					{
 						*((long**)EBX)[I] = *((long**)ECX)[I];
 					}
 					break;
-				case 0x4: // Copy32
-					MemoryOperations.Copy(EBX, ECX, (int)(int*)EDX);
+
+				case 0x11: // Copy32
+					MemoryOperations.Copy((uint*)EBX, (uint*)ECX, (int)(int*)EDX);
 					break;
-				case 0x5: // Copy16
+
+				case 0x12: // Copy16
 					MemoryOperations.Copy((ushort*)EBX, (ushort*)ECX, (int)(int*)EDX);
 					break;
-				case 0x6: // Copy8
+
+				case 0x13: // Copy8
 					MemoryOperations.Copy((byte*)EBX, (byte*)ECX, (int)(int*)EDX);
 					break;
-				case 0x7: // Fill64
+
+				case 0x14: // Fill64
 					for (int I = 0; I < (int)(int*)EDX; I++)
 					{
 						*((long**)EBX)[I] = (long)(long*)ECX;
 					}
 					break;
-				case 0x8: // Fill32
-					MemoryOperations.Fill(EBX, (uint)ECX, (int)(int*)EDX);
+
+				case 0x15: // Fill32
+					MemoryOperations.Fill((uint*)EBX, ECX, (int)(int*)EDX);
 					break;
-				case 0x9: // Fill16
+
+				case 0x16: // Fill16
 					MemoryOperations.Fill((ushort*)EBX, (ushort)(ushort*)ECX, (int)(int*)EDX);
 					break;
-				case 0x10: // Fill8
+
+				case 0x17: // Fill8
 					MemoryOperations.Fill((byte*)EBX, (byte)(byte*)ECX, (int)(int*)EDX);
 					break;
-				case 0x11: // Print
-					Console.WriteLine(GetString((char*)EBX));
-					break;
-				case 0x12: // FRead
+
+				#endregion
+
+				#region Files
+
+				case 0x18: // Read
 					fixed (byte* PTR = File.ReadAllBytes(GetString((char*)EBX)))
 					{
-						EAX = (uint*)(uint)new FileInfo(GetString((char*)EBX)).Length;
-						MemoryOperations.Copy(ECX, (uint*)PTR, (int)EAX);
+						EAX = (uint)new FileInfo(GetString((char*)EBX)).Length;
+						MemoryOperations.Copy((uint*)ECX, (uint*)PTR, (int)EAX);
 					}
 					break;
-				case 0x13: // FWrite
-					byte[] Buffer = new byte[(uint)EDX];
+
+				case 0x19: // Write
+					byte[] Buffer = new byte[EDX];
 					fixed (byte* PTR = Buffer)
 					{
 						MemoryOperations.Copy(PTR, (byte*)ECX, Buffer.Length);
 					}
 					File.WriteAllBytes(GetString((char*)EBX), Buffer);
 					break;
-				case 0x14: // FDelete
+
+				case 0x20: // Remove
 					try
 					{
-						if ((uint)ECX == 0)
+						if (ECX == 0)
 						{
 							Directory.Delete(GetString((char*)EBX));
 						}
@@ -81,8 +127,9 @@ namespace PrismRuntime
 					}
 					catch { }
 					break;
-				case 0x15: // FMake
-					if ((uint)ECX == 0)
+
+				case 0x21: // Create
+					if (ECX == 0)
 					{
 						Directory.CreateDirectory(GetString((char*)EBX));
 					}
@@ -91,28 +138,58 @@ namespace PrismRuntime
 						File.Create(GetString((char*)EBX));
 					}
 					break;
-				case 0x16: // FExists
+
+				case 0x22: // Exists
 					if (Directory.Exists(GetString((char*)EBX)))
 					{
-						EAX = (uint*)1;
+						EAX = 1;
 					}
-					if (File.Exists(GetString((char*)EBX)))
+					else if (File.Exists(GetString((char*)EBX)))
 					{
-						EAX = (uint*)2;
+						EAX = 2;
 					}
 					else
 					{
-						EAX = (uint*)0;
+						EAX = 0;
 					}
 					break;
-				case 0x17: // FSize
-					EAX = (uint*)new FileInfo(GetString((char*)EBX)).Length;
+
+				case 0x23: // Size
+					EAX = (uint)new FileInfo(GetString((char*)EBX)).Length;
 					break;
-				case 0x18: // Prompt
+
+				#endregion
+
+				#region GUI
+
+				case 0x24: // Show Dialog
 					DialogBox.ShowMessageDialog(
 						GetString((char*)EBX),
 						GetString((char*)ECX));
 					break;
+
+				case 0x25: // Show Window
+					EAX = (uint)Window.Windows.Count;
+					Window.Windows.Add(new(new((char*)EBX)));
+					break;
+
+				case 0x28: // Add Control
+					Control C;
+					switch (EBX)
+					{
+						case 0x0:
+							C = new Button(ECX, EDX)
+							{
+								Text = new((char*)ESI)
+							};
+							break;
+						default:
+							return;
+					}
+					Window.Windows[(int)EDI].Controls.Add(C);
+					break;
+
+					#endregion
 			}
 		}
 

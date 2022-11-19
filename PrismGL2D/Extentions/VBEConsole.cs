@@ -1,5 +1,5 @@
-﻿using Cosmos.System;
-using Cosmos.Core;
+﻿using Cosmos.Core;
+using PrismTools;
 
 namespace PrismGL2D.Extentions
 {
@@ -39,7 +39,7 @@ namespace PrismGL2D.Extentions
 
 			while (true)
 			{
-				if (PrismTools.KeyboardEx.TryReadKey(out ConsoleKeyInfo Key))
+				if (KeyboardEx.TryReadKey(out ConsoleKeyInfo Key))
 				{
 					switch (Key.Key)
 					{

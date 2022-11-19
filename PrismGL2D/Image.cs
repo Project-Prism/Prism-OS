@@ -1,5 +1,5 @@
 ﻿using System.Runtime.InteropServices;
-using PrismBinary.Compression;
+using PrismBinary.Compression.ZLib;
 using System.Text;
 using Cosmos.Core;
 
@@ -98,7 +98,7 @@ namespace PrismGL2D
 							Buffer.Add(Reader.ReadByte());
 						}
 
-						List<byte> Data = ZLIB.Inflate(Buffer);
+						List<byte> Data = DeflateStream.Inflate(Buffer);
 
 						BinaryReader D = new(new MemoryStream(Data.ToArray()));
 

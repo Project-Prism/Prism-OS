@@ -76,28 +76,37 @@ You may see projects nested in one another in references tab, and it looks confu
 ## Syscalls
 
 These are the avalable syscalls Prism OS offers, the EAX value will always become the return value after calling.
+All references to strings will be pointers to null-terminated char arrays.
 
-| Name       | EAX  | EBX         | ECX              | EDX    | ESI | EDI | Returns                            |
-|------------|------|-------------|------------------|--------|-----|-----|------------------------------------|
-| Realloc    | 0x0  | Old Pointer | New Size         | -      | -   | -   | New Pointer                        |
-| Alloc      | 0x1  | Size        | -                | -      | -   | -   | Pointer                            |
-| Free       | 0x2  | Pointer     | -                | -      | -   | -   | -                                  |
-| Copy64     | 0x3  | Destination | Source           | Size   | -   | -   | -                                  |
-| Copy32     | 0x4  | Destination | Source           | Size   | -   | -   | -                                  |
-| Copy16     | 0x5  | Destination | Source           | Size   | -   | -   | -                                  |
-| Copy8      | 0x6  | Destination | Source           | Size   | -   | -   | -                                  |
-| Fill64     | 0x7  | Destination | Value            | Size   | -   | -   | -                                  |
-| Fill32     | 0x8  | Destination | Value            | Size   | -   | -   | -                                  |
-| Fill16     | 0x9  | Destination | Value            | Size   | -   | -   | -                                  |
-| Fill8      | 0x10 | Destination | Value            | Size   | -   | -   | -                                  |
-| Print      | 0x11 | Text        | -                | -      | -   | -   | -                                  |
-| FSRead     | 0x12 | FullPath    | Write Buffer ptr | -      | -   | -   | Length                             |
-| FSWrite    | 0x13 | FullPath    | Read Buffer ptr  | Length | -   | -   | -                                  |
-| FSDelete   | 0x14 | FullPath    | 0=Folder, 1=File | -      | -   | -   | -                                  |
-| FSMake     | 0x15 | FullPath    | 0=Folder, 1=File | -      | -   | -   | 0=Exists,1=NoPath, 1=Success       |
-| FSExists   | 0x16 | FullPath    | -                | -      | -   | -   | 0=False, 1=Folder, 2=foldFileer    |
-| FSize      | 0x17 | FullPath    | -                | -      | -   | -   | Size of file in bytes              |
-| Prompt     | 0x18 | Title       | Message          | -      | -   | -   | -                                  |
+| Name                | EAX  | EBX          | ECX      | EDX  | ESI | EDI | Returns                         |
+|---------------------|------|--------------|----------|------|-----|-----|---------------------------------|
+| Console.WriteLine   | 0x00 | Message      | -        | -    | -   | -   | -                               |
+| Console.Write       | 0x01 | Message      | -        | -    | -   | -   | -                               |
+| Console.Clear       | 0x02 | -            | -        | -    | -   | -   | -                               |
+| Console.SetColor    | 0x03 | FG Color     | BG Color | -    | -   | -   | -                               |
+| Console.ResetColor  | 0x04 | -            | -        | -    | -   | -   | -                               |
+| Memory.Realloc      | 0x05 | Old Address  | New Size | -    | -   | -   | New Address                     |
+| Memory.Alloc        | 0x06 | Size         | -        | -    | -   | -   | Address                         |
+| Memory.Free         | 0x07 | Address      | -        | -    | -   | -   | -                               |
+| Memory.Set          | 0x08 | Address      | Value    | -    | -   | -   | -                               |
+| Memory.Get          | 0x09 | Address      | -        | -    | -   | -   | Value                           |
+| Memory.Copy64       | 0x10 | Destination  | Source   | Size | -   | -   | -                               |
+| Memory.Copy32       | 0x11 | Destination  | Source   | Size | -   | -   | -                               |
+| Memory.Copy16       | 0x12 | Destination  | Source   | Size | -   | -   | -                               |
+| Memory.Copy8        | 0x13 | Destination  | Source   | Size | -   | -   | -                               |
+| Memory.Fill64       | 0x14 | Destination  | Value    | Size | -   | -   | -                               |
+| Memory.Fill32       | 0x15 | Destination  | Value    | Size | -   | -   | -                               |
+| Memory.Fill16       | 0x16 | Destination  | Value    | Size | -   | -   | -                               |
+| Memory.Fill8        | 0x17 | Destination  | Value    | Size | -   | -   | -                               |
+| File.Read           | 0x18 | Full Path    | -        | -    | -   | -   | Binary                          |
+| File.Write          | 0x19 | Full Path    | Binary   | -    | -   | -   | -                               |
+| File.Remove         | 0x20 | Full Path    | Name     | -    | -   | -   | -                               |
+| File.Create         | 0x21 | Full Path    | Name     | Type | -   | -   | -                               |
+| File.Exists         | 0x22 | Full Path    | -        | -    | -   | -   | 0 = False, 1 = File, 2 = Folder |
+| File.GetSize        | 0x23 | Full Path    | -        | -    | -   | -   | Size of the file                |
+| GUI.ShowDialogBox   | 0x24 | Title        | Message  | -    | -   | -   | -                               |
+| GUI.ShowWindow      | 0x25 | Title        | -        | -    | -   | -   | Index of new window             |
+| GUI.AddControl      | 0x26 | Window Index | Type     | Args | -   | -   | -                               |
 
 <hr/>
 

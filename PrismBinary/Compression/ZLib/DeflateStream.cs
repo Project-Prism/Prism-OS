@@ -1,4 +1,4 @@
-﻿namespace PrismBinary.Compression
+﻿namespace PrismBinary.Compression.ZLib
 {
     /// <summary>
     /// public domain zlib decode    
@@ -9,7 +9,7 @@
     /// - all output is written to a single output buffer
     /// - Warning: This is SLOW. It's no miracle .NET as well as Mono implement DeflateStream natively.
     /// </summary>
-    public class ZLIB
+    public class DeflateStream
     {
         /// <summary>
         /// Decode deflated data
@@ -18,7 +18,7 @@
         /// <returns>uncompressed output</returns>
         public static List<byte> Inflate(IList<byte> compressed)
         {
-            return new ZLIB { In = compressed }.Inflate();
+            return new DeflateStream { In = compressed }.Inflate();
         }
 
         #region internal

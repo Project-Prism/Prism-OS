@@ -1,8 +1,8 @@
 ﻿namespace PrismBinary.Text.XML
 {
-    public struct XMLDocument
+    public struct XMLReader
     {
-        public XMLDocument(string Source, int I = 1)
+        public XMLReader(string Source, int I = 1)
         {
             RootNode = new(Source, ref I);
             this.Source = Source[1..];
