@@ -1,4 +1,4 @@
-﻿namespace PrismRuntime.GLang.Structure
+﻿namespace PrismRuntime.GLang.Runtime.Structure
 {
 	public enum OPCode
 	{

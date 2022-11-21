@@ -1,4 +1,7 @@
-﻿using PrismRuntime.GLang.Structure;
+﻿using PrismRuntime.GLang.Tokenizer.Structure;
+using PrismRuntime.GLang.Runtime.Structure;
+using PrismRuntime.GLang.Tokenizer;
+using PrismRuntime.GLang.Runtime;
 
 namespace PrismRuntime.GLang
 {
@@ -7,107 +10,67 @@ namespace PrismRuntime.GLang
 		public static Executable Compile(string Input)
 		{
 			BinaryWriter Output = new(new MemoryStream());
-			string T = string.Empty;
 
-			for (int I = 0; I < Input.Length; I++)
+			GToken[] Tokens = Lexer.GetTokens(Input);
+
+			for (int I = 0; I < Tokens.Length; I++)
 			{
-				if (Input[I] == ' ' || Input[I] == '\n' || Input[I] == '\r')
+				if (Tokens[I].Type == GTokenType.Call)
 				{
-					continue;
-				}
-
-				if (Input[I] == '(')
-				{
-					if (T.Length == 0)
-					{
-						throw new($"Unexpected token '(' at char {I}.");
-					}
-
-					I++;
-					switch (T)
+					switch (Tokens[I].Value)
 					{
 						case "SetMode":
 							Output.Write((byte)OPCode.SetMode);
-							Output.Write(Read32(ref I, Input)); // Width
-							Output.Write(Read32(ref I, Input)); // Height
+							Output.Write(uint.Parse(Tokens[++I].Value));
+							Output.Write(uint.Parse(Tokens[++I].Value));
 							break;
 						case "Clear":
 							Output.Write((byte)OPCode.Clear);
-							Output.Write(Read32(ref I, Input)); // Color
+							Console.WriteLine(I);
+							Output.Write(uint.Parse(Tokens[++I].Value));
 							break;
 						case "Draw":
-							Output.Write((byte)OPCode.Draw);
-
-							switch (ReadArgument(ref I, Input))
+							switch (Tokens[++I].Value)
 							{
 								case "FilledRectangle":
 									Output.Write((byte)DrawCode.FilledRectangle);
-									Output.Write(Read32(ref I, Input)); // X
-									Output.Write(Read32(ref I, Input)); // Y
-									Output.Write(Read32(ref I, Input)); // Width
-									Output.Write(Read32(ref I, Input)); // Height
+									Output.Write(uint.Parse(Tokens[++I].Value)); // X
+									Output.Write(uint.Parse(Tokens[++I].Value)); // Y
+									Output.Write(uint.Parse(Tokens[++I].Value)); // Width
+									Output.Write(uint.Parse(Tokens[++I].Value)); // Height
 									break;
 								case "Rectangle":
 									Output.Write((byte)DrawCode.Rectangle);
-									Output.Write(Read32(ref I, Input)); // X
-									Output.Write(Read32(ref I, Input)); // Y
-									Output.Write(Read32(ref I, Input)); // Width
-									Output.Write(Read32(ref I, Input)); // Height
+									Output.Write(uint.Parse(Tokens[++I].Value)); // X
+									Output.Write(uint.Parse(Tokens[++I].Value)); // Y
+									Output.Write(uint.Parse(Tokens[++I].Value)); // Width
+									Output.Write(uint.Parse(Tokens[++I].Value)); // Height
 									break;
 								case "FilledCircle":
 									Output.Write((byte)DrawCode.FilledCircle);
-									Output.Write(Read32(ref I, Input)); // X
-									Output.Write(Read32(ref I, Input)); // Y
-									Output.Write(Read32(ref I, Input)); // Radius
+									Output.Write(uint.Parse(Tokens[++I].Value)); // X
+									Output.Write(uint.Parse(Tokens[++I].Value)); // Y
+									Output.Write(uint.Parse(Tokens[++I].Value)); // Radius
 									break;
 								case "Circle":
 									Output.Write((byte)DrawCode.Circle);
-									Output.Write(Read32(ref I, Input)); // X
-									Output.Write(Read32(ref I, Input)); // Y
-									Output.Write(Read32(ref I, Input)); // Radius
+									Output.Write(uint.Parse(Tokens[++I].Value)); // X
+									Output.Write(uint.Parse(Tokens[++I].Value)); // Y
+									Output.Write(uint.Parse(Tokens[++I].Value)); // Radius
 									break;
+								default:
+									throw new($"Unexpected shape '{Tokens[I].Value}' at token index {I}!");
 							}
-
-							Output.Write(Read32(ref I, Input)); // Color
-							break;
-						case "Exit":
-							Output.Write((byte)OPCode.Exit);
 							break;
 						default:
-							throw new($"Invalid command '{T}'!");
+							throw new($"Unexpected '{Tokens[I].Value}' at token index {I}!");
 					}
-					while (Input[I] == ')' || Input[I] == ';' || Input[I] == ' ' || Input[I] == '\n')
-					{
-						I++;
-					}
-					T = "";
 				}
-
-				T += Input[I];
 			}
 
 			Output.Write((byte)OPCode.Exit);
 
 			return new(((MemoryStream)Output.BaseStream).ToArray());
-		}
-
-		private static string ReadArgument(ref int I, string Input)
-		{
-			while (Input[I] == ',' || Input[I] == ' ' || Input[I] == '\n' || Input[I] == '\t')
-			{
-				I++;
-			}
-
-			string T = string.Empty;
-			while (Input[I] != ',' && Input[I] != ')')
-			{
-				T += Input[I++];
-			}
-			return T;
-		}
-		private static uint Read32(ref int I, string Input)
-		{
-			return uint.Parse(ReadArgument(ref I, Input));
 		}
 	}
 }

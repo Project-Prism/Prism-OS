@@ -1,7 +1,7 @@
-﻿using PrismRuntime.GLang.Structure;
+﻿using PrismRuntime.GLang.Runtime.Structure;
 using PrismGL2D;
 
-namespace PrismRuntime.GLang
+namespace PrismRuntime.GLang.Runtime
 {
 	public unsafe class Executable
 	{
