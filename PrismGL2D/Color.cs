@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Globalization;
+﻿using System.Globalization;
 
 namespace PrismGL2D
 {

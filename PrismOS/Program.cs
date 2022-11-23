@@ -11,12 +11,16 @@ namespace PrismOS
 {
 	public unsafe class Program : Kernel
 	{
-		// TO-DO: Color config class (maybe?)
+		/*
 		// TO-DO: fix PrismGL2D.Extentions.VBEConsole
 		// TO-DO: General cleaning
 		// TO-DO: fix gradients
 		// TO-DO: raycaster engine
 		// TO-DO: hex colors for glang
+		// TO-DO: ttf font loader & renderer
+		// TO-DO: Analog clock
+		// TO-DO: Working notepad
+		*/
 
 		protected override void BeforeRun()
 		{

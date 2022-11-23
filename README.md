@@ -16,11 +16,6 @@ Donations aren't needed at the moment but they would show me support and give me
 
 <hr/>
 
-# Quick note
-You may see projects nested in one another in references tab, and it looks confusing. However this is only for that project's sake and will not need to be included in external projects unless using calls or variables that include those library types. For instance, you might want to use PrismUI in your own project, but it references PrismGL2D, which references PrismBinary. As long as you don't using anything withing PrismGL2D that depends on PrismBinary, you will only need to import PrismGL2D.dll.
-
-<hr/>
-
 # Screenshots
 ![image](https://user-images.githubusercontent.com/76945439/197369522-348d341a-20ba-4209-80d1-10a5cb489f7a.png)
 
@@ -33,8 +28,8 @@ You may see projects nested in one another in references tab, and it looks confu
     <li>A UI library</li>
     <li>LZW Compression and Decompression</li>
     <li>Good Graphics API</li>
-    <li>System Event Sounds</li>
-    <li>Much More.
+    <li>Custom language lexer, compiler, and runtime.</li>
+    <li>And more...</li>
     <h6>Note: Some Of These Items Might Not Be Implemented All The Way</h6>
 </ul>
 
@@ -76,7 +71,8 @@ You may see projects nested in one another in references tab, and it looks confu
 ## Syscalls
 
 These are the avalable syscalls Prism OS offers, the EAX value will always become the return value after calling.
-All references to strings will be pointers to null-terminated char arrays.
+
+All references to strings will be pointers to null-terminated strings in whatever format was used, typicaly it will be UTF-8.
 
 | Name                | EAX  | EBX          | ECX      | EDX  | ESI | EDI | Returns                         |
 |---------------------|------|--------------|----------|------|-----|-----|---------------------------------|
