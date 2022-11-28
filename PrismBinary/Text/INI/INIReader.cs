@@ -81,8 +81,12 @@
 			{
 				if (Source[I] == '=' && Validate(Key, I))
 				{
-					int II = Source.IndexOfAny(new char[] { '\n', '\r', '\0' }, ++I);
-					Value = Source[I..II];
+					I++;
+					Value = string.Empty;
+					while (I < Source.Length && Source[I] != ' ' && Source[I] != '\n' && Source[I] != '\r')
+					{
+						Value += Source[I++];
+					}
 					return true;
 				}
 			}
@@ -147,7 +151,7 @@
 
 		public bool Validate(string Key, int Index)
 		{
-			if ((Index - Key.Length) == 0 || Index + Key.Length > Source.Length)
+			if ((Index - Key.Length) < 0 || Index + Key.Length >= Source.Length)
 			{ // Return At Invalid Index
 				return false;
 			}

@@ -1,6 +1,7 @@
-﻿using Cosmos.Core.Memory;
-using Cosmos.Core;
+﻿using PrismUI.Controls.Buttons;
+using Cosmos.Core.Memory;
 using PrismUI.Controls;
+using Cosmos.Core;
 using PrismUI;
 
 namespace PrismRuntime
@@ -169,8 +170,8 @@ namespace PrismRuntime
 					break;
 
 				case 0x25: // Show Window
-					EAX = (uint)Window.Windows.Count;
-					Window.Windows.Add(new(new((char*)EBX)));
+					EAX = (uint)WindowManager.Windows.Count;
+					WindowManager.Windows.Add(new(new((char*)EBX)));
 					break;
 
 				case 0x28: // Add Control
@@ -186,7 +187,7 @@ namespace PrismRuntime
 						default:
 							return;
 					}
-					Window.Windows[(int)EDI].Controls.Add(C);
+					WindowManager.Windows[(int)EDI].Controls.Add(C);
 					break;
 
 					#endregion

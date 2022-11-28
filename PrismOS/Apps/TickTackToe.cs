@@ -1,4 +1,4 @@
-﻿using PrismUI.Controls;
+﻿using PrismUI.Controls.Buttons;
 using Cosmos.System;
 using PrismUI;
 

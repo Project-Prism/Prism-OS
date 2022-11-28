@@ -1,7 +1,7 @@
 ﻿using Cosmos.System;
 using PrismGL2D;
 
-namespace PrismUI.Controls
+namespace PrismUI.Controls.Buttons
 {
     public class Switch : Control
     {

@@ -1,4 +1,5 @@
-﻿using Cosmos.System.Audio.IO;
+﻿using PrismUI.Controls.Buttons;
+using Cosmos.System.Audio.IO;
 using PrismGL2D.Extentions;
 using PrismUI.Controls;
 using Cosmos.System;
@@ -68,14 +69,14 @@ namespace PrismUI.UX
 			Canvas.DrawImage(0, 0, Wallpaper, false);
 
 			bool CallKeyEvent = KeyboardEx.TryReadKey(out ConsoleKeyInfo Key);
-			foreach (Window F in Window.Windows)
+			foreach (Window F in WindowManager.Windows)
 			{
 				if (!F.IsEnabled)
 				{
 					continue;
 				}
 
-				if (CallKeyEvent && Window.Windows[^1] == F && F.CanType)
+				if (CallKeyEvent && WindowManager.Windows[^1] == F && F.CanType)
 				{
 					F.OnKey(Key);
 				}

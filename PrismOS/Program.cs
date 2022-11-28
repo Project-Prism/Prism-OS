@@ -20,6 +20,8 @@ namespace PrismOS
 		// TO-DO: ttf font loader & renderer
 		// TO-DO: Analog clock
 		// TO-DO: Working notepad
+		// TO-DO: pasive rendering for gui
+		// TO-DO: re-factoring
 		*/
 
 		protected override void BeforeRun()

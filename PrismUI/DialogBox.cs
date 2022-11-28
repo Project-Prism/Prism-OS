@@ -1,4 +1,5 @@
-﻿using PrismUI.Controls;
+﻿using PrismUI.Controls.Buttons;
+using PrismUI.Controls;
 using Cosmos.System;
 
 namespace PrismUI

@@ -1,4 +1,5 @@
-﻿using PrismUI.Structure;
+﻿using PrismUI.Controls.Buttons;
+using PrismUI.Structure;
 using PrismUI.Controls;
 using Cosmos.System;
 using Cosmos.Core;
@@ -11,14 +12,14 @@ namespace PrismUI
 	{
 		public Window(uint Width, uint Height, string Title, bool IsDraggable = true) : base(Width, Height)
 		{
-			Y = (int)((VBE.getModeInfo().height / 2) - (Height / 2) + (Windows.Count * Config.Scale));
-			X = (int)((VBE.getModeInfo().width / 2) - (Width / 2) + (Windows.Count * Config.Scale));
+			Y = (int)((VBE.getModeInfo().height / 2) - (Height / 2) + (WindowManager.Windows.Count * Config.Scale));
+			X = (int)((VBE.getModeInfo().width / 2) - (Width / 2) + (WindowManager.Windows.Count * Config.Scale));
 			Generate(Title, IsDraggable);
 		}
 		public Window(string Title, bool IsDraggable = true) : base((uint)(VBE.getModeInfo().width / 2), (uint)(VBE.getModeInfo().height / 2))
 		{
-			Y = (int)(Height - (Height / 2) + (Windows.Count * Config.Scale));
-			X = (int)(Width - (Width / 2) + (Windows.Count * Config.Scale));
+			Y = (int)(Height - (Height / 2) + (WindowManager.Windows.Count * Config.Scale));
+			X = (int)(Width - (Width / 2) + (WindowManager.Windows.Count * Config.Scale));
 			Generate(Title, IsDraggable);
 		}
 		
@@ -59,7 +60,7 @@ namespace PrismUI
 					continue;
 				}
 
-				if (MouseEx.IsMouseWithin(X + Controls[I].X, Y + Controls[I].Y, Controls[I].Width, Controls[I].Height) && (this == Windows[^1] || !NeedsFront || !CanInteract))
+				if (MouseEx.IsMouseWithin(X + Controls[I].X, Y + Controls[I].Y, Controls[I].Width, Controls[I].Height) && (this == WindowManager.Windows[^1] || !NeedsFront || !CanInteract))
 				{
 					if (MouseManager.MouseState != MouseState.None)
 					{
@@ -104,7 +105,7 @@ namespace PrismUI
 			NeedsFront = true;
 			Text = Title;
 
-			Windows.Add(this);
+			WindowManager.Windows.Add(this);
 		}
 
 		/// <summary>
@@ -112,13 +113,13 @@ namespace PrismUI
 		/// </summary>
 		public void Select()
 		{
-			if (Windows[^1] == this)
+			if (WindowManager.Windows[^1] == this)
 			{
 				return;
 			}
 
-			Windows.Remove(this);
-			Windows.Add(this);
+			WindowManager.Windows.Remove(this);
+			WindowManager.Windows.Add(this);
 		}
 
 		/// <summary>
@@ -126,7 +127,7 @@ namespace PrismUI
 		/// </summary>
 		public void Close()
 		{
-			Windows.Remove(this);
+			WindowManager.Windows.Remove(this);
 			Dispose();
 		}
 
@@ -134,8 +135,6 @@ namespace PrismUI
 
 		#region Fields
 
-		// Window Manager Variables
-		public static List<Window> Windows { get; set; } = new();
 		/// <summary>
 		/// The button that is fired when the Enter key is pressed.
 		/// </summary>
