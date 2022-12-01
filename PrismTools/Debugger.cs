@@ -65,6 +65,42 @@
 			Console.WriteLine($"{Category} > {Message}");
 		}
 
+		/// <summary>
+		/// Logs a success message to the console.
+		/// </summary>
+		/// <param name="Message">Message details.</param>
+		public void Success(string Message)
+		{
+			Log(Message, Severity.Ok);
+		}
+
+		/// <summary>
+		/// Logs an info message to the console.
+		/// </summary>
+		/// <param name="Message">Message details.</param>
+		public void Info(string Message)
+		{
+			Log(Message, Severity.Info);
+		}
+
+		/// <summary>
+		/// Logs a warning to the console.
+		/// </summary>
+		/// <param name="Message">Message details.</param>
+		public void Warn(string Message)
+		{
+			Log(Message, Severity.Warning);
+		}
+
+		/// <summary>
+		/// Logs an error to the console.
+		/// </summary>
+		/// <param name="Message">Message details.</param>
+		public void Error(string Message)
+		{
+			Log(Message, Severity.Critical);
+		}
+
 		#endregion
 
 		#region Fields

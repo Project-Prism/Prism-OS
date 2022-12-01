@@ -4,8 +4,8 @@ Here is a full list of the currently supported formats:
 
 | Format Name | Working? |
 |-------------|----------|
-| XML         | Partialy |
+| ELF         | No?      |
 | INI         | Yes      |
 | LZW         | Yes      |
 | ZLib        | Yes      |
-| Tar         | Partialy |
+| Tar         | Yes      |

@@ -10,10 +10,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\PrismUI\PrismUI.csproj">
-			<Private>True</Private>
-			<CopyLocal>False</CopyLocal>
-		</ProjectReference>
+	  <ProjectReference Include="..\PrismTools\PrismTools.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -21,6 +18,9 @@
 			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.Core.dll</HintPath>
 			<Private>True</Private>
 			<CopyLocal>False</CopyLocal>
+		</Reference>
+		<Reference Include="Cosmos.System2">
+		  <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 

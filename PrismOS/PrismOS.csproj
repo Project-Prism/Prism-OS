@@ -19,7 +19,7 @@
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <CompileVBEMultiboot>True</CompileVBEMultiboot>
+        <CompileVBEMultiboot>False</CompileVBEMultiboot>
         <VBEResolution>1280x720x32</VBEResolution>
         <VMWareEdition>Workstation</VMWareEdition>
         <DebugEnabled>False</DebugEnabled>
@@ -39,19 +39,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Assets\Cursor.bmp" />
-      <None Remove="Assets\Splash.bmp" />
       <None Remove="Assets\Test.elf" />
       <None Remove="Assets\Vista.wav" />
-      <None Remove="Assets\Wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Assets\Cursor.bmp" />
-      <EmbeddedResource Include="Assets\Splash.bmp" />
       <EmbeddedResource Include="Assets\Test.elf" />
       <EmbeddedResource Include="Assets\Vista.wav" />
-      <EmbeddedResource Include="Assets\Wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>
@@ -72,13 +66,12 @@
     <ItemGroup>
       <ProjectReference Include="..\PrismAudio\PrismAudio.csproj" />
       <ProjectReference Include="..\PrismBinary\PrismBinary.csproj" />
-      <ProjectReference Include="..\PrismELF\PrismELF.csproj" />
-      <ProjectReference Include="..\PrismGL2D\PrismGL2D.csproj" />
-      <ProjectReference Include="..\PrismGL3D\PrismGL3D.csproj" />
+      <ProjectReference Include="..\PrismGraphics3D\PrismGraphics3D.csproj" />
+      <ProjectReference Include="..\PrismGraphics\PrismGraphics.csproj" />
       <ProjectReference Include="..\PrismNetwork\PrismNetwork.csproj" />
+      <ProjectReference Include="..\PrismNumerics\PrismNumerics.csproj" />
       <ProjectReference Include="..\PrismRuntime\PrismRuntime.csproj" />
       <ProjectReference Include="..\PrismTools\PrismTools.csproj" />
-      <ProjectReference Include="..\PrismUI\PrismUI.csproj" />
     </ItemGroup>
 
     <ItemGroup>

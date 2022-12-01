@@ -1,8 +1,6 @@
-﻿using PrismUI.Controls.Buttons;
-using Cosmos.Core.Memory;
-using PrismUI.Controls;
+﻿using Cosmos.Core.Memory;
 using Cosmos.Core;
-using PrismUI;
+using PrismTools;
 
 namespace PrismRuntime
 {
@@ -161,33 +159,13 @@ namespace PrismRuntime
 
 				#endregion
 
-				#region GUI
+				#region Eval
 
-				case 0x24: // Show Dialog
-					DialogBox.ShowMessageDialog(
-						GetString((char*)EBX),
-						GetString((char*)ECX));
-					break;
-
-				case 0x25: // Show Window
-					EAX = (uint)WindowManager.Windows.Count;
-					WindowManager.Windows.Add(new(new((char*)EBX)));
-					break;
-
-				case 0x28: // Add Control
-					Control C;
-					switch (EBX)
+				case 0x24:
+					fixed (char* C = MathEx.Eval(GetString((char*)EBX)))
 					{
-						case 0x0:
-							C = new Button(ECX, EDX)
-							{
-								Text = new((char*)ESI)
-							};
-							break;
-						default:
-							return;
+						EAX = (uint)C;
 					}
-					WindowManager.Windows[(int)EDI].Controls.Add(C);
 					break;
 
 					#endregion
