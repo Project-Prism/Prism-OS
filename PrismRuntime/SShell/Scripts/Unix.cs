@@ -79,46 +79,29 @@ namespace PrismRuntime.SShell.Scripts
 			public override ReturnCode Invoke(string[] Args)
 			{
 				string FullPath = Args.Length == 0 ? "0:"/*Environment.CurrentDirectory*/ : Args[0];
-				List<string> Entries = new();
 
+				Console.ForegroundColor = ConsoleColor.Blue;
 				foreach (string D in Directory.GetDirectories(FullPath))
 				{
-					Entries.Add(D);
+					if (D.Contains(' '))
+					{
+						Console.Write($" '{D}' ");
+					}
+					else
+					{
+						Console.Write($" {D} ");
+					}
 				}
+				Console.ForegroundColor = ConsoleColor.Cyan;
 				foreach (string F in Directory.GetFiles(FullPath))
 				{
-					Entries.Add(F);
-				}
-
-				// Entries.Sort();
-
-				foreach (string S in Entries)
-				{
-					if (Directory.Exists(FullPath + S))
+					if (F.Contains(' '))
 					{
-						Console.ForegroundColor = ConsoleColor.Blue;
-						if (S.Contains(' '))
-						{
-							Console.Write($" '{S}' ");
-						}
-						else
-						{
-							Console.Write($" {S} ");
-						}
-						continue;
+						Console.Write($" '{F}' ");
 					}
-					if (File.Exists(FullPath + S))
+					else
 					{
-						Console.ForegroundColor = ConsoleColor.Cyan;
-						if (S.Contains(' '))
-						{
-							Console.Write($" '{S}' ");
-						}
-						else
-						{
-							Console.Write($" {S} ");
-						}
-						continue;
+						Console.Write($" {F} ");
 					}
 				}
 
