@@ -2,6 +2,7 @@
 using Cosmos.System.FileSystem;
 using PrismRuntime.SShell;
 using Cosmos.System;
+using PrismRuntime;
 using PrismNetwork;
 using PrismAudio;
 using PrismTools;
@@ -33,8 +34,10 @@ namespace PrismOS
 			{
 				Debugger.Log("Unable to initialize filesystem!", Debugger.Severity.Warning);
 			}
-			NetworkManager.Init();
+
 			AudioPlayer.Play(Assets.Vista);
+			UserEnviroment.Init();
+			NetworkManager.Init();
 
 			Debugger.Log("Kernel initialized!", Debugger.Severity.Ok);
 		}

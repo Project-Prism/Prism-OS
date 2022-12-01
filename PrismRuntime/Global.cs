@@ -172,7 +172,7 @@ namespace PrismRuntime
 			}
 		}
 
-		private static string GetString(char* PTR)
+		internal static string GetString(char* PTR)
 		{
 			return new string(PTR)[..^1];
 		}

@@ -23,13 +23,20 @@ namespace PrismRuntime.SShell.Scripts
 
 				if (Key.Key == ConsoleKey.Backspace)
 				{
-					Buffer = Buffer[..^1];
-					Console.Clear();
-					Console.Write(Buffer);
+					if (Buffer.Length > 0)
+					{
+						Buffer = Buffer[..^1];
+						Console.Clear();
+						Console.Write(Buffer);
+					}
 					continue;
 				}
 				if (Key.Key == ConsoleKey.Escape)
 				{
+					if (File.Exists(Args[0]))
+					{
+						File.Delete(Args[0]);
+					}
 					File.WriteAllBytes(Args[0], System.Text.Encoding.UTF8.GetBytes(Buffer));
 					Console.Clear();
 					return ReturnCode.Success;

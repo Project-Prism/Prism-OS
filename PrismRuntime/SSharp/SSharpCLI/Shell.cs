@@ -13,23 +13,31 @@ namespace PrismRuntime.SSharp.SSharpCLI
 			{
 				try
 				{
-					Console.Write("> ");
+					Console.ForegroundColor = ConsoleColor.Magenta;
+					Console.Write(">>> ");
+					Console.BackgroundColor = ConsoleColor.Gray;
+					Console.ForegroundColor = ConsoleColor.Black;
 
-					(string, string) Input = ReadInput();
+					string? Input = Console.ReadLine();
+					Console.ResetColor();
 
-					switch (Input.Item1)
+					if (Input == null || Input.Length == 0)
 					{
-						case "run":
-							Executable EXE = Compiler.Compile(Input.Item2);
+						continue;
+					}
+
+					switch (Input)
+					{
+						case "Exit();":
+							return;
+						default:
+							Executable EXE = Compiler.Compile(Input);
 
 							while (EXE.IsEnabled)
 							{
 								EXE.Next();
 							}
 							break;
-						case "exit":
-							Console.WriteLine("Exiting...");
-							return;
 					}
 
 				}
@@ -38,24 +46,6 @@ namespace PrismRuntime.SSharp.SSharpCLI
 					Console.WriteLine(E.Message);
 				}
 			}
-		}
-
-		private static (string, string) ReadInput()
-		{
-			string Arguments = string.Empty;
-			string? B = Console.ReadLine();
-
-			if (B == null)
-			{
-				return (string.Empty, string.Empty);
-			}
-
-			for (int I = B.IndexOf(' '); I < B.Length; I++)
-			{
-				Arguments += B[I];
-			}
-
-			return (B.Split(' ')[0], Arguments);
 		}
 	}
 }

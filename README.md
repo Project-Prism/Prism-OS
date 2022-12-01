@@ -16,9 +16,6 @@ Donations aren't needed at the moment but they would show me support and give me
 
 <hr/>
 
-# Screenshots
-![image](https://user-images.githubusercontent.com/76945439/197369522-348d341a-20ba-4209-80d1-10a5cb489f7a.png)
-
 <hr/>
 
 <ul>
@@ -31,32 +28,6 @@ Donations aren't needed at the moment but they would show me support and give me
     <li>And more...</li>
     <h6>Note: Some Of These Items Might Not Be Implemented All The Way</h6>
 </ul>
-
-<hr/>
-
-- ## Build Status
-- [x] PrismAudio
-- [x] PrismBinary
-- [x] PrismFilesystem
-- [x] PrismGraphics3D
-- [x] PrismGraphics
-- [x] PrismNetwork
-- [X] Kernel
-- [X] PrismRuntime
-- [X] PrismTools
-
-<hr/>
-
-- ## Documentation TO-DO
-- [ ] PrismAudio
-- [ ] PrismBinary
-- [ ] PrismFilesystem
-- [ ] PrismGraphcs3D
-- [x] PrismGL3D
-- [x] PrismNetwork
-- [ ] PrismRuntime (Parial)
-- [x] PrismTools
-
 
 <hr/>
 
