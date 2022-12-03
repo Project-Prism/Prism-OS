@@ -4,7 +4,6 @@ Here is a full list of the currently supported formats:
 
 | Format Name | Working? |
 |-------------|----------|
-| ELF         | No?      |
 | INI         | Yes      |
 | LZW         | Yes      |
 | ZLib        | Yes      |

@@ -1,11 +1,11 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace PrismBinary.ELF.Structure.ELFProgramHeader
+namespace PrismRuntime.ELF.Structure.ELFProgramHeader
 {
 	[StructLayout(LayoutKind.Sequential, Pack = 1)]
-	public unsafe struct ELFProgramHeader64
+	public unsafe struct ELFProgramHeader32
 	{
-		public ELFProgramHeader64(ELFProgramHeader64* Original)
+		public ELFProgramHeader32(ELFProgramHeader32* Original)
 		{
 			Type = Original->Type;
 			Offset = Original->Offset;
@@ -17,15 +17,15 @@ namespace PrismBinary.ELF.Structure.ELFProgramHeader
 			Align = Original->Align;
 		}
 
-		#region Flags
+		#region Fields
 
 		public ELFProgramType Type;
-		public uint Flags;
-		public ulong Offset;
-		public ulong VAddress;
-		public ulong PAddress;
+		public uint Offset;
+		public uint VAddress;
+		public uint PAddress;
 		public uint FileSize;
 		public uint MemorySize;
+		public uint Flags;
 		public uint Align;
 
 		#endregion

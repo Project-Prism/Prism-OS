@@ -1,4 +1,4 @@
-﻿namespace PrismBinary.ELF.Structure
+﻿namespace PrismRuntime.ELF.Structure
 {
 	/// <summary>
 	/// Endian marker enum.

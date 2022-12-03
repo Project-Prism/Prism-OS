@@ -1,4 +1,4 @@
-﻿namespace PrismBinary.ELF.Structure
+﻿namespace PrismRuntime.ELF.Structure
 {
 	public enum ELFSectionFlagsType : uint
 	{

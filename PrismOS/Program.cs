@@ -12,7 +12,7 @@ namespace PrismOS
 	public unsafe class Program : Kernel
 	{
 		/*
-		// TO-DO: VBE Canvas
+		// TO-DO: VBE Console
 		// TO-DO: General cleaning
 		// TO-DO: fix gradients
 		// TO-DO: raycaster engine
@@ -36,8 +36,8 @@ namespace PrismOS
 			}
 
 			AudioPlayer.Play(Assets.Vista);
-			UserEnviroment.Init();
 			NetworkManager.Init();
+			SystemCalls.Init();
 
 			Debugger.Log("Kernel initialized!", Debugger.Severity.Ok);
 		}

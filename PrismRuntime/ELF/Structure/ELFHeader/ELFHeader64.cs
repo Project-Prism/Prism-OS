@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace PrismBinary.ELF.Structure.ELFHeader
+namespace PrismRuntime.ELF.Structure.ELFHeader
 {
 	[StructLayout(LayoutKind.Sequential, Pack = 1)]
 	public unsafe struct ELFHeader64
