@@ -19,6 +19,9 @@
 			<Private>True</Private>
 			<CopyLocal>False</CopyLocal>
 		</Reference>
+		<Reference Include="Cosmos.HAL2">
+		  <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
+		</Reference>
 		<Reference Include="Cosmos.System2">
 		  <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>
 		</Reference>
