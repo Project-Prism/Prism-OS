@@ -57,6 +57,35 @@ namespace PrismRuntime.SShell.Scripts
 				return ReturnCode.Success;
 			}
 		}
+		public class Man : Script
+		{
+			public Man() : base("man", "man { command name }") { }
+
+			public override ReturnCode Invoke(string[] Args)
+			{
+				if (Args.Length > 0)
+				{
+					foreach (Script S in Shell.Scripts)
+					{
+						if (S.Name == Args[0])
+						{
+							Console.WriteLine($"{S.Name} : {S.Description}");
+							return ReturnCode.Success;
+						}
+					}
+					return ReturnCode.Unknown;
+				}
+				else
+				{
+					foreach (Script S in Shell.Scripts)
+					{
+						Console.WriteLine($"{S.Name} : {S.Description}");
+					}
+				}
+
+				return ReturnCode.Success;
+			}
+		}
 		public class CP : Script
 		{
 			public CP() : base("cp", "Copies a File somewhere.") { }

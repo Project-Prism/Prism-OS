@@ -48,12 +48,12 @@ namespace PrismRuntime.SShell
 			_ = new Unix.Clear();
 			_ = new Unix.Halt();
 			_ = new Unix.Cat();
+			_ = new Unix.Man();
 			_ = new Unix.CP();
 			_ = new Unix.LS();
 			_ = new Unix.RM();
 			_ = new Status();
 			_ = new VEdit();
-			_ = new Help();
 			_ = new CLI();
 
 			while (true)

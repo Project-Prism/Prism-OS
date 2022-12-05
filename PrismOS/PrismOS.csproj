@@ -1,19 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+	<!--Generic Config-->
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <!--<RuntimeIdentifier>cosmos</RuntimeIdentifier>-->
-        <Platform>cosmos</Platform>
-        <SupportsX86Intrinsics>false</SupportsX86Intrinsics>
         <SelfContained>True</SelfContained>
+		<LangVersion>10</LangVersion>
+		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
+	<!--Cosmos Config-->
     <PropertyGroup>
+		<Platform>cosmos</Platform>
+		<SupportsX86Intrinsics>false</SupportsX86Intrinsics>
         <EnableGDB>False</EnableGDB>
         <StartCosmosGDB>False</StartCosmosGDB>
         <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
         <CosmosDebugPort>Serial: COM1</CosmosDebugPort>
-		<LangVersion>10</LangVersion>
         <Launch>VMware</Launch>
         <Profile>VMware</Profile>
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
@@ -27,11 +31,8 @@
         <StartBochsDebugGui>True</StartBochsDebugGui>
         <ExtractMapFile>False</ExtractMapFile>
         <StackCorruptionDetectionLevel>AllInstructions</StackCorruptionDetectionLevel>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
         <DebugType>none</DebugType>
         <CompressionType>Gzip</CompressionType>
-        <GenerateDocumentationFile>False</GenerateDocumentationFile>
-        <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

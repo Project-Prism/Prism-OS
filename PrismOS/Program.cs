@@ -24,6 +24,13 @@ namespace PrismOS
 			Debugger = new("Kernel");
 			System.Console.Clear();
 
+			System.Console.WriteLine(@"    ____       _                   ____  _____");
+			System.Console.WriteLine(@"   / __ \_____(_)________ ___     / __ \/ ___/");
+			System.Console.WriteLine(@"  / /_/ / ___/ / ___/ __ `__ \   / / / /\__ \ ");
+			System.Console.WriteLine(@" / ____/ /  / (__  ) / / / / /  / /_/ /___/ / ");
+			System.Console.WriteLine(@"/_/   /_/  /_/____/_/ /_/ /_/   \____//____/  ");
+			System.Console.WriteLine("CopyLeft 2022, Created by the PrismProject team.\n");
+
 			try
 			{
 				VFSManager.RegisterVFS(new CosmosVFS(), false, false);
