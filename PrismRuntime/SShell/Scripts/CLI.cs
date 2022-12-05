@@ -8,12 +8,11 @@ namespace PrismRuntime.SShell.Scripts
 	{
 		public CLI() : base("CLI", "Starts a SSharp CLI shell instance.") { }
 
-		public override ReturnCode Invoke(string[] Args)
+		public override void Invoke(string[] Args)
 		{
 			if (Args.Length == 0)
 			{
 				SSharp.SSharpCLI.Shell.Main();
-				return ReturnCode.Success;
 			}
 
 			if (Args[0] == "compile")
@@ -22,7 +21,6 @@ namespace PrismRuntime.SShell.Scripts
 				Executable EXE = Compiler.Compile(File.ReadAllText(Args[1]));
 
 				File.WriteAllBytes(Args[2], ((MemoryStream)EXE.ROM.BaseStream).ToArray());
-				return ReturnCode.Success;
 			}
 			if (Args[0] == "execute")
 			{
@@ -32,11 +30,7 @@ namespace PrismRuntime.SShell.Scripts
 				{
 					EXE.Next();
 				}
-
-				return ReturnCode.Success;
 			}
-
-			return ReturnCode.Unknown;
 		}
 	}
 }

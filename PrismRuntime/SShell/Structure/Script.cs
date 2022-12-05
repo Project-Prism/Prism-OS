@@ -15,7 +15,7 @@
 
 		#region Methods
 
-		public abstract ReturnCode Invoke(string[] Args);
+		public abstract void Invoke(string[] Args);
 
 		#endregion
 

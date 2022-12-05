@@ -6,7 +6,7 @@ namespace PrismRuntime.SShell.Scripts
 	{
 		public VEdit() : base("vedit", "A basic text editor.") { }
 
-		public override ReturnCode Invoke(string[] Args)
+		public override void Invoke(string[] Args)
 		{
 			string Buffer = string.Empty;
 			Console.Clear();
@@ -39,7 +39,7 @@ namespace PrismRuntime.SShell.Scripts
 					}
 					File.WriteAllBytes(Args[0], System.Text.Encoding.UTF8.GetBytes(Buffer));
 					Console.Clear();
-					return ReturnCode.Success;
+					return;
 				}
 				if (Key.Key == ConsoleKey.Enter)
 				{

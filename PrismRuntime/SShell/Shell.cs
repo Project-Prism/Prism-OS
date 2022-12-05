@@ -8,11 +8,12 @@ namespace PrismRuntime.SShell
 	{
 		#region Methods
 
-		public static ReturnCode Invoke(string[] VS)
+		public static void Invoke(string[] VS)
 		{
 			if (Scripts.Count == 0)
 			{
-				return ReturnCode.CommandNotFound;
+				Debugger.Warn("Command interperiter not initialized!");
+				return;
 			}
 
 			for (int I = 0; I < Scripts.Count; I++)
@@ -27,16 +28,18 @@ namespace PrismRuntime.SShell
 							T[I2] = VS[I2 + 1];
 						}
 
-						return Scripts[I].Invoke(T);
+						Scripts[I].Invoke(T);
+						return;
 					}
 					catch (Exception E)
 					{
 						Debugger.Error(E.Message);
-						return ReturnCode.Unknown;
+						return;
 					}
 				}
 			}
-			return ReturnCode.CommandNotFound;
+
+			Debugger.Warn("Command not found!");
 		}
 
 		public static void Main()
@@ -46,9 +49,12 @@ namespace PrismRuntime.SShell
 			_ = new Unix.PowerOff();
 			_ = new Unix.Reboot();
 			_ = new Unix.Clear();
+			_ = new Unix.MKDir();
+			_ = new Unix.Touch();
 			_ = new Unix.Halt();
 			_ = new Unix.Cat();
 			_ = new Unix.Man();
+			_ = new Unix.PWD();
 			_ = new Unix.CP();
 			_ = new Unix.LS();
 			_ = new Unix.RM();
@@ -67,21 +73,7 @@ namespace PrismRuntime.SShell
 					continue;
 				}
 
-				switch (Invoke(Input.Split(' ')))
-				{
-					case ReturnCode.CommandNotFound:
-						Debugger.Warn("Command not found!");
-						break;
-					case ReturnCode.NotEnoughArgs:
-						Debugger.Warn("Not enough arguments were specified!");
-						break;
-					case ReturnCode.TooManyArgs:
-						Debugger.Warn("Too many arguments were specified!");
-						break;
-					case ReturnCode.Unknown:
-						Debugger.Warn("The script closed unexpectedly!");
-						break;
-				}
+				Invoke(Input.Split(' '));
 			}
 		}
 

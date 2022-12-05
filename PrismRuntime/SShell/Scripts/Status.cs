@@ -6,7 +6,7 @@ namespace PrismRuntime.SShell.Scripts
 	{
 		public Status() : base("status", "Print statistics about certain system properties.") { }
 
-		public override ReturnCode Invoke(string[] Args)
+		public override void Invoke(string[] Args)
 		{
 			switch (Args[0])
 			{
@@ -20,8 +20,6 @@ namespace PrismRuntime.SShell.Scripts
 					}
 					break;
 			}
-
-			return ReturnCode.Success;
 		}
 	}
 }

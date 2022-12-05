@@ -11,57 +11,70 @@ namespace PrismRuntime.SShell.Scripts
 		{
 			public PowerOff() : base("poweroff", "Powers down the system.") { }
 
-			public override ReturnCode Invoke(string[] Args)
+			public override void Invoke(string[] Args)
 			{
 				Power.Shutdown();
-				return ReturnCode.Success;
 			}
 		}
 		public class Reboot : Script
 		{
 			public Reboot() : base("reboot", "Reboots the system.") { }
 
-			public override ReturnCode Invoke(string[] Args)
+			public override void Invoke(string[] Args)
 			{
 				Power.Reboot();
-				return ReturnCode.Success;
 			}
 		}
 		public class Clear : Script
 		{
 			public Clear() : base("clear", "Clear the terminal screen.") { }
 
-			public override ReturnCode Invoke(string[] Args)
+			public override void Invoke(string[] Args)
 			{
 				Console.Clear();
-				return ReturnCode.Success;
+			}
+		}
+		public class MKDir : Script
+		{
+			public MKDir() : base("mkdir", "Make a directory in the current path.") { }
+
+			public override void Invoke(string[] Args)
+			{
+				Directory.CreateDirectory(Args[0]);
+			}
+		}
+		public class Touch : Script
+		{
+			public Touch() : base("touch", "Make a file with the input name in the current path.") { }
+
+			public override void Invoke(string[] Args)
+			{
+				File.Create(Args[0]);
 			}
 		}
 		public class Halt : Script
 		{
 			public Halt() : base("halt", "Halt the CPU.") { }
 
-			public override ReturnCode Invoke(string[] Args)
+			public override void Invoke(string[] Args)
 			{
 				CPU.Halt();
-				return ReturnCode.Success;
 			}
 		}
 		public class Cat : Script
 		{
 			public Cat() : base("cat", "Echo the contents of a file to the terminal.") { }
 
-			public override ReturnCode Invoke(string[] Args)
+			public override void Invoke(string[] Args)
 			{
 				Console.WriteLine(File.ReadAllText(Args[0]));
-				return ReturnCode.Success;
 			}
 		}
 		public class Man : Script
 		{
 			public Man() : base("man", "man { command name }") { }
 
-			public override ReturnCode Invoke(string[] Args)
+			public override void Invoke(string[] Args)
 			{
 				if (Args.Length > 0)
 				{
@@ -70,10 +83,10 @@ namespace PrismRuntime.SShell.Scripts
 						if (S.Name == Args[0])
 						{
 							Console.WriteLine($"{S.Name} : {S.Description}");
-							return ReturnCode.Success;
+							return;
 						}
 					}
-					return ReturnCode.Unknown;
+					Console.WriteLine($"man: Could not find command manual for '{Args[0]}'.");
 				}
 				else
 				{
@@ -82,30 +95,35 @@ namespace PrismRuntime.SShell.Scripts
 						Console.WriteLine($"{S.Name} : {S.Description}");
 					}
 				}
+			}
+		}
+		public class PWD : Script
+		{
+			public PWD() : base("pwd", "Print working directory.") { }
 
-				return ReturnCode.Success;
+			public override void Invoke(string[] Args)
+			{
+				//Console.WriteLine(Environment.CurrentDirectory);
+				Console.WriteLine("0:\\");
 			}
 		}
 		public class CP : Script
 		{
 			public CP() : base("cp", "Copies a File somewhere.") { }
 
-			public override ReturnCode Invoke(string[] Args)
+			public override void Invoke(string[] Args)
 			{
 				if (File.Exists(Args[0]) && !File.Exists(Args[1]))
 				{
 					File.Copy(Args[0], Args[1]);
-					return ReturnCode.Success;
 				}
-
-				return ReturnCode.Unknown;
 			}
 		}
 		public class LS : Script
 		{
 			public LS() : base("ls", "List the contents of a directory.") { }
 
-			public override ReturnCode Invoke(string[] Args)
+			public override void Invoke(string[] Args)
 			{
 				string FullPath = Args.Length == 0 ? "0:"/*Environment.CurrentDirectory*/ : Args[0];
 
@@ -136,15 +154,13 @@ namespace PrismRuntime.SShell.Scripts
 
 				Console.ResetColor();
 				Console.WriteLine();
-
-				return ReturnCode.Success;
 			}
 		}
 		public class RM : Script
 		{
 			public RM() : base("rm", "Remove a file/directory.") { }
 
-			public override ReturnCode Invoke(string[] Args)
+			public override void Invoke(string[] Args)
 			{
 				if (Args.Length > 1 && Args[0] == "-r")
 				{
@@ -154,7 +170,6 @@ namespace PrismRuntime.SShell.Scripts
 				{
 					File.Delete(Args[0]);
 				}
-				return ReturnCode.Success;
 			}
 		}
 	}
