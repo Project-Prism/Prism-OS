@@ -1,6 +1,7 @@
 ﻿using Cosmos.System.FileSystem.VFS;
 using Cosmos.System.FileSystem;
 using PrismRuntime.SShell;
+using PrismTools.Events;
 using Cosmos.System;
 using PrismRuntime;
 using PrismNetwork;
@@ -50,6 +51,7 @@ namespace PrismOS
 		}
 		protected override void Run()
 		{
+			EventService.OnTick();
 			Shell.Main();
 		}
 

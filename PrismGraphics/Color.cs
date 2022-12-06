@@ -341,6 +341,35 @@ namespace PrismGraphics
 		{
 			return (uint)(A << 24 | R << 16 | G << 8 | B);
 		}
+		
+		/// <summary>
+		/// Converts a console color into a 32-BIT RGB color.
+		/// </summary>
+		/// <param name="Color">Console color to convert.</param>
+		/// <returns>32-BIT RGB Color.</returns>
+		public static Color FromConsleColor(ConsoleColor Color)
+		{
+			return Color switch
+			{
+				ConsoleColor.Black => Black,
+				ConsoleColor.DarkBlue => Blue - 64,
+				ConsoleColor.DarkGreen => Green - 64,
+				ConsoleColor.DarkCyan => Cyan - 64,
+				ConsoleColor.DarkRed => Red - 64,
+				ConsoleColor.DarkMagenta => Magenta - 64,
+				ConsoleColor.DarkYellow => Yellow - 64,
+				ConsoleColor.Gray => LightGray,
+				ConsoleColor.DarkGray => DeepGray - 64,
+				ConsoleColor.Blue => Blue,
+				ConsoleColor.Green => Green,
+				ConsoleColor.Cyan => Cyan,
+				ConsoleColor.Red => Red,
+				ConsoleColor.Magenta => Magenta,
+				ConsoleColor.Yellow => Yellow,
+				ConsoleColor.White => White,
+				_ => Black,
+			};
+		}
 
 		#endregion
 
@@ -348,10 +377,13 @@ namespace PrismGraphics
 
 		public static readonly Color White = FromARGB(255, 255, 255, 255);
 		public static readonly Color Black = FromARGB(255, 0, 0, 0);
+		public static readonly Color Cyan = FromARGB(255, 0, 255, 255);
 		public static readonly Color Red = FromARGB(255, 255, 0, 0);
 		public static readonly Color Green = FromARGB(255, 0, 255, 0);
 		public static readonly Color Blue = FromARGB(255, 0, 0, 255);
 		public static readonly Color CoolGreen = FromARGB(255, 54, 94, 53);
+		public static readonly Color Magenta = FromARGB(255, 255, 0, 255);
+		public static readonly Color Yellow = FromARGB(255, 255, 255, 0);
 		public static readonly Color HotPink = FromARGB(255, 230, 62, 109);
 		public static readonly Color UbuntuPurple = FromARGB(255, 66, 5, 22);
 		public static readonly Color GoogleBlue = FromARGB(255, 66, 133, 244);

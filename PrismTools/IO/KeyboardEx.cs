@@ -1,6 +1,6 @@
 ﻿using Cosmos.System;
 
-namespace PrismTools
+namespace PrismTools.IO
 {
 	/// <summary>
 	/// Keyboard conversion class.
@@ -16,7 +16,7 @@ namespace PrismTools
 		{
 			if (KeyboardManager.TryReadKey(out var KeyX))
 			{
-				Key = new(KeyX.KeyChar, (ConsoleKey)KeyX.Key, KeyX.Modifiers == ConsoleModifiers.Shift, KeyX.Modifiers == ConsoleModifiers.Alt, KeyX.Modifiers == ConsoleModifiers.Control);
+				Key = new(KeyX.KeyChar, ConsoleKeyExExtensions.ToConsoleKey(KeyX.Key), KeyX.Modifiers == ConsoleModifiers.Shift, KeyX.Modifiers == ConsoleModifiers.Alt, KeyX.Modifiers == ConsoleModifiers.Control);
 				return true;
 			}
 
@@ -30,7 +30,8 @@ namespace PrismTools
 		/// <returns>The currently pressed key.</returns>
 		public static ConsoleKeyInfo ReadKey()
 		{
-			TryReadKey(out ConsoleKeyInfo Key);
+			ConsoleKeyInfo Key;
+			while (!TryReadKey(out Key)) { }
 			return Key;
 		}
 	}

@@ -1,6 +1,6 @@
 ﻿using Cosmos.System;
 
-namespace PrismTools
+namespace PrismTools.IO
 {
 	public static class MouseEx
 	{
