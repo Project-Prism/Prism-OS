@@ -3,8 +3,16 @@ using Cosmos.HAL;
 
 namespace PrismGraphics.Extentions
 {
+	/// <summary>
+	/// VBE Console class, used to write text output to a high resolution console.
+	/// Supports images, shapes, and everything else.
+	/// Not completed.
+	/// </summary>
 	public class VBEConsole
 	{
+		/// <summary>
+		/// Creates a new instance of the <see cref="VBEConsole"/> class.
+		/// </summary>
 		public VBEConsole()
 		{
 			Global.PIT.RegisterTimer(new(() =>

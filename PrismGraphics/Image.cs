@@ -33,7 +33,7 @@ namespace PrismGraphics
 
 		#endregion
 
-		#region Loaders
+		#region Methods
 
 		/// <summary>
 		/// Loads a bitmap file.

@@ -1,7 +1,7 @@
 ﻿namespace PrismGraphics
 {
 	/// <summary>
-	/// Nifanfa's bitfont class.
+	/// Nifanfa's bitfont class, ported to Prism OS.
 	/// </summary>
 	public unsafe class Font
 	{

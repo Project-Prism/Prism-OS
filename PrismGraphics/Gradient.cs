@@ -23,6 +23,8 @@
 			}
 		}
 
+		#region Methods
+
 		/// <summary>
 		/// Interpolate between several colors in a normal going from 0.0 to 1.0.
 		/// </summary>
@@ -40,6 +42,7 @@
 			double stopFraction = valueRatio % 1;
 			return InterpolateColor(Colors[(int)stopIndex], Colors[(int)stopIndex + 1], stopFraction);
 		}
+
 		/// <summary>
 		/// Interpolate between two colors in a normal going from 0.0 to 1.0.
 		/// </summary>
@@ -66,5 +69,7 @@
 				B = (byte)(C1.B + (C2.B - C1.B) * Normal),
 			};
 		}
+
+		#endregion
 	}
 }

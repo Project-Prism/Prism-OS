@@ -7,6 +7,91 @@ namespace PrismGraphics
 	/// </summary>
 	public struct Color
 	{
+		#region Operators
+
+		public static implicit operator Color((byte, byte, byte, byte) Color)
+		{
+			return FromARGB(Color.Item1, Color.Item2, Color.Item3, Color.Item4);
+
+			throw new ArgumentException("Unsuported Color Format!");
+		}
+		public static implicit operator Color((byte, byte, byte) RGB)
+		{
+			return FromARGB(255, RGB.Item1, RGB.Item2, RGB.Item3);
+		}
+		public static implicit operator Color(string Color)
+		{
+			return FromHex(Color);
+		}
+		public static implicit operator Color(uint ARGB)
+		{
+			return FromARGB(ARGB);
+		}
+
+		public static Color operator +(Color Original, Color ToAdd)
+		{
+			Original.R += ToAdd.R;
+			Original.G += ToAdd.G;
+			Original.B += ToAdd.B;
+
+			return Original;
+		}
+		public static Color operator -(Color Original, Color ToAdd)
+		{
+			Original.R -= ToAdd.R;
+			Original.G -= ToAdd.G;
+			Original.B -= ToAdd.B;
+
+			return Original;
+		}
+
+		public static Color operator /(Color Original, double Value)
+		{
+			Original.R = (byte)(Original.R / Value);
+			Original.G = (byte)(Original.G / Value);
+			Original.B = (byte)(Original.B / Value);
+
+			return Original;
+		}
+		public static Color operator *(Color Original, double Value)
+		{
+			Original.R = (byte)(Original.R * Value);
+			Original.G = (byte)(Original.G * Value);
+			Original.B = (byte)(Original.B * Value);
+
+			return Original;
+		}
+
+		public static Color operator /(Color Original, long Value)
+		{
+			Original.R = (byte)(Original.R / Value);
+			Original.G = (byte)(Original.G / Value);
+			Original.B = (byte)(Original.B / Value);
+
+			return Original;
+		}
+		public static Color operator *(Color Original, long Value)
+		{
+			Original.R = (byte)(Original.R * Value);
+			Original.G = (byte)(Original.G * Value);
+			Original.B = (byte)(Original.B * Value);
+
+			return Original;
+		}
+
+		public static bool operator ==(Color C1, Color C2)
+		{
+			return C1.ARGB == C2.ARGB;
+		}
+		public static bool operator !=(Color C1, Color C2)
+		{
+			return C1.ARGB != C2.ARGB;
+		}
+
+		#endregion
+
+		#region Methods
+
 		#region Methods [ Loading ]
 
 		/// <summary>
@@ -373,6 +458,10 @@ namespace PrismGraphics
 
 		#endregion
 
+		#endregion
+
+		#region Fields
+
 		#region Extended Colors
 
 		public static readonly Color White = FromARGB(255, 255, 255, 255);
@@ -411,91 +500,6 @@ namespace PrismGraphics
 		public static readonly Color Emerald = FromARGB(255, 0, 155, 119);
 
 		#endregion
-
-		#region Operators
-
-		public static implicit operator Color((byte, byte, byte, byte) Color)
-		{
-			return FromARGB(Color.Item1, Color.Item2, Color.Item3, Color.Item4);
-
-			throw new ArgumentException("Unsuported Color Format!");
-		}
-		public static implicit operator Color((byte, byte, byte) RGB)
-		{
-			return FromARGB(255, RGB.Item1, RGB.Item2, RGB.Item3);
-		}
-		public static implicit operator Color(string Color)
-		{
-			return FromHex(Color);
-		}
-		public static implicit operator Color(uint ARGB)
-		{
-			return FromARGB(ARGB);
-		}
-
-		public static Color operator +(Color Original, Color ToAdd)
-		{
-			Original.R += ToAdd.R;
-			Original.G += ToAdd.G;
-			Original.B += ToAdd.B;
-
-			return Original;
-		}
-		public static Color operator -(Color Original, Color ToAdd)
-		{
-			Original.R -= ToAdd.R;
-			Original.G -= ToAdd.G;
-			Original.B -= ToAdd.B;
-
-			return Original;
-		}
-
-		public static Color operator /(Color Original, double Value)
-		{
-			Original.R = (byte)(Original.R / Value);
-			Original.G = (byte)(Original.G / Value);
-			Original.B = (byte)(Original.B / Value);
-
-			return Original;
-		}
-		public static Color operator *(Color Original, double Value)
-		{
-			Original.R = (byte)(Original.R * Value);
-			Original.G = (byte)(Original.G * Value);
-			Original.B = (byte)(Original.B * Value);
-
-			return Original;
-		}
-
-		public static Color operator /(Color Original, long Value)
-		{
-			Original.R = (byte)(Original.R / Value);
-			Original.G = (byte)(Original.G / Value);
-			Original.B = (byte)(Original.B / Value);
-
-			return Original;
-		}
-		public static Color operator *(Color Original, long Value)
-		{
-			Original.R = (byte)(Original.R * Value);
-			Original.G = (byte)(Original.G * Value);
-			Original.B = (byte)(Original.B * Value);
-
-			return Original;
-		}
-
-		public static bool operator ==(Color C1, Color C2)
-		{
-			return C1.ARGB == C2.ARGB;
-		}
-		public static bool operator !=(Color C1, Color C2)
-		{
-			return C1.ARGB != C2.ARGB;
-		}
-
-		#endregion
-
-		#region Fields
 
 		/// <summary>
 		/// Color cache, used for caching color values.
