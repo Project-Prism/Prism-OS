@@ -1,84 +1,86 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<!--Generic Config-->
-    <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <SelfContained>True</SelfContained>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<SelfContained>True</SelfContained>
 		<LangVersion>10</LangVersion>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-    </PropertyGroup>
+	</PropertyGroup>
 
 	<!--Cosmos Config-->
-    <PropertyGroup>
+	<PropertyGroup>
 		<Platform>cosmos</Platform>
 		<SupportsX86Intrinsics>false</SupportsX86Intrinsics>
-        <EnableGDB>False</EnableGDB>
-        <StartCosmosGDB>False</StartCosmosGDB>
-        <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
-        <CosmosDebugPort>Serial: COM1</CosmosDebugPort>
-        <Launch>VMware</Launch>
-        <Profile>VMware</Profile>
-        <Description>Use VMware Player or Workstation to deploy and debug.</Description>
-        <PxeInterface>192.168.0.8</PxeInterface>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <CompileVBEMultiboot>False</CompileVBEMultiboot>
-        <VBEResolution>1280x720x32</VBEResolution>
-        <VMWareEdition>Workstation</VMWareEdition>
-        <DebugEnabled>False</DebugEnabled>
-        <EnableBochsDebug>True</EnableBochsDebug>
-        <StartBochsDebugGui>True</StartBochsDebugGui>
-        <ExtractMapFile>False</ExtractMapFile>
-        <StackCorruptionDetectionLevel>AllInstructions</StackCorruptionDetectionLevel>
-        <DebugType>none</DebugType>
-        <CompressionType>Gzip</CompressionType>
-    </PropertyGroup>
+		<EnableGDB>False</EnableGDB>
+		<StartCosmosGDB>False</StartCosmosGDB>
+		<VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
+		<CosmosDebugPort>Serial: COM1</CosmosDebugPort>
+		<Launch>VMware</Launch>
+		<Profile>VMware</Profile>
+		<Description>Use VMware Player or Workstation to deploy and debug.</Description>
+		<PxeInterface>192.168.0.8</PxeInterface>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<CompileVBEMultiboot>False</CompileVBEMultiboot>
+		<VBEResolution>1280x720x32</VBEResolution>
+		<VMWareEdition>Workstation</VMWareEdition>
+		<DebugEnabled>False</DebugEnabled>
+		<EnableBochsDebug>True</EnableBochsDebug>
+		<StartBochsDebugGui>True</StartBochsDebugGui>
+		<ExtractMapFile>False</ExtractMapFile>
+		<StackCorruptionDetectionLevel>AllInstructions</StackCorruptionDetectionLevel>
+		<DebugType>none</DebugType>
+		<CompressionType>Gzip</CompressionType>
+	</PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-      <Optimize>True</Optimize>
-    </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<Optimize>True</Optimize>
+	</PropertyGroup>
 
-    <ItemGroup>
-      <None Remove="Assets\Test.elf" />
-      <None Remove="Assets\Vista.wav" />
-    </ItemGroup>
+	<ItemGroup>
+		<None Remove="Assets\Test.elf" />
+		<None Remove="Assets\Vista.wav" />
+	</ItemGroup>
 
-    <ItemGroup>
-      <EmbeddedResource Include="Assets\Test.elf" />
-      <EmbeddedResource Include="Assets\Vista.wav" />
-    </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Assets\Test.elf" />
+		<EmbeddedResource Include="Assets\Vista.wav" />
+	</ItemGroup>
 
-    <ItemGroup>
-      <None Include="..\.editorconfig" Link=".editorconfig" />
-      <None Include="..\README.md">
-        <Pack>True</Pack>
-        <PackagePath>\</PackagePath>
-      </None>
-    </ItemGroup>
+	<ItemGroup>
+		<None Include="..\.editorconfig" Link=".editorconfig" />
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
-        <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
-        <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
-        <PackageReference Include="SuperDB-Core" Version="1.0.3" />
-    </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
+		<PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
+		<PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
+		<PackageReference Include="SuperDB-Core" Version="1.0.3" />
+	</ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\PrismAudio\PrismAudio.csproj" />
-      <ProjectReference Include="..\PrismBinary\PrismBinary.csproj" />
-      <ProjectReference Include="..\PrismGraphics3D\PrismGraphics3D.csproj" />
-      <ProjectReference Include="..\PrismGraphics\PrismGraphics.csproj" />
-      <ProjectReference Include="..\PrismNetwork\PrismNetwork.csproj" />
-      <ProjectReference Include="..\PrismNumerics\PrismNumerics.csproj" />
-      <ProjectReference Include="..\PrismRuntime\PrismRuntime.csproj" />
-      <ProjectReference Include="..\PrismTools\PrismTools.csproj" />
-    </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\PrismAudio\PrismAudio.csproj" />
+		<ProjectReference Include="..\PrismBinary\PrismBinary.csproj" />
+		<ProjectReference Include="..\PrismGraphics3D\PrismGraphics3D.csproj" />
+		<ProjectReference Include="..\PrismGraphics\PrismGraphics.csproj" />
+		<ProjectReference Include="..\PrismNetwork\PrismNetwork.csproj" />
+		<ProjectReference Include="..\PrismNumerics\PrismNumerics.csproj" />
+		<ProjectReference Include="..\PrismRuntime\PrismRuntime.csproj" />
+		<ProjectReference Include="..\PrismTools\PrismTools.csproj" />
+		
+		<PlugsReference Include="..\PrismGraphics\bin\Debug\net6.0\PrismGraphics.dll" />
+	</ItemGroup>
 
-    <ItemGroup>
-      <Reference Include="Cosmos.HAL2">
-        <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
-      </Reference>
-    </ItemGroup>
+	<ItemGroup>
+		<Reference Include="Cosmos.HAL2">
+			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
+		</Reference>
+	</ItemGroup>
 
 </Project>

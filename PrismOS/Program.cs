@@ -30,24 +30,24 @@ namespace PrismOS
 			System.Console.WriteLine(@"  / /_/ / ___/ / ___/ __ `__ \   / / / /\__ \ ");
 			System.Console.WriteLine(@" / ____/ /  / (__  ) / / / / /  / /_/ /___/ / ");
 			System.Console.WriteLine(@"/_/   /_/  /_/____/_/ /_/ /_/   \____//____/  ");
-			System.Console.WriteLine("CopyLeft 2022, Created by the PrismProject team.\n");
+			System.Console.WriteLine("CopyLeft PrismProject 2022. Licensed with GPL2.\n");
+
+			NetworkManager.Init();
+			SystemCalls.Init();
+			//VBEConsole.Init();
 
 			try
 			{
 				VFSManager.RegisterVFS(new CosmosVFS(), false, false);
 				Debugger.Log("Initialized filesystem!", Debugger.Severity.Ok);
-				IsFSReady = true;
 			}
 			catch
 			{
 				Debugger.Log("Unable to initialize filesystem!", Debugger.Severity.Warning);
 			}
 
-			AudioPlayer.Play(Assets.Vista);
-			NetworkManager.Init();
-			SystemCalls.Init();
-
 			Debugger.Log("Kernel initialized!", Debugger.Severity.Ok);
+			AudioPlayer.Play(Assets.Vista);
 		}
 		protected override void Run()
 		{
@@ -58,7 +58,6 @@ namespace PrismOS
 		#region Fields
 
 		public static Debugger Debugger;
-		public static bool IsFSReady;
 
 		#endregion
 	}

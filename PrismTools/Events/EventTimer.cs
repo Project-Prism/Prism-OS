@@ -11,7 +11,15 @@ namespace PrismTools.Events
 		/// <param name="UPS">The number of updates per second.</param>
 		public EventTimer(Action CallBack, uint UPS)
 		{
-			Global.PIT.RegisterTimer(new(CallBack, (ulong)(UPS * 266666.667), true));
+			Global.PIT.RegisterTimer(new(() => { if (IsEnabled) { CallBack(); } }, (ulong)(UPS * 266666.667), true));
+
+			IsEnabled = true;
 		}
+
+		#region Fields
+
+		public bool IsEnabled;
+
+		#endregion
 	}
 }
