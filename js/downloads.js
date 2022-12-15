@@ -1,41 +1,29 @@
 const apiUrl = "https://api.github.com/repos/Project-Prism/Prism-OS/releases"
 
 // Get data from api
-const request = new XMLHttpRequest();
-request.addEventListener("load", onLoad)
-request.addEventListener("error", onError)
+const req = new XMLHttpRequest();
+req.addEventListener("load", onLoad)
+req.addEventListener("error", onError)
 
-request.open("GET", apiUrl)
-request.setRequestHeader("Accept", "application/vnd.github+json")
-request.send()
+req.open("GET", apiUrl)
+req.setRequestHeader("Accept", "application/vnd.github+json")
+req.send()
 
 // Events
 function onLoad(event)
 {
     // Remove event listeners!
-    request.addEventListener("load", onLoad)
-    request.addEventListener("error", onError)
-    
-    const releaseData = JSON.parse(request.responseText)
+    //request.removeEventListener("load", onLoad)
+    //request.removeEventListener("error", onError)
+
+    const releaseData = JSON.parse(event.target.responseText)
     console.info("Loaded release data")
 
     // Setup downloads section
     const downloads = document.getElementById("Downloads")
     const placeholder = document.getElementById("DownloadPlaceHolder")
-    // // Create html elements to replace the placeholder
-    const rootNode = document.createElement("div")
-    const table = document.createElement("table")
-    table.classList.add("maxWidth", "innerSectionBorder")
-
-    if (window.innerWidth > 1070)
-    {
-        table.innerHTML= "<thead><tr><th>Version</th><th>Type</th><th>Date</th><th>Download</th><th>Github</th></tr></thead>" // Headings: Version, Type, Date, Download, Github
-    }
-    else
-    {
-        table.innerHTML= "<thead><tr><th>Version</th><th>Date</th><th>Download</th><th>Github</th></tr></thead>" // Headings: Version, Type, Date, Download, Github
-    }
-    const body = document.createElement("tbody")
+    const releases = document.getElementById("Releases")
+    const body = releases.getElementsByTagName("tbody")[0]
 
     // // Get the four most recent releases and create table data
     for (let i = 0; i != 4; i++)
@@ -77,10 +65,6 @@ function onLoad(event)
 
         // Link data fields to row
         row.appendChild(version)
-        if (window.innerWidth > 1070)
-        {
-            row.appendChild(type)
-        }
         row.appendChild(date)
         row.appendChild(download)
         row.appendChild(github)
@@ -89,15 +73,11 @@ function onLoad(event)
         body.appendChild(row)
     }
 
-    // // Link everything together
-    table.appendChild(body)
-    rootNode.appendChild(table)
+    // // Hide placeholder
+    placeholder.classList.add("hidden")
 
-    // // Remove placeholder
-    downloads.removeChild(placeholder)
-
-    // // Add new content
-    downloads.appendChild(rootNode)
+    // // Unhide main table
+    releases.classList.remove("hidden")
 }
 
 function onError(event)

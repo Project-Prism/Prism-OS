@@ -45,6 +45,22 @@
                 <div class="PlaceHolder" id="DownloadPlaceHolder">
                     <p>Oops! We couldn't fetch the latest releases from github for you!<br>Try <a href="https://github.com/Project-Prism/Prism-OS/releases">here</a> instead!</p>
                 </div>
+		<div class="hidden" id="Releases">
+			<table class="maxWidth innerSectionBorder">
+			<thead>
+				<tr>
+					<th>Version</th>
+					<th>Type</th>
+					<th>Date</th>
+					<th>Download</th>
+					<th>Github</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+				<!-- This part gets populated with releases-->
+			</table>
+		</div>
             </div>
 
             <!-- Contributors -->
@@ -105,5 +121,6 @@
 
         <!-- Things to load afterwards -->
         <script src="js/downloads.js" type="application/javascript"></script>
+	<script src="js/contributors.js" type="application/javascript"></script>
     </body>
 </html>

@@ -25,6 +25,10 @@ a {
     scrollbar-color:#35353f #191922; /* Not supported by all browsers but it's minor anyway */
 }
 
+.hidden {
+	display: none;
+}
+
 .maxWidth {
     width: 100%;
 }
