@@ -10,16 +10,13 @@ using PrismTools;
 
 namespace PrismOS
 {
+	/*
+	// TO-DO: General cleaning
+	// TO-DO: fix gradients
+	// TO-DO: raycaster engine
+	*/
 	public unsafe class Program : Kernel
 	{
-		/*
-		// TO-DO: VBE Console
-		// TO-DO: General cleaning
-		// TO-DO: fix gradients
-		// TO-DO: raycaster engine
-		// TO-DO: hex colors for glang
-		*/
-
 		protected override void BeforeRun()
 		{
 			Debugger = new("Kernel");
@@ -49,6 +46,7 @@ namespace PrismOS
 			Debugger.Log("Kernel initialized!", Debugger.Severity.Ok);
 			AudioPlayer.Play(Assets.Vista);
 		}
+
 		protected override void Run()
 		{
 			EventService.OnTick();

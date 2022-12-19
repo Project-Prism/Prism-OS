@@ -13,7 +13,8 @@ namespace PrismRuntime
 		/// </summary>
 		public static void Init()
 		{
-			INTs.SetIntHandler(0x80, SystemCall);
+			//INTs.SetIRQMaskState(16, false);
+			INTs.SetIrqHandler(16, SystemCall);
 			Debugger.Success("Initialized system calls!");
 		}
 
@@ -23,6 +24,8 @@ namespace PrismRuntime
 		/// <param name="Context">The details about the interupt.</param>
 		public static void SystemCall(ref INTs.IRQContext Context)
 		{
+			Console.WriteLine("System Call!!!!");
+
 			if (Context.Interrupt != 0x80)
 			{
 				return;
@@ -204,7 +207,7 @@ namespace PrismRuntime
 		internal static string GetString(char* PTR)
 		{
 			return new string(PTR)[..^1];
-		}
+		}/// <summary>
 
 		#endregion
 
