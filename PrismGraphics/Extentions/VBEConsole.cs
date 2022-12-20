@@ -10,7 +10,7 @@ namespace PrismGraphics.Extentions
 	/// Supports images, shapes, and everything else.
 	/// Not completed.
 	/// </summary>
-	//[Plug(Target = typeof(Console))]
+	[Plug(Target = typeof(Console))]
 	public static unsafe class VBEConsole
 	{
 		#region Methods

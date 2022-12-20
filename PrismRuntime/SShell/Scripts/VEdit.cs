@@ -49,6 +49,7 @@ namespace PrismRuntime.SShell.Scripts
 				}
 
 				Buffer += Key.KeyChar;
+				Console.Write(Key.KeyChar);
 			}
 		}
 	}

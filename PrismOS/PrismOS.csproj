@@ -23,7 +23,7 @@
 		<Description>Use VMware Player or Workstation to deploy and debug.</Description>
 		<PxeInterface>192.168.0.8</PxeInterface>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<CompileVBEMultiboot>False</CompileVBEMultiboot>
+		<CompileVBEMultiboot>True</CompileVBEMultiboot>
 		<VBEResolution>1280x720x32</VBEResolution>
 		<VMWareEdition>Workstation</VMWareEdition>
 		<DebugEnabled>False</DebugEnabled>
@@ -33,6 +33,8 @@
 		<StackCorruptionDetectionLevel>AllInstructions</StackCorruptionDetectionLevel>
 		<DebugType>none</DebugType>
 		<CompressionType>Gzip</CompressionType>
+		<RemoveBootDebugOutput>True</RemoveBootDebugOutput>
+		<OptimizationLevel>2</OptimizationLevel>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

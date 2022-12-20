@@ -1,5 +1,6 @@
 ﻿using Cosmos.System.FileSystem.VFS;
 using Cosmos.System.FileSystem;
+using PrismGraphics.Extentions;
 using PrismRuntime.SShell;
 using PrismTools.Events;
 using Cosmos.System;
@@ -31,7 +32,7 @@ namespace PrismOS
 
 			NetworkManager.Init();
 			SystemCalls.Init();
-			//VBEConsole.Init();
+			VBEConsole.Init();
 
 			try
 			{
