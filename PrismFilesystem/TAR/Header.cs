@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace PrismBinary.Formats.TAR
+namespace PrismFilesystem.TAR
 {
     /// <summary>
     /// The header file for posix tar files.

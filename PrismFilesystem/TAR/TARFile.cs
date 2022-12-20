@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using System.Text;
 
-namespace PrismBinary.Formats.TAR
+namespace PrismFilesystem.TAR
 {
     /// <summary>
     /// Class used for loading TAR files
@@ -12,7 +12,7 @@ namespace PrismBinary.Formats.TAR
         /// <summary>
         /// Creates a new instance of the <see cref="TARFile"/> class.
         /// </summary>
-        /// <param name="Binary">Raw binary of a tar file.</param>
+        /// <param name="Buffer">Raw binary of a tar file.</param>
         public TARFile(byte[] Buffer)
         {
             this.Buffer = Buffer;

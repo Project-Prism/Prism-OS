@@ -1,4 +1,4 @@
-﻿namespace PrismBinary.Formats.TAR
+﻿namespace PrismFilesystem.TAR
 {
     /// <summary>
     /// The different possible file types in a tar file.
