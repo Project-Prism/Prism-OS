@@ -25,13 +25,16 @@ namespace PrismRuntime.SSharp.Runtime
 
 			switch ((OPCode)ROM.ReadByte())
 			{
-				case OPCode.WriteLine:
+				case OPCode.System_ThrowException:
+					Console.WriteLine($"Exception: " + ROM.ReadString());
+					break;
+				case OPCode.System_Console_WriteLine:
 					Console.WriteLine(ROM.ReadString());
 					break;
-				case OPCode.Write:
+				case OPCode.System_Console_Write:
 					Console.Write(ROM.ReadString());
 					break;
-				case OPCode.Exit:
+				case OPCode.System_Enviroment_Exit:
 					IsEnabled = false;
 					break;
 			}

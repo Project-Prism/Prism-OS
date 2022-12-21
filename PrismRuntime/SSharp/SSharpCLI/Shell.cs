@@ -6,7 +6,7 @@ namespace PrismRuntime.SSharp.SSharpCLI
 	{
 		public static void Main()
 		{
-			Console.WriteLine("SystemSharp CLI interface, v1.1");
+			Console.WriteLine("SystemSharp CLI interface, v2");
 			Console.WriteLine("Copyleft PrismProject 2022.\n");
 
 			while (true)

@@ -1,23 +1,23 @@
-﻿## GLang V1 documentation
+﻿## SystemSharp (S#) V2 documentation
 
 <hr/>
 
-GLang is a high level graphics drawing language, it currently has no use or goals and is more of a learning experience. GLang is compiled to a custom bytecode that is read and executed by the GLang runtime.
+SystemSharp is a high level bytecode language, it currently has no use or goals and is more of a learning experience. SystemSharp is compiled to a custom bytecode that is read and executed by the SystemSharp runtime.
 
-You are free to make your own ports of the GLang runtime and compiler, it is very simple to do as it is mostly ``for`` loops.
+You are free to make your own ports of the SystemSharp runtime and compiler, it is very simple to do as it is mostly ``for`` loops.
 
 <hr/>
 
 ## Available functions
 
-Glang has many functions, here is a list of all of them:
+S# has many functions, here is a list of all of them:
 
-- SetMode(Width, Height);
-	> Sets the mode of the canvas.
-- Clear(ARGB Value);
-	> Clears the canvas with a set color.
-- Draw(Shape, (Points/Dimentions), ARGB Color);
-    > Draws a shape with the given input.
+- Console.WriteLine("String");
+	> Writes a string to the console and makes a new line.
+- Console.Write("String");
+	> Writes a string to the console.
+- Throw("String");
+    > Throws an exception.
 - Exit();
     > Exit the application.
 

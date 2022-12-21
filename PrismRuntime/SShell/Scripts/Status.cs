@@ -1,4 +1,5 @@
 ﻿using PrismRuntime.SShell.Structure;
+using Cosmos.Core.Memory;
 
 namespace PrismRuntime.SShell.Scripts
 {
@@ -11,6 +12,11 @@ namespace PrismRuntime.SShell.Scripts
 			switch (Args[0])
 			{
 				case "ram":
+					if (Args.Length > 1 && Args[1] == "collect")
+					{
+						Heap.Collect();
+					}
+
 					Console.WriteLine($"{Cosmos.Core.GCImplementation.GetUsedRAM() / 1024 / 1024}/{Cosmos.Core.CPU.GetAmountOfRAM()} MB used.");
 					break;
 				case "net":

@@ -2,8 +2,9 @@
 {
 	public enum OPCode
 	{
-		WriteLine,
-		Write,
-		Exit,
+		System_ThrowException,
+		System_Console_WriteLine,
+		System_Console_Write,
+		System_Enviroment_Exit,
 	}
 }

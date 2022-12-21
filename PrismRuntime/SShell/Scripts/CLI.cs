@@ -13,6 +13,7 @@ namespace PrismRuntime.SShell.Scripts
 			if (Args.Length == 0)
 			{
 				SSharp.SSharpCLI.Shell.Main();
+				return;
 			}
 
 			if (Args[0] == "compile")

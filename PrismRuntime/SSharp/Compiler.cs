@@ -19,16 +19,21 @@ namespace PrismRuntime.SSharp
 				{
 					switch (Tokens[I++].Value)
 					{
+						case "Throw":
+							Output.Write((byte)OPCode.System_ThrowException);
+							Output.Write(Tokens[++I].Value);
+							Output.Write((byte)OPCode.System_Enviroment_Exit);
+							break;
 						case "Console.WriteLine":
-							Output.Write((byte)OPCode.WriteLine);
+							Output.Write((byte)OPCode.System_Console_WriteLine);
 							Output.Write(Tokens[++I].Value);
 							break;
 						case "Console.Write":
-							Output.Write((byte)OPCode.Write);
+							Output.Write((byte)OPCode.System_Console_Write);
 							Output.Write(Tokens[++I].Value);
 							break;
 						case "Exit":
-							Output.Write((byte)OPCode.Exit);
+							Output.Write((byte)OPCode.System_Enviroment_Exit);
 							break;
 						default:
 							throw new($"Unexpected '{Tokens[I].Value}' at token index {I}!");
@@ -36,7 +41,7 @@ namespace PrismRuntime.SSharp
 				}
 			}
 
-			Output.Write((byte)OPCode.Exit);
+			Output.Write((byte)OPCode.System_Enviroment_Exit);
 
 			return new(((MemoryStream)Output.BaseStream).ToArray());
 		}
