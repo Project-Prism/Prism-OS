@@ -12,6 +12,33 @@ namespace PrismRuntime.SSharp.Runtime
 
 		#region Methods
 
+		public void Dump()
+		{
+			long BPoint = ROM.BaseStream.Position;
+			ROM.BaseStream.Position = 0;
+
+			for (; ROM.BaseStream.Position < ROM.BaseStream.Length - 1;)
+			{
+				switch ((OPCode)ROM.ReadByte())
+				{
+					case OPCode.System_ThrowException:
+						Console.WriteLine($"System_ThrowException: {ROM.ReadString()}");
+						break;
+					case OPCode.System_Console_WriteLine:
+						Console.WriteLine($"System_Console_WriteLine: {ROM.ReadString()}");
+						break;
+					case OPCode.System_Console_Write:
+						Console.WriteLine($"System_Console_Write: {ROM.ReadString()}");
+						break;
+					case OPCode.System_Enviroment_Exit:
+						Console.WriteLine("System_Enviroment_Exit");
+						break;
+				}
+			}
+
+			ROM.BaseStream.Position = BPoint;
+		}
+
 		public void Next()
 		{
 			if (ROM.BaseStream.Position == ROM.BaseStream.Length)

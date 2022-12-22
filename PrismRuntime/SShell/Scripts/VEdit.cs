@@ -23,6 +23,21 @@ namespace PrismRuntime.SShell.Scripts
 
 				if (Key.Key == ConsoleKey.Backspace)
 				{
+					if (Key.Modifiers == ConsoleModifiers.Control)
+					{
+						while (Buffer[^1] != ' ')
+						{
+							if (Buffer.Length > 0)
+							{
+								Buffer = Buffer[..^1];
+							}
+						}
+
+						Console.Clear();
+						Console.Write(Buffer);
+						continue;
+					}
+
 					if (Buffer.Length > 0)
 					{
 						Buffer = Buffer[..^1];

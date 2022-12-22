@@ -16,8 +16,19 @@ namespace PrismRuntime.SShell.Scripts
 				return;
 			}
 
+			if (Args[0] == "dump")
+			{
+				new Executable(File.ReadAllBytes(Args[1])).Dump();
+				return;
+			}
 			if (Args[0] == "compile")
 			{
+				if (Args.Length < 3)
+				{
+					Console.WriteLine("Missing arguments!");
+					return;
+				}
+
 				Console.WriteLine("Compiling " + Args[1] + "...");
 				Executable EXE = Compiler.Compile(File.ReadAllText(Args[1]));
 
