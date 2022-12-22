@@ -36,20 +36,44 @@ namespace PrismRuntime.SShell.Scripts
 		}
 		public class MKDir : Script
 		{
-			public MKDir() : base("mkdir", "Make a directory in the current path.") { }
+			public MKDir() : base("mkdir", "Make a directory in the current path.")
+			{
+				AdvancedDescription = "mkdir [full paths]";
+			}
 
 			public override void Invoke(string[] Args)
 			{
-				Directory.CreateDirectory(Args[0]);
+				if (Args.Length < 1)
+				{
+					Console.WriteLine("Insufficient arguments!");
+					return;
+				}
+
+				for (int I = 0; I < Args.Length; I++)
+				{
+					Directory.CreateDirectory(Args[I]);
+				}
 			}
 		}
 		public class Touch : Script
 		{
-			public Touch() : base("touch", "Make a file with the input name in the current path.") { }
+			public Touch() : base("touch", "Make a file with the input name in the current path.")
+			{
+				AdvancedDescription = "touch [full paths]";
+			}
 
 			public override void Invoke(string[] Args)
 			{
-				File.Create(Args[0]);
+				if (Args.Length < 1)
+				{
+					Console.WriteLine("Insuficcient arguments.");
+					return;
+				}
+
+				for (int I = 0; I < Args.Length; I++)
+				{
+					File.Create(Args[0]);
+				}
 			}
 		}
 		public class Halt : Script
@@ -63,16 +87,27 @@ namespace PrismRuntime.SShell.Scripts
 		}
 		public class Cat : Script
 		{
-			public Cat() : base("cat", "Echo the contents of a file to the terminal.") { }
+			public Cat() : base("cat", "Echo the contents of a file to the terminal.")
+			{
+				AdvancedDescription = "cat [full path]";
+			}
 
 			public override void Invoke(string[] Args)
 			{
+				if (Args.Length != 1)
+				{
+					Console.WriteLine("Incorect amonut of arguments.");
+				}
+
 				Console.WriteLine(File.ReadAllText(Args[0]));
 			}
 		}
 		public class Man : Script
 		{
-			public Man() : base("man", "man { command name }") { }
+			public Man() : base("man", "Lists all commands or advanced info about a specific command.")
+			{
+				AdvancedDescription = "man [command name, optional.]";
+			}
 
 			public override void Invoke(string[] Args)
 			{
@@ -80,19 +115,26 @@ namespace PrismRuntime.SShell.Scripts
 				{
 					foreach (Script S in Shell.Scripts)
 					{
-						if (S.Name == Args[0])
+						if (S.ScriptName == Args[0])
 						{
-							Console.WriteLine($"{S.Name} : {S.Description}");
+							if (S.AdvancedDescription.Length == 0)
+							{
+								Console.WriteLine("Command does not have advanced description.");
+								return;
+							}
+
+							Console.WriteLine($"{S.ScriptName} : {S.AdvancedDescription}");
 							return;
 						}
 					}
 					Console.WriteLine($"man: Could not find command manual for '{Args[0]}'.");
+					return;
 				}
 				else
 				{
 					foreach (Script S in Shell.Scripts)
 					{
-						Console.WriteLine($"{S.Name} : {S.Description}");
+						Console.WriteLine($"{S.ScriptName} : {S.BasicDescription}");
 					}
 				}
 			}
@@ -109,10 +151,19 @@ namespace PrismRuntime.SShell.Scripts
 		}
 		public class CP : Script
 		{
-			public CP() : base("cp", "Copies a File somewhere.") { }
+			public CP() : base("cp", "Copies a File somewhere.")
+			{
+				AdvancedDescription = "cp [Source] [Destination]";
+			}
 
 			public override void Invoke(string[] Args)
 			{
+				if (Args.Length < 2)
+				{
+					Console.WriteLine("Insuficcient arguments.");
+					return;
+				}
+
 				if (File.Exists(Args[0]) && !File.Exists(Args[1]))
 				{
 					File.Copy(Args[0], Args[1]);
@@ -121,7 +172,10 @@ namespace PrismRuntime.SShell.Scripts
 		}
 		public class LS : Script
 		{
-			public LS() : base("ls", "List the contents of a directory.") { }
+			public LS() : base("ls", "List the contents of a directory.")
+			{
+				AdvancedDescription = "ls [full path, optional]";
+			}
 
 			public override void Invoke(string[] Args)
 			{
@@ -158,10 +212,22 @@ namespace PrismRuntime.SShell.Scripts
 		}
 		public class RM : Script
 		{
-			public RM() : base("rm", "Remove a file/directory.") { }
+			public RM() : base("rm", "Remove a file/directory.")
+			{
+				AdvancedDescription =
+					"rm [flags] [full path]\n" +
+					"=========================\n" +
+					"	-r | Remove Directory";
+			}
 
 			public override void Invoke(string[] Args)
 			{
+				if (Args.Length < 1)
+				{
+					Console.WriteLine("Insufficient arguments.");
+					return;
+				}
+
 				if (Args.Length > 1 && Args[0] == "-r")
 				{
 					Directory.Delete(Args[1]);

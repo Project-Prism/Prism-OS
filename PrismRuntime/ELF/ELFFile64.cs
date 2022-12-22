@@ -60,6 +60,10 @@ namespace PrismRuntime.ELF
 
         #region Methods
 
+        /// <summary>
+        /// Main entry point to the ELF file.
+        /// </summary>
+        /// <exception cref="NotImplementedException">x64 not implemented.</exception>
         public void Main()
         {
             throw new NotImplementedException();

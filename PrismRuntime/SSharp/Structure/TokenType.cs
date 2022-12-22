@@ -1,4 +1,4 @@
-﻿namespace PrismRuntime.SSharp.Tokenizer.Structure
+﻿namespace PrismRuntime.SSharp.Structure
 {
 	public enum TokenType
 	{

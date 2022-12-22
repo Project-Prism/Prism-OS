@@ -4,7 +4,10 @@ namespace PrismRuntime.SShell.Scripts
 {
 	public class VEdit : Script
 	{
-		public VEdit() : base("vedit", "A basic text editor.") { }
+		public VEdit() : base("vedit", "A basic text editor.")
+		{
+			AdvancedDescription = "vedit [file name]";
+		}
 
 		public override void Invoke(string[] Args)
 		{

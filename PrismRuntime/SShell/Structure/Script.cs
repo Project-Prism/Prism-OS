@@ -5,10 +5,11 @@
 	/// </summary>
 	public abstract class Script
 	{
-		public Script(string Name, string Description)
+		public Script(string ScriptName, string BasicDescription)
 		{
-			this.Name = Name;
-			this.Description = Description;
+			AdvancedDescription = string.Empty;
+			this.BasicDescription = BasicDescription;
+			this.ScriptName = ScriptName;
 
 			Shell.Scripts.Add(this);
 		}
@@ -21,8 +22,9 @@
 
 		#region Fields
 
-		public string Name { get; set; }
-		public string Description { get; set; }
+		public string AdvancedDescription { get; set; }
+		public string BasicDescription { get; set; }
+		public string ScriptName { get; set; }
 
 		#endregion
 	}

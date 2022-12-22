@@ -4,6 +4,9 @@
 	{
 		#region Methods
 
+		/// <summary>
+		/// A basic check to see if the magic number is correct.
+		/// </summary>
 		public bool IsValid => MagicNumber == 0x58465342;
 
 		#endregion

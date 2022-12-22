@@ -1,9 +1,9 @@
-﻿using PrismRuntime.SSharp.Tokenizer.Structure;
+﻿using PrismRuntime.SSharp.Structure;
 using PrismTools;
 
-namespace PrismRuntime.SSharp.Tokenizer
+namespace PrismRuntime.SSharp
 {
-	public static class Lexer
+	public static class Tokenizer
 	{
 		/// <summary>
 		/// Generates a list of tokens with values based on the input.

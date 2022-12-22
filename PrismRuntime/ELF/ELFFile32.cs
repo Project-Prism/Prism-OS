@@ -60,6 +60,9 @@ namespace PrismRuntime.ELF
 
 		#region Methods
 
+        /// <summary>
+        /// Main entry point to the ELF file.
+        /// </summary>
         public void Main()
 		{
             JumpImpl.JumpFar(Header.Entry);

@@ -5,6 +5,12 @@ namespace PrismTools
 {
 	public static class JumpImpl
 	{
+		/// <summary>
+		/// An implementation for far-jump in C#.
+		/// Used for ELF files.
+		/// </summary>
+		/// <param name="Address">Address we want to jump to.</param>
+		/// <exception cref="NotImplementedException">Thrown on not-plugged error.</exception>
 		[PlugMethod(Assembler = typeof(JumpImplAsm))]
 		public static void JumpFar(uint Address) => throw new NotImplementedException();
 

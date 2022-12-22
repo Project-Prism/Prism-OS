@@ -5,10 +5,23 @@ namespace PrismRuntime.SShell.Scripts
 {
 	public class Status : Script
 	{
-		public Status() : base("status", "Print statistics about certain system properties.") { }
+		public Status() : base("status", "Print statistics about certain system properties.")
+		{
+			AdvancedDescription =
+				"status [property]\n" +
+				"=================\n" +
+				"ram - RAM usage\n" +
+				"net - Network status";
+		}
 
 		public override void Invoke(string[] Args)
 		{
+			if (Args.Length < 1)
+			{
+				Console.WriteLine("Insufficient arguments!");
+				return;
+			}
+
 			switch (Args[0])
 			{
 				case "ram":

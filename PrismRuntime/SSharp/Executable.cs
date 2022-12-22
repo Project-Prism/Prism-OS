@@ -1,9 +1,13 @@
-﻿using PrismRuntime.SSharp.Runtime.Structure;
+﻿using PrismRuntime.SSharp.Structure;
 
-namespace PrismRuntime.SSharp.Runtime
+namespace PrismRuntime.SSharp
 {
 	public unsafe class Executable
 	{
+		/// <summary>
+		/// Creates a new instance of the <see cref="Executable"/> class.
+		/// </summary>
+		/// <param name="Binary">Raw executable binary.</param>
 		public Executable(byte[] Binary)
 		{
 			ROM = new(new MemoryStream(Binary));
@@ -12,13 +16,18 @@ namespace PrismRuntime.SSharp.Runtime
 
 		#region Methods
 
+		/// <summary>
+		/// Dumps the data as human-readable text to the console.
+		/// </summary>
 		public void Dump()
 		{
+			// Backup and reset position so we can continue later.
 			long BPoint = ROM.BaseStream.Position;
 			ROM.BaseStream.Position = 0;
 
 			for (; ROM.BaseStream.Position < ROM.BaseStream.Length - 1;)
 			{
+				// Check instruction type.
 				switch ((OPCode)ROM.ReadByte())
 				{
 					case OPCode.System_ThrowException:
@@ -36,11 +45,16 @@ namespace PrismRuntime.SSharp.Runtime
 				}
 			}
 
+			// Return to original position.
 			ROM.BaseStream.Position = BPoint;
 		}
 
+		/// <summary>
+		/// Runs next instruction in the executable.
+		/// </summary>
 		public void Next()
 		{
+			// Make sure executable can run.
 			if (ROM.BaseStream.Position == ROM.BaseStream.Length)
 			{
 				IsEnabled = false;
@@ -50,6 +64,7 @@ namespace PrismRuntime.SSharp.Runtime
 				return;
 			}
 
+			// Check instruction type.
 			switch ((OPCode)ROM.ReadByte())
 			{
 				case OPCode.System_ThrowException:

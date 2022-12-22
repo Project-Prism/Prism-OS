@@ -1,5 +1,6 @@
 ﻿using PrismRuntime.SShell.Structure;
 using PrismRuntime.SShell.Scripts;
+using PrismRuntime.SSharp;
 using PrismTools;
 
 namespace PrismRuntime.SShell
@@ -8,8 +9,13 @@ namespace PrismRuntime.SShell
 	{
 		#region Methods
 
+		/// <summary>
+		/// Invokes a command if it exists.
+		/// </summary>
+		/// <param name="VS">Arguments to the command.</param>
 		public static void Invoke(string[] VS)
 		{
+			// Skip if there are no commands to run.
 			if (Scripts.Count == 0)
 			{
 				Debugger.Warn("Command interperiter not initialized!");
@@ -18,7 +24,8 @@ namespace PrismRuntime.SShell
 
 			for (int I = 0; I < Scripts.Count; I++)
 			{
-				if (Scripts[I].Name == VS[0])
+				// Check if command exists.
+				if (Scripts[I].ScriptName == VS[0])
 				{
 					try
 					{
@@ -39,13 +46,29 @@ namespace PrismRuntime.SShell
 				}
 			}
 
+			if (File.Exists($"0:\\{VS[0]}")|| File.Exists(VS[0]))
+			{
+				Executable EXE = new(File.ReadAllBytes(VS[0]));
+
+				while (EXE.IsEnabled)
+				{
+					EXE.Next();
+				}
+
+				return;
+			}
+
 			Debugger.Warn("Command not found!");
 		}
 
+		/// <summary>
+		/// Main method for the shell.
+		/// </summary>
 		public static void Main()
 		{
 			Debugger.Warn("Droping to recovery shell...");
 
+			// Initialize all commands.
 			_ = new Unix.PowerOff();
 			_ = new Unix.Reboot();
 			_ = new Unix.Clear();
