@@ -30,8 +30,8 @@ namespace PrismRuntime.SSharp
 				// Check instruction type.
 				switch ((OPCode)ROM.ReadByte())
 				{
-					case OPCode.System_ThrowException:
-						Console.WriteLine($"System_ThrowException: {ROM.ReadString()}");
+					case OPCode.System_Runtime_ThrowException:
+						Console.WriteLine($"System_Runtime_ThrowException: {ROM.ReadString()}");
 						break;
 					case OPCode.System_Console_WriteLine:
 						Console.WriteLine($"System_Console_WriteLine: {ROM.ReadString()}");
@@ -39,8 +39,11 @@ namespace PrismRuntime.SSharp
 					case OPCode.System_Console_Write:
 						Console.WriteLine($"System_Console_Write: {ROM.ReadString()}");
 						break;
-					case OPCode.System_Enviroment_Exit:
-						Console.WriteLine("System_Enviroment_Exit");
+					case OPCode.System_Runtime_Exit:
+						Console.WriteLine("System_Runtime_Exit");
+						break;
+					case OPCode.System_Inline_Jump:
+						Console.WriteLine("System_Inline_Jump");
 						break;
 				}
 			}
@@ -67,7 +70,7 @@ namespace PrismRuntime.SSharp
 			// Check instruction type.
 			switch ((OPCode)ROM.ReadByte())
 			{
-				case OPCode.System_ThrowException:
+				case OPCode.System_Runtime_ThrowException:
 					Console.WriteLine($"Exception: " + ROM.ReadString());
 					break;
 				case OPCode.System_Console_WriteLine:
@@ -76,8 +79,11 @@ namespace PrismRuntime.SSharp
 				case OPCode.System_Console_Write:
 					Console.Write(ROM.ReadString());
 					break;
-				case OPCode.System_Enviroment_Exit:
+				case OPCode.System_Runtime_Exit:
 					IsEnabled = false;
+					break;
+				case OPCode.System_Inline_Jump:
+					ROM.BaseStream.Position = (long)ROM.ReadUInt64();
 					break;
 			}
 		}

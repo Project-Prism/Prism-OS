@@ -2,9 +2,24 @@
 {
 	public enum OPCode
 	{
-		System_ThrowException,
+		#region Console
+
 		System_Console_WriteLine,
 		System_Console_Write,
-		System_Enviroment_Exit,
+
+		#endregion
+
+		#region Runtime
+
+		System_Runtime_ThrowException,
+		System_Runtime_Exit,
+
+		#endregion
+
+		#region Inline
+
+		System_Inline_Jump,
+
+		#endregion
 	}
 }
