@@ -17,16 +17,14 @@ namespace PrismAudio
 		/// <returns>Sine wave as an audio stream.</returns>
 		public static MemoryAudioStream GetSineWave(short Frequency, uint Samples, float Amplitude = 1.0f)
 		{
-			short[] Audio1 = new short[Samples];
-			byte[] Audio2 = new byte[Samples * 2];
+			BinaryWriter Writer = new(new MemoryStream());
 
-			for (uint I = 0; I < Samples; I++)
+			for (uint I = 0; I < Samples; I += 2)
 			{
-				Audio1[I] = Convert.ToInt16(Amplitude * Math.Sin(Frequency * I));
+				Writer.Write(Convert.ToInt16(Amplitude * Math.Sin(Frequency * I)));
 			}
 
-			Buffer.BlockCopy(Audio1, 0, Audio2, 0, (int)(Samples * 2));
-			return new MemoryAudioStream(new(AudioBitDepth.Bits16, 1, true), 48000, Audio2);
+			return new MemoryAudioStream(new(AudioBitDepth.Bits16, 1, true), 48000, ((MemoryStream)Writer.BaseStream).ToArray());
 		}
 	}
 }

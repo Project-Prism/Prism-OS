@@ -1,7 +1,26 @@
-﻿namespace PrismFilesystem.XFS.Structure
+﻿using Cosmos.HAL.BlockDevice;
+
+namespace PrismFilesystem.XFS.Structure
 {
 	public unsafe struct SuperBlock
 	{
+		/*
+		/// <summary>
+		/// Creates a new instance of the <see cref="SuperBlock"/> class from a block device.
+		/// </summary>
+		/// <param name="Device">The device specified to use.</param>
+		public SuperBlock(BlockDevice Device)
+		{
+			MagicNumber = 0x58465342;
+			BlockSize = (uint)Device.BlockSize;
+			DBlocks = Device.BlockCount;
+			RBlocks = 0;
+			RExtents = 0;
+			UUID = "";
+
+		}
+		*/
+
 		#region Methods
 
 		/// <summary>

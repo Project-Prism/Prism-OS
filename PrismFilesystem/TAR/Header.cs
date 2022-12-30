@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices;
+using System.Text;
 
 namespace PrismFilesystem.TAR
 {
@@ -8,8 +9,20 @@ namespace PrismFilesystem.TAR
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public unsafe struct Header
     {
-        // GNU Compatible
-        public fixed byte Name[100];
+        // Dynamic variable for name.
+		public string Name
+		{
+			get
+			{
+                fixed (byte* C = PrivateName)
+                {
+                    return Encoding.UTF8.GetString(C, 100).Trim('\0');
+                }
+			}
+		}
+
+		// GNU Compatible
+		private fixed byte PrivateName[100];
         public fixed byte Mode[8];
         public fixed byte OwnerUID[8];
         public fixed byte GroupUID[8];

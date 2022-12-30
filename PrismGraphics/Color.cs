@@ -12,8 +12,6 @@ namespace PrismGraphics
 		public static implicit operator Color((byte, byte, byte, byte) Color)
 		{
 			return FromARGB(Color.Item1, Color.Item2, Color.Item3, Color.Item4);
-
-			throw new ArgumentException("Unsuported Color Format!");
 		}
 		public static implicit operator Color((byte, byte, byte) RGB)
 		{

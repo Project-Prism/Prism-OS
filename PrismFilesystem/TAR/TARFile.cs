@@ -47,7 +47,7 @@ namespace PrismFilesystem.TAR
 				{
                     Header* H = (Header*)P + I;
                     
-                    if (Encoding.UTF8.GetString(H->Name, 100).Trim('\0') == File)
+                    if (H->Name == File)
 					{
                         byte[] Data = new byte[OCS2L(H->Size)];
                         Marshal.Copy((IntPtr)(P + 512), Data, 0, Data.Length);
@@ -86,10 +86,9 @@ namespace PrismFilesystem.TAR
                 {
                     Header* H = (Header*)P + I;
 
-                    string Name = Encoding.UTF8.GetString(H->Name, 100).Trim('\0');
-                    if (Path.StartsWith(Name))
+                    if (Path.StartsWith(H->Name))
                     {
-                        VS.Add(Name);
+                        VS.Add(H->Name);
                     }
                 }
             }

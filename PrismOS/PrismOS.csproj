@@ -69,6 +69,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\PrismAudio\PrismAudio.csproj" />
 		<ProjectReference Include="..\PrismBinary\PrismBinary.csproj" />
+		<ProjectReference Include="..\PrismFilesystem\PrismFilesystem.csproj" />
 		<ProjectReference Include="..\PrismGraphics3D\PrismGraphics3D.csproj" />
 		<ProjectReference Include="..\PrismGraphics\PrismGraphics.csproj" />
 		<ProjectReference Include="..\PrismNetwork\PrismNetwork.csproj" />
