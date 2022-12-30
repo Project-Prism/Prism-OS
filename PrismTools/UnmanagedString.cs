@@ -20,8 +20,17 @@ namespace PrismTools
 			}
 		}
 
+		/// <summary>
+		/// Creates a new instance of the <see cref="UnmanagedString"/> class.
+		/// </summary>
+		/// <param name="Value">Value to set as the string.</param>
+		public UnmanagedString(char* Value)
+		{
+			PrivateValue = Value;
+		}
+
 		#region Operators
-		
+
 		// Safe/Unsafe conversions.
 		public static implicit operator UnmanagedString*(UnmanagedString Value)
 		{
