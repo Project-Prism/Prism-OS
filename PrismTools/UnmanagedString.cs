@@ -1,4 +1,4 @@
-﻿// using System.Runtime.InteropServices;
+﻿// using System.Runtime.InteropServices
 
 namespace PrismTools
 {
@@ -78,6 +78,25 @@ namespace PrismTools
 		#endregion
 
 		#region Methods
+
+		/// <summary>
+		/// Creates an unsafe instance of the <see cref="UnmanagedString"/> class.
+		/// </summary>
+		/// <param name="Value">Value to set as the string.</param>
+		/// <returns>Pointer to the new instance.</returns>
+		public static UnmanagedString* CreateUnsafeNullTerminated(char* Value)
+		{
+			byte* Buffer = stackalloc byte[sizeof(UnmanagedString)];
+			UnmanagedString* P = (UnmanagedString*)Buffer;
+
+			// Add all chars from null-terminated string.
+			for (int I = 0; Value[I] != '\0'; I++)
+			{
+				P->Value += Value[I];
+			}
+
+			return P;
+		}
 
 		/// <summary>
 		/// Creates an unsafe instance of the <see cref="UnmanagedString"/> class.

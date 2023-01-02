@@ -65,7 +65,7 @@ namespace PrismRuntime.ELF
         /// </summary>
         public void Main()
 		{
-            JumpImpl.JumpFar(Header.Entry);
+            Assembly.JumpFar(Header.Entry);
 		}
 
 		#endregion
