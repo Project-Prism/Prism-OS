@@ -19,6 +19,8 @@ function onLoad(event)
     const releaseData = JSON.parse(event.target.responseText)
     console.info("Loaded release data")
 
+    console.log(releaseData);
+
     // Setup downloads section
     const downloads = document.getElementById("Downloads")
     const placeholder = document.getElementById("DownloadPlaceHolder")
@@ -28,7 +30,22 @@ function onLoad(event)
     // // Get the four most recent releases and create table data
     for (let i = 0; i != 4; i++)
     {
-        const row = document.createElement("tr")
+	// TODO: Make a popup to select a file to download?????
+	// Find PrismOS.iso
+	let downloadUrl = undefined;
+	for (let artifactI = 0; artifactI < releaseData[i].assets.length; artifactI++)
+	{
+		console.log(artifactI)
+		console.log(releaseData[i].assets[artifactI].name)
+		if (releaseData[i].assets[artifactI].name === "PrismOS.iso")
+		{
+			console.log("goof")
+			downloadUrl = releaseData[i].assets[artifactI].browser_download_url
+		}
+		console.log(downloadUrl)
+	}
+
+	const row = document.createElement("tr")
 
         // Create data fields
         const version = document.createElement("td")
@@ -42,9 +59,7 @@ function onLoad(event)
         const releaseType = document.createTextNode(releaseData[i].prerelease ? "Pre Release":"Release")
         const releaseDate = document.createTextNode(releaseData[i].published_at.split("T")[0]) // Example: 2022-08-13T21:15:55Z -> 2022-08-13
 
-        const downloadUrl = releaseData[i].assets[0].browser_download_url
-        const urlPaths = downloadUrl.split("/") // Stupid verbose variable because javascript can't do array[-1] unlike python
-        const fileName = document.createTextNode(urlPaths[urlPaths.length - 1])
+        const fileName = document.createTextNode("PrismOS.iso") // FIXME: This was supposed to be dynamic, but ended up being pointless later.
         const releaseDownload = document.createElement("a")
         releaseDownload.href = downloadUrl
         releaseDownload.appendChild(fileName)
