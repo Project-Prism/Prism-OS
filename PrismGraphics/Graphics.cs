@@ -205,14 +205,14 @@ namespace PrismGraphics
 			// Circular rectangle.
 			else
 			{
-				DrawFilledCircle((int)(X + Radius), (int)(Y + Radius), Radius, Color);
-				DrawFilledCircle((int)(X + Width - Radius - 1), (int)(Y + Radius), Radius, Color);
+				DrawFilledCircle(X + Radius, Y + Radius, Radius, Color);
+				DrawFilledCircle(X + Width - Radius - 1, Y + Radius, Radius, Color);
 
-				DrawFilledCircle((int)(X + Radius), (int)(Y + Height - Radius - 1), Radius, Color);
-				DrawFilledCircle((int)(X + Width - Radius - 1), (int)(Y + Height - Radius - 1), Radius, Color);
+				DrawFilledCircle(X + Radius, Y + Height - Radius - 1, Radius, Color);
+				DrawFilledCircle(X + Width - Radius - 1, Y + Height - Radius - 1, Radius, Color);
 
-				DrawFilledRectangle((int)(X + Radius), Y, Width - Radius * 2, Height, 0, Color);
-				DrawFilledRectangle(X, (int)(Y + Radius), Width, Height - Radius * 2, 0, Color);
+				DrawFilledRectangle(X + Radius, Y, Width - Radius * 2, Height, 0, Color);
+				DrawFilledRectangle(X, Y + Radius, Width, Height - Radius * 2, 0, Color);
 			}
 		}
 
@@ -230,15 +230,15 @@ namespace PrismGraphics
 
 			if (Radius > 0)
 			{
-				DrawArc((int)(Radius + X), (int)(Radius + Y), Radius, Color, 180, 270); // Top left
-				DrawArc((int)(X + Width - Radius), (int)(Y + Height - Radius), Radius, Color, 0, 90); // Bottom right
-				DrawArc((int)(Radius + X), (int)(Y + Height - Radius), Radius, Color, 90, 180); // Bottom left
-				DrawArc((int)(X + Width - Radius), (int)(Radius + Y), Radius, Color, 270, 360);
+				DrawArc(Radius + X, Radius + Y, Radius, Color, 180, 270); // Top left
+				DrawArc(X + Width - Radius, Y + Height - Radius, Radius, Color, 0, 90); // Bottom right
+				DrawArc(Radius + X, Y + Height - Radius, Radius, Color, 90, 180); // Bottom left
+				DrawArc(X + Width - Radius, Radius + Y, Radius, Color, 270, 360);
 			}
-			DrawLine((int)(X + Radius), Y, (int)(X + Width - Radius), Y, Color); // Top Line
-			DrawLine((int)(X + Radius), (int)(Y + Height), (int)(X + Width - Radius), (int)(Height + Y), Color); // Bottom Line
-			DrawLine(X, (int)(Y + Radius), X, (int)(Y + Height - Radius), Color); // Left Line
-			DrawLine((int)(X + Width), (int)(Y + Radius), (int)(Width + X), (int)(Y + Height - Radius), Color); // Right Line
+			DrawLine(X + Radius, Y, X + Width - Radius, Y, Color); // Top Line
+			DrawLine(X + Radius, Y + Height, X + Width - Radius, Height + Y, Color); // Bottom Line
+			DrawLine(X, Y + Radius, X, Y + Height - Radius, Color); // Left Line
+			DrawLine(X + Width, Y + Radius, Width + X, Y + Height - Radius, Color); // Right Line
 		}
 
 		/// <summary>
@@ -259,11 +259,11 @@ namespace PrismGraphics
 				{
 					if ((IX + IY) % 2 == 0)
 					{
-						DrawFilledRectangle((int)(X + IX * BlockSize), (int)(Y + IY * BlockSize), BlockSize, BlockSize, 0, BlockType1);
+						DrawFilledRectangle(X + IX * BlockSize, Y + IY * BlockSize, BlockSize, BlockSize, 0, BlockType1);
 					}
 					else
 					{
-						DrawFilledRectangle((int)(X + IX * BlockSize), (int)(Y + IY * BlockSize), BlockSize, BlockSize, 0, BlockType2);
+						DrawFilledRectangle(X + IX * BlockSize, Y + IY * BlockSize, BlockSize, BlockSize, 0, BlockType2);
 					}
 				}
 			}
@@ -286,13 +286,13 @@ namespace PrismGraphics
 		public void DrawFilledTriangle(long X1, long Y1, long X2, long Y2, long X3, long Y3, Color Color, bool UseAntiAliasing = false)
 		{
 			// 28.4 fixed-point coordinates
-			Y1 = (int)Math.Round(16.0f * Y1);
-			Y2 = (int)Math.Round(16.0f * Y2);
-			Y3 = (int)Math.Round(16.0f * Y3);
+			Y1 = (long)Math.Round(16.0f * Y1);
+			Y2 = (long)Math.Round(16.0f * Y2);
+			Y3 = (long)Math.Round(16.0f * Y3);
 
-			X1 = (int)Math.Round(16.0f * X1);
-			X2 = (int)Math.Round(16.0f * X2);
-			X3 = (int)Math.Round(16.0f * X3);
+			X1 = (long)Math.Round(16.0f * X1);
+			X2 = (long)Math.Round(16.0f * X2);
+			X3 = (long)Math.Round(16.0f * X3);
 
 			// Deltas
 			long DX12 = X1 - X2;
@@ -395,10 +395,11 @@ namespace PrismGraphics
 			{
 				return;
 			}
+			
 			if (Color.A == 255)
 			{ // This method fills the length of the circle from the correct X and Length values for every Y pixel in the circle, it uses memcpy to make it fast.
 				long R2 = Radius * Radius;
-				for (int IY = (int)-Radius; IY <= Radius; IY++)
+				for (long IY = -Radius; IY <= Radius; IY++)
 				{
 					uint IX = (uint)(Math.Sqrt(R2 - IY * IY) + 0.5);
 					uint* Offset = Internal + (Width * (Y + IY)) + X - IX;
@@ -408,11 +409,11 @@ namespace PrismGraphics
 			}
 			else
 			{
-				for (int IX = (int)-Radius; IX < Radius; IX++)
+				for (long IX = -Radius; IX < Radius; IX++)
 				{
-					int Height = (int)Math.Sqrt((Radius * Radius) - (IX * IX));
+					long Height = (long)Math.Sqrt((Radius * Radius) - (IX * IX));
 
-					for (int IY = -Height; IY < Height; IY++)
+					for (long IY = -Height; IY < Height; IY++)
 					{
 						this[IX + X, IY + Y] = Color;
 					}
@@ -515,7 +516,8 @@ namespace PrismGraphics
 
 				double XU = Power3V1 * X1 + 3 * U * Power2V1 * X2 + 3 * Power2V2 * (1 - U) * X3 + Power3V2 * X4;
 				double YU = Power3V1 * Y1 + 3 * U * Power2V1 * Y2 + 3 * Power2V2 * (1 - U) * Y3 + Power3V2 * Y4;
-				this[(int)XU, (int)YU] = Color;
+				
+				this[(long)XU, (long)YU] = Color;
 			}
 		}
 
@@ -537,6 +539,7 @@ namespace PrismGraphics
 			while (X1 != X2 || Y1 != Y2)
 			{
 				this[X1, Y1] = Color;
+
 				if (UseAntiAlias)
 				{
 					if (X1 + X2 > Y1 + Y2)
@@ -612,8 +615,10 @@ namespace PrismGraphics
 			for (double Angle = StartAngle; Angle < EndAngle; Angle += 0.5)
 			{
 				double Angle1 = Math.PI * Angle / 180;
-				int IX = (int)(Width * Math.Cos(Angle1));
-				int IY = (int)(Height * Math.Sin(Angle1));
+
+				long IX = (long)(Width * Math.Cos(Angle1));
+				long IY = (long)(Height * Math.Sin(Angle1));
+
 				this[X + IX, Y + IY] = Color;
 			}
 		}
@@ -632,8 +637,10 @@ namespace PrismGraphics
 			for (double Angle = StartAngle; Angle < EndAngle; Angle += 0.5)
 			{
 				double Angle1 = Math.PI * Angle / 180;
-				int IX = (int)(Radius * Math.Cos(Angle1));
-				int IY = (int)(Radius * Math.Sin(Angle1));
+
+				long IX = (long)(Radius * Math.Cos(Angle1));
+				long IY = (long)(Radius * Math.Sin(Angle1));
+
 				this[X + IX, Y + IY] = Color;
 			}
 		}
@@ -736,7 +743,7 @@ namespace PrismGraphics
 			for (int Line = 0; Line < Lines.Length; Line++)
 			{
 				// Advanced Calculations To Determine Position
-				long IX = X - (Center ? ((int)Font.MeasureString(Text) / 2) : 0);
+				long IX = X - (Center ? (Font.MeasureString(Text) / 2) : 0);
 				long IY = Y + (Font.Size * Line) - (Center ? Font.Size * Lines.Length / 2 : 0);
 
 				if (IY > Height)
@@ -751,7 +758,7 @@ namespace PrismGraphics
 					{
 						continue;
 					}
-					IX += (int)(DrawChar(IX, IY, Lines[Line][Char], Font, Color, Center) + 2);
+					IX += DrawChar(IX, IY, Lines[Line][Char], Font, Color, Center) + 2;
 				}
 			}
 		}
@@ -785,8 +792,8 @@ namespace PrismGraphics
 			}
 			if (Center)
 			{
-				X -= (int)Font.Size16;
-				Y -= (int)Font.Size8;
+				X -= Font.Size16;
+				Y -= Font.Size8;
 			}
 
 			uint MaxX = 0;
@@ -833,8 +840,8 @@ namespace PrismGraphics
 			{
 				for (int Y = 0; Y < Height; Y++)
 				{
-					int X2 = (int)(Math.Cos(Angle) * X - Math.Sin(Angle) * Y);
-					int Y2 = (int)(Math.Sin(Angle) * X + Math.Cos(Angle) * Y);
+					long X2 = (long)(Math.Cos(Angle) * X - Math.Sin(Angle) * Y);
+					long Y2 = (long)(Math.Sin(Angle) * X + Math.Cos(Angle) * Y);
 
 					Result[X2, Y2] = this[X, Y];
 				}
@@ -853,23 +860,29 @@ namespace PrismGraphics
 		/// <exception cref="NotImplementedException">Thrown if scale method does not exist.</exception>
 		public Graphics Scale(uint Width, uint Height)
 		{
+			// Out of bounds check.
 			if (Width <= 0 || Height <= 0 || Width == this.Width || Height == this.Height)
 			{
 				return this;
 			}
 
+			// Create temporary buffer.
 			Graphics FB = new(Width, Height);
+
+			// Find the scale ratios.
 			double XRatio = (double)this.Width / Width;
 			double YRatio = (double)this.Height / Height;
+
 			for (uint Y = 0; Y < Height; Y++)
 			{
 				double PY = Math.Floor(Y * YRatio);
 				for (uint X = 0; X < Width; X++)
 				{
 					double PX = Math.Floor(X * XRatio);
-					FB[Y * Width + X] = Internal[(int)((PY * this.Width) + PX)];
+					FB[Y * Width + X] = Internal[(long)((PY * this.Width) + PX)];
 				}
 			}
+
 			return FB;
 		}
 
