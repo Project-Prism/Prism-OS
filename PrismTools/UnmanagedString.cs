@@ -77,6 +77,32 @@ namespace PrismTools
 
 		#endregion
 
+		#region Indexers
+
+		public char this[ulong Index]
+		{
+			get
+			{
+				if (Index >= (ulong)Value.Length)
+				{
+					throw new IndexOutOfRangeException($"'{nameof(Index)}' is out of the range of the string!");
+				}
+
+				return Value[(int)Index];
+			}
+			set
+			{
+				if (Index >= (ulong)Value.Length)
+				{
+					throw new IndexOutOfRangeException($"'{nameof(Index)}' is out of the range of the string!");
+				}
+
+				PrivateValue[Index] = value;
+			}
+		}
+
+		#endregion
+
 		#region Methods
 
 		/// <summary>

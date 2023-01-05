@@ -12,39 +12,21 @@ namespace PrismAudio
 		#region Methods
 
 		/// <summary>
-		/// Plays a wave file. 
+		/// Plays an audio stream, which can be loaded from any supported format.
+		/// Idealy should be 16-bit @ 48000hz to prevent slowdowns.
 		/// </summary>
 		public static void Play(AudioStream Stream)
 		{
 			try
 			{
-				OnUpdate();
+				// Add the audio stream to the mixer 'now-playing' list.
 				Mixer.Streams.Add(Stream);
+				AM.Enable();
 			}
 			catch (Exception E)
 			{
+				// Catch the exception if one happens.
 				Debugger.Log(E.Message, Debugger.Severity.Warning);
-			}
-		}
-
-		/// <summary>
-		/// Update the audio manager.
-		/// </summary>
-		public static void OnUpdate()
-		{
-			if (AM.Stream.Depleted)
-			{
-				if (AM.Enabled)
-				{
-					AM.Disable();
-				}
-			}
-			else
-			{
-				if (!AM.Enabled)
-				{
-					AM.Enable();
-				}
 			}
 		}
 

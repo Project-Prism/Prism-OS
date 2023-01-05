@@ -1,7 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using PrismBinary.Formats.ZLib;
 using System.Text;
-using Cosmos.Core;
 
 namespace PrismGraphics
 {
@@ -47,7 +46,7 @@ namespace PrismGraphics
 
 			fixed (int* PTR = BMP.rawData)
 			{
-				MemoryOperations.Copy(Result.Internal, (uint*)PTR, BMP.rawData.Length);
+				Buffer.MemoryCopy((uint*)PTR, Result.Internal, BMP.rawData.Length * 4, BMP.rawData.Length * 4);
 			}
 			return Result;
 		}
