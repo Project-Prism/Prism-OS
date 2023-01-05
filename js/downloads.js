@@ -65,7 +65,8 @@ function onLoad(event)
 
         // Link data fields to row
         row.appendChild(version)
-        row.appendChild(date)
+        row.appendChild(type)
+	row.appendChild(date)
         row.appendChild(download)
         row.appendChild(github)
 
