@@ -208,14 +208,14 @@ footer * {
     margin-right: 0.25rem;
 }
 
-@media only screen and (min-width: 1070px) {
+/*@media only screen and (min-width: 1070px) {*/
     body {
         padding-left: 7rem;
         padding-right: 7rem;
     }
 
     nav {
-        /* Stupid hack for position: fixed; having stupid padding rules */
+        /* Stupid hack for `position: fixed;` having stupid padding rules */
         width: calc(100% - 14rem); /* Takeaway double what the padding is because padding-left takes affect and shifts us to the right over the edge of the screen */
     }
 
@@ -231,10 +231,12 @@ footer * {
         font-size: 3rem;
         margin-bottom: 2.5rem;
     }
-}
+/*}*/
 
 /* Low screen size layout */
+/* TODO Make this better, disabled so I can push the release earlier (It's already overdue)
 @media only screen and (max-width: 1070px) and (max-height: 890px) {
+
     :root {
         --text-size: 1rem;
     }
@@ -256,3 +258,4 @@ footer * {
         margin-bottom: 1.5rem;
     }
 }
+*/
