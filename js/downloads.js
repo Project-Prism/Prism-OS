@@ -19,8 +19,6 @@ function onLoad(event)
     const releaseData = JSON.parse(event.target.responseText)
     console.info("Loaded release data")
 
-    console.log(releaseData);
-
     // Setup downloads section
     const downloads = document.getElementById("Downloads")
     const placeholder = document.getElementById("DownloadPlaceHolder")
@@ -35,14 +33,10 @@ function onLoad(event)
 	let downloadUrl = undefined;
 	for (let artifactI = 0; artifactI < releaseData[i].assets.length; artifactI++)
 	{
-		console.log(artifactI)
-		console.log(releaseData[i].assets[artifactI].name)
 		if (releaseData[i].assets[artifactI].name === "PrismOS.iso")
 		{
-			console.log("goof")
 			downloadUrl = releaseData[i].assets[artifactI].browser_download_url
 		}
-		console.log(downloadUrl)
 	}
 
 	const row = document.createElement("tr")
