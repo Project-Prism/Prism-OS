@@ -1,27 +1,27 @@
-﻿using PrismRuntime.ELF.Structure.ELFSectionHeader;
-using PrismRuntime.ELF.Structure.ELFProgramHeader;
-using PrismRuntime.ELF.Structure.ELFHeader;
-using PrismRuntime.ELF.Structure;
-using Cosmos.Core;
-using PrismTools;
+﻿using PrismBinary.Formats.ELF.Structure.ELFSectionHeader;
+using PrismBinary.Formats.ELF.Structure.ELFProgramHeader;
+using PrismBinary.Formats.ELF.Structure.ELFHeader;
+using PrismBinary.Formats.ELF.Structure;
 
-namespace PrismRuntime.ELF
+namespace PrismBinary.Formats.ELF
 {
     public unsafe class ELFFile32
 	{
         /// <summary>
         /// Creates a new instance of the <see cref="ELFFile32"/> class.
         /// </summary>
-        /// <param name="Buffer"></param>
-		public ELFFile32(byte[] Buffer)
+        /// <param name="Binary"></param>
+		public ELFFile32(byte[] Binary)
 		{
-            fixed (byte* P = Buffer)
+            fixed (byte* P = Binary)
             {
                 // Load main file header.
                 Header = new((ELFHeader32*)P);
                 SectionHeaders = new();
                 StringTable = new();
-                Debugger = new("ELF");
+
+                // Assign entry point.
+                Main = (delegate* unmanaged<void>)Header.EntryPoint;
 
                 // Load the first section header.
                 ELFSectionHeader32 SHHeader = new((ELFSectionHeader32*)(P + Header.SHOffset));
@@ -48,25 +48,21 @@ namespace PrismRuntime.ELF
                         case ELFProgramType.Null:
                             break;
                         case ELFProgramType.Load:
-                            MemoryOperations.Copy((byte*)PHeader->VAddress, P + PHeader->Offset, (int)PHeader->FileSize);
+                            Buffer.MemoryCopy((byte*)PHeader->VAddress, P + PHeader->Offset, PHeader->FileSize, PHeader->FileSize);
                             break;
                         default:
-                            Debugger.Warn("Unsupported program type! Bail out!");
-                            return;
+                            throw new ArgumentException("Unsupported program type!");
                     }
                 }
             }
         }
 
-		#region Methods
+        #region Methods
 
         /// <summary>
         /// Main entry point to the ELF file.
         /// </summary>
-        public void Main()
-		{
-            Assembly.JumpFar(Header.Entry);
-		}
+        public delegate* unmanaged<void> Main;
 
 		#endregion
 
@@ -75,7 +71,6 @@ namespace PrismRuntime.ELF
 		public List<ELFSectionHeader32> SectionHeaders;
         public List<uint> StringTable;
         public ELFHeader32 Header;
-        public Debugger Debugger;
 
         #endregion
     }

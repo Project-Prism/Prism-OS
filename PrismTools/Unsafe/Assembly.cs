@@ -1,7 +1,7 @@
 ﻿using IL2CPU.API.Attribs;
 using XSharp.Assembler;
 
-namespace PrismTools
+namespace PrismTools.Unsafe
 {
 	public static class Assembly
 	{

@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace PrismBinary.Formats
+namespace PrismBinary.Compression
 {
     /// <summary>
     /// LZW (De)compression class.

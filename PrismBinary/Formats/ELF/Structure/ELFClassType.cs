@@ -1,4 +1,4 @@
-﻿namespace PrismRuntime.ELF.Structure
+﻿namespace PrismBinary.Formats.ELF.Structure
 {
 	/// <summary>
 	/// ELF file class descriptors.

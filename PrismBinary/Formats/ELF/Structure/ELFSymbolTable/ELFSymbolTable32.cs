@@ -1,11 +1,11 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace PrismRuntime.ELF.Structure.ELFSymbolTable
+namespace PrismBinary.Formats.ELF.Structure.ELFSymbolTable
 {
 	[StructLayout(LayoutKind.Sequential, Pack = 1)]
-	public unsafe struct ELFSymbolTable64
+	public unsafe struct ELFSymbolTable32
 	{
-		public ELFSymbolTable64(ELFSymbolTable64* Original)
+		public ELFSymbolTable32(ELFSymbolTable32* Original)
 		{
 			Name = Original->Name;
 			Value = Original->Value;
@@ -15,10 +15,10 @@ namespace PrismRuntime.ELF.Structure.ELFSymbolTable
 			SHIndex = Original->SHIndex;
 		}
 
-		#region Fields
+		#region Flags
 
 		public uint Name;
-		public ulong Value;
+		public uint Value;
 		public uint Size;
 		public char Info;
 		public char Other;

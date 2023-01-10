@@ -22,8 +22,8 @@ namespace PrismGraphics.Extentions
 		/// </summary>
 		public unsafe void Update()
 		{
-			_Frames++;
 			CopyTo((uint*)VBE.getLfbOffset());
+			_Frames++;
 		}
 
 		/// <summary>

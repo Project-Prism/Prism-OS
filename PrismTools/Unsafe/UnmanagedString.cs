@@ -1,6 +1,6 @@
 ﻿// using System.Runtime.InteropServices
 
-namespace PrismTools
+namespace PrismTools.Unsafe
 {
 	/// <summary>
 	/// An unsafe class designed to allow using pointers for strings.

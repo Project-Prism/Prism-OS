@@ -1,5 +1,5 @@
 ﻿using System.Runtime.InteropServices;
-using PrismBinary.Formats.ZLib;
+using PrismBinary.Compression;
 using System.Text;
 
 namespace PrismGraphics
@@ -58,6 +58,7 @@ namespace PrismGraphics
 		/// <returns>PNG file as an <see cref="Image"/>.</returns>
 		public static Image FromPNG(byte[] Binary)
 		{
+			// Check header for invalid magic data.
 			if (Binary[0] != 137 ||
 				Binary[1] != 80 ||
 				Binary[2] != 78 ||

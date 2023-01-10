@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace PrismRuntime.ELF.Structure.ELFHeader
+namespace PrismBinary.Formats.ELF.Structure.ELFHeader
 {
 	[StructLayout(LayoutKind.Sequential, Pack = 1)]
 	public unsafe struct ELFHeader32
@@ -16,7 +16,7 @@ namespace PrismRuntime.ELF.Structure.ELFHeader
 			Type = Original->Type;
 			MachineType = Original->MachineType;
 			MachineVersion = Original->MachineVersion;
-			Entry = Original->Entry;
+			EntryPoint = Original->EntryPoint;
 			PHOffset = Original->PHOffset;
 			SHOffset = Original->SHOffset;
 			Flags = Original->Flags;
@@ -58,7 +58,7 @@ namespace PrismRuntime.ELF.Structure.ELFHeader
 		public ELFType Type;
 		public ELFMachineType MachineType;
 		public uint MachineVersion;
-		public uint Entry;
+		public uint EntryPoint;
 		public uint PHOffset;
 		public uint SHOffset;
 		public uint Flags;

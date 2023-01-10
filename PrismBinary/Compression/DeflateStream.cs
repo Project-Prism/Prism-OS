@@ -1,4 +1,4 @@
-﻿namespace PrismBinary.Formats.ZLib
+﻿namespace PrismBinary.Compression
 {
     /// <summary>
     /// public domain zlib decode    
@@ -12,7 +12,7 @@
     public class DeflateStream
     {
         /// <summary>
-        /// Decode deflated data
+        /// Decode deflated data.
         /// </summary>
         /// <param name="compressed">deflated input data</param>
         /// <returns>uncompressed output</returns>
@@ -21,11 +21,11 @@
             return new DeflateStream { In = compressed }.Inflate();
         }
 
-        #region internal
+        #region Internal
 
         // fast-way is faster to check than jpeg huffman, but slow way is slower
         private const int FastBits = 9; // accelerate all cases in default tables
-        private const int FastMask = ((1 << FastBits) - 1);
+        private const int FastMask = (1 << FastBits) - 1;
 
         private static readonly int[] DistExtra = new[]
         {

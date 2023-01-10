@@ -119,6 +119,12 @@ namespace PrismGraphics
 			}
 			set
 			{
+				// Blend 2 colors together if the new color has alpha.
+				if (value.A < 255)
+				{
+					value = Color.AlphaBlend(this[X, Y], value);
+				}
+
 				Internal[Y * Width + X] = value.ARGB;
 			}
 		}
@@ -136,6 +142,12 @@ namespace PrismGraphics
 			}
 			set
 			{
+				// Blend 2 colors together if the new color has alpha.
+				if (value.A < 255)
+				{
+					value = Color.AlphaBlend(this[Index], value);
+				}
+
 				Internal[Index] = value.ARGB;
 			}
 		}

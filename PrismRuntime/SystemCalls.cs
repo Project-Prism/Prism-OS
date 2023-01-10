@@ -13,7 +13,7 @@ namespace PrismRuntime
 		/// </summary>
 		public static void Init()
 		{
-			//INTs.SetIRQMaskState(16, false);
+			INTs.SetIRQMaskState(16, false);
 			INTs.SetIrqHandler(16, SystemCall);
 			Debugger.Success("Initialized system calls!");
 		}
@@ -26,7 +26,7 @@ namespace PrismRuntime
 		{
 			Console.WriteLine("System Call!!!!");
 
-			if (Context.Interrupt != 0x80)
+			if (Context.Interrupt != 16)
 			{
 				return;
 			}
@@ -203,11 +203,11 @@ namespace PrismRuntime
 		/// Reads a string from a char*, it is different that new() from string.
 		/// </summary>
 		/// <param name="PTR">Pointer to string.</param>
-		/// <returns>String.</returns>
+		/// <returns>String.</returns>]
 		internal static string GetString(char* PTR)
 		{
 			return new string(PTR)[..^1];
-		}/// <summary>
+		}
 
 		#endregion
 
