@@ -64,7 +64,7 @@
 		<PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
 		<PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
 		<PackageReference Include="SuperDB-Core" Version="1.0.3" />
-		<PackageReference Include="TinyMath" Version="1.0.0" />
+		<PackageReference Include="TinyMath" Version="1.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>

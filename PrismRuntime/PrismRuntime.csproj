@@ -10,6 +10,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="TinyMath" Version="1.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <ProjectReference Include="..\PrismTools\PrismTools.csproj" />
 	</ItemGroup>
 

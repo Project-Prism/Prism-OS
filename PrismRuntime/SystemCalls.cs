@@ -1,6 +1,7 @@
 ﻿using Cosmos.Core.Memory;
 using Cosmos.Core;
 using PrismTools;
+using TinyMath;
 
 namespace PrismRuntime
 {
@@ -77,22 +78,19 @@ namespace PrismRuntime
 					break;
 
 				case 0x10: // Copy64
-					for (int I = 0; I < (int)(int*)Context.EDX; I++)
-					{
-						*((long**)Context.EBX)[I] = *((long**)Context.ECX)[I];
-					}
+					System.Buffer.MemoryCopy((void*)Context.EBX, (void*)Context.ECX, Context.EDX * 8, Context.EDX * 8);
 					break;
 
 				case 0x11: // Copy32
-					MemoryOperations.Copy((uint*)Context.EBX, (uint*)Context.ECX, (int)(int*)Context.EDX);
+					System.Buffer.MemoryCopy((void*)Context.EBX, (void*)Context.ECX, Context.EDX * 4, Context.EDX * 4);
 					break;
 
 				case 0x12: // Copy16
-					MemoryOperations.Copy((ushort*)Context.EBX, (ushort*)Context.ECX, (int)(int*)Context.EDX);
+					System.Buffer.MemoryCopy((void*)Context.EBX, (void*)Context.ECX, Context.EDX * 2, Context.EDX * 2);
 					break;
 
 				case 0x13: // Copy8
-					MemoryOperations.Copy((byte*)Context.EBX, (byte*)Context.ECX, (int)(int*)Context.EDX);
+					System.Buffer.MemoryCopy((void*)Context.EBX, (void*)Context.ECX, Context.EDX, Context.EDX);
 					break;
 
 				case 0x14: // Fill64
@@ -185,7 +183,7 @@ namespace PrismRuntime
 				#region Eval
 
 				case 0x24:
-					fixed (char* C = MathEx.Eval(GetString((char*)Context.EBX)))
+					fixed (char* C = SyntaxParser.Evaluate(GetString((char*)Context.EBX)).ToString())
 					{
 						Context.EAX = (uint)C;
 					}
