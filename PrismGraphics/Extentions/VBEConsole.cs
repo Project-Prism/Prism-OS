@@ -1,4 +1,5 @@
 ﻿using static Cosmos.HAL.Global;
+using PrismGraphics.Fonts;
 using IL2CPU.API.Attribs;
 using PrismTools.IO;
 using Cosmos.Core;
@@ -204,11 +205,11 @@ namespace PrismGraphics.Extentions
 						if (X >= Canvas.Width - SpacingX)
 						{
 							X = SpacingX;
-							Y += (int)Font.Fallback.Size;
+							Y += Font.Fallback.Size;
 						}
 						else
 						{
-							X += (int)Font.Fallback.MeasureString(C.ToString());
+							X += Font.Fallback.MeasureString(C.ToString());
 						}
 						if (Y == Canvas.Height)
 						{

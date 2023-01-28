@@ -1,8 +1,8 @@
-﻿// using System.Runtime.InteropServices;
+﻿// using System.Runtime.InteropServices; - Waiting for PR
+using PrismGraphics.Fonts;
 using Cosmos.Core.Memory;
 using Cosmos.Core;
 
-// Note: waiting for a PR to be merged.
 namespace PrismGraphics
 {
 	/// <summary>
@@ -15,7 +15,7 @@ namespace PrismGraphics
 		/// </summary>
 		/// <param name="Width">Width of the canvas.</param>
 		/// <param name="Height">Height of the canvas.</param>
-		public Graphics(uint Width, uint Height)
+		public Graphics(ushort Width, ushort Height)
 		{
 			_Width = Width;
 			_Height = Height;
@@ -27,91 +27,13 @@ namespace PrismGraphics
 			}
 		}
 
-		#region Fields
-
-		public uint* Internal { get; set; }
-		public uint Height
-		{
-			get
-			{
-				return _Height;
-			}
-			set
-			{
-				if (_Height == value)
-				{
-					return;
-				}
-
-				_Height = value;
-
-				if (_Width != 0)
-				{
-					if (Internal == (uint*)0)
-					{
-						// Internal = (uint*)NativeMemory.Alloc(Size * 4);
-						Internal = (uint*)Heap.Alloc(Size * 4);
-					}
-					else
-					{
-						// Internal = (uint*)NativeMemory.Realloc(Internal, Size * 4);
-						Internal = (uint*)Heap.Realloc((byte*)Internal, Size * 4);
-					}
-				}
-			}
-		}
-		public uint Width
-		{
-			get
-			{
-				return _Width;
-			}
-			set
-			{
-				if (_Width == value)
-				{
-					return;
-				}
-
-				_Width = value;
-
-				if (_Height != 0)
-				{
-					if (Internal == (uint*)0)
-					{
-						// Internal = (uint*)NativeMemory.Alloc(Size * 4);
-						Internal = (uint*)Heap.Alloc(Size * 4);
-					}
-					else
-					{
-						// Internal = (uint*)NativeMemory.Realloc(Internal, Size * 4);
-						Internal = (uint*)Heap.Realloc((byte*)Internal, Size * 4);
-					}
-				}
-			}
-		}
-		public uint Size
-		{
-			get
-			{
-				return _Width * _Height;
-			}
-		}
-
-		private uint _Height;
-		private uint _Width;
-
-		#endregion
-
-		#region Pixel
-
 		/// <summary>
 		/// Indexer to set or get a color value at the X and Y position.
 		/// </summary>
 		/// <param name="X">X position of the pixel.</param>
 		/// <param name="Y">Y position of the pixel.</param>
 		/// <returns>The pixel color at X and Y.</returns>
-		public Color this[long X, long Y]
+		public Color this[int X, int Y]
 		{
 			get
 			{
@@ -134,7 +56,7 @@ namespace PrismGraphics
 		/// </summary>
 		/// <param name="Index">Index position of the pixel.</param>
 		/// <returns>The pixel color at the linear index.</returns>
-		public Color this[long Index]
+		public Color this[uint Index]
 		{
 			get
 			{
@@ -152,7 +74,94 @@ namespace PrismGraphics
 			}
 		}
 
+		#region Properties
+
+		/// <summary>
+		/// The total height of the canvas in pixels.
+		/// </summary>
+		public ushort Height
+		{
+			get
+			{
+				return _Height;
+			}
+			set
+			{
+				if (_Height == value)
+				{
+					return;
+				}
+				if (_Width == 0)
+				{
+					_Height = value;
+					return;
+				}
+
+				_Height = value;
+
+				if (Internal == (uint*)0)
+				{
+					// Internal = (uint*)NativeMemory.Alloc(Size * 4);
+					Internal = (uint*)Heap.Alloc(Size * 4);
+				}
+				else
+				{
+					// Internal = (uint*)NativeMemory.Realloc(Internal, Size * 4);
+					Internal = (uint*)Heap.Realloc((byte*)Internal, Size * 4);
+				}
+			}
+		}
+
+		/// <summary>
+		/// The total width of the canvas in pixels.
+		/// </summary>
+		public ushort Width
+		{
+			get
+			{
+				return _Width;
+			}
+			set
+			{
+				if (_Width == value)
+				{
+					return;
+				}
+				if (_Height == 0)
+				{
+					_Width = value;
+					return;
+				}
+
+				_Width = value;
+
+				if (Internal == (uint*)0)
+				{
+					// Internal = (uint*)NativeMemory.Alloc(Size * 4);
+					Internal = (uint*)Heap.Alloc(Size * 4);
+				}
+				else
+				{
+					// Internal = (uint*)NativeMemory.Realloc(Internal, Size * 4);
+					Internal = (uint*)Heap.Realloc((byte*)Internal, Size * 4);
+				}
+			}
+		}
+
+		/// <summary>
+		/// The total area of the canvas in pixels.
+		/// </summary>
+		public uint Size
+		{
+			get
+			{
+				return (uint)(_Width * _Height);
+			}
+		}
+
 		#endregion
+
+		#region Methods
 
 		#region Rectangle
 
@@ -165,7 +174,7 @@ namespace PrismGraphics
 		/// <param name="Height">Height of the rectangle</param>
 		/// <param name="Radius">Border radius of the rectangle.</param>
 		/// <param name="Color">Color to draw with.</param>
-		public void DrawFilledRectangle(long X, long Y, long Width, long Height, long Radius, Color Color)
+		public void DrawFilledRectangle(int X, int Y, ushort Width, ushort Height, ushort Radius, Color Color)
 		{
 			// Just clear the screen if the color fills the screen.
 			if (X == 0 && Y == 0 && Width == this.Width && Height == this.Height && Radius == 0 && Color.A == 255)
@@ -179,35 +188,38 @@ namespace PrismGraphics
 			{
 				if (X < 0)
 				{
-					Width -= (uint)Math.Abs(X);
+					Width -= (ushort)Math.Abs(X);
 					X = 0;
 				}
 				if (Y < 0)
 				{
-					Height -= (uint)Math.Abs(Y);
+					Height -= (ushort)Math.Abs(Y);
 					Y = 0;
 				}
 				if (X + Width >= this.Width)
 				{
-					Width -= (uint)X;
+					Width -= (ushort)X;
 				}
 				if (Y + Height >= this.Height)
 				{
-					Height -= (uint)Y;
+					Height -= (ushort)Y;
 				}
+
 				for (int IY = 0; IY < Height; IY++)
 				{
-					MemoryOperations.Fill(Internal + ((Y + IY) * this.Width + X), Color.ARGB, (int)Width);
+					MemoryOperations.Fill(Internal + ((Y + IY) * this.Width + X), Color.ARGB, Width);
 				}
+
+				// Make sure to return.
 				return;
 			}
 
 			// Fastest alpha supporting rectangle.
 			if (Radius == 0)
 			{
-				for (long IX = X; IX < X + Width; IX++)
+				for (int IX = X; IX < X + Width; IX++)
 				{
-					for (long IY = Y; IY < Y + Height; IY++)
+					for (int IY = Y; IY < Y + Height; IY++)
 					{
 						this[IX, IY] = Color;
 					}
@@ -223,8 +235,8 @@ namespace PrismGraphics
 				DrawFilledCircle(X + Radius, Y + Height - Radius - 1, Radius, Color);
 				DrawFilledCircle(X + Width - Radius - 1, Y + Height - Radius - 1, Radius, Color);
 
-				DrawFilledRectangle(X + Radius, Y, Width - Radius * 2, Height, 0, Color);
-				DrawFilledRectangle(X, Y + Radius, Width, Height - Radius * 2, 0, Color);
+				DrawFilledRectangle(X + Radius, Y, (ushort)(Width - Radius * 2), Height, 0, Color);
+				DrawFilledRectangle(X, Y + Radius, Width, (ushort)(Height - Radius * 2), 0, Color);
 			}
 		}
 
@@ -237,9 +249,9 @@ namespace PrismGraphics
 		/// <param name="Height">Height of the rectangle</param>
 		/// <param name="Radius">Border radius of the rectangle.</param>
 		/// <param name="Color">Color to draw with.</param>
-		public void DrawRectangle(long X, long Y, long Width, long Height, long Radius, Color Color)
-		{ // This is essentialy just incomprehensible garbage that should never be touched, don't ever worry about it as i have worked out the corrdinates already and have verified it to be 100% correct.
-
+		public void DrawRectangle(int X, int Y, ushort Width, ushort Height, ushort Radius, Color Color)
+		{
+			// Draw circles to add curvature if needed.
 			if (Radius > 0)
 			{
 				DrawArc(Radius + X, Radius + Y, Radius, Color, 180, 270); // Top left
@@ -247,6 +259,7 @@ namespace PrismGraphics
 				DrawArc(Radius + X, Y + Height - Radius, Radius, Color, 90, 180); // Bottom left
 				DrawArc(X + Width - Radius, Radius + Y, Radius, Color, 270, 360);
 			}
+
 			DrawLine(X + Radius, Y, X + Width - Radius, Y, Color); // Top Line
 			DrawLine(X + Radius, Y + Height, X + Width - Radius, Height + Y, Color); // Bottom Line
 			DrawLine(X, Y + Radius, X, Y + Height - Radius, Color); // Left Line
@@ -263,7 +276,7 @@ namespace PrismGraphics
 		/// <param name="BlockSize">Scale of all blocks.</param>
 		/// <param name="BlockType1">Color of block type 1.</param>
 		/// <param name="BlockType2">Color of block type 2.</param>
-		public void DrawRectangleGrid(long X, long Y, long BlockCountX, long BlockCountY, long BlockSize, Color BlockType1, Color BlockType2)
+		public void DrawRectangleGrid(int X, int Y, ushort BlockCountX, ushort BlockCountY, ushort BlockSize, Color BlockType1, Color BlockType2)
 		{
 			for (int IX = 0; IX < BlockCountX; IX++)
 			{
@@ -295,62 +308,61 @@ namespace PrismGraphics
 		/// <param name="X3">X position 3.</param>
 		/// <param name="Y3">Y position 3.</param>
 		/// <param name="Color">Color to draw with.</param>
-		public void DrawFilledTriangle(long X1, long Y1, long X2, long Y2, long X3, long Y3, Color Color, bool UseAntiAliasing = false)
+		public void DrawFilledTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, bool UseAntiAliasing = false)
 		{
-			// 28.4 fixed-point coordinates
-			Y1 = (long)Math.Round(16.0f * Y1);
-			Y2 = (long)Math.Round(16.0f * Y2);
-			Y3 = (long)Math.Round(16.0f * Y3);
+			Y1 = (int)Math.Round(16.0f * Y1);
+			Y2 = (int)Math.Round(16.0f * Y2);
+			Y3 = (int)Math.Round(16.0f * Y3);
 
-			X1 = (long)Math.Round(16.0f * X1);
-			X2 = (long)Math.Round(16.0f * X2);
-			X3 = (long)Math.Round(16.0f * X3);
+			X1 = (int)Math.Round(16.0f * X1);
+			X2 = (int)Math.Round(16.0f * X2);
+			X3 = (int)Math.Round(16.0f * X3);
 
 			// Deltas
-			long DX12 = X1 - X2;
-			long DX23 = X2 - X3;
-			long DX31 = X3 - X1;
+			int DX12 = X1 - X2;
+			int DX23 = X2 - X3;
+			int DX31 = X3 - X1;
 
-			long DY12 = Y1 - Y2;
-			long DY23 = Y2 - Y3;
-			long DY31 = Y3 - Y1;
+			int DY12 = Y1 - Y2;
+			int DY23 = Y2 - Y3;
+			int DY31 = Y3 - Y1;
 
 			// Fixed-point deltas
-			long FDX12 = DX12 << 4;
-			long FDX23 = DX23 << 4;
-			long FDX31 = DX31 << 4;
+			int FDX12 = DX12 << 4;
+			int FDX23 = DX23 << 4;
+			int FDX31 = DX31 << 4;
 
-			long FDY12 = DY12 << 4;
-			long FDY23 = DY23 << 4;
-			long FDY31 = DY31 << 4;
+			int FDY12 = DY12 << 4;
+			int FDY23 = DY23 << 4;
+			int FDY31 = DY31 << 4;
 
 			// Bounding rectangle
-			long MinX = (Math.Min(Math.Min(X1, X2), X3) + 0xF) >> 4;
-			long MaxX = (Math.Max(Math.Max(X1, X2), X3) + 0xF) >> 4;
-			long MinY = (Math.Min(Math.Min(Y1, Y2), Y3) + 0xF) >> 4;
-			long MaxY = (Math.Max(Math.Max(Y1, Y2), Y3) + 0xF) >> 4;
+			int MinX = (Math.Min(Math.Min(X1, X2), X3) + 0xF) >> 4;
+			int MaxX = (Math.Max(Math.Max(X1, X2), X3) + 0xF) >> 4;
+			int MinY = (Math.Min(Math.Min(Y1, Y2), Y3) + 0xF) >> 4;
+			int MaxY = (Math.Max(Math.Max(Y1, Y2), Y3) + 0xF) >> 4;
 
 			// Half-edge constants
-			long C1 = DY12 * X1 - DX12 * Y1;
-			long C2 = DY23 * X2 - DX23 * Y2;
-			long C3 = DY31 * X3 - DX31 * Y3;
+			int C1 = DY12 * X1 - DX12 * Y1;
+			int C2 = DY23 * X2 - DX23 * Y2;
+			int C3 = DY31 * X3 - DX31 * Y3;
 
 			// Correct for fill convention
 			if (DY12 < 0 || (DY12 == 0 && DX12 > 0)) C1++;
 			if (DY23 < 0 || (DY23 == 0 && DX23 > 0)) C2++;
 			if (DY31 < 0 || (DY31 == 0 && DX31 > 0)) C3++;
 
-			long CY1 = C1 + DX12 * (MinY << 4) - DY12 * (MinX << 4);
-			long CY2 = C2 + DX23 * (MinY << 4) - DY23 * (MinX << 4);
-			long CY3 = C3 + DX31 * (MinY << 4) - DY31 * (MinX << 4);
+			int CY1 = C1 + DX12 * (MinY << 4) - DY12 * (MinX << 4);
+			int CY2 = C2 + DX23 * (MinY << 4) - DY23 * (MinX << 4);
+			int CY3 = C3 + DX31 * (MinY << 4) - DY31 * (MinX << 4);
 
-			for (long Y = MinY; Y < MaxY; Y++)
+			for (int Y = MinY; Y < MaxY; Y++)
 			{
-				long CX1 = CY1;
-				long CX2 = CY2;
-				long CX3 = CY3;
+				int CX1 = CY1;
+				int CX2 = CY2;
+				int CX3 = CY3;
 
-				for (long X = MinX; X < MaxX; X++)
+				for (int X = MinX; X < MaxX; X++)
 				{
 					if (CX1 > 0 && CX2 > 0 && CX3 > 0)
 					{
@@ -383,7 +395,7 @@ namespace PrismGraphics
 		/// <param name="X3">X position 3.</param>
 		/// <param name="Y3">Y position 3.</param>
 		/// <param name="Color">Color to draw with.</param>
-		public void DrawTriangle(long X1, long Y1, long X2, long Y2, long X3, long Y3, Color Color, bool UseAntiAliasing = false)
+		public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, bool UseAntiAliasing = false)
 		{
 			DrawLine(X1, Y1, X2, Y2, Color, UseAntiAliasing);
 			DrawLine(X1, Y1, X3, Y3, Color, UseAntiAliasing);
@@ -401,34 +413,39 @@ namespace PrismGraphics
 		/// <param name="Y">Center Y of the circle.</param>
 		/// <param name="Radius">Radius of the circle.</param>
 		/// <param name="Color">Color to draw with.</param>
-		public void DrawFilledCircle(long X, long Y, long Radius, Color Color)
+		public void DrawFilledCircle(int X, int Y, ushort Radius, Color Color)
 		{
+			// Quit if there is nothing to draw.
 			if (Radius == 0)
 			{
 				return;
 			}
-			
+
+			// Check if the circle can be drawn fast.
 			if (Color.A == 255)
-			{ // This method fills the length of the circle from the correct X and Length values for every Y pixel in the circle, it uses memcpy to make it fast.
-				long R2 = Radius * Radius;
-				for (long IY = -Radius; IY <= Radius; IY++)
+			{
+				ushort R2 = (ushort)(Radius * Radius);
+
+				for (int IY = -Radius; IY <= Radius; IY++)
 				{
-					uint IX = (uint)(Math.Sqrt(R2 - IY * IY) + 0.5);
+					int IX = (int)(Math.Sqrt(R2 - IY * IY) + 0.5);
 					uint* Offset = Internal + (Width * (Y + IY)) + X - IX;
 
-					MemoryOperations.Fill(Offset, Color.ARGB, (int)IX * 2);
+					MemoryOperations.Fill(Offset, Color.ARGB, IX * 2);
 				}
-			}
-			else
-			{
-				for (long IX = -Radius; IX < Radius; IX++)
-				{
-					long Height = (long)Math.Sqrt((Radius * Radius) - (IX * IX));
 
-					for (long IY = -Height; IY < Height; IY++)
-					{
-						this[IX + X, IY + Y] = Color;
-					}
+				// Be sure to return.
+				return;
+			}
+
+			// Draw using slow algorithm.
+			for (int IX = -Radius; IX < Radius; IX++)
+			{
+				int Height = (int)Math.Sqrt((Radius * Radius) - (IX * IX));
+
+				for (int IY = -Height; IY < Height; IY++)
+				{
+					this[IX + X, IY + Y] = Color;
 				}
 			}
 		}
@@ -440,9 +457,9 @@ namespace PrismGraphics
 		/// <param name="Y">Center Y of the circle.</param>
 		/// <param name="Radius">Radius of the circle.</param>
 		/// <param name="Color">Color to draw with.</param>
-		public void DrawCircle(long X, long Y, long Radius, Color Color)
+		public void DrawCircle(int X, int Y, ushort Radius, Color Color)
 		{
-			long IX = 0, IY = Radius, DP = 3 - 2 * Radius;
+			int IX = 0, IY = Radius, DP = 3 - 2 * Radius;
 
 			while (IY >= IX)
 			{
@@ -456,6 +473,7 @@ namespace PrismGraphics
 				this[X - IY, Y - IX] = Color;
 
 				IX++;
+
 				if (DP > 0)
 				{
 					IY--;
@@ -483,20 +501,20 @@ namespace PrismGraphics
 		/// <param name="Y3">Y position 2.</param>
 		/// <param name="Color">Color to draw with.</param>
 		/// <param name="N">Used inside the method only.</param>
-		public void DrawQuadraticBezierLine(long X1, long Y1, long X2, long Y2, long X3, long Y3, Color Color, int N = 6)
+		public void DrawQuadraticBezierLine(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, byte N = 6)
 		{
 			// X2 and Y2 is where the curve should bend to.
 			if (N > 0)
 			{
-				long X12 = (X1 + X2) / 2;
-				long Y12 = (Y1 + Y2) / 2;
-				long X23 = (X2 + X3) / 2;
-				long Y23 = (Y2 + Y3) / 2;
-				long X123 = (X12 + X23) / 2;
-				long Y123 = (Y12 + Y23) / 2;
+				int X12 = (X1 + X2) / 2;
+				int Y12 = (Y1 + Y2) / 2;
+				int X23 = (X2 + X3) / 2;
+				int Y23 = (Y2 + Y3) / 2;
+				int X123 = (X12 + X23) / 2;
+				int Y123 = (Y12 + Y23) / 2;
 
-				DrawQuadraticBezierLine(X1, Y1, X12, Y12, X123, Y123, Color, N - 1);
-				DrawQuadraticBezierLine(X123, Y123, X23, Y23, X3, Y3, Color, N - 1);
+				DrawQuadraticBezierLine(X1, Y1, X12, Y12, X123, Y123, Color, (byte)(N - 1));
+				DrawQuadraticBezierLine(X123, Y123, X23, Y23, X3, Y3, Color, (byte)(N - 1));
 			}
 			else
 			{
@@ -517,7 +535,7 @@ namespace PrismGraphics
 		/// <param name="X4">X position 2.</param>
 		/// <param name="Y4">Y position 2.</param>
 		/// <param name="Color">Color to draw with.</param>
-		public void DrawCubicBezierLine(long X1, long Y1, long X2, long Y2, long X3, long Y3, long X4, long Y4, Color Color)
+		public void DrawCubicBezierLine(int X1, int Y1, int X2, int Y2, int X3, int Y3, int X4, int Y4, Color Color)
 		{
 			for (double U = 0.0; U <= 1.0; U += 0.0001)
 			{
@@ -528,8 +546,8 @@ namespace PrismGraphics
 
 				double XU = Power3V1 * X1 + 3 * U * Power2V1 * X2 + 3 * Power2V2 * (1 - U) * X3 + Power3V2 * X4;
 				double YU = Power3V1 * Y1 + 3 * U * Power2V1 * Y2 + 3 * Power2V2 * (1 - U) * Y3 + Power3V2 * Y4;
-				
-				this[(long)XU, (long)YU] = Color;
+
+				this[(int)XU, (int)YU] = Color;
 			}
 		}
 
@@ -542,11 +560,11 @@ namespace PrismGraphics
 		/// <param name="Y2">Y position 2.</param>
 		/// <param name="Color">Color to draw with.</param>
 		/// <param name="UseAntiAlias">Enable or disable the use of anti-aliasing.</param>
-		public void DrawLine(long X1, long Y1, long X2, long Y2, Color Color, bool UseAntiAlias = false)
+		public void DrawLine(int X1, int Y1, int X2, int Y2, Color Color, bool UseAntiAlias = false)
 		{
-			long DX = Math.Abs(X2 - X1), SX = X1 < X2 ? 1 : -1;
-			long DY = Math.Abs(Y2 - Y1), SY = Y1 < Y2 ? 1 : -1;
-			long err = (DX > DY ? DX : -DY) / 2;
+			int DX = Math.Abs(X2 - X1), SX = X1 < X2 ? 1 : -1;
+			int DY = Math.Abs(Y2 - Y1), SY = Y1 < Y2 ? 1 : -1;
+			int err = (DX > DY ? DX : -DY) / 2;
 
 			while (X1 != X2 || Y1 != Y2)
 			{
@@ -565,7 +583,9 @@ namespace PrismGraphics
 						this[X1, Y1 - 1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
 					}
 				}
-				long E2 = err;
+
+				int E2 = err;
+
 				if (E2 > -DX) { err -= DY; X1 += SX; }
 				if (E2 < DY) { err += DX; Y1 += SY; }
 			}
@@ -579,10 +599,11 @@ namespace PrismGraphics
 		/// <param name="Angle">Angle in degrees.</param>
 		/// <param name="Radius">Radius or Length.</param>
 		/// <param name="Color">Color to draw with.</param>
-		public void DrawAngledLine(long X, long Y, int Angle, long Radius, Color Color)
+		public void DrawAngledLine(int X, int Y, short Angle, ushort Radius, Color Color)
 		{
-			long IX = (long)(Radius * Math.Cos(Math.PI * Angle / 180));
-			long IY = (long)(Radius * Math.Sin(Math.PI * Angle / 180));
+			int IX = (int)(Radius * Math.Cos(Math.PI * Angle / 180));
+			int IY = (int)(Radius * Math.Sin(Math.PI * Angle / 180));
+
 			DrawLine(X, Y, X + IX, Y + IY, Color);
 		}
 
@@ -599,14 +620,15 @@ namespace PrismGraphics
 		/// <param name="Color">Color to draw with.</param>
 		/// <param name="StartAngle">Angle at which to start.</param>
 		/// <param name="EndAngle">Angle at which to end.</param>
-		public void DrawFilledArc(long X, long Y, long Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
+		public void DrawFilledArc(int X, int Y, ushort Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
 		{
+			// Quit if nothing needs to be drawn.
 			if (Radius == 0)
 			{
 				return;
 			}
 
-			for (uint I = 0; I < Radius; I++)
+			for (ushort I = 0; I < Radius; I++)
 			{
 				DrawArc(X, Y, I, Color, StartAngle, EndAngle);
 			}
@@ -622,14 +644,20 @@ namespace PrismGraphics
 		/// <param name="Color">Color to draw with.</param>
 		/// <param name="StartAngle">Angle at which to start.</param>
 		/// <param name="EndAngle">Angle at which to end.</param>
-		public void DrawArc(long X, long Y, long Width, long Height, Color Color, int StartAngle = 0, int EndAngle = 360)
+		public void DrawArc(int X, int Y, ushort Width, ushort Height, Color Color, int StartAngle = 0, int EndAngle = 360)
 		{
+			// Quit if nothing needs to be drawn.
+			if (Width == 0 || Height == 0)
+			{
+				return;
+			}
+
 			for (double Angle = StartAngle; Angle < EndAngle; Angle += 0.5)
 			{
 				double Angle1 = Math.PI * Angle / 180;
 
-				long IX = (long)(Width * Math.Cos(Angle1));
-				long IY = (long)(Height * Math.Sin(Angle1));
+				int IX = (int)(Width * Math.Cos(Angle1));
+				int IY = (int)(Height * Math.Sin(Angle1));
 
 				this[X + IX, Y + IY] = Color;
 			}
@@ -644,14 +672,20 @@ namespace PrismGraphics
 		/// <param name="Color">Color to draw with.</param>
 		/// <param name="StartAngle">Angle at which to start.</param>
 		/// <param name="EndAngle">Angle at which to end.</param>
-		public void DrawArc(long X, long Y, long Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
+		public void DrawArc(int X, int Y, ushort Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
 		{
+			// Quit if nothing needs to be drawn.
+			if (Radius == 0)
+			{
+				return;
+			}
+
 			for (double Angle = StartAngle; Angle < EndAngle; Angle += 0.5)
 			{
 				double Angle1 = Math.PI * Angle / 180;
 
-				long IX = (long)(Radius * Math.Cos(Angle1));
-				long IY = (long)(Radius * Math.Sin(Angle1));
+				int IX = (int)(Radius * Math.Cos(Angle1));
+				int IY = (int)(Radius * Math.Sin(Angle1));
 
 				this[X + IX, Y + IY] = Color;
 			}
@@ -669,12 +703,22 @@ namespace PrismGraphics
 		/// <param name="Image">Image to draw.</param>
 		/// <param name="Alpha">Option to not use alpha, it will be faster if it's disabled.</param>
 		/// <exception cref="NullReferenceException">Thrown when input is null.</exception>
-		public void DrawImage(long X, long Y, Graphics Image, bool Alpha = true)
+		public void DrawImage(int X, int Y, Graphics Image, bool Alpha = true)
 		{
 			// Basic null check.
 			if (Image == null)
 			{
 				throw new NullReferenceException("Cannot draw a null image file.");
+			}
+
+			// Quit if nothing needs to be drawn.
+			if (X + Image.Width < 0 || Y + Image.Height < 0)
+			{
+				return;
+			}
+			if (X >= Width || Y >= Height)
+			{
+				return;
 			}
 
 			// Fastest copy-only draw method, fills the whole buffer.
@@ -741,10 +785,16 @@ namespace PrismGraphics
 		/// <param name="Font">Font to use.</param>
 		/// <param name="Color">Color to draw with.</param>
 		/// <param name="Center">Option to cented the text at X and Y.</param>
-		public void DrawString(long X, long Y, string Text, Font Font, Color Color, bool Center = false)
+		public void DrawString(int X, int Y, string Text, Font Font, Color Color, bool Center = false)
 		{
 			// Basic null check.
 			if (Text == null || Text.Length == 0)
+			{
+				return;
+			}
+
+			// Quit if nothing needs to be drawn.
+			if (X >= Width || Y >= Height)
 			{
 				return;
 			}
@@ -755,9 +805,10 @@ namespace PrismGraphics
 			for (int Line = 0; Line < Lines.Length; Line++)
 			{
 				// Advanced Calculations To Determine Position
-				long IX = X - (Center ? (Font.MeasureString(Text) / 2) : 0);
-				long IY = Y + (Font.Size * Line) - (Center ? Font.Size * Lines.Length / 2 : 0);
+				int IX = X - (Center ? (Font.MeasureString(Text) / 2) : 0);
+				int IY = Y + (Font.Size * Line) - (Center ? Font.Size * Lines.Length / 2 : 0);
 
+				// Skip if nothig needs to be drawn.
 				if (IY > Height)
 				{
 					return;
@@ -766,10 +817,12 @@ namespace PrismGraphics
 				// Loop Though Each Char In The Line
 				for (int Char = 0; Char < Lines[Line].Length; Char++)
 				{
+					// Skip if nothig needs to be drawn.
 					if (IX > Width)
 					{
 						continue;
 					}
+
 					IX += DrawChar(IX, IY, Lines[Line][Char], Font, Color, Center) + 2;
 				}
 			}
@@ -785,54 +838,32 @@ namespace PrismGraphics
 		/// <param name="Color">Color to draw with.</param>
 		/// <param name="Center">Option to center the char at X and Y.</param>
 		/// <returns>Width of the drawn character.</returns>
-		public uint DrawChar(long X, long Y, char Char, Font Font, Color Color, bool Center)
+		public int DrawChar(int X, int Y, char Char, Font Font, Color Color, bool Center)
 		{
-			// Get the index of the char in the font.
-			uint Index = (uint)Font.DefaultCharset.IndexOf(Char);
+			// Get the glyph for this char.
+			Glyph Temp = Font.GetGlyph(Char);
 
-			if (Char == ' ')
-			{
-				return Font.Size2;
-			}
-			if (Char == '\t')
-			{
-				return Font.Size2 * 4;
-			}
-			if (Index < 0)
-			{
-				return Font.Size2;
-			}
+			// Center the position if needed.
 			if (Center)
 			{
-				X -= Font.Size16;
-				Y -= Font.Size8;
+				Y -= Temp.Height / 2;
+				X -= Temp.Width / 2;
 			}
 
-			uint MaxX = 0;
-			uint SizePerFont = Font.Size * Font.Size8 * Index;
-
-			for (int h = 0; h < Font.Size; h++)
+			// Return if nothing needs to be done.
+			if (Temp.IsEmpty)
 			{
-				for (int aw = 0; aw < Font.Size8; aw++)
-				{
-					for (int ww = 0; ww < 8; ww++)
-					{
-						if ((Font.Binary[SizePerFont + (h * Font.Size8) + aw] & (0x80 >> ww)) != 0)
-						{
-							int Max = (aw * 8) + ww;
-
-							this[X + Max, Y + h] = Color;
-
-							if (Max > MaxX)
-							{
-								MaxX = (uint)Max;
-							}
-						}
-					}
-				}
+				return Temp.Width;
 			}
 
-			return MaxX;
+			// Draw all pixels.
+			for (int I = 0; I < Temp.Points.Count; I++)
+			{
+				this[X + Temp.Points[I].X, Y + Temp.Points[I].Y] = Color;
+			}
+
+			// Return total width of the glyph.
+			return Temp.Width;
 		}
 
 		#endregion
@@ -852,8 +883,8 @@ namespace PrismGraphics
 			{
 				for (int Y = 0; Y < Height; Y++)
 				{
-					long X2 = (long)(Math.Cos(Angle) * X - Math.Sin(Angle) * Y);
-					long Y2 = (long)(Math.Sin(Angle) * X + Math.Cos(Angle) * Y);
+					int X2 = (int)(Math.Cos(Angle) * X - Math.Sin(Angle) * Y);
+					int Y2 = (int)(Math.Sin(Angle) * X + Math.Cos(Angle) * Y);
 
 					Result[X2, Y2] = this[X, Y];
 				}
@@ -870,7 +901,7 @@ namespace PrismGraphics
 		/// <param name="Mode"></param>
 		/// <returns>Scaled image.</returns>
 		/// <exception cref="NotImplementedException">Thrown if scale method does not exist.</exception>
-		public Graphics Scale(uint Width, uint Height)
+		public Graphics Scale(ushort Width, ushort Height)
 		{
 			// Out of bounds check.
 			if (Width <= 0 || Height <= 0 || Width == this.Width || Height == this.Height)
@@ -878,7 +909,7 @@ namespace PrismGraphics
 				return this;
 			}
 
-			// Create temporary buffer.
+			// Create a temporary buffer.
 			Graphics FB = new(Width, Height);
 
 			// Find the scale ratios.
@@ -888,10 +919,12 @@ namespace PrismGraphics
 			for (uint Y = 0; Y < Height; Y++)
 			{
 				double PY = Math.Floor(Y * YRatio);
+
 				for (uint X = 0; X < Width; X++)
 				{
 					double PX = Math.Floor(X * XRatio);
-					FB[Y * Width + X] = Internal[(long)((PY * this.Width) + PX)];
+
+					FB[Y * Width + X] = Internal[(uint)((PY * this.Width) + PX)];
 				}
 			}
 
@@ -938,6 +971,17 @@ namespace PrismGraphics
 
 			GC.SuppressFinalize(this);
 		}
+
+		#endregion
+
+		#endregion
+
+		#region Fields
+
+		public uint* Internal { get; set; }
+
+		private ushort _Height;
+		private ushort _Width;
 
 		#endregion
 	}

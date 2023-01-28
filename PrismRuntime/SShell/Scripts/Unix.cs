@@ -1,11 +1,12 @@
-﻿using PrismRuntime.SShell.Structure;
+﻿using PrismBinary.Formats.ELF.Structure.ELFHeader;
+using PrismRuntime.SShell.Structure;
 using Console = System.Console;
 using Cosmos.System;
 using Cosmos.Core;
 
 namespace PrismRuntime.SShell.Scripts
 {
-	public static class Unix
+	public static unsafe class Unix
 	{
 		public class PowerOff : Script
 		{
@@ -14,6 +15,74 @@ namespace PrismRuntime.SShell.Scripts
 			public override void Invoke(string[] Args)
 			{
 				Power.Shutdown();
+			}
+		}
+		public class HexDump : Script
+		{
+			public HexDump() : base("hexdump", "Print all bytes of a file as 'readable' hex.")
+			{
+				AdvancedDescription = "hexdump [NumberOfBytes] [path/to/file]";
+			}
+
+			public override void Invoke(string[] Args)
+			{
+				// Check if improper arguments were specifed.
+				if (Args.Length < 2 || Args[0].Length == 0 || Args[1].Length == 0)
+				{
+					Console.WriteLine("Please specify proper options. Run 'man hexdump' for more info.");
+					return;
+				}
+
+				// Check if the file exists
+				if (int.TryParse(Args[0], out int N) && N > 0 && File.Exists(Args[1]))
+				{
+					// Load the file into memory.
+					byte[] Hex = File.ReadAllBytes(Args[1]);
+
+					// Print the number of hex bytes specified from the file.
+					Console.WriteLine("0x" + BitConverter.ToString(Hex, 0, N).Replace("-", " 0x"));
+				}
+			}
+		}
+		public class ReadELF : Script
+		{
+			public ReadELF() : base("readelf", "Read about ELF files on the filesystem.")
+			{
+				AdvancedDescription =
+					"readelf [options] [path/to/elf]\n" +
+					"\tOnly '-h' is implemented at the moment.";
+			}
+
+			public override void Invoke(string[] Args)
+			{
+				// Check if improper arguments were specifed.
+				if (Args.Length < 2 || Args[0].Length == 0 || Args[1].Length == 0)
+				{
+					Console.WriteLine("Please specify proper options. Run 'man readelf' for more info.");
+					return;
+				}
+
+				// Check if the file exists
+				if (Args[0] == "-h" && File.Exists(Args[1]))
+				{
+					fixed (byte* P = File.ReadAllBytes(Args[1]))
+					{
+						// Read the ELF header.
+						ELFHeader32 Header = new((ELFHeader32*)P);
+
+						// Print out it's details.
+						Console.WriteLine($"Is Valid: {Header.IsValid()}");
+						Console.WriteLine($"Type: {Header.Type}");
+						Console.WriteLine($"Machine Type: {Header.MachineType}");
+						Console.WriteLine($"Machine Version: {Header.MachineVersion}");
+						Console.WriteLine($"Entry Point: 0x{Header.EntryPoint}");
+					}
+				}
+				else
+				{
+					Console.WriteLine($"Impropper arguments were specified.");
+					return;
+				}
 			}
 		}
 		public class Reboot : Script

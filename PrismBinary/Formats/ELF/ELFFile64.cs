@@ -16,26 +16,10 @@ namespace PrismBinary.Formats.ELF
             fixed (byte* P = Binary)
             {
                 // Load main file header.
-                Header = new((ELFHeader64*)P);
-                SectionHeaders = new();
-                StringTable = new();
+                ELFHeader64 Header = new((ELFHeader64*)P);
 
                 // Assign entry point.
-                Main = (delegate* unmanaged<void>)Header.EntryPoint;
-
-                // Load the first section header.
-                ELFSectionHeader64 SHHeader = new((ELFSectionHeader64*)(P + Header.SHOffset));
-
-                // Load all section headers.
-                for (int I = 0; I < Header.SHCount; I++)
-                {
-                    ELFSectionHeader64 X = new(&SHHeader + I);
-                    if (X.Type == ELFSectionType.StringTable)
-                    {
-                        StringTable.Add(X.Offset);
-                    }
-                    SectionHeaders.Add(X);
-                }
+                Main = (delegate* unmanaged<void>)(Header.EntryPoint + 512);
 
                 // Load the first program header.
                 ELFProgramHeader64* PHeader = (ELFProgramHeader64*)(P + Header.PHOffset);
@@ -63,14 +47,6 @@ namespace PrismBinary.Formats.ELF
         /// Main entry point to the ELF file.
         /// </summary>
         public delegate* unmanaged<void> Main;
-
-        #endregion
-
-        #region Fields
-
-        public List<ELFSectionHeader64> SectionHeaders;
-        public List<ulong> StringTable;
-        public ELFHeader64 Header;
 
         #endregion
     }

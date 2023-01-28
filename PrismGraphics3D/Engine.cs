@@ -7,7 +7,7 @@ namespace PrismGraphics3D
     public class Engine : Graphics
     {
         // To-Do: Implement Camera Rotation
-        public Engine(uint Width, uint Height, double FOV) : base(Width, Height)
+        public Engine(ushort Width, ushort Height, double FOV) : base(Width, Height)
         {
             this.Height = Height;
             this.Width = Width;

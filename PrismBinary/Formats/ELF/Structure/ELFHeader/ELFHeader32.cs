@@ -7,6 +7,7 @@ namespace PrismBinary.Formats.ELF.Structure.ELFHeader
 	{
 		public ELFHeader32(ELFHeader32* Original)
 		{
+			MagicNumber = Original->MagicNumber;
 			ClassType = Original->ClassType;
 			EndianType = Original->EndianType;
 			Version = Original->Version;
@@ -32,11 +33,7 @@ namespace PrismBinary.Formats.ELF.Structure.ELFHeader
 
 		public bool IsValid()
 		{
-			return
-				Magic[0] == 0x7f &&
-				Magic[1] == 0x45 &&
-				Magic[2] == 0x4c &&
-				Magic[3] == 0x46;
+			return MagicNumber == BitConverter.ToUInt32(new byte[] { 0x7F, 0x45, 0x4C, 0x46 });
 		}
 
 		#endregion
@@ -45,7 +42,7 @@ namespace PrismBinary.Formats.ELF.Structure.ELFHeader
 
 		#region Identifier [14 bytes]
 
-		public fixed char Magic[4];
+		public uint MagicNumber;
 		public ELFClassType ClassType;
 		public ELFEndianType EndianType;
 		private readonly byte Version;

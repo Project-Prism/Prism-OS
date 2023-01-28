@@ -10,6 +10,14 @@ This Project is Made Possible by Cosmos and the Community Around it, We Give a H
 
 <hr/>
 
+# Donations
+Donations aren't needed at the moment but they would show me support and give me motivation to continue the project. You can donate to our monero wallet:
+> 44WnT2itBkUWzNEHE2xcAEJcSR8jpBmuaPujVNFZvh1PHjPkH9pi2QnJXEd1vU8J4vUZAKpVJTtuAA1CzA7XqFGoMzmuomy
+
+<hr/>
+
+<hr/>
+
 <ul>
 <h4>Prism OS's Feature List:</h4>
     <li>A Basic 3D Rasteriser</li>

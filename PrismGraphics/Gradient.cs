@@ -12,11 +12,11 @@
 		/// <param name="Width">Width of the gradient.</param>
 		/// <param name="Height">Height of the gradient.</param>
 		/// <param name="Colors">Colors to use.</param>
-		public Gradient(uint Width, uint Height, Color[] Colors) : base(Width, Height)
+		public Gradient(ushort Width, ushort Height, Color[] Colors) : base(Width, Height)
 		{
-			for (int Y = 0; Y < Height; Y++)
+			for (ushort Y = 0; Y < Height; Y++)
 			{
-				for (int X = 0; X < Width; X++)
+				for (ushort X = 0; X < Width; X++)
 				{
 					this[X, Y] = InterpolateColors(Colors, 1 / Height * Y);
 				}

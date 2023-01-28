@@ -7,6 +7,135 @@ namespace PrismGraphics
 	/// </summary>
 	public struct Color
 	{
+		#region Properties
+
+		/// <summary>
+		/// The brightness (or average value) of the color.
+		/// </summary>
+		public byte Brightness
+		{
+			get
+			{
+				return (byte)((A + R + G + B) / 4);
+			}
+		}
+
+		/// <summary>
+		/// Saturation of the color.
+		/// </summary>
+		public int Saturation
+		{
+			get
+			{
+				// Calculate the saturation of the color
+				int Max = Math.Max(_R, Math.Max(_G, _B));
+				int Min = Math.Min(_R, Math.Min(_G, _B));
+				return (Max - Min) / 255;
+			}
+			set
+			{
+				// Set the saturation of the color
+				int Max = Math.Max(_R, Math.Max(_G, _B));
+				int Min = Math.Min(_R, Math.Min(_G, _B));
+				int Diff = Max - Min;
+				if (Diff == 0)
+				{
+					_R = _G = _B = (byte)value;
+				}
+				else
+				{
+					_R = (byte)((Max - _R) * value / Diff + _R);
+					_G = (byte)((Max - _G) * value / Diff + _G);
+					_B = (byte)((Max - _B) * value / Diff + _B);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Packed ARGB value of the color.
+		/// </summary>
+		public uint ARGB
+		{
+			get
+			{
+				return _ARGB;
+			}
+			set
+			{
+				_ARGB = value;
+				_A = (byte)(_ARGB >> 24);
+				_R = (byte)(_ARGB >> 16);
+				_G = (byte)(_ARGB >> 8);
+				_B = (byte)(_ARGB);
+			}
+		}
+
+		/// <summary>
+		/// Alpha channel of the color.
+		/// </summary>
+		public byte A
+		{
+			get
+			{
+				return _A;
+			}
+			set
+			{
+				_A = value;
+				_ARGB = (uint)(_A << 24 | _R << 16 | _G << 8 | _B);
+			}
+		}
+
+		/// <summary>
+		/// Red channel of the color.
+		/// </summary>
+		public byte R
+		{
+			get
+			{
+				return _R;
+			}
+			set
+			{
+				_R = value;
+				_ARGB = (uint)(_A << 24 | _R << 16 | _G << 8 | _B);
+			}
+		}
+
+		/// <summary>
+		/// Green channel of the color.
+		/// </summary>
+		public byte G
+		{
+			get
+			{
+				return _G;
+			}
+			set
+			{
+				_G = value;
+				_ARGB = (uint)(_A << 24 | _R << 16 | _G << 8 | _B);
+			}
+		}
+
+		/// <summary>
+		/// Blue channel of the color.
+		/// </summary>
+		public byte B
+		{
+			get
+			{
+				return _B;
+			}
+			set
+			{
+				_B = value;
+				_ARGB = (uint)(_A << 24 | _R << 16 | _G << 8 | _B);
+			}
+		}
+
+		#endregion
+
 		#region Operators
 
 		public static implicit operator Color((byte, byte, byte, byte) Color)
@@ -204,154 +333,154 @@ namespace PrismGraphics
 
 			Color C = ColorName switch
 			{
-				"AliceBlue" => "#F0F8FF",
-				"AntiqueWhite" => "#FAEBD7",
-				"Aqua" => "#00FFFF",
-				"Aquamarine" => "#7FFFD4",
-				"Azure" => "#F0FFFF",
-				"Beige" => "#F5F5DC",
-				"Bisque" => "#FFE4C4",
-				"Black" => "#000000",
-				"BlanchedAlmond" => "#FFEBCD",
-				"Blue" => "#0000FF",
-				"BlueViolet" => "#8A2BE2",
-				"Brown" => "#A52A2A",
-				"BurlyWood" => "#DEB887",
-				"CadetBlue" => "#5F9EA0",
-				"Chartreuse" => "#7FFF00",
-				"Chocolate" => "#D2691E",
-				"Coral" => "#FF7F50",
-				"CornflowerBlue" => "#6495ED",
-				"Cornsilk" => "#FFF8DC",
-				"Crimson" => "#DC143C",
-				"Cyan" => "#00FFFF",
-				"DarkBlue" => "#00008B",
-				"DarkCyan" => "#008B8B",
-				"DarkGoldenRod" => "#B8860B",
-				"DarkGray" => "#A9A9A9",
-				"DarkGrey" => "#A9A9A9",
-				"DarkGreen" => "#006400",
-				"DarkKhaki" => "#BDB76B",
-				"DarkMagenta" => "#8B008B",
-				"DarkOliveGreen" => "#556B2F",
-				"DarkOrange" => "#FF8C00",
-				"DarkOrchid" => "#9932CC",
-				"DarkRed" => "#8B0000",
-				"DarkSalmon" => "#E9967A",
-				"DarkSeaGreen" => "#8FBC8F",
-				"DarkSlateBlue" => "#483D8B",
-				"DarkSlateGray" => "#2F4F4F",
-				"DarkSlateGrey" => "#2F4F4F",
-				"DarkTurquoise" => "#00CED1",
-				"DarkViolet" => "#9400D3",
-				"DeepPink" => "#FF1493",
-				"DeepSkyBlue" => "#00BFFF",
-				"DimGray" => "#696969",
-				"DimGrey" => "#696969",
-				"DodgerBlue" => "#1E90FF",
-				"FireBrick" => "#B22222",
-				"FloralWhite" => "#FFFAF0",
-				"ForestGreen" => "#228B22",
-				"Fuchsia" => "#FF00FF",
-				"Gainsboro" => "#DCDCDC",
-				"GhostWhite" => "#F8F8FF",
-				"Gold" => "#FFD700",
-				"GoldenRod" => "#DAA520",
-				"Gray" => "#808080",
-				"Grey" => "#808080",
-				"Green" => "#008000",
-				"GreenYellow" => "#ADFF2F",
-				"HoneyDew" => "#F0FFF0",
-				"HotPink" => "#FF69B4",
-				"IndianRed" => "#CD5C5C",
-				"Indigo" => "#4B0082",
-				"Ivory" => "#FFFFF0",
-				"Khaki" => "#F0E68C",
-				"Lavender" => "#E6E6FA",
-				"LavenderBlush" => "#FFF0F5",
-				"LawnGreen" => "#7CFC00",
-				"LemonChiffon" => "#FFFACD",
-				"LightBlue" => "#ADD8E6",
-				"LightCoral" => "#F08080",
-				"LightCyan" => "#E0FFFF",
-				"LightGoldenRodYellow" => "#FAFAD2",
-				"LightGray" => "#D3D3D3",
-				"LightGrey" => "#D3D3D3",
-				"LightGreen" => "#90EE90",
-				"LightPink" => "#FFB6C1",
-				"LightSalmon" => "#FFA07A",
-				"LightSeaGreen" => "#20B2AA",
-				"LightSkyBlue" => "#87CEFA",
-				"LightSlateGray" => "#778899",
-				"LightSlateGrey" => "#778899",
-				"LightSteelBlue" => "#B0C4DE",
-				"LightYellow" => "#FFFFE0",
-				"Lime" => "#00FF00",
-				"LimeGreen" => "#32CD32",
-				"Linen" => "#FAF0E6",
-				"Magenta" => "#FF00FF",
-				"Maroon" => "#800000",
-				"MediumAquaMarine" => "#66CDAA",
-				"MediumBlue" => "#0000CD",
-				"MediumOrchid" => "#BA55D3",
-				"MediumPurple" => "#9370DB",
-				"MediumSeaGreen" => "#3CB371",
-				"MediumSlateBlue" => "#7B68EE",
-				"MediumSpringGreen" => "#00FA9A",
-				"MediumTurquoise" => "#48D1CC",
-				"MediumVioletRed" => "#C71585",
-				"MidnightBlue" => "#191970",
-				"MintCream" => "#F5FFFA",
-				"MistyRose" => "#FFE4E1",
-				"Moccasin" => "#FFE4B5",
-				"NavajoWhite" => "#FFDEAD",
-				"Navy" => "#000080",
-				"OldLace" => "#FDF5E6",
-				"Olive" => "#808000",
-				"OliveDrab" => "#6B8E23",
-				"Orange" => "#FFA500",
-				"OrangeRed" => "#FF4500",
-				"Orchid" => "#DA70D6",
-				"PaleGoldenRod" => "#EEE8AA",
-				"PaleGreen" => "#98FB98",
-				"PaleTurquoise" => "#AFEEEE",
-				"PaleVioletRed" => "#DB7093",
-				"PapayaWhip" => "#FFEFD5",
-				"PeachPuff" => "#FFDAB9",
-				"Peru" => "#CD853F",
-				"Pink" => "#FFC0CB",
-				"Plum" => "#DDA0DD",
-				"PowderBlue" => "#B0E0E6",
-				"Purple" => "#800080",
-				"RebeccaPurple" => "#663399",
-				"Red" => "#FF0000",
-				"RosyBrown" => "#BC8F8F",
-				"RoyalBlue" => "#4169E1",
-				"SaddleBrown" => "#8B4513",
-				"Salmon" => "#FA8072",
-				"SandyBrown" => "#F4A460",
-				"SeaGreen" => "#2E8B57",
-				"SeaShell" => "#FFF5EE",
-				"Sienna" => "#A0522D",
-				"Silver" => "#C0C0C0",
-				"SkyBlue" => "#87CEEB",
-				"SlateBlue" => "#6A5ACD",
-				"SlateGray" => "#708090",
-				"SlateGrey" => "#708090",
-				"Snow" => "#FFFAFA",
-				"SpringGreen" => "#00FF7F",
-				"SteelBlue" => "#4682B4",
-				"Tan" => "#D2B48C",
-				"Teal" => "#008080",
-				"Thistle" => "#D8BFD8",
-				"Tomato" => "#FF6347",
-				"Turquoise" => "#40E0D0",
-				"Violet" => "#EE82EE",
-				"Wheat" => "#F5DEB3",
-				"White" => "#FFFFFF",
-				"WhiteSmoke" => "#F5F5F5",
-				"Yellow" => "#FFFF00",
-				"YellowGreen" => "#9ACD32",
+				"AliceBlue" => 0xFFF0F8FF,
+				"AntiqueWhite" => 0xFFFAEBD7,
+				"Aqua" => 0xFF00FFFF,
+				"Aquamarine" => 0xFF7FFFD4,
+				"Azure" => 0xFFF0FFFF,
+				"Beige" => 0xFFF5F5DC,
+				"Bisque" => 0xFFFFE4C4,
+				"Black" => 0xFF000000,
+				"BlanchedAlmond" => 0xFFFFEBCD,
+				"Blue" => 0xFF0000FF,
+				"BlueViolet" => 0xFF8A2BE2,
+				"Brown" => 0xFFA52A2A,
+				"BurlyWood" => 0xFFDEB887,
+				"CadetBlue" => 0xFF5F9EA0,
+				"Chartreuse" => 0xFF7FFF00,
+				"Chocolate" => 0xFFD2691E,
+				"Coral" => 0xFFFF7F50,
+				"CornflowerBlue" => 0xFF6495ED,
+				"Cornsilk" => 0xFFFFF8DC,
+				"Crimson" => 0xFFDC143C,
+				"Cyan" => 0xFF00FFFF,
+				"DarkBlue" => 0xFF00008B,
+				"DarkCyan" => 0xFF008B8B,
+				"DarkGoldenRod" => 0xFFB8860B,
+				"DarkGray" => 0xFFA9A9A9,
+				"DarkGrey" => 0xFFA9A9A9,
+				"DarkGreen" => 0xFF006400,
+				"DarkKhaki" => 0xFFBDB76B,
+				"DarkMagenta" => 0xFF8B008B,
+				"DarkOliveGreen" => 0xFF556B2F,
+				"DarkOrange" => 0xFFFF8C00,
+				"DarkOrchid" => 0xFF9932CC,
+				"DarkRed" => 0xFF8B0000,
+				"DarkSalmon" => 0xFFE9967A,
+				"DarkSeaGreen" => 0xFF8FBC8F,
+				"DarkSlateBlue" => 0xFF483D8B,
+				"DarkSlateGray" => 0xFF2F4F4F,
+				"DarkSlateGrey" => 0xFF2F4F4F,
+				"DarkTurquoise" => 0xFF00CED1,
+				"DarkViolet" => 0xFF9400D3,
+				"DeepPink" => 0xFFFF1493,
+				"DeepSkyBlue" => 0xFF00BFFF,
+				"DimGray" => 0xFF696969,
+				"DimGrey" => 0xFF696969,
+				"DodgerBlue" => 0xFF1E90FF,
+				"FireBrick" => 0xFFB22222,
+				"FloralWhite" => 0xFFFFFAF0,
+				"ForestGreen" => 0xFF228B22,
+				"Fuchsia" => 0xFFFF00FF,
+				"Gainsboro" => 0xFFDCDCDC,
+				"GhostWhite" => 0xFFF8F8FF,
+				"Gold" => 0xFFFFD700,
+				"GoldenRod" => 0xFFDAA520,
+				"Gray" => 0xFF808080,
+				"Grey" => 0xFF808080,
+				"Green" => 0xFF008000,
+				"GreenYellow" => 0xFFADFF2F,
+				"HoneyDew" => 0xFFF0FFF0,
+				"HotPink" => 0xFFFF69B4,
+				"IndianRed" => 0xFFCD5C5C,
+				"Indigo" => 0xFF4B0082,
+				"Ivory" => 0xFFFFFFF0,
+				"Khaki" => 0xFFF0E68C,
+				"Lavender" => 0xFFE6E6FA,
+				"LavenderBlush" => 0xFFFFF0F5,
+				"LawnGreen" => 0xFF7CFC00,
+				"LemonChiffon" => 0xFFFFFACD,
+				"LightBlue" => 0xFFADD8E6,
+				"LightCoral" => 0xFFF08080,
+				"LightCyan" => 0xFFE0FFFF,
+				"LightGoldenRodYellow" => 0xFFFAFAD2,
+				"LightGray" => 0xFFD3D3D3,
+				"LightGrey" => 0xFFD3D3D3,
+				"LightGreen" => 0xFF90EE90,
+				"LightPink" => 0xFFFFB6C1,
+				"LightSalmon" => 0xFFFFA07A,
+				"LightSeaGreen" => 0xFF20B2AA,
+				"LightSkyBlue" => 0xFF87CEFA,
+				"LightSlateGray" => 0xFF778899,
+				"LightSlateGrey" => 0xFF778899,
+				"LightSteelBlue" => 0xFFB0C4DE,
+				"LightYellow" => 0xFFFFFFE0,
+				"Lime" => 0xFF00FF00,
+				"LimeGreen" => 0xFF32CD32,
+				"Linen" => 0xFFFAF0E6,
+				"Magenta" => 0xFFFF00FF,
+				"Maroon" => 0xFF800000,
+				"MediumAquaMarine" => 0xFF66CDAA,
+				"MediumBlue" => 0xFF0000CD,
+				"MediumOrchid" => 0xFFBA55D3,
+				"MediumPurple" => 0xFF9370DB,
+				"MediumSeaGreen" => 0xFF3CB371,
+				"MediumSlateBlue" => 0xFF7B68EE,
+				"MediumSpringGreen" => 0xFF00FA9A,
+				"MediumTurquoise" => 0xFF48D1CC,
+				"MediumVioletRed" => 0xFFC71585,
+				"MidnightBlue" => 0xFF191970,
+				"MintCream" => 0xFFF5FFFA,
+				"MistyRose" => 0xFFFFE4E1,
+				"Moccasin" => 0xFFFFE4B5,
+				"NavajoWhite" => 0xFFFFDEAD,
+				"Navy" => 0xFF000080,
+				"OldLace" => 0xFFFDF5E6,
+				"Olive" => 0xFF808000,
+				"OliveDrab" => 0xFF6B8E23,
+				"Orange" => 0xFFFFA500,
+				"OrangeRed" => 0xFFFF4500,
+				"Orchid" => 0xFFDA70D6,
+				"PaleGoldenRod" => 0xFFEEE8AA,
+				"PaleGreen" => 0xFF98FB98,
+				"PaleTurquoise" => 0xFFAFEEEE,
+				"PaleVioletRed" => 0xFFDB7093,
+				"PapayaWhip" => 0xFFFFEFD5,
+				"PeachPuff" => 0xFFFFDAB9,
+				"Peru" => 0xFFCD853F,
+				"Pink" => 0xFFFFC0CB,
+				"Plum" => 0xFFDDA0DD,
+				"PowderBlue" => 0xFFB0E0E6,
+				"Purple" => 0xFF800080,
+				"RebeccaPurple" => 0xFF663399,
+				"Red" => 0xFFFF0000,
+				"RosyBrown" => 0xFFBC8F8F,
+				"RoyalBlue" => 0xFF4169E1,
+				"SaddleBrown" => 0xFF8B4513,
+				"Salmon" => 0xFFFA8072,
+				"SandyBrown" => 0xFFF4A460,
+				"SeaGreen" => 0xFF2E8B57,
+				"SeaShell" => 0xFFFFF5EE,
+				"Sienna" => 0xFFA0522D,
+				"Silver" => 0xFFC0C0C0,
+				"SkyBlue" => 0xFF87CEEB,
+				"SlateBlue" => 0xFF6A5ACD,
+				"SlateGray" => 0xFF708090,
+				"SlateGrey" => 0xFF708090,
+				"Snow" => 0xFFFFFAFA,
+				"SpringGreen" => 0xFF00FF7F,
+				"SteelBlue" => 0xFF4682B4,
+				"Tan" => 0xFFD2B48C,
+				"Teal" => 0xFF008080,
+				"Thistle" => 0xFFD8BFD8,
+				"Tomato" => 0xFFFF6347,
+				"Turquoise" => 0xFF40E0D0,
+				"Violet" => 0xFFEE82EE,
+				"Wheat" => 0xFFF5DEB3,
+				"White" => 0xFFFFFFFF,
+				"WhiteSmoke" => 0xFFF5F5F5,
+				"Yellow" => 0xFFFFFF00,
+				"YellowGreen" => 0xFF9ACD32,
 				_ => throw new($"Color '{ColorName}' does not exist."),
 			};
 
@@ -504,120 +633,6 @@ namespace PrismGraphics
 		/// </summary>
 		private readonly static Dictionary<string, Color> Cache = new();
 
-		/// <summary>
-		/// Saturation of the color.
-		/// </summary>
-		public int Saturation
-		{
-			get
-			{
-				// Calculate the saturation of the color
-				int Max = Math.Max(_R, Math.Max(_G, _B));
-				int Min = Math.Min(_R, Math.Min(_G, _B));
-				return (Max - Min) / 255;
-			}
-			set
-			{
-				// Set the saturation of the color
-				int Max = Math.Max(_R, Math.Max(_G, _B));
-				int Min = Math.Min(_R, Math.Min(_G, _B));
-				int Diff = Max - Min;
-				if (Diff == 0)
-				{
-					_R = _G = _B = (byte)value;
-				}
-				else
-				{
-					_R = (byte)((Max - _R) * value / Diff + _R);
-					_G = (byte)((Max - _G) * value / Diff + _G);
-					_B = (byte)((Max - _B) * value / Diff + _B);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Packed ARGB value of the color.
-		/// </summary>
-		public uint ARGB
-		{
-			get
-			{
-				return _ARGB;
-			}
-			set
-			{
-				_ARGB = value;
-				_A = (byte)(_ARGB >> 24);
-				_R = (byte)(_ARGB >> 16);
-				_G = (byte)(_ARGB >> 8);
-				_B = (byte)(_ARGB);
-			}
-		}
-
-		/// <summary>
-		/// Alpha channel of the color.
-		/// </summary>
-		public byte A
-		{
-			get
-			{
-				return _A;
-			}
-			set
-			{
-				_A = value;
-				_ARGB = (uint)(_A << 24 | _R << 16 | _G << 8 | _B);
-			}
-		}
-
-		/// <summary>
-		/// Red channel of the color.
-		/// </summary>
-		public byte R
-		{
-			get
-			{
-				return _R;
-			}
-			set
-			{
-				_R = value;
-				_ARGB = (uint)(_A << 24 | _R << 16 | _G << 8 | _B);
-			}
-		}
-
-		/// <summary>
-		/// Green channel of the color.
-		/// </summary>
-		public byte G
-		{
-			get
-			{
-				return _G;
-			}
-			set
-			{
-				_G = value;
-				_ARGB = (uint)(_A << 24 | _R << 16 | _G << 8 | _B);
-			}
-		}
-
-		/// <summary>
-		/// Blue channel of the color.
-		/// </summary>
-		public byte B
-		{
-			get
-			{
-				return _B;
-			}
-			set
-			{
-				_B = value;
-				_ARGB = (uint)(_A << 24 | _R << 16 | _G << 8 | _B);
-			}
-		}
-
 		private uint _ARGB;
 		private byte _A;
 		private byte _R;
@@ -625,6 +640,11 @@ namespace PrismGraphics
 		private byte _B;
 
 		#endregion
+
+		public override int GetHashCode()
+		{
+			return A * R / G * B;
+		}
 
 		public override string ToString()
 		{

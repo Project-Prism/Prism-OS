@@ -16,26 +16,10 @@ namespace PrismBinary.Formats.ELF
             fixed (byte* P = Binary)
             {
                 // Load main file header.
-                Header = new((ELFHeader32*)P);
-                SectionHeaders = new();
-                StringTable = new();
+                ELFHeader32 Header = new((ELFHeader32*)P);
 
                 // Assign entry point.
-                Main = (delegate* unmanaged<void>)Header.EntryPoint;
-
-                // Load the first section header.
-                ELFSectionHeader32 SHHeader = new((ELFSectionHeader32*)(P + Header.SHOffset));
-
-                // Load all section headers.
-                for (int I = 0; I < Header.SHCount; I++)
-                {
-                    ELFSectionHeader32 X = new(&SHHeader + I);
-                    if (X.Type == ELFSectionType.StringTable)
-                    {
-                        StringTable.Add(X.Offset);
-                    }
-                    SectionHeaders.Add(X);
-                }
+                Main = (delegate* unmanaged<void>)(Header.EntryPoint);
 
                 // Load the first program header.
                 ELFProgramHeader32* PHeader = (ELFProgramHeader32*)(P + Header.PHOffset);
@@ -48,7 +32,7 @@ namespace PrismBinary.Formats.ELF
                         case ELFProgramType.Null:
                             break;
                         case ELFProgramType.Load:
-                            Buffer.MemoryCopy((byte*)PHeader->VAddress, P + PHeader->Offset, PHeader->FileSize, PHeader->FileSize);
+                            Buffer.MemoryCopy(PHeader + PHeader->Offset, (byte*)PHeader->VAddress, PHeader->FileSize, PHeader->FileSize);
                             break;
                         default:
                             throw new ArgumentException("Unsupported program type!");
@@ -65,13 +49,5 @@ namespace PrismBinary.Formats.ELF
         public delegate* unmanaged<void> Main;
 
 		#endregion
-
-		#region Fields
-
-		public List<ELFSectionHeader32> SectionHeaders;
-        public List<uint> StringTable;
-        public ELFHeader32 Header;
-
-        #endregion
-    }
+	}
 }

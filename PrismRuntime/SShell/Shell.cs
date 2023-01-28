@@ -1,11 +1,13 @@
-﻿using PrismRuntime.SShell.Structure;
+﻿using PrismBinary.Formats.ELF.Structure.ELFHeader;
+using PrismRuntime.SShell.Structure;
 using PrismRuntime.SShell.Scripts;
+using PrismBinary.Formats.ELF;
 using PrismRuntime.SSharp;
 using PrismTools;
 
 namespace PrismRuntime.SShell
 {
-	public static class Shell
+	public static unsafe class Shell
 	{
 		#region Methods
 
@@ -46,16 +48,31 @@ namespace PrismRuntime.SShell
 				}
 			}
 
-			if (File.Exists($"0:\\{VS[0]}")|| File.Exists(VS[0]))
+			if (File.Exists($"0:\\{VS[0]}") || File.Exists(VS[0]))
 			{
-				Executable EXE = new(File.ReadAllBytes(VS[0]));
+				// Read the program's running data.
+				byte[] ROM = File.ReadAllBytes(VS[0]);
 
-				while (EXE.IsEnabled)
+				// Check if the file isn't an ELF. Run as a SSharp program if it isn't.
+				if (ROM.Length < sizeof(ELFHeader32))
 				{
-					EXE.Next();
-				}
+					Executable EXE = new(File.ReadAllBytes(VS[0]));
 
-				return;
+					while (EXE.IsEnabled)
+					{
+						EXE.Next();
+					}
+
+					return;
+				}
+				// Run an elf file when it's detected.
+				else
+				{
+					// Create a new header, then run it.
+					ELFFile32 ELF = new(ROM);
+					ELF.Main();
+					return;
+				}
 			}
 
 			Debugger.Warn("Command not found!");
@@ -70,6 +87,8 @@ namespace PrismRuntime.SShell
 
 			// Initialize all commands.
 			_ = new Unix.PowerOff();
+			_ = new Unix.HexDump();
+			_ = new Unix.ReadELF();
 			_ = new Unix.Reboot();
 			_ = new Unix.Clear();
 			_ = new Unix.MKDir();

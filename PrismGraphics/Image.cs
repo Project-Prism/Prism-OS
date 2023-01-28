@@ -11,7 +11,7 @@ namespace PrismGraphics
 		/// </summary>
 		/// <param name="Width">Width of the image.</param>
 		/// <param name="Height">Height of the image.</param>
-		public Image(uint Width, uint Height) : base(Width, Height) { }
+		public Image(ushort Width, ushort Height) : base(Width, Height) { }
 
 		#region Structure
 
@@ -42,7 +42,7 @@ namespace PrismGraphics
 		public static Image FromBitmap(byte[] Binary)
 		{
 			Cosmos.System.Graphics.Bitmap BMP = new(Binary);
-			Image Result = new(BMP.Width, BMP.Height);
+			Image Result = new((ushort)BMP.Width, (ushort)BMP.Height);
 
 			fixed (int* PTR = BMP.rawData)
 			{
@@ -84,8 +84,8 @@ namespace PrismGraphics
 				switch (Encoding.ASCII.GetString(Reader.ReadBytes(4)))
 				{
 					case "IHDR":
-						Result.Width = Reader.ReadUInt32();
-						Result.Height = Reader.ReadUInt32();
+						Result.Width = (ushort)Reader.ReadUInt32();
+						Result.Height = (ushort)Reader.ReadUInt32();
 						Reader.BaseStream.Position += 5;
 						break;
 					case "PLTE":
@@ -182,8 +182,8 @@ namespace PrismGraphics
 				Header = (TGAHeader*)P;
 			}
 
-			Result.Height = (uint)Header->Height;
-			Result.Width = (uint)Header->Width;
+			Result.Height = (ushort)Header->Height;
+			Result.Width = (ushort)Header->Width;
 
 			switch (Header->ColorDepth)
 			{
@@ -244,7 +244,7 @@ namespace PrismGraphics
 
 			Reader.ReadChar(); // Skip Newline
 
-			Image Result = new(uint.Parse(widths), uint.Parse(heights));
+			Image Result = new((ushort)uint.Parse(widths), (ushort)uint.Parse(heights));
 
 			for (int Y = 0; Y < Result.Height; Y++)
 			{

@@ -20,9 +20,11 @@ namespace PrismOS
 	{
 		protected override void BeforeRun()
 		{
+			// Initialize debugger.
 			Debugger = new("Kernel");
-			System.Console.Clear();
 
+			// Clear console & display ascii art.
+			System.Console.Clear();
 			System.Console.WriteLine(@"    ____       _                   ____  _____");
 			System.Console.WriteLine(@"   / __ \_____(_)________ ___     / __ \/ ___/");
 			System.Console.WriteLine(@"  / /_/ / ___/ / ___/ __ `__ \   / / / /\__ \ ");
@@ -30,6 +32,7 @@ namespace PrismOS
 			System.Console.WriteLine(@"/_/   /_/  /_/____/_/ /_/ /_/   \____//____/  ");
 			System.Console.WriteLine("CopyLeft PrismProject 2022. Licensed with GPL2.\n");
 
+			// Initialize system services.
 			NetworkManager.Init();
 			SystemCalls.Init();
 			VBEConsole.Init();
@@ -38,6 +41,12 @@ namespace PrismOS
 			{
 				VFSManager.RegisterVFS(new CosmosVFS(), false, false);
 				Debugger.Log("Initialized filesystem!", Debugger.Severity.Ok);
+
+				// Write the testing ELF to the filesystem (Temporary).
+				if (!File.Exists("0:\\Test.elf"))
+				{
+					File.WriteAllBytes("0:\\Test.elf", Assets.ELF);
+				}
 			}
 			catch
 			{
