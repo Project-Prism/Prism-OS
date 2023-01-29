@@ -17,14 +17,8 @@ namespace PrismGraphics
 		/// <param name="Height">Height of the canvas.</param>
 		public Graphics(ushort Width, ushort Height)
 		{
-			_Width = Width;
-			_Height = Height;
-
-			if (Width != 0 && Height != 0)
-			{
-				// Internal = (uint*)NativeMemory.Alloc(Size * 4);
-				Internal = (uint*)Heap.Alloc(Size * 4);
-			}
+			this.Width = Width;
+			this.Height = Height;
 		}
 
 		/// <summary>
