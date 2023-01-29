@@ -12,8 +12,6 @@ This readme is still in progress, not finished!
 
 This animation controler fades from one color to another over a period of time based on the mode it is set in. The available modes are as follows:
 
-<hr/>
-
 - ``FastInSlowOut`` - The color will transition fast at the beginning but slow down as it continues.
 - ``FastOutSlowIn`` - The color will transition slow at the beginning but speed up as it continues.
 - ``Linear`` - The color will transition at the same speed for the entire duration of the transition.
