@@ -1,8 +1,7 @@
-﻿using Cosmos.System.FileSystem.VFS;
-using Cosmos.System.FileSystem;
-using PrismGraphics.Extentions;
+﻿using PrismGraphics.Extentions;
 using PrismRuntime.SShell;
 using PrismTools.Events;
+using PrismFilesystem;
 using Cosmos.System;
 using PrismRuntime;
 using PrismNetwork;
@@ -33,28 +32,13 @@ namespace PrismOS
 			System.Console.WriteLine("CopyLeft PrismProject 2022. Licensed with GPL2.\n");
 
 			// Initialize system services.
+			FilesystemManager.Init();
 			NetworkManager.Init();
 			SystemCalls.Init();
 			VBEConsole.Init();
 
-			try
-			{
-				VFSManager.RegisterVFS(new CosmosVFS(), false, false);
-				Debugger.Log("Initialized filesystem!", Debugger.Severity.Ok);
-
-				// Write the testing ELF to the filesystem (Temporary).
-				if (!File.Exists("0:\\Test.elf"))
-				{
-					File.WriteAllBytes("0:\\Test.elf", Assets.ELF);
-				}
-			}
-			catch
-			{
-				Debugger.Log("Unable to initialize filesystem!", Debugger.Severity.Warning);
-			}
-
-			Debugger.Log("Kernel initialized!", Debugger.Severity.Ok);
 			AudioPlayer.Play(Assets.Vista);
+			Debugger.Log("Kernel initialized!", Debugger.Severity.Ok);
 		}
 
 		protected override void Run()

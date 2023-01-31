@@ -8,7 +8,7 @@ This readme is still in progress, not finished!
 
 <hr/>
 
-## PrismGraphics/AnimatorsFadeControler.cs
+## PrismGraphics/Animators/FadeControler.cs
 
 This animation controler fades from one color to another over a period of time based on the mode it is set in. The available modes are as follows:
 

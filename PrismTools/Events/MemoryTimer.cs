@@ -1,4 +1,5 @@
-﻿using Cosmos.Core.Memory;
+﻿using static Cosmos.HAL.Global;
+using Cosmos.Core.Memory;
 
 namespace PrismTools.Events
 {
@@ -9,7 +10,7 @@ namespace PrismTools.Events
 		/// </summary>
 		public static void Init()
 		{
-			Cosmos.HAL.Global.PIT.RegisterTimer(new(() => Heap.Collect(), 2000000000, true));
+			PIT.RegisterTimer(new(() => Heap.Collect(), 2000000000, true));
 		}
 	}
 }

@@ -972,6 +972,7 @@ namespace PrismGraphics
 
 		#region Fields
 
+		// The internal frame buffer.
 		public uint* Internal { get; set; }
 
 		private ushort _Height;
