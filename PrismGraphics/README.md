@@ -47,3 +47,8 @@ The Color class is used to represent colors with their ARGB values and provide s
 - ``ToString()``: Returns a string representation of the current Color instance.
 
 <hr/>
+
+# ToDo
+
+This project still has many things to finish, including video drivers.
+See [here](https://wiki.osdev.org/Accelerated_Graphic_Cards).
