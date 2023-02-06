@@ -42,13 +42,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="Assets\Test.elf" />
-		<None Remove="Assets\Vista.wav" />
+		<None Remove="Media\Test.elf" />
+		<None Remove="Media\Vista.wav" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Assets\Test.elf" />
-		<EmbeddedResource Include="Assets\Vista.wav" />
+		<EmbeddedResource Include="Media\Test.elf" />
+		<EmbeddedResource Include="Media\Vista.wav" />
 	</ItemGroup>
 
 	<ItemGroup>

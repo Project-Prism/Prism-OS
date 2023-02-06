@@ -3,10 +3,10 @@ using IL2CPU.API.Attribs;
 
 namespace PrismOS
 {
-    public static class Assets
+    public static class Media
     {
         // Include The Files At Compile Time
-        public const string Base = "PrismOS.Assets.";
+        public const string Base = "PrismOS.Media.";
         [ManifestResourceStream(ResourceName = Base + "Vista.wav")] public readonly static byte[] VistaB;
         [ManifestResourceStream(ResourceName = Base + "Test.elf")] public readonly static byte[] ELF;
 

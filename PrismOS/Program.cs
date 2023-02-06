@@ -37,7 +37,7 @@ namespace PrismOS
 			SystemCalls.Init();
 			VBEConsole.Init();
 
-			AudioPlayer.Play(Assets.Vista);
+			AudioPlayer.Play(Media.Vista);
 			Debugger.Log("Kernel initialized!", Debugger.Severity.Ok);
 		}
 
