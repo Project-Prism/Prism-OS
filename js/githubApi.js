@@ -3,7 +3,18 @@ const githubAPI = "https://api.github.com/repos/Project-Prism/Prism-OS/";
 
 function init()
 {
-	console.log("Fetching from github API");
+	console.log(`Inspecting cache: ${window.localStorage.length} items`);
+	for (let idx = 0; idx < window.localStorage.length; idx++)
+	{
+		const cacheKey = window.localStorage.key(idx);
+		const cacheItem = JSON.parse(window.localStorage.getItem(cacheKey));
+
+		const date = new Date();
+		if (cacheItem.expireAt === `${date.getDate()}:${date.getMonth()}`)
+			window.localStorage.removeItem(cacheKey);
+	}
+
+	console.log("Fetching data");
 	const contribs = getDataFromApi("contributors");
 	contribs.then((result) => {
 		console.log(result);
