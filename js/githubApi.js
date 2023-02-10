@@ -15,8 +15,9 @@ function init()
 	}
 
 	console.log("Fetching data");
-	const contribs = getDataFromApi("contributors");
-	contribs.then((result) => {
+	const releases = getDataFromApi("releases");
+	releases.then((result) => {
+		console.log("Processing releases");
 		console.log(result);
 	});
 }
@@ -31,7 +32,7 @@ function getDataFromApi(path, useCache=true)
                 request.addEventListener("load", (event) => {
                         const date = new Date();
                         window.localStorage.setItem(path, JSON.stringify({content: event.target.response, expireAt: `${date.getDate()+1}:${date.getMonth()}`})); // Expire one day later, XXX: handle month limits
-                        resolve(event.target.response);
+                        resolve(JSON.parse(event.target.response));
                 }, {once: true});
                 request.addEventListener("error", (event) => {
                         reject(event.target.Error);
