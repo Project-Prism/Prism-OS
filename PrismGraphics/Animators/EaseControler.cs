@@ -4,16 +4,16 @@
 	/// The class used to create color fading animations.
 	/// WIP : Not working properly!
 	/// </summary>
-	public class FadeControler
+	public class EaseControler
 	{
 		/// <summary>
-		/// Creates a new instance of the <see cref="FadeControler"/> class.
+		/// Creates a new instance of the <see cref="EaseControler"/> class.
 		/// </summary>
 		/// <param name="BeginColor">The color to start fading from.</param>
 		/// <param name="TargetColor">The color to fade to.</param>
 		/// <param name="Duration">The duration to fade the colors.</param>
 		/// <param name="Mode">The mode to fade the colors.</param>
-		public FadeControler(Color BeginColor, Color TargetColor, TimeSpan Duration, FadeMode Mode = FadeMode.Linear)
+		public EaseControler(Color BeginColor, Color TargetColor, TimeSpan Duration, EaseMode Mode = EaseMode.Ease)
 		{
 			// Assign public API fields.
 			this.BeginColor = BeginColor;
@@ -35,14 +35,14 @@
 			// Adjust step deltas based on fade mode.
 			switch (Mode)
 			{
-				case FadeMode.FastInSlowOut:
+				case EaseMode.EaseOut:
 					Duration /= 2;
 					StepA *= 2;
 					StepR *= 2;
 					StepG *= 2;
 					StepB *= 2;
 					break;
-				case FadeMode.FastOutSlowIn:
+				case EaseMode.EaseIn:
 					Duration *= 2;
 					StepA /= 2;
 					StepR /= 2;
@@ -160,7 +160,7 @@
 		public Color BeginColor;
 		public Color TargetColor;
 		public TimeSpan Duration;
-		public FadeMode Mode;
+		public EaseMode Mode;
 		public bool IsEnabled;
 
 		// Private API fields.
