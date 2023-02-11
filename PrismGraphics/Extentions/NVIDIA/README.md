@@ -1,4 +1,4 @@
-﻿![NVLogo](https://logos-download.com/wp-content/uploads/2016/10/NVIDIA_logo_R.png =x200)
+﻿![NVLogo](https://logos-download.com/wp-content/uploads/2016/10/NVIDIA_logo_R.png)
 
 # NVIDIA Video Implementation
 
