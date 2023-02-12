@@ -18,8 +18,41 @@ function init()
 	const releases = getDataFromApi("releases");
 	releases.then((result) => {
 		console.log("Processing releases");
-		console.log(result);
+		
+		// HTML setup
+		const tableBody = document.getElementById("Releases").firstElementChild.lastElementChild;
+		
+		for (const row of tableBody.rows)
+		{
+			// Get a release
+			const release = result.shift();
+			const version = document.createElement("td"); version.appendChild(document.createTextNode(release.tag_name));
+			const type = document.createElement("td"); type.appendChild(document.createTextNode(release.prerelease ? "Pre Release":"Release"));
+			const date = document.createElement("td"); date.appendChild(document.createTextNode(release.published_at.split("T")[0])); // API format: YYYY-MM-DDTHH:MM:SSZ
+			let downloadUrl = "";
+			// Search for the prism iso (XXX: Make a pop up window later!)
+			for (const asset of release.assets)
+			{
+				if (asset.name.split(".").pop() === "iso")
+				{
+					downloadUrl = asset.browser_download_url;
+				}
+			}
+			const downloadAnchor = document.createElement("a"); downloadAnchor.appendChild(document.createTextNode("PrismOS.iso")); downloadAnchor.href = downloadUrl;
+			const download = document.createElement("td"); download.appendChild(downloadAnchor);
+			appendMultipleChildren(row, version, type, date, download);
+		}
+
+		// Hide placeholder and unhide real table
+		document.getElementById("DownloadPlaceHolder").classList.add("hidden");
+		document.getElementById("Releases").classList.remove("hidden");
 	});
+}
+
+function appendMultipleChildren(Doc)
+{
+	for (const obj of Array.from(arguments).slice(1))
+		Doc.appendChild(obj);
 }
 
 function getDataFromApi(path, useCache=true)

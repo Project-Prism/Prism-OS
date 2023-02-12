@@ -53,12 +53,15 @@
 					<th>Type</th>
 					<th>Date</th>
 					<th>Download</th>
-					<th>Github</th>
 				</tr>
 			</thead>
 			<tbody>
+				<!-- To add more releases just add more "<tr></tr>" pairs, the javascript should pick them up -->
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
 			</tbody>
-				<!-- This part gets populated with releases-->
 			</table>
 		</div>
             </div>
@@ -72,7 +75,8 @@
                 </div>
                 -->
                 <div id="Wrapper" class="maxWidth">
-                    <div class="contributor innerSectionBorder">
+<!--
+		    <div class="contributor innerSectionBorder">
                         <img src="https://avatars.githubusercontent.com/u/1024025?v=4">
                         <div class="profile maxWidth">
                             <b class="maxWidth">Linus Torvalds<br><span>torvalds</span></b>
@@ -99,6 +103,7 @@
                             <p>1 contributions to Prism-OS</p>
                         </div>
                     </div>
+-->
                 </div>
             </div>
         </main>
@@ -120,7 +125,10 @@
         </footer>
 
         <!-- Things to load afterwards -->
-        <script src="js/downloads.js" type="application/javascript"></script>
+        <!--
+	<script src="js/downloads.js" type="application/javascript"></script>
 	<script src="js/contributors.js" type="application/javascript"></script>
+    	-->
+	<script src="js/githubApi.js"></script>
     </body>
 </html>
