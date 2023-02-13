@@ -15,38 +15,74 @@ function init()
 	}
 
 	console.log("Fetching data");
-	const releases = getDataFromApi("releases");
+	const releases = getDataFromApi(githubAPI+"releases");
 	releases.then((result) => {
 		console.log("Processing releases");
-		
-		// HTML setup
-		const tableBody = document.getElementById("Releases").firstElementChild.lastElementChild;
-		
-		for (const row of tableBody.rows)
-		{
-			// Get a release
-			const release = result.shift();
-			const version = document.createElement("td"); version.appendChild(document.createTextNode(release.tag_name));
-			const type = document.createElement("td"); type.appendChild(document.createTextNode(release.prerelease ? "Pre Release":"Release"));
-			const date = document.createElement("td"); date.appendChild(document.createTextNode(release.published_at.split("T")[0])); // API format: YYYY-MM-DDTHH:MM:SSZ
-			let downloadUrl = "";
-			// Search for the prism iso (XXX: Make a pop up window later!)
-			for (const asset of release.assets)
-			{
-				if (asset.name.split(".").pop() === "iso")
-				{
-					downloadUrl = asset.browser_download_url;
-				}
-			}
-			const downloadAnchor = document.createElement("a"); downloadAnchor.appendChild(document.createTextNode("PrismOS.iso")); downloadAnchor.href = downloadUrl;
-			const download = document.createElement("td"); download.appendChild(downloadAnchor);
-			appendMultipleChildren(row, version, type, date, download);
-		}
-
-		// Hide placeholder and unhide real table
-		document.getElementById("DownloadPlaceHolder").classList.add("hidden");
-		document.getElementById("Releases").classList.remove("hidden");
+		setupReleases(result);
 	});
+	const contribs = getDataFromApi(githubAPI+"contributors");
+	contribs.then((result) => {
+		console.log("Processing contributors");
+		setupContribs(result);
+	});
+}
+
+function setupReleases(response)
+{
+	const tableBody = document.getElementById("Releases").firstElementChild.lastElementChild;
+	
+	for (const row of tableBody.rows)
+	{
+		// Get a release
+		const release = response.shift();
+		const version = document.createElement("td"); version.appendChild(document.createTextNode(release.tag_name));
+		const type = document.createElement("td"); type.appendChild(document.createTextNode(release.prerelease ? "Pre Release":"Release"));
+		const date = document.createElement("td"); date.appendChild(document.createTextNode(release.published_at.split("T")[0])); // API format: YYYY-MM-DDTHH:MM:SSZ
+		let downloadUrl = "";
+		// Search for the prism iso (XXX: Make a pop up window later!)
+		for (const asset of release.assets)
+		{
+			if (asset.name.split(".").pop() === "iso")
+			{
+				downloadUrl = asset.browser_download_url;
+			}
+		}
+		const downloadAnchor = document.createElement("a"); downloadAnchor.appendChild(document.createTextNode("PrismOS.iso")); downloadAnchor.href = downloadUrl;
+		const download = document.createElement("td"); download.appendChild(downloadAnchor);
+		appendMultipleChildren(row, version, type, date, download);
+	}
+
+	// Hide placeholder and unhide real table
+	document.getElementById("DownloadPlaceHolder").classList.add("hidden");
+	document.getElementById("Releases").classList.remove("hidden");
+}
+
+function setupContribs(response)
+{
+	for (const contributor of response)
+	{
+		const contribData = getDataFromApi(contributor.url);
+		contribData.then((result) => {processContrib(result, contributor);});
+	}
+}
+
+function processContrib(contributor, repoContrib)
+{
+	console.log(contributor);
+	const contributorSection = document.getElementById("Contributors");
+
+	const container = document.createElement("div"); container.classList.add("contributor", "innerSectionBorder");
+	const pfp = document.createElement("img"); pfp.src = contributor.avatar_url;
+	const profile = document.createElement("div"); profile.classList.add("profile", "maxWidth");
+	const username = document.createTextNode(contributor.login);
+	const profileName = document.createElement("b"); profileName.classList.add("maxWidth"); profileName.appendChild(username);
+	const profileFollowers = document.createElement("p"); profileFollowers.appendChild(document.createTextNode(`${contributor.followers} followers · ${contributor.following} following`)); //XXX: Convert xxx,xxx (thousands) to xxxK
+	const profileRepositories = document.createElement("p"); profileRepositories.appendChild(document.createTextNode(`${contributor.public_repos} repositories`));
+	const profileContributions = document.createElement("p"); profileContributions.appendChild(document.createTextNode(`${repoContrib.contributions} contributions to Prism-OS`));
+
+	appendMultipleChildren(profile, profileName, profileFollowers, profileRepositories, profileContributions);
+	appendMultipleChildren(container, pfp, profile);
+	contributorSection.appendChild(container);
 }
 
 function appendMultipleChildren(Doc)
@@ -58,7 +94,7 @@ function appendMultipleChildren(Doc)
 function getDataFromApi(path, useCache=true)
 {
 	const request = new XMLHttpRequest();
-	request.open("GET", githubAPI+path);
+	request.open("GET", path);
 	request.setRequestHeader("Accept", "application/vnd.github+json");
 
 	const getData = (resolve, reject) => {
