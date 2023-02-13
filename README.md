@@ -2,7 +2,7 @@
 
 Welcome to the Prism OS website development branch!
 
-Website: https://project-prism.github.io/Prism-OS/
+Website: https://prism-project.net/
 
 ## Contributors
 
