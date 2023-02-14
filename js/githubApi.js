@@ -69,7 +69,7 @@ function setupContribs(response)
 function processContrib(contributor, repoContrib)
 {
 	console.log(contributor);
-	const contributorSection = document.getElementById("Contributors");
+	const wrapper = document.getElementById("Wrapper");
 
 	const container = document.createElement("div"); container.classList.add("contributor", "innerSectionBorder");
 	const pfp = document.createElement("img"); pfp.src = contributor.avatar_url;
@@ -82,7 +82,7 @@ function processContrib(contributor, repoContrib)
 
 	appendMultipleChildren(profile, profileName, profileFollowers, profileRepositories, profileContributions);
 	appendMultipleChildren(container, pfp, profile);
-	contributorSection.appendChild(container);
+	wrapper.appendChild(container);
 }
 
 function appendMultipleChildren(Doc)
