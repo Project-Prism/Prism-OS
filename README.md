@@ -6,12 +6,12 @@ Website: https://prism-project.net/
 
 ## Contributors
 
-| Name                                              |
-|---------------------------------------------------|
-| [theopcoder](https://github.com/theopcoder)       |
-| [Terminal.cs](https://github.com/terminal-cs)     |
-| [pinkphone1818](https://github.com/pinkphone1818) |
-| [Pyogenics](https://github.com/Pyogenics)         |
+| Name                                              | Contribution 	|
+|---------------------------------------------------|-------------------|
+| [theopcoder](https://github.com/theopcoder)       | Initial website	|
+| [Terminal.cs](https://github.com/terminal-cs)     | Developer 	|
+| [pinkphone1818](https://github.com/pinkphone1818) | Contributor	|
+| [Pyogenics](https://github.com/Pyogenics)         | New website	|
 
 
 ## Wanting to contribute or fix a typo you found?
