@@ -72,7 +72,6 @@ function setupContribs(response)
 
 function processContrib(contributor, repoContrib)
 {
-	console.log(contributor);
 	const wrapper = document.getElementById("Wrapper");
 
 	const container = document.createElement("div"); container.classList.add("contributor", "innerSectionBorder");
@@ -80,6 +79,15 @@ function processContrib(contributor, repoContrib)
 	const profile = document.createElement("div"); profile.classList.add("profile", "maxWidth");
 	const username = document.createTextNode(contributor.login);
 	const profileName = document.createElement("b"); profileName.classList.add("maxWidth"); profileName.appendChild(username);
+	if (contributor.name !== null)
+	{
+		const name = document.createElement("span"); name.appendChild(document.createTextNode(contributor.name));
+		appendMultipleChildren(profileName, document.createElement("br"), name);
+	}
+	else
+	{
+		container.classList.add("noName");
+	}
 	const profileFollowers = document.createElement("p"); profileFollowers.appendChild(document.createTextNode(`${contributor.followers} followers · ${contributor.following} following`)); //XXX: Convert xxx,xxx (thousands) to xxxK
 	const profileRepositories = document.createElement("p"); profileRepositories.appendChild(document.createTextNode(`${contributor.public_repos} repositories`));
 	const profileContributions = document.createElement("p"); profileContributions.appendChild(document.createTextNode(`${repoContrib.contributions} contributions to Prism-OS`));
