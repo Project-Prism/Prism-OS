@@ -64,6 +64,10 @@ function setupContribs(response)
 		const contribData = getDataFromApi(contributor.url);
 		contribData.then((result) => {processContrib(result, contributor);});
 	}
+
+	// Finally hide the placeholder and unhide real content
+	document.getElementById("Wrapper").classList.remove("hidden");
+	document.getElementById("ContribPlaceHolder").classList.add("hidden");
 }
 
 function processContrib(contributor, repoContrib)
@@ -80,6 +84,7 @@ function processContrib(contributor, repoContrib)
 	const profileRepositories = document.createElement("p"); profileRepositories.appendChild(document.createTextNode(`${contributor.public_repos} repositories`));
 	const profileContributions = document.createElement("p"); profileContributions.appendChild(document.createTextNode(`${repoContrib.contributions} contributions to Prism-OS`));
 
+	// Stitch it all together
 	appendMultipleChildren(profile, profileName, profileFollowers, profileRepositories, profileContributions);
 	appendMultipleChildren(container, pfp, profile);
 	wrapper.appendChild(container);
