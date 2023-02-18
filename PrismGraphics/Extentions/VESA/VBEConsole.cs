@@ -1,4 +1,5 @@
-﻿using static Cosmos.HAL.Global;
+﻿using PrismGraphics.Extentions.VESA;
+using static Cosmos.HAL.Global;
 using PrismGraphics.Fonts;
 using IL2CPU.API.Attribs;
 using PrismTools.IO;

@@ -1,4 +1,4 @@
-﻿using PrismGraphics.Extentions;
+﻿// using PrismGraphics.Extentions;
 using PrismRuntime.SShell;
 using PrismTools.Events;
 using PrismFilesystem;
@@ -35,7 +35,7 @@ namespace PrismOS
 			FilesystemManager.Init();
 			NetworkManager.Init();
 			SystemCalls.Init();
-			VBEConsole.Init();
+			//VBEConsole.Init();
 
 			AudioPlayer.Play(Media.Vista);
 			Debugger.Log("Kernel initialized!", Debugger.Severity.Ok);
