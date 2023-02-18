@@ -1,6 +1,6 @@
 ﻿using Cosmos.Core;
 
-namespace PrismGraphics.Extentions
+namespace PrismGraphics.Extentions.VESA
 {
 	/// <summary>
 	/// The VBE canvas extention class.
