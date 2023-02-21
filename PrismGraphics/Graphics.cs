@@ -193,7 +193,7 @@ namespace PrismGraphics
 		/// <param name="Height">Height of the rectangle</param>
 		/// <param name="Radius">Border radius of the rectangle.</param>
 		/// <param name="Color">Color to draw with.</param>
-		public void DrawFilledRectangle(int X, int Y, ushort Width, ushort Height, ushort Radius, Color Color)
+		public void DrawFilledRectangle(int X, int Y, ushort Width, ushort Height, ushort Radius, Color Color, bool UseAA = false)
 		{
 			// Quit if nothing needs to be drawn.
 			if (X >= this.Width || Y >= this.Height)
@@ -258,11 +258,11 @@ namespace PrismGraphics
 			// Circular rectangle.
 			else
 			{
-				DrawFilledCircle(X + Radius, Y + Radius, Radius, Color);
-				DrawFilledCircle(X + Width - Radius - 1, Y + Radius, Radius, Color);
+				DrawFilledCircle(X + Radius, Y + Radius, Radius, Color, UseAA);
+				DrawFilledCircle(X + Width - Radius - 1, Y + Radius, Radius, Color, UseAA);
 
-				DrawFilledCircle(X + Radius, Y + Height - Radius - 1, Radius, Color);
-				DrawFilledCircle(X + Width - Radius - 1, Y + Height - Radius - 1, Radius, Color);
+				DrawFilledCircle(X + Radius, Y + Height - Radius - 1, Radius, Color, UseAA);
+				DrawFilledCircle(X + Width - Radius - 1, Y + Height - Radius - 1, Radius, Color, UseAA);
 
 				DrawFilledRectangle(X + Radius, Y, (ushort)(Width - Radius * 2), Height, 0, Color);
 				DrawFilledRectangle(X, Y + Radius, Width, (ushort)(Height - Radius * 2), 0, Color);
@@ -460,7 +460,8 @@ namespace PrismGraphics
 		/// <param name="Y">Center Y of the circle.</param>
 		/// <param name="Radius">Radius of the circle.</param>
 		/// <param name="Color">Color to draw with.</param>
-		public void DrawFilledCircle(int X, int Y, ushort Radius, Color Color)
+		/// <param name="UseAA">Toggle to use anti-aliasing.</param>
+		public void DrawFilledCircle(int X, int Y, ushort Radius, Color Color, bool UseAA = false)
 		{
 			// Quit if there is nothing to draw.
 			if (Radius == 0)
@@ -473,12 +474,35 @@ namespace PrismGraphics
 			{
 				ushort R2 = (ushort)(Radius * Radius);
 
+				// Loop for each line in the circle.
 				for (int IY = -Radius; IY <= Radius; IY++)
 				{
 					int IX = (int)(Math.Sqrt(R2 - IY * IY) + 0.5);
 					uint* Offset = Internal + (Width * (Y + IY)) + X - IX;
 
+					// Clip circle if it is out of bounds
+					if (X + Radius >= Width)
+					{
+						// Reduce length to fit to max width.
+						IX -= X + Radius - Width;
+					}
+					if (X - Radius < 0)
+					{
+						// Reduce length and offset so that it stays at X = 0
+						Offset += Radius - +X;
+						IX -= Radius - +X;
+					}
+
+					// Fill one line of pixels.
 					MemoryOperations.Fill(Offset, Color.ARGB, IX * 2);
+
+					// Check to see if AA is enabled.
+					if (UseAA)
+					{
+						// Set AA pixels.
+						this[(uint)Offset - 1] = Color.GetPacked((byte)(Color.A / 2), Color.R, Color.G, Color.B);
+						this[(uint)(Offset + IX + 1)] = Color.GetPacked((byte)(Color.A / 2), Color.R, Color.G, Color.B);
+					}
 				}
 
 				// Be sure to return.
@@ -844,6 +868,12 @@ namespace PrismGraphics
 			if (X >= Width || Y >= Height)
 			{
 				return;
+			}
+
+			// Allow the use of the 'default' keyword for text drawing.
+			if (Font == default)
+			{
+				Font = Font.Fallback;
 			}
 
 			string[] Lines = Text.Split('\n');

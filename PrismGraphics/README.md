@@ -8,21 +8,39 @@ This readme is still in progress, not finished!
 
 <hr/>
 
-## PrismGraphics/Animators/FadeControler.cs
+## Animation - [AnimationController.cs](https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Animation/AnimationController.cs)
 
-This animation controler fades from one color to another over a period of time based on the mode it is set in. The available modes are as follows:
+This animation controler is a non-blocking number interpolator that lerps one number to another over a period of time based on the mode it is set in. The available modes are defined [Here](https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Animation/AnimationMode.cs).
 
-- ``FastInSlowOut`` - The color will transition fast at the beginning but slow down as it continues.
-- ``FastOutSlowIn`` - The color will transition slow at the beginning but speed up as it continues.
-- ``Linear`` - The color will transition at the same speed for the entire duration of the transition.
+> The controler has an update 'fidelity' of once every ``50`` milliseconds.
+
+### Example(s)
+
+Interpolate ``0.0f`` to ``255.0f`` over the span of ``5`` seconds with the ``Ease`` mode.
+```cs
+AnimationController A = new(0.0f, 255.0f, new(0, 0, 5), AnimationMode.Ease);
+```
 
 <hr/>
 
-## PrismGraphics/Color.cs
+## Animation - [ColorController.cs](https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Animation/ColorController.cs)
+
+This animation controler is a non-blocking color interpolator that lerps one color to another over a period of time based on the mode it is set in. The available modes are defined [Here](https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Animation/AnimationMode.cs).
+
+> The controler has an update 'fidelity' of once every ``50`` milliseconds.
+
+### Example(s)
+
+Interpolate ``Color.Black`` to ``Color.Blue`` over the span of ``5`` seconds with the ``Ease`` mode.
+```cs
+ColorController A = new(Color.Black, Color.Blue, new(0, 0, 5), AnimationMode.Ease);
+```
+
+<hr/>
+
+## Graphics - [Color.cs](https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Color.cs)
 
 The Color class is used to represent colors with their ARGB values and provide static predefined colors.
-
-<hr/>
 
 ### Properties:
 - ``A``: The alpha component of the color.
@@ -30,14 +48,10 @@ The Color class is used to represent colors with their ARGB values and provide s
 - ``G``: The green component of the color.
 - ``B``: The blue component of the color.
 
-<hr/>
-
 ### Constructors:
 - ``new Color()``: Creates a new instance of the Color class with ARGB value of 0x00000000 (fully transparent black).
 - ``new Color(uint argb)``: Creates a new instance of the Color class with the specified ARGB value.
 - ``new Color(byte a, byte r, byte g, byte b)``: Creates a new instance of the Color class with the specified alpha, red, green, and blue values.
-
-<hr/>
 
 ### Methods:
 - ``FromArgb(uint argb)``: Creates a new instance of the Color class with the specified ARGB value.
