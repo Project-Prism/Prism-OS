@@ -1,18 +1,21 @@
-[🛠] Fix Inconsistencies
-[] Add more developers/contributors in the developers page
-[X] Fix some items not showing right in light mode. ie: tables
-Add light mode image to all pages
+# New content
+[X] Finish footer
+[~] Add no js fallbacks
 
-TODO redo README.md in HTML?
+# Improvements
+[ ] Do some content improvements
+- [X] Re work about me
+    - [X] Improve grammar
+- [X] Do proper downloads section
+    - [X] Get info from github releases
+- [X] Do proper contributors section
+    - [X] Get info from github
 
-<!--Gets latest commit name-->
-<!--
-<script>
-    fetch('https://api.github.com/repos/Project-Prism/Prism-OS/commits?per_page=1')
-    .then(res => res.json())
-    .then(res => {
-        document.getElementById('message').innerHTML = res[0].commit.message;
-    });
-</script>
-<pre id="message">Loading</pre>
--->
+[X] Animate background
+[ ] Mobile layout
+
+# Bugs
+- If you resize the window to be very small the content section creates horizontal scroll
+
+# Review
+[ ] Search engine optimisation

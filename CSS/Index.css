@@ -1,40 +1,261 @@
-/*
-========Global CSS========
-*/
+:root {
+    --text-colour: white;
+    --text-size: 2rem;
+}
+
+/* Link colour when it's clicked, default is red which isn't that nice.
+Most browsers should support this, but it's minor anyway */
+:focus {
+    color: #3a5a8a;
+}
+
+/* Use "a" selector instead of ":link" because then we can overide it */
+a {
+    color: orange;
+}
+
+* {
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+
+    font-family: "Work Sans", sans-serif;
+    
+    scroll-behavior: smooth;
+    scrollbar-color:#35353f #191922; /* Not supported by all browsers but it's minor anyway */
+}
+
+.hidden {
+	display: none !important;
+}
+
+.maxWidth {
+    width: 100%;
+}
+
+.flexCentre {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+/* Animated gradient */
+@keyframes gradientShift {
+    0%{background-position:0% 5%}
+    50%{background-position:100% 96%}
+    100%{background-position:0% 5%}
+}
+
+/*======== Text ========*/
+b, p, td, th, h1, h2, h3, h4, h5, h6 {
+    color: var(--text-colour);
+    font-size: var(--text-size);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Montserrat", sans-serif;
+}
+
+/*======== html/body ========*/
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+html {
+    background: radial-gradient(#3a5a8a, #7f0bad, #480CA8);
+    background-attachment: fixed;
+    background-size: 500% 500%;
+    animation: gradientShift 100s ease infinite;
+}
 
 
-/*
-========Header CSS========
-*/
+/*======== nav bar ========*/
+nav {
+    background-color: #191922;
+    
+    position: fixed;
+    padding: 1.25rem;
+}
 
-/*
-========Body CSS========
-*/
-h2 {
-    text-decoration: underline;
+nav ul {
+    display: flex;
+    gap: 1rem;
+}
+
+nav a {
+    color: var(--text-colour);
+    
+    /* Some browsers don't support this, use a border instead */
+    /*text-decoration-thickness: 2px;*/
+    /*text-decoration-color: #7f0bad;*/
+    text-decoration: none;
+    border-bottom: solid #7f0bad 3px;
+}
+
+nav a:hover {
+    /*text-decoration-color: #7f0bad;*/
+    border-bottom: solid #480CA8 3px;
+}
+
+/*======== header ========*/
+header {
+    min-height: 60%;
+}
+
+/*======== main/sections ========*/
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.section {
+    background-color: #35353f;
+}
+
+.section h2 {
+    border-bottom: solid #7f0bad 3px;
+}
+
+/* Place holder css for #Contributors and #Downloads, shows if data isn't loaded from github */
+.PlaceHolder {
     text-align: center;
-    font-size: 25px;
+    border: dashed white 3px;
+    height: 40vh;
 }
 
-.ProjectInfo {
+#Downloads table {
+    background-color: #191922;
+    border: solid white 3px;
+}
+
+#Downloads td, th {
     text-align: center;
-    margin-top: 40px;
-    font-size: 20px;
-    margin: 20px;
 }
 
-.CosmosLink {
-    color: cyan;
+#Wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
-main img {
-    border: 1px solid black;
-    border-radius: 15px;
-    height: 400px;
-    width: 700px;
-    margin: 10px;
+.contributor {
+    display: flex;
+    gap: 1rem;
+    flex-grow: 1;
+    padding: 1rem;
+    
+    border: solid white 3px;
+    background-color: #191922;
 }
 
-/*
-========Footer CSS========
+.contributor img {
+    border-radius: 50%;
+    
+    width: 7rem;
+    height: 7rem;
+}
+
+.contributor .profile * {
+    display: block;
+}
+
+.contributor .profile p {
+    font-size: 1.5rem;
+}
+
+.contributor .profile b {
+    width: 100%;
+    margin-bottom: 1.25rem;
+    
+    font-size: 2.25rem;
+    border-bottom: solid #35353f 2px;
+}
+
+.contributor .profile b span {
+    font-style: italic;
+    font-size: 1.75rem;
+}
+
+.noName b {
+    padding-bottom: 2rem;
+}
+
+/*======== footer ========*/
+footer {
+    /* Maintain gap between ".section"s, footer isn't part of the same flex object as them */
+    margin-top: 3rem;
+    
+    padding: 2.5rem;
+    background-color: #191922;
+}
+
+footer * {
+    font-size: 0.9rem;
+}
+
+#footerContent {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+#Discord img {
+    max-width: 2rem;
+    margin-right: 0.25rem;
+}
+
+/*@media only screen and (min-width: 1070px) {*/
+    body {
+        padding-left: 7rem;
+        padding-right: 7rem;
+    }
+
+    nav {
+        /* Stupid hack for `position: fixed;` having stupid padding rules */
+        width: calc(100% - 14rem); /* Takeaway double what the padding is because padding-left takes affect and shifts us to the right over the edge of the screen */
+    }
+
+    header h1 {
+        font-size: 6.5rem;
+    }
+
+    .section {
+        padding: 2.5rem;
+    }
+
+    .section h2 {
+        font-size: 3rem;
+        margin-bottom: 2.5rem;
+    }
+/*}*/
+
+/* Low screen size layout */
+/* TODO Make this better, disabled so I can push the release earlier (It's already overdue)
+@media only screen and (max-width: 1070px) and (max-height: 890px) {
+
+    :root {
+        --text-size: 1rem;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    header h1 {
+        font-size: 4rem;
+    }
+
+    .section {
+        padding: 1.5rem;
+    }
+
+    .section h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+}
 */

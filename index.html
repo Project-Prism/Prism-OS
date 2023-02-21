@@ -1,125 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!--Meta-->
+        <!-- Meta -->
         <meta name="keywords" content="OS, Operating System, Open Source, Free, HomePage, Prism, PrismOS, GitHub">
         <meta name="description" content="Home page for Prism OS operating system.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
 
-        <!--CSS and Fonts-->
+        <!-- CSS and Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:900|Work+Sans:300" rel="stylesheet">
         <link rel="stylesheet" href="./CSS/Index.css">
-        <link rel="stylesheet" href="./CSS/Global.css">
 
-        <!--Other-->
+        <!-- Other -->
         <link rel="icon" href="./Images/PrismOSLogo.png">
-        <title>Prism OS - Home</title>
+        <title>Prism OS</title>
     </head>
-    <body>
-        <header>
-            <a href="https://github.com/Project-Prism/Prism-OS"><img align="left" src="./Images/PrismOSLogo.png" alt="Prism OS Logo" width="75"></a>
-            
-            <!--TODO Work On Cleaning-->
-            <!--TODO Input new layout to all pages-->
-            <!-- Light mode button -->
-            <button id="lightMode" onclick="toggleLightMode()"><img align="center" src="./Images/LightMode.png" alt="LightMode Icon" width="50"></button>
-            <script>
-                const element = document.body
-                let cookie = document.cookie
-                if (cookie.includes("lightmode=true"))
-                    element.classList.toggle("LightMode")
-            
-                function toggleLightMode() {
-                    element.classList.toggle("LightMode")
+    <body class="maxWidth">
+        <nav>
+            <ul>
+                <a href="https://github.com/Project-Prism/Prism-OS">Github</a>
+                <a href="#About">About</a>
+                <a href="#Downloads">Downloads</a>
+                <a href="#Contributors">Contributors</a>
+            </ul>
+        </nav>
 
-                    if (element.classList.contains("LightMode"))
-                    {
-                        //The Weekend reference ;)
-                        alert("And I say, OOOOOO, I'm blinded by the lights!")
-                        document.cookie = "lightmode=true; SameSite=Strict; path=/"
-                    }
-                    else
-                    {
-                        document.cookie = "lightmode=false; SameSite=Strict; path=/"
-                    }
-                }
-            </script>
-            <div class="dropdown" align="right">
-                <button class="dropdown"><img align="left" src="./Images/Settings.png" alt="Settings Logo" width="30">Settings</button>
-                <div class="dropdown-content">
-                    <button onclick="myFunction()"><img align="left" src="./Images/LightMode.png" alt="LightMode Icon" width="15">Toggle light mode</button>
-                    <script>
-                        function myFunction() {
-                            var element = document.body;
-                            element.classList.toggle("LightMode");
-    
-                            //The Weekend reference ;)
-                            alert("And I say, OOOOOO, I'm blinded by the lights!");
-                        }
-                    </script>
-                </div>
-            </div>
-
-            <h1>Prism OS</h1>
-            <p>The Future Of Computers</p>
-
-            <nav>
-                <!--Buttons-->
-                <div class="OptionButtons">
-                    <button onclick="window.location.href='https://github.com/Project-Prism/Prism-OS'"><img align="left" src="./Images/GitHubLogo.png" alt="GitHub Logo" width="30">View our GitHub</button>
-                    <button onclick="window.location.href='./Pages/Downloads/downloads.html'"><img align="left" src="./Images/FileDownloadIcon.png" alt="Download Icon" width="30">Downloads</button>
-                    <button onclick="window.location.href='./Pages/Developers/developers.html'"><img align="left" src="./Images/Developer.png" alt="Developer Icon" width="30">Developers</button>
-                    <button onclick="window.location.href='./Pages/WebDemo/webdemo.html'"><img align="left" src="./Images/WebDemoScreen.png" alt="Download Icon" width="30" target="_blank">Web Demo</button>
-                </div>
-            </nav>
+        <header class="flexCentre maxWidth">
+            <h1>PRISM OS</h1>
         </header>
 
         <main>
-            <h2>What is Prism OS?</h2>
-            <p class="ProjectInfo">
-                Prism OS is a small open-source project created on May 11th, 2021 1:26AM UTC-8. Prism OS is made possible by the
-                <a class="CosmosLink" href="https://github.com/CosmosOS/Cosmos#cosmos">Cosmos</a> open source project alongside all the developers and community based around it. Prism OS uses
-                the developer kit which is based in C# to make a GUI based OS with a basic window manager and mouse system. The OS also contains a basic networking
-                configuration (although it's very buggy) alongside a basic file system.
-            </p>
-            <img src="./Images/OS1.png" alt="OS Clock">
-            <img src="./Images/OS2.png" alt="OS Fail Screen">
+            <!-- About -->
+            <div class="section" id="About">
+                <h2>About</h2>
+                <p>Prism OS is a small open-source operating system written in C# with the Cosmos "Operating System Development Kit". It was created on May 11th, 2021 1:26AM UTC-8, by developer, and owner, terminal-cs under the original name "Lemon OS" as a fun side-project without any intention of it becoming anything greater. New features and updates are constantly rolled out; some features include: basic window manager, mouse system and a basic networking configuration.
+                <br><br>
+                Prism OS also has a small, growing, discord community where you can meet new people, contributors and the devs themselves! Join or share the server today using this link:
+                <a href="https://discord.gg/DqNckqagMs">https://discord.gg/DqNckqagMs</a></p>
+            </div>
+            
+            <!-- Downloads -->
+            <div class="section" id="Downloads">
+                <h2>Downloads</h2>
+                <div class="PlaceHolder" id="DownloadPlaceHolder">
+                    <p>Oops! We couldn't fetch the latest releases from github for you!<br>Try <a href="https://github.com/Project-Prism/Prism-OS/releases">here</a> instead!</p>
+                </div>
+		<div class="hidden" id="Releases">
+			<table class="maxWidth innerSectionBorder">
+			<thead>
+				<tr>
+					<th>Version</th>
+					<th>Type</th>
+					<th>Date</th>
+					<th>Download</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- To add more releases just add more "<tr></tr>" pairs, the javascript should pick them up -->
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+			</tbody>
+			</table>
+		</div>
+            </div>
+
+            <!-- Contributors -->
+            <div class="section" id="Contributors">
+                <h2>Contributors</h2>
+                <div id="ContribPlaceHolder" class="PlaceHolder">
+                    <p>Oops! We couldn't fetch contributors from github for you!<br>Try <a href="https://github.com/Project-Prism/Prism-OS/graphs/contributors">here</a> instead!</p>
+                </div>
+                <div id="Wrapper" class="maxWidth hidden">
+			<!-- This gets populated with contributors automatically -->
+                </div>
+            </div>
         </main>
 
         <footer>
-            <hr>
+            <div id="footerContent" class="flexCentre">
+                <!-- License -->
+                <p><a href="https://github.com/Project-Prism/Prism-OS">Project-Prism/Prism-OS</a> is licensed under the <a href="https://www.gnu.org/licenses/old-licenses/lgpl-2.0.html">GNU General Public License v2.0</a></p>
+                
+                <!-- Discord -->
+                <div id="Discord" class="flexCentre">
+                    <img src="Images/DiscordWhite.png" alt="Discord icon">
+                    <a href="https://discord.gg/DqNckqagMs">Discord</a>
+                </div>
 
-            <!--Social Media-->
-            <div>
-                <h3>Social Media</h3>
-                <div>
-                    <a href="https://discord.gg/DqNckqagMs"><img src="./Images/DiscordBlue.png" alt="Discord Clyde Blue Logo"><p>Discord</p></a>
-                </div>
-                <div>
-                    <a href="https://github.com/Project-Prism/Prism-OS"><img src="./Images/GitHubLogo.png" alt="GitHub Logo"><p>GitHub</p></a>
-                </div>
+                <!-- Feedback -->
+                <a href="https://forms.gle/tR5eotAkviTjdKRY7">Feedback</a>
             </div>
-
-            <!--Feedback & Data-->
-            <div>
-                <h3>Feedback & Data</h3>
-                <div>
-                    <a href="https://forms.gle/tR5eotAkviTjdKRY7"><img src="./Images/Feedback.png" alt="Feedback"><p>Feedback</p></a>
-                </div>
-                <div>
-                    <a href="./website.html"><img src="./Images/Info.png" alt="Feedback"><p>Website Info</p></a>
-                </div>
-                <!--
-                    TODO Make information page. example, this site uses google fonts/icons
-                    <div>
-                        <a href="./WebsiteInfo.html"><img src="./Images/Info.png" alt="Info"><p class="FooterImageText">Info</p></a>
-                    </div>
-                -->
-            </div>
-
-            <hr width="60%">
-            <p>Website designed by <a class="FooterUser" href="https://github.com/theopcoder">theopcoder.</a></p>
         </footer>
+
+        <!-- Things to load afterwards -->
+	<script src="js/githubApi.js"></script>
     </body>
 </html>
