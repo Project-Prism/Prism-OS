@@ -11,7 +11,7 @@ This Project is Made Possible by Cosmos and the Community Around it, We Give a H
 <hr/>
 
 # Media
-![<img src="https://user-images.githubusercontent.com/76945439/220225915-97093a66-6aa9-42f0-a3d2-ec53f6ae211f.mp4" width="200">](Video1)
+!["https://user-images.githubusercontent.com/76945439/220225915-97093a66-6aa9-42f0-a3d2-ec53f6ae211f.mp4" x200](Video1)
 
 > Demo of lerp animations in  Prism OS.
 
