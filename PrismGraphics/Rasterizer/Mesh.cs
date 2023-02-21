@@ -1,7 +1,6 @@
-﻿using PrismGraphics;
-using PrismNumerics;
+﻿using System.Numerics;
 
-namespace PrismGraphics3D.Types
+namespace PrismGraphics.Rasterizer
 {
 	public class Mesh
 	{
@@ -10,18 +9,18 @@ namespace PrismGraphics3D.Types
 			Triangles = new();
 			Position = new();
 			Rotation = new();
+			Velocity = new();
+			Force = new();
 
-			Velocity = new(0, 0, 0, 0, 0, 0);
-			Force = new(0, 0, 0, 0, 0, 0);
 			HasCollision = true;
 			HasPhysics = false;
-			Mass = 1.0;
+			Mass = 1.0f;
 		}
 
 		#region Methods
 
 		// https://docs.fileformat.com/3d/obj/
-		public static Mesh FromObject(byte[] Object, double Scale = 1.0)
+		public static Mesh FromObject(byte[] Object, float Scale = 1.0f)
 		{
 			StreamReader Stream = new(new MemoryStream(Object));
 
@@ -43,9 +42,9 @@ namespace PrismGraphics3D.Types
 					case "v":
 						Vector3 VResult = new();
 
-						VResult.X = double.Parse(Line[1]) * Scale;
-						VResult.Y = double.Parse(Line[2]) * Scale;
-						VResult.Z = double.Parse(Line[3]) * Scale;
+						VResult.X = float.Parse(Line[1]) * Scale;
+						VResult.Y = float.Parse(Line[2]) * Scale;
+						VResult.Z = float.Parse(Line[3]) * Scale;
 
 						Vertexes.Add(VResult);
 						break;
@@ -66,15 +65,15 @@ namespace PrismGraphics3D.Types
 
 			return Mesh;
 		}
-		public static Mesh FromObject(string PathTo, double Scale = 1.0)
+		public static Mesh FromObject(string PathTo, float Scale = 1.0f)
 		{
 			return FromObject(File.ReadAllBytes(PathTo), Scale);
 		}
-		public static Mesh GetPlane(double Width, double Length)
+		public static Mesh GetPlane(float Width, float Length)
 		{
 			return GetCube(Width, 1, Length);
 		}
-		public static Mesh GetCube(double Width, double Height, double Length)
+		public static Mesh GetCube(float Width, float Height, float Length)
 		{
 			return new()
 			{
@@ -109,32 +108,34 @@ namespace PrismGraphics3D.Types
 			};
 		}
 
-		public void TestLogic(double ElapsedTime)
+		public void TestLogic(float ElapsedTime)
 		{
 			//Rotation.Y += (DateTime.Now - LTime).TotalSeconds;
 			//LTime = DateTime.Now;
 			Rotation.Y += ElapsedTime;
 		}
-		public void Step(double Gravity, double DT)
+
+		public void Step(float Gravity, float DT)
 		{
+			// Increment gravity.
 			Force.Y += Mass * Gravity;
 			Velocity.Y += Force.Y / Mass * DT;
 			Position.Y += Velocity.Y * DT;
-			Force = new(0, 0, 0, 0, 0, 0);
+			Force = Vector3.Zero;
 		}
 
 		#endregion
 
 		#region Fields
 
-		public List<Triangle> Triangles { get; set; }
-		public Vector3 Position { get; set; }
-		public Vector3 Rotation { get; set; }
-		public Vector3 Velocity { get; set; }
-		public bool HasCollision { get; set; }
-		public bool HasPhysics { get; set; }
-		public Vector3 Force { get; set; }
-		public double Mass { get; set; }
+		public List<Triangle> Triangles;
+		public Vector3 Position;
+		public Vector3 Rotation;
+		public Vector3 Velocity;
+		public bool HasCollision;
+		public bool HasPhysics;
+		public Vector3 Force;
+		public float Mass;
 
 		#endregion
 	}

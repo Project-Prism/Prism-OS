@@ -66,7 +66,7 @@ namespace PrismGraphics
 				_A = (byte)(_ARGB >> 24);
 				_R = (byte)(_ARGB >> 16);
 				_G = (byte)(_ARGB >> 8);
-				_B = (byte)(_ARGB);
+				_B = (byte)_ARGB;
 			}
 		}
 

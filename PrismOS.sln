@@ -22,11 +22,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismAudio", "PrismAudio\Pr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismRuntime", "PrismRuntime\PrismRuntime.csproj", "{27714E33-5547-497E-98F4-17BD0C5CA4A0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismNumerics", "PrismNumerics\PrismNumerics.csproj", "{0A3B7B1B-990B-43BD-88A2-06C5375E8226}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismGraphics3D", "PrismGraphics3D\PrismGraphics3D.csproj", "{FA956C41-8D1D-45B1-8738-D273A31C1E9E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismFilesystem", "PrismFilesystem\PrismFilesystem.csproj", "{58D45042-5B26-4850-8584-5AE7621F9551}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismFilesystem", "PrismFilesystem\PrismFilesystem.csproj", "{58D45042-5B26-4850-8584-5AE7621F9551}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -92,22 +88,6 @@ Global
 		{27714E33-5547-497E-98F4-17BD0C5CA4A0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{27714E33-5547-497E-98F4-17BD0C5CA4A0}.Release|x86.ActiveCfg = Release|Any CPU
 		{27714E33-5547-497E-98F4-17BD0C5CA4A0}.Release|x86.Build.0 = Release|Any CPU
-		{0A3B7B1B-990B-43BD-88A2-06C5375E8226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A3B7B1B-990B-43BD-88A2-06C5375E8226}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A3B7B1B-990B-43BD-88A2-06C5375E8226}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0A3B7B1B-990B-43BD-88A2-06C5375E8226}.Debug|x86.Build.0 = Debug|Any CPU
-		{0A3B7B1B-990B-43BD-88A2-06C5375E8226}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A3B7B1B-990B-43BD-88A2-06C5375E8226}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A3B7B1B-990B-43BD-88A2-06C5375E8226}.Release|x86.ActiveCfg = Release|Any CPU
-		{0A3B7B1B-990B-43BD-88A2-06C5375E8226}.Release|x86.Build.0 = Release|Any CPU
-		{FA956C41-8D1D-45B1-8738-D273A31C1E9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FA956C41-8D1D-45B1-8738-D273A31C1E9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FA956C41-8D1D-45B1-8738-D273A31C1E9E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{FA956C41-8D1D-45B1-8738-D273A31C1E9E}.Debug|x86.Build.0 = Debug|Any CPU
-		{FA956C41-8D1D-45B1-8738-D273A31C1E9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FA956C41-8D1D-45B1-8738-D273A31C1E9E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FA956C41-8D1D-45B1-8738-D273A31C1E9E}.Release|x86.ActiveCfg = Release|Any CPU
-		{FA956C41-8D1D-45B1-8738-D273A31C1E9E}.Release|x86.Build.0 = Release|Any CPU
 		{58D45042-5B26-4850-8584-5AE7621F9551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{58D45042-5B26-4850-8584-5AE7621F9551}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58D45042-5B26-4850-8584-5AE7621F9551}.Debug|x86.ActiveCfg = Debug|Any CPU

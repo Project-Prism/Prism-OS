@@ -1,5 +1,4 @@
-﻿// using PrismGraphics.Extentions;
-using PrismRuntime.SShell;
+﻿using PrismRuntime.SShell;
 using PrismTools.Events;
 using PrismFilesystem;
 using Cosmos.System;
@@ -11,9 +10,8 @@ using PrismTools;
 namespace PrismOS
 {
 	/*
-	// TO-DO: General cleaning
-	// TO-DO: fix gradients
-	// TO-DO: raycaster engine
+	// TO-DO: raycaster engine.
+	// TO-DO: Fix gradient's MaskAlpha method. (?)
 	*/
 	public unsafe class Program : Kernel
 	{
@@ -35,7 +33,6 @@ namespace PrismOS
 			FilesystemManager.Init();
 			NetworkManager.Init();
 			SystemCalls.Init();
-			//VBEConsole.Init();
 
 			AudioPlayer.Play(Media.Vista);
 			Debugger.Log("Kernel initialized!", Debugger.Severity.Ok);

@@ -1,18 +1,17 @@
-﻿using PrismGraphics.Extentions.VESA;
-using static Cosmos.HAL.Global;
+﻿using static Cosmos.HAL.Global;
 using PrismGraphics.Fonts;
-using IL2CPU.API.Attribs;
+// using IL2CPU.API.Attribs;
 using PrismTools.IO;
 using Cosmos.Core;
 
-namespace PrismGraphics.Extentions
+namespace PrismGraphics.Extentions.VESA
 {
 	/// <summary>
 	/// VBE Console class, used to write text output to a high resolution console.
 	/// Supports images, shapes, and everything else.
 	/// Not completed.
 	/// </summary>
-	[Plug(Target = typeof(Console))]
+	// [Plug(Target = typeof(Console))]
 	public static unsafe class VBEConsole
 	{
 		#region Methods
@@ -64,18 +63,18 @@ namespace PrismGraphics.Extentions
 							{
 								if (X < SpacingX)
 								{
-									Y -= (int)Font.Fallback.Size;
-									X = (int)Font.Fallback.MeasureString(Buffer.Split('\n')[Y]);
+									//Y -= (int)Font.Fallback.Size;
+									//X = (int)Font.Fallback.MeasureString(Buffer.Split('\n')[Y]);
 								}
 								else
 								{
-									X -= (int)Font.Fallback.MeasureString(Buffer[^1].ToString());
+									//X -= (int)Font.Fallback.MeasureString(Buffer[^1].ToString());
 								}
 
 								Buffer = Buffer[..^1];
 								Input = Input[..^1];
 
-								Canvas.DrawFilledRectangle(X, Y, Font.Fallback.Size, Font.Fallback.Size, 0, Color.FromConsleColor(BackgroundColor));
+								//Canvas.DrawFilledRectangle(X, Y, Font.Fallback.Size, Font.Fallback.Size, 0, Color.FromConsleColor(BackgroundColor));
 								Canvas.Update();
 							}
 							IsCursorEnabled = true;
@@ -143,7 +142,7 @@ namespace PrismGraphics.Extentions
 		public static void Write(string Value)
 		{
 			// Erase Cursor
-			Canvas.DrawFilledRectangle(X, Y, 1, Font.Fallback.Size, 0, Color.FromConsleColor(BackgroundColor));
+			//Canvas.DrawFilledRectangle(X, Y, 1, Font.Fallback.Size, 0, Color.FromConsleColor(BackgroundColor));
 
 			for (int I = 0; I < Value.Length; I++)
 			{
@@ -151,18 +150,18 @@ namespace PrismGraphics.Extentions
 			}
 
 			// Draw Cursor
-			Canvas.DrawFilledRectangle(X, Y, 1, Font.Fallback.Size, 0, Color.FromConsleColor(BackgroundColor));
-			Canvas.Update();
+			//Canvas.DrawFilledRectangle(X, Y, 1, Font.Fallback.Size, 0, Color.FromConsleColor(BackgroundColor));
+			//Canvas.Update();
 		}
 		public static void Write(char Value)
 		{
 			// Erase Cursor
-			Canvas.DrawFilledRectangle(X, Y, 1, Font.Fallback.Size, 0, Color.FromConsleColor(BackgroundColor));
+			//Canvas.DrawFilledRectangle(X, Y, 1, Font.Fallback.Size, 0, Color.FromConsleColor(BackgroundColor));
 
 			WriteCore(Value);
 
 			// Draw Cursor
-			Canvas.DrawFilledRectangle(X, Y, 1, Font.Fallback.Size, 0, Color.FromConsleColor(BackgroundColor));
+			//Canvas.DrawFilledRectangle(X, Y, 1, Font.Fallback.Size, 0, Color.FromConsleColor(BackgroundColor));
 			Canvas.Update();
 		}
 		public static void Write(bool Value)
@@ -189,32 +188,32 @@ namespace PrismGraphics.Extentions
 					break;
 				case '\n':
 					X = SpacingX;
-					Y += (int)Font.Fallback.Size;
+					//Y += (int)Font.Fallback.Size;
 					break;
 				case '\b':
-					X -= (int)Font.Fallback.MeasureString(Buffer[^1].ToString());
+					//X -= (int)Font.Fallback.MeasureString(Buffer[^1].ToString());
 					break;
 				case '\t':
-					X += (int)(Font.Fallback.Size * 4);
+					//X += (int)(Font.Fallback.Size * 4);
 					break;
 				default:
 					if (char.IsAscii(C))
 					{
-						Canvas.DrawFilledRectangle(X, Y, Font.Fallback.MeasureString(C.ToString()), Font.Fallback.Size, 0, Color.FromConsleColor(BackgroundColor));
-						Canvas.DrawChar(X, Y, C, Font.Fallback, Color.FromConsleColor(ForegroundColor), false);
+						//Canvas.DrawFilledRectangle(X, Y, Font.Fallback.MeasureString(C.ToString()), Font.Fallback.Size, 0, Color.FromConsleColor(BackgroundColor));
+						//Canvas.DrawChar(X, Y, C, Font.Fallback, Color.FromConsleColor(ForegroundColor), false);
 
 						if (X >= Canvas.Width - SpacingX)
 						{
 							X = SpacingX;
-							Y += Font.Fallback.Size;
+							//Y += Font.Fallback.Size;
 						}
 						else
 						{
-							X += Font.Fallback.MeasureString(C.ToString());
+							//X += Font.Fallback.MeasureString(C.ToString());
 						}
 						if (Y == Canvas.Height)
 						{
-							MemoryOperations.Copy(Canvas.Internal, Canvas.Internal + (Canvas.Width * Font.Fallback.Size), (int)(Canvas.Size - (Canvas.Width * Font.Fallback.Size)));
+							//MemoryOperations.Copy(Canvas.Internal, Canvas.Internal + (Canvas.Width * Font.Fallback.Size), (int)(Canvas.Size - (Canvas.Width * Font.Fallback.Size)));
 						}
 					}
 					break;
@@ -241,7 +240,7 @@ namespace PrismGraphics.Extentions
 				if (IsCursorVisible && IsCursorEnabled)
 				{
 					// Draw Cursor
-					Canvas.DrawFilledRectangle(X, Y, 1, Font.Fallback.Size, 0, Color.FromConsleColor(ForegroundColor));
+					//Canvas.DrawFilledRectangle(X, Y, 1, Font.Fallback.Size, 0, Color.FromConsleColor(ForegroundColor));
 					Canvas.Update();
 					IsCursorVisible = false;
 					return;
@@ -249,7 +248,7 @@ namespace PrismGraphics.Extentions
 				else
 				{
 					// Erase Cursor
-					Canvas.DrawFilledRectangle(X, Y, 1, Font.Fallback.Size, 0, Color.FromConsleColor(BackgroundColor));
+					//Canvas.DrawFilledRectangle(X, Y, 1, Font.Fallback.Size, 0, Color.FromConsleColor(BackgroundColor));
 					Canvas.Update();
 					IsCursorVisible = true;
 					return;

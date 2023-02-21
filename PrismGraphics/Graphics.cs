@@ -1,4 +1,5 @@
 ﻿// using System.Runtime.InteropServices; - Waiting for PR
+using PrismGraphics.Rasterizer;
 using PrismGraphics.Fonts;
 using Cosmos.Core.Memory;
 using Cosmos.Core;
@@ -6,12 +7,12 @@ using Cosmos.Core;
 namespace PrismGraphics
 {
 	/// <summary>
-	/// Graphics class, used for 2D rasterizing.
+	/// The <see cref="Graphics"/> class, used for rendering content on a 2D surface.
 	/// </summary>
 	public unsafe class Graphics : IDisposable
 	{
 		/// <summary>
-		/// Creates a new instance of <see cref="Graphics"/>.
+		/// Creates a new instance of the <see cref="Graphics"/> class..
 		/// </summary>
 		/// <param name="Width">Width of the canvas.</param>
 		/// <param name="Height">Height of the canvas.</param>
@@ -31,10 +32,22 @@ namespace PrismGraphics
 		{
 			get
 			{
+				// Check if coordinates are out of bounds.
+				if (X < 0 || Y < 0 || X >= Width || Y >= Height)
+				{
+					return Color.Black;
+				}
+
 				return Internal[Y * Width + X];
 			}
 			set
 			{
+				// Check if coordinates are out of bounds.
+				if (X < 0 || Y < 0 || X >= Width || Y >= Height)
+				{
+					return;
+				}
+
 				// Blend 2 colors together if the new color has alpha.
 				if (value.A < 255)
 				{
@@ -54,10 +67,22 @@ namespace PrismGraphics
 		{
 			get
 			{
+				// Check if index is out of bounds.
+				if (Index >= Size)
+				{
+					return Color.Black;
+				}
+
 				return Internal[Index];
 			}
 			set
 			{
+				// Check if index is out of bounds.
+				if (Index >= Size)
+				{
+					return;
+				}
+
 				// Blend 2 colors together if the new color has alpha.
 				if (value.A < 255)
 				{
@@ -170,6 +195,16 @@ namespace PrismGraphics
 		/// <param name="Color">Color to draw with.</param>
 		public void DrawFilledRectangle(int X, int Y, ushort Width, ushort Height, ushort Radius, Color Color)
 		{
+			// Quit if nothing needs to be drawn.
+			if (X >= this.Width || Y >= this.Height)
+			{
+				return;
+			}
+			if (X + Width < 0 || Y + Height < 0)
+			{
+				return;
+			}
+
 			// Just clear the screen if the color fills the screen.
 			if (X == 0 && Y == 0 && Width == this.Width && Height == this.Height && Radius == 0 && Color.A == 255)
 			{
@@ -192,11 +227,11 @@ namespace PrismGraphics
 				}
 				if (X + Width >= this.Width)
 				{
-					Width -= (ushort)X;
+					Width = (ushort)(this.Width - X);
 				}
 				if (Y + Height >= this.Height)
 				{
-					Height -= (ushort)Y;
+					Height = (ushort)(this.Height - Y);
 				}
 
 				for (int IY = 0; IY < Height; IY++)
@@ -394,6 +429,24 @@ namespace PrismGraphics
 			DrawLine(X1, Y1, X2, Y2, Color, UseAntiAliasing);
 			DrawLine(X1, Y1, X3, Y3, Color, UseAntiAliasing);
 			DrawLine(X2, Y2, X3, Y3, Color, UseAntiAliasing);
+		}
+
+		/// <summary>
+		/// Draws a filled triangle as marked by the triangle class.
+		/// </summary>
+		/// <param name="Triangle">The triangle coordinates.</param>
+		public void DrawFilledTriangle(Triangle Triangle)
+		{
+			DrawFilledTriangle((int)Triangle.P1.X, (int)Triangle.P1.Y, (int)Triangle.P2.X, (int)Triangle.P2.Y, (int)Triangle.P3.X, (int)Triangle.P3.Y, Triangle.Color);
+		}
+
+		/// <summary>
+		/// Draws a non-filled triangle as marked by the triangle class.
+		/// </summary>
+		/// <param name="Triangle">The triangle coordinates.</param>
+		public void DrawTriangle(Triangle Triangle)
+		{
+			DrawTriangle((int)Triangle.P1.X, (int)Triangle.P1.Y, (int)Triangle.P2.X, (int)Triangle.P2.Y, (int)Triangle.P3.X, (int)Triangle.P3.Y, Triangle.Color);
 		}
 
 		#endregion
