@@ -10,13 +10,22 @@ This Project is Made Possible by Cosmos and the Community Around it, We Give a H
 
 <hr/>
 
+# Media
+[!Video1](https://cdn.discordapp.com/attachments/893391662942933013/1077402167100592198/2023-02-20_17-25-07.mp4)
+> Demo of lerp animations in  Prism OS.
+[!Video2](https://cdn.discordapp.com/attachments/910378077836689428/1077127455371968614/2023-02-19_19-30-18.mkv)
+> Demo of the 3D rasterizer in Prism OS.
+
+<hr/>
+
 <ul>
 <h4>Prism OS's Feature List:</h4>
     <li>A Basic 3D Rasteriser</li>
     <li>Parsing for Many File Formats (TAR, Bitmap, and Targa)</li>
     <li>LZW Compression and Decompression</li>
     <li>Good Graphics API</li>
-    <li>Custom language lexer, compiler, and runtime.</li>
+    <li>Animation & color fade support</li>
+    <li>Custom language lexer, compiler, and runtime</li>
     <li>And more...</li>
     <h6>Note: Some Of These Items Might Not Be Implemented All The Way</h6>
 </ul>
