@@ -1,6 +1,6 @@
 ﻿# Introduction - PrismGraphics
 
-PrismgGraphics is the 2D graphics rasterization platform that allows for drawing of text, images, shapes, gradients, and whatever else on a 2D canvas.
+PrismGraphics is the 2D graphics rasterization platform that allows for drawing of text, images, shapes, gradients, and whatever else on a 2D canvas.
 
 This readme is still in progress, not finished!
 
@@ -8,7 +8,7 @@ This readme is still in progress, not finished!
 
 <hr/>
 
-## PrismGraphics/Animators/FadeControler.cs
+## PrismGraphics/Animation/FadeControler.cs
 
 This animation controler fades from one color to another over a period of time based on the mode it is set in. The available modes are as follows:
 
