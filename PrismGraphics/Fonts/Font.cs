@@ -35,6 +35,7 @@
 		{
 			ushort Width = 0;
 
+			// Loop over every character in the string.
 			for (int I = 0; I < String.Length; I++)
 			{
 				Width += (ushort)(GetGlyph(String[I]).Width + 2);
