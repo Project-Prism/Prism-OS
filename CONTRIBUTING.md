@@ -1,4 +1,4 @@
-### In order to contribute code to the main repository, it must follow these guidelines:
+### In order to contribute your code into the main branch, it must follow these guidelines:
 
 <hr/>
 
@@ -11,13 +11,17 @@ Variables and Usings Should be Clustered Like This, With Descending Length:
 
 <hr/>
 
+Keep all code as simple as possible and make sure it's understandable
+
+<hr/>
+
 If a class has more than one type of data, use #region tags like so:
 
 <img width="156" alt="image" src="https://user-images.githubusercontent.com/76945439/220502977-54f45a7f-5947-41a4-ac68-18a73f631a7c.png">
 
 <hr/>
 
-#### Do Not Create Stupid Hacky Methods to Get Around Something Unless You Know You Will Change it Before you Commit.
+#### Do NOT create hacky methods to get around something unless you know you will change it before you commit.
 ###### (Trust me, You will regret making something very unreliable then having to re-make it for several hours in a more stable manner)
 
 <hr/>
