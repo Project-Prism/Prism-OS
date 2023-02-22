@@ -100,7 +100,7 @@
 		/// <exception cref="NotImplementedException">Thrown when invalid animation is played.</exception>
 		private void Next()
 		{
-			if (Current >= Target)
+			if (Current == Target)
 			{
 				return;
 			}
@@ -117,6 +117,7 @@
 				AnimationMode.EaseOut => Common.Lerp(Source, Target, EaseOut(ElapsedTime / (float)Duration.TotalMilliseconds)),
 				AnimationMode.EaseIn => Common.Lerp(Source, Target, EaseIn(ElapsedTime / (float)Duration.TotalMilliseconds)),
 				AnimationMode.Ease => Common.Lerp(Source, Target, Ease(ElapsedTime / (float)Duration.TotalMilliseconds)),
+				AnimationMode.Linear => Common.Lerp(Source, Target, ElapsedTime / (float)Duration.TotalMilliseconds),
 				_ => throw new NotImplementedException("That mode isn't implemented!"),
 			};
 		}

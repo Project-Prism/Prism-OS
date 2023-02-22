@@ -21,6 +21,42 @@ Interpolate ``0.0f`` to ``255.0f`` over the span of ``5`` seconds with the ``Eas
 AnimationController A = new(0.0f, 255.0f, new(0, 0, 5), AnimationMode.Ease);
 ```
 
+Display the material-theme cirlce spinning progress bar
+```cs
+AnimationController A = new(25f, 270f, new(0, 0, 0, 0, 750), AnimationMode.Ease);
+AnimationController P = new(0f, 360f, new(0, 0, 0, 0, 500), AnimationMode.Linear);
+
+int X = C.Width / 2;
+int Y = C.Height / 2;
+
+while (true)
+{
+	if (A.Current == A.Target)
+	{
+		(A.Source, A.Target) = (A.Target, A.Source);
+		A.Reset();
+	}
+	if (P.Current == P.Target)
+	{
+		P.Reset();
+	}
+
+	int LengthOffset = (int)(P.Current + A.Current);
+	int Offset = (int)P.Current;
+
+	C.Clear();
+	C.DrawFilledRectangle(X - 32, Y - 32, 64, 64, 6, Color.White);
+	C.DrawArc(400, 300, 19, Color.LightGray, Offset, LengthOffset);
+	C.DrawArc(400, 300, 20, Color.Black, Offset, LengthOffset);
+	C.DrawArc(400, 300, 21, Color.LightGray, Offset, LengthOffset);
+	C.Update();
+}
+```
+The output result should look as follows:
+
+#### The algorithm
+It's two actually. The absolute starting point circles around continuously and linearly and the length of the arc eases in and out between a short and long length
+
 <hr/>
 
 ## Animation - [ColorController.cs](https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Animation/ColorController.cs)

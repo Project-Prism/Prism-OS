@@ -29,5 +29,9 @@
 		/// This mode is a combo of <see cref="EaseIn"/> and <see cref="EaseOut"/>.
 		/// </summary>
 		Ease,
+		/// <summary>
+		/// This mode is a smooth lear update method that has no speed differences.
+		/// </summary>
+		Linear,
 	}
 }
