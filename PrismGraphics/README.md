@@ -12,6 +12,19 @@ This readme is still in progress, not finished!
 
 This animation controler is a non-blocking number interpolator that lerps one number to another over a period of time based on the mode it is set in. The available modes are defined [Here](https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Animation/AnimationMode.cs).
 
+To know when the animation has finished, check if the current value has reached the target value like so:
+```cs
+if (C.Current == C.Target)
+{
+
+}
+```
+To make it looping (reverse & forward) add the following in the ``if`` statement:
+```cs
+(C.Source, C.Target) = (C.Target, C.Source);
+C.Reset();
+```
+
 > The controler has an update 'fidelity' of once every ``50`` milliseconds.
 
 ### Example(s)

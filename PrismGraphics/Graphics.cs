@@ -193,6 +193,7 @@ namespace PrismGraphics
 		/// <param name="Height">Height of the rectangle</param>
 		/// <param name="Radius">Border radius of the rectangle.</param>
 		/// <param name="Color">Color to draw with.</param>
+		/// <param name="UseAA">Toggle to enable or disable anti-aliasing.</param>
 		public void DrawFilledRectangle(int X, int Y, ushort Width, ushort Height, ushort Radius, Color Color, bool UseAA = false)
 		{
 			// Quit if nothing needs to be drawn.
@@ -205,41 +206,34 @@ namespace PrismGraphics
 				return;
 			}
 
-			// Just clear the screen if the color fills the screen.
-			if (X == 0 && Y == 0 && Width == this.Width && Height == this.Height && Radius == 0 && Color.A == 255)
+			// Fastest cropped draw method.
+			if (Color.A == 255)
 			{
-				Clear(Color);
-				return;
-			}
+				// Fastest copy-only draw method, fills the whole buffer.
+				if (X == 0 && Y == 0 && Width == this.Width && Height == this.Height)
+				{
+					Clear(Color);
+					return;
+				}
+				
+				// Get the cropped coordinates.
+				uint StartX = (uint)Math.Max(X, 0);
+				uint StartY = (uint)Math.Max(Y, 0);
+				uint EndX = (uint)Math.Min(X + Width, this.Width);
+				uint EndY = (uint)Math.Min(Y + Height, this.Height);
 
-			// Crop the coords and fill the right blocks of memory.
-			if (Radius == 0 && Color.A == 255)
-			{
-				if (X < 0)
-				{
-					Width -= (ushort)Math.Abs(X);
-					X = 0;
-				}
-				if (Y < 0)
-				{
-					Height -= (ushort)Math.Abs(Y);
-					Y = 0;
-				}
-				if (X + Width >= this.Width)
-				{
-					Width = (ushort)(this.Width - X);
-				}
-				if (Y + Height >= this.Height)
-				{
-					Height = (ushort)(this.Height - Y);
-				}
+				// Get new size after crop.
+				uint RHeight = EndY - StartY;
+				uint RWidth = EndX - StartX;
 
-				for (int IY = 0; IY < Height; IY++)
-				{
-					MemoryOperations.Fill(Internal + ((Y + IY) * this.Width + X), Color.ARGB, Width);
-				}
+				// Calculate destination offset for the starting point
+				uint Destination = StartY * this.Width + StartX;
 
-				// Make sure to return.
+				// Fill the region with the color
+				for (uint IY = 0; IY < RHeight; IY++)
+				{
+					MemoryOperations.Fill(Internal + Destination + (IY * this.Width), Color.ARGB, (int)RWidth);
+				}
 				return;
 			}
 
@@ -337,7 +331,8 @@ namespace PrismGraphics
 		/// <param name="X3">X position 3.</param>
 		/// <param name="Y3">Y position 3.</param>
 		/// <param name="Color">Color to draw with.</param>
-		public void DrawFilledTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, bool UseAntiAliasing = false)
+		/// <param name="UseAA">Toggle to enable or disable anti-aliasing.</param>
+		public void DrawFilledTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, bool UseAA = false)
 		{
 			Y1 = (int)Math.Round(16.0f * Y1);
 			Y2 = (int)Math.Round(16.0f * Y2);
@@ -408,7 +403,7 @@ namespace PrismGraphics
 				CY3 += FDX31;
 			}
 
-			if (UseAntiAliasing)
+			if (UseAA)
 			{
 				DrawTriangle(X1, Y1, X2, Y2, X3, Y3, Color, true);
 			}
@@ -424,11 +419,12 @@ namespace PrismGraphics
 		/// <param name="X3">X position 3.</param>
 		/// <param name="Y3">Y position 3.</param>
 		/// <param name="Color">Color to draw with.</param>
-		public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, bool UseAntiAliasing = false)
+		/// <param name="UseAA">Toggle to enable or disable anti-aliasing.</param>
+		public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, bool UseAA = false)
 		{
-			DrawLine(X1, Y1, X2, Y2, Color, UseAntiAliasing);
-			DrawLine(X1, Y1, X3, Y3, Color, UseAntiAliasing);
-			DrawLine(X2, Y2, X3, Y3, Color, UseAntiAliasing);
+			DrawLine(X1, Y1, X2, Y2, Color, UseAA);
+			DrawLine(X1, Y1, X3, Y3, Color, UseAA);
+			DrawLine(X2, Y2, X3, Y3, Color, UseAA);
 		}
 
 		/// <summary>
@@ -623,6 +619,23 @@ namespace PrismGraphics
 		}
 
 		/// <summary>
+		/// Draws a line at an angle from X and Y with a circle's radius.
+		/// </summary>
+		/// <param name="X">X position.</param>
+		/// <param name="Y">Y position.</param>
+		/// <param name="Angle">Angle in degrees.</param>
+		/// <param name="Radius">Radius or Length.</param>
+		/// <param name="Color">Color to draw with.</param>
+		/// <param name="UseAA">Toggle to enable or disable anti-aliasing.</param>
+		public void DrawAngledLine(int X, int Y, short Angle, ushort Radius, Color Color, bool UseAA = false)
+		{
+			int IX = (int)(Radius * Math.Cos(Math.PI * Angle / 180));
+			int IY = (int)(Radius * Math.Sin(Math.PI * Angle / 180));
+
+			DrawLine(X, Y, X + IX, Y + IY, Color, UseAA);
+		}
+
+		/// <summary>
 		/// Draws a line from point A (X1, Y1) to point B (X2, Y2)
 		/// </summary>
 		/// <param name="X1">X position 1.</param>
@@ -630,8 +643,8 @@ namespace PrismGraphics
 		/// <param name="X2">X positoin 2.</param>
 		/// <param name="Y2">Y position 2.</param>
 		/// <param name="Color">Color to draw with.</param>
-		/// <param name="UseAntiAlias">Enable or disable the use of anti-aliasing.</param>
-		public void DrawLine(int X1, int Y1, int X2, int Y2, Color Color, bool UseAntiAlias = false)
+		/// <param name="UseAA">Enable or disable the use of anti-aliasing.</param>
+		public void DrawLine(int X1, int Y1, int X2, int Y2, Color Color, bool UseAA = false)
 		{
 			int DX = Math.Abs(X2 - X1), SX = X1 < X2 ? 1 : -1;
 			int DY = Math.Abs(Y2 - Y1), SY = Y1 < Y2 ? 1 : -1;
@@ -641,7 +654,7 @@ namespace PrismGraphics
 			{
 				this[X1, Y1] = Color;
 
-				if (UseAntiAlias)
+				if (UseAA)
 				{
 					if (X1 + X2 > Y1 + Y2)
 					{
@@ -662,48 +675,9 @@ namespace PrismGraphics
 			}
 		}
 
-		/// <summary>
-		/// Draws a line at an angle from X and Y with a circle's radius.
-		/// </summary>
-		/// <param name="X">X position.</param>
-		/// <param name="Y">Y position.</param>
-		/// <param name="Angle">Angle in degrees.</param>
-		/// <param name="Radius">Radius or Length.</param>
-		/// <param name="Color">Color to draw with.</param>
-		public void DrawAngledLine(int X, int Y, short Angle, ushort Radius, Color Color)
-		{
-			int IX = (int)(Radius * Math.Cos(Math.PI * Angle / 180));
-			int IY = (int)(Radius * Math.Sin(Math.PI * Angle / 180));
-
-			DrawLine(X, Y, X + IX, Y + IY, Color);
-		}
-
 		#endregion
 
 		#region Arc
-
-		/// <summary>
-		/// Draws a filled arc at the center of X and Y with a radius.
-		/// </summary>
-		/// <param name="X">X position.</param>
-		/// <param name="Y">Y position.</param>
-		/// <param name="Radius">Radius of the arc.</param>
-		/// <param name="Color">Color to draw with.</param>
-		/// <param name="StartAngle">Angle at which to start.</param>
-		/// <param name="EndAngle">Angle at which to end.</param>
-		public void DrawFilledArc(int X, int Y, ushort Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
-		{
-			// Quit if nothing needs to be drawn.
-			if (Radius == 0)
-			{
-				return;
-			}
-
-			for (ushort I = 0; I < Radius; I++)
-			{
-				DrawArc(X, Y, I, Color, StartAngle, EndAngle);
-			}
-		}
 
 		/// <summary>
 		/// Draws a non-filled arc at the center of X and Y with a Width and a Height.
@@ -727,8 +701,8 @@ namespace PrismGraphics
 			{
 				double Angle1 = Math.PI * Angle / 180;
 
-				int IX = (int)(Width * Math.Cos(Angle1));
-				int IY = (int)(Height * Math.Sin(Angle1));
+				int IX = (int)Math.Clamp(Width * Math.Cos(Angle1), -Width + 1, Width - 1);
+				int IY = (int)Math.Clamp(Height * Math.Sin(Angle1), -Height + 1, Height - 1);
 
 				this[X + IX, Y + IY] = Color;
 			}
@@ -751,15 +725,7 @@ namespace PrismGraphics
 				return;
 			}
 
-			for (double Angle = StartAngle; Angle < EndAngle; Angle += 0.5)
-			{
-				double Angle1 = Math.PI * Angle / 180;
-
-				int IX = (int)(Radius * Math.Cos(Angle1));
-				int IY = (int)(Radius * Math.Sin(Angle1));
-
-				this[X + IX, Y + IY] = Color;
-			}
+			DrawArc(X, Y, Radius, Radius, Color, StartAngle, EndAngle);
 		}
 
 		#endregion
@@ -776,59 +742,50 @@ namespace PrismGraphics
 		/// <exception cref="NullReferenceException">Thrown when input is null.</exception>
 		public void DrawImage(int X, int Y, Graphics Image, bool Alpha = true)
 		{
-			// Basic null check.
-			if (Image == null)
+			// Basic null/empty check.
+			if (Image == null || Image.Width == 0 || Image.Height == 0)
 			{
-				throw new NullReferenceException("Cannot draw a null image file.");
+				return;
 			}
 
 			// Quit if nothing needs to be drawn.
-			if (X + Image.Width < 0 || Y + Image.Height < 0)
+			if (X + Image.Width < 0 || Y + Image.Height < 0 || X >= Width || Y >= Height)
 			{
-				return;
-			}
-			if (X >= Width || Y >= Height)
-			{
-				return;
-			}
-
-			// Fastest copy-only draw method, fills the whole buffer.
-			if (!Alpha && X == 0 && Y == 0 && Image.Width == Width && Image.Height == Height)
-			{
-				Buffer.MemoryCopy(Internal, Image.Internal, Size * 4, Size * 4);
 				return;
 			}
 
 			// Fastest cropped draw method.
 			if (!Alpha)
 			{
-				uint TWidth = Image.Width;
-				uint THeight = Image.Height;
-				uint PadX = 0;
-				uint PadY = 0;
-
-				if (X < 0)
+				// Fastest copy-only draw method, fills the whole buffer.
+				if (X == 0 && Y == 0 && Image.Width == this.Width && Image.Height == this.Height)
 				{
-					PadX = (uint)Math.Abs(X);
-					TWidth -= PadX;
-				}
-				if (Y < 0)
-				{
-					PadY = (uint)Math.Abs(Y);
-					THeight -= PadY;
-				}
-				if (X + Image.Width >= Width)
-				{
-					TWidth = Width - (uint)X;
-				}
-				if (Y + Image.Height >= Height)
-				{
-					THeight = Height - (uint)Y;
+					Buffer.MemoryCopy(Internal, Image.Internal, Size * 4, Size * 4);
+					return;
 				}
 
-				for (uint IY = 0; IY < THeight; IY++)
+				// Get the cropped coordinates.
+				uint StartX = (uint)Math.Max(X, 0);
+				uint StartY = (uint)Math.Max(Y, 0);
+				uint EndX = (uint)Math.Min(X + Image.Width, this.Width);
+				uint EndY = (uint)Math.Min(Y + Image.Height, this.Height);
+
+				// Get new size after crop.
+				uint Height = EndY - StartY;
+				uint Width = EndX - StartX;
+
+				// Calculate destination & source offsets.
+				uint Destination = StartY * this.Width + StartX;
+				uint Source = (uint)((StartY - Y) * Image.Width + (StartX - X));
+
+				// Draw each line.
+				for (uint IY = 0; IY < Height; IY++)
 				{
-					Buffer.MemoryCopy(Internal + PadX + X + ((PadY + Y + IY) * Width), Image.Internal + PadX + ((PadY + IY) * Image.Width), TWidth, TWidth);
+					Buffer.MemoryCopy(Image.Internal + Source, Internal + Destination, Width * 4, Width * 4);
+
+					// Increment the offsets.
+					Destination += this.Width;
+					Source += Image.Width;
 				}
 				return;
 			}
@@ -1055,11 +1012,11 @@ namespace PrismGraphics
 
 		#region Fields
 
-		// The internal frame buffer.
-		public uint* Internal { get; set; }
-
 		private ushort _Height;
 		private ushort _Width;
+
+		// The internal frame buffer.
+		public uint* Internal;
 
 		#endregion
 	}
