@@ -54,6 +54,8 @@ while (true)
 ```
 The output result should look as follows:
 
+https://user-images.githubusercontent.com/76945439/220498920-b9d7a999-f8d1-4d00-a6d4-ed7e97e2a2de.mp4
+
 #### The algorithm
 It's two actually. The absolute starting point circles around continuously and linearly and the length of the arc eases in and out between a short and long length
 
