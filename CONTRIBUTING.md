@@ -6,11 +6,14 @@ All functions, Local and Global Vriables, and NameSpaces Must be Capitalized Wit
 
 
 Variables and Usings Should be Clustered Like This, With Descending Length:
-![image](https://user-images.githubusercontent.com/76945439/167557913-1df4379a-0abc-4628-9e61-2a720ec292bf.png)
+
+![image](https://user-images.githubusercontent.com/76945439/220503038-eaef1550-a073-416f-980d-863715445ee3.png)
 
 <hr/>
 
-If a class has a ton of functions, try to caterogize them in between ``#region NAME`` and ``#endregion`` tags.
+If a class has more than one type of data, use #region tags like so:
+
+<img width="156" alt="image" src="https://user-images.githubusercontent.com/76945439/220502977-54f45a7f-5947-41a4-ac68-18a73f631a7c.png">
 
 <hr/>
 
