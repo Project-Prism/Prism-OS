@@ -40,7 +40,7 @@
 		/// <summary>
 		/// The delay in MS of each update.
 		/// </summary>
-		public const int DelayMS = 50;
+		public const int DelayMS = 25;
 
 		#endregion
 

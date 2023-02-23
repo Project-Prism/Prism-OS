@@ -36,7 +36,7 @@ public bool IsFinished;
 The AnimationController class has a single constant:
 
 ```cs
-public const int DelayMS = 50;
+public const int DelayMS = 25;
 ```
 
 - DelayMS: The delay in milliseconds of each update. This value is used by the internal timer to increment the final value.

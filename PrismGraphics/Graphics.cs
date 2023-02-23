@@ -760,7 +760,7 @@ namespace PrismGraphics
 				// Fastest copy-only draw method, fills the whole buffer.
 				if (X == 0 && Y == 0 && Image.Width == this.Width && Image.Height == this.Height)
 				{
-					Buffer.MemoryCopy(Internal, Image.Internal, Size * 4, Size * 4);
+					Buffer.MemoryCopy(Image.Internal, Internal, Size * 4, Size * 4);
 					return;
 				}
 
