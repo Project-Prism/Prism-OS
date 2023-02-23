@@ -25,13 +25,18 @@
 		#region Properties
 
 		/// <summary>
+		/// A boolean to tell if the animation has finished.
+		/// </summary>
+		public bool IsFinished => Alpha.IsFinished;
+
+		/// <summary>
 		/// The animation mode used for color transition.
 		/// </summary>
 		public AnimationMode Mode
 		{
 			get
 			{
-				return (AnimationMode)(((byte)Alpha.Mode + (byte)Red.Mode + (byte)Green.Mode + (byte)Blue.Mode) / 4);
+				return Alpha.Mode;
 			}
 			set
 			{
@@ -49,7 +54,7 @@
 		{
 			get
 			{
-				return (Alpha.ElapsedTime + Red.ElapsedTime + Green.ElapsedTime + Blue.ElapsedTime) / 4.0f;
+				return Alpha.ElapsedTime;
 			}
 			set
 			{
@@ -67,7 +72,7 @@
 		{
 			get
 			{
-				return (Alpha.Duration + Red.Duration + Green.Duration + Blue.Duration) / 4.0f;
+				return Alpha.Duration;
 			}
 			set
 			{

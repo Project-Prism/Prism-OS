@@ -26,6 +26,15 @@
 			Timer = new((object? O) => Next(), null, DelayMS, 0);
 		}
 
+		#region Properties
+
+		/// <summary>
+		/// A boolean to tell if the animation has finished.
+		/// </summary>
+		public bool IsFinished => ElapsedTime >= Duration.TotalMilliseconds;
+
+		#endregion
+
 		#region Constants
 
 		/// <summary>
@@ -100,7 +109,7 @@
 		/// <exception cref="NotImplementedException">Thrown when invalid animation is played.</exception>
 		private void Next()
 		{
-			if (Current == Target)
+			if (IsFinished)
 			{
 				return;
 			}
@@ -127,7 +136,6 @@
 		/// </summary>
 		public void Reset()
 		{
-			Current = Source;
 			ElapsedTime = 0;
 		}
 

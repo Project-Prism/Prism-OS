@@ -207,7 +207,7 @@ namespace PrismGraphics
 			}
 
 			// Fastest cropped draw method.
-			if (Color.A == 255)
+			if (Color.A == 255 && Radius == 0)
 			{
 				// Fastest copy-only draw method, fills the whole buffer.
 				if (X == 0 && Y == 0 && Width == this.Width && Height == this.Height)
