@@ -21,13 +21,36 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore /home/runner/work/Prism-OS/Prism-OS/PrismOS/PrismOS.csproj
+      run: |
+	dotnet restore /home/runner/work/Prism-OS/Prism-OS/PrismAudio/PrismAudio.csproj
+	dotnet restore /home/runner/work/Prism-OS/Prism-OS/PrismBinary/PrismBinary.csproj
+	dotnet restore /home/runner/work/Prism-OS/Prism-OS/PrismFilesystem/PrismFilesystem.csproj
+	dotnet restore /home/runner/work/Prism-OS/Prism-OS/PrismGraphics/PrismGraphics.csproj
+	dotnet restore /home/runner/work/Prism-OS/Prism-OS/PrismNetwork/PrismNetwork.csproj
+	dotnet restore /home/runner/work/Prism-OS/Prism-OS/PrismRuntime/PrismRuntime.csproj
+	dotnet restore /home/runner/work/Prism-OS/Prism-OS/PrismTools/PrismTools.csproj
+      run: echo "Finished restoring dependancies."
     - name: Build
-      run: dotnet build --no-restore /home/runner/work/Prism-OS/Prism-OS/PrismOS/PrismOS.csproj
+      run: |
+	dotnet build --no-restore/home/runner/work/Prism-OS/Prism-OS/PrismAudio/PrismAudio.csproj
+	dotnet build --no-restore/home/runner/work/Prism-OS/Prism-OS/PrismBinary/PrismBinary.csproj
+	dotnet build --no-restore/home/runner/work/Prism-OS/Prism-OS/PrismFilesystem/PrismFilesystem.csproj
+	dotnet build --no-restore/home/runner/work/Prism-OS/Prism-OS/PrismGraphics/PrismGraphics.csproj
+	dotnet build --no-restore/home/runner/work/Prism-OS/Prism-OS/PrismNetwork/PrismNetwork.csproj
+	dotnet build --no-restore/home/runner/work/Prism-OS/Prism-OS/PrismRuntime/PrismRuntime.csproj
+	dotnet build --no-restore/home/runner/work/Prism-OS/Prism-OS/PrismTools/PrismTools.csproj
+      run: echo "Finished building projects."
     - name: Publish DLL
       uses: actions/upload-artifact@v3.1.1
       with:
         # Artifact name
         name: PrismOS Libraries
         # A file, directory or wildcard pattern that describes what to upload
-        path: PrismOS/bin/Debug/net6.0/
+        path: |
+           PrismAudio/bin/Debug/net6.0/
+           PrismBinary/bin/Debug/net6.0/
+           PrismFilesystem/bin/Debug/net6.0/
+           PrismGraphics/bin/Debug/net6.0/
+           PrismNetwork/bin/Debug/net6.0/
+           PrismRuntime/bin/Debug/net6.0/
+           PrismTools/bin/Debug/net6.0/
