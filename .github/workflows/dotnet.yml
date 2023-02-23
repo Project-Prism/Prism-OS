@@ -29,7 +29,6 @@ jobs:
         dotnet restore /home/runner/work/Prism-OS/Prism-OS/PrismNetwork/PrismNetwork.csproj
         dotnet restore /home/runner/work/Prism-OS/Prism-OS/PrismRuntime/PrismRuntime.csproj
         dotnet restore /home/runner/work/Prism-OS/Prism-OS/PrismTools/PrismTools.csproj
-      run: echo "Finished restoring dependancies."
     - name: Build
       run: |
         dotnet build --no-restore/home/runner/work/Prism-OS/Prism-OS/PrismAudio/PrismAudio.csproj
@@ -39,7 +38,6 @@ jobs:
         dotnet build --no-restore/home/runner/work/Prism-OS/Prism-OS/PrismNetwork/PrismNetwork.csproj
         dotnet build --no-restore/home/runner/work/Prism-OS/Prism-OS/PrismRuntime/PrismRuntime.csproj
         dotnet build --no-restore/home/runner/work/Prism-OS/Prism-OS/PrismTools/PrismTools.csproj
-      run: echo "Finished building projects."
     - name: Publish DLL
       uses: actions/upload-artifact@v3.1.1
       with:
