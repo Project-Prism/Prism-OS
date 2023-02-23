@@ -31,13 +31,13 @@ jobs:
         dotnet restore /home/runner/work/Prism-OS/Prism-OS/PrismTools/PrismTools.csproj
     - name: Build
       run: |
-        dotnet build --no-restore/home/runner/work/Prism-OS/Prism-OS/PrismAudio/PrismAudio.csproj
-        dotnet build --no-restore/home/runner/work/Prism-OS/Prism-OS/PrismBinary/PrismBinary.csproj
-        dotnet build --no-restore/home/runner/work/Prism-OS/Prism-OS/PrismFilesystem/PrismFilesystem.csproj
-        dotnet build --no-restore/home/runner/work/Prism-OS/Prism-OS/PrismGraphics/PrismGraphics.csproj
-        dotnet build --no-restore/home/runner/work/Prism-OS/Prism-OS/PrismNetwork/PrismNetwork.csproj
-        dotnet build --no-restore/home/runner/work/Prism-OS/Prism-OS/PrismRuntime/PrismRuntime.csproj
-        dotnet build --no-restore/home/runner/work/Prism-OS/Prism-OS/PrismTools/PrismTools.csproj
+        dotnet build --no-restore /home/runner/work/Prism-OS/Prism-OS/PrismAudio/PrismAudio.csproj
+        dotnet build --no-restore /home/runner/work/Prism-OS/Prism-OS/PrismBinary/PrismBinary.csproj
+        dotnet build --no-restore /home/runner/work/Prism-OS/Prism-OS/PrismFilesystem/PrismFilesystem.csproj
+        dotnet build --no-restore /home/runner/work/Prism-OS/Prism-OS/PrismGraphics/PrismGraphics.csproj
+        dotnet build --no-restore /home/runner/work/Prism-OS/Prism-OS/PrismNetwork/PrismNetwork.csproj
+        dotnet build --no-restore /home/runner/work/Prism-OS/Prism-OS/PrismRuntime/PrismRuntime.csproj
+        dotnet build --no-restore /home/runner/work/Prism-OS/Prism-OS/PrismTools/PrismTools.csproj
     - name: Publish DLL
       uses: actions/upload-artifact@v3.1.1
       with:
