@@ -27,7 +27,7 @@ public AnimationController(float Source, float Target, TimeSpan Duration, Animat
 The AnimationController class has a single property:
 
 ```cs
-public bool IsFinished
+public bool IsFinished;
 ```
 
 - IsFinished: A boolean that returns true when the animation has finished playing.
@@ -45,19 +45,19 @@ public const int DelayMS = 50;
 The AnimationController class has three methods:
 
 ```cs
-public void Reset()
+public void Reset();
 ```
 
 - Reset(): Resets the progress and plays the new values if new ones were set.
 
 ```cs
-private void Next()
+private void Next();
 ```
 
 - Next(): An internal method used by the timer to increment the final value.
 
 ```cs
-private static float Flip(float X)
+private static float Flip(float X);
 ```
 
 - Flip(float X): A static method used to flip the given value. Returns 1 - X.
@@ -89,12 +89,12 @@ The AnimationController class supports the following ease animation modes:
 The AnimationController class uses easing functions to create the different animation modes. The class contains the following easing functions:
 
 ```cs
-private static float BounceOut(float T)
-private static float BounceIn(float T)
-private static float Bounce(float T)
-private static float EaseOut(float T)
-private static float EaseIn(float T)
-private static float Ease(float T)
+private static float BounceOut(float T);
+private static float BounceIn(float T);
+private static float Bounce(float T);
+private static float EaseOut(float T);
+private static float EaseIn(float T);
+private static float Ease(float T);
 ```
 
 These functions are used by the Next() method to calculate the output value for the animation based on the elapsed time and the chosen animation mode.
@@ -137,12 +137,12 @@ int Y = C.Height / 2;
 
 while (true)
 {
-	if (A.Current == A.Target)
+	if (A.IsFinished)
 	{
 		(A.Source, A.Target) = (A.Target, A.Source);
 		A.Reset();
 	}
-	if (P.Current == P.Target)
+	if (P.IsFinished)
 	{
 		P.Reset();
 	}
