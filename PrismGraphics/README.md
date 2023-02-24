@@ -167,6 +167,50 @@ It's two actually. The absolute starting point circles around continuously and l
 
 <hr/>
 
+## Graphics - [Filters.cs](https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Filters.cs)
+
+The Filters<T> class is used to apply advanced filter effects to a graphics canvas.
+
+### Type Parameters
+
+T: The type of graphics object that will be filtered.
+
+### Methods
+
+```cs
+Rotate(double Angle, Graphics G);
+```
+
+Rotates the image to the desired angle.
+
+``Angle``: Angle to rotate in radians.
+
+``G``: The canvas to filter.
+
+```cs
+Scale(ushort Width, ushort Height, Graphics G);
+```
+
+Re-scales the image to the desired size.
+
+``Width``: New width to scale to.
+
+``Height``: New height to scale to.
+
+``G``: The canvas to filter.
+
+```cs
+ApplyAA(Graphics G);
+```
+
+Applies a basic anti-aliasing filter to the graphics layer.
+
+``G``: The canvas to filter.
+
+>Warning: This method is somewhat slow.
+
+<hr/>
+
 ## Graphics - [Color.cs](https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Color.cs)
 
 The Color class is used to represent colors with their ARGB values and provide static predefined colors.

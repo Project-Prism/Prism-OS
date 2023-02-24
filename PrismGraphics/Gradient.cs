@@ -33,7 +33,7 @@ namespace PrismGraphics
 		public Graphics MaskAlpha(Graphics G)
 		{
 			// Get a scaled version if the gradient is smaller or bigger than the input.
-			Gradient Scaled = (Gradient)Scale(G.Width, G.Height);
+			Gradient Scaled = (Gradient)Filters.Scale(G.Width, G.Height, this);
 
 			// Create a temporary buffer.
 			Graphics Temp = new(G.Width, G.Height);
