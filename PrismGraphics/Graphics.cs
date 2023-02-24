@@ -193,8 +193,7 @@ namespace PrismGraphics
 		/// <param name="Height">Height of the rectangle</param>
 		/// <param name="Radius">Border radius of the rectangle.</param>
 		/// <param name="Color">Color to draw with.</param>
-		/// <param name="UseAA">Toggle to enable or disable anti-aliasing.</param>
-		public void DrawFilledRectangle(int X, int Y, ushort Width, ushort Height, ushort Radius, Color Color, bool UseAA = false)
+		public void DrawFilledRectangle(int X, int Y, ushort Width, ushort Height, ushort Radius, Color Color)
 		{
 			// Quit if nothing needs to be drawn.
 			if (X >= this.Width || Y >= this.Height)
@@ -215,7 +214,7 @@ namespace PrismGraphics
 					Clear(Color);
 					return;
 				}
-				
+
 				// Get the cropped coordinates.
 				uint StartX = (uint)Math.Max(X, 0);
 				uint StartY = (uint)Math.Max(Y, 0);
@@ -252,11 +251,11 @@ namespace PrismGraphics
 			// Circular rectangle.
 			else
 			{
-				DrawFilledCircle(X + Radius, Y + Radius, Radius, Color, UseAA);
-				DrawFilledCircle(X + Width - Radius - 1, Y + Radius, Radius, Color, UseAA);
+				DrawFilledCircle(X + Radius, Y + Radius, Radius, Color);
+				DrawFilledCircle(X + Width - Radius - 1, Y + Radius, Radius, Color);
 
-				DrawFilledCircle(X + Radius, Y + Height - Radius - 1, Radius, Color, UseAA);
-				DrawFilledCircle(X + Width - Radius - 1, Y + Height - Radius - 1, Radius, Color, UseAA);
+				DrawFilledCircle(X + Radius, Y + Height - Radius - 1, Radius, Color);
+				DrawFilledCircle(X + Width - Radius - 1, Y + Height - Radius - 1, Radius, Color);
 
 				DrawFilledRectangle(X + Radius, Y, (ushort)(Width - Radius * 2), Height, 0, Color);
 				DrawFilledRectangle(X, Y + Radius, Width, (ushort)(Height - Radius * 2), 0, Color);
@@ -330,9 +329,8 @@ namespace PrismGraphics
 		/// <param name="Y2">Y position 2.</param>
 		/// <param name="X3">X position 3.</param>
 		/// <param name="Y3">Y position 3.</param>
-		/// <param name="Color">Color to draw with.</param>
-		/// <param name="UseAA">Toggle to enable or disable anti-aliasing.</param>
-		public void DrawFilledTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, bool UseAA = false)
+		/// <param name="Color">Color to draw with.</param>\
+		public void DrawFilledTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
 		{
 			Y1 = (int)Math.Round(16.0f * Y1);
 			Y2 = (int)Math.Round(16.0f * Y2);
@@ -402,11 +400,6 @@ namespace PrismGraphics
 				CY2 += FDX23;
 				CY3 += FDX31;
 			}
-
-			if (UseAA)
-			{
-				DrawTriangle(X1, Y1, X2, Y2, X3, Y3, Color, true);
-			}
 		}
 
 		/// <summary>
@@ -419,12 +412,11 @@ namespace PrismGraphics
 		/// <param name="X3">X position 3.</param>
 		/// <param name="Y3">Y position 3.</param>
 		/// <param name="Color">Color to draw with.</param>
-		/// <param name="UseAA">Toggle to enable or disable anti-aliasing.</param>
-		public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, bool UseAA = false)
+		public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
 		{
-			DrawLine(X1, Y1, X2, Y2, Color, UseAA);
-			DrawLine(X1, Y1, X3, Y3, Color, UseAA);
-			DrawLine(X2, Y2, X3, Y3, Color, UseAA);
+			DrawLine(X1, Y1, X2, Y2, Color);
+			DrawLine(X1, Y1, X3, Y3, Color);
+			DrawLine(X2, Y2, X3, Y3, Color);
 		}
 
 		/// <summary>
@@ -456,8 +448,7 @@ namespace PrismGraphics
 		/// <param name="Y">Center Y of the circle.</param>
 		/// <param name="Radius">Radius of the circle.</param>
 		/// <param name="Color">Color to draw with.</param>
-		/// <param name="UseAA">Toggle to use anti-aliasing.</param>
-		public void DrawFilledCircle(int X, int Y, ushort Radius, Color Color, bool UseAA = false)
+		public void DrawFilledCircle(int X, int Y, ushort Radius, Color Color)
 		{
 			// Quit if there is nothing to draw.
 			if (Radius == 0)
@@ -491,14 +482,6 @@ namespace PrismGraphics
 
 					// Fill one line of pixels.
 					MemoryOperations.Fill(Offset, Color.ARGB, IX * 2);
-
-					// Check to see if AA is enabled.
-					if (UseAA)
-					{
-						// Set AA pixels.
-						this[(uint)Offset - 1] = Color.GetPacked((byte)(Color.A / 2), Color.R, Color.G, Color.B);
-						this[(uint)(Offset + IX + 1)] = Color.GetPacked((byte)(Color.A / 2), Color.R, Color.G, Color.B);
-					}
 				}
 
 				// Be sure to return.
@@ -626,13 +609,12 @@ namespace PrismGraphics
 		/// <param name="Angle">Angle in degrees.</param>
 		/// <param name="Radius">Radius or Length.</param>
 		/// <param name="Color">Color to draw with.</param>
-		/// <param name="UseAA">Toggle to enable or disable anti-aliasing.</param>
-		public void DrawAngledLine(int X, int Y, short Angle, ushort Radius, Color Color, bool UseAA = false)
+		public void DrawAngledLine(int X, int Y, short Angle, ushort Radius, Color Color)
 		{
 			int IX = (int)(Radius * Math.Cos(Math.PI * Angle / 180));
 			int IY = (int)(Radius * Math.Sin(Math.PI * Angle / 180));
 
-			DrawLine(X, Y, X + IX, Y + IY, Color, UseAA);
+			DrawLine(X, Y, X + IX, Y + IY, Color);
 		}
 
 		/// <summary>
@@ -643,8 +625,7 @@ namespace PrismGraphics
 		/// <param name="X2">X positoin 2.</param>
 		/// <param name="Y2">Y position 2.</param>
 		/// <param name="Color">Color to draw with.</param>
-		/// <param name="UseAA">Enable or disable the use of anti-aliasing.</param>
-		public void DrawLine(int X1, int Y1, int X2, int Y2, Color Color, bool UseAA = false)
+		public void DrawLine(int X1, int Y1, int X2, int Y2, Color Color)
 		{
 			int DX = Math.Abs(X2 - X1), SX = X1 < X2 ? 1 : -1;
 			int DY = Math.Abs(Y2 - Y1), SY = Y1 < Y2 ? 1 : -1;
@@ -653,20 +634,6 @@ namespace PrismGraphics
 			while (X1 != X2 || Y1 != Y2)
 			{
 				this[X1, Y1] = Color;
-
-				if (UseAA)
-				{
-					if (X1 + X2 > Y1 + Y2)
-					{
-						this[X1 + 1, Y1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
-						this[X1 + 1, Y1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
-					}
-					else
-					{
-						this[X1, Y1 + 1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
-						this[X1, Y1 - 1] = Color.FromARGB((byte)(Color.A / 2), Color.R, Color.G, Color.B);
-					}
-				}
 
 				int E2 = err;
 
@@ -963,6 +930,40 @@ namespace PrismGraphics
 			}
 
 			return FB;
+		}
+
+		/// <summary>
+		/// Applies a basic anti-aliasing filter to the graphics layer.
+		/// Warning: This method is somewhat slow.
+		/// </summary>
+		/// <returns>A filtered graphics layer.</returns>
+		public Graphics ApplyAA()
+		{
+			// Create temporary graphics buffer.
+			Graphics Temp = new(Width, Height);
+
+			// Loop over all pixels.
+			for (uint I = (uint)(Width + 1); I < Size - Width - 1; I++)
+			{
+				// Skip the left and right edges of the frame buffer.
+				if (I % Width == 0 || I % Width == Width - 1)
+				{
+					continue;
+				}
+
+				Color Average = this[I] / 6; // Center point.
+
+				Average += this[I - Width] / 4; // Top.
+				Average += this[I + Width] / 4; // Bottom.
+				Average += this[I - 1] / 4; // Right.
+				Average += this[I + 1] / 4; // Left.
+
+				// Draw the average on to the buffer.
+				Temp[I] = Average;
+			}
+
+			// Return AA filtered buffer.
+			return Temp;
 		}
 
 		/// <summary>
