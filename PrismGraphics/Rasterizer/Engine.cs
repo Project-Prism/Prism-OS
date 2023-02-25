@@ -1,4 +1,6 @@
-﻿namespace PrismGraphics.Rasterizer
+﻿using System.Numerics;
+
+namespace PrismGraphics.Rasterizer
 {
 	/// <summary>
 	/// The <see cref="Engine"/> class, used to rasterize 3D shapes on a 2D canvas.
@@ -45,9 +47,12 @@
 					M.Step(Gravity, 1.0f);
 				}
 
+				// Generate a rotation matrix.
+				Matrix4x4 Rotate = Matrix4x4.CreateFromYawPitchRoll(M.Rotation.X, M.Rotation.Y, M.Rotation.Z);
+
 				foreach (Triangle T in M.Triangles.ToArray())
 				{
-					Triangle Rotated = T.Rotate(M.Rotation);
+					Triangle Rotated = T.Transform(Rotate);
 					Triangle Translated = Rotated.Translate(M.Position + Camera.Position);
 					Triangle Perspective = Translated.ApplyPerspective(Z0);
 					Triangle Centered = Perspective.Center(Width, Height);

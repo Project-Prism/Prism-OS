@@ -112,7 +112,7 @@ namespace PrismGraphics.Rasterizer
 		{
 			//Rotation.Y += (DateTime.Now - LTime).TotalSeconds;
 			//LTime = DateTime.Now;
-			Rotation.Y += ElapsedTime;
+			Rotation.X += ElapsedTime;
 		}
 
 		public void Step(float Gravity, float DT)
