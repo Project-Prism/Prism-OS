@@ -10,10 +10,10 @@ namespace PrismGraphics.Rasterizer
         /// <summary>
         /// Creates a new instance of the <see cref="Light"/> class.
         /// </summary>
-        /// <param name="Position"></param>
-        /// <param name="Rotation"></param>
-        /// <param name="Color"></param>
-        /// <param name="Type"></param>
+        /// <param name="Position">The position of the light source.</param>
+        /// <param name="Rotation">The rotation of the light source.</param>
+        /// <param name="Color">The color of the light source.</param>
+        /// <param name="Type">The kind of light to render.</param>
         public Light(Vector3 Position, Vector3 Rotation, LightTypes Type, Color Color)
         {
             this.Position = Position;
@@ -22,12 +22,12 @@ namespace PrismGraphics.Rasterizer
             this.Type = Type;
         }
 
-		#region Fields
+        #region Fields
 
-		public Vector3 Position { get; set; }
-        public Vector3 Rotation { get; set; }
-        public LightTypes Type { get; set; }
-        public Color Color { get; set; }
+        public Vector3 Position;
+        public Vector3 Rotation;
+        public LightTypes Type;
+        public Color Color;
 
 		#endregion
 	}

@@ -108,6 +108,15 @@ namespace PrismGraphics.Rasterizer
 			};
 		}
 
+		/// <summary>
+		/// Gets the rotation matrix for the mesh.
+		/// </summary>
+		/// <returns>The rotation matrix based on the mesh's rotation.</returns>
+		public Matrix4x4 GetRotationMatrix()
+		{
+			return Matrix4x4.CreateFromYawPitchRoll(Rotation.X, Rotation.Y, Rotation.Z);
+		}
+
 		public void TestLogic(float ElapsedTime)
 		{
 			//Rotation.Y += (DateTime.Now - LTime).TotalSeconds;
@@ -128,13 +137,15 @@ namespace PrismGraphics.Rasterizer
 
 		#region Fields
 
+		// Vertecies
 		public List<Triangle> Triangles;
 		public Vector3 Position;
 		public Vector3 Rotation;
 		public Vector3 Velocity;
+		public Vector3 Force;
+
 		public bool HasCollision;
 		public bool HasPhysics;
-		public Vector3 Force;
 		public float Mass;
 
 		#endregion

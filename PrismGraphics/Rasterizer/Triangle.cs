@@ -81,7 +81,23 @@ namespace PrismGraphics.Rasterizer
 		/// <summary>
 		/// Transforms the triangle with the standard vector transformation formula.
 		/// </summary>
-		/// <param name="Transformation">The matrix which with to do the transformation with.</param>
+		/// <param name="Transformation">The Quaternion which with to do the transformation with.</param>
+		/// <returns>The transformed triangle.</returns>
+		public Triangle Transform(Quaternion Transformation)
+		{
+			return new()
+			{
+				P1 = Vector3.Transform(P1, Transformation),
+				P2 = Vector3.Transform(P2, Transformation),
+				P3 = Vector3.Transform(P3, Transformation),
+				Color = Color,
+			};
+		}
+
+		/// <summary>
+		/// Transforms the triangle with the standard vector transformation formula.
+		/// </summary>
+		/// <param name="Transformation">The Matrix which with to do the transformation with.</param>
 		/// <returns>The transformed triangle.</returns>
 		public Triangle Transform(Matrix4x4 Transformation)
 		{

@@ -11,56 +11,56 @@ namespace PrismGraphics.Rasterizer
 	/// </summary>
 	public class Engine : Graphics
 	{
-		// To-Do: Implement Camera Rotation
 		public Engine(ushort Width, ushort Height, float FOV) : base(Width, Height)
 		{
 			this.Height = Height;
 			this.Width = Width;
-			this.FOV = FOV;
 
-			Sensitivity = 0.025f;
 			SkyColor = Color.GoogleBlue;
 			Objects = new();
-			Camera = new();
-			Gravity = 1.0f;
+			Camera = new(FOV);
+			Gravity = 1f;
+			Zoom = 0f;
 		}
 
 		#region Methods
 
-		// E.Objects[^1].Rotation = new()
-		// {
-		//	X = C.Width / C.Height* (MouseManager.Y* E.Sensitivity),
-		//	Y = -(C.Width / C.Height* (MouseManager.X* E.Sensitivity)),
-		// };
-
 		public void Render()
 		{
-			float Z0 = (float)(Width / 2 / Math.Tan((FOV + Zoom) / 2 * 0.0174532925)); // 0.0174532925 == pi / 180
+			// Create the camera rotation matrix.
+			Quaternion CameraQ = Camera.GetRotationQuaternion();
 
+			float Z0 = (float)(Width / 2 / Math.Tan((Camera.FOV + Zoom) / 2 * 0.0174532925)); // 0.0174532925 == pi / 180
+
+			// Set the sky color.
 			Clear(SkyColor);
 
 			// Calculate Objects
 			foreach (Mesh M in Objects)
 			{
+				// Check if the mesh has physics.
 				if (M.HasPhysics)
 				{
+					// Apply physics.
 					M.Step(Gravity, 1.0f);
 				}
 
-				// Generate a rotation matrix.
-				Matrix4x4 Rotate = Matrix4x4.CreateFromYawPitchRoll(M.Rotation.X, M.Rotation.Y, M.Rotation.Z);
+				// Create a rotation matrix.
+				Matrix4x4 Rotation = M.GetRotationMatrix();
 
-				foreach (Triangle T in M.Triangles.ToArray())
+				foreach (Triangle T in M.Triangles)
 				{
-					Triangle Rotated = T.Transform(Rotate);
-					Triangle Translated = Rotated.Translate(M.Position + Camera.Position);
-					Triangle Perspective = Translated.ApplyPerspective(Z0);
-					Triangle Centered = Perspective.Center(Width, Height);
+					Triangle Temp = T.Transform(Rotation);
+					Temp = Temp.Translate(M.Position);
+					Temp = Temp.Transform(CameraQ);
+					Temp = Temp.Translate(Camera.Position);
+					Temp = Temp.ApplyPerspective(Z0);
+					Temp = Temp.Center(Width, Height);
 
 					// Check if the triangle doesn't need to be drawn.
-					if (Centered.GetNormal() < 0)
+					if (Temp.GetNormal() < 0)
 					{
-						DrawFilledTriangle(Centered);
+						DrawFilledTriangle(Temp);
 					}
 				}
 			}
@@ -71,12 +71,10 @@ namespace PrismGraphics.Rasterizer
 		#region Fields
 
 		public List<Mesh> Objects;
-		public float Sensitivity;
 		public Color SkyColor;
 		public Camera Camera;
 		public float Gravity;
 		public float Zoom;
-		public float FOV;
 
 		#endregion
 	}
