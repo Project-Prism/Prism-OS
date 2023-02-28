@@ -25,6 +25,33 @@ namespace PrismGraphics
 		}
 
 		/// <summary>
+		/// Creates a new instance of the <see cref="Gradient"/> class.
+		/// BROKEN.
+		/// </summary>
+		/// <param name="Width">Width (in pixels) of the gradient.</param>
+		/// <param name="Height">Height (in pixels) of the gradient.</param>
+		/// <param name="Colors">The colors to generate in the canvas.</param>
+		public Gradient(ushort Width, ushort Height, Color[] Colors) : base(Width, Height)
+		{
+			for (float I = 0; I < Height; I++)
+			{
+				// Get the percent/normal.
+				float UV = I / (Height + 1f);
+
+				// Get apropriate colors for the index.
+				Color Line1 = Colors[(int)(UV * (Colors.Length - 1))];
+				Color Line2 = Colors[(int)((UV * (Colors.Length - 1)) + 1)];
+
+				// Get the color percent/normal for this row.
+				float HC = Height / 5;
+				float UC = I % HC / HC;
+
+				// Fill the line length-wise for fast operation.
+				DrawFilledRectangle(0, (int)I, Width, 1, 0, Common.Lerp(Line1, Line2, UC));
+			}
+		}
+
+		/// <summary>
 		/// Creates a new instance of the <see cref="Gradient"/> class using a time based shader.
 		/// </summary>
 		/// <param name="Width">Width (in pixels) of the gradient.</param>

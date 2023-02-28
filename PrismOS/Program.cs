@@ -12,6 +12,7 @@ namespace PrismOS
 	/*
 	// TO-DO: raycaster engine.
 	// TO-DO: Fix gradient's MaskAlpha method. (?)
+	// TO-DO: Move 3D engine to be shader based for all transformations.
 	*/
 	public unsafe class Program : Kernel
 	{
