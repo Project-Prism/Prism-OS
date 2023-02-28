@@ -24,13 +24,17 @@ public static MyStructure1 // Only have one type of structure to prevent confusi
 	public MyStructure1 // Allow for static structures to have initializers - This promotes good design and makes organization easier. The visibility level of the constructor cannot be higher than the class itself, and the constructor won't have '()' as static structures cannot be instantiated.
 	{
 		// Initialize statics here.
+		StructurePointer = new(); // Allow pointers to be assigned normally.
 		V1 = 50;
+
+		StructurePointer->F = string.Empty; // Empty string, but not null.
 	}
 
 	// Do not allow structures to be defined inside another to promote good design - nested classes add lots of clutter.
 
 	#region Fields // Add regions so that code can be organized in IDEs. Common names to be used should be as followed: Properties, Operators, Methods, and Fields.
 
+	public static MyStructure2* StructurePointer;
 	public static int V1; // Variables inside the class must be static as it is in a static context, and it's visibility level must not be higher than the class itself.
 
 	#endregion
@@ -57,5 +61,54 @@ public MyStructure2 // A structure to be instantiated as an object.
 			MyProperty = Value; // Value is the name of what the property was set to, and setting the property inside of the property again just sets an automatically internal variable so there is no recursion.
 		}
 	}
+
+	#endregion
+
+	#region
+
+	public string F;
+
+	#endregion
 }
 ```
+
+## Naming schemes
+
+### Library names
+
+#### Primitive Types
+
+- Vector2
+- Vector3
+- Vector4
+- string
+- bool
+- ulong
+- long
+- uint
+- int
+- ushort
+- short
+- byte
+- char
+- double
+- float
+
+### Tools
+
+- Library.Console
+	- WriteLine(type ToWrite);
+	- Write(type ToWrite);
+	- Clear();
+- Library.Math
+	- Sin();
+	- SinF
+	- Cos
+	- CosF
+	- Tan
+	- TanF
+	- Sqrt
+	- SqrtF
+	- Cbrt
+	- CbrtF,
+	- PI (constant)
