@@ -1,4 +1,5 @@
 ﻿using PrismGraphics.Animation;
+using System.Numerics;
 
 namespace PrismGraphics
 {
@@ -23,7 +24,50 @@ namespace PrismGraphics
 			}
 		}
 
+		/// <summary>
+		/// Creates a new instance of the <see cref="Gradient"/> class using a time based shader.
+		/// </summary>
+		/// <param name="Width">Width (in pixels) of the gradient.</param>
+		/// <param name="Height">Height (in pixels) of the gradient.</param>
+		/// <param name="ElapsedMS">The total time passed in the gradient.</param>
+		public Gradient(ushort Width, ushort Height, uint ElapsedMS) : base(Width, Height)
+		{
+			// Create resolution vector.
+			Vector2 Resolution = new(Width, Height);
+
+			// Loop over all pixels.
+			for (int X = 0; X < Width; X++)
+			{
+				for (int Y = 0; Y < Height; Y++)
+				{
+					this[X, Y] = TimeShader(new(X, Y), Resolution, ElapsedMS);
+				}
+			}
+		}
+
 		#region Methods
+
+		/// <summary>
+		/// A shader to draw a time-based gradient. Time measured in MS.
+		/// </summary>
+		/// <param name="X">The X point in the gradient.</param>
+		/// <param name="Y">The Y point in the gradient.</param>
+		/// <param name="Width">The Width of the gradient.</param>
+		/// <param name="Height">The Height of the gradient.</param>
+		/// <param name="ElapsedMS">The time passed in the gradient.</param>
+		public static Color TimeShader(Vector2 Coord, Vector2 Resolution, uint ElapsedMS)
+		{
+			// Normalized pixel coordinates (from 0 to 1)
+			Vector2 UV = Coord / Resolution;
+
+			// Time varying pixel color
+			double ColX = 0.5 + 0.5 * Math.Cos(ElapsedMS + UV.X);
+			double ColY = 0.5 + 0.5 * Math.Cos(ElapsedMS + UV.Y + 2);
+			double ColZ = 0.5 + 0.5 * Math.Cos(ElapsedMS + UV.Y + 4);
+
+			// Output to screen
+			return Color.FromARGB(255, (byte)(ColX * 255), (byte)(ColY * 255), (byte)(ColZ * 255));
+		}
 
 		/// <summary>
 		/// Masks the gradient over anything in the input panel that isn't alpha.

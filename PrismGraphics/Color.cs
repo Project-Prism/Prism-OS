@@ -138,9 +138,9 @@ namespace PrismGraphics
 
 		#region Operators
 
-		public static implicit operator Color((byte, byte, byte, byte) Color)
+		public static implicit operator Color((byte, byte, byte, byte) ARGB)
 		{
-			return FromARGB(Color.Item1, Color.Item2, Color.Item3, Color.Item4);
+			return FromARGB(ARGB.Item1, ARGB.Item2, ARGB.Item3, ARGB.Item4);
 		}
 		public static implicit operator Color((byte, byte, byte) RGB)
 		{
@@ -148,7 +148,7 @@ namespace PrismGraphics
 		}
 		public static implicit operator Color(string Color)
 		{
-			return FromHex(Color);
+			return FromString(Color);
 		}
 		public static implicit operator Color(uint ARGB)
 		{
@@ -219,119 +219,282 @@ namespace PrismGraphics
 
 		#region Methods
 
-		#region Methods [ Loading ]
-
 		/// <summary>
-		/// Loads color from printer CYMK colorspace.
+		/// Returns a new color with custom values.
 		/// </summary>
-		/// <param name="C">Cyan value.</param>
-		/// <param name="Y">Yellow value.</param>
-		/// <param name="M">Magenta value.</param>
-		/// <param name="K">Black value</param>
-		/// <returns>ARGB color from CYMK colorspace.</returns>
-		public static Color FromCYMK(byte C, byte Y, byte M, byte K)
-		{
-			Color T = new();
-
-			if (K != 255)
-			{
-				T.A = 255;
-				T.R = (byte)((255 - C) * (255 - K) / 255);
-				T.G = (byte)((255 - M) * (255 - K) / 255);
-				T.B = (byte)((255 - Y) * (255 - K) / 255);
-			}
-			else
-			{
-				T.A = 255;
-				T.R = (byte)(255 - C);
-				T.G = (byte)(255 - M);
-				T.B = (byte)(255 - Y);
-			}
-			return T;
-		}
-
-		/// <summary>
-		/// Loads color from ARGB colorspace.
-		/// </summary>
-		/// <param name="A">Alpha value.</param>
-		/// <param name="R">Red value.</param>
-		/// <param name="G">Green value.</param>
-		/// <param name="B">Blue value.</param>
-		/// <returns>ARGB color from values.</returns>
+		/// <param name="A">The alpha channel of the color.</param>
+		/// <param name="R">The red channel of the color.</param>
+		/// <param name="G">The green channel of the color.</param>
+		/// <param name="B">The blue channel of the color.</param>
+		/// <returns>The color as specified by the color channels.</returns>
 		public static Color FromARGB(byte A, byte R, byte G, byte B)
 		{
-			return new() { A = A, R = R, G = G, B = B };
+			return new()
+			{
+				A = A,
+				R = R,
+				G = G,
+				B = B,
+			};
 		}
 
 		/// <summary>
-		/// Gets ARGB color from packed value.
+		/// Gets a color from a packed value.
 		/// </summary>
-		/// <param name="ARGB">Packed ARGB value.</param>
-		/// <returns>Color class from ARGB value.</returns>
+		/// <param name="ARGB">The packed value to extract a color from.</param>
+		/// <returns>A color based on the input packed value.</returns>
 		public static Color FromARGB(uint ARGB)
 		{
-			return new() { ARGB = ARGB };
+			return new()
+			{
+				ARGB = ARGB,
+			};
 		}
 
 		/// <summary>
-		/// Gets ARGB color from string hex value.
+		/// Returns a new color with custom values.
 		/// </summary>
-		/// <param name="Hex">Hex color value (like #FFFFFFFF)</param>
-		/// <returns>ARGB color from hex value.</returns>
-		public static Color FromHex(string Hex)
+		/// <param name="R">The red channel of the color.</param>
+		/// <param name="G">The green channel of the color.</param>
+		/// <param name="B">The blue channel of the color.</param>
+		/// <returns>The color as specified by the color channels.</returns>
+		public static Color FromRGB(byte R, byte G, byte B)
 		{
-			if (Hex.StartsWith('#'))
+			return new()
 			{
-				Hex = Hex[1..];
-			}
-
-			byte A, R, G, B;
-
-			switch (Hex.Length)
-			{
-				case 8:
-					A = byte.Parse(Hex[0..2], NumberStyles.HexNumber);
-					R = byte.Parse(Hex[2..4], NumberStyles.HexNumber);
-					G = byte.Parse(Hex[4..6], NumberStyles.HexNumber);
-					B = byte.Parse(Hex[6..8], NumberStyles.HexNumber);
-					break;
-				case 6:
-					A = 255;
-					R = byte.Parse(Hex[0..2], NumberStyles.HexNumber);
-					G = byte.Parse(Hex[2..4], NumberStyles.HexNumber);
-					B = byte.Parse(Hex[4..6], NumberStyles.HexNumber);
-					break;
-				default:
-					throw new FormatException("Hex value is not in correct format!");
-			}
-
-			return FromARGB(A, R, G ,B);
+				A = 255,
+				R = R,
+				G = G,
+				B = B,
+			};
 		}
 
 		/// <summary>
-		/// Converts the color to be only in grayscale.
+		/// Gets a color from a packed value.
 		/// </summary>
-		/// <param name="UseAlpha">Allow alpha when converting.</param>
-		/// <returns>Grayscale color.</returns>
-		public Color ToGrayscale(bool UseAlpha)
+		/// <param name="RGB">The packed value to extract a color from.</param>
+		/// <returns>A color based on the input packed value.</returns>
+		public static Color FromRGB(uint RGB)
 		{
-			byte Average = (byte)((R / 3) + (G / 3) + (B / 3));
-			return FromARGB(UseAlpha ? A : (byte)255, Average, Average, Average);
+			return new()
+			{
+				A = 255,
+				R = (byte)(RGB >> 16),
+				G = (byte)(RGB >> 8),
+				B = (byte)RGB,
+			};
 		}
 
 		/// <summary>
-		/// Returns a color from an HTML color name.
+		/// Gets a color from a HSL value.
 		/// </summary>
-		/// <param name="ColorName">Valid HTML color name.</param>
-		/// <returns>HTML color in <see cref="Color"/> format.</returns>
-		public static Color FromName(string ColorName)
+		/// <param name="H">The color's hue.</param>
+		/// <param name="S">The color's saturation.</param>
+		/// <param name="L">The color's lightness.</param>
+		/// <returns>A color from the specified HSL value.</returns>
+		public static Color FromHSL(float H, float S, float L)
 		{
-			if (Cache.ContainsKey(ColorName))
+			S = (float)Math.Clamp(S, 0.0, 1.0);
+			L = (float)Math.Clamp(L, 0.0, 1.0);
+
+			// Zero-saturation optimization.
+			if (S == 0)
 			{
-				return Cache[ColorName];
+				return FromRGB((byte)L, (byte)L, (byte)L);
 			}
 
-			Color C = ColorName switch
+			float Q = L < 0.5 ? L * S + L : L + S - L * S;
+			float P = 2 * L - Q;
+
+			return FromRGB(
+			  (byte)FromHue(P, Q, H + (1 / 3)),
+			  (byte)FromHue(P, Q, H),
+			  (byte)FromHue(P, Q, H - (1 / 3)));
+		}
+
+		/// <summary>
+		/// Internal method, used by <see cref="FromHSL(float, float, float)"/>./>
+		/// See: <seealso cref="https://github.com/CharlesStover/hsl2rgb-js/blob/master/src/hsl2rgb.js"/>
+		/// </summary>
+		/// <param name="P">Unknown.</param>
+		/// <param name="Q">Unknown.</param>
+		/// <param name="T">Unknown.</param>
+		/// <returns>Unknown.</returns>
+		private static float FromHue(float P, float Q, float T)
+		{
+			if (T < 0)
+			{
+				T += 1;
+			}
+			if (T > 1)
+			{
+				T -= 1;
+			}
+			if (T < 1 / 6)
+			{
+				return P + (Q - P) * 6 * T;
+			}
+			if (T < 0.5)
+			{
+				return Q;
+			}
+			if (T < 2 / 3)
+			{
+				return P + (Q - P) * (2 / 3 - T) * 6;
+			}
+
+			return P;
+		}
+
+		/// <summary>
+		/// Gets a color from an input string. These are the allowed inputs:
+		/// <list type="bullet">
+		/// cymk(c, y, m k)
+		/// argb(a, r, g, b)
+		/// argb(packed argb)
+		/// rgb(r, g, b)
+		/// rgb(packed rgb)
+		/// #XXXXXXXX (Hex)
+		/// #XXXXXX (Hex)
+		/// </list>
+		/// </summary>
+		/// <param name="Input">The input string to process.</param>
+		/// <returns>The color from the name of the input.</returns>
+		/// <exception cref="FormatException">Thrown on incorrect format or color name.</exception>
+		public static Color FromString(string Input)
+		{
+			// Check if input is invalid.
+			if (string.IsNullOrEmpty(Input))
+			{
+				return Black;
+			}
+
+			// Normalize string.
+			Input = Input.ToLower();
+
+			// Remove spaces.
+			Input = Input.Replace(" ", string.Empty);
+
+			// Create temporary color value.
+			Color Temp = new();
+
+			// Get CYMK color.
+			if (Input.StartsWith("cymk("))
+			{
+				// Get individual components.
+				string[] Components = Input[5..].Split(',');
+
+				// Parse component data.
+				byte C = byte.Parse(Components[0]);
+				byte Y = byte.Parse(Components[1]);
+				byte M = byte.Parse(Components[2]);
+				byte K = byte.Parse(Components[3]);
+
+				if (K != 255)
+				{
+					Temp.A = 255;
+					Temp.R = (byte)((255 - C) * (255 - K) / 255);
+					Temp.G = (byte)((255 - M) * (255 - K) / 255);
+					Temp.B = (byte)((255 - Y) * (255 - K) / 255);
+				}
+				else
+				{
+					Temp.A = 255;
+					Temp.R = (byte)(255 - C);
+					Temp.G = (byte)(255 - M);
+					Temp.B = (byte)(255 - Y);
+				}
+
+				return Temp;
+			}
+
+			// Get ARGB color.
+			if (Input.StartsWith("argb("))
+			{
+				// Check if value is packed.
+				if (!Input.Contains(','))
+				{
+					return FromARGB(uint.Parse(Input[5..]));
+				}
+
+				// Get individual components.
+				string[] Components = Input[5..].Split(',');
+
+				// Parse component data.
+				return FromARGB(
+					byte.Parse(Components[0]),
+					byte.Parse(Components[1]),
+					byte.Parse(Components[2]),
+					byte.Parse(Components[3]));
+			}
+
+			// Get RGB color.
+			if (Input.StartsWith("rgb("))
+			{
+				// Check if value is packed.
+				if (!Input.Contains(','))
+				{
+					return FromRGB(uint.Parse(Input));
+				}
+
+				// Get individual components.
+				string[] Components = Input[5..].Split(',');
+
+				// Parse component data.
+				return FromRGB(
+					byte.Parse(Components[0]),
+					byte.Parse(Components[1]),
+					byte.Parse(Components[2]));
+			}
+
+			// Get HSV color.
+			if (Input.StartsWith("hsl("))
+			{
+				// Get individual components.
+				string[] Components = Input[5..].Split(',');
+
+				// Return color.
+				return FromHSL(float.Parse(Components[0]), float.Parse(Components[1]), float.Parse(Components[2]));
+			}
+
+			// Get hex color.
+			if (Input.StartsWith('#'))
+			{
+				// Fix the input.
+				Input = Input[1..];
+
+				// Get color with correct hex length.
+				switch (Input.Length)
+				{
+					case 8:
+						Temp.A = byte.Parse(Input[0..2], NumberStyles.HexNumber);
+						Temp.R = byte.Parse(Input[2..4], NumberStyles.HexNumber);
+						Temp.G = byte.Parse(Input[4..6], NumberStyles.HexNumber);
+						Temp.B = byte.Parse(Input[6..8], NumberStyles.HexNumber);
+						break;
+					case 6:
+						Temp.A = 255;
+						Temp.R = byte.Parse(Input[0..2], NumberStyles.HexNumber);
+						Temp.G = byte.Parse(Input[2..4], NumberStyles.HexNumber);
+						Temp.B = byte.Parse(Input[4..6], NumberStyles.HexNumber);
+						break;
+					default:
+						throw new FormatException("Hex value is not in correct format!");
+				}
+
+				return Temp;
+			}
+
+			// Check if color cache has the requested color name.
+			if (Cache.ContainsKey(Input))
+			{
+				return Cache[Input];
+			}
+
+			#region Color Names
+
+			// Assume input is a color name.
+			Temp = Input switch
 			{
 				"AliceBlue" => 0xFFF0F8FF,
 				"AntiqueWhite" => 0xFFFAEBD7,
@@ -481,14 +644,14 @@ namespace PrismGraphics
 				"WhiteSmoke" => 0xFFF5F5F5,
 				"Yellow" => 0xFFFFFF00,
 				"YellowGreen" => 0xFF9ACD32,
-				_ => throw new($"Color '{ColorName}' does not exist."),
+				_ => throw new($"Color '{Input}' does not exist!"),
 			};
 
-			Cache.Add(ColorName, C);
-			return C;
-		}
+			Cache.Add(Input, Temp);
+			return Temp;
 
-		#endregion
+			#endregion
+		}
 
 		#region Methods [ Tools ]
 
@@ -553,7 +716,7 @@ namespace PrismGraphics
 		{
 			return (uint)(A << 24 | R << 16 | G << 8 | B);
 		}
-		
+
 		/// <summary>
 		/// Converts a console color into a 32-BIT RGB color.
 		/// </summary>
@@ -581,6 +744,17 @@ namespace PrismGraphics
 				ConsoleColor.White => White,
 				_ => Black,
 			};
+		}
+
+		/// <summary>
+		/// Converts the color to be only in grayscale.
+		/// </summary>
+		/// <param name="UseAlpha">Allow alpha when converting.</param>
+		/// <returns>Grayscale color.</returns>
+		public Color ToGrayscale(bool UseAlpha)
+		{
+			byte Average = (byte)((R / 3) + (G / 3) + (B / 3));
+			return FromARGB(UseAlpha ? A : (byte)255, Average, Average, Average);
 		}
 
 		#endregion
@@ -625,6 +799,10 @@ namespace PrismGraphics
 		public static readonly Color UltraViolet = FromARGB(255, 107, 91, 149);
 		public static readonly Color Greenery = FromARGB(255, 136, 176, 75);
 		public static readonly Color Emerald = FromARGB(255, 0, 155, 119);
+		public static readonly Color LightPurple = 0xFFA0A5DD;
+		public static readonly Color Minty = 0xFF74C68B;
+		public static readonly Color SunsetRed = 0xFFE07572;
+		public static readonly Color LightYellow = 0xFFF9C980;
 
 		#endregion
 
