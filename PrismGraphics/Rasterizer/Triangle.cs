@@ -55,30 +55,6 @@ namespace PrismGraphics.Rasterizer
 		#region Methods
 
 		/// <summary>
-		/// Applies Z0 to the triangle.
-		/// </summary>
-		/// <param name="Z0">The perspective value.</param>
-		/// <returns>A triangle with perspective.</returns>
-		public Triangle ApplyPerspective(float Z0)
-		{
-			float Cache1 = Z0 / (Z0 + P1.Z);
-			float Cache2 = Z0 / (Z0 + P2.Z);
-			float Cache3 = Z0 / (Z0 + P3.Z);
-
-			Vector3 M1 = new(Cache1, Cache1, 1);
-			Vector3 M2 = new(Cache2, Cache2, 1);
-			Vector3 M3 = new(Cache3, Cache3, 1);
-
-			return new()
-			{
-				P1 = Vector3.Multiply(P1, M1),
-				P2 = Vector3.Multiply(P2, M2),
-				P3 = Vector3.Multiply(P3, M3),
-				Color = Color
-			};
-		}
-
-		/// <summary>
 		/// Transforms the triangle with the standard vector transformation formula.
 		/// </summary>
 		/// <param name="Transformation">The Quaternion which with to do the transformation with.</param>
@@ -123,6 +99,30 @@ namespace PrismGraphics.Rasterizer
 				P2 = Vector3.Add(P2, Translation),
 				P3 = Vector3.Add(P3, Translation),
 				Color = Color,
+			};
+		}
+
+		/// <summary>
+		/// Multiplies the triangle by a translator 'matrix' - It is simpler than using a normal matrix.
+		/// </summary>
+		/// <param name="Translator">The translator to use.</param>
+		/// <returns>A translated triangle, as defined by the input.</returns>
+		public Triangle Translate(float Translator)
+		{
+			float Cache1 = Translator / (Translator + P1.Z);
+			float Cache2 = Translator / (Translator + P2.Z);
+			float Cache3 = Translator / (Translator + P3.Z);
+
+			Vector3 M1 = new(Cache1, Cache1, 1);
+			Vector3 M2 = new(Cache2, Cache2, 1);
+			Vector3 M3 = new(Cache3, Cache3, 1);
+
+			return new()
+			{
+				P1 = Vector3.Multiply(P1, M1),
+				P2 = Vector3.Multiply(P2, M2),
+				P3 = Vector3.Multiply(P3, M3),
+				Color = Color
 			};
 		}
 

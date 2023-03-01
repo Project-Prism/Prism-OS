@@ -40,7 +40,7 @@ namespace PrismGraphics.Rasterizer
         /// <param name="Width">The width of the canvas.</param>
         /// <param name="Height">The height of the canvas.</param>
         /// <returns>The rotation axis that the camera should add to.</returns>
-        public Vector3 GetRotateAxis(float DeltaX, float DeltaY, ushort Width, ushort Height)
+        public Vector3 GetRotationAxis(float DeltaX, float DeltaY, ushort Width, ushort Height)
 		{
             return new()
             {
