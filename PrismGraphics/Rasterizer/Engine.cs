@@ -62,13 +62,6 @@ namespace PrismGraphics.Rasterizer
 					Temp.Color = Temp.Color.Normalize();
 					Temp.Color *= Camera.Ambient;
 
-					// Calculate lighting.
-					foreach (Light L in Lights)
-					{
-						// Normalize the lighting.
-						Temp.Color = Temp.Color.Normalize();
-					}
-
 					// Check if the triangle doesn't need to be drawn.
 					if (Temp.GetNormal() < 0)
 					{

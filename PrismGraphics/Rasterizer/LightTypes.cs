@@ -6,7 +6,6 @@
     public enum LightTypes
     {
         Directional,
-        Ambient,
         Fixed,
     }
 }

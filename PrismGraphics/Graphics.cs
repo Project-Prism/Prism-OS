@@ -251,6 +251,21 @@ namespace PrismGraphics
 			// Circular rectangle.
 			else
 			{
+				if (Height == (Radius * 2))
+				{
+					DrawFilledCircle(X + Radius, Y + Radius, Radius, Color);
+					DrawFilledCircle(X + Width + Radius, Y + Radius, Radius, Color);
+					DrawFilledRectangle(X + Radius, Y, Width, Height, 0, Color);
+					return;
+				}
+				if (Width == (Radius * 2))
+				{
+					DrawFilledCircle(X + Radius, Y + Radius, Radius, Color);
+					DrawFilledCircle(X + Width + Radius, Y + Radius, Radius, Color);
+					DrawFilledRectangle(X, Y + Radius, Width, Height, 0, Color);
+					return;
+				}
+
 				DrawFilledCircle(X + Radius, Y + Radius, Radius, Color);
 				DrawFilledCircle(X + Width - Radius - 1, Y + Radius, Radius, Color);
 
