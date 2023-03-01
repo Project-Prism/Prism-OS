@@ -67,7 +67,7 @@ namespace PrismGraphics
 			{
 				for (int Y = 0; Y < Height; Y++)
 				{
-					this[X, Y] = TimeShader(new(X, Y), Resolution, ElapsedMS);
+					Internal[Y * Width + X] = TimeShader(new(X, Y), Resolution, ElapsedMS);
 				}
 			}
 		}
@@ -82,18 +82,18 @@ namespace PrismGraphics
 		/// <param name="Width">The Width of the gradient.</param>
 		/// <param name="Height">The Height of the gradient.</param>
 		/// <param name="ElapsedMS">The time passed in the gradient.</param>
-		public static Color TimeShader(Vector2 Coord, Vector2 Resolution, uint ElapsedMS)
+		public static uint TimeShader(Vector2 Coord, Vector2 Resolution, uint ElapsedMS)
 		{
 			// Normalized pixel coordinates (from 0 to 1)
 			Vector2 UV = Coord / Resolution;
 
 			// Time varying pixel color
-			double ColX = 0.5 + 0.5 * Math.Cos(ElapsedMS + UV.X);
-			double ColY = 0.5 + 0.5 * Math.Cos(ElapsedMS + UV.Y + 2);
-			double ColZ = 0.5 + 0.5 * Math.Cos(ElapsedMS + UV.Y + 4);
+			float ColX = 0.5f + 0.5f * MathF.Cos(ElapsedMS + UV.X);
+			float ColY = 0.5f + 0.5f * MathF.Cos(ElapsedMS + UV.Y + 2);
+			float ColZ = 0.5f + 0.5f * MathF.Cos(ElapsedMS + UV.Y + 4);
 
 			// Output to screen
-			return Color.FromARGB(255, (byte)(ColX * 255), (byte)(ColY * 255), (byte)(ColZ * 255));
+			return Color.GetPacked(255, ColX * 255f, ColY * 255f, ColZ * 255f);
 		}
 
 		/// <summary>

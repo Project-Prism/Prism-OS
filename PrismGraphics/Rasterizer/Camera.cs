@@ -17,6 +17,7 @@ namespace PrismGraphics.Rasterizer
             Sensitivity = .75f;
             Position = new();
             Rotation = new();
+            Ambient = Color.White;
             this.FOV = FOV;
         }
 
@@ -57,6 +58,7 @@ namespace PrismGraphics.Rasterizer
         public float Sensitivity;
         public Vector3 Position;
         public Vector3 Rotation;
+        public Color Ambient;
         public float FOV;
 
 		#endregion

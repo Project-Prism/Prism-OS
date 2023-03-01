@@ -17,6 +17,7 @@ namespace PrismGraphics.Rasterizer
 			this.Width = Width;
 
 			SkyColor = Color.GoogleBlue;
+			Lights = new();
 			Objects = new();
 			Camera = new(FOV);
 			Gravity = 1f;
@@ -57,6 +58,17 @@ namespace PrismGraphics.Rasterizer
 					Temp = Temp.ApplyPerspective(Z0);
 					Temp = Temp.Center(Width, Height);
 
+					// Normalize lighting & apply ambiance.
+					Temp.Color = Temp.Color.Normalize();
+					Temp.Color *= Camera.Ambient;
+
+					// Calculate lighting.
+					foreach (Light L in Lights)
+					{
+						// Normalize the lighting.
+						Temp.Color = Temp.Color.Normalize();
+					}
+
 					// Check if the triangle doesn't need to be drawn.
 					if (Temp.GetNormal() < 0)
 					{
@@ -70,6 +82,7 @@ namespace PrismGraphics.Rasterizer
 
 		#region Fields
 
+		public List<Light> Lights;
 		public List<Mesh> Objects;
 		public Color SkyColor;
 		public Camera Camera;

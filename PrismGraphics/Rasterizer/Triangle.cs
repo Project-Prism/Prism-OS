@@ -166,6 +166,11 @@ namespace PrismGraphics.Rasterizer
 		public Vector3 P1, P2, P3;
 
 		/// <summary>
+		/// A light point of the triangle.
+		/// </summary>
+		public Vector3 L1, L2, L3;
+
+		/// <summary>
 		/// Color of the triangle.
 		/// </summary>
 		public Color Color;

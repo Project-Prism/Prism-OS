@@ -190,13 +190,13 @@ namespace PrismGraphics
 				case (char)32:
 					for (uint I = 0; I < Result.Width * Result.Height * 4; I++)
 					{
-						Result[I] = Color.FromARGB(Binary[I + 22], Binary[I + 21], Binary[I + 20], Binary[I + 19]);
+						Result[I] = new(Binary[I + 22], Binary[I + 21], Binary[I + 20], Binary[I + 19]);
 					}
 					break;
 				case (char)24:
 					for (uint I = 0; I < Result.Width * Result.Height * 3; I++)
 					{
-						Result[I] = Color.FromARGB(255, Binary[I + 21], Binary[I + 20], Binary[I + 19]);
+						Result[I] = new(255, Binary[I + 21], Binary[I + 20], Binary[I + 19]);
 					}
 					break;
 			}
