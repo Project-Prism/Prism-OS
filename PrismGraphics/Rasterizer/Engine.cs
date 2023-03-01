@@ -47,7 +47,7 @@ namespace PrismGraphics.Rasterizer
 			float Translator = (float)(Width / 2 / Math.Tan((Camera.FOV + Zoom) / 2 * 0.0174532925)); // 0.0174532925 == pi / 180
 
 			// Set the sky color - Make sure to adjust for ambiant color aswell.
-			Clear(SkyColor.Normalize() * Camera.Ambient);
+			Clear(Color.Normalize(SkyColor) * Camera.Ambient);
 
 			// Calculate Objects - Loops over all triangle in every mesh.
 			foreach (Mesh M in Objects)
@@ -69,15 +69,15 @@ namespace PrismGraphics.Rasterizer
 					Temp = Temp.Transform(CameraQ); // Apply camera rotation - Rotates the entire world as one mesh.
 					Temp = Temp.Translate(Camera.Position); // Apply camera position - Adjusts the world as one mesh.
 					Temp = Temp.Translate(Translator); // Apply perspective translation - Applies a 3D effect.
-					
+
 					// Check if the triangle doesn't need to be drawn.
 					if (Temp.GetNormal() < 0)
 					{
 						// Moves everything to center - Most 3D renderers do this.
 						Temp = Temp.Center(Width, Height);
-						
+
 						// Normalize lighting & apply ambiance.
-						Temp.Color = Temp.Color.Normalize();
+						Temp.Color = Color.Normalize(Temp.Color);
 						Temp.Color *= Camera.Ambient;
 
 						// Rasterize the triangle.

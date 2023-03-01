@@ -142,21 +142,11 @@ namespace PrismGraphics.Rasterizer
 				Color = Color
 			};
 		}
-
+		
 		/// <summary>
-		/// Gets the vector normal, used or ray-traced lighting.
-		/// </summary>
-		/// <returns>The vector normal of the triangle.</returns>
-		public Vector3 GetVectorNormal()
-		{
-			Vector3 Direction = Vector3.Cross(P2 - P1, P3 - P1);
-			return Vector3.Normalize(Direction);
-		}
-
-		/// <summary>
-		/// Gets the normal value of the triangle, it will not be rendered if Normal < 0.
-		/// </summary>
-		/// <returns>Normal of the triangle.</returns>public double GetNormal()
+		 /// Gets the normal value of the triangle.
+		 /// </summary>
+		 /// <returns>Normal of the triangle.</returns>
 		public float GetNormal()
 		{
 			return

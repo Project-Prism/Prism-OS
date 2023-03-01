@@ -687,6 +687,15 @@ namespace PrismGraphics
 		}
 
 		/// <summary>
+		/// Normalizes the color to be between 0.0 and 1.0.
+		/// </summary>
+		/// <returns>A normalized color.</returns>
+		public static Color Normalize(Color ToNormalize)
+		{
+			return ToNormalize / 255;
+		}
+
+		/// <summary>
 		/// Converts the color to be only in grayscale.
 		/// </summary>
 		/// <param name="UseAlpha">Allow alpha when converting.</param>
@@ -696,21 +705,6 @@ namespace PrismGraphics
 			float Average = (R + G + B) / 3f;
 
 			return new(UseAlpha ? Average : A, Average, Average, Average);
-		}
-
-		/// <summary>
-		/// Normalizes the color to be between 0.0 and 1.0.
-		/// </summary>
-		/// <returns>A normalized color.</returns>
-		public Color Normalize()
-		{
-			return new()
-			{
-				A = A,
-				R = R / 255f,
-				G = G / 255f,
-				B = B / 255f,
-			};
 		}
 
 		#endregion
