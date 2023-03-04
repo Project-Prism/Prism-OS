@@ -9,7 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\PrismTools\PrismTools.csproj" />
+		<ProjectReference Include="..\PrismTools\PrismTools.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

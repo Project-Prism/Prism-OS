@@ -1,9 +1,3 @@
-![Top Language](https://img.shields.io/github/languages/top/Project-Prism/Prism-OS?color=purple&label=%20&logo=csharp&style=plastic)
-![Downloads](https://img.shields.io/github/downloads/Project-Prism/Prism-OS/total?style=plastic)
-![Release](https://img.shields.io/github/v/release/Project-Prism/Prism-Os?style=plastic)
-![License](https://img.shields.io/github/license/Project-Prism/Prism-OS?style=plastic)
-![Issues](https://img.shields.io/github/issues/Project-Prism/Prism-OS?style=plastic)
-![Chat](https://img.shields.io/discord/893388221424234496?style=plastic)
 
 <h4>Created on May 11th, 2021, 1:26 AM UTC-8</h4>
 
@@ -86,6 +80,17 @@ All references to strings will be pointers to null-terminated strings in whateve
 | File.Create         | 0x21 | Full Path    | Name     | Type | -   | -   | -                               |
 | File.Exists         | 0x22 | Full Path    | -        | -    | -   | -   | 0 = False, 1 = File, 2 = Folder |
 | File.GetSize        | 0x23 | Full Path    | -        | -    | -   | -   | Size of the file                |
+
+<hr/>
+
+## Drivers
+
+Prism OS supports inclusion/exclusion of drivers at compile time, You can modify what is added when compiling by editing [this](https://github.com/Project-Prism/Prism-OS/blob/main/Directory.Build.props) file.
+
+| Available Constants |
+|---------------------|
+| IncludeVMWARE       |
+| IncludeVBE          |
 
 <hr/>
 

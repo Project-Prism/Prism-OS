@@ -1,4 +1,6 @@
-﻿using Cosmos.HAL.Drivers.PCI.Video;
+﻿#if IncludeVMWARE // Only compile with VMWare drivers if specified.
+
+using Cosmos.HAL.Drivers.PCI.Video;
 using Cosmos.HAL;
 
 namespace PrismGraphics.Extentions.VMWare
@@ -71,7 +73,7 @@ namespace PrismGraphics.Extentions.VMWare
 		/// </summary>
 		public void Update()
 		{
-			Buffer.MemoryCopy(Internal, (uint*)Video.VideoMemory.Base, Size * 4, Size * 4);
+			CopyTo((uint*)Video.VideoMemory.Base);
 			Video.Update(0, 0, Width, Height);
 			_Frames++;
 		}
@@ -87,3 +89,5 @@ namespace PrismGraphics.Extentions.VMWare
 		#endregion
 	}
 }
+
+#endif

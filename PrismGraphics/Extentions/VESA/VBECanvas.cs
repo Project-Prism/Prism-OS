@@ -1,4 +1,6 @@
-﻿using Cosmos.Core;
+﻿#if IncludeVBE
+
+using Cosmos.Core;
 
 namespace PrismGraphics.Extentions.VESA
 {
@@ -45,3 +47,5 @@ namespace PrismGraphics.Extentions.VESA
 		#endregion
 	}
 }
+
+#endif

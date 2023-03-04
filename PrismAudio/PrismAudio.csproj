@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<RestoreProjectStyle>PackageReference</RestoreProjectStyle>
@@ -11,16 +11,16 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\PrismTools\PrismTools.csproj">
-		<Private>True</Private>
-		<CopyLocal>False</CopyLocal>
-		<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
+			<Private>True</Private>
+			<CopyLocal>False</CopyLocal>
+			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
 		</ProjectReference>
 	</ItemGroup>
 
 	<ItemGroup>
 		<Reference Include="Cosmos.HAL2">
-		  <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
-		  <CopyLocal>False</CopyLocal>
+			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
+			<CopyLocal>False</CopyLocal>
 		</Reference>
 		<Reference Include="Cosmos.System2">
 			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>

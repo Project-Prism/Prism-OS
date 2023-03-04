@@ -11,10 +11,10 @@
 
 	<ItemGroup>
 		<Reference Include="Cosmos.Core">
-		  <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.Core.dll</HintPath>
+			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.Core.dll</HintPath>
 		</Reference>
 		<Reference Include="Cosmos.HAL2">
-		  <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
+			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
 		</Reference>
 		<Reference Include="Cosmos.System2">
 			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>
@@ -22,10 +22,10 @@
 			<CopyLocal>False</CopyLocal>
 		</Reference>
 		<Reference Include="IL2CPU.API">
-		  <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\IL2CPU.API.dll</HintPath>
+			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\IL2CPU.API.dll</HintPath>
 		</Reference>
 		<Reference Include="XSharp">
-		  <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\XSharp.dll</HintPath>
+			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\XSharp.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 

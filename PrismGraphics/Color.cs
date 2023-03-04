@@ -56,17 +56,6 @@ namespace PrismGraphics
 		/// <param name="ColorInfo">The string to read.</param>
 		public Color(string ColorInfo)
 		{
-			// Check if input is invalid.
-			if (string.IsNullOrEmpty(ColorInfo))
-			{
-				_ARGB = 0;
-				_A = 0;
-				_R = 0;
-				_G = 0;
-				_B = 0;
-				return;
-			}
-
 			// Initialize values.
 			_ARGB = 0;
 			_A = 0;
@@ -74,8 +63,11 @@ namespace PrismGraphics
 			_G = 0;
 			_B = 0;
 
-			// Normalize string.
-			ColorInfo = ColorInfo.ToLower().Replace(" ", string.Empty);
+			// Check if input is invalid.
+			if (string.IsNullOrEmpty(ColorInfo))
+			{
+				return;
+			}
 
 			// Get CYMK color.
 			if (ColorInfo.StartsWith("cymk("))
@@ -104,7 +96,9 @@ namespace PrismGraphics
 					_B = (byte)(255 - Y);
 				}
 
+				// Assign the ARGB value.
 				_ARGB = (uint)((byte)_A << 24 | (byte)_R << 16 | (byte)_G << 8 | (byte)_B);
+
 				return;
 			}
 
@@ -137,7 +131,9 @@ namespace PrismGraphics
 					_B = float.Parse(Components[3]);
 				}
 
+				// Assign the ARGB value.
 				_ARGB = (uint)((byte)_A << 24 | (byte)_R << 16 | (byte)_G << 8 | (byte)_B);
+
 				return;
 			}
 
@@ -163,7 +159,9 @@ namespace PrismGraphics
 					_B = float.Parse(Components[2]);
 				}
 
+				// Assign the ARGB value.
 				_ARGB = (uint)((byte)_A << 24 | (byte)_R << 16 | (byte)_G << 8 | (byte)_B);
+
 				return;
 			}
 
@@ -201,55 +199,44 @@ namespace PrismGraphics
 				_G = FromHue(P, Q, H);
 				_B = FromHue(P, Q, H - (1 / 3));
 
+				// Assign the ARGB value.
 				_ARGB = (uint)((byte)_A << 24 | (byte)_R << 16 | (byte)_G << 8 | (byte)_B);
+
 				return;
 			}
 
 			// Get hex color.
 			if (ColorInfo.StartsWith('#'))
 			{
-				// Fix the input.
-				ColorInfo = ColorInfo[1..];
-
 				// Get color with correct hex length.
 				switch (ColorInfo.Length)
 				{
-					case 8:
-						_A = byte.Parse(ColorInfo[0..2], NumberStyles.HexNumber);
-						_R = byte.Parse(ColorInfo[2..4], NumberStyles.HexNumber);
-						_G = byte.Parse(ColorInfo[4..6], NumberStyles.HexNumber);
-						_B = byte.Parse(ColorInfo[6..8], NumberStyles.HexNumber);
+					case 9:
+						_A = byte.Parse(ColorInfo[1..3], NumberStyles.HexNumber);
+						_R = byte.Parse(ColorInfo[3..5], NumberStyles.HexNumber);
+						_G = byte.Parse(ColorInfo[5..7], NumberStyles.HexNumber);
+						_B = byte.Parse(ColorInfo[7..9], NumberStyles.HexNumber);
 						break;
-					case 6:
+					case 7:
 						_A = 255;
-						_R = byte.Parse(ColorInfo[0..2], NumberStyles.HexNumber);
-						_G = byte.Parse(ColorInfo[2..4], NumberStyles.HexNumber);
-						_B = byte.Parse(ColorInfo[4..6], NumberStyles.HexNumber);
+						_R = byte.Parse(ColorInfo[1..3], NumberStyles.HexNumber);
+						_G = byte.Parse(ColorInfo[3..5], NumberStyles.HexNumber);
+						_B = byte.Parse(ColorInfo[5..7], NumberStyles.HexNumber);
 						break;
 					default:
 						throw new FormatException("Hex value is not in correct format!");
 				}
 
+				// Assign the ARGB value.
 				_ARGB = (uint)((byte)_A << 24 | (byte)_R << 16 | (byte)_G << 8 | (byte)_B);
+
 				return;
 			}
 
 			#region Color Names
 
-			// Check if color cache has the requested color name.
-			if (Cache.ContainsKey(ColorInfo))
-			{
-				_A = Cache[ColorInfo].A;
-				_R = Cache[ColorInfo].R;
-				_G = Cache[ColorInfo].G;
-				_B = Cache[ColorInfo].B;
-
-				_ARGB = (uint)((byte)_A << 24 | (byte)_R << 16 | (byte)_G << 8 | (byte)_B);
-				return;
-			}
-
 			// Assume input is a color name.
-			Cache.Add(ColorInfo, ARGB = ColorInfo switch
+			ARGB = ColorInfo switch
 			{
 				"AliceBlue" => 0xFFF0F8FF,
 				"AntiqueWhite" => 0xFFFAEBD7,
@@ -400,7 +387,7 @@ namespace PrismGraphics
 				"Yellow" => 0xFFFFFF00,
 				"YellowGreen" => 0xFF9ACD32,
 				_ => throw new($"Color '{ColorInfo}' does not exist!"),
-			});
+			};
 
 			#endregion
 
@@ -753,11 +740,6 @@ namespace PrismGraphics
 		public static readonly Color LightYellow = 0xFFF9C980;
 
 		#endregion
-
-		/// <summary>
-		/// Color cache, used for caching color values.
-		/// </summary>
-		private readonly static Dictionary<string, Color> Cache = new();
 
 		private uint _ARGB;
 		private float _A;

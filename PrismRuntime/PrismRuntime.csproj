@@ -10,12 +10,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="TinyMath" Version="1.0.1" />
+		<PackageReference Include="TinyMath" Version="1.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\PrismBinary\PrismBinary.csproj" />
-	  <ProjectReference Include="..\PrismTools\PrismTools.csproj" />
+		<ProjectReference Include="..\PrismBinary\PrismBinary.csproj" />
+		<ProjectReference Include="..\PrismTools\PrismTools.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -25,10 +25,10 @@
 			<CopyLocal>False</CopyLocal>
 		</Reference>
 		<Reference Include="Cosmos.HAL2">
-		  <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
+			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
 		</Reference>
 		<Reference Include="Cosmos.System2">
-		  <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>
+			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 

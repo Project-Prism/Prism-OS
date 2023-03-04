@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<RestoreProjectStyle>PackageReference</RestoreProjectStyle>
@@ -35,7 +35,7 @@
 			<CopyLocal>False</CopyLocal>
 		</Reference>
 		<Reference Include="IL2CPU.API">
-		  <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\IL2CPU.API.dll</HintPath>
+			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\IL2CPU.API.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 
