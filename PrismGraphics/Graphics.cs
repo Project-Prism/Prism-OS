@@ -822,7 +822,7 @@ namespace PrismGraphics
 			{
 				// Advanced Calculations To Determine Position
 				int IX = X - (Center ? (Font.MeasureString(Text) / 2) : 0);
-				int IY = Y + (Font.Size * Line) - (Center ? Font.Size * Lines.Length / 2 : 0);
+				int IY = Y + (Font.Size * Line) - (Center ? Font.Size * (Lines.Length - 1) / 2 : 0);
 
 				// Skip if nothig needs to be drawn.
 				if (IY > Height)

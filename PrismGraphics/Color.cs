@@ -547,6 +547,16 @@ namespace PrismGraphics
 			};
 		}
 
+		public static Color operator -(Color Original, float Value)
+		{
+			return new()
+			{
+				A = Original.A,
+				R = Original.R - Value,
+				G = Original.G - Value,
+				B = Original.B - Value,
+			};
+		}
 		public static Color operator /(Color Original, float Value)
 		{
 			return new()
@@ -568,6 +578,16 @@ namespace PrismGraphics
 			};
 		}
 
+		public static Color operator -(Color Original, long Value)
+		{
+			return new()
+			{
+				A = Original.A,
+				R = Original.R - Value,
+				G = Original.G - Value,
+				B = Original.B - Value,
+			};
+		}
 		public static Color operator /(Color Original, long Value)
 		{
 			return new()

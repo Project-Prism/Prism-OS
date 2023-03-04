@@ -14,8 +14,58 @@
 		/// <returns>Filtered canvas image.</returns>
 		public static Graphics Rotate(double Angle, Graphics G)
 		{
+			// Define temporary canvas object.
+			Graphics Result;
+
+			// Check if rotation can be done faster.
+			switch (Angle % 360)
+			{
+				case 360:
+				case 0:
+					return G;
+				case 90:
+					Result = new(G.Height, G.Width);
+
+					// Loop over each pixel...
+					for (int X = 0; X < G.Width; X++)
+					{
+						for (int Y = 0; Y < G.Height; Y++)
+						{
+							// Just swap X and Y for the effect.
+							Result[Y, X] = G[X, Y];
+						}
+					}
+
+					return Result;
+				case -90:
+					Result = new(G.Height, G.Width);
+
+					// Loop over each pixel...
+					for (int X = 0; X < G.Width; X++)
+					{
+						for (int Y = 0; Y < G.Height; Y++)
+						{
+							// Just swap X and Y for the effect.
+							Result[-Y, -X] = G[X, Y];
+						}
+					}
+
+					return Result;
+				case 180:
+					Result = new(G.Width, G.Height);
+
+					// Loop over each pixel...
+					for (uint I = 0; I < G.Size; I++)
+					{
+						// Copy the pixels in reverse order.
+						Result[G.Size - I] = G[I];
+					}
+
+					return Result;
+			}
+
 			// Create temporary buffer.
-			Graphics Result = new(G.Width, G.Height);
+			Result = new(G.Width, G.Height);
 
 			for (int X = 0; X < G.Width; X++)
 			{
@@ -69,6 +119,36 @@
 
 			// Return filtered image.
 			return Result;
+		}
+
+		/// <summary>
+		/// Masks the gradient over anything in the input surface that isn't alpha.
+		/// </summary>
+		/// <param name="Input">The input canvas to mask.</param>
+		/// <param name="Mask">The mask to use on top of the input.</param>
+		/// <returns>A masked canvas.</returns>
+		public static Graphics MaskAlpha(Graphics Input, Graphics Mask)
+		{
+			// Get a scaled version if the gradient is smaller or bigger than the input.
+			Graphics Scaled = Scale(Input.Width, Input.Height, Mask);
+
+			// Create a temporary buffer.
+			Graphics Temp = new(Input.Width, Input.Height);
+
+			// Loop over every pixel.
+			for (uint I = 0; I < Input.Size; I++)
+			{
+				// Skip if pixel is alpha.
+				if (Input[I].A < 255)
+				{
+					continue;
+				}
+
+				// Set gradient pixel.
+				Temp[I] = Scaled[I];
+			}
+
+			return Temp;
 		}
 
 		/// <summary>
