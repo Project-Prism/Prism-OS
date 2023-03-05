@@ -230,6 +230,69 @@ The Color class is used to represent colors with their ARGB values and provide s
 
 <hr/>
 
+## Graphics - Getting a display output
+
+Getting a display output using the ``PrismGraphics`` library is very simple. There are a few modes to choose from, but for now ``SVGAIICanvas`` is the only type that is working.
+
+### Defining new instance
+
+To get a display, define a new instance of the SVGAII canvas like so:
+
+```cs
+using PrismGraphics.Extentions.VMWare;
+
+SVGAIICanvas Canvas = new(800, 600);
+```
+
+In this case ``800, 600`` are the width and height (in pixels) of the canvas.
+
+### Resizing
+
+The width and/or height can be changed at any time by modifying the ``Width`` and ``Height`` properties in the canvas instance like so:
+
+```cs
+Canvas.Width = NewWidth;
+Canvas.Height = NewHeight;
+```
+
+Note that this is only intended for resizing things that will be re-drawn. For scaling, see [NOT DOCUMENTED, COMING SOON].
+
+### Get a basic screen output
+
+To draw a basic screen with a mouse, Something simillar to the following should be used:
+
+```cs
+using PrismGeaphics.Extentions.VMWare;
+using PrismGraphics;
+using Cosmos.System;
+
+public class YourKernelName : Kernel
+{
+	public SVGACanvas Canvas;
+
+	protected override BeforeRun()
+	{
+		// Set-up the mouse manager to fit in the canvas size.
+		MouseManager.ScreenWidth = 800;
+		MouseManager.ScreenHeight = 600;
+
+		Canvas = new(800, 600); // Define the canvas instance.
+	}
+
+	protected override Run()
+	{
+		Canvas.Clear(Color.CoolGreen); // Draw a green background.
+		Canvas.DrawFilledRectangle((int)MouseManager.X, (int)MouseManager.Y, 16, 16, 0, Color.White); // Draw the mouse.
+		Canvas.DrawString(15, 15, $"{Canvas.GetFPS()} FPS", default, Color.White); // The default value will become the default font.
+		Canvas.Update(); // Copy buffer to the screen.
+	}
+}
+```
+
+This can be modified to fit any need and should work. Never forget to clear and update the screen each frame.
+
+<hr/>
+
 # ToDo
 
 This project still has many things to finish, including video drivers.
