@@ -15,7 +15,6 @@
 			<CopyLocal>False</CopyLocal>
 			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
 		</ProjectReference>
-		<ProjectReference Include="..\PrismTools\PrismTools.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

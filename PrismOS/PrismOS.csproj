@@ -75,6 +75,7 @@
 		<ProjectReference Include="..\PrismNetwork\PrismNetwork.csproj" />
 		<ProjectReference Include="..\PrismRuntime\PrismRuntime.csproj" />
 		<ProjectReference Include="..\PrismTools\PrismTools.csproj" />
+		<ProjectReference Include="..\PrismUI\PrismUI.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

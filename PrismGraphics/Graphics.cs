@@ -795,7 +795,7 @@ namespace PrismGraphics
 		/// <param name="Font">Font to use.</param>
 		/// <param name="Color">Color to draw with.</param>
 		/// <param name="Center">Option to cented the text at X and Y.</param>
-		public void DrawString(int X, int Y, string Text, Font Font, Color Color, bool Center = false)
+		public void DrawString(int X, int Y, string Text, Font? Font, Color Color, bool Center = false)
 		{
 			// Basic null check.
 			if (Text == null || Text.Length == 0)
