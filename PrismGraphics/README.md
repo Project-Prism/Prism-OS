@@ -213,20 +213,21 @@ Applies a basic anti-aliasing filter to the graphics layer.
 
 ## Graphics - [Color.cs](https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Color.cs)
 
-The Color class is used to represent colors with their ARGB values and provide static predefined colors.
+The Color class is used to represent colors with their ARGB values and provide static predefined colors. It uses floating-point values to represent each color channel to allow for high percision color values.
 
+### Constructors:
+- ``new(uint argb)``: Creates a new instance of the ``Color`` class with the specified ARGB value.
+- ``new(float a, float r, float g, float b)``: Creates a new instance of the ``Color`` class with the specified alpha, red, green, and blue values.
+- ``new(string ColorInfo)``: Creates a new instance of the ``Color`` class using an input string - It supports hex, argb, rgb, cymk, and hsl.
+- ``Equals(object obj)``: Determines whether the specified object is equal to the current Color instance.
+- ``GetHashCode()``: Serves as the default hash function.
+- ``ToString()``: Returns a string representation of the current Color instance.
+- 
 ### Properties:
 - ``A``: The alpha component of the color.
 - ``R``: The red component of the color.
 - ``G``: The green component of the color.
 - ``B``: The blue component of the color.
-
-### Methods:
-- ``FromArgb(uint argb)``: Creates a new instance of the Color class with the specified ARGB value.
-- ``FromArgb(byte a, byte r, byte g, byte b)``: Creates a new instance of the Color class with the specified alpha, red, green, and blue values.
-- ``Equals(object obj)``: Determines whether the specified object is equal to the current Color instance.
-- ``GetHashCode()``: Serves as the default hash function.
-- ``ToString()``: Returns a string representation of the current Color instance.
 
 <hr/>
 
