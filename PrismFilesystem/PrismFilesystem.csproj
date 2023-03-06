@@ -1,23 +1,42 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
 	</PropertyGroup>
 
+	<!--Prism OS include group-->
 	<ItemGroup>
-		<ProjectReference Include="..\PrismTools\PrismTools.csproj" />
+
+		<ProjectReference Include="..\PrismTools\PrismTools.csproj">
+			<Private>True</Private>
+			<CopyLocal>False</CopyLocal>
+			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
+		</ProjectReference>
+
 	</ItemGroup>
 
+	<!--Cosmos include group-->
 	<ItemGroup>
+
 		<Reference Include="Cosmos.HAL2">
 			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
+			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
+			<CopyLocal>False</CopyLocal>
+			<Private>True</Private>
 		</Reference>
+
 		<Reference Include="Cosmos.System2">
 			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>
+			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
+			<CopyLocal>False</CopyLocal>
+			<Private>True</Private>
 		</Reference>
+
 	</ItemGroup>
 
 </Project>

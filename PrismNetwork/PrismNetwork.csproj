@@ -1,23 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+
 		<RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<DebugType>none</DebugType>
+
 	</PropertyGroup>
 
+	<!--Prism OS include group-->
 	<ItemGroup>
-		<ProjectReference Include="..\PrismTools\PrismTools.csproj" />
+
+		<ProjectReference Include="..\PrismTools\PrismTools.csproj">
+			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
+			<CopyLocal>False</CopyLocal>
+			<Private>True</Private>
+		</ProjectReference>
+
 	</ItemGroup>
 
+	<!--Cosmos include group-->
 	<ItemGroup>
+
 		<Reference Include="Cosmos.System2">
 			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>
-			<Private>True</Private>
+			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
 			<CopyLocal>False</CopyLocal>
+			<Private>True</Private>
 		</Reference>
+
 	</ItemGroup>
 
 </Project>

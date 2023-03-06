@@ -78,10 +78,4 @@
 		<ProjectReference Include="..\PrismUI\PrismUI.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Reference Include="Cosmos.HAL2">
-			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
-		</Reference>
-	</ItemGroup>
-
 </Project>

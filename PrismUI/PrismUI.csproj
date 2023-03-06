@@ -1,14 +1,28 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\PrismGraphics\PrismGraphics.csproj" />
-    <ProjectReference Include="..\PrismTools\PrismTools.csproj" />
-  </ItemGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+	</PropertyGroup>
+
+	<!--Prism OS include group-->
+	<ItemGroup>
+
+		<ProjectReference Include="..\PrismGraphics\PrismGraphics.csproj">
+			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
+			<CopyLocal>False</CopyLocal>
+			<Private>True</Private>
+		</ProjectReference>
+
+		<ProjectReference Include="..\PrismTools\PrismTools.csproj">
+			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
+			<CopyLocal>False</CopyLocal>
+			<Private>True</Private>
+		</ProjectReference>
+
+	</ItemGroup>
 
 </Project>

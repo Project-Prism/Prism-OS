@@ -1,35 +1,61 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+
 		<RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<DebugType>none</DebugType>
+
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="TinyMath" Version="1.0.1" />
 	</ItemGroup>
 
+	<!--Prism OS include group-->
 	<ItemGroup>
-		<ProjectReference Include="..\PrismBinary\PrismBinary.csproj" />
-		<ProjectReference Include="..\PrismTools\PrismTools.csproj" />
+
+		<ProjectReference Include="..\PrismBinary\PrismBinary.csproj">
+			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
+			<CopyLocal>False</CopyLocal>
+			<Private>True</Private>
+		</ProjectReference>
+
+		<ProjectReference Include="..\PrismTools\PrismTools.csproj">
+			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
+			<CopyLocal>False</CopyLocal>
+			<Private>True</Private>
+		</ProjectReference>
+
 	</ItemGroup>
 
+	<!--Cosmos include group-->
 	<ItemGroup>
+
 		<Reference Include="Cosmos.Core">
 			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.Core.dll</HintPath>
-			<Private>True</Private>
+			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
 			<CopyLocal>False</CopyLocal>
+			<Private>True</Private>
 		</Reference>
+
 		<Reference Include="Cosmos.HAL2">
 			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
+			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
+			<CopyLocal>False</CopyLocal>
+			<Private>True</Private>
 		</Reference>
+
 		<Reference Include="Cosmos.System2">
 			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>
+			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
+			<CopyLocal>False</CopyLocal>
+			<Private>True</Private>
 		</Reference>
+
 	</ItemGroup>
 
 </Project>
