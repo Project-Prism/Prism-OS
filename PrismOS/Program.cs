@@ -16,6 +16,9 @@ namespace PrismOS
 	*/
 	public unsafe class Program : Kernel
 	{
+		/// <summary>
+		/// A method called once when the kernel boots, Used to initialize the system.
+		/// </summary>
 		protected override void BeforeRun()
 		{
 			// Initialize debugger.
@@ -39,6 +42,9 @@ namespace PrismOS
 			Debugger.Log("Kernel initialized!", Debugger.Severity.Ok);
 		}
 
+		/// <summary>
+		/// A method called repeatedly until the kernel stops.
+		/// </summary>
 		protected override void Run()
 		{
 			EventService.OnTick();

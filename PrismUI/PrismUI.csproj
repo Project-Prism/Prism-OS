@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PrismGraphics\PrismGraphics.csproj" />
+    <ProjectReference Include="..\PrismTools\PrismTools.csproj" />
   </ItemGroup>
 
 </Project>
