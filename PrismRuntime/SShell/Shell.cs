@@ -84,7 +84,7 @@ namespace PrismRuntime.SShell
 		public static void Main()
 		{
 			Debugger.Warn("Droping to recovery shell...");
-			System.Console.WriteLine("Type \"man\" to get a list of commands.");
+			Console.WriteLine("Type \"man\" to get a list of commands.");
 			
 			// Initialize all commands.
 			_ = new Unix.PowerOff();
