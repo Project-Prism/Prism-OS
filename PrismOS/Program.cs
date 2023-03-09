@@ -31,6 +31,7 @@ namespace PrismOS
 			System.Console.WriteLine(@"  / /_/ / ___/ / ___/ __ `__ \   / / / /\__ \ ");
 			System.Console.WriteLine(@" / ____/ /  / (__  ) / / / / /  / /_/ /___/ / ");
 			System.Console.WriteLine(@"/_/   /_/  /_/____/_/ /_/ /_/   \____//____/  ");
+			System.Console.WriteLine("Type \"man\" to get a list of commands.");
 			System.Console.WriteLine("CopyLeft PrismProject 2023. Licensed with GPL2.\n");
 
 			// Initialize system services.
