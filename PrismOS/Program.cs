@@ -38,7 +38,7 @@ namespace PrismOS
 			NetworkManager.Init();
 			SystemCalls.Init();
 
-			AudioPlayer.Play(Media.Vista);
+			AudioPlayer.Play(Media.Startup);
 			Debugger.Log("Kernel initialized!", Debugger.Severity.Ok);
 		}
 

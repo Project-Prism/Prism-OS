@@ -42,13 +42,20 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="Media\Audio\Shutdown-Alt.wav" />
+		<None Remove="Media\Audio\Shutdown.wav" />
+		<None Remove="Media\Audio\Startup.wav" />
 		<None Remove="Media\Test.elf" />
-		<None Remove="Media\Vista.wav" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Media\Test.elf" />
-		<EmbeddedResource Include="Media\Vista.wav" />
+	  <EmbeddedResource Include="Media\Audio\Shutdown-Alt.wav" />
+	  <EmbeddedResource Include="Media\Audio\Shutdown.wav" />
+	  <EmbeddedResource Include="Media\Audio\Startup.wav" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Media\Executables\Test.elf" />
 	</ItemGroup>
 
 	<ItemGroup>

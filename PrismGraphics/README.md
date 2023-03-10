@@ -169,11 +169,7 @@ It's two actually. The absolute starting point circles around continuously and l
 
 ## Graphics - [Filters.cs](https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Filters.cs)
 
-The Filters<T> class is used to apply advanced filter effects to a graphics canvas.
-
-### Type Parameters
-
-T: The type of graphics object that will be filtered.
+The Filters class is used to apply advanced filter effects to a graphics canvas.
 
 ### Methods
 
@@ -198,6 +194,16 @@ Re-scales the image to the desired size.
 ``Height``: New height to scale to.
 
 ``G``: The canvas to filter.
+
+```cs
+MaskAlpha(Target, Mask);
+``
+
+Masks an image onto a target graphics object where the target's color is solid.
+
+``Target``: The target to draw onto.
+
+``Mask``: The image to use as a mask.
 
 ```cs
 ApplyAA(Graphics G);
@@ -228,6 +234,14 @@ The Color class is used to represent colors with their ARGB values and provide s
 - ``R``: The red component of the color.
 - ``G``: The green component of the color.
 - ``B``: The blue component of the color.
+
+### Methods
+
+- ``AlphaBlend(Color Target, Color NewColor);``: Blends 2 colors together for alpha mixing.
+
+``Target``: The target to overlay the color on.
+
+``NewColor``: The color with an alpha value in it.
 
 <hr/>
 
