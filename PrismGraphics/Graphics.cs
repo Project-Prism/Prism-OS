@@ -8,6 +8,13 @@ namespace PrismGraphics
 {
 	/// <summary>
 	/// The <see cref="Graphics"/> class, used for rendering content on a 2D surface.
+	///
+	/// <list type="table">
+	///		<item>See also: <see cref="Gradient"/></item>
+	///		<item>See also: <see cref="Filters"/></item>
+	///		<item>See also: <see cref="Image"/></item>
+	///		<item>See also: <see cref="Color"/></item>
+	/// </list>
 	/// </summary>
 	public unsafe class Graphics : IDisposable
 	{
@@ -192,7 +199,7 @@ namespace PrismGraphics
 		/// <param name="Width">Width of the rectangle.</param>
 		/// <param name="Height">Height of the rectangle</param>
 		/// <param name="Radius">Border radius of the rectangle.</param>
-		/// <param name="Color">Color to draw with.</param>
+		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 		public void DrawFilledRectangle(int X, int Y, ushort Width, ushort Height, ushort Radius, Color Color)
 		{
 			// Quit if nothing needs to be drawn.
@@ -285,7 +292,7 @@ namespace PrismGraphics
 		/// <param name="Width">Width of the rectangle.</param>
 		/// <param name="Height">Height of the rectangle</param>
 		/// <param name="Radius">Border radius of the rectangle.</param>
-		/// <param name="Color">Color to draw with.</param>
+		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 		public void DrawRectangle(int X, int Y, ushort Width, ushort Height, ushort Radius, Color Color)
 		{
 			// Draw circles to add curvature if needed.
@@ -313,6 +320,7 @@ namespace PrismGraphics
 		/// <param name="BlockSize">Scale of all blocks.</param>
 		/// <param name="BlockType1">Color of block type 1.</param>
 		/// <param name="BlockType2">Color of block type 2.</param>
+		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 		public void DrawRectangleGrid(int X, int Y, ushort BlockCountX, ushort BlockCountY, ushort BlockSize, Color BlockType1, Color BlockType2)
 		{
 			for (int IX = 0; IX < BlockCountX; IX++)
@@ -344,7 +352,7 @@ namespace PrismGraphics
 		/// <param name="Y2">Y position 2.</param>
 		/// <param name="X3">X position 3.</param>
 		/// <param name="Y3">Y position 3.</param>
-		/// <param name="Color">Color to draw with.</param>\
+		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 		public void DrawFilledTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
 		{
 			Y1 = (int)Math.Round(16.0f * Y1);
@@ -426,7 +434,7 @@ namespace PrismGraphics
 		/// <param name="Y2">Y position 2.</param>
 		/// <param name="X3">X position 3.</param>
 		/// <param name="Y3">Y position 3.</param>
-		/// <param name="Color">Color to draw with.</param>
+		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 		public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
 		{
 			DrawLine(X1, Y1, X2, Y2, Color);
@@ -462,7 +470,7 @@ namespace PrismGraphics
 		/// <param name="X">Center X of the circle.</param>
 		/// <param name="Y">Center Y of the circle.</param>
 		/// <param name="Radius">Radius of the circle.</param>
-		/// <param name="Color">Color to draw with.</param>
+		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 		public void DrawFilledCircle(int X, int Y, ushort Radius, Color Color)
 		{
 			// Quit if there is nothing to draw.
@@ -521,7 +529,7 @@ namespace PrismGraphics
 		/// <param name="X">Center X of the circle.</param>
 		/// <param name="Y">Center Y of the circle.</param>
 		/// <param name="Radius">Radius of the circle.</param>
-		/// <param name="Color">Color to draw with.</param>
+		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 		public void DrawCircle(int X, int Y, ushort Radius, Color Color)
 		{
 			int IX = 0, IY = Radius, DP = 3 - 2 * Radius;
@@ -564,7 +572,7 @@ namespace PrismGraphics
 		/// <param name="Y2">Y weight.</param>
 		/// <param name="X3">X position 2.</param>
 		/// <param name="Y3">Y position 2.</param>
-		/// <param name="Color">Color to draw with.</param>
+		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 		/// <param name="N">Used inside the method only.</param>
 		public void DrawQuadraticBezierLine(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color, byte N = 6)
 		{
@@ -599,7 +607,7 @@ namespace PrismGraphics
 		/// <param name="Y3">Y weight 2.</param>
 		/// <param name="X4">X position 2.</param>
 		/// <param name="Y4">Y position 2.</param>
-		/// <param name="Color">Color to draw with.</param>
+		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 		public void DrawCubicBezierLine(int X1, int Y1, int X2, int Y2, int X3, int Y3, int X4, int Y4, Color Color)
 		{
 			for (double U = 0.0; U <= 1.0; U += 0.0001)
@@ -623,7 +631,7 @@ namespace PrismGraphics
 		/// <param name="Y">Y position.</param>
 		/// <param name="Angle">Angle in degrees.</param>
 		/// <param name="Radius">Radius or Length.</param>
-		/// <param name="Color">Color to draw with.</param>
+		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 		public void DrawAngledLine(int X, int Y, short Angle, ushort Radius, Color Color)
 		{
 			int IX = (int)(Radius * Math.Cos(Math.PI * Angle / 180));
@@ -639,7 +647,7 @@ namespace PrismGraphics
 		/// <param name="Y1">Y position 1.</param>
 		/// <param name="X2">X positoin 2.</param>
 		/// <param name="Y2">Y position 2.</param>
-		/// <param name="Color">Color to draw with.</param>
+		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 		public void DrawLine(int X1, int Y1, int X2, int Y2, Color Color)
 		{
 			int DX = Math.Abs(X2 - X1), SX = X1 < X2 ? 1 : -1;
@@ -668,7 +676,7 @@ namespace PrismGraphics
 		/// <param name="Y">Y position.</param>
 		/// <param name="Width">Width of the arc.</param>
 		/// <param name="Height">Height of the arc.</param>
-		/// <param name="Color">Color to draw with.</param>
+		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 		/// <param name="StartAngle">Angle at which to start.</param>
 		/// <param name="EndAngle">Angle at which to end.</param>
 		public void DrawArc(int X, int Y, ushort Width, ushort Height, Color Color, int StartAngle = 0, int EndAngle = 360)
@@ -696,7 +704,7 @@ namespace PrismGraphics
 		/// <param name="X">X position.</param>
 		/// <param name="Y">Y position.</param>
 		/// <param name="Radius">Radius of the arc.</param>
-		/// <param name="Color">Color to draw with.</param>
+		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 		/// <param name="StartAngle">Angle at which to start.</param>
 		/// <param name="EndAngle">Angle at which to end.</param>
 		public void DrawArc(int X, int Y, ushort Radius, Color Color, int StartAngle = 0, int EndAngle = 360)
@@ -793,7 +801,7 @@ namespace PrismGraphics
 		/// <param name="Y">Y position.</param>
 		/// <param name="Text">Text to draw.</param>
 		/// <param name="Font">Font to use.</param>
-		/// <param name="Color">Color to draw with.</param>
+		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 		/// <param name="Center">Option to cented the text at X and Y.</param>
 		public void DrawString(int X, int Y, string Text, Font? Font, Color Color, bool Center = false)
 		{
@@ -851,7 +859,7 @@ namespace PrismGraphics
 		/// <param name="Y">Y position.</param>
 		/// <param name="Char">Char to draw.</param>
 		/// <param name="Font">Font to use.</param>
-		/// <param name="Color">Color to draw with.</param>
+		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 		/// <param name="Center">Option to center the char at X and Y.</param>
 		/// <returns>Width of the drawn character.</returns>
 		public int DrawChar(int X, int Y, char Char, Font Font, Color Color, bool Center)

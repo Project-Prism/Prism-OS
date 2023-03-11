@@ -413,6 +413,17 @@ namespace PrismGraphics
 		#region Properties
 
 		/// <summary>
+		/// Property used to get the overall brightness of the color.
+		/// </summary>
+		public float Brightness
+		{
+			get
+			{
+				return (Max(this) + Min(this)) / (byte.MaxValue * 2f);
+			}
+		}
+
+		/// <summary>
 		/// Packed ARGB value of the color.
 		/// </summary>
 		public uint ARGB
@@ -703,6 +714,28 @@ namespace PrismGraphics
 		}
 
 		/// <summary>
+		/// Gets the value of the channel with the most value.
+		/// </summary>
+		/// <param name="Color">The color to calculate.</param>
+		/// <returns><see cref="R"/> if <see cref="R"/> is more than <see cref="G"/> and <see cref="B"/>, etc...</returns>
+		public static float Max(Color Color)
+		{
+			// Get the minimum value of each channel.
+			return MathF.Max(Color.R, MathF.Max(Color.G, Color.B));
+		}
+
+		/// <summary>
+		/// Gets the value of the channel with the least value.
+		/// </summary>
+		/// <param name="Color">The color to calculate.</param>
+		/// <returns><see cref="R"/> if <see cref="R"/> is less than <see cref="G"/> and <see cref="B"/>, etc...</returns>
+		public static float Min(Color Color)
+		{
+			// Get the minimum value of each channel.
+			return MathF.Min(Color.R, MathF.Min(Color.G, Color.B));
+		}
+
+		/// <summary>
 		/// Converts the color to be only in grayscale.
 		/// </summary>
 		/// <param name="UseAlpha">Allow alpha when converting.</param>
@@ -712,6 +745,16 @@ namespace PrismGraphics
 			float Average = (R + G + B) / 3f;
 
 			return new(UseAlpha ? Average : A, Average, Average, Average);
+		}
+
+		public override int GetHashCode()
+		{
+			return (int)(A * R / G * B);
+		}
+
+		public override string ToString()
+		{
+			return $"{typeof(Color).FullName} [A: {A}, R: {R}, G: {G}, B: {B}]";
 		}
 
 		#endregion
@@ -768,15 +811,5 @@ namespace PrismGraphics
 		private float _B;
 
 		#endregion
-
-		public override int GetHashCode()
-		{
-			return (int)(A * R / G * B);
-		}
-
-		public override string ToString()
-		{
-			return $"{typeof(Color).FullName} [A: {A}, R: {R}, G: {G}, B: {B}]";
-		}
 	}
 }
