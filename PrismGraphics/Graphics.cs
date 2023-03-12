@@ -24,8 +24,9 @@ namespace PrismGraphics
 		/// <param name="Height">Height of the canvas.</param>
 		public Graphics(ushort Width, ushort Height)
 		{
-			this.Width = Width;
+			// Set the canvas size.
 			this.Height = Height;
+			this.Width = Width;
 		}
 
 		/// <summary>
@@ -112,26 +113,39 @@ namespace PrismGraphics
 			}
 			set
 			{
-				if (_Height == value)
-				{
-					return;
-				}
+				// Check if no allocations are needed & assign values.
 				if (_Width == 0)
 				{
+					// Assign new values and return.
 					_Height = value;
 					return;
 				}
 
-				_Height = value;
-
 				if (Internal == (uint*)0)
 				{
+					// Free the buffer pointer if it exists.
+					if (Size > 0)
+					{
+						NativeMemory.Free(Internal);
+					}
+
+					// Set new value.
+					_Height = value;
+
+					// Allocate new chunk of memory.
 					Internal = (uint*)NativeMemory.Alloc(Size * 4);
 				}
 				else
 				{
+					// Set new value.
+					_Height = value;
+
+					// Re-allocate new memory & automatically free old chunk.
 					Internal = (uint*)NativeMemory.Realloc(Internal, Size * 4);
 				}
+
+				// Prevent GC from freeing the buffer.
+				GCImplementation.IncRootCount((ushort*)Internal);
 			}
 		}
 
@@ -146,26 +160,39 @@ namespace PrismGraphics
 			}
 			set
 			{
-				if (_Width == value)
-				{
-					return;
-				}
+				// Check if no allocations are needed & assign values.
 				if (_Height == 0)
 				{
+					// Assign new values and return.
 					_Width = value;
 					return;
 				}
 
-				_Width = value;
-
 				if (Internal == (uint*)0)
 				{
+					// Free the buffer pointer if it exists.
+					if (Size > 0)
+					{
+						NativeMemory.Free(Internal);
+					}
+
+					// Set new value.
+					_Width = value;
+
+					// Allocate new chunk of memory.
 					Internal = (uint*)NativeMemory.Alloc(Size * 4);
 				}
 				else
 				{
+					// Set new value.
+					_Width = value;
+
+					// Re-allocate new memory & automatically free old chunk.
 					Internal = (uint*)NativeMemory.Realloc(Internal, Size * 4);
 				}
+
+				// Prevent GC from freeing the buffer.
+				GCImplementation.IncRootCount((ushort*)Internal);
 			}
 		}
 

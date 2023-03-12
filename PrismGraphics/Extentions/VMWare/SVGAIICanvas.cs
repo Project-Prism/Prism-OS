@@ -1,7 +1,6 @@
 ﻿#if IncludeVMWARE // Only compile with VMWare drivers if specified.
 
 using Cosmos.HAL.Drivers.PCI.Video;
-using Cosmos.HAL;
 
 namespace PrismGraphics.Extentions.VMWare
 {
@@ -15,7 +14,7 @@ namespace PrismGraphics.Extentions.VMWare
 		public SVGAIICanvas(ushort Width, ushort Height) : base(Width, Height)
 		{
 			// Setup the FPS counter timer.
-			Global.PIT.RegisterTimer(new(() => { _FPS = _Frames; _Frames = 0; }, 1000000000, true));
+			Timer T = new((object? O) => { _FPS = _Frames; _Frames = 0; }, null, 1000, 0);
 
 			// Set up video driver
 			(Video = new()).SetMode(Width, Height);
@@ -23,9 +22,6 @@ namespace PrismGraphics.Extentions.VMWare
 
 		#region Properties
 
-		/// <summary>
-		/// The total height of the canvas in pixels.
-		/// </summary>
 		public new ushort Height
 		{
 			get
@@ -39,9 +35,6 @@ namespace PrismGraphics.Extentions.VMWare
 			}
 		}
 
-		/// <summary>
-		/// The total width of the canvas in pixels.
-		/// </summary>
 		public new ushort Width
 		{
 			get

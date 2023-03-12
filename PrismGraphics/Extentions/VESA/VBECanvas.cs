@@ -14,7 +14,7 @@ namespace PrismGraphics.Extentions.VESA
 		/// </summary>
 		public VBECanvas() : base(VBE.getModeInfo().width, VBE.getModeInfo().height)
 		{
-			Cosmos.HAL.Global.PIT.RegisterTimer(new(() => { _FPS = _Frames; _Frames = 0; }, 1000000000, true));
+			Timer T = new((object? O) => { _FPS = _Frames; _Frames = 0; }, null, 1000, 0);
 		}
 
 		#region Methods
