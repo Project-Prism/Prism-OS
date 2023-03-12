@@ -36,19 +36,146 @@ namespace PrismGraphics
 
 		/// <summary>
 		/// Loads a bitmap file.
+		/// Based on: https://github.com/CosmosOS/Cosmos/blob/master/source/Cosmos.System2/Graphics/Bitmap.cs
 		/// </summary>
 		/// <param name="Binary">Raw file data.</param>
 		/// <returns>Bitmap file as an <see cref="Image"/>.</returns>
-		public static Image FromBitmap(byte[] Binary)
+		public static Image FromBitmap(byte[] Binary, bool UseBGR = true)
 		{
-			Cosmos.System.Graphics.Bitmap BMP = new(Binary);
-			Image Result = new((ushort)BMP.Width, (ushort)BMP.Height);
+			// Create reader instance.
+			BinaryReader Reader = new(new MemoryStream(Binary));
 
-			fixed (int* PTR = BMP.rawData)
+			// Create temporary buffer.
+			Image Temp = new(0, 0);
+
+			// Reading magic number to identify if BMP file. (BM as string - 42 4D as Hex)
+			if ("42-4D" != BitConverter.ToString(Reader.ReadBytes(2))) // do uint if not work?
 			{
-				Buffer.MemoryCopy((uint*)PTR, Result.Internal, BMP.rawData.Length * 4, BMP.rawData.Length * 4);
+				throw new FormatException("The input file is not a bitmap file!");
 			}
-			return Result;
+
+			// Read the size of BMP file. - byte 2 -> 6
+			uint FileSize = Reader.ReadUInt32();
+
+			// Read the header - bytes 10 -> 14 is the offset of the bitmap image data.
+			Reader.BaseStream.Position = 10;
+			uint PixelTableOffset = Reader.ReadUInt32();
+
+			// Now reading size of BITMAPINFOHEADER should be 40. - bytes 14 -> 18
+			uint InfoHeaderSize = Reader.ReadUInt32();
+
+			// 124 - is BITMAPV5INFOHEADER, 56 - is BITMAPV3INFOHEADER, where we ignore the additional values see https://web.archive.org/web/20150127132443/https://forums.adobe.com/message/3272950
+			if (InfoHeaderSize != 40 && InfoHeaderSize != 56 && InfoHeaderSize != 124)
+			{
+				throw new FormatException("Info header size has the wrong value!");
+			}
+
+			// Now reading width of image in pixels. - bytes 18 -> 22
+			Temp.Width = (ushort)Reader.ReadUInt32();
+
+			// Now reading height of image in pixels. - byte 22 -> 26
+			Temp.Height = (ushort)Reader.ReadUInt32();
+
+			// Now reading number of planes - should be 1. - byte 26 -> 28
+			ushort Planes = Reader.ReadUInt16();
+
+			// Check that the image only has one plane.
+			if (Planes != 1)
+			{
+				throw new FormatException("Number of planes is not 1! Can not read file!");
+			}
+
+			// Now reading size of bits per pixel (1, 4, 8, 24, 32). - bytes 28 - 30
+			ushort PixelSize = Reader.ReadUInt16();
+
+			// TODO: Be able to handle other pixel sizes.
+			if (!(PixelSize == 32 || PixelSize == 24))
+			{
+				throw new NotImplementedException("Can only handle 32-bit or 24-bit bitmap files!");
+			}
+
+			// Now reading compression type. - bytes 30 -> 34
+			uint Compression = Reader.ReadUInt32();
+
+			// TODO: Be able to handle compressed files.
+			// 3 is BI_BITFIELDS again ignore for now is for Adobe Images.
+			if (Compression != 0 && Compression != 3)
+			{
+				throw new NotImplementedException("Can only handle uncompressed bitmap files!");
+			}
+
+			// Now reading total image data size(including padding). - bytes 34 -> 38\
+			uint TotalImageSize = Reader.ReadUInt32();
+
+			// Adjust to corrected image size.
+			// Look at the link above for the explanation.
+			if (TotalImageSize == 0)
+			{
+				TotalImageSize = (uint)(((Temp.Width * PixelSize + 31) & ~31) >> 3) * Temp.Height;
+			}
+
+			// Calculate the padding.
+			int PureImageSize = Temp.Width * Temp.Height * PixelSize / 8;
+			int PaddingPerRow = 0;
+
+			if (TotalImageSize != 0)
+			{
+				int Remainder = (int)TotalImageSize - PureImageSize;
+
+				if (Remainder < 0)
+				{
+					throw new Exception("Total Image Size is smaller than pure image size!");
+				}
+
+				PaddingPerRow = Remainder / Temp.Height;
+				PureImageSize = (int)TotalImageSize;
+			}
+
+			// Read the pixel data.
+			Reader.BaseStream.Position = PixelTableOffset;
+			byte[] Pixel = new byte[4]; //All must have the same size
+
+			// Loop over each pixel.
+			for (int Y = 0; Y < Temp.Height; Y++)
+			{
+				for (int X = 0; X < Temp.Width; X++)
+				{
+					switch (PixelSize)
+					{
+						case 32:
+							Pixel[0] = Reader.ReadByte();
+							Pixel[1] = Reader.ReadByte();
+							Pixel[2] = Reader.ReadByte();
+							Pixel[3] = Reader.ReadByte();
+							break;
+						case 24:
+							if (UseBGR)
+							{
+								Pixel[3] = Reader.ReadByte();
+								Pixel[2] = Reader.ReadByte();
+								Pixel[1] = Reader.ReadByte();
+								Pixel[0] = 255;
+							}
+							else
+							{
+								Pixel[0] = Reader.ReadByte();
+								Pixel[1] = Reader.ReadByte();
+								Pixel[2] = Reader.ReadByte();
+								Pixel[3] = 255;
+							}
+							break;
+					}
+
+					// Set the pixel value. The bits should be A, R, G, B but the order is switched.
+					Temp.Internal[X + (Temp.Height - (Y + 1)) * Temp.Width] = BitConverter.ToUInt32(Pixel, 0);
+				}
+
+				// Increment the padding.
+				Reader.BaseStream.Position += PaddingPerRow;
+			}
+
+			// Return final image result.
+			return Temp;
 		}
 
 		/// <summary>

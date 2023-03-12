@@ -39,20 +39,6 @@
 			<Private>True</Private>
 		</Reference>
 
-		<Reference Include="Cosmos.System2">
-			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>
-			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
-			<CopyLocal>False</CopyLocal>
-			<Private>True</Private>
-		</Reference>
-
-		<Reference Include="IL2CPU.API">
-			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\IL2CPU.API.dll</HintPath>
-			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
-			<CopyLocal>False</CopyLocal>
-			<Private>True</Private>
-		</Reference>
-
 	</ItemGroup>
 
 </Project>

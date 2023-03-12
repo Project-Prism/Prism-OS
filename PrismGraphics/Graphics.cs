@@ -1,7 +1,6 @@
-﻿// using System.Runtime.InteropServices; - Waiting for PR
+﻿using System.Runtime.InteropServices;
 using PrismGraphics.Rasterizer;
 using PrismGraphics.Fonts;
-using Cosmos.Core.Memory;
 using Cosmos.Core;
 
 namespace PrismGraphics
@@ -127,13 +126,11 @@ namespace PrismGraphics
 
 				if (Internal == (uint*)0)
 				{
-					// Internal = (uint*)NativeMemory.Alloc(Size * 4);
-					Internal = (uint*)Heap.Alloc(Size * 4);
+					Internal = (uint*)NativeMemory.Alloc(Size * 4);
 				}
 				else
 				{
-					// Internal = (uint*)NativeMemory.Realloc(Internal, Size * 4);
-					Internal = (uint*)Heap.Realloc((byte*)Internal, Size * 4);
+					Internal = (uint*)NativeMemory.Realloc(Internal, Size * 4);
 				}
 			}
 		}
@@ -163,13 +160,11 @@ namespace PrismGraphics
 
 				if (Internal == (uint*)0)
 				{
-					// Internal = (uint*)NativeMemory.Alloc(Size * 4);
-					Internal = (uint*)Heap.Alloc(Size * 4);
+					Internal = (uint*)NativeMemory.Alloc(Size * 4);
 				}
 				else
 				{
-					// Internal = (uint*)NativeMemory.Realloc(Internal, Size * 4);
-					Internal = (uint*)Heap.Realloc((byte*)Internal, Size * 4);
+					Internal = (uint*)NativeMemory.Realloc(Internal, Size * 4);
 				}
 			}
 		}
@@ -928,8 +923,7 @@ namespace PrismGraphics
 			// If the buffer is allocated, free it.
 			if (Size != 0)
 			{
-				// NativeMemory.Free(Internal);
-				Heap.Free(Internal);
+				NativeMemory.Free(Internal);
 			}
 
 			GC.SuppressFinalize(this);

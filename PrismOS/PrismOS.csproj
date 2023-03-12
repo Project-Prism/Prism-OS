@@ -45,17 +45,16 @@
 		<None Remove="Media\Audio\Shutdown-Alt.wav" />
 		<None Remove="Media\Audio\Shutdown.wav" />
 		<None Remove="Media\Audio\Startup.wav" />
+		<None Remove="Media\Images\Prism.bmp" />
 		<None Remove="Media\Test.elf" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Media\Audio\Shutdown-Alt.wav" />
-	  <EmbeddedResource Include="Media\Audio\Shutdown.wav" />
-	  <EmbeddedResource Include="Media\Audio\Startup.wav" />
-	</ItemGroup>
-
-	<ItemGroup>
+		<EmbeddedResource Include="Media\Audio\Shutdown-Alt.wav" />
+		<EmbeddedResource Include="Media\Audio\Shutdown.wav" />
+		<EmbeddedResource Include="Media\Audio\Startup.wav" />
 		<EmbeddedResource Include="Media\Executables\Test.elf" />
+		<EmbeddedResource Include="Media\Images\Prism.bmp" />
 	</ItemGroup>
 
 	<ItemGroup>
