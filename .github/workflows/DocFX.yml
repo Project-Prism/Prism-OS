@@ -1,0 +1,33 @@
+name: DocFX
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout Main
+      uses: actions/checkout@v2.4.2
+      with:
+        repository: Project-Prism/Prism-OS
+        path: Prism-OS
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v2.0.0
+      with:
+        dotnet-version: 6.0.x
+    - name: Install DocFX
+      shell: pwsh
+      run: choco install docfx
+    - name: Build Docs
+      shell: pwsh
+      run: docfx ./Prism-OS/Documentation/DocFX.json
+      continue-on-error: false
+    - name: Publish to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        personal_token: ${{ secrets.GH_PAGES }}
+        external_repository: Project-Prism/project-prism.github.io
+        publish_branch: gh-pages
+        publish_dir: ./PrismOS/Documentation
