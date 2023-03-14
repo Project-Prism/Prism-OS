@@ -9,6 +9,33 @@ namespace PrismAudio
 	/// </summary>
 	public static class AudioPlayer
 	{
+		/// <summary>
+		/// Initializes the audio manager uppon app running.
+		/// </summary>
+		static AudioPlayer()
+		{
+			// Initialize objects.
+			Debugger = new("Audio");
+			Mixer = new();
+			AM = new();
+
+			// Attempt to load the audio driver.
+			try
+			{
+				// Assign values and initialize audio player.
+				AM.Output = AC97.Initialize(4096);
+				AM.Stream = Mixer;
+				AM.Enable();
+
+				// Inform that audio player is done initializing.
+				Debugger.Success("Audio initialized!");
+			}
+			catch (Exception E)
+			{
+				Debugger.Warn(E.Message);
+			}
+		}
+
 		#region Methods
 
 		/// <summary>
@@ -17,42 +44,17 @@ namespace PrismAudio
 		/// </summary>
 		public static void Play(AudioStream Stream)
 		{
-			try
-			{
-				// Add the audio stream to the mixer 'now-playing' list.
-				Mixer.Streams.Add(Stream);
-				AM.Enable();
-			}
-			catch (Exception E)
-			{
-				// Catch the exception if one happens.
-				Debugger.Log(E.Message, Debugger.Severity.Warning);
-			}
+			// Add the audio stream to the mixer 'now-playing' list.
+			Mixer.Streams.Add(Stream);
 		}
 
 		#endregion
 
 		#region Fields
 
-		/// <summary>
-		/// Debugger.
-		/// </summary>
-		private static Debugger Debugger { get; set; } = new("Audio");
-
-		/// <summary>
-		/// Audio mixer.
-		/// </summary>
-		public static AudioMixer Mixer { get; set; } = new();
-
-		/// <summary>
-		/// Audio manager.
-		/// </summary>
-		private static AudioManager AM { get; set; } = new()
-		{
-			Output = AC97.Initialize(4096),
-			Stream = Mixer,
-			Enabled = true,
-		};
+		private static readonly Debugger Debugger;
+		public static readonly AudioMixer Mixer;
+		private static readonly AudioManager AM;
 
 		#endregion
 	}

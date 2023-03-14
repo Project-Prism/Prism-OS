@@ -152,6 +152,31 @@
 		}
 
 		/// <summary>
+		/// Samples/Crops a graphics item.
+		/// </summary>
+		/// <param name="X">The X position to start at.</param>
+		/// <param name="Y">The Y position to start at.</param>
+		/// <param name="Width">The Width to sample.</param>
+		/// <param name="Height">The Height to sample.</param>
+		/// <param name="G">The graphics to sample.</param>
+		/// <returns>A sampled image.</returns>
+		public static Graphics Sample(int X, int Y, ushort Width, ushort Height, Graphics G)
+		{
+			// Create temporary graphics object.
+			Graphics Temp = new(Width, Height);
+
+			for (; X < Width; X++)
+			{
+				for (; Y < Height; Y++)
+				{
+					Temp[X, Y] = G[X, Y];
+				}
+			}
+
+			return Temp;
+		}
+
+		/// <summary>
 		/// Applies a basic anti-aliasing filter to the graphics layer.
 		/// Warning: This method is somewhat slow.
 		/// </summary>

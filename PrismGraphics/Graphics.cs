@@ -1,6 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using PrismGraphics.Rasterizer;
 using PrismGraphics.Fonts;
+using System.Numerics;
 using Cosmos.Core;
 
 namespace PrismGraphics
@@ -366,33 +367,28 @@ namespace PrismGraphics
 		#region Triangle
 
 		/// <summary>
-		/// Draws a filled triangle at the 3 points (X1, Y1), (X2, Y2), (X3, Y3).
+		/// Draws a filled triangle as marked by the triangle class.
 		/// </summary>
-		/// <param name="X1">X position 1.</param>
-		/// <param name="Y1">Y position 1.</param>
-		/// <param name="X2">X position 2.</param>
-		/// <param name="Y2">Y position 2.</param>
-		/// <param name="X3">X position 3.</param>
-		/// <param name="Y3">Y position 3.</param>
+		/// <param name="Triangle">The triangle coordinates.</param>
 		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
-		public void DrawFilledTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
+		public void DrawFilledTriangle(Triangle Triangle)
 		{
-			Y1 = (int)Math.Round(16.0f * Y1);
-			Y2 = (int)Math.Round(16.0f * Y2);
-			Y3 = (int)Math.Round(16.0f * Y3);
+			Triangle.P1.Y = (int)MathF.Round(16.0f * Triangle.P1.Y);
+			Triangle.P2.Y = (int)MathF.Round(16.0f * Triangle.P2.Y);
+			Triangle.P3.Y = (int)MathF.Round(16.0f * Triangle.P3.Y);
 
-			X1 = (int)Math.Round(16.0f * X1);
-			X2 = (int)Math.Round(16.0f * X2);
-			X3 = (int)Math.Round(16.0f * X3);
+			Triangle.P1.X = (int)MathF.Round(16.0f * Triangle.P1.X);
+			Triangle.P2.X = (int)MathF.Round(16.0f * Triangle.P2.X);
+			Triangle.P3.X = (int)MathF.Round(16.0f * Triangle.P3.X);
 
 			// Deltas
-			int DX12 = X1 - X2;
-			int DX23 = X2 - X3;
-			int DX31 = X3 - X1;
-
-			int DY12 = Y1 - Y2;
-			int DY23 = Y2 - Y3;
-			int DY31 = Y3 - Y1;
+			int DX12 = (int)(Triangle.P1.X - Triangle.P2.X);
+			int DX23 = (int)(Triangle.P2.X - Triangle.P3.X);
+			int DX31 = (int)(Triangle.P3.X - Triangle.P1.X);
+			
+			int DY12 = (int)(Triangle.P1.Y - Triangle.P2.Y);
+			int DY23 = (int)(Triangle.P2.Y - Triangle.P3.Y);
+			int DY31 = (int)(Triangle.P3.Y - Triangle.P1.Y);
 
 			// Fixed-point deltas
 			int FDX12 = DX12 << 4;
@@ -404,36 +400,42 @@ namespace PrismGraphics
 			int FDY31 = DY31 << 4;
 
 			// Bounding rectangle
-			int MinX = (Math.Min(Math.Min(X1, X2), X3) + 0xF) >> 4;
-			int MaxX = (Math.Max(Math.Max(X1, X2), X3) + 0xF) >> 4;
-			int MinY = (Math.Min(Math.Min(Y1, Y2), Y3) + 0xF) >> 4;
-			int MaxY = (Math.Max(Math.Max(Y1, Y2), Y3) + 0xF) >> 4;
+			Vector3 Min = Vector3.Min(Vector3.Min(Triangle.P1, Triangle.P2), Triangle.P3);
+			Vector3 Max = Vector3.Max(Vector3.Max(Triangle.P1, Triangle.P2), Triangle.P3);
+
+			// Some math things - Idk what they do but they are needed.
+			Min.X = (int)(Min.X + 0xF) >> 4;
+			Min.Y = (int)(Min.Y + 0xF) >> 4;
+			Min.Z = (int)(Min.Z + 0xF) >> 4;
+			Max.X = (int)(Max.X + 0xF) >> 4;
+			Max.Y = (int)(Max.Y + 0xF) >> 4;
+			Max.Z = (int)(Max.Z + 0xF) >> 4;
 
 			// Half-edge constants
-			int C1 = DY12 * X1 - DX12 * Y1;
-			int C2 = DY23 * X2 - DX23 * Y2;
-			int C3 = DY31 * X3 - DX31 * Y3;
+			int C1 = DY12 * (int)Triangle.P1.X - DX12 * (int)Triangle.P1.Y;
+			int C2 = DY23 * (int)Triangle.P2.X - DX23 * (int)Triangle.P2.Y;
+			int C3 = DY31 * (int)Triangle.P3.X - DX31 * (int)Triangle.P3.Y;
 
 			// Correct for fill convention
 			if (DY12 < 0 || (DY12 == 0 && DX12 > 0)) C1++;
 			if (DY23 < 0 || (DY23 == 0 && DX23 > 0)) C2++;
 			if (DY31 < 0 || (DY31 == 0 && DX31 > 0)) C3++;
 
-			int CY1 = C1 + DX12 * (MinY << 4) - DY12 * (MinX << 4);
-			int CY2 = C2 + DX23 * (MinY << 4) - DY23 * (MinX << 4);
-			int CY3 = C3 + DX31 * (MinY << 4) - DY31 * (MinX << 4);
+			int CY1 = C1 + DX12 * ((int)Min.Y << 4) - DY12 * ((int)Min.X << 4);
+			int CY2 = C2 + DX23 * ((int)Min.Y << 4) - DY23 * ((int)Min.X << 4);
+			int CY3 = C3 + DX31 * ((int)Min.Y << 4) - DY31 * ((int)Min.X << 4);
 
-			for (int Y = MinY; Y < MaxY; Y++)
+			for (int Y = (int)Min.Y; Y < Max.Y; Y++)
 			{
 				int CX1 = CY1;
 				int CX2 = CY2;
 				int CX3 = CY3;
 
-				for (int X = MinX; X < MaxX; X++)
+				for (int X = (int)Min.X; X < Max.X; X++)
 				{
 					if (CX1 > 0 && CX2 > 0 && CX3 > 0)
 					{
-						this[X, Y] = Color;
+						this[X, Y] = Triangle.Color;
 					}
 
 					CX1 -= FDY12;
@@ -448,38 +450,15 @@ namespace PrismGraphics
 		}
 
 		/// <summary>
-		/// Draws a non-filled triangle at the three points (X1, Y1), (X2, Y2), (X3, Y3).
-		/// </summary>
-		/// <param name="X1">X position 1.</param>
-		/// <param name="Y1">Y position 1.</param>
-		/// <param name="X2">X position 2.</param>
-		/// <param name="Y2">Y position 2.</param>
-		/// <param name="X3">X position 3.</param>
-		/// <param name="Y3">Y position 3.</param>
-		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
-		public void DrawTriangle(int X1, int Y1, int X2, int Y2, int X3, int Y3, Color Color)
-		{
-			DrawLine(X1, Y1, X2, Y2, Color);
-			DrawLine(X1, Y1, X3, Y3, Color);
-			DrawLine(X2, Y2, X3, Y3, Color);
-		}
-
-		/// <summary>
-		/// Draws a filled triangle as marked by the triangle class.
-		/// </summary>
-		/// <param name="Triangle">The triangle coordinates.</param>
-		public void DrawFilledTriangle(Triangle Triangle)
-		{
-			DrawFilledTriangle((int)Triangle.P1.X, (int)Triangle.P1.Y, (int)Triangle.P2.X, (int)Triangle.P2.Y, (int)Triangle.P3.X, (int)Triangle.P3.Y, Triangle.Color);
-		}
-
-		/// <summary>
 		/// Draws a non-filled triangle as marked by the triangle class.
 		/// </summary>
 		/// <param name="Triangle">The triangle coordinates.</param>
+		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 		public void DrawTriangle(Triangle Triangle)
 		{
-			DrawTriangle((int)Triangle.P1.X, (int)Triangle.P1.Y, (int)Triangle.P2.X, (int)Triangle.P2.Y, (int)Triangle.P3.X, (int)Triangle.P3.Y, Triangle.Color);
+			DrawLine((int)Triangle.P1.X, (int)Triangle.P1.Y, (int)Triangle.P2.X, (int)Triangle.P2.Y, Triangle.Color);
+			DrawLine((int)Triangle.P1.X, (int)Triangle.P1.X, (int)Triangle.P3.X, (int)Triangle.P3.Y, Triangle.Color);
+			DrawLine((int)Triangle.P2.X, (int)Triangle.P2.Y, (int)Triangle.P3.X, (int)Triangle.P3.Y, Triangle.Color);
 		}
 
 		#endregion

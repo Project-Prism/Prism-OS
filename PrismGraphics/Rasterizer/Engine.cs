@@ -64,17 +64,20 @@ namespace PrismGraphics.Rasterizer
 
 				foreach (Triangle T in M.Triangles)
 				{
-					Triangle Temp = T.Transform(Rotation); // Apply object rotation - Separate from camera rotation.
-					Temp = Temp.Translate(M.Position); // Apply object translation - The position it is in 3D.
-					Temp = Temp.Transform(CameraQ); // Apply camera rotation - Rotates the entire world as one mesh.
-					Temp = Temp.Translate(Camera.Position); // Apply camera position - Adjusts the world as one mesh.
-					Temp = Temp.Translate(Translator); // Apply perspective translation - Applies a 3D effect.
+					// Create a temporary instance of the triangle that can be modified.
+					Triangle Temp = T;
+
+					Temp = Triangle.Transform(Temp, Rotation); // Apply object rotation - Separate from camera rotation.
+					Temp = Triangle.Translate(Temp, M.Position); // Apply object translation - The position it is in 3D.
+					Temp = Triangle.Transform(Temp, CameraQ); // Apply camera rotation - Rotates the entire world as one mesh.
+					Temp = Triangle.Translate(Temp, Camera.Position); // Apply camera position - Adjusts the world as one mesh.
+					Temp = Triangle.Translate(Temp, Translator); // Apply perspective translation - Applies a 3D effect.
 
 					// Check if the triangle doesn't need to be drawn.
 					if (Temp.GetNormal() < 0)
 					{
 						// Moves everything to center - Most 3D renderers do this.
-						Temp = Temp.Center(Width, Height);
+						Temp = Triangle.Center(Temp, Width, Height);
 
 						// Normalize lighting & apply ambiance.
 						Temp.Color = Color.Normalize(Temp.Color);
