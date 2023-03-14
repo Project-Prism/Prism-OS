@@ -44,7 +44,7 @@
                 ]
             }
         ],
-        "dest": "_site",
+        "dest": "Documentation",
         "globalMetadata": {
             "_appFooter": "<span></span>",
             "_enableNewTab": true
