@@ -2,13 +2,13 @@ name: DocFX
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: windows-latest
     steps:
-    - name: Checkout Main
+    - name: Checkout main
       uses: actions/checkout@v2.4.2
       with:
         repository: Project-Prism/Prism-OS
