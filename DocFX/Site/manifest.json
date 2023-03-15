@@ -1,0 +1,1498 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Users/blabl/source/Prism-OS/DocFX",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAudio.AudioPlayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAudio.AudioPlayer.html",
+          "hash": "cVuax1E2ZsRLGcnEN3cL2kRrOegN15CkbrnaNzT74aE="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAudio.Synth.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAudio.Synth.html",
+          "hash": "oh2oFkMIJbagqebC12SymZ5V5x28rXDaNPoqRG/K0Yo="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAudio.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAudio.html",
+          "hash": "ifO9IrrlpsMtOoG8VtsIuDuU3MDqS0Ajbjp6jMSym3g="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Compression.DeflateStream.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Compression.DeflateStream.html",
+          "hash": "G4RzCTS7tCKgfaQQv9VSePkql1w2/thr11THPPB0G/Q="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Compression.LZW.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Compression.LZW.html",
+          "hash": "niYFECk/VB4B0kUn82hviwvXTJOOTUs7KfB1hjjc8Fs="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Compression.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Compression.html",
+          "hash": "i0PIFkIYa94K9HELeETtgHct2md86tGpB3U20wuDI94="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.ELFFile32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.ELFFile32.html",
+          "hash": "YB7gOTwINf8w0mFQxzKhAXrzWv/3dE7dS36sK5z/XAo="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.ELFFile64.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.ELFFile64.html",
+          "hash": "PPi/CHASX8N8VxyUWVBtX+QEdlUNPROttFc309vZa5o="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFClassType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFClassType.html",
+          "hash": "6YVppnWSpAkA1V6tnUCox8JO4mhNI5lHVsq0BSgnRFU="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFEndianType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFEndianType.html",
+          "hash": "l81jtczOs+8MMYjSbJSvahGRhWF/BZGwwijTJsehtuk="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFHeader.ELFHeader32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFHeader.ELFHeader32.html",
+          "hash": "gAkbpKX9255BbF/e9HadoS9z2qnhQkHKT8hBVMCJnsQ="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFHeader.ELFHeader64.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFHeader.ELFHeader64.html",
+          "hash": "dDsEFNvYg/ixZ3jJz8tqTg3kzmahZJ01bMZAgqN/YTY="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFHeader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFHeader.html",
+          "hash": "aYjUqHPJkWs7jWu9bNQhDMfYI1brPtP9O4df7Qeiz+o="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFMachineType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFMachineType.html",
+          "hash": "HPu2KmuQT0iBIeJbC6x6qpOTEk8ubGenYWJcQmMWGE8="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFProgramHeader.ELFProgramHeader32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFProgramHeader.ELFProgramHeader32.html",
+          "hash": "/9u7wlVY6iJmTJFAOKvESawTc2wtYeJj89cGhBSfvxE="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFProgramHeader.ELFProgramHeader64.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFProgramHeader.ELFProgramHeader64.html",
+          "hash": "jj4D0aEyCE+NIVIZBl38S+0lAsN3dbbnZQjGDFwWndo="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFProgramHeader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFProgramHeader.html",
+          "hash": "DTuyUNTX3n4W0qeWFoQVmoPDhQ43hhF8dKP0jQlkbWc="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFProgramType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFProgramType.html",
+          "hash": "fy1g+0ZjgrZ9wNKsbxU1MhYlU3EDzDpGUk1W65jLO/Y="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFSectionFlagsType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFSectionFlagsType.html",
+          "hash": "x7AvWzR1Im7mrnbXeqt8gnjPPwS8V/1+COQqFn9Wf7Q="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFSectionHeader.ELFSectionHeader32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFSectionHeader.ELFSectionHeader32.html",
+          "hash": "PPprps+HBNB1WVjW546UqkQ7Cb417aby84o0ibDjn/4="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFSectionHeader.ELFSectionHeader64.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFSectionHeader.ELFSectionHeader64.html",
+          "hash": "dwLuqRlMEWY/GesCrrLjQPj3dSkJDiQDo6ZFkfKi4Kk="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFSectionHeader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFSectionHeader.html",
+          "hash": "8GrR9t+VXshXwaWEHJB+Vvxa69CyhH9+z3wrPgv18ls="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFSectionType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFSectionType.html",
+          "hash": "0SNkFd1yW1AS17cHxcu3xpyL2sxyX2/vbNMKuuGyEB8="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFSymbolTable.ELFSymbolTable32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFSymbolTable.ELFSymbolTable32.html",
+          "hash": "bWvTmZ3fkcc5m2nE9aRBNHNjorfLiX/qesN6940PItc="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFSymbolTable.ELFSymbolTable64.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFSymbolTable.ELFSymbolTable64.html",
+          "hash": "wlaJ7Spp1dCLqkTBTQ7rmftu0ocp/xQ50a1qxULrA8o="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFSymbolTable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFSymbolTable.html",
+          "hash": "aMANiV9SCv+uCY7udcB8qymhFLQQKFzDC0AsvN5TZpw="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFSystemABIType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFSystemABIType.html",
+          "hash": "PCc4eVzlUnqNrcN1dJb8OrLxgQzVxSbGH34OEJBvtIg="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.ELFType.html",
+          "hash": "81oU2+AUBRtIab0tNDU7IOH0Ts1QYewhTKy3eO3g7NA="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.Structure.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.Structure.html",
+          "hash": "Ifx8vperyVq07jTX6jG/HM7n09KD7AzecVCPJGkfX3Q="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.ELF.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.ELF.html",
+          "hash": "WSZzFTHoj9s3IBwe+CzQ/u21vlO8nsX817XUCykvO3Q="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.INI.INIReader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.INI.INIReader.html",
+          "hash": "sX45j1yyeAP2crz6ilprbBffYApypsoukv/VnR/26Q0="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismBinary.Formats.INI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismBinary.Formats.INI.html",
+          "hash": "SBWxm9az3yp8kL8xCxISR0CMNKdrdk79NzbjDntlQk0="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismFilesystem.EXT4.SuperBlock.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismFilesystem.EXT4.SuperBlock.html",
+          "hash": "1Q9Pv64G+S9v8kwpjH5KkXQLYWK1QheSm7kIcqmyMA0="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismFilesystem.EXT4.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismFilesystem.EXT4.html",
+          "hash": "hyItDzz3DOq66Z4UZ4kGGQVEpFZQOPj+YqoRonZv1Xg="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismFilesystem.FilesystemManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismFilesystem.FilesystemManager.html",
+          "hash": "Z9phmfUxx+rF1rQRWj+nMIBb0dkp+GJMb3SuqMrKrvQ="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismFilesystem.TAR.FileTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismFilesystem.TAR.FileTypes.html",
+          "hash": "jrteHh8183tBSBxH7ZvX7Lvt8lDynyP3SLfCBKQQO30="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismFilesystem.TAR.Header.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismFilesystem.TAR.Header.html",
+          "hash": "L6SyzoEdBzxCgl6VHszmEduF4bKKrEUwjk+k7E3ge30="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismFilesystem.TAR.TARFile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismFilesystem.TAR.TARFile.html",
+          "hash": "HVFucvyMBRDZ9Pt/1zEPlwmE9L1OxPF3aBl6E7i3YCQ="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismFilesystem.TAR.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismFilesystem.TAR.html",
+          "hash": "Ov2hf+2RsLQDVwO515uw7++bnn+YznPVodVxnFdyiFY="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismFilesystem.XFS.Structure.AGFBlock.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismFilesystem.XFS.Structure.AGFBlock.html",
+          "hash": "M0wuTESq/xH39N05+NWMCbNzAF7U9iLDX0awtCR5RJY="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismFilesystem.XFS.Structure.BTreeBlock.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismFilesystem.XFS.Structure.BTreeBlock.html",
+          "hash": "hx0TzNuZ+AQmSDekevBPtqVF8y8E1WErF0TIZppTtn0="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismFilesystem.XFS.Structure.SuperBlock.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismFilesystem.XFS.Structure.SuperBlock.html",
+          "hash": "OTgnjTEXlFrhmXF6spGLu6GXOv6FWMaan8V/mrVrHVw="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismFilesystem.XFS.Structure.SuperBlockFlags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismFilesystem.XFS.Structure.SuperBlockFlags.html",
+          "hash": "vdvCkn9l72c3+tpvLsbfJWhlNjy6eCKiyI1ba5Yv3vA="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismFilesystem.XFS.Structure.SuperBlockQuotaFlags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismFilesystem.XFS.Structure.SuperBlockQuotaFlags.html",
+          "hash": "hDOqQ9XH7YZrVT/1sFGPpfeZ1DjB/OuEY+rOVHUpbog="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismFilesystem.XFS.Structure.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismFilesystem.XFS.Structure.html",
+          "hash": "dTj1vhhE6EgCZRaUNNADUp2f4HgVpBroIQP68HjJeMQ="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismFilesystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismFilesystem.html",
+          "hash": "EbdVNGtmeOcR2/GttN5gsBb9RP0/kI6jhOM83YivRhM="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Animation.AnimationController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Animation.AnimationController.html",
+          "hash": "JyRmjpU3pB/8AGKqYmbzIJdrP6SsNw5kZdLIAOeQiQg="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Animation.AnimationMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Animation.AnimationMode.html",
+          "hash": "dV4jbbrheE4ZwsNzh+GrhnT0w+5FAG/it873tu7K1z8="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Animation.ColorController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Animation.ColorController.html",
+          "hash": "kt/tD3EEkUn3bGyXRnZFjxq8tREI/QwrT9GifM8ONok="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Animation.Common.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Animation.Common.html",
+          "hash": "fMrtO7/w2RaW8d1J+mK22+V5thzd6XvvE0+9tMNLL34="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Animation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Animation.html",
+          "hash": "n2iA/iWIrC+g2r4rWTBu6UYQuISq2x5BYdpPJeTgF/U="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Color.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Color.html",
+          "hash": "KVUIwCAQ5oNYQjgBy9klWbKagNL4QgPnU0QtTMK2FHg="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Extentions.VESA.VBECanvas.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Extentions.VESA.VBECanvas.html",
+          "hash": "GeYw3COvv0jDtUT7SSpKHrES+bTmOK9pGyPZ7/d/r64="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Extentions.VESA.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Extentions.VESA.html",
+          "hash": "chA5F/VWhNQhk55G51kY3srJiGKiVB9lCnHyLqI5gvc="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Extentions.VMWare.SVGAIICanvas.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Extentions.VMWare.SVGAIICanvas.html",
+          "hash": "1N3iD0JHM7pLwjbZCS7iRfTbYEPE56I08Mcyxy/QC78="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Extentions.VMWare.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Extentions.VMWare.html",
+          "hash": "OcP8bX7eNUAlwtNgBAePM9pk0IWIzL7G6zkpKOGJlgM="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Filters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Filters.html",
+          "hash": "IyIK5KTxa+3Sjm1dMoCc/+Rpo0O6w+wklG2fKW8ofNs="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Fonts.Font.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Fonts.Font.html",
+          "hash": "lnBUMcvrQaJQoaAdpXR/NtTSfRUhZSVpxitFzLQ0EYI="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Fonts.Glyph.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Fonts.Glyph.html",
+          "hash": "o52PfKpGxolVXTuOW9kgE4/cdRSI648EE4kXlq2uuFU="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Fonts.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Fonts.html",
+          "hash": "J6Fi1/Va1Izz5Jt9RizRF1ADTgQAKCLNldf2mL7rWsk="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Gradient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Gradient.html",
+          "hash": "FyHY30Q/CZm5Sz1PXY26H+t7LY/ea2GUPySwhIQQ8NY="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Graphics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Graphics.html",
+          "hash": "QqEX+1W1r1EunhaADg9Weq/X8BQCCpBFfI4v0OcLtcI="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Image.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Image.html",
+          "hash": "szWeEDmhGltW+qWEP5Ec+unwq0WbPR4d7gN6gq4IoRY="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Rasterizer.Camera.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Rasterizer.Camera.html",
+          "hash": "WKNDz7eU7yaiOQ8HqK3vxYyXD54WdG25xASZA0ikzl8="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Rasterizer.Engine.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Rasterizer.Engine.html",
+          "hash": "fCLO+jQreRQ/6iDMpWMueBrj6NhQMMyeT46qvchC4q0="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Rasterizer.Light.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Rasterizer.Light.html",
+          "hash": "MEnd8WA1lbOyGnA/RA2Juca1fepm4GU616tSPlZL4V0="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Rasterizer.LightTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Rasterizer.LightTypes.html",
+          "hash": "WGzGpImPmF9oJFjINAlHxIKY+6kzS2TuqIYEH+eWs7Y="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Rasterizer.Mesh.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Rasterizer.Mesh.html",
+          "hash": "wswmU8i83oICDoaUg2HDoC5OBEhOG0yDpvzQC9nEfU0="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Rasterizer.Triangle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Rasterizer.Triangle.html",
+          "hash": "sFCD9EZQNCH91xyFSRRqPdizpOKvJ/0ijPmy6ow3ymA="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Rasterizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Rasterizer.html",
+          "hash": "6DWQhEE38L6lj12AQdCkCgmeZ0ER6RcE6fA3aCvCM50="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.html",
+          "hash": "ya9ZMTky6r7ZfoW9nYlPhptmDRrjeLcDd81eKJMLYlQ="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismNetwork.HTTP.Status.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismNetwork.HTTP.Status.html",
+          "hash": "9kfy2SM1uNO06ZRkKuoInIH/ASXXWlJ+HCCWklc061E="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismNetwork.HTTP.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismNetwork.HTTP.html",
+          "hash": "59lNUOjX1wasciqpz+xMvg4mhKX7jNweanT6/v6MP9g="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismNetwork.NetworkManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismNetwork.NetworkManager.html",
+          "hash": "OS28ZLu4pd0AQJuXmHqGJ2R939lnulji1o8Evt/A2y0="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismNetwork.URL.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismNetwork.URL.html",
+          "hash": "xrU6+7jt7cPh7rBnWV8YOhWXf4n5L5q9ehfBxDuXQY8="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismNetwork.WebClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismNetwork.WebClient.html",
+          "hash": "yXBHf05Seecc475tSKqq0gNNfMukJ9BsB6c21Hqr/Ho="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismNetwork.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismNetwork.html",
+          "hash": "bocqCEtzMfaoYPMt0N+OdXK4qLZlaKbtGEHIghZ6v/M="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismOS.Media.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismOS.Media.html",
+          "hash": "BuzBVI9rcrTxFL9+0gH/12O7wAtjvEZM0yLABbGDeFs="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismOS.Program.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismOS.Program.html",
+          "hash": "KgVr/IluK6y8kYSebeugvd9QCPyrzjVSXOz8Lwr6aiA="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismOS.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismOS.html",
+          "hash": "iQTek5ph61O8tZzeMmAtqPuXn2z5nOyEcORgGTbRhi0="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SSharp.Compiler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SSharp.Compiler.html",
+          "hash": "wT6NHF6oyrtZxnsnfbwPHCs9gt/7lO56hC21NJZTSfg="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SSharp.Executable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SSharp.Executable.html",
+          "hash": "Y0v+/zrwXEnYW3mzizVBM2yFyVzPX4LZsJfCtwKqyCA="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SSharp.Structure.OPCode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SSharp.Structure.OPCode.html",
+          "hash": "eWJt/mgp46812xRHVGYvAfYz0/nVtiGyisQSBuXsZ34="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SSharp.Structure.Token.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SSharp.Structure.Token.html",
+          "hash": "DuImqhlrwdUDVFcFgRcXqhZmgq2MKlv0BmChq0IuxMs="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SSharp.Structure.TokenType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SSharp.Structure.TokenType.html",
+          "hash": "+Yfmh6uHK8xpnURBZ+kHMFJqQO3pFCRwGp3a70gs3mc="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SSharp.Structure.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SSharp.Structure.html",
+          "hash": "gf+DNqx4orgmknjJxe2EdppAsI/w8pWHexhnCnLumEY="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SSharp.Tokenizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SSharp.Tokenizer.html",
+          "hash": "jjBy+xNoJhfKn5IsfL77yI/wujXsm90IuhOcBpdaT6s="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SSharp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SSharp.html",
+          "hash": "74/9f2WyPKlZEX7ML9ikebnAeUy0Yr1B24cExTakj1c="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.CLI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.CLI.html",
+          "hash": "t8jQt11i9wG1msMxUD+mD6wNpjBdl+bdYWhczy6JAwU="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.Status.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.Status.html",
+          "hash": "1t6z1kt/paW1nWvTOlWIrNkeFWKKF9EkSGFqC+tgwRk="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.Unix.CP.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.Unix.CP.html",
+          "hash": "acv956LaV0oJN2uxt3eUAiB/QtJ36YsUlBmRWI0AW3Q="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.Unix.Cat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.Unix.Cat.html",
+          "hash": "aA3R79y51dkOPsl9Xy0DqEly7mGecJbn97Cgm33gHPM="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.Unix.Clear.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.Unix.Clear.html",
+          "hash": "a2yxRBOHN6zYdb6uxw69xpioI0Vi9zVRC9JJFmjgQHY="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.Unix.Halt.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.Unix.Halt.html",
+          "hash": "MkuXxgS/VqAgZ9t4OU8PMQEYIvN9zMD8xwwrQphgj2Q="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.Unix.HexDump.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.Unix.HexDump.html",
+          "hash": "ZrQy37qg10aAll+JKJuz4KlLq691fX1w3Rph76R9Hu8="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.Unix.LS.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.Unix.LS.html",
+          "hash": "xeo8x+A1dm9DqHXCWko7lbqQJa5O6MjbZ3cnHwy+zsE="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.Unix.MKDir.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.Unix.MKDir.html",
+          "hash": "DDWuDvWvJti6ABYeiRHQpLLgZKZIDevv+IzD0p/oOXs="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.Unix.Man.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.Unix.Man.html",
+          "hash": "MoMBb5J+AsBQE9iFBg+ftgZmMlG2UhzdIqC6ZIC3vwM="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.Unix.PWD.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.Unix.PWD.html",
+          "hash": "m6GUZU5U6FPmdhBEj0Qpx2jUpcQKIjWdLrQ51YevuXk="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.Unix.PowerOff.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.Unix.PowerOff.html",
+          "hash": "sgkBNJH0p8nYaHja9PRxtR57kPYqQ15uBCgIgJASbdM="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.Unix.RM.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.Unix.RM.html",
+          "hash": "h7dO5kXYaKyhrOMtzpPb0T9yOspWETlWmH76bx7DPbA="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.Unix.ReadELF.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.Unix.ReadELF.html",
+          "hash": "cL3iCGw3XK/fTcHiL5hWMveLwnDKYmMT8tH6TqECEEc="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.Unix.Reboot.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.Unix.Reboot.html",
+          "hash": "HQu7uJQLKJipkusWsD+DP2KjCFvIHL8fY+YpFGV0STs="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.Unix.Touch.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.Unix.Touch.html",
+          "hash": "ya5FQLgkRRmPy419sAm1t8hv8icShCHwVDbXaAbFEMA="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.Unix.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.Unix.html",
+          "hash": "vp9PNOrgQu1/56+pFxGDkheZCVFvKomfKmY5TDIo/Cg="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.VEdit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.VEdit.html",
+          "hash": "Od0wIir14b9ESt/m4M95RlUgla9laheUYk7eI6WOaxw="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.html",
+          "hash": "bDMLdRV9MVyJUSP0dzGfMx+fQzva5GRFRHwtRBXQ+Gc="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Shell.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Shell.html",
+          "hash": "EzjM8V6ZpR0rNmmiaYocMtYu0cyy7JDXKq4rwa7xCJc="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Structure.Script.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Structure.Script.html",
+          "hash": "8LgqCNBsUAXMLoEr/rWlZX4FfgXG/34n4SJR1YMv4C4="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Structure.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Structure.html",
+          "hash": "0ojnsjhV1f85S26M+txw31Ke0whHyMoAaEJd+HkX2Qc="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.html",
+          "hash": "D5i5wlCczU49RVRjv7EbMyMy0ADcisX/QZ/N8Qx8E1c="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SystemCalls.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SystemCalls.html",
+          "hash": "+YtIDMQyl0VIWWJcINvB+5xGeSAEKJOgAkACEIqHB9k="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.html",
+          "hash": "x4p3aFh9F8ljKxB+Zez42nuhGvFvaX46TMpqlTTc1OI="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismTools.Debugger.Severity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismTools.Debugger.Severity.html",
+          "hash": "zLPTHXOkQKZ8Pa5/h6p3x07pkGDjd13SQ9vINdSif30="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismTools.Debugger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismTools.Debugger.html",
+          "hash": "UwyZLEJv5RROrecmWxbwRIh72AExsMEpafXo2F4MP8w="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismTools.Events.EventService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismTools.Events.EventService.html",
+          "hash": "5f7VasB+5R26aM9geuVtbIjV6p88EemUT1BjV1BzF4k="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismTools.Events.MemoryTimer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismTools.Events.MemoryTimer.html",
+          "hash": "A2NouL2PJMiQ3czOmFbZTncYMIMQL003+rtTA06aogA="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismTools.Events.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismTools.Events.html",
+          "hash": "fanY7/Mu+Kjgl95yBWZeyjcrbERDJQaV7FUXauWOFSk="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismTools.IO.KeyboardEx.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismTools.IO.KeyboardEx.html",
+          "hash": "Zg9HbZhuPgafypxvW4FJksThIN4uXXn5Vc25wwGMmCU="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismTools.IO.MouseEx.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismTools.IO.MouseEx.html",
+          "hash": "bKTaTjoblYe4f4WGEZiR2wjdXieUNlAhyRw2Pn12vIk="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismTools.IO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismTools.IO.html",
+          "hash": "wtD5FQFQXyZgYRsafOR3JEsFKaucpDQ71PyIruWy4Cs="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismTools.StringEx.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismTools.StringEx.html",
+          "hash": "pg+XGYH31L8e9NL4AjiqF3asDRbwFOrWLNr+kh+CDrU="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismTools.Unsafe.Assembly.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismTools.Unsafe.Assembly.html",
+          "hash": "3tY1UEMFTlyEo9cYvsuQEuvp34wMp6TpAlo2XaRkfTI="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismTools.Unsafe.UnmanagedString.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismTools.Unsafe.UnmanagedString.html",
+          "hash": "uluanU6oEPPGEZ1GE7Fu1S6gTKTCho+j/PjvUCrS5xA="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismTools.Unsafe.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismTools.Unsafe.html",
+          "hash": "85OLXNjCQ7O5bCKw5MRl6p5G1BQM6s0GfxoJHMtmJBg="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismTools.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismTools.html",
+          "hash": "4Ow+c3Lk8sk/fJYHMfDNTykSmaQzJMQzFOBajU1KHas="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismUI.Controls.Button.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismUI.Controls.Button.html",
+          "hash": "o/emSpAv1KPGno/IeBlKJJgHwd4fCz2eT81mU8KCp6A="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismUI.Controls.Control.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismUI.Controls.Control.html",
+          "hash": "zBfaxLYtdAmDPgFsNX+9fgUez6TbjonxDC7sDhN8yLs="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismUI.Controls.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismUI.Controls.html",
+          "hash": "+SRylSj+JpuCilH533yNCxVDd/hM+aMp+YGKLFLyJB4="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "API/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "API/index.html",
+          "hash": "osU9YX8ZZJ7Ales0RKDNwqe0cAJax2gqfyhYWfyd464="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "API/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/toc.html",
+          "hash": "cG31ZjmGSUZTSEh+R8GQC2nzZT4aNCtsgpBVqzc3xX0="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "Articles/intro.html",
+          "hash": "W/52PuFPSj4+LnNt8LlVSgXLzaYbnTormg3sMsFjR8c="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "Articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Articles/toc.html",
+          "hash": "+FPCLcvmNhVb9VLasYr6Tnep0PZtIA6V/UOJ0u+1RmE="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "WU0y/vtrYLhuE4DJhUcR9Dqwm/b+fPIjJbrMoYep300="
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "YVJnJY0j39tEE/HhAhvefv0l70ET14wUmlWD2VaRt9w="
+        }
+      },
+      "version": ""
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
