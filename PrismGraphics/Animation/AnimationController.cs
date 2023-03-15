@@ -111,6 +111,12 @@
 		{
 			if (IsFinished)
 			{
+				if (IsContinuous)
+				{
+					(Source, Target) = (Target, Source);
+					Reset();
+				}
+
 				return;
 			}
 			
@@ -157,6 +163,11 @@
 		/// The duration in which to play the animation over.
 		/// </summary>
 		public TimeSpan Duration;
+
+		/// <summary>
+		/// A bool to change if the animation is looping/continuous.
+		/// </summary>
+		public bool IsContinuous;
 
 		/// <summary>
 		/// Animation timer, used to increment the animation every 50 MS.

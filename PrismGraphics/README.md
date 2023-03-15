@@ -76,6 +76,11 @@ public float Current, Source, Target, ElapsedTime;
 - Target: The value to end the animation at.
 - ElapsedTime: The elapsed time of the animation.
 
+- ``public AnimationMode Mode;``: The kind of animation to play.
+- ``public TimeSpan Duration;``: The duration of the animation.
+- ``public bool IsContinuous;``: A bool to change if the animation is looping/continuous.
+- ``public Timer Timer;``: Used to increment values, can be ignored.
+
 ### Animation Modes
 The AnimationController class supports the following ease animation modes:
 

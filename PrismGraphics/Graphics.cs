@@ -373,31 +373,23 @@ namespace PrismGraphics
 		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 		public void DrawFilledTriangle(Triangle Triangle)
 		{
-			Triangle.P1.Y = (int)MathF.Round(16.0f * Triangle.P1.Y);
-			Triangle.P2.Y = (int)MathF.Round(16.0f * Triangle.P2.Y);
-			Triangle.P3.Y = (int)MathF.Round(16.0f * Triangle.P3.Y);
-
-			Triangle.P1.X = (int)MathF.Round(16.0f * Triangle.P1.X);
-			Triangle.P2.X = (int)MathF.Round(16.0f * Triangle.P2.X);
-			Triangle.P3.X = (int)MathF.Round(16.0f * Triangle.P3.X);
+			Triangle.P1 *= 16;
+			Triangle.P2 *= 16;
+			Triangle.P3 *= 16;
 
 			// Deltas
-			int DX12 = (int)(Triangle.P1.X - Triangle.P2.X);
-			int DX23 = (int)(Triangle.P2.X - Triangle.P3.X);
-			int DX31 = (int)(Triangle.P3.X - Triangle.P1.X);
-			
-			int DY12 = (int)(Triangle.P1.Y - Triangle.P2.Y);
-			int DY23 = (int)(Triangle.P2.Y - Triangle.P3.Y);
-			int DY31 = (int)(Triangle.P3.Y - Triangle.P1.Y);
+			Vector3 D12 = Triangle.P1 - Triangle.P2;
+			Vector3 D23 = Triangle.P2 - Triangle.P3;
+			Vector3 D31 = Triangle.P3 - Triangle.P1;
 
 			// Fixed-point deltas
-			int FDX12 = DX12 << 4;
-			int FDX23 = DX23 << 4;
-			int FDX31 = DX31 << 4;
+			int FDX12 = (int)D12.X << 4;
+			int FDX23 = (int)D23.X << 4;
+			int FDX31 = (int)D31.X << 4;
 
-			int FDY12 = DY12 << 4;
-			int FDY23 = DY23 << 4;
-			int FDY31 = DY31 << 4;
+			int FDY12 = (int)D12.Y << 4;
+			int FDY23 = (int)D23.Y << 4;
+			int FDY31 = (int)D31.Y << 4;
 
 			// Bounding rectangle
 			Vector3 Min = Vector3.Min(Vector3.Min(Triangle.P1, Triangle.P2), Triangle.P3);
@@ -412,27 +404,39 @@ namespace PrismGraphics
 			Max.Z = (int)(Max.Z + 0xF) >> 4;
 
 			// Half-edge constants
-			int C1 = DY12 * (int)Triangle.P1.X - DX12 * (int)Triangle.P1.Y;
-			int C2 = DY23 * (int)Triangle.P2.X - DX23 * (int)Triangle.P2.Y;
-			int C3 = DY31 * (int)Triangle.P3.X - DX31 * (int)Triangle.P3.Y;
+			int C1 = (int)(D12.Y * Triangle.P1.X - D12.X * Triangle.P1.Y);
+			int C2 = (int)(D23.Y * Triangle.P2.X - D23.X * Triangle.P2.Y);
+			int C3 = (int)(D31.Y * Triangle.P3.X - D31.X * Triangle.P3.Y);
 
 			// Correct for fill convention
-			if (DY12 < 0 || (DY12 == 0 && DX12 > 0)) C1++;
-			if (DY23 < 0 || (DY23 == 0 && DX23 > 0)) C2++;
-			if (DY31 < 0 || (DY31 == 0 && DX31 > 0)) C3++;
+			if (D12.Y < 0 || (D12.Y == 0 && D12.X > 0)) C1++;
+			if (D23.Y < 0 || (D23.Y == 0 && D23.X > 0)) C2++;
+			if (D31.Y < 0 || (D31.Y == 0 && D31.X > 0)) C3++;
 
-			int CY1 = C1 + DX12 * ((int)Min.Y << 4) - DY12 * ((int)Min.X << 4);
-			int CY2 = C2 + DX23 * ((int)Min.Y << 4) - DY23 * ((int)Min.X << 4);
-			int CY3 = C3 + DX31 * ((int)Min.Y << 4) - DY31 * ((int)Min.X << 4);
+			int CY1 = (int)(C1 + D12.X * ((int)Min.Y << 4) - D12.Y * ((int)Min.X << 4));
+			int CY2 = (int)(C2 + D23.X * ((int)Min.Y << 4) - D23.Y * ((int)Min.X << 4));
+			int CY3 = (int)(C3 + D31.X * ((int)Min.Y << 4) - D31.Y * ((int)Min.X << 4));
 
 			for (int Y = (int)Min.Y; Y < Max.Y; Y++)
 			{
+				// Don't draw outside of the screen.
+				if (Y >= Height || Y < 0)
+				{
+					continue;
+				}
+
 				int CX1 = CY1;
 				int CX2 = CY2;
 				int CX3 = CY3;
 
 				for (int X = (int)Min.X; X < Max.X; X++)
 				{
+					// Don't draw outside of the screen.
+					if (X >= Width || X < 0)
+					{
+						continue;
+					}
+
 					if (CX1 > 0 && CX2 > 0 && CX3 > 0)
 					{
 						this[X, Y] = Triangle.Color;

@@ -25,6 +25,24 @@
 		#region Properties
 
 		/// <summary>
+		/// A bool to change if the animation is looping/continuous.
+		/// </summary>
+		public bool IsContinuous
+		{
+			get
+			{
+				return Alpha.IsContinuous;
+			}
+			set
+			{
+				Alpha.IsContinuous = value;
+				Red.IsContinuous = value;
+				Green.IsContinuous = value;
+				Blue.IsContinuous = value;
+			}
+		}
+
+		/// <summary>
 		/// A boolean to tell if the animation has finished.
 		/// </summary>
 		public bool IsFinished => Alpha.IsFinished;
