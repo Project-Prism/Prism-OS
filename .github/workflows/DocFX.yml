@@ -1,3 +1,11 @@
+name: DocFX
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
 jobs:
   publish-docs:
     runs-on: ubuntu-latest
@@ -9,12 +17,14 @@ jobs:
       with:
         dotnet-version: 6.x
 
-    - run: dotnet tool update -g docfx
-    - run: docfx DocFX/DocFX.json
+    - name: Install DocFX
+      run: dotnet tool update -g docfx
+    - name: Run DocFX
+      run: docfx DocFX/DocFX.json
 
     - name: Deploy
-    uses: peaceiris/actions-gh-pages@v3
-    with:
+      uses: peaceiris/actions-gh-pages@v3
+      with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: DocFX/Site
         destination_dir: Documentation
