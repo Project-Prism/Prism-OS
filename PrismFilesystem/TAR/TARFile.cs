@@ -4,7 +4,7 @@ namespace PrismFilesystem.TAR
 {
 	/// <summary>
 	/// Class used for loading TAR files
-	/// <seealso cref="https://docs.fileformat.com/compression/tar/"/>
+	/// <seealso href="https://docs.fileformat.com/compression/tar/"/>
 	/// </summary>
 	public unsafe class TARFile
 	{
