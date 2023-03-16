@@ -22,8 +22,8 @@
 
 	</ItemGroup>
 
-	<!--Cosmos include group - Skip when using DocFX (Release mode)-->
-	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
+	<!--Cosmos include group-->
+	<ItemGroup>
 
 		<Reference Include="Cosmos.HAL2">
 			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
