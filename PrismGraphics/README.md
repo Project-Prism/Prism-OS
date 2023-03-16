@@ -1,6 +1,6 @@
 ﻿# Introduction - PrismGraphics
 
-PrismgGraphics is the 2D graphics rasterization platform that allows for drawing of text, images, shapes, gradients, and whatever else on a 2D canvas.
+PrismGraphics is the 2D/3D graphics rasterization platform that allows for drawing of text, images, shapes, gradients, and whatever else on a 2D canvas.
 
 Try not to be intimidated by the sheer size of the graphics library! It is quite simple when you look at it from a high level perspective.
 
