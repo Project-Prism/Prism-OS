@@ -8,6 +8,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F732F406-55BB-42AF-BD4A-8BBB93B0078A}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		CONTRIBUTING.md = CONTRIBUTING.md
+		Directory.Build.props = Directory.Build.props
+		DocFX\DocFX.json = DocFX\DocFX.json
+		LICENSE = LICENSE
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismBinary", "PrismBinary\PrismBinary.csproj", "{F6939CA3-5F9B-4273-BEAF-84CF6F8921ED}"
@@ -24,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismRuntime", "PrismRuntim
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismFilesystem", "PrismFilesystem\PrismFilesystem.csproj", "{58D45042-5B26-4850-8584-5AE7621F9551}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismUI", "PrismUI\PrismUI.csproj", "{54B6B45A-8CE0-4B99-9627-5805240FCAFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismUI", "PrismUI\PrismUI.csproj", "{54B6B45A-8CE0-4B99-9627-5805240FCAFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
