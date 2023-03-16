@@ -37,7 +37,7 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
-# DocFX files
+# DocFX generated files - Don't need in the repo because github actions deploys it automatically.
 DocFX/Site/**/*
 DocFX/API/*.yml
 .manifest
