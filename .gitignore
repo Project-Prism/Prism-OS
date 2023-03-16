@@ -36,7 +36,11 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
-DocFX/Site/*/*
+
+# DocFX files
+DocFX/Site/**/*
+DocFX/API/*.yml
+.manifest
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
