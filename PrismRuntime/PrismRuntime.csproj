@@ -32,8 +32,8 @@
 
 	</ItemGroup>
 
-	<!--Cosmos include group-->
-	<ItemGroup>
+	<!--Cosmos include group - Skip when using DocFX (Release mode)-->
+	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
 
 		<Reference Include="Cosmos.Core">
 			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.Core.dll</HintPath>
@@ -42,14 +42,14 @@
 			<Private>True</Private>
 		</Reference>
 
-		<Reference Include="Cosmos.HAL2">
+		<Reference Include="Cosmos.HAL2" Condition="'$(Configuration)' == 'Debug'">
 			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
 			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
 			<CopyLocal>False</CopyLocal>
 			<Private>True</Private>
 		</Reference>
 
-		<Reference Include="Cosmos.System2">
+		<Reference Include="Cosmos.System2" Condition="'$(Configuration)' == 'Debug'">
 			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>
 			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
 			<CopyLocal>False</CopyLocal>
