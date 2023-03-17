@@ -42,14 +42,14 @@
 			<Private>True</Private>
 		</Reference>
 
-		<Reference Include="Cosmos.HAL2" Condition="'$(Configuration)' == 'Debug'">
+		<Reference Include="Cosmos.HAL2">
 			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
 			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
 			<CopyLocal>False</CopyLocal>
 			<Private>True</Private>
 		</Reference>
 
-		<Reference Include="Cosmos.System2" Condition="'$(Configuration)' == 'Debug'">
+		<Reference Include="Cosmos.System2">
 			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>
 			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
 			<CopyLocal>False</CopyLocal>
