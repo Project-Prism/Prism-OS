@@ -38,8 +38,8 @@ bld/
 [Ll]ogs/
 
 # DocFX generated files - Don't need in the repo because github actions deploys it automatically.
-DocFX/Site/**/*
-DocFX/API/*.yml
+DocFX/Site
+DocFX/API/Prism*.yml
 .manifest
 
 # Visual Studio 2015/2017 cache/options directory
