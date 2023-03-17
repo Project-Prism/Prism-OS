@@ -1,3 +1,9 @@
+![Total Downloads](https://img.shields.io/github/downloads/Project-Prism/Prism-OS/total?style=plastic)
+![Release](https://img.shields.io/github/v/release/Project-Prism/Prism-Os?style=plastic)
+![License](https://img.shields.io/github/license/Project-Prism/Prism-OS?style=plastic)
+![Issues](https://img.shields.io/github/issues/Project-Prism/Prism-OS?style=plastic)
+![Chat](https://img.shields.io/discord/893388221424234496?style=plastic)
+
 
 <h4>Created on May 11th, 2021, 1:26 AM UTC-8</h4>
 
