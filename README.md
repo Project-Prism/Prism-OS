@@ -1,5 +1,6 @@
 <p align="center">
   <img src="https://github.com/Project-Prism/Prism-OS/raw/main/PrismOS/Media/Images/Prism.bmp" width="25%" />
+  > The Prism OS logo, created by Nicole Hammonds from The Noun Project.
 </p>
 
 <p align="center">
