@@ -2,11 +2,13 @@
   <img src="https://github.com/Project-Prism/Prism-OS/raw/main/PrismOS/Media/Images/Prism.bmp" width="25%" />
 </p>
 
-![Total Downloads](https://img.shields.io/github/downloads/Project-Prism/Prism-OS/total?style=plastic)
-![Release](https://img.shields.io/github/v/release/Project-Prism/Prism-Os?style=plastic)
-![License](https://img.shields.io/github/license/Project-Prism/Prism-OS?style=plastic)
-![Issues](https://img.shields.io/github/issues/Project-Prism/Prism-OS?style=plastic)
-![Chat](https://img.shields.io/discord/893388221424234496?style=plastic)
+<p align="center">
+  <img src="https://img.shields.io/github/downloads/Project-Prism/Prism-OS/total?style=plastic)" />
+  <img src="https://img.shields.io/github/v/release/Project-Prism/Prism-Os?style=plastic)" />
+  <img src="https://img.shields.io/github/license/Project-Prism/Prism-OS?style=plastic)" />
+  <img src="https://img.shields.io/github/issues/Project-Prism/Prism-OS?style=plastic)" />
+  <img src="https://img.shields.io/discord/893388221424234496?style=plastic)" />
+</p>
 
 Prism OS is a [Cosmos](https://github.com/CosmosOS/Cosmos) Based Operating System Developed With C#. It has many features which can be used for many different things, ranging from real-time animation, 3D rendering, network downloads, a filesystem, CPU-accelerated floating-point math, compression, basic parsing for some file formats, and much more!
 
