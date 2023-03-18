@@ -1,6 +1,5 @@
 <p align="center">
   <img src="https://github.com/Project-Prism/Prism-OS/raw/main/PrismOS/Media/Images/Prism.bmp" width="25%" />
-  > The Prism OS logo, created by Nicole Hammonds from The Noun Project.
 </p>
 
 <p align="center">
@@ -10,6 +9,8 @@
   <img src="https://img.shields.io/github/issues/Project-Prism/Prism-OS?style=plastic)" />
   <img src="https://img.shields.io/discord/893388221424234496?style=plastic)" />
 </p>
+
+<hr/>
 
 Prism OS is a [Cosmos](https://github.com/CosmosOS/Cosmos) Based Operating System Developed With C#. It has many features which can be used for many different things, ranging from real-time animation, 3D rendering, network downloads, a filesystem, CPU-accelerated floating-point math, compression, basic parsing for some file formats, and much more!
 
