@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/Project-Prism/Prism-OS/raw/main/PrismOS/Media/Images/Prism.bmp" />
+  <img src="https://github.com/Project-Prism/Prism-OS/raw/main/PrismOS/Media/Images/Prism.bmp" width="25%" />
 </p>
 
 ![Total Downloads](https://img.shields.io/github/downloads/Project-Prism/Prism-OS/total?style=plastic)
