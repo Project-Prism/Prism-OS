@@ -32,7 +32,7 @@ You can find documentation for the entire project here: (Coming soon!)
 | [Terminal.cs](https://github.com/terminal-cs)         | Founder, Main developer      |
 | [theopcoder](https://github.com/theopcoder)           | Website developer            |
 | [Pyogenics](https://github.com/Pyogenics)             | Website developer            |
-| 'Nicole Hammonds', The Noun project.                  | Our logo, 'Daimond'          |
+| 'Nicole Hammonds', The Noun project.                  | Our logo, 'Diamond'          |
 
 This Project is Made Possible by Cosmos and the Community Around it, We Give a Huge Thanks to All of the Developers that Contribute to and Support it, Our Work Would Not be Possible Without it.
 
