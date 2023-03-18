@@ -6,6 +6,18 @@ Try not to be intimidated by the sheer size of the graphics library! It is quite
 
 This readme is still in progress, so it is not finished!
 
+<hr/>
+
+Prism OS supports inclusion/exclusion of specific video drivers at compile time. You can modify what is added when compiling by editing [this](https://github.com/Project-Prism/Prism-OS/blob/main/Directory.Build.props) file.
+Here are the available options for video drivers:
+
+| Available Constants |
+|---------------------|
+| IncludeVMWARE       |
+| IncludeVBE          |
+
+<hr/>
+
 > There is no hardware acceleration and is constantly WIP, expect bugs!
 
 <hr/>
