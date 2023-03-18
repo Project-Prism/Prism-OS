@@ -3,11 +3,11 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/downloads/Project-Prism/Prism-OS/total?style=plastic)" />
-  <img src="https://img.shields.io/github/v/release/Project-Prism/Prism-Os?style=plastic)" />
-  <img src="https://img.shields.io/github/license/Project-Prism/Prism-OS?style=plastic)" />
-  <img src="https://img.shields.io/github/issues/Project-Prism/Prism-OS?style=plastic)" />
-  <img src="https://img.shields.io/discord/893388221424234496?style=plastic)" />
+  <img src="https://img.shields.io/github/downloads/Project-Prism/Prism-OS/total?style=plastic" />
+  <img src="https://img.shields.io/github/v/release/Project-Prism/Prism-Os?style=plastic" />
+  <img src="https://img.shields.io/github/license/Project-Prism/Prism-OS?style=plastic" />
+  <img src="https://img.shields.io/github/issues/Project-Prism/Prism-OS?style=plastic" />
+  <img src="https://img.shields.io/discord/893388221424234496?style=plastic" />
 </p>
 
 <hr/>
