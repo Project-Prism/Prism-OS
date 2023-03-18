@@ -1,4 +1,6 @@
-![Logo](https://github.com/Project-Prism/Prism-OS/raw/main/PrismOS/Media/Images/Prism.bmp)
+<p align="center">
+  <img src="https://github.com/Project-Prism/Prism-OS/raw/main/PrismOS/Media/Images/Prism.bmp" />
+</p>
 
 ![Total Downloads](https://img.shields.io/github/downloads/Project-Prism/Prism-OS/total?style=plastic)
 ![Release](https://img.shields.io/github/v/release/Project-Prism/Prism-Os?style=plastic)
