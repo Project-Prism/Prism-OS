@@ -6,7 +6,7 @@ namespace PrismUI.Controls
 	/// <summary>
 	/// The <see cref="Button"/> class, used to represent the image state(s) of a clickable button.
 	/// </summary>
-	public class Button : Control
+	public class Button : Control, IDisposable
 	{
 		/// <summary>
 		/// Creates a new instance of the <see cref="Button"/> class, Which is abstracted from the <see cref="Control"/> class.
@@ -21,6 +21,8 @@ namespace PrismUI.Controls
 			ButtonHovering = new(Width, Height);
 			ButtonClicked = new(Width, Height);
 			ButtonIdle = new(Width, Height);
+			StartColor = "#EAEAEA";
+			EndColor = "#979797";
 			this.OnClick = OnClick;
 			this.Text = Text;
 		}
@@ -62,10 +64,6 @@ namespace PrismUI.Controls
 
 		public override void Render()
 		{
-			// Define start & end colors for gradients.
-			Color StartColor = "#EAEAEA";
-			Color EndColor = "#979797";
-
 			// Set new sizes if needed.
 			ButtonHovering.Height = Height;
 			ButtonHovering.Width = Width;
@@ -94,10 +92,24 @@ namespace PrismUI.Controls
 			ButtonClicked.DrawImage(0, 0, Filters.MaskAlpha(ButtonClicked, GradientClicked));
 			ButtonIdle.DrawImage(0, 0, Filters.MaskAlpha(ButtonIdle, GradientIdle));
 
+			// Free old gradients & colors.
+			GradientHovering.Dispose();
+			GradientClicked.Dispose();
+			GradientIdle.Dispose();
+
 			// Draw the text onto the images.
 			ButtonHovering.DrawString(Width / 2, Height / 2, Text, default, Color.Black, true);
 			ButtonClicked.DrawString(Width / 2, Height / 2, Text, default, Color.Black, true);
 			ButtonIdle.DrawString(Width / 2, Height / 2, Text, default, Color.Black, true);
+		}
+
+		public void Dispose()
+		{
+			ButtonHovering.Dispose();
+			ButtonClicked.Dispose();
+			ButtonIdle.Dispose();
+
+			GC.SuppressFinalize(this);
 		}
 
 		#endregion
@@ -108,6 +120,8 @@ namespace PrismUI.Controls
 		public Graphics ButtonClicked;
 		public Graphics ButtonIdle;
 		public Action OnClick;
+		public Color StartColor;
+		public Color EndColor;
 		public string Text;
 
 		#endregion

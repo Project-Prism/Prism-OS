@@ -1,7 +1,11 @@
 ﻿using PrismGraphics.Extentions.VMWare;
 using PrismGraphics.Rasterizer;
 using PrismGraphics.Animation;
+using Cosmos.Core.Memory;
+using PrismUI.Controls;
 using PrismGraphics;
+using Cosmos.System;
+using Cosmos.Core;
 
 namespace PrismOS.Tests
 {
@@ -18,6 +22,7 @@ namespace PrismOS.Tests
 			Canvas = new(800, 600);
 			Buffer = new(128, 64);
 			Engine = new(800, 600, 75);
+			Button1 = new(64, 16, 4, "Button1", () => { Cosmos.System.PCSpeaker.Beep(440, 50); });
 			Engine.Objects.Add(Mesh.GetCube(200, 200, 200));
 			Engine.Camera.Position.Z = 200;
 		}
@@ -81,12 +86,38 @@ namespace PrismOS.Tests
 			}
 		}
 
+		/// <summary>
+		/// A method that renders a basic UI on screen.
+		/// </summary>
+		public static void TestUI()
+		{
+			MouseManager.ScreenWidth = Canvas.Width;
+			MouseManager.ScreenHeight = Canvas.Height;
+			Button1.X = 50;
+			Button1.Y = 50;
+			Button1.Render();
+
+			while (true)
+			{
+				string Used = GCImplementation.GetUsedRAM() / 1024 + "K used.";
+
+				Canvas.Clear(Color.CoolGreen);
+				Canvas.DrawImage(Button1.X, Button1.Y, Button1.MainImage);
+				Canvas.DrawFilledRectangle((int)MouseManager.X, (int)MouseManager.Y, 16, 16, 0, Color.White);
+				Canvas.DrawString(15, 15, Used, default, Color.White);
+				Canvas.Update();
+				Heap.Collect();
+				GCImplementation.Free(Used);
+			}
+		}
+
 		#endregion
 
 		#region Fields
 
 		private static readonly SVGAIICanvas Canvas;
 		private static readonly Graphics Buffer;
+		private static readonly Button Button1;
 		private static readonly Engine Engine;
 
 		#endregion
