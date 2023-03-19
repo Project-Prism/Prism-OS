@@ -1,7 +1,7 @@
 ﻿using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Cosmos.System.Network.IPv4.TCP;
 using Cosmos.System.Network.IPv4;
-using PrismTools;
+using PrismTools.IO;
 
 namespace PrismNetwork
 {
@@ -28,12 +28,13 @@ namespace PrismNetwork
 		{
 			try
 			{
+				Debugger.WritePartial("Initializing network");
 				_ = new DHCPClient().SendDiscoverPacket();
-				Debugger.Log("Initialized networking!", Debugger.Severity.Ok);
+				Debugger.Success();
 			}
 			catch
 			{
-				Debugger.Log("Unable to initialize networking!", Debugger.Severity.Warning);
+				Debugger.Fail();
 			}
 		}
 

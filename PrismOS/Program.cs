@@ -5,7 +5,6 @@ using Cosmos.System;
 using PrismRuntime;
 using PrismNetwork;
 using PrismAudio;
-using PrismTools;
 
 namespace PrismOS
 {
@@ -21,9 +20,6 @@ namespace PrismOS
 		/// </summary>
 		protected override void BeforeRun()
 		{
-			// Initialize debugger.
-			Debugger = new("Kernel");
-
 			// Clear console & display ascii art.
 			System.Console.Clear();
 			System.Console.WriteLine(@"    ____       _                   ____  _____");
@@ -39,7 +35,6 @@ namespace PrismOS
 			SystemCalls.Init();
 
 			AudioPlayer.Play(Media.Startup);
-			Debugger.Log("Kernel initialized!", Debugger.Severity.Ok);
 		}
 
 		/// <summary>
@@ -50,11 +45,5 @@ namespace PrismOS
 			EventService.OnTick();
 			Shell.Main();
 		}
-
-		#region Fields
-
-		public static Debugger Debugger;
-
-		#endregion
 	}
 }

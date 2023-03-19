@@ -1,6 +1,6 @@
 ﻿using Cosmos.System.FileSystem.VFS;
 using Cosmos.System.FileSystem;
-using PrismTools;
+using PrismTools.IO;
 
 namespace PrismFilesystem
 {
@@ -15,12 +15,13 @@ namespace PrismFilesystem
 		{
 			try
 			{
+				Debugger.WritePartial("Initializing FS");
 				VFSManager.RegisterVFS(new CosmosVFS(), false, false);
-				Debugger.Success("Initialized the filesystem!");
+				Debugger.Success();
 			}
 			catch
 			{
-				Debugger.Warn("Unable to initialize the filesystem!");
+				Debugger.Fail();
 			}
 		}
 

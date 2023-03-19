@@ -1,6 +1,6 @@
 ﻿using Cosmos.Core.Memory;
+using PrismTools.IO;
 using Cosmos.Core;
-using PrismTools;
 using TinyMath;
 
 namespace PrismRuntime
@@ -14,9 +14,10 @@ namespace PrismRuntime
 		/// </summary>
 		public static void Init()
 		{
+			Debugger.WritePartial("Initializing syscalls");
 			INTs.SetIRQMaskState(16, false);
 			INTs.SetIrqHandler(16, SystemCall);
-			Debugger.Success("Initialized system calls!");
+			Debugger.Success();
 		}
 
 		/// <summary>
@@ -192,7 +193,7 @@ namespace PrismRuntime
 				#endregion
 
 				default:
-					Debugger.Warn($"Unimplemented systemcall: 0x{Context.EAX}");
+					Debugger.WriteFull($"Unimplemented systemcall: 0x{Context.EAX}", Severity.Fail);
 					break;
 			}
 		}

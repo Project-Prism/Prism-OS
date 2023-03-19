@@ -1,6 +1,6 @@
 using Cosmos.HAL.Drivers.PCI.Audio;
 using Cosmos.System.Audio;
-using PrismTools;
+using PrismTools.IO;
 
 namespace PrismAudio
 {
@@ -22,17 +22,19 @@ namespace PrismAudio
 			// Attempt to load the audio driver.
 			try
 			{
+				Debugger.WritePartial("Initializing audio");
+
 				// Assign values and initialize audio player.
 				AM.Output = AC97.Initialize(4096);
 				AM.Stream = Mixer;
 				AM.Enable();
 
 				// Inform that audio player is done initializing.
-				Debugger.Success("Audio initialized!");
+				Debugger.Success();
 			}
-			catch (Exception E)
+			catch
 			{
-				Debugger.Warn(E.Message);
+				Debugger.Fail();
 			}
 		}
 

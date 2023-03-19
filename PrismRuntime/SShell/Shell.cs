@@ -3,7 +3,7 @@ using PrismRuntime.SShell.Structure;
 using PrismRuntime.SShell.Scripts;
 using PrismBinary.Formats.ELF;
 using PrismRuntime.SSharp;
-using PrismTools;
+using PrismTools.IO;
 
 namespace PrismRuntime.SShell
 {
@@ -20,7 +20,7 @@ namespace PrismRuntime.SShell
 			// Skip if there are no commands to run.
 			if (Scripts.Count == 0)
 			{
-				Debugger.Warn("Command interperiter not initialized!");
+				Debugger.WriteFull("Command interperiter not initialized!", Severity.Warn);
 				return;
 			}
 
@@ -29,22 +29,15 @@ namespace PrismRuntime.SShell
 				// Check if command exists.
 				if (Scripts[I].ScriptName == VS[0])
 				{
-					try
-					{
-						string[] T = new string[VS.Length - 1];
-						for (int I2 = 0; I2 < T.Length; I2++)
-						{
-							T[I2] = VS[I2 + 1];
-						}
+					string[] T = new string[VS.Length - 1];
 
-						Scripts[I].Invoke(T);
-						return;
-					}
-					catch (Exception E)
+					for (int I2 = 0; I2 < T.Length; I2++)
 					{
-						Debugger.Error(E.Message);
-						return;
+						T[I2] = VS[I2 + 1];
 					}
+
+					Scripts[I].Invoke(T);
+					return;
 				}
 			}
 
@@ -75,7 +68,7 @@ namespace PrismRuntime.SShell
 				}
 			}
 
-			Debugger.Warn("Command not found!");
+			Debugger.WriteFull("Command not found!", Severity.Warn);
 		}
 
 		/// <summary>
@@ -83,9 +76,9 @@ namespace PrismRuntime.SShell
 		/// </summary>
 		public static void Main()
 		{
-			Debugger.Warn("Droping to recovery shell...");
+			Debugger.WriteFull("Droping to recovery shell...", Severity.Warn);
 			Console.WriteLine("Type \"man\" to get a list of commands.");
-			
+
 			// Initialize all commands.
 			_ = new Unix.PowerOff();
 			_ = new Unix.HexDump();
@@ -110,9 +103,9 @@ namespace PrismRuntime.SShell
 				Console.Write("> ");
 
 				string? Input = Console.ReadLine();
+
 				if (Input == null)
 				{
-					Debugger.Warn("Null");
 					continue;
 				}
 

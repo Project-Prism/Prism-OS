@@ -1,4 +1,5 @@
 ﻿using PrismRuntime.SSharp.Structure;
+using PrismTools.IO;
 using PrismTools;
 
 namespace PrismRuntime.SSharp
@@ -113,7 +114,7 @@ namespace PrismRuntime.SSharp
 			}
 			catch (Exception E)
 			{
-				Debugger.Error($"Critical error! ({E.Message}).");
+				Debugger.WriteFull($"Critical error! ({E.Message}).", Severity.Fail);
 
 				// Return raw executable.
 				return new(((MemoryStream)Output.BaseStream).ToArray());
