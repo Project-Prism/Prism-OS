@@ -303,7 +303,7 @@
             public readonly ushort[] FirstSymbol = new ushort[16];
             public readonly int[] MaxCode = new int[17];
             public readonly byte[] Size = new byte[288];
-            public readonly ushort[] Value = new UInt16[288];
+            public readonly ushort[] Value = new ushort[288];
 
             public Huffman(ArraySegment<byte> sizeList)
             {

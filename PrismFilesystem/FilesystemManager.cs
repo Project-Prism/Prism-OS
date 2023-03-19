@@ -1,6 +1,6 @@
 ﻿using Cosmos.System.FileSystem.VFS;
 using Cosmos.System.FileSystem;
-using PrismTools.IO;
+using PrismTools;
 
 namespace PrismFilesystem
 {

@@ -1,6 +1,6 @@
 ﻿using Cosmos.Core.Memory;
-using PrismTools.IO;
 using Cosmos.Core;
+using PrismTools;
 using TinyMath;
 
 namespace PrismRuntime

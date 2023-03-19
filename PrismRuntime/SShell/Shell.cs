@@ -3,7 +3,7 @@ using PrismRuntime.SShell.Structure;
 using PrismRuntime.SShell.Scripts;
 using PrismBinary.Formats.ELF;
 using PrismRuntime.SSharp;
-using PrismTools.IO;
+using PrismTools;
 
 namespace PrismRuntime.SShell
 {

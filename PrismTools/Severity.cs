@@ -1,4 +1,4 @@
-﻿namespace PrismTools.IO
+﻿namespace PrismTools
 {
 	/// <summary>
 	/// The severity enum used to define error levels.

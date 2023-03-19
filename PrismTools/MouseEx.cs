@@ -1,6 +1,6 @@
 ﻿using Cosmos.System;
 
-namespace PrismTools.IO
+namespace PrismTools
 {
 	/// <summary>
 	/// A basic mouse extention class, used to detect extra mouse information.

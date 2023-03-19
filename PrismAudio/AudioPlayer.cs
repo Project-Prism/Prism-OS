@@ -1,6 +1,6 @@
 using Cosmos.HAL.Drivers.PCI.Audio;
 using Cosmos.System.Audio;
-using PrismTools.IO;
+using PrismTools;
 
 namespace PrismAudio
 {

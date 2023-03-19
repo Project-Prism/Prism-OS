@@ -1,5 +1,4 @@
-﻿using PrismBinary.Formats.ELF.Structure.ELFSectionHeader;
-using PrismBinary.Formats.ELF.Structure.ELFProgramHeader;
+﻿using PrismBinary.Formats.ELF.Structure.ELFProgramHeader;
 using PrismBinary.Formats.ELF.Structure.ELFHeader;
 using PrismBinary.Formats.ELF.Structure;
 

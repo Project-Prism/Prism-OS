@@ -1,5 +1,4 @@
 ﻿using PrismRuntime.SShell;
-using PrismTools.Events;
 using PrismFilesystem;
 using Cosmos.System;
 using PrismRuntime;
@@ -42,7 +41,6 @@ namespace PrismOS
 		/// </summary>
 		protected override void Run()
 		{
-			EventService.OnTick();
 			Shell.Main();
 		}
 	}

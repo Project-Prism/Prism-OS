@@ -1,4 +1,4 @@
-﻿namespace PrismTools.IO
+﻿namespace PrismTools
 {
 	/// <summary>
 	/// Debugger class, used for logging errors.
@@ -35,6 +35,7 @@
 		/// Logs a full info message to the console.
 		/// </summary>
 		/// <param name="Message">Message details.</param>
+		/// <param name="Severity">The severity of the message.</param>
 		public void WriteFull(string Message, Severity Severity)
 		{
 			switch (Severity)
@@ -83,7 +84,6 @@
 		/// <summary>
 		/// Logs an error tag to the console.
 		/// </summary>
-		/// <param name="Message">Message details.</param>
 		public static void Fail()
 		{
 			Console.ForegroundColor = ConsoleColor.Red;

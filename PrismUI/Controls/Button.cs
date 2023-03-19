@@ -1,5 +1,5 @@
 ﻿using PrismGraphics;
-using PrismTools.IO;
+using PrismTools;
 
 namespace PrismUI.Controls
 {

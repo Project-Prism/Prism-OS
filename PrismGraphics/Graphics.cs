@@ -122,14 +122,8 @@ namespace PrismGraphics
 					return;
 				}
 
-				if (Internal == (uint*)0)
+				if (Size == 0)
 				{
-					// Free the buffer pointer if it exists.
-					if (Size > 0)
-					{
-						NativeMemory.Free(Internal);
-					}
-
 					// Set new value.
 					_Height = value;
 
@@ -169,14 +163,8 @@ namespace PrismGraphics
 					return;
 				}
 
-				if (Internal == (uint*)0)
+				if (Size == 0)
 				{
-					// Free the buffer pointer if it exists.
-					if (Size > 0)
-					{
-						NativeMemory.Free(Internal);
-					}
-
 					// Set new value.
 					_Width = value;
 
