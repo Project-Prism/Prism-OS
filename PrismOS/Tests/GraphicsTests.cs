@@ -22,9 +22,11 @@ namespace PrismOS.Tests
 			Canvas = new(800, 600);
 			Buffer = new(128, 64);
 			Engine = new(800, 600, 75);
-			Button1 = new(64, 16, 4, "Button1", () => { Cosmos.System.PCSpeaker.Beep(440, 50); });
+			Button1 = new(50, 50, 64, 16, 4, "Button1", () => { });
 			Engine.Objects.Add(Mesh.GetCube(200, 200, 200));
 			Engine.Camera.Position.Z = 200;
+			MouseManager.ScreenHeight = Canvas.Height;
+			MouseManager.ScreenWidth = Canvas.Width;
 		}
 
 		#region Methods
@@ -91,10 +93,6 @@ namespace PrismOS.Tests
 		/// </summary>
 		public static void TestUI()
 		{
-			MouseManager.ScreenWidth = Canvas.Width;
-			MouseManager.ScreenHeight = Canvas.Height;
-			Button1.X = 50;
-			Button1.Y = 50;
 			Button1.Render();
 
 			while (true)

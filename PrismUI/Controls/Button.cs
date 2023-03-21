@@ -16,7 +16,7 @@ namespace PrismUI.Controls
 		/// <param name="Radius">The radius/curvature of the button.</param>
 		/// <param name="Text">The text shown in the button.</param>
 		/// <param name="OnClick">The method fired when the button is pressed.</param>
-		public Button(ushort Width, ushort Height, ushort Radius, string Text, Action OnClick) : base(Width, Height, Radius)
+		public Button(int X, int Y, ushort Width, ushort Height, ushort Radius, string Text, Action OnClick) : base(X, Y, Width, Height, Radius)
 		{
 			ButtonHovering = new(Width, Height);
 			ButtonClicked = new(Width, Height);
@@ -116,9 +116,9 @@ namespace PrismUI.Controls
 
 		#region Fields
 
-		public Graphics ButtonHovering;
-		public Graphics ButtonClicked;
-		public Graphics ButtonIdle;
+		private readonly Graphics ButtonHovering;
+		private readonly Graphics ButtonClicked;
+		private readonly Graphics ButtonIdle;
 		public Action OnClick;
 		public Color StartColor;
 		public Color EndColor;

@@ -67,5 +67,26 @@
 				B = (byte)(StartValue.B + (EndValue.B - StartValue.B) * Index),
 			};
 		}
+
+		/// <summary>
+		/// A slightly-advanced function to loop a number around a minimum and max value.
+		/// </summary>
+		/// <param name="Value">The value to modulate.</param>
+		/// <param name="Min">The minimum modulation value.</param>
+		/// <param name="Max">The maximum modulation value.</param>
+		/// <returns>A modulated value for both forwards and back.</returns>
+		public static float Loop(float Value, float Min, float Max)
+		{
+			float P = Max - Min + 1;
+
+			float Modulated = (Value - Min) % P;
+
+			if (Modulated < 0)
+			{
+				Modulated += P;
+			}
+
+			return Min + Modulated;
+		}
 	}
 }

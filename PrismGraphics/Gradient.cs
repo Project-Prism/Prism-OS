@@ -9,7 +9,7 @@ namespace PrismGraphics
 	public unsafe class Gradient : Graphics
 	{
 		/// <summary>
-		/// Create a new instance of the <see cref="Gradient"/> class.
+		/// Creates a new instance of the <see cref="Gradient"/> class.
 		/// </summary>
 		/// <param name="Width">Width (in pixels) of the gradient.</param>
 		/// <param name="Height">Height (in pixels) of the gradient.</param>
@@ -25,7 +25,6 @@ namespace PrismGraphics
 
 		/// <summary>
 		/// Creates a new instance of the <see cref="Gradient"/> class.
-		/// BROKEN.
 		/// </summary>
 		/// <param name="Width">Width (in pixels) of the gradient.</param>
 		/// <param name="Height">Height (in pixels) of the gradient.</param>

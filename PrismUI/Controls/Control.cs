@@ -10,11 +10,13 @@ namespace PrismUI.Controls
 		/// <summary>
 		/// Creates a new instance of the <see cref="Control"/> class. It must be used as a base constructor.
 		/// </summary>
-		public Control(ushort Width, ushort Height, ushort Radius)
+		public Control(int X, int Y, ushort Width, ushort Height, ushort Radius)
 		{
 			this.Radius = Radius;
 			this.Height = Height;
 			this.Width = Width;
+			this.X = X;
+			this.Y = Y;
 		}
 
 		#region Properties
