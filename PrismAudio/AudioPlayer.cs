@@ -22,7 +22,7 @@ namespace PrismAudio
 			// Attempt to load the audio driver.
 			try
 			{
-				Debugger.WritePartial("Initializing audio");
+				Debugger.WritePartial("Initializing audio...");
 
 				// Assign values and initialize audio player.
 				AM.Output = AC97.Initialize(4096);
@@ -30,11 +30,11 @@ namespace PrismAudio
 				AM.Enable();
 
 				// Inform that audio player is done initializing.
-				Debugger.Success();
+				Debugger.Finalize(Severity.Success);
 			}
 			catch
 			{
-				Debugger.Fail();
+				Debugger.Finalize(Severity.Fail);
 			}
 		}
 

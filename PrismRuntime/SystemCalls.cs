@@ -14,10 +14,10 @@ namespace PrismRuntime
 		/// </summary>
 		public static void Init()
 		{
-			Debugger.WritePartial("Initializing syscalls");
+			Debugger.WritePartial("Initializing syscalls...");
 			INTs.SetIRQMaskState(16, false);
 			INTs.SetIrqHandler(16, SystemCall);
-			Debugger.Success();
+			Debugger.Finalize(Severity.Success);
 		}
 
 		/// <summary>

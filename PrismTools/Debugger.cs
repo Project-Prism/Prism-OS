@@ -17,6 +17,41 @@
 		#region Methods
 
 		/// <summary>
+		/// Logs a full info message to the console.
+		/// </summary>
+		/// <param name="Message">Message details.</param>
+		/// <param name="Severity">The severity of the message.</param>
+		public void WriteFull(string Message, Severity Severity)
+		{
+			// Print out the category
+			Console.Write($"{Category} ");
+
+			// Switch to the correct colors.
+			switch (Severity)
+			{
+				case Severity.Success:
+					Console.ForegroundColor = ConsoleColor.Green;
+					break;
+				case Severity.Warn:
+					Console.ForegroundColor = ConsoleColor.Yellow;
+					break;
+				case Severity.Fail:
+					Console.ForegroundColor = ConsoleColor.Red;
+					break;
+				case Severity.Info:
+					Console.ForegroundColor = ConsoleColor.Cyan;
+					break;
+			}
+
+			// Write status, then reset.
+			Console.Write('>');
+			Console.ResetColor();
+
+			// Print out the main message.
+			Console.WriteLine($" {Message}");
+		}
+
+		/// <summary>
 		/// Log an partial message to the console.
 		/// Use one of the following methods to complete it:
 		/// <list type="table">
@@ -28,76 +63,48 @@
 		/// <param name="Message">Message to display.</param>
 		public void WritePartial(string Message)
 		{
-			Console.Write($"{Category} > {Message}...");
+			// Print out the category
+			Console.Write($"{Category} > {Message}");
 		}
 
 		/// <summary>
-		/// Logs a full info message to the console.
+		/// Finalizes a log status, use after <see cref="WritePartial(string)"/>.
 		/// </summary>
-		/// <param name="Message">Message details.</param>
-		/// <param name="Severity">The severity of the message.</param>
-		public void WriteFull(string Message, Severity Severity)
+		/// <param name="Severity">The severity to give the message.</param>
+		public void Finalize(Severity Severity)
 		{
+			// Offset the position to reset the '>' character.
+			Console.CursorLeft = Category.Length + 1;
+
+			// Switch to the correct colors.
 			switch (Severity)
 			{
 				case Severity.Success:
 					Console.ForegroundColor = ConsoleColor.Green;
-					Console.Write("[ OK ] ");
 					break;
 				case Severity.Warn:
 					Console.ForegroundColor = ConsoleColor.Yellow;
-					Console.Write("[ WARN ] ");
 					break;
 				case Severity.Fail:
 					Console.ForegroundColor = ConsoleColor.Red;
-					Console.Write("[ FAIL ] ");
 					break;
 				case Severity.Info:
-					Console.Write("[ INFO ] ");
+					Console.ForegroundColor = ConsoleColor.Cyan;
 					break;
 			}
 
+			// Re-write the value and reset the color.
+			Console.Write('>');
 			Console.ResetColor();
-			Console.WriteLine($"{Category} > {Message}");
-		}
 
-		/// <summary>
-		/// Logs a success tag to the console.
-		/// </summary>
-		public static void Success()
-		{
-			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine(SuccessPart);
-			Console.ResetColor();
-		}
-
-		/// <summary>
-		/// Logs a warning tag to the console.
-		/// </summary>
-		public static void Warn()
-		{
-			Console.ForegroundColor = ConsoleColor.Yellow;
-			Console.WriteLine(WarnPart);
-			Console.ResetColor();
-		}
-
-		/// <summary>
-		/// Logs an error tag to the console.
-		/// </summary>
-		public static void Fail()
-		{
-			Console.ForegroundColor = ConsoleColor.Red;
-			Console.WriteLine(FailPart);
-			Console.ResetColor();
+			// Increment the console line.
+			Console.CursorLeft = 0;
+			Console.CursorTop++;
 		}
 
 		#endregion
 
 		#region Fields
-
-		private static readonly string SuccessPart = " [ OK ]";
-		private static readonly string WarnPart = " [ WARN ]";
-		private static readonly string FailPart = " [ FAIL ]";
 
 		/// <summary>
 		/// Category marker for the debugger instance.

@@ -15,13 +15,13 @@ namespace PrismFilesystem
 		{
 			try
 			{
-				Debugger.WritePartial("Initializing FS");
+				Debugger.WritePartial("Initializing FS...");
 				VFSManager.RegisterVFS(new CosmosVFS(), false, false);
-				Debugger.Success();
+				Debugger.Finalize(Severity.Success);
 			}
 			catch
 			{
-				Debugger.Fail();
+				Debugger.Finalize(Severity.Fail);
 			}
 		}
 

@@ -28,13 +28,13 @@ namespace PrismNetwork
 		{
 			try
 			{
-				Debugger.WritePartial("Initializing network");
+				Debugger.WritePartial("Initializing network...");
 				_ = new DHCPClient().SendDiscoverPacket();
-				Debugger.Success();
+				Debugger.Finalize(Severity.Success);
 			}
 			catch
 			{
-				Debugger.Fail();
+				Debugger.Finalize(Severity.Fail);
 			}
 		}
 
