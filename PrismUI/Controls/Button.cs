@@ -33,8 +33,12 @@ namespace PrismUI.Controls
 		{
 			get
 			{
+				// Get the offset values.
+				int OffsetX = Window == null ? 0 : Window.X;
+				int OffsetY = Window == null ? 0 : Window.Y;
+
 				// Check if the mouse is within the control.
-				if (MouseEx.IsMouseWithin(X, Y, Width, Height))
+				if (MouseEx.IsMouseWithin(OffsetX + X, OffsetY + Y, Width, Height))
 				{
 					if (MouseEx.IsClickPressed())
 					{
@@ -101,6 +105,9 @@ namespace PrismUI.Controls
 			ButtonHovering.DrawString(Width / 2, Height / 2, Text, default, Color.Black, true);
 			ButtonClicked.DrawString(Width / 2, Height / 2, Text, default, Color.Black, true);
 			ButtonIdle.DrawString(Width / 2, Height / 2, Text, default, Color.Black, true);
+
+			// Re-render the parent window.
+			Window?.Render();
 		}
 
 		public void Dispose()

@@ -24,7 +24,7 @@ namespace PrismOS.Tests
 			Engine = new(800, 600, 75);
 			Button1 = new(50, 50, 64, 16, 4, "Button1", () => { });
 			Engine.Objects.Add(Mesh.GetCube(200, 200, 200));
-			Engine.Camera.Position.Z = 200;
+			Engine.Camera.Position.Z = -200;
 			MouseManager.ScreenHeight = Canvas.Height;
 			MouseManager.ScreenWidth = Canvas.Width;
 		}

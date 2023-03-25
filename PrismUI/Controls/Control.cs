@@ -27,6 +27,54 @@ namespace PrismUI.Controls
 		/// </summary>
 		public abstract Graphics MainImage { get; }
 
+		/// <summary>
+		/// The control's border radius.
+		/// </summary>
+		public ushort Radius
+		{
+			get
+			{
+				return _Radius;
+			}
+			set
+			{
+				_Radius = value;
+				Render();
+			}
+		}
+
+		/// <summary>
+		/// The control's pixel height.
+		/// </summary>
+		public ushort Height
+		{
+			get
+			{
+				return _Height;
+			}
+			set
+			{
+				_Height = value;
+				Render();
+			}
+		}
+
+		/// <summary>
+		/// The control's pixel width.
+		/// </summary>
+		public ushort Width
+		{
+			get
+			{
+				return _Width;
+			}
+			set
+			{
+				_Width = value;
+				Render();
+			}
+		}
+
 		#endregion
 
 		#region Methods
@@ -40,10 +88,19 @@ namespace PrismUI.Controls
 
 		#region Fields
 
-		public ushort Radius;
-		public ushort Height;
-		public ushort Width;
+		internal Window? Window;
+		private ushort _Radius;
+		private ushort _Height;
+		private ushort _Width;
+
+		/// <summary>
+		/// The control's X position.
+		/// </summary>
 		public int X;
+
+		/// <summary>
+		/// The control's Y position.
+		/// </summary>
 		public int Y;
 
 		#endregion
