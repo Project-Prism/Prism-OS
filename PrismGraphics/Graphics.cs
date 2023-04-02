@@ -799,7 +799,7 @@ namespace PrismGraphics
 		public void DrawString(int X, int Y, string Text, Font? Font, Color Color, bool Center = false)
 		{
 			// Basic null check.
-			if (Text == null || Text.Length == 0)
+			if (string.IsNullOrEmpty(Text))
 			{
 				return;
 			}
@@ -816,71 +816,37 @@ namespace PrismGraphics
 				Font = Font.Fallback;
 			}
 
-			string[] Lines = Text.Split('\n');
+			// Pre-calculate the string's size.
+			ushort TextWidth = Font.MeasureString(Text);
+
+			// Advanced Calculations To Determine Position.
+			int NewlineCount = Text.Count(C => C == '\n');
+			int BY = Y - (Center ? Font.Size * NewlineCount / 2 : 0);
+			int BX = X - (Center ? TextWidth / 2 : 0);
 
 			// Loop Through Each Line Of Text
-			for (int Line = 0; Line < Lines.Length; Line++)
+			for (int I = 0; I < Text.Length; I++)
 			{
-				// Advanced Calculations To Determine Position
-				int IX = X - (Center ? (Font.MeasureString(Text) / 2) : 0);
-				int IY = Y + (Font.Size * Line) - (Center ? Font.Size * (Lines.Length - 1) / 2 : 0);
-
-				// Skip if nothig needs to be drawn.
-				if (IY > Height)
+				// Check if newline is detected.
+				if (Text[I] == '\n')
 				{
-					return;
+					BX = X - (Center ? (TextWidth / 2) : 0);
+					BY += Font.Size;
+					continue;
 				}
 
-				// Loop Though Each Char In The Line
-				for (int Char = 0; Char < Lines[Line].Length; Char++)
+				// Get the glyph for this char.
+				Glyph Temp = Font.GetGlyph(Text[I]);
+
+				// Draw all pixels.
+				for (int P = 0; P < Temp.Points.Count; P++)
 				{
-					// Skip if nothig needs to be drawn.
-					if (IX > Width)
-					{
-						continue;
-					}
-
-					IX += DrawChar(IX, IY, Lines[Line][Char], Font, Color, Center) + 2;
+					this[BX + Temp.Points[P].X, BY + Temp.Points[P].Y] = Color;
 				}
+
+				// Offset the X position by the glyph's length.
+				BX += Temp.Width + 2;
 			}
-		}
-
-		/// <summary>
-		/// Draw a single character at X and Y.
-		/// </summary>
-		/// <param name="X">X position.</param>
-		/// <param name="Y">Y position.</param>
-		/// <param name="Char">Char to draw.</param>
-		/// <param name="Font">Font to use.</param>
-		/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
-		/// <param name="Center">Option to center the char at X and Y.</param>
-		/// <returns>Width of the drawn character.</returns>
-		public int DrawChar(int X, int Y, char Char, Font Font, Color Color, bool Center)
-		{
-			// Get the glyph for this char.
-			Glyph Temp = Font.GetGlyph(Char);
-
-			// Center the position if needed.
-			if (Center)
-			{
-				Y -= Temp.Height / 2;
-				X -= Temp.Width / 2;
-			}
-
-			// Return if nothing needs to be done.
-			if (Temp.IsEmpty)
-			{
-				return Temp.Width;
-			}
-
-			// Draw all pixels.
-			for (int I = 0; I < Temp.Points.Count; I++)
-			{
-				this[X + Temp.Points[I].X, Y + Temp.Points[I].Y] = Color;
-			}
-
-			// Return total width of the glyph.
-			return Temp.Width;
 		}
 
 		#endregion

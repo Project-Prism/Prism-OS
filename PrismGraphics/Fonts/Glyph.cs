@@ -18,15 +18,6 @@
 			Points = new();
 		}
 
-		#region Properties
-
-		/// <summary>
-		/// A basic check to see if there are any pixels that need to be drawn.
-		/// </summary>
-		public bool IsEmpty => Points.Count == 0;
-
-		#endregion
-
 		#region Fields
 
 		public List<(int X, int Y)> Points;
