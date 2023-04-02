@@ -830,7 +830,7 @@ namespace PrismGraphics
 				// Check if newline is detected.
 				if (Text[I] == '\n')
 				{
-					BX = X - (Center ? (TextWidth / 2) : 0);
+					BX = X - (Center ? TextWidth / 2 : 0);
 					BY += Font.Size;
 					continue;
 				}

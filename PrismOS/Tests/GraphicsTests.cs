@@ -24,7 +24,7 @@ namespace PrismOS.Tests
 			Engine = new(800, 600, 75);
 			Button1 = new(50, 50, 64, 16, 4, "Button1", () => { });
 			Engine.Objects.Add(Mesh.GetCube(200, 200, 200));
-			Engine.Camera.Position.Z = -200;
+			Engine.Camera.Position.Z = 200;
 			MouseManager.ScreenHeight = Canvas.Height;
 			MouseManager.ScreenWidth = Canvas.Width;
 		}
@@ -73,6 +73,22 @@ namespace PrismOS.Tests
 		}
 
 		/// <summary>
+		/// A method designed to test for memory leaks.
+		/// </summary>
+		public static void TestLeaks()
+		{
+			while (true)
+			{
+				Canvas.Clear();
+				Canvas.DrawString(15, 15, Canvas.GetFPS() + " FPS", default, Color.White);
+				Canvas.DrawString(15, 30, GCImplementation.GetUsedRAM() / 1024 + " K", default, Color.White);
+				Canvas.DrawFilledRectangle((int)MouseManager.X, (int)MouseManager.Y, 16, 16, 0, Color.White);
+				Canvas.Update();
+				Heap.Collect();
+			}
+		}
+
+		/// <summary>
 		/// A method than renders a 3D scene on screen. Will not return!
 		/// </summary>
 		public static void Test3D()
@@ -85,6 +101,7 @@ namespace PrismOS.Tests
 				Canvas.DrawImage(0, 0, Engine, false);
 				Canvas.DrawString(15, 15, $"{Canvas.GetFPS()} FPS", default, Color.White);
 				Canvas.Update();
+				Heap.Collect();
 			}
 		}
 

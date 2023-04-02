@@ -63,6 +63,12 @@
 			// Get the index of the char in the font.
 			uint Index = (uint)DefaultCharset.IndexOf(C);
 
+			if (C == '\0')
+			{
+				Temp.Height = 0;
+				Temp.Width = 0;
+				return Temp;
+			}
 			if (C == ' ')
 			{
 				Temp.Width = (ushort)(Size / 2);
@@ -93,16 +99,15 @@
 
 							Temp.Points.Add((Max, h));
 
-							// Give the glyph the max with that the real glyph takes up.
-							if (Max > Temp.Width)
-							{
-								Temp.Width = (ushort)Max;
-							}
+							// Get max font width used.
+							Temp.Width = (ushort)Math.Max(Temp.Width, Max);
 						}
 					}
 				}
 			}
 
+			// Add the glyph to the glyph cache and return it.
+			Glyphs.Add(C, Temp);
 			return Temp;
 		}
 
