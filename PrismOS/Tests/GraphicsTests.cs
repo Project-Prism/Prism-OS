@@ -84,7 +84,12 @@ namespace PrismOS.Tests
 				Canvas.DrawString(15, 30, GCImplementation.GetUsedRAM() / 1024 + " K", default, Color.White);
 				Canvas.DrawFilledRectangle((int)MouseManager.X, (int)MouseManager.Y, 16, 16, 0, Color.White);
 				Canvas.Update();
-				Heap.Collect();
+
+				if (MemoryN++ == 3)
+				{
+					Heap.Collect();
+					MemoryN = 0;
+				}
 			}
 		}
 
@@ -134,6 +139,7 @@ namespace PrismOS.Tests
 		private static readonly Graphics Buffer;
 		private static readonly Button Button1;
 		private static readonly Engine Engine;
+		private static int MemoryN;
 
 		#endregion
 	}

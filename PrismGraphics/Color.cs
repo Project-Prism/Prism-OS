@@ -16,11 +16,11 @@ namespace PrismGraphics
 		/// <param name="B">The Blue channel.</param>
 		public Color(float A, float R, float G, float B)
 		{
+			_ARGB = GetPacked(A, R, G, B);
 			_A = A;
 			_R = R;
 			_G = G;
 			_B = B;
-			_ARGB = (uint)((byte)_A << 24 | (byte)_R << 16 | (byte)_G << 8 | (byte)_B);
 		}
 
 		/// <summary>
@@ -31,11 +31,11 @@ namespace PrismGraphics
 		/// <param name="B">The Blue channel.</param>
 		public Color(float R, float G, float B)
 		{
-			_A = 255f;
+			_ARGB = GetPacked(255, R, G, B);
+			_A = 255;
 			_R = R;
 			_G = G;
 			_B = B;
-			_ARGB = (uint)((byte)_A << 24 | (byte)_R << 16 | (byte)_G << 8 | (byte)_B);
 		}
 
 		/// <summary>
@@ -56,7 +56,7 @@ namespace PrismGraphics
 		/// <param name="ColorInfo">The string to read.</param>
 		public Color(string ColorInfo)
 		{
-			// Initialize values.
+			// Initialize the values.
 			_ARGB = 0;
 			_A = 0;
 			_R = 0;
@@ -84,20 +84,20 @@ namespace PrismGraphics
 				if (K != 255)
 				{
 					_A = 255;
-					_R = (byte)((255 - C) * (255 - K) / 255);
-					_G = (byte)((255 - M) * (255 - K) / 255);
-					_B = (byte)((255 - Y) * (255 - K) / 255);
+					_R = (255 - C) * (255 - K) / 255;
+					_G = (255 - M) * (255 - K) / 255;
+					_B = (255 - Y) * (255 - K) / 255;
 				}
 				else
 				{
 					_A = 255;
-					_R = (byte)(255 - C);
-					_G = (byte)(255 - M);
-					_B = (byte)(255 - Y);
+					_R = 255 - C;
+					_G = 255 - M;
+					_B = 255 - Y;
 				}
 
 				// Assign the ARGB value.
-				_ARGB = (uint)((byte)_A << 24 | (byte)_R << 16 | (byte)_G << 8 | (byte)_B);
+				_ARGB = GetPacked(_A, _R, _G, _B);
 
 				return;
 			}
@@ -132,7 +132,7 @@ namespace PrismGraphics
 				}
 
 				// Assign the ARGB value.
-				_ARGB = (uint)((byte)_A << 24 | (byte)_R << 16 | (byte)_G << 8 | (byte)_B);
+				_ARGB = GetPacked(_A, _R, _G, _B);
 
 				return;
 			}
@@ -160,7 +160,7 @@ namespace PrismGraphics
 				}
 
 				// Assign the ARGB value.
-				_ARGB = (uint)((byte)_A << 24 | (byte)_R << 16 | (byte)_G << 8 | (byte)_B);
+				_ARGB = GetPacked(_A, _R, _G, _B);
 
 				return;
 			}
@@ -188,7 +188,7 @@ namespace PrismGraphics
 					_G = L;
 					_B = L;
 
-					_ARGB = (uint)((byte)_A << 24 | (byte)_R << 16 | (byte)_G << 8 | (byte)_B);
+					_ARGB = GetPacked(_A, _R, _G, _B);
 					return;
 				}
 
@@ -200,7 +200,7 @@ namespace PrismGraphics
 				_B = FromHue(P, Q, H - (1 / 3));
 
 				// Assign the ARGB value.
-				_ARGB = (uint)((byte)_A << 24 | (byte)_R << 16 | (byte)_G << 8 | (byte)_B);
+				_ARGB = GetPacked(_A, _R, _G, _B);
 
 				return;
 			}
@@ -228,7 +228,7 @@ namespace PrismGraphics
 				}
 
 				// Assign the ARGB value.
-				_ARGB = (uint)((byte)_A << 24 | (byte)_R << 16 | (byte)_G << 8 | (byte)_B);
+				_ARGB = GetPacked(_A, _R, _G, _B);
 
 				return;
 			}
@@ -454,7 +454,7 @@ namespace PrismGraphics
 			set
 			{
 				_A = value;
-				_ARGB = (uint)((byte)_A << 24 | (byte)_R << 16 | (byte)_G << 8 | (byte)_B);
+				_ARGB = GetPacked(_A, _R, _G, _B);
 			}
 		}
 
@@ -470,7 +470,7 @@ namespace PrismGraphics
 			set
 			{
 				_R = value;
-				_ARGB = (uint)((byte)_A << 24 | (byte)_R << 16 | (byte)_G << 8 | (byte)_B);
+				_ARGB = GetPacked(_A, _R, _G, _B);
 			}
 		}
 
@@ -486,7 +486,7 @@ namespace PrismGraphics
 			set
 			{
 				_G = value;
-				_ARGB = (uint)((byte)_A << 24 | (byte)_R << 16 | (byte)_G << 8 | (byte)_B);
+				_ARGB = GetPacked(_A, _R, _G, _B);
 			}
 		}
 
@@ -502,7 +502,7 @@ namespace PrismGraphics
 			set
 			{
 				_B = value;
-				_ARGB = (uint)((byte)_A << 24 | (byte)_R << 16 | (byte)_G << 8 | (byte)_B);
+				_ARGB = GetPacked(_A, _R, _G, _B);
 			}
 		}
 
