@@ -1,7 +1,6 @@
-﻿using PrismUI.Controls;
-using PrismGraphics;
+﻿using PrismGraphics.UI.Controls;
 
-namespace PrismUI
+namespace PrismGraphics.UI
 {
 	public class Window
 	{

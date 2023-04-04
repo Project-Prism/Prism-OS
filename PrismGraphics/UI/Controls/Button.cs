@@ -1,7 +1,6 @@
-﻿using PrismGraphics;
-using PrismTools;
+﻿using PrismTools;
 
-namespace PrismUI.Controls
+namespace PrismGraphics.UI.Controls
 {
 	/// <summary>
 	/// The <see cref="Button"/> class, used to represent the image state(s) of a clickable button.

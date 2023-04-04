@@ -8,6 +8,7 @@
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<Optimize>True</Optimize>
 	</PropertyGroup>
 
 	<!--Cosmos Config-->
@@ -35,10 +36,6 @@
 		<CompressionType>Gzip</CompressionType>
 		<RemoveBootDebugOutput>True</RemoveBootDebugOutput>
 		<OptimizationLevel>2</OptimizationLevel>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<Optimize>True</Optimize>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -80,7 +77,6 @@
 		<ProjectReference Include="..\PrismNetwork\PrismNetwork.csproj" />
 		<ProjectReference Include="..\PrismRuntime\PrismRuntime.csproj" />
 		<ProjectReference Include="..\PrismTools\PrismTools.csproj" />
-		<ProjectReference Include="..\PrismUI\PrismUI.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -8,6 +8,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<DebugType>none</DebugType>
+		<Optimize>True</Optimize>
 
 	</PropertyGroup>
 
@@ -19,6 +20,8 @@
 			<CopyLocal>False</CopyLocal>
 			<Private>True</Private>
 		</ProjectReference>
+
+		<ProjectReference Include="..\PrismTools\PrismTools.csproj" />
 
 	</ItemGroup>
 

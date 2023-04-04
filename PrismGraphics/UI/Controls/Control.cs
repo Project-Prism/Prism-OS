@@ -1,6 +1,6 @@
 ﻿using PrismGraphics;
 
-namespace PrismUI.Controls
+namespace PrismGraphics.UI.Controls
 {
 	/// <summary>
 	/// The base control class, used to represent a UI control.

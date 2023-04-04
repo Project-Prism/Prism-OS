@@ -1,8 +1,8 @@
 ﻿using PrismGraphics.Extentions.VMWare;
+using PrismGraphics.UI.Controls;
 using PrismGraphics.Rasterizer;
 using PrismGraphics.Animation;
 using Cosmos.Core.Memory;
-using PrismUI.Controls;
 using PrismGraphics;
 using Cosmos.System;
 using Cosmos.Core;

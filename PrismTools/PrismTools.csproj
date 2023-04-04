@@ -8,6 +8,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<DebugType>none</DebugType>
+		<Optimize>True</Optimize>
 
 	</PropertyGroup>
 
