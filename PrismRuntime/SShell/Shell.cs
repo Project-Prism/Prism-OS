@@ -1,5 +1,4 @@
 ﻿using PrismBinary.Formats.ELF.Structure.ELFHeader;
-using PrismRuntime.SShell.Structure;
 using PrismRuntime.SShell.Scripts;
 using PrismBinary.Formats.ELF;
 using PrismRuntime.SSharp;
@@ -92,6 +91,7 @@ namespace PrismRuntime.SShell
 			_ = new Unix.Man();
 			_ = new Unix.PWD();
 			_ = new Unix.CP();
+			_ = new Unix.CD();
 			_ = new Unix.LS();
 			_ = new Unix.RM();
 			_ = new Status();

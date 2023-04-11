@@ -1,5 +1,4 @@
-﻿using PrismRuntime.SShell.Structure;
-using Cosmos.Core.Memory;
+﻿using Cosmos.Core.Memory;
 
 namespace PrismRuntime.SShell.Scripts
 {

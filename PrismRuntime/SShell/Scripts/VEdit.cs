@@ -1,6 +1,4 @@
-﻿using PrismRuntime.SShell.Structure;
-
-namespace PrismRuntime.SShell.Scripts
+﻿namespace PrismRuntime.SShell.Scripts
 {
 	public class VEdit : Script
 	{

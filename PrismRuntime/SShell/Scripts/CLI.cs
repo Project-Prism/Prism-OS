@@ -1,5 +1,4 @@
-﻿using PrismRuntime.SShell.Structure;
-using PrismRuntime.SSharp;
+﻿using PrismRuntime.SSharp;
 
 namespace PrismRuntime.SShell.Scripts
 {

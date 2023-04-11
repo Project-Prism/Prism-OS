@@ -1,4 +1,4 @@
-﻿namespace PrismRuntime.SShell.Structure
+﻿namespace PrismRuntime.SShell.Scripts
 {
 	/// <summary>
 	/// This is the base class all commands must inherit.
