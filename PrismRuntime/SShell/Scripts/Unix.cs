@@ -119,14 +119,7 @@ namespace PrismRuntime.SShell.Scripts
 
 				for (int I = 0; I < Args.Length; I++)
 				{
-					if (Args[I][1] == ':' && Args[I][2] == '\\')
-					{
-						Directory.CreateDirectory(Args[I]);
-					}
-					else
-					{
-						Directory.CreateDirectory(Environment.CurrentDirectory + Args[I]);
-					}
+					Directory.CreateDirectory(Args[I]);
 				}
 			}
 		}
@@ -147,14 +140,7 @@ namespace PrismRuntime.SShell.Scripts
 
 				for (int I = 0; I < Args.Length; I++)
 				{
-					if (Args[I][1] == ':' && Args[I][2] == '\\')
-					{
-						File.Create(Args[I]);
-					}
-					else
-					{
-						File.Create(Environment.CurrentDirectory + Args[I]);
-					}
+					File.Create(Args[I]);
 				}
 			}
 		}
@@ -245,12 +231,9 @@ namespace PrismRuntime.SShell.Scripts
 					return;
 				}
 
-				string Destination = Args[1][1] == ':' && Args[1][2] == '\\' ? Args[1] : Environment.CurrentDirectory + Args[1];
-				string Source = Args[0][1] == ':' && Args[0][2] == '\\' ? Args[0] : Environment.CurrentDirectory + Args[0];
-
-				if (File.Exists(Source) && !File.Exists(Destination))
+				if (File.Exists(Args[0]) && !File.Exists(Args[1]))
 				{
-					File.Copy(Source, Destination);
+					File.Copy(Args[0], Args[1]);
 				}
 			}
 		}
@@ -269,21 +252,7 @@ namespace PrismRuntime.SShell.Scripts
 					return;
 				}
 
-				if (Args[0][1] == ':' && Args[0][2] == Path.DirectorySeparatorChar)
-				{
-					Environment.CurrentDirectory = Args[0];
-					return;
-				}
-
-				foreach (string Section in Args[0].Split(Path.DirectorySeparatorChar))
-				{
-					Environment.CurrentDirectory = Section switch
-					{
-						".." => Environment.CurrentDirectory[..Environment.CurrentDirectory[..^1].LastIndexOf(Path.DirectorySeparatorChar)] + Path.DirectorySeparatorChar,
-						"." => string.Empty,
-						_ => Environment.CurrentDirectory + Section + (Section.EndsWith(Path.DirectorySeparatorChar) ? string.Empty : Path.DirectorySeparatorChar),
-					};
-				}
+				Environment.CurrentDirectory = Args[0];
 			}
 		}
 		public class LS : Script
@@ -295,10 +264,11 @@ namespace PrismRuntime.SShell.Scripts
 
 			public override void Invoke(string[] Args)
 			{
-				string FullPath = Args.Length == 0 ? Environment.CurrentDirectory : Args[0];
+				string fullPath = Args.Length == 0 || Args[0].Length == 0 ? Environment.CurrentDirectory : Args[0];
+				Console.WriteLine(fullPath);
 
 				Console.ForegroundColor = ConsoleColor.Blue;
-				foreach (string D in Directory.GetDirectories(FullPath))
+				foreach (string D in Directory.GetDirectories(fullPath))
 				{
 					if (D.Contains(' '))
 					{
@@ -310,7 +280,7 @@ namespace PrismRuntime.SShell.Scripts
 					}
 				}
 				Console.ForegroundColor = ConsoleColor.Cyan;
-				foreach (string F in Directory.GetFiles(FullPath))
+				foreach (string F in Directory.GetFiles(fullPath))
 				{
 					if (F.Contains(' '))
 					{
@@ -344,15 +314,13 @@ namespace PrismRuntime.SShell.Scripts
 					return;
 				}
 
-				string Target = Args[0][1] == ':' && Args[0][2] == '\\' ? Args[0] : Environment.CurrentDirectory + Args[0];
-
 				if (Args.Length > 1 && Args[0] == "-r")
 				{
-					Directory.Delete(Target);
+					Directory.Delete(Args[1]);
 				}
 				else
 				{
-					File.Delete(Target);
+					File.Delete(Args[1]);
 				}
 			}
 		}

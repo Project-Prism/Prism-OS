@@ -17,7 +17,6 @@ namespace PrismFilesystem
 			{
 				Debugger.WritePartial("Initializing FS...");
 				VFSManager.RegisterVFS(new CosmosVFS(), false, false);
-				Environment.CurrentDirectory = "0:\\";
 				Debugger.Finalize(Severity.Success);
 			}
 			catch
