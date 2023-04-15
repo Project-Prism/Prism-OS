@@ -21,6 +21,8 @@ Prism OS is a [Cosmos](https://github.com/CosmosOS/Cosmos) Based Operating Syste
 
 Want to Add Something New to Prism OS? Simply Create a Pull Request and We'll Review it. (Your Code Should Preferably Follow [These](https://github.com/Project-Prism/Prism-OS/blob/main/CONTRIBUTING.md) Guidelines)
 
+If you found this project interesting or useful, please do leave a star! It will help out a lot for finding future contributors for the project.
+
 You can find documentation for the entire project here: (Coming soon!)
 
 <hr/>
