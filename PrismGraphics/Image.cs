@@ -1,18 +1,11 @@
-﻿using System.Runtime.InteropServices;
-using PrismBinary.Compression;
+﻿using PrismGraphics.Special.Compression;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace PrismGraphics
 {
-	public unsafe class Image : Graphics
+    public unsafe static class Image
 	{
-		/// <summary>
-		/// Creates a new instance of the <see cref="Image"/> class.
-		/// </summary>
-		/// <param name="Width">Width of the image.</param>
-		/// <param name="Height">Height of the image.</param>
-		public Image(ushort Width, ushort Height) : base(Width, Height) { }
-
 		#region Structure
 
 		[StructLayout(LayoutKind.Sequential, Pack = 1)]
@@ -39,14 +32,14 @@ namespace PrismGraphics
 		/// Based on: https://github.com/CosmosOS/Cosmos/blob/master/source/Cosmos.System2/Graphics/Bitmap.cs
 		/// </summary>
 		/// <param name="Binary">Raw file data.</param>
-		/// <returns>Bitmap file as an <see cref="Image"/>.</returns>
-		public static Image FromBitmap(byte[] Binary, bool UseBGR = true)
+		/// <returns>BMP file as a <see cref="Graphics"/> instance.</returns>
+		public static Graphics FromBitmap(byte[] Binary, bool UseBGR = true)
 		{
 			// Create reader instance.
 			BinaryReader Reader = new(new MemoryStream(Binary));
 
 			// Create temporary buffer.
-			Image Temp = new(0, 0);
+			Graphics Temp = new(0, 0);
 
 			// Reading magic number to identify if BMP file. (BM as string - 42 4D as Hex)
 			if ("42-4D" != BitConverter.ToString(Reader.ReadBytes(2))) // do uint if not work?
@@ -182,8 +175,8 @@ namespace PrismGraphics
 		/// Loads a PNG file.
 		/// </summary>
 		/// <param name="Binary">Raw file data.</param>
-		/// <returns>PNG file as an <see cref="Image"/>.</returns>
-		public static Image FromPNG(byte[] Binary)
+		/// <returns>PNG file as a <see cref="Graphics"/> instance.</returns>
+		public static Graphics FromPNG(byte[] Binary)
 		{
 			// Check header for invalid magic data.
 			if (Binary[0] != 137 ||
@@ -200,7 +193,7 @@ namespace PrismGraphics
 
 			BinaryReader Reader = new(new MemoryStream(Binary));
 			Reader.BaseStream.Position = 8;
-			Image Result = new(0, 0);
+			Graphics Result = new(0, 0);
 
 			while (Reader.BaseStream.Position < Reader.BaseStream.Length)
 			{
@@ -298,10 +291,10 @@ namespace PrismGraphics
 		/// Loads a TGA file.
 		/// </summary>
 		/// <param name="Binary">Raw file data.</param>
-		/// <returns>TGA file as an <see cref="Image"/>.</returns>
-		public static Image FromTGA(byte[] Binary)
+		/// <returns>TGA file as a <see cref="Graphics"/> instance.</returns>
+		public static Graphics FromTGA(byte[] Binary)
 		{
-			Image Result = new(0, 0);
+			Graphics Result = new(0, 0);
 			TGAHeader* Header;
 
 			fixed (byte* P = Binary)
@@ -335,8 +328,8 @@ namespace PrismGraphics
 		/// Loads a PPM file.
 		/// </summary>
 		/// <param name="Binary">Raw file data.</param>
-		/// <returns>PPM file as an <see cref="Image"/>.</returns>
-		public static Image FromPPM(byte[] Binary)
+		/// <returns>PPM file as a <see cref="Graphics"/> instance.</returns>
+		public static Graphics FromPPM(byte[] Binary)
 		{
 			BinaryReader Reader = new(new MemoryStream(Binary));
 
@@ -371,7 +364,7 @@ namespace PrismGraphics
 
 			Reader.ReadChar(); // Skip Newline
 
-			Image Result = new((ushort)uint.Parse(widths), (ushort)uint.Parse(heights));
+			Graphics Result = new((ushort)uint.Parse(widths), (ushort)uint.Parse(heights));
 
 			for (int Y = 0; Y < Result.Height; Y++)
 			{

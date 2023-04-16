@@ -10,8 +10,26 @@
 
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <None Remove="Media\Audio\Shutdown-Alt.wav" />
+	  <None Remove="Media\Audio\Shutdown.wav" />
+	  <None Remove="Media\Audio\Startup.wav" />
+	  <None Remove="Media\Executables\Test.elf" />
+	  <None Remove="Media\Images\Prism.bmp" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Media\Audio\Shutdown-Alt.wav" />
+	  <EmbeddedResource Include="Media\Audio\Shutdown.wav" />
+	  <EmbeddedResource Include="Media\Audio\Startup.wav" />
+	  <EmbeddedResource Include="Media\Executables\Test.elf" />
+	  <EmbeddedResource Include="Media\Images\Prism.bmp" />
+	</ItemGroup>
+
 	<!--Prism OS include group-->
 	<ItemGroup>
+
+		<ProjectReference Include="..\PrismGraphics\PrismGraphics.csproj" />
 
 		<ProjectReference Include="..\PrismTools\PrismTools.csproj">
 			<Private>True</Private>
@@ -36,6 +54,10 @@
 			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
 			<CopyLocal>False</CopyLocal>
 			<Private>True</Private>
+		</Reference>
+
+		<Reference Include="IL2CPU.API">
+		  <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\IL2CPU.API.dll</HintPath>
 		</Reference>
 
 	</ItemGroup>

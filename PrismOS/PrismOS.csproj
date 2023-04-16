@@ -39,22 +39,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="Media\Audio\Shutdown-Alt.wav" />
-		<None Remove="Media\Audio\Shutdown.wav" />
-		<None Remove="Media\Audio\Startup.wav" />
-		<None Remove="Media\Images\Prism.bmp" />
-		<None Remove="Media\Test.elf" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Include="Media\Audio\Shutdown-Alt.wav" />
-		<EmbeddedResource Include="Media\Audio\Shutdown.wav" />
-		<EmbeddedResource Include="Media\Audio\Startup.wav" />
-		<EmbeddedResource Include="Media\Executables\Test.elf" />
-		<EmbeddedResource Include="Media\Images\Prism.bmp" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<None Include="..\README.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
@@ -71,7 +55,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\PrismAudio\PrismAudio.csproj" />
-		<ProjectReference Include="..\PrismBinary\PrismBinary.csproj" />
 		<ProjectReference Include="..\PrismFilesystem\PrismFilesystem.csproj" />
 		<ProjectReference Include="..\PrismGraphics\PrismGraphics.csproj" />
 		<ProjectReference Include="..\PrismNetwork\PrismNetwork.csproj" />

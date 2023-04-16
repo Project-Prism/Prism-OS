@@ -1,7 +1,9 @@
-﻿using PrismBinary.Formats.ELF.Structure.ELFHeader;
+﻿using PrismFilesystem.Formats.ELF.Structure.ELFHeader;
 using Console = System.Console;
+using PrismFilesystem;
 using Cosmos.System;
 using Cosmos.Core;
+using PrismAudio;
 
 namespace PrismRuntime.SShell.Scripts
 {
@@ -13,6 +15,9 @@ namespace PrismRuntime.SShell.Scripts
 
 			public override void Invoke(string[] Args)
 			{
+				Console.Clear();
+				AudioPlayer.Play(Media.ShutdownAlt);
+				Thread.Sleep(5000);
 				Power.Shutdown();
 			}
 		}

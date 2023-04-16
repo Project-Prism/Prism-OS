@@ -1,22 +1,22 @@
 ﻿using System.Runtime.InteropServices;
-using PrismGraphics.Rasterizer;
 using PrismGraphics.Fonts;
 using System.Numerics;
 using Cosmos.Core;
+using PrismGraphics.Special.Rasterizer;
 
 namespace PrismGraphics
 {
-	/// <summary>
-	/// The <see cref="Graphics"/> class, used for rendering content on a 2D surface.
-	///
-	/// <list type="table">
-	///		<item>See also: <see cref="Gradient"/></item>
-	///		<item>See also: <see cref="Filters"/></item>
-	///		<item>See also: <see cref="Image"/></item>
-	///		<item>See also: <see cref="Color"/></item>
-	/// </list>
-	/// </summary>
-	public unsafe class Graphics : IDisposable
+    /// <summary>
+    /// The <see cref="Graphics"/> class, used for rendering content on a 2D surface.
+    ///
+    /// <list type="table">
+    ///		<item>See also: <see cref="Gradient"/></item>
+    ///		<item>See also: <see cref="Filters"/></item>
+    ///		<item>See also: <see cref="Image"/></item>
+    ///		<item>See also: <see cref="Color"/></item>
+    /// </list>
+    /// </summary>
+    public unsafe class Graphics : IDisposable
 	{
 		/// <summary>
 		/// Creates a new instance of the <see cref="Graphics"/> class..

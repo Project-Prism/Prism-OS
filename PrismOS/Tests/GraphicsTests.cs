@@ -1,18 +1,18 @@
-﻿using PrismGraphics.Extentions.VMWare;
-using PrismGraphics.UI.Controls;
-using PrismGraphics.Rasterizer;
-using PrismGraphics.Animation;
+﻿using PrismGraphics.Animation;
 using Cosmos.Core.Memory;
 using PrismGraphics;
 using Cosmos.System;
 using Cosmos.Core;
+using PrismGraphics.Extentions.VMWare;
+using PrismGraphics.Special.Rasterizer;
+using PrismGraphics.Special.UI.Controls;
 
 namespace PrismOS.Tests
 {
-	/// <summary>
-	/// The graphics testing class. Used to test the graphics features in prism for bugs.
-	/// </summary>
-	public static class GraphicsTests
+    /// <summary>
+    /// The graphics testing class. Used to test the graphics features in prism for bugs.
+    /// </summary>
+    public static class GraphicsTests
 	{
 		/// <summary>
 		/// Only run when the class is accessed, memory is not used when no tests are ran.

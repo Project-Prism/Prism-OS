@@ -1,12 +1,12 @@
-﻿using PrismBinary.Formats.ELF.Structure.ELFHeader;
+﻿using PrismFilesystem.Formats.ELF.Structure.ELFHeader;
+using PrismFilesystem.Formats.ELF;
 using PrismRuntime.SShell.Scripts;
-using PrismBinary.Formats.ELF;
 using PrismRuntime.SSharp;
 using PrismTools;
 
 namespace PrismRuntime.SShell
 {
-	public static unsafe class Shell
+    public static unsafe class Shell
 	{
 		#region Methods
 

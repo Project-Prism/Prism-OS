@@ -15,12 +15,6 @@
 	<!--Prism OS include group-->
 	<ItemGroup>
 
-		<ProjectReference Include="..\PrismBinary\PrismBinary.csproj">
-			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
-			<CopyLocal>False</CopyLocal>
-			<Private>True</Private>
-		</ProjectReference>
-
 		<ProjectReference Include="..\PrismTools\PrismTools.csproj" />
 
 	</ItemGroup>
