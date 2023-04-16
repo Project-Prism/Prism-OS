@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/Project-Prism/Prism-OS/raw/main/PrismOS/Media/Images/Prism.bmp" width="25%" />
+  <img src="https://github.com/Project-Prism/Prism-OS/raw/main/PrismFilesystem/Media/Images/Prism.bmp" width="25%" />
 </p>
 
 <h1 align="center">Prism OS</h1>
