@@ -1,4 +1,4 @@
-﻿namespace PrismGraphics.Special.Rasterizer
+﻿namespace PrismGraphics.Rasterizer
 {
     /// <summary>
     /// The enum used to define the possible types of light.

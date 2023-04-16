@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace PrismGraphics.Special.Rasterizer
+namespace PrismGraphics.Rasterizer
 {
     public class Triangle
     {

@@ -1,6 +1,6 @@
-﻿using PrismGraphics.Special.UI.Controls;
+﻿using PrismGraphics.UI.Controls;
 
-namespace PrismGraphics.Special.UI
+namespace PrismGraphics.UI
 {
     public class Window
     {

@@ -1,4 +1,4 @@
-﻿namespace PrismGraphics.Special.Compression
+﻿namespace PrismTools.Compression
 {
     /// <summary>
     /// public domain zlib decode    

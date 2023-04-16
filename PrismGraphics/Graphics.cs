@@ -1,8 +1,8 @@
 ﻿using System.Runtime.InteropServices;
+using PrismGraphics.Rasterizer;
 using PrismGraphics.Fonts;
 using System.Numerics;
 using Cosmos.Core;
-using PrismGraphics.Special.Rasterizer;
 
 namespace PrismGraphics
 {
@@ -136,6 +136,7 @@ namespace PrismGraphics
 					_Height = value;
 
 					// Re-allocate new memory & automatically free old chunk.
+					GCImplementation.DecRootCount((ushort*)Internal);
 					Internal = (uint*)NativeMemory.Realloc(Internal, Size * 4);
 				}
 
@@ -177,6 +178,7 @@ namespace PrismGraphics
 					_Width = value;
 
 					// Re-allocate new memory & automatically free old chunk.
+					GCImplementation.DecRootCount((ushort*)Internal);
 					Internal = (uint*)NativeMemory.Realloc(Internal, Size * 4);
 				}
 

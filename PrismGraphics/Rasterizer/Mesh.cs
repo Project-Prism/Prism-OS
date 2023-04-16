@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace PrismGraphics.Special.Rasterizer
+namespace PrismGraphics.Rasterizer
 {
     /// <summary>
     /// The <see cref="Mesh"/> class - Used to generate and load complet 3D shapes. Used in the <see cref="Engine"/> class.

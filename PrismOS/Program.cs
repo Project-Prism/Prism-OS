@@ -7,12 +7,12 @@ using PrismAudio;
 
 namespace PrismOS
 {
-	/*
+    /*
 	// TO-DO: raycaster engine.
 	// TO-DO: Fix gradient's MaskAlpha method. (?)
 	// TO-DO: Move 3D engine to be shader based for all transformations.
 	*/
-	public unsafe class Program : Kernel
+    public unsafe class Program : Kernel
 	{
 		/// <summary>
 		/// A method called once when the kernel boots, Used to initialize the system.
@@ -41,6 +41,12 @@ namespace PrismOS
 		/// </summary>
 		protected override void Run()
 		{
+			// Hold any key for graphics test.
+			if (PrismTools.KeyboardEx.TryReadKey(out _))
+			{
+				Tests.TestGraphics();
+			}
+
 			Shell.Main();
 		}
 	}

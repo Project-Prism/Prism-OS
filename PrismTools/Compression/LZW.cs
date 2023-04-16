@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace PrismGraphics.Special.Compression
+namespace PrismTools.Compression
 {
     /// <summary>
     /// LZW (De)compression class.
@@ -24,22 +24,22 @@ namespace PrismGraphics.Special.Compression
                 Dictionary.Add(((char)I).ToString(), I);
             }
 
-            foreach (char C in Binary)
+            for (int I = 0; I < Binary.Length; I++)
             {
-                string WC = W + C;
-                if (Dictionary.ContainsKey(WC))
-                {
-                    W = WC;
-                }
-                else
-                {
-                    // write w to output
-                    Compressed.Add(Dictionary[W]);
-                    // wc is a new sequence; add it to the dictionary
-                    Dictionary.Add(WC, Dictionary.Count);
-                    W = C.ToString();
-                }
-            }
+                string WC = W + (char)Binary[I];
+				if (Dictionary.ContainsKey(WC))
+				{
+					W = WC;
+				}
+				else
+				{
+					// write w to output
+					Compressed.Add(Dictionary[W]);
+					// wc is a new sequence; add it to the dictionary
+					Dictionary.Add(WC, Dictionary.Count);
+					W = ((char)Binary[I]).ToString();
+				}
+			}
 
             // write remaining output if necessary
             if (!string.IsNullOrEmpty(W))

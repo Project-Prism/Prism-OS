@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace PrismGraphics.Special.Rasterizer
+namespace PrismGraphics.Rasterizer
 {
     /// <summary>
     /// The <see cref="Engine"/> class - It is used to render 3D scenes onto a 2D canvas.

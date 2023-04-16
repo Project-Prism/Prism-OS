@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace PrismGraphics.Special.Rasterizer
+namespace PrismGraphics.Rasterizer
 {
     /// <summary>
     /// The camera class, only used to represent location and rotation of a camera.

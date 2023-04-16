@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace PrismGraphics.Special.Rasterizer
+namespace PrismGraphics.Rasterizer
 {
     /// <summary>
     /// The <see cref="Light"/> class, used to represent a light's type, position, rotation, and color.

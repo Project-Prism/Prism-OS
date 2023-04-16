@@ -1,5 +1,5 @@
-﻿using PrismGraphics.Special.Compression;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
+using PrismTools.Compression;
 using System.Text;
 
 namespace PrismGraphics
