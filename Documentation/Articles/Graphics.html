@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Introduction - PrismGraphics </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Introduction - PrismGraphics ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="introduction---prismgraphics">Introduction - PrismGraphics</h1>
+
+<p>PrismgGraphics is the 2D graphics rasterization platform that allows for drawing of text, images, shapes, gradients, and whatever else on a 2D canvas.</p>
+<p>Try not to be intimidated by the sheer size of the graphics library! It is quite simple when you look at it from a high level perspective.</p>
+<p>This readme is still in progress, so it is not finished!</p>
+<hr>
+<p>Prism OS supports inclusion/exclusion of specific video drivers at compile time. You can modify what is added when compiling by editing <a href="https://github.com/Project-Prism/Prism-OS/blob/main/Directory.Build.props">this</a> file.
+Here are the available options for video drivers:</p>
+<table>
+<thead>
+<tr>
+<th>Available Constants</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IncludeVMWARE</td>
+</tr>
+<tr>
+<td>IncludeVBE</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<blockquote>
+<p>There is no hardware acceleration and is constantly WIP, expect bugs!</p>
+</blockquote>
+<hr>
+<h2 id="animation---animationcontrollercs">Animation - <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Animation/AnimationController.cs">AnimationController.cs</a></h2>
+<h3 id="examples">Examples</h3>
+<p>Interpolate <code>0.0f</code> to <code>255.0f</code> over the span of <code>5</code> seconds with the <code>Ease</code> mode.</p>
+<pre><code class="lang-cs">AnimationController A = new(0.0f, 255.0f, new(0, 0, 5), AnimationMode.Ease);
+</code></pre>
+<p>Interpolate <code>Color.Black</code> to <code>Color.Blue</code> over the span of <code>5</code> seconds with the <code>Ease</code> mode.</p>
+<pre><code class="lang-cs">ColorController A = new(Color.Black, Color.Blue, new(0, 0, 5), AnimationMode.Ease);
+</code></pre>
+<p>Display the material-theme cirlce spinning progress bar</p>
+<pre><code class="lang-cs">AnimationController A = new(25f, 270f, new(0, 0, 0, 0, 750), AnimationMode.Ease);
+AnimationController P = new(0f, 360f, new(0, 0, 0, 0, 500), AnimationMode.Linear);
+
+int X = C.Width / 2;
+int Y = C.Height / 2;
+
+while (true)
+{
+	if (A.IsFinished)
+	{
+		(A.Source, A.Target) = (A.Target, A.Source);
+		A.Reset();
+	}
+	if (P.IsFinished)
+	{
+		P.Reset();
+	}
+
+	int LengthOffset = (int)(P.Current + A.Current);
+	int Offset = (int)P.Current;
+
+	C.Clear();
+	C.DrawFilledRectangle(X - 32, Y - 32, 64, 64, 6, Color.White);
+	C.DrawArc(400, 300, 19, Color.LightGray, Offset, LengthOffset);
+	C.DrawArc(400, 300, 20, Color.Black, Offset, LengthOffset);
+	C.DrawArc(400, 300, 21, Color.LightGray, Offset, LengthOffset);
+	C.Update();
+}
+</code></pre>
+<p>The output result should look as follows:</p>
+<p><a href="https://user-images.githubusercontent.com/76945439/220498920-b9d7a999-f8d1-4d00-a6d4-ed7e97e2a2de.mp4">https://user-images.githubusercontent.com/76945439/220498920-b9d7a999-f8d1-4d00-a6d4-ed7e97e2a2de.mp4</a></p>
+<h4 id="the-algorithm">The algorithm</h4>
+<p>It's two actually. The absolute starting point circles around continuously and linearly and the length of the arc eases in and out between a short and long length</p>
+<hr>
+<h2 id="graphics---gradientcs">Graphics - <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Gradient.cs">Gradient.cs</a></h2>
+<p>PrismGraphics includes a file to generate gradients. They are rendered off of a class abstracted from the normal graphics class.
+To generate a new gradient, try:</p>
+<pre><code class="lang-cs">Gradient G = new(200, 200, Color.White, Color.Green);
+</code></pre>
+<p>This will make a gradient which fades from white to green over the 200 pixels in height.
+To rotate this, pass it through the rotate filter:</p>
+<pre><code class="lang-cs">Filters.Rotate(Angle, G);
+</code></pre>
+<hr>
+<h2 id="graphics---getting-a-display-output">Graphics - Getting a display output</h2>
+<p>Getting a display output using the <code>PrismGraphics</code> library is very simple. There are a few modes to choose from, but for now <code>SVGAIICanvas</code> is the only type that is working.</p>
+<h3 id="defining-new-instance">Defining new instance</h3>
+<p>To get a display, define a new instance of the SVGAII canvas like so:</p>
+<pre><code class="lang-cs">using PrismGraphics.Extentions.VMWare;
+
+SVGAIICanvas Canvas = new(800, 600);
+</code></pre>
+<p>In this case <code>800, 600</code> are the width and height (in pixels) of the canvas.</p>
+<h3 id="resizing">Resizing</h3>
+<p>The width and/or height can be changed at any time by modifying the <code>Width</code> and <code>Height</code> properties in the canvas instance like so:</p>
+<pre><code class="lang-cs">Canvas.Width = NewWidth;
+Canvas.Height = NewHeight;
+</code></pre>
+<p>Note that this is only intended for resizing things that will be re-drawn. For scaling, see [NOT DOCUMENTED, COMING SOON].</p>
+<h3 id="get-a-basic-screen-output">Get a basic screen output</h3>
+<p>To draw a basic screen with a mouse, Something simillar to the following should be used:</p>
+<pre><code class="lang-cs">using PrismGeaphics.Extentions.VMWare;
+using PrismGraphics;
+using Cosmos.System;
+
+public class YourKernelName : Kernel
+{
+	public SVGACanvas Canvas;
+
+	protected override BeforeRun()
+	{
+		// Set-up the mouse manager to fit in the canvas size.
+		MouseManager.ScreenWidth = 800;
+		MouseManager.ScreenHeight = 600;
+
+		Canvas = new(800, 600); // Define the canvas instance.
+	}
+
+	protected override Run()
+	{
+		Canvas.Clear(Color.CoolGreen); // Draw a green background.
+		Canvas.DrawFilledRectangle((int)MouseManager.X, (int)MouseManager.Y, 16, 16, 0, Color.White); // Draw the mouse.
+		Canvas.DrawString(15, 15, $&quot;{Canvas.GetFPS()} FPS&quot;, default, Color.White); // The default value will become the default font.
+		Canvas.Update(); // Copy buffer to the screen.
+	}
+}
+</code></pre>
+<p>This can be modified to fit any need and should work. Never forget to clear and update the screen each frame.</p>
+<hr>
+<h1 id="todo">ToDo</h1>
+<p>This project still has many things to finish, including video drivers.
+See <a href="https://wiki.osdev.org/Accelerated_Graphic_Cards">here</a>.</p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/DocFX/Articles/Graphics.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        
+        <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
