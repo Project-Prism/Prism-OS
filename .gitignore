@@ -10,6 +10,9 @@ manjarno## Ignore Visual Studio temporary files, build results, and
 *.userosscache
 *.sln.docstates
 
+# DocFX old files
+*/API/toc.yml
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 obj/
