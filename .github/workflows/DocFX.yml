@@ -17,18 +17,17 @@ jobs:
       with:
         dotnet-version: 6.x
 
+    - name: Install DocFX
+      run: dotnet tool update -g docfx
+
     - name: Install Cosmos
       run: |
-        cd ..
         git clone https://github.com/CosmosOS/Cosmos
         cd Cosmos
         sudo make
         sudo make install
-        cd ..
-        cd Prism-OS
+        make nuget-install
 
-    - name: Install DocFX
-      run: dotnet tool update -g docfx
     - name: Run DocFX
       run: docfx DocFX/DocFX.json
 
