@@ -18,8 +18,8 @@
       "includePrivateMembers": false,
       "disableGitFeatures": false,
       "disableDefaultFilter": false,
-      "namespaceLayout": "nested",
-      "noRestore": false
+      "noRestore": false,
+      "namespaceLayout": "flattened"
     }
   ],
   "build": {
