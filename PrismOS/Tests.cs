@@ -19,7 +19,7 @@ namespace PrismOS
         static Tests()
         {
             Canvas = new(800, 600);
-            Gradient = new(256, 256, new Color[] { Color.Red, Color.DeepOrange, Color.Yellow, Color.Green, Color.Blue, Color.UbuntuPurple });
+            GradientBuffer = Gradient.GetGradient(256, 256, new Color[] { Color.Red, Color.DeepOrange, Color.Yellow, Color.Green, Color.Blue, Color.UbuntuPurple });
             Buffer = new(128, 64);
             Engine = new(800, 600, 75);
             Button1 = new(75, 15, 64, 16, 4, "Button1", () => { });
@@ -53,7 +53,7 @@ namespace PrismOS
                 Canvas.DrawImage(15, 50, Buffer, false);
                 Canvas.DrawImage(15, 75, Engine, false);
                 Canvas.DrawImage(Button1.X, Button1.Y, Button1.MainImage);
-                Canvas.DrawImage(200, 15, Gradient, false);
+                Canvas.DrawImage(200, 15, GradientBuffer, false);
                 Canvas.DrawFilledRectangle((int)MouseManager.X, (int)MouseManager.Y, 16, 16, 0, Color.White);
                 Canvas.Update();
 
@@ -65,12 +65,12 @@ namespace PrismOS
             }
         }
 
-        #endregion
+		#endregion
 
-        #region Fields
+		#region Fields
 
-        private static readonly SVGAIICanvas Canvas;
-        private static readonly Gradient Gradient;
+		private static readonly Graphics GradientBuffer;
+		private static readonly SVGAIICanvas Canvas;
         private static readonly Graphics Buffer;
         private static readonly Button Button1;
         private static readonly Engine Engine;
