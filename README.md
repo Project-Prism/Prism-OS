@@ -23,7 +23,7 @@ Want to add something new to Prism OS? Simply create a pull request and we'll re
 
 If you found this project interesting or useful, please do leave a star! It will help out a lot for finding future contributors for the project.
 
-You can find documentation for the entire project (here)[https://project-prism.github.io/Prism-OS/Documentation/].
+You can find documentation for the entire project [here](https://project-prism.github.io/Prism-OS/Documentation/).
 
 <hr/>
 
