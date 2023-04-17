@@ -1,4 +1,7 @@
-﻿## SystemSharp (S#) V2 documentation
+> **Warning**:
+> This documentation is incomplete.
+
+## SystemSharp (S#) V2 documentation
 
 <hr/>
 
@@ -7,7 +10,6 @@ SystemSharp is a high level bytecode language, it currently has no use or goals 
 You are free to make your own ports of the SystemSharp runtime and compiler, it is very simple to do as it is mostly ``for`` loops.
 
 <hr/>
-
 ## Available functions
 
 S# has many functions, here is a list of all of them:
