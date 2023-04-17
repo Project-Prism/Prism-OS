@@ -14,23 +14,14 @@
 	<!--Prism OS include group-->
 	<ItemGroup>
 
-		<ProjectReference Include="..\PrismTools\PrismTools.csproj">
-			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
-			<CopyLocal>False</CopyLocal>
-			<Private>True</Private>
-		</ProjectReference>
+		<ProjectReference Include="..\PrismTools\PrismTools.csproj" />
 
 	</ItemGroup>
 
 	<!--Cosmos include group-->
 	<ItemGroup>
 
-		<Reference Include="Cosmos.System2">
-			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>
-			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
-			<CopyLocal>False</CopyLocal>
-			<Private>True</Private>
-		</Reference>
+		<PackageReference Include="Cosmos.System2" Version="0.1.0-*" />
 
 	</ItemGroup>
 

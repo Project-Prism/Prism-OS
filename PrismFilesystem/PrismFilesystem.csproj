@@ -11,54 +11,35 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Media\Audio\Shutdown-Alt.wav" />
-	  <None Remove="Media\Audio\Shutdown.wav" />
-	  <None Remove="Media\Audio\Startup.wav" />
-	  <None Remove="Media\Executables\Test.elf" />
-	  <None Remove="Media\Images\Prism.bmp" />
+		<None Remove="Media\Audio\Shutdown-Alt.wav" />
+		<None Remove="Media\Audio\Shutdown.wav" />
+		<None Remove="Media\Audio\Startup.wav" />
+		<None Remove="Media\Executables\Test.elf" />
+		<None Remove="Media\Images\Prism.bmp" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Media\Audio\Shutdown-Alt.wav" />
-	  <EmbeddedResource Include="Media\Audio\Shutdown.wav" />
-	  <EmbeddedResource Include="Media\Audio\Startup.wav" />
-	  <EmbeddedResource Include="Media\Executables\Test.elf" />
-	  <EmbeddedResource Include="Media\Images\Prism.bmp" />
+		<EmbeddedResource Include="Media\Audio\Shutdown-Alt.wav" />
+		<EmbeddedResource Include="Media\Audio\Shutdown.wav" />
+		<EmbeddedResource Include="Media\Audio\Startup.wav" />
+		<EmbeddedResource Include="Media\Executables\Test.elf" />
+		<EmbeddedResource Include="Media\Images\Prism.bmp" />
 	</ItemGroup>
 
 	<!--Prism OS include group-->
 	<ItemGroup>
 
 		<ProjectReference Include="..\PrismGraphics\PrismGraphics.csproj" />
-
-		<ProjectReference Include="..\PrismTools\PrismTools.csproj">
-			<Private>True</Private>
-			<CopyLocal>False</CopyLocal>
-			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
-		</ProjectReference>
+		<ProjectReference Include="..\PrismTools\PrismTools.csproj" />
 
 	</ItemGroup>
 
 	<!--Cosmos include group-->
 	<ItemGroup>
 
-		<Reference Include="Cosmos.HAL2">
-			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
-			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
-			<CopyLocal>False</CopyLocal>
-			<Private>True</Private>
-		</Reference>
-
-		<Reference Include="Cosmos.System2">
-			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.System2.dll</HintPath>
-			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
-			<CopyLocal>False</CopyLocal>
-			<Private>True</Private>
-		</Reference>
-
-		<Reference Include="IL2CPU.API">
-		  <HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\IL2CPU.API.dll</HintPath>
-		</Reference>
+		<PackageReference Include="Cosmos.System2" Version="0.1.0-*" />
+		<PackageReference Include="Cosmos.HAL2" Version="0.1.0-*" />
+		<PackageReference Include="IL2CPU.API" Version="0.1.0-*" />
 
 	</ItemGroup>
 

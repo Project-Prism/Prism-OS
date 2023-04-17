@@ -46,20 +46,23 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
-		<PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
-		<PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
+
+		<PackageReference Include="Cosmos.Debug.Kernel" Version="0.1.0-*" />
+		<PackageReference Include="Cosmos.System2" Version="0.1.0-*" />
+		<PackageReference Include="Cosmos.Build" Version="0.1.0-*" />
 		<PackageReference Include="SuperDB-Core" Version="1.0.3" />
-		<PackageReference Include="TinyMath" Version="1.0.1" />
+		
 	</ItemGroup>
 
 	<ItemGroup>
+		
 		<ProjectReference Include="..\PrismAudio\PrismAudio.csproj" />
 		<ProjectReference Include="..\PrismFilesystem\PrismFilesystem.csproj" />
 		<ProjectReference Include="..\PrismGraphics\PrismGraphics.csproj" />
 		<ProjectReference Include="..\PrismNetwork\PrismNetwork.csproj" />
 		<ProjectReference Include="..\PrismRuntime\PrismRuntime.csproj" />
 		<ProjectReference Include="..\PrismTools\PrismTools.csproj" />
+		
 	</ItemGroup>
 
 </Project>

@@ -22,19 +22,8 @@
 	<!--Cosmos include group-->
 	<ItemGroup>
 
-		<Reference Include="Cosmos.Core">
-			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.Core.dll</HintPath>
-			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
-			<CopyLocal>False</CopyLocal>
-			<Private>True</Private>
-		</Reference>
-
-		<Reference Include="Cosmos.HAL2">
-			<HintPath>..\..\..\AppData\Roaming\Cosmos User Kit\Kernel\Cosmos.HAL2.dll</HintPath>
-			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
-			<CopyLocal>False</CopyLocal>
-			<Private>True</Private>
-		</Reference>
+		<PackageReference Include="Cosmos.HAL2" Version="0.1.0-*" />
+		<PackageReference Include="Cosmos.Core" Version="0.1.0-*" />
 
 	</ItemGroup>
 
