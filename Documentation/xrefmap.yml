@@ -4349,43 +4349,40 @@ references:
   commentId: T:PrismGraphics.Gradient
   fullName: PrismGraphics.Gradient
   nameWithType: Gradient
-- uid: PrismGraphics.Gradient.#ctor(System.UInt16,System.UInt16,PrismGraphics.Color,PrismGraphics.Color)
-  name: Gradient(ushort, ushort, Color, Color)
-  href: API/PrismGraphics.Gradient.html#PrismGraphics_Gradient__ctor_System_UInt16_System_UInt16_PrismGraphics_Color_PrismGraphics_Color_
-  commentId: M:PrismGraphics.Gradient.#ctor(System.UInt16,System.UInt16,PrismGraphics.Color,PrismGraphics.Color)
-  name.vb: New(UShort, UShort, Color, Color)
-  fullName: PrismGraphics.Gradient.Gradient(ushort, ushort, PrismGraphics.Color, PrismGraphics.Color)
-  fullName.vb: PrismGraphics.Gradient.New(UShort, UShort, PrismGraphics.Color, PrismGraphics.Color)
-  nameWithType: Gradient.Gradient(ushort, ushort, Color, Color)
-  nameWithType.vb: Gradient.New(UShort, UShort, Color, Color)
-- uid: PrismGraphics.Gradient.#ctor(System.UInt16,System.UInt16,PrismGraphics.Color[])
-  name: Gradient(ushort, ushort, Color[])
-  href: API/PrismGraphics.Gradient.html#PrismGraphics_Gradient__ctor_System_UInt16_System_UInt16_PrismGraphics_Color___
-  commentId: M:PrismGraphics.Gradient.#ctor(System.UInt16,System.UInt16,PrismGraphics.Color[])
-  name.vb: New(UShort, UShort, Color())
-  fullName: PrismGraphics.Gradient.Gradient(ushort, ushort, PrismGraphics.Color[])
-  fullName.vb: PrismGraphics.Gradient.New(UShort, UShort, PrismGraphics.Color())
-  nameWithType: Gradient.Gradient(ushort, ushort, Color[])
-  nameWithType.vb: Gradient.New(UShort, UShort, Color())
-- uid: PrismGraphics.Gradient.#ctor(System.UInt16,System.UInt16,System.UInt32)
-  name: Gradient(ushort, ushort, uint)
-  href: API/PrismGraphics.Gradient.html#PrismGraphics_Gradient__ctor_System_UInt16_System_UInt16_System_UInt32_
-  commentId: M:PrismGraphics.Gradient.#ctor(System.UInt16,System.UInt16,System.UInt32)
-  name.vb: New(UShort, UShort, UInteger)
-  fullName: PrismGraphics.Gradient.Gradient(ushort, ushort, uint)
-  fullName.vb: PrismGraphics.Gradient.New(UShort, UShort, UInteger)
-  nameWithType: Gradient.Gradient(ushort, ushort, uint)
-  nameWithType.vb: Gradient.New(UShort, UShort, UInteger)
-- uid: PrismGraphics.Gradient.#ctor*
-  name: Gradient
-  href: API/PrismGraphics.Gradient.html#PrismGraphics_Gradient__ctor_
-  commentId: Overload:PrismGraphics.Gradient.#ctor
+- uid: PrismGraphics.Gradient.GetGradient(System.UInt16,System.UInt16,PrismGraphics.Color,PrismGraphics.Color)
+  name: GetGradient(ushort, ushort, Color, Color)
+  href: API/PrismGraphics.Gradient.html#PrismGraphics_Gradient_GetGradient_System_UInt16_System_UInt16_PrismGraphics_Color_PrismGraphics_Color_
+  commentId: M:PrismGraphics.Gradient.GetGradient(System.UInt16,System.UInt16,PrismGraphics.Color,PrismGraphics.Color)
+  name.vb: GetGradient(UShort, UShort, Color, Color)
+  fullName: PrismGraphics.Gradient.GetGradient(ushort, ushort, PrismGraphics.Color, PrismGraphics.Color)
+  fullName.vb: PrismGraphics.Gradient.GetGradient(UShort, UShort, PrismGraphics.Color, PrismGraphics.Color)
+  nameWithType: Gradient.GetGradient(ushort, ushort, Color, Color)
+  nameWithType.vb: Gradient.GetGradient(UShort, UShort, Color, Color)
+- uid: PrismGraphics.Gradient.GetGradient(System.UInt16,System.UInt16,PrismGraphics.Color[])
+  name: GetGradient(ushort, ushort, Color[])
+  href: API/PrismGraphics.Gradient.html#PrismGraphics_Gradient_GetGradient_System_UInt16_System_UInt16_PrismGraphics_Color___
+  commentId: M:PrismGraphics.Gradient.GetGradient(System.UInt16,System.UInt16,PrismGraphics.Color[])
+  name.vb: GetGradient(UShort, UShort, Color())
+  fullName: PrismGraphics.Gradient.GetGradient(ushort, ushort, PrismGraphics.Color[])
+  fullName.vb: PrismGraphics.Gradient.GetGradient(UShort, UShort, PrismGraphics.Color())
+  nameWithType: Gradient.GetGradient(ushort, ushort, Color[])
+  nameWithType.vb: Gradient.GetGradient(UShort, UShort, Color())
+- uid: PrismGraphics.Gradient.GetGradient(System.UInt16,System.UInt16,System.UInt32)
+  name: GetGradient(ushort, ushort, uint)
+  href: API/PrismGraphics.Gradient.html#PrismGraphics_Gradient_GetGradient_System_UInt16_System_UInt16_System_UInt32_
+  commentId: M:PrismGraphics.Gradient.GetGradient(System.UInt16,System.UInt16,System.UInt32)
+  name.vb: GetGradient(UShort, UShort, UInteger)
+  fullName: PrismGraphics.Gradient.GetGradient(ushort, ushort, uint)
+  fullName.vb: PrismGraphics.Gradient.GetGradient(UShort, UShort, UInteger)
+  nameWithType: Gradient.GetGradient(ushort, ushort, uint)
+  nameWithType.vb: Gradient.GetGradient(UShort, UShort, UInteger)
+- uid: PrismGraphics.Gradient.GetGradient*
+  name: GetGradient
+  href: API/PrismGraphics.Gradient.html#PrismGraphics_Gradient_GetGradient_
+  commentId: Overload:PrismGraphics.Gradient.GetGradient
   isSpec: "True"
-  name.vb: New
-  fullName: PrismGraphics.Gradient.Gradient
-  fullName.vb: PrismGraphics.Gradient.New
-  nameWithType: Gradient.Gradient
-  nameWithType.vb: Gradient.New
+  fullName: PrismGraphics.Gradient.GetGradient
+  nameWithType: Gradient.GetGradient
 - uid: PrismGraphics.Graphics
   name: Graphics
   href: API/PrismGraphics.Graphics.html
