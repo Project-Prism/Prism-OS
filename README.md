@@ -19,10 +19,7 @@
 
 Prism OS is a [Cosmos](https://github.com/CosmosOS/Cosmos) Based Operating System Developed With C#. It has many features which can be used for many different things, ranging from real-time animation, 3D rendering, network downloads, a filesystem, CPU-accelerated floating-point math, compression, basic parsing for some file formats, and much more!
 
-Want to add something new to Prism OS? Simply create a pull request and we'll review it.
-
-> **Note**
-> (Your code should preferably follow [these](https://github.com/Project-Prism/Prism-OS/blob/main/CONTRIBUTING.md) guidelines)
+Want to add something new to Prism OS? Simply create a pull request and we'll review it. You can view the code guidelines [here](https://github.com/Project-Prism/Prism-OS/blob/main/CONTRIBUTING.md)
 
 If you found this project interesting or useful, please do leave a star! It will help out a lot for finding future contributors for the project.
 
