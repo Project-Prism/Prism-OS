@@ -9,7 +9,7 @@
           "exclude": [
             "PrismOS/PrismOS.csproj",
             "**/obj/**",
-            "**/bin/**",
+            "**/bin/**"
           ],
           "src": "../"
         }
@@ -18,8 +18,8 @@
       "includePrivateMembers": false,
       "disableGitFeatures": false,
       "disableDefaultFilter": false,
-      "noRestore": false,
-      "namespaceLayout": "flattened"
+      "namespaceLayout": "nested",
+      "noRestore": false
     }
   ],
   "build": {
