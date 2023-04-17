@@ -1355,6 +1355,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "Articles/Shell.md",
+      "output": {
+        ".html": {
+          "relative_path": "Articles/Shell.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "Articles/index.md",
       "output": {
         ".html": {
