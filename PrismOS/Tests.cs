@@ -14,35 +14,37 @@ namespace PrismOS
     public static class Tests
     {
         /// <summary>
-        /// Only run when the class is accessed, memory is not used when no tests are ran.
-        /// </summary>
-        static Tests()
-        {
-            Canvas = new(800, 600);
-            GradientBuffer = Gradient.GetGradient(256, 256, new Color[] { Color.Red, Color.DeepOrange, Color.Yellow, Color.Green, Color.Blue, Color.UbuntuPurple });
-            Buffer = new(128, 64);
-            Engine = new(800, 600, 75);
-            Button1 = new(75, 15, 64, 16, 4, "Button1", () => { });
-
-            Engine.Objects.Add(Mesh.GetCube(200, 200, 200));
-            Engine.Camera.Position.Z = 200;
-            Button1.Render();
-
-            MouseManager.ScreenHeight = Canvas.Height;
-            MouseManager.ScreenWidth = Canvas.Width;
-        }
-
-        #region Methods
-
-        /// <summary>
         /// A method designed to test for memory leaks.
         /// </summary>
         public static void TestGraphics()
         {
-            // Swap width and height evert 1.5 seconds.
-            //Timer T = new((O) => { (Buffer.Width, Buffer.Height) = (Buffer.Height, Buffer.Width); Buffer.Clear(Color.ClassicBlue); }, null, 1500, 0);
+			// Swap width and height evert 1.5 seconds.
+			//Timer T = new((O) => { (Buffer.Width, Buffer.Height) = (Buffer.Height, Buffer.Width); Buffer.Clear(Color.ClassicBlue); }, null, 1500, 0);
 
-            while (true)
+            Graphics GradientBuffer = Gradient.GetGradient(256, 256, new Color[]
+            {
+                Color.Red,
+                Color.DeepOrange,
+                Color.Yellow,
+                Color.Green,
+                Color.Blue,
+                Color.UbuntuPurple
+            });
+
+			SVGAIICanvas Canvas = new(800, 600);
+			Graphics Buffer = new(128, 64);
+			Button Button1 = new(75, 15, 64, 16, 4, "Button1", () => { });
+			Engine Engine = new(800, 600, 75);
+            int MemoryN = 0;
+
+			Engine.Objects.Add(Mesh.GetCube(200, 200, 200));
+			Engine.Camera.Position.Z = 200;
+			Button1.Render();
+
+			MouseManager.ScreenHeight = Canvas.Height;
+			MouseManager.ScreenWidth = Canvas.Width;
+
+			while (true)
             {
                 Engine.Objects[^1].TestLogic(0.01f);
                 Engine.Render();
@@ -64,18 +66,5 @@ namespace PrismOS
                 }
             }
         }
-
-		#endregion
-
-		#region Fields
-
-		private static readonly Graphics GradientBuffer;
-		private static readonly SVGAIICanvas Canvas;
-        private static readonly Graphics Buffer;
-        private static readonly Button Button1;
-        private static readonly Engine Engine;
-        private static int MemoryN;
-
-        #endregion
     }
 }
