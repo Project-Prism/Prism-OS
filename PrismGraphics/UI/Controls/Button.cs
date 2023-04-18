@@ -86,9 +86,9 @@ namespace PrismGraphics.UI.Controls
             ButtonIdle.DrawFilledRectangle(0, 0, Width, Height, Radius, Color.White);
 
             // Generate gradients for each button.
-            Gradient GradientHovering = new(Width, Height, StartColor - 32f, EndColor);
-            Gradient GradientClicked = new(Width, Height, EndColor, StartColor);
-            Gradient GradientIdle = new(Width, Height, StartColor, EndColor);
+            Graphics GradientHovering = Gradient.GetGradient(Width, Height, StartColor - 32f, EndColor);
+			Graphics GradientClicked = Gradient.GetGradient(Width, Height, EndColor, StartColor);
+			Graphics GradientIdle = Gradient.GetGradient(Width, Height, StartColor, EndColor);
 
             // Mask each button image to apply the gradient & draw it onto the images.
             ButtonHovering.DrawImage(0, 0, Filters.MaskAlpha(ButtonHovering, GradientHovering));

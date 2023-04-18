@@ -4,15 +4,18 @@ using Cosmos.System;
 using PrismRuntime;
 using PrismNetwork;
 using PrismAudio;
+using System.Numerics;
+using PrismGraphics.Extentions.VMWare;
+using PrismGraphics;
 
 namespace PrismOS
 {
-    /*
+	/*
 	// TO-DO: raycaster engine.
 	// TO-DO: Fix gradient's MaskAlpha method. (?)
 	// TO-DO: Move 3D engine to be shader based for all transformations.
 	*/
-    public unsafe class Program : Kernel
+	public unsafe class Program : Kernel
 	{
 		/// <summary>
 		/// A method called once when the kernel boots, Used to initialize the system.
@@ -46,6 +49,20 @@ namespace PrismOS
 			{
 				Tests.TestGraphics();
 			}
+
+			WADFile R = new(Media.Doom);
+			Map M = Map.Remap(R.GetLump("VERTEXES").GetMap(), 320, 240);
+
+			SVGAIICanvas C = new(320, 240);
+			C.Clear(Color.DeepBlue);
+			C.Update();
+			foreach (Vector2 V in M.Vertecies)
+			{
+				C[(int)V.X, (int)V.Y] = Color.White;
+				C.Update();
+			}
+
+			while (true) { }
 
 			Shell.Main();
 		}

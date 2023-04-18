@@ -16,6 +16,7 @@ namespace PrismFilesystem
         [ManifestResourceStream(ResourceName = Base + "Audio.Startup.wav")] private readonly static byte[] StartupB;
         [ManifestResourceStream(ResourceName = Base + "Executables.Test.elf")] public readonly static byte[] ELF;
         [ManifestResourceStream(ResourceName = Base + "Images.Prism.bmp")] private readonly static byte[] PrismB;
+        [ManifestResourceStream(ResourceName = Base + "DOOM1.WAD")] public readonly static byte[] Doom;
 
         // System Sounds
         public static MemoryAudioStream ShutdownAlt = MemoryAudioStream.FromWave(ShutdownAltB);
