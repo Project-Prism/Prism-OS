@@ -2865,6 +2865,12 @@ references:
   commentId: F:PrismFilesystem.Media.Base
   fullName: PrismFilesystem.Media.Base
   nameWithType: Media.Base
+- uid: PrismFilesystem.Media.Doom
+  name: Doom
+  href: API/PrismFilesystem.Media.html#PrismFilesystem_Media_Doom
+  commentId: F:PrismFilesystem.Media.Doom
+  fullName: PrismFilesystem.Media.Doom
+  nameWithType: Media.Doom
 - uid: PrismFilesystem.Media.ELF
   name: ELF
   href: API/PrismFilesystem.Media.html#PrismFilesystem_Media_ELF
