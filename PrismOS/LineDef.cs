@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PrismOS
+﻿namespace PrismOS
 {
-	internal class LineDef
+	public class LineDef
 	{
+		#region Fields
+
+		public ushort StartVertex;
+		public ushort EndVertex;
+		public ushort Flags;
+		public ushort Special;
+		public ushort Sector;
+		public ushort FrontSideDef;
+		public ushort BackSideDef;
+
+		#endregion
 	}
 }

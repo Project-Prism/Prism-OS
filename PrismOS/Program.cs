@@ -4,9 +4,9 @@ using Cosmos.System;
 using PrismRuntime;
 using PrismNetwork;
 using PrismAudio;
-using System.Numerics;
 using PrismGraphics.Extentions.VMWare;
 using PrismGraphics;
+using System.Numerics;
 
 namespace PrismOS
 {
@@ -51,14 +51,15 @@ namespace PrismOS
 			}
 
 			WADFile R = new(Media.Doom);
-			Map M = Map.Remap(R.GetLump("VERTEXES").GetMap(), 320, 240);
 
-			SVGAIICanvas C = new(320, 240);
-			C.Clear(Color.DeepBlue);
-			C.Update();
-			foreach (Vector2 V in M.Vertecies)
+			List<Vector2> PointDefs = Map.Remap(R.ReadVertexes("VERTEXES"), 800, 600);
+			List<LineDef> LineDefs = R.ReadLines("LINEDEFS");
+
+			SVGAIICanvas C = new(800, 600);
+
+			foreach (var L in LineDefs)
 			{
-				C[(int)V.X, (int)V.Y] = Color.White;
+				C.DrawLine((int)PointDefs[L.StartVertex].X, (int)PointDefs[L.StartVertex].Y, (int)PointDefs[L.EndVertex].X, (int)PointDefs[L.EndVertex].Y, Color.White);
 				C.Update();
 			}
 

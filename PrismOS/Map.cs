@@ -3,21 +3,14 @@ using System.Drawing;
 
 namespace PrismOS
 {
-	public class Map
+	public static class Map
 	{
-		public Map()
+		public static List<Vector2> Remap(List<Vector2> Map, ushort Width, ushort Height)
 		{
-			Vertecies = new();
-		}
+			Rectangle Bounds = GetBounds(Map);
+			List<Vector2> Temp = new();
 
-		#region Methods
-
-		public static Map Remap(Map Map, ushort Width, ushort Height)
-		{
-			Map M = new();
-			Rectangle Bounds = Map.GetBounds();
-
-			foreach (Vector2 V in Map.Vertecies)
+			foreach (Vector2 V in Map)
 			{
 				short Y = (short)(Height - (Math.Max(Bounds.Y, Math.Min(V.Y, Bounds.Height)) - Bounds.Y) * (
 						Height - 30) / (Bounds.Height - Bounds.Y) - 30);
@@ -25,13 +18,13 @@ namespace PrismOS
 				short X = (short)((Math.Max(Bounds.X, Math.Min(V.X, Bounds.Width)) - Bounds.X) * (
 						Width - 30) / (Bounds.Width - Bounds.X) + 30);
 
-				M.Vertecies.Add(new Vector2(X, Y));
+				Temp.Add(new Vector2(X, Y));
 			}
 
-			return M;
+			return Temp;
 		}
 
-		public Rectangle GetBounds()
+		public static Rectangle GetBounds(List<Vector2> Vertecies)
 		{
 			Rectangle Bounds = new();
 
@@ -57,13 +50,5 @@ namespace PrismOS
 
 			return Bounds;
 		}
-
-		#endregion
-
-		#region Fields
-
-		public List<Vector2> Vertecies;
-
-		#endregion
 	}
 }
