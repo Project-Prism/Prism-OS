@@ -4,9 +4,6 @@ using Cosmos.System;
 using PrismRuntime;
 using PrismNetwork;
 using PrismAudio;
-using PrismGraphics.Extentions.VMWare;
-using PrismGraphics;
-using System.Numerics;
 
 namespace PrismOS
 {
@@ -49,21 +46,6 @@ namespace PrismOS
 			{
 				Tests.TestGraphics();
 			}
-
-			WADFile R = new(Media.Doom);
-
-			List<Vector2> PointDefs = Map.Remap(R.ReadVertexes("VERTEXES"), 800, 600);
-			List<LineDef> LineDefs = R.ReadLines("LINEDEFS");
-
-			SVGAIICanvas C = new(800, 600);
-
-			foreach (var L in LineDefs)
-			{
-				C.DrawLine((int)PointDefs[L.StartVertex].X, (int)PointDefs[L.StartVertex].Y, (int)PointDefs[L.EndVertex].X, (int)PointDefs[L.EndVertex].Y, Color.White);
-				C.Update();
-			}
-
-			while (true) { }
 
 			Shell.Main();
 		}

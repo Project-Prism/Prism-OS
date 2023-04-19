@@ -14,7 +14,7 @@
 		<None Remove="Media\Audio\Shutdown-Alt.wav" />
 		<None Remove="Media\Audio\Shutdown.wav" />
 		<None Remove="Media\Audio\Startup.wav" />
-		<None Remove="Media\DOOM.WAD" />
+		<None Remove="Media\DOOM1.WAD" />
 		<None Remove="Media\Executables\Test.elf" />
 		<None Remove="Media\Images\Prism.bmp" />
 	</ItemGroup>
@@ -23,7 +23,7 @@
 		<EmbeddedResource Include="Media\Audio\Shutdown-Alt.wav" />
 		<EmbeddedResource Include="Media\Audio\Shutdown.wav" />
 		<EmbeddedResource Include="Media\Audio\Startup.wav" />
-		<EmbeddedResource Include="Media\DOOM.WAD" />
+		<EmbeddedResource Include="Media\DOOM1.WAD" />
 		<EmbeddedResource Include="Media\Executables\Test.elf" />
 		<EmbeddedResource Include="Media\Images\Prism.bmp" />
 	</ItemGroup>

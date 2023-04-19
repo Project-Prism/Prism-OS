@@ -95,6 +95,7 @@ namespace PrismRuntime.SShell
 			_ = new Unix.LS();
 			_ = new Unix.RM();
 			_ = new Status();
+			_ = new Locker();
 			_ = new VEdit();
 			_ = new CLI();
 
