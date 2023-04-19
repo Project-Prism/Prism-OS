@@ -985,6 +985,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.Locker.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.Locker.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "API/PrismRuntime.SShell.Scripts.Script.yml",
       "output": {
         ".html": {
@@ -1249,6 +1259,16 @@
       "output": {
         ".html": {
           "relative_path": "API/PrismTools.Compression.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismTools.Crypt.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismTools.Crypt.html"
         }
       },
       "version": ""

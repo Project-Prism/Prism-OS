@@ -6669,6 +6669,47 @@ references:
   isSpec: "True"
   fullName: PrismRuntime.SShell.Scripts.CLI.Invoke
   nameWithType: CLI.Invoke
+- uid: PrismRuntime.SShell.Scripts.Locker
+  name: Locker
+  href: API/PrismRuntime.SShell.Scripts.Locker.html
+  commentId: T:PrismRuntime.SShell.Scripts.Locker
+  fullName: PrismRuntime.SShell.Scripts.Locker
+  nameWithType: Locker
+- uid: PrismRuntime.SShell.Scripts.Locker.#ctor
+  name: Locker()
+  href: API/PrismRuntime.SShell.Scripts.Locker.html#PrismRuntime_SShell_Scripts_Locker__ctor
+  commentId: M:PrismRuntime.SShell.Scripts.Locker.#ctor
+  name.vb: New()
+  fullName: PrismRuntime.SShell.Scripts.Locker.Locker()
+  fullName.vb: PrismRuntime.SShell.Scripts.Locker.New()
+  nameWithType: Locker.Locker()
+  nameWithType.vb: Locker.New()
+- uid: PrismRuntime.SShell.Scripts.Locker.#ctor*
+  name: Locker
+  href: API/PrismRuntime.SShell.Scripts.Locker.html#PrismRuntime_SShell_Scripts_Locker__ctor_
+  commentId: Overload:PrismRuntime.SShell.Scripts.Locker.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: PrismRuntime.SShell.Scripts.Locker.Locker
+  fullName.vb: PrismRuntime.SShell.Scripts.Locker.New
+  nameWithType: Locker.Locker
+  nameWithType.vb: Locker.New
+- uid: PrismRuntime.SShell.Scripts.Locker.Invoke(System.String[])
+  name: Invoke(string[])
+  href: API/PrismRuntime.SShell.Scripts.Locker.html#PrismRuntime_SShell_Scripts_Locker_Invoke_System_String___
+  commentId: M:PrismRuntime.SShell.Scripts.Locker.Invoke(System.String[])
+  name.vb: Invoke(String())
+  fullName: PrismRuntime.SShell.Scripts.Locker.Invoke(string[])
+  fullName.vb: PrismRuntime.SShell.Scripts.Locker.Invoke(String())
+  nameWithType: Locker.Invoke(string[])
+  nameWithType.vb: Locker.Invoke(String())
+- uid: PrismRuntime.SShell.Scripts.Locker.Invoke*
+  name: Invoke
+  href: API/PrismRuntime.SShell.Scripts.Locker.html#PrismRuntime_SShell_Scripts_Locker_Invoke_
+  commentId: Overload:PrismRuntime.SShell.Scripts.Locker.Invoke
+  isSpec: "True"
+  fullName: PrismRuntime.SShell.Scripts.Locker.Invoke
+  nameWithType: Locker.Invoke
 - uid: PrismRuntime.SShell.Scripts.Script
   name: Script
   href: API/PrismRuntime.SShell.Scripts.Script.html
@@ -7607,6 +7648,60 @@ references:
   isSpec: "True"
   fullName: PrismTools.Compression.LZW.LZWDecompress
   nameWithType: LZW.LZWDecompress
+- uid: PrismTools.Crypt
+  name: Crypt
+  href: API/PrismTools.Crypt.html
+  commentId: T:PrismTools.Crypt
+  fullName: PrismTools.Crypt
+  nameWithType: Crypt
+- uid: PrismTools.Crypt.Decrypt(System.String,System.Byte[])
+  name: Decrypt(string, byte[])
+  href: API/PrismTools.Crypt.html#PrismTools_Crypt_Decrypt_System_String_System_Byte___
+  commentId: M:PrismTools.Crypt.Decrypt(System.String,System.Byte[])
+  name.vb: Decrypt(String, Byte())
+  fullName: PrismTools.Crypt.Decrypt(string, byte[])
+  fullName.vb: PrismTools.Crypt.Decrypt(String, Byte())
+  nameWithType: Crypt.Decrypt(string, byte[])
+  nameWithType.vb: Crypt.Decrypt(String, Byte())
+- uid: PrismTools.Crypt.Decrypt*
+  name: Decrypt
+  href: API/PrismTools.Crypt.html#PrismTools_Crypt_Decrypt_
+  commentId: Overload:PrismTools.Crypt.Decrypt
+  isSpec: "True"
+  fullName: PrismTools.Crypt.Decrypt
+  nameWithType: Crypt.Decrypt
+- uid: PrismTools.Crypt.Encrypt(System.String,System.Byte[])
+  name: Encrypt(string, byte[])
+  href: API/PrismTools.Crypt.html#PrismTools_Crypt_Encrypt_System_String_System_Byte___
+  commentId: M:PrismTools.Crypt.Encrypt(System.String,System.Byte[])
+  name.vb: Encrypt(String, Byte())
+  fullName: PrismTools.Crypt.Encrypt(string, byte[])
+  fullName.vb: PrismTools.Crypt.Encrypt(String, Byte())
+  nameWithType: Crypt.Encrypt(string, byte[])
+  nameWithType.vb: Crypt.Encrypt(String, Byte())
+- uid: PrismTools.Crypt.Encrypt*
+  name: Encrypt
+  href: API/PrismTools.Crypt.html#PrismTools_Crypt_Encrypt_
+  commentId: Overload:PrismTools.Crypt.Encrypt
+  isSpec: "True"
+  fullName: PrismTools.Crypt.Encrypt
+  nameWithType: Crypt.Encrypt
+- uid: PrismTools.Crypt.Hash(System.String)
+  name: Hash(string)
+  href: API/PrismTools.Crypt.html#PrismTools_Crypt_Hash_System_String_
+  commentId: M:PrismTools.Crypt.Hash(System.String)
+  name.vb: Hash(String)
+  fullName: PrismTools.Crypt.Hash(string)
+  fullName.vb: PrismTools.Crypt.Hash(String)
+  nameWithType: Crypt.Hash(string)
+  nameWithType.vb: Crypt.Hash(String)
+- uid: PrismTools.Crypt.Hash*
+  name: Hash
+  href: API/PrismTools.Crypt.html#PrismTools_Crypt_Hash_
+  commentId: Overload:PrismTools.Crypt.Hash
+  isSpec: "True"
+  fullName: PrismTools.Crypt.Hash
+  nameWithType: Crypt.Hash
 - uid: PrismTools.Debugger
   name: Debugger
   href: API/PrismTools.Debugger.html
