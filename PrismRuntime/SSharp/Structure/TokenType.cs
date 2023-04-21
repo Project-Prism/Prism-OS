@@ -1,18 +1,17 @@
-﻿namespace PrismRuntime.SSharp.Structure
+﻿namespace PrismRuntime.SSharp.Structure;
+
+public enum TokenType
 {
-	public enum TokenType
-	{
-		LParenthasis,
-		RParenthasis,
-		LCBracket,
-		RCBracket,
-		SemiColon,
-		LBracket,
-		RBracket,
-		Literal,
-		String,
-		Number,
-		Colon,
-		Comma,
-	}
+	LParenthasis,
+	RParenthasis,
+	LCBracket,
+	RCBracket,
+	SemiColon,
+	LBracket,
+	RBracket,
+	Literal,
+	String,
+	Number,
+	Colon,
+	Comma,
 }

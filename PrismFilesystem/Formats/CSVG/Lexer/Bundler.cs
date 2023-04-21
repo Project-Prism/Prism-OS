@@ -1,48 +1,47 @@
-﻿namespace PrismFilesystem.Formats.CSVG.Lexer
+﻿namespace PrismFilesystem.Formats.CSVG.Lexer;
+
+public class Bundler
 {
-    public class Bundler
-    {
-        public Bundler(string Input)
-        {
-            Tokenizer = new(Input);
-        }
+	public Bundler(string Input)
+	{
+		Tokenizer = new(Input);
+	}
 
-        #region Methods
+	#region Methods
 
-        public Bundle Next()
-        {
-            Bundle Temp = new();
+	public Bundle Next()
+	{
+		Bundle Temp = new();
 
-            while (!Tokenizer.IsEOF)
-            {
-                Token Token = Tokenizer.Next();
+		while (!Tokenizer.IsEOF)
+		{
+			Token Token = Tokenizer.Next();
 
-                if (Token.Value == "=")
-                {
-                    Temp.Kind = BundleKind.Definition;
-                }
-                if (Token.Value == "(")
-                {
-                    Temp.Kind = BundleKind.DrawCall;
-                }
-                if (Token.Value == ";")
-                {
-                    Temp.Tokens.Add(Token);
-                    return Temp;
-                }
+			if (Token.Value == "=")
+			{
+				Temp.Kind = BundleKind.Definition;
+			}
+			if (Token.Value == "(")
+			{
+				Temp.Kind = BundleKind.DrawCall;
+			}
+			if (Token.Value == ";")
+			{
+				Temp.Tokens.Add(Token);
+				return Temp;
+			}
 
-                Temp.Tokens.Add(Token);
-            }
+			Temp.Tokens.Add(Token);
+		}
 
-            return Temp;
-        }
+		return Temp;
+	}
 
-        #endregion
+	#endregion
 
-        #region Fields
+	#region Fields
 
-        public Tokenizer Tokenizer;
+	public Tokenizer Tokenizer;
 
-        #endregion
-    }
+	#endregion
 }

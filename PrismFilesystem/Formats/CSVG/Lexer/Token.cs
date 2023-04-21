@@ -1,21 +1,20 @@
-﻿namespace PrismFilesystem.Formats.CSVG.Lexer
+﻿namespace PrismFilesystem.Formats.CSVG.Lexer;
+
+public class Token
 {
-    public class Token
-    {
-        public Token(string Value)
-        {
-            this.Value = Value;
-        }
+	public Token(string Value)
+	{
+		this.Value = Value;
+	}
 
-        public Token()
-        {
-            Value = string.Empty;
-        }
+	public Token()
+	{
+		Value = string.Empty;
+	}
 
-        #region Fields
+	#region Fields
 
-        public string Value;
+	public string Value;
 
-        #endregion
-    }
+	#endregion
 }

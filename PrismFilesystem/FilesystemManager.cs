@@ -2,35 +2,34 @@
 using Cosmos.System.FileSystem;
 using PrismTools;
 
-namespace PrismFilesystem
+namespace PrismFilesystem;
+
+public static class FilesystemManager
 {
-	public static class FilesystemManager
+	#region Methods
+
+	/// <summary>
+	/// Method to initialize all the filesystems for the disks connected to the machine.
+	/// </summary>
+	public static void Init()
 	{
-		#region Methods
-
-		/// <summary>
-		/// Method to initialize all the filesystems for the disks connected to the machine.
-		/// </summary>
-		public static void Init()
+		try
 		{
-			try
-			{
-				Debugger.WritePartial("Initializing FS...");
-				VFSManager.RegisterVFS(new CosmosVFS(), false, false);
-				Debugger.Finalize(Severity.Success);
-			}
-			catch
-			{
-				Debugger.Finalize(Severity.Fail);
-			}
+			Debugger.WritePartial("Initializing FS...");
+			VFSManager.RegisterVFS(new CosmosVFS(), false, false);
+			Debugger.Finalize(Severity.Success);
 		}
-
-		#endregion
-
-		#region Fields
-
-		public static Debugger Debugger { get; set; } = new("Filesystem");
-
-		#endregion
+		catch
+		{
+			Debugger.Finalize(Severity.Fail);
+		}
 	}
+
+	#endregion
+
+	#region Fields
+
+	public static Debugger Debugger { get; set; } = new("Filesystem");
+
+	#endregion
 }

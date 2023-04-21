@@ -1,8 +1,7 @@
-﻿namespace PrismFilesystem.Formats.CSVG.Lexer
+﻿namespace PrismFilesystem.Formats.CSVG.Lexer;
+
+public enum BundleKind
 {
-    public enum BundleKind
-    {
-        Definition,
-        DrawCall,
-    }
+	Definition,
+	DrawCall,
 }

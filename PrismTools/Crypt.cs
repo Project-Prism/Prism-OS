@@ -1,66 +1,65 @@
-namespace PrismTools
+namespace PrismTools;
+
+/// <summary>
+/// The <see cref="Crypt"/> class, used for binary security.
+/// </summary>
+public static class Crypt
 {
 	/// <summary>
-	/// The <see cref="Crypt"/> class, used for binary security.
+	/// Encrypts data using a string as a key.
 	/// </summary>
-	public static class Crypt
+	/// <param name="Key">The Key to encrypt with.</param>
+	/// <param name="Input">The Input data to encrypt.</param>
+	/// <returns>Encrypted data.</returns>
+	public static byte[] Encrypt(string Key, byte[] Input)
 	{
-		/// <summary>
-		/// Encrypts data using a string as a key.
-		/// </summary>
-		/// <param name="Key">The Key to encrypt with.</param>
-		/// <param name="Input">The Input data to encrypt.</param>
-		/// <returns>Encrypted data.</returns>
-		public static byte[] Encrypt(string Key, byte[] Input)
+		byte[] Encrypted = new byte[Input.Length];
+
+		for (int I = 0; I < Input.Length; I++)
 		{
-			byte[] Encrypted = new byte[Input.Length];
-
-			for (int I = 0; I < Input.Length; I++)
-			{
-				Encrypted[I] = (byte)((Input[I] + Key[I % Key.Length]) % 255);
-			}
-
-			return Encrypted;
+			Encrypted[I] = (byte)((Input[I] + Key[I % Key.Length]) % 255);
 		}
 
-		/// <summary>
-		/// Decrypts data using a string as a key.
-		/// </summary>
-		/// <param name="Key">The Key to decrypt with.</param>
-		/// <param name="Input">The Input data to decrypt.</param>
-		/// <returns>decrypted data.</returns>
-		public static byte[] Decrypt(string Key, byte[] Input)
+		return Encrypted;
+	}
+
+	/// <summary>
+	/// Decrypts data using a string as a key.
+	/// </summary>
+	/// <param name="Key">The Key to decrypt with.</param>
+	/// <param name="Input">The Input data to decrypt.</param>
+	/// <returns>decrypted data.</returns>
+	public static byte[] Decrypt(string Key, byte[] Input)
+	{
+		byte[] Decrypted = new byte[Input.Length];
+
+		for (int I = 0; I < Input.Length; I++)
 		{
-			byte[] Decrypted = new byte[Input.Length];
-
-			for (int I = 0; I < Input.Length; I++)
-			{
-				Decrypted[I] = (byte)((Input[I] - Key[I % Key.Length]) % 255);
-			}
-
-			return Decrypted;
+			Decrypted[I] = (byte)((Input[I] - Key[I % Key.Length]) % 255);
 		}
 
-		/// <summary>
-		/// Hashes a key into non-reversable output.
-		/// </summary>
-		/// <param name="Key">The Key to hash.</param>
-		/// <returns>The input Key as a number hash.</returns>
-		public static string Hash(string Key)
+		return Decrypted;
+	}
+
+	/// <summary>
+	/// Hashes a key into non-reversable output.
+	/// </summary>
+	/// <param name="Key">The Key to hash.</param>
+	/// <returns>The input Key as a number hash.</returns>
+	public static string Hash(string Key)
+	{
+		string Hashed = string.Empty;
+
+		if (Key.Length % 2 == 1)
 		{
-			string Hashed = string.Empty;
-
-			if (Key.Length % 2 == 1)
-			{
-				Key += '\0';
-			}
-
-			for (int I = 0; I < Key.Length; I += 2)
-			{
-				Hashed += (((byte)Key[I]) + ((byte)Key[I + 1])) % 255;
-			}
-
-			return Hashed;
+			Key += '\0';
 		}
+
+		for (int I = 0; I < Key.Length; I += 2)
+		{
+			Hashed += (((byte)Key[I]) + ((byte)Key[I + 1])) % 255;
+		}
+
+		return Hashed;
 	}
 }

@@ -1,31 +1,28 @@
-﻿namespace PrismRuntime.SShell.Scripts
+﻿namespace PrismRuntime.SShell.Scripts;
+
+/// <summary>
+/// This is the base class all commands must inherit.
+/// </summary>
+public abstract class Script
 {
-	/// <summary>
-	/// This is the base class all commands must inherit.
-	/// </summary>
-	public abstract class Script
+	public Script(string ScriptName, string BasicDescription)
 	{
-		public Script(string ScriptName, string BasicDescription)
-		{
-			AdvancedDescription = string.Empty;
-			this.BasicDescription = BasicDescription;
-			this.ScriptName = ScriptName;
-
-			Shell.Scripts.Add(this);
-		}
-
-		#region Methods
-
-		public abstract void Invoke(string[] Args);
-
-		#endregion
-
-		#region Fields
-
-		public string AdvancedDescription { get; set; }
-		public string BasicDescription { get; set; }
-		public string ScriptName { get; set; }
-
-		#endregion
+		AdvancedDescription = string.Empty;
+		this.BasicDescription = BasicDescription;
+		this.ScriptName = ScriptName;
 	}
+
+	#region Methods
+
+	public abstract void Invoke(string[] Args);
+
+	#endregion
+
+	#region Fields
+
+	public string AdvancedDescription { get; set; }
+	public string BasicDescription { get; set; }
+	public string ScriptName { get; set; }
+
+	#endregion
 }

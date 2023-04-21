@@ -1,17 +1,16 @@
-﻿namespace PrismFilesystem.Formats.CSVG.Lexer
+﻿namespace PrismFilesystem.Formats.CSVG.Lexer;
+
+public class Bundle
 {
-    public class Bundle
-    {
-        public Bundle()
-        {
-            Tokens = new();
-        }
+	public Bundle()
+	{
+		Tokens = new();
+	}
 
-        #region Fields
+	#region Fields
 
-        public List<Token> Tokens;
-        public BundleKind Kind;
+	public List<Token> Tokens;
+	public BundleKind Kind;
 
-        #endregion
-    }
+	#endregion
 }

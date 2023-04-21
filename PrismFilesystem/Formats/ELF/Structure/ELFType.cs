@@ -1,11 +1,10 @@
-﻿namespace PrismFilesystem.Formats.ELF.Structure
+﻿namespace PrismFilesystem.Formats.ELF.Structure;
+
+public enum ELFType : ushort
 {
-    public enum ELFType : ushort
-    {
-        None,
-        Relocatable,
-        Executable,
-        Dynamic,
-        Core,
-    }
+	None,
+	Relocatable,
+	Executable,
+	Dynamic,
+	Core,
 }

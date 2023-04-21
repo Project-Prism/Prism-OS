@@ -1,72 +1,71 @@
-﻿namespace PrismRuntime.SShell.Scripts
+﻿namespace PrismRuntime.SShell.Scripts;
+
+public class VEdit : Script
 {
-	public class VEdit : Script
+	public VEdit() : base("vedit", "A basic text editor.")
 	{
-		public VEdit() : base("vedit", "A basic text editor.")
+		AdvancedDescription = "vedit [file name]";
+	}
+
+	public override void Invoke(string[] Args)
+	{
+		string Buffer = string.Empty;
+		Console.Clear();
+
+		if (File.Exists(Args[0]))
 		{
-			AdvancedDescription = "vedit [file name]";
+			Buffer = File.ReadAllText(Args[0]);
+			Console.Write(Buffer);
 		}
 
-		public override void Invoke(string[] Args)
+		while (true)
 		{
-			string Buffer = string.Empty;
-			Console.Clear();
-			
-			if (File.Exists(Args[0]))
-			{
-				Buffer = File.ReadAllText(Args[0]);
-				Console.Write(Buffer);
-			}
+			ConsoleKeyInfo Key = Console.ReadKey();
 
-			while (true)
+			if (Key.Key == ConsoleKey.Backspace)
 			{
-				ConsoleKeyInfo Key = Console.ReadKey();
-
-				if (Key.Key == ConsoleKey.Backspace)
+				if (Key.Modifiers == ConsoleModifiers.Control)
 				{
-					if (Key.Modifiers == ConsoleModifiers.Control)
+					while (Buffer[^1] != ' ')
 					{
-						while (Buffer[^1] != ' ')
+						if (Buffer.Length > 0)
 						{
-							if (Buffer.Length > 0)
-							{
-								Buffer = Buffer[..^1];
-							}
+							Buffer = Buffer[..^1];
 						}
-
-						Console.Clear();
-						Console.Write(Buffer);
-						continue;
 					}
 
-					if (Buffer.Length > 0)
-					{
-						Buffer = Buffer[..^1];
-						Console.Clear();
-						Console.Write(Buffer);
-					}
-					continue;
-				}
-				if (Key.Key == ConsoleKey.Escape)
-				{
-					if (File.Exists(Args[0]))
-					{
-						File.Delete(Args[0]);
-					}
-					File.WriteAllBytes(Args[0], System.Text.Encoding.UTF8.GetBytes(Buffer));
 					Console.Clear();
-					return;
-				}
-				if (Key.Key == ConsoleKey.Enter)
-				{
-					Console.Write('\n');
-					Buffer += '\n';
+					Console.Write(Buffer);
 					continue;
 				}
 
-				Buffer += Key.KeyChar;
-				Console.Write(Key.KeyChar);
+				if (Buffer.Length > 0)
+				{
+					Buffer = Buffer[..^1];
+					Console.Clear();
+					Console.Write(Buffer);
+				}
+				continue;
 			}
+			if (Key.Key == ConsoleKey.Escape)
+			{
+				if (File.Exists(Args[0]))
+				{
+					File.Delete(Args[0]);
+				}
+				File.WriteAllBytes(Args[0], System.Text.Encoding.UTF8.GetBytes(Buffer));
+				Console.Clear();
+				return;
+			}
+			if (Key.Key == ConsoleKey.Enter)
+			{
+				Console.Write('\n');
+				Buffer += '\n';
+				continue;
+			}
+
+			Buffer += Key.KeyChar;
+			Console.Write(Key.KeyChar);
 		}
 	}
 }

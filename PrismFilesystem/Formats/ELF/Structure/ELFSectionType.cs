@@ -1,18 +1,17 @@
-﻿namespace PrismFilesystem.Formats.ELF.Structure
+﻿namespace PrismFilesystem.Formats.ELF.Structure;
+
+public enum ELFSectionType : uint
 {
-    public enum ELFSectionType : uint
-    {
-        Null,
-        ProgramBits,
-        SymbolTable,
-        StringTable,
-        RelocationAddress,
-        Hash,
-        Dynamic,
-        Note,
-        NoBits,
-        Relocation,
-        SHLibrary,
-        DynamicSymbol,
-    }
+	Null,
+	ProgramBits,
+	SymbolTable,
+	StringTable,
+	RelocationAddress,
+	Hash,
+	Dynamic,
+	Note,
+	NoBits,
+	Relocation,
+	SHLibrary,
+	DynamicSymbol,
 }

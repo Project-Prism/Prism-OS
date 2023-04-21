@@ -1,14 +1,13 @@
-﻿namespace PrismFilesystem.Formats.ELF.Structure
+﻿namespace PrismFilesystem.Formats.ELF.Structure;
+
+public enum ELFProgramType : uint
 {
-    public enum ELFProgramType : uint
-    {
-        Null,
-        Load,
-        Dynamic,
-        Interperit,
-        Note,
-        SHLibrary,
-        PHeader,
-        TLS,
-    }
+	Null,
+	Load,
+	Dynamic,
+	Interperit,
+	Note,
+	SHLibrary,
+	PHeader,
+	TLS,
 }

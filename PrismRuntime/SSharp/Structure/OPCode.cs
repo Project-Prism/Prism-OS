@@ -1,25 +1,24 @@
-﻿namespace PrismRuntime.SSharp.Structure
+﻿namespace PrismRuntime.SSharp.Structure;
+
+public enum OPCode
 {
-	public enum OPCode
-	{
-		#region Console
+	#region Console
 
-		System_Console_WriteLine,
-		System_Console_Write,
+	System_Console_WriteLine,
+	System_Console_Write,
 
-		#endregion
+	#endregion
 
-		#region Runtime
+	#region Runtime
 
-		System_Runtime_ThrowException,
-		System_Runtime_Exit,
+	System_Runtime_ThrowException,
+	System_Runtime_Exit,
 
-		#endregion
+	#endregion
 
-		#region Inline
+	#region Inline
 
-		System_Inline_Jump,
+	System_Inline_Jump,
 
-		#endregion
-	}
+	#endregion
 }

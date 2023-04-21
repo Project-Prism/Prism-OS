@@ -1,10 +1,9 @@
-﻿namespace PrismFilesystem.Formats.ELF.Structure
+﻿namespace PrismFilesystem.Formats.ELF.Structure;
+
+public enum ELFSystemABIType
 {
-    public enum ELFSystemABIType
-    {
-        None, // (Could be System V)
-        HPUX,
-        NetBSD,
-        Linux,
-    }
+	None, // (Could be System V)
+	HPUX,
+	NetBSD,
+	Linux,
 }

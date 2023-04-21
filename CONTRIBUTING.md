@@ -21,9 +21,15 @@ If a class has more than one type of data, use #region tags like so:
 
 <hr/>
 
-#### Do NOT create hacky methods to get around something unless you know you will change it before you commit.
-###### (Trust me, You will regret making something very unreliable then having to re-make it for several hours in a more stable manner)
+Do NOT create hacky methods to get around something unless you know you will change it before you commit. You _will_ regret making something very unreliable then having to re-make it for several hours in a more stable manner)
 
 <hr/>
 
 Always use IF statments "properly" and clearly. and example is if you have many nested IFs, invert the condition and move it to the top, and return it if the condition is met.
+
+<hr/>
+
+Don't define namespaces within namespaces, and always include only one namespace definition _per file_, just below the using statements. They should not use brackets like so:
+```cs
+namespace PrismOS;
+```

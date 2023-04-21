@@ -9,8 +9,8 @@
 
 using Cosmos.HAL;
 
-namespace PrismGraphics.Extentions.NVIDIA
-{
+namespace PrismGraphics.Extentions.NVIDIA;
+
 	public unsafe class VGA
 	{
 		public static uint VGASetDecode(PCIDevice pdev, bool State)
@@ -130,6 +130,5 @@ namespace PrismGraphics.Extentions.NVIDIA
 			vga_switcheroo_process_delayed_switch();
 		}
 	}
-}
 
 #endif

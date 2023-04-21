@@ -1,11 +1,10 @@
-﻿namespace PrismFilesystem.Formats.ELF.Structure
+﻿namespace PrismFilesystem.Formats.ELF.Structure;
+
+[Flags]
+public enum ELFSectionFlagsType : uint
 {
-    [Flags]
-    public enum ELFSectionFlagsType : uint
-    {
-        None,
-        Write,
-        Allocate,
-        Executable,
-    }
+	None,
+	Write,
+	Allocate,
+	Executable,
 }
