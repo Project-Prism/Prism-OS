@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using System.Drawing;
 
-namespace PrismOS.Doom;
+namespace PrismOS.Games.Doom;
 
 public static class Map
 {

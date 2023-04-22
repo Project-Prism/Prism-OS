@@ -1,4 +1,4 @@
-﻿namespace PrismOS.Doom;
+﻿namespace PrismOS.Games.Doom;
 
 public class LineDef
 {
