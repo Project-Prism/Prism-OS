@@ -595,6 +595,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Extentions.Display.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Extentions.Display.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "API/PrismGraphics.Extentions.VESA.VBECanvas.yml",
       "output": {
         ".html": {
@@ -629,6 +639,16 @@
       "output": {
         ".html": {
           "relative_path": "API/PrismGraphics.Extentions.VMWare.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismGraphics.Extentions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismGraphics.Extentions.html"
         }
       },
       "version": ""
@@ -985,6 +1005,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.CPUID.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.CPUID.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "API/PrismRuntime.SShell.Scripts.Locker.yml",
       "output": {
         ".html": {
@@ -1215,6 +1245,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SystemCallKind.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SystemCallKind.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "API/PrismRuntime.SystemCalls.yml",
       "output": {
         ".html": {
@@ -1359,16 +1399,6 @@
       "output": {
         ".html": {
           "relative_path": "Articles/Graphics.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "Articles/Runtime.md",
-      "output": {
-        ".html": {
-          "relative_path": "Articles/Runtime.html"
         }
       },
       "version": ""

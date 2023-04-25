@@ -3987,6 +3987,92 @@ references:
   commentId: F:PrismGraphics.Color.Yellow
   fullName: PrismGraphics.Color.Yellow
   nameWithType: Color.Yellow
+- uid: PrismGraphics.Extentions
+  name: PrismGraphics.Extentions
+  href: API/PrismGraphics.Extentions.html
+  commentId: N:PrismGraphics.Extentions
+  fullName: PrismGraphics.Extentions
+  nameWithType: PrismGraphics.Extentions
+- uid: PrismGraphics.Extentions.Display
+  name: Display
+  href: API/PrismGraphics.Extentions.Display.html
+  commentId: T:PrismGraphics.Extentions.Display
+  fullName: PrismGraphics.Extentions.Display
+  nameWithType: Display
+- uid: PrismGraphics.Extentions.Display.#ctor(System.UInt16,System.UInt16)
+  name: Display(ushort, ushort)
+  href: API/PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display__ctor_System_UInt16_System_UInt16_
+  commentId: M:PrismGraphics.Extentions.Display.#ctor(System.UInt16,System.UInt16)
+  name.vb: New(UShort, UShort)
+  fullName: PrismGraphics.Extentions.Display.Display(ushort, ushort)
+  fullName.vb: PrismGraphics.Extentions.Display.New(UShort, UShort)
+  nameWithType: Display.Display(ushort, ushort)
+  nameWithType.vb: Display.New(UShort, UShort)
+- uid: PrismGraphics.Extentions.Display.#ctor*
+  name: Display
+  href: API/PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display__ctor_
+  commentId: Overload:PrismGraphics.Extentions.Display.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: PrismGraphics.Extentions.Display.Display
+  fullName.vb: PrismGraphics.Extentions.Display.New
+  nameWithType: Display.Display
+  nameWithType.vb: Display.New
+- uid: PrismGraphics.Extentions.Display.GetDisplay(System.UInt16,System.UInt16)
+  name: GetDisplay(ushort, ushort)
+  href: API/PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display_GetDisplay_System_UInt16_System_UInt16_
+  commentId: M:PrismGraphics.Extentions.Display.GetDisplay(System.UInt16,System.UInt16)
+  name.vb: GetDisplay(UShort, UShort)
+  fullName: PrismGraphics.Extentions.Display.GetDisplay(ushort, ushort)
+  fullName.vb: PrismGraphics.Extentions.Display.GetDisplay(UShort, UShort)
+  nameWithType: Display.GetDisplay(ushort, ushort)
+  nameWithType.vb: Display.GetDisplay(UShort, UShort)
+- uid: PrismGraphics.Extentions.Display.GetDisplay*
+  name: GetDisplay
+  href: API/PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display_GetDisplay_
+  commentId: Overload:PrismGraphics.Extentions.Display.GetDisplay
+  isSpec: "True"
+  fullName: PrismGraphics.Extentions.Display.GetDisplay
+  nameWithType: Display.GetDisplay
+- uid: PrismGraphics.Extentions.Display.GetFPS
+  name: GetFPS()
+  href: API/PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display_GetFPS
+  commentId: M:PrismGraphics.Extentions.Display.GetFPS
+  fullName: PrismGraphics.Extentions.Display.GetFPS()
+  nameWithType: Display.GetFPS()
+- uid: PrismGraphics.Extentions.Display.GetFPS*
+  name: GetFPS
+  href: API/PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display_GetFPS_
+  commentId: Overload:PrismGraphics.Extentions.Display.GetFPS
+  isSpec: "True"
+  fullName: PrismGraphics.Extentions.Display.GetFPS
+  nameWithType: Display.GetFPS
+- uid: PrismGraphics.Extentions.Display.GetName
+  name: GetName()
+  href: API/PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display_GetName
+  commentId: M:PrismGraphics.Extentions.Display.GetName
+  fullName: PrismGraphics.Extentions.Display.GetName()
+  nameWithType: Display.GetName()
+- uid: PrismGraphics.Extentions.Display.GetName*
+  name: GetName
+  href: API/PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display_GetName_
+  commentId: Overload:PrismGraphics.Extentions.Display.GetName
+  isSpec: "True"
+  fullName: PrismGraphics.Extentions.Display.GetName
+  nameWithType: Display.GetName
+- uid: PrismGraphics.Extentions.Display.Update
+  name: Update()
+  href: API/PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display_Update
+  commentId: M:PrismGraphics.Extentions.Display.Update
+  fullName: PrismGraphics.Extentions.Display.Update()
+  nameWithType: Display.Update()
+- uid: PrismGraphics.Extentions.Display.Update*
+  name: Update
+  href: API/PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display_Update_
+  commentId: Overload:PrismGraphics.Extentions.Display.Update
+  isSpec: "True"
+  fullName: PrismGraphics.Extentions.Display.Update
+  nameWithType: Display.Update
 - uid: PrismGraphics.Extentions.VESA
   name: PrismGraphics.Extentions.VESA
   href: API/PrismGraphics.Extentions.VESA.html
@@ -4031,6 +4117,19 @@ references:
   isSpec: "True"
   fullName: PrismGraphics.Extentions.VESA.VBECanvas.GetFPS
   nameWithType: VBECanvas.GetFPS
+- uid: PrismGraphics.Extentions.VESA.VBECanvas.GetName
+  name: GetName()
+  href: API/PrismGraphics.Extentions.VESA.VBECanvas.html#PrismGraphics_Extentions_VESA_VBECanvas_GetName
+  commentId: M:PrismGraphics.Extentions.VESA.VBECanvas.GetName
+  fullName: PrismGraphics.Extentions.VESA.VBECanvas.GetName()
+  nameWithType: VBECanvas.GetName()
+- uid: PrismGraphics.Extentions.VESA.VBECanvas.GetName*
+  name: GetName
+  href: API/PrismGraphics.Extentions.VESA.VBECanvas.html#PrismGraphics_Extentions_VESA_VBECanvas_GetName_
+  commentId: Overload:PrismGraphics.Extentions.VESA.VBECanvas.GetName
+  isSpec: "True"
+  fullName: PrismGraphics.Extentions.VESA.VBECanvas.GetName
+  nameWithType: VBECanvas.GetName
 - uid: PrismGraphics.Extentions.VESA.VBECanvas.Update
   name: Update()
   href: API/PrismGraphics.Extentions.VESA.VBECanvas.html#PrismGraphics_Extentions_VESA_VBECanvas_Update
@@ -4088,6 +4187,19 @@ references:
   isSpec: "True"
   fullName: PrismGraphics.Extentions.VMWare.SVGAIICanvas.GetFPS
   nameWithType: SVGAIICanvas.GetFPS
+- uid: PrismGraphics.Extentions.VMWare.SVGAIICanvas.GetName
+  name: GetName()
+  href: API/PrismGraphics.Extentions.VMWare.SVGAIICanvas.html#PrismGraphics_Extentions_VMWare_SVGAIICanvas_GetName
+  commentId: M:PrismGraphics.Extentions.VMWare.SVGAIICanvas.GetName
+  fullName: PrismGraphics.Extentions.VMWare.SVGAIICanvas.GetName()
+  nameWithType: SVGAIICanvas.GetName()
+- uid: PrismGraphics.Extentions.VMWare.SVGAIICanvas.GetName*
+  name: GetName
+  href: API/PrismGraphics.Extentions.VMWare.SVGAIICanvas.html#PrismGraphics_Extentions_VMWare_SVGAIICanvas_GetName_
+  commentId: Overload:PrismGraphics.Extentions.VMWare.SVGAIICanvas.GetName
+  isSpec: "True"
+  fullName: PrismGraphics.Extentions.VMWare.SVGAIICanvas.GetName
+  nameWithType: SVGAIICanvas.GetName
 - uid: PrismGraphics.Extentions.VMWare.SVGAIICanvas.Height
   name: Height
   href: API/PrismGraphics.Extentions.VMWare.SVGAIICanvas.html#PrismGraphics_Extentions_VMWare_SVGAIICanvas_Height
@@ -4114,6 +4226,12 @@ references:
   isSpec: "True"
   fullName: PrismGraphics.Extentions.VMWare.SVGAIICanvas.Update
   nameWithType: SVGAIICanvas.Update
+- uid: PrismGraphics.Extentions.VMWare.SVGAIICanvas.Video
+  name: Video
+  href: API/PrismGraphics.Extentions.VMWare.SVGAIICanvas.html#PrismGraphics_Extentions_VMWare_SVGAIICanvas_Video
+  commentId: F:PrismGraphics.Extentions.VMWare.SVGAIICanvas.Video
+  fullName: PrismGraphics.Extentions.VMWare.SVGAIICanvas.Video
+  nameWithType: SVGAIICanvas.Video
 - uid: PrismGraphics.Extentions.VMWare.SVGAIICanvas.Width
   name: Width
   href: API/PrismGraphics.Extentions.VMWare.SVGAIICanvas.html#PrismGraphics_Extentions_VMWare_SVGAIICanvas_Width
@@ -6669,6 +6787,47 @@ references:
   isSpec: "True"
   fullName: PrismRuntime.SShell.Scripts.CLI.Invoke
   nameWithType: CLI.Invoke
+- uid: PrismRuntime.SShell.Scripts.CPUID
+  name: CPUID
+  href: API/PrismRuntime.SShell.Scripts.CPUID.html
+  commentId: T:PrismRuntime.SShell.Scripts.CPUID
+  fullName: PrismRuntime.SShell.Scripts.CPUID
+  nameWithType: CPUID
+- uid: PrismRuntime.SShell.Scripts.CPUID.#ctor
+  name: CPUID()
+  href: API/PrismRuntime.SShell.Scripts.CPUID.html#PrismRuntime_SShell_Scripts_CPUID__ctor
+  commentId: M:PrismRuntime.SShell.Scripts.CPUID.#ctor
+  name.vb: New()
+  fullName: PrismRuntime.SShell.Scripts.CPUID.CPUID()
+  fullName.vb: PrismRuntime.SShell.Scripts.CPUID.New()
+  nameWithType: CPUID.CPUID()
+  nameWithType.vb: CPUID.New()
+- uid: PrismRuntime.SShell.Scripts.CPUID.#ctor*
+  name: CPUID
+  href: API/PrismRuntime.SShell.Scripts.CPUID.html#PrismRuntime_SShell_Scripts_CPUID__ctor_
+  commentId: Overload:PrismRuntime.SShell.Scripts.CPUID.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: PrismRuntime.SShell.Scripts.CPUID.CPUID
+  fullName.vb: PrismRuntime.SShell.Scripts.CPUID.New
+  nameWithType: CPUID.CPUID
+  nameWithType.vb: CPUID.New
+- uid: PrismRuntime.SShell.Scripts.CPUID.Invoke(System.String[])
+  name: Invoke(string[])
+  href: API/PrismRuntime.SShell.Scripts.CPUID.html#PrismRuntime_SShell_Scripts_CPUID_Invoke_System_String___
+  commentId: M:PrismRuntime.SShell.Scripts.CPUID.Invoke(System.String[])
+  name.vb: Invoke(String())
+  fullName: PrismRuntime.SShell.Scripts.CPUID.Invoke(string[])
+  fullName.vb: PrismRuntime.SShell.Scripts.CPUID.Invoke(String())
+  nameWithType: CPUID.Invoke(string[])
+  nameWithType.vb: CPUID.Invoke(String())
+- uid: PrismRuntime.SShell.Scripts.CPUID.Invoke*
+  name: Invoke
+  href: API/PrismRuntime.SShell.Scripts.CPUID.html#PrismRuntime_SShell_Scripts_CPUID_Invoke_
+  commentId: Overload:PrismRuntime.SShell.Scripts.CPUID.Invoke
+  isSpec: "True"
+  fullName: PrismRuntime.SShell.Scripts.CPUID.Invoke
+  nameWithType: CPUID.Invoke
 - uid: PrismRuntime.SShell.Scripts.Locker
   name: Locker
   href: API/PrismRuntime.SShell.Scripts.Locker.html
@@ -7528,6 +7687,174 @@ references:
   isSpec: "True"
   fullName: PrismRuntime.SShell.Shell.Main
   nameWithType: Shell.Main
+- uid: PrismRuntime.SystemCallKind
+  name: SystemCallKind
+  href: API/PrismRuntime.SystemCallKind.html
+  commentId: T:PrismRuntime.SystemCallKind
+  fullName: PrismRuntime.SystemCallKind
+  nameWithType: SystemCallKind
+- uid: PrismRuntime.SystemCallKind.Core_Fill16
+  name: Core_Fill16
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_Core_Fill16
+  commentId: F:PrismRuntime.SystemCallKind.Core_Fill16
+  fullName: PrismRuntime.SystemCallKind.Core_Fill16
+  nameWithType: SystemCallKind.Core_Fill16
+- uid: PrismRuntime.SystemCallKind.Core_Fill32
+  name: Core_Fill32
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_Core_Fill32
+  commentId: F:PrismRuntime.SystemCallKind.Core_Fill32
+  fullName: PrismRuntime.SystemCallKind.Core_Fill32
+  nameWithType: SystemCallKind.Core_Fill32
+- uid: PrismRuntime.SystemCallKind.Core_Fill64
+  name: Core_Fill64
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_Core_Fill64
+  commentId: F:PrismRuntime.SystemCallKind.Core_Fill64
+  fullName: PrismRuntime.SystemCallKind.Core_Fill64
+  nameWithType: SystemCallKind.Core_Fill64
+- uid: PrismRuntime.SystemCallKind.Core_Fill8
+  name: Core_Fill8
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_Core_Fill8
+  commentId: F:PrismRuntime.SystemCallKind.Core_Fill8
+  fullName: PrismRuntime.SystemCallKind.Core_Fill8
+  nameWithType: SystemCallKind.Core_Fill8
+- uid: PrismRuntime.SystemCallKind.Core_GetByte
+  name: Core_GetByte
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_Core_GetByte
+  commentId: F:PrismRuntime.SystemCallKind.Core_GetByte
+  fullName: PrismRuntime.SystemCallKind.Core_GetByte
+  nameWithType: SystemCallKind.Core_GetByte
+- uid: PrismRuntime.SystemCallKind.Core_Math_Eval
+  name: Core_Math_Eval
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_Core_Math_Eval
+  commentId: F:PrismRuntime.SystemCallKind.Core_Math_Eval
+  fullName: PrismRuntime.SystemCallKind.Core_Math_Eval
+  nameWithType: SystemCallKind.Core_Math_Eval
+- uid: PrismRuntime.SystemCallKind.Core_SetByte
+  name: Core_SetByte
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_Core_SetByte
+  commentId: F:PrismRuntime.SystemCallKind.Core_SetByte
+  fullName: PrismRuntime.SystemCallKind.Core_SetByte
+  nameWithType: SystemCallKind.Core_SetByte
+- uid: PrismRuntime.SystemCallKind.System_Buffer_MemoryCopy16
+  name: System_Buffer_MemoryCopy16
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_Buffer_MemoryCopy16
+  commentId: F:PrismRuntime.SystemCallKind.System_Buffer_MemoryCopy16
+  fullName: PrismRuntime.SystemCallKind.System_Buffer_MemoryCopy16
+  nameWithType: SystemCallKind.System_Buffer_MemoryCopy16
+- uid: PrismRuntime.SystemCallKind.System_Buffer_MemoryCopy32
+  name: System_Buffer_MemoryCopy32
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_Buffer_MemoryCopy32
+  commentId: F:PrismRuntime.SystemCallKind.System_Buffer_MemoryCopy32
+  fullName: PrismRuntime.SystemCallKind.System_Buffer_MemoryCopy32
+  nameWithType: SystemCallKind.System_Buffer_MemoryCopy32
+- uid: PrismRuntime.SystemCallKind.System_Buffer_MemoryCopy64
+  name: System_Buffer_MemoryCopy64
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_Buffer_MemoryCopy64
+  commentId: F:PrismRuntime.SystemCallKind.System_Buffer_MemoryCopy64
+  fullName: PrismRuntime.SystemCallKind.System_Buffer_MemoryCopy64
+  nameWithType: SystemCallKind.System_Buffer_MemoryCopy64
+- uid: PrismRuntime.SystemCallKind.System_Buffer_MemoryCopy8
+  name: System_Buffer_MemoryCopy8
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_Buffer_MemoryCopy8
+  commentId: F:PrismRuntime.SystemCallKind.System_Buffer_MemoryCopy8
+  fullName: PrismRuntime.SystemCallKind.System_Buffer_MemoryCopy8
+  nameWithType: SystemCallKind.System_Buffer_MemoryCopy8
+- uid: PrismRuntime.SystemCallKind.System_Console_Clear
+  name: System_Console_Clear
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_Console_Clear
+  commentId: F:PrismRuntime.SystemCallKind.System_Console_Clear
+  fullName: PrismRuntime.SystemCallKind.System_Console_Clear
+  nameWithType: SystemCallKind.System_Console_Clear
+- uid: PrismRuntime.SystemCallKind.System_Console_ResetColor
+  name: System_Console_ResetColor
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_Console_ResetColor
+  commentId: F:PrismRuntime.SystemCallKind.System_Console_ResetColor
+  fullName: PrismRuntime.SystemCallKind.System_Console_ResetColor
+  nameWithType: SystemCallKind.System_Console_ResetColor
+- uid: PrismRuntime.SystemCallKind.System_Console_SetColor
+  name: System_Console_SetColor
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_Console_SetColor
+  commentId: F:PrismRuntime.SystemCallKind.System_Console_SetColor
+  fullName: PrismRuntime.SystemCallKind.System_Console_SetColor
+  nameWithType: SystemCallKind.System_Console_SetColor
+- uid: PrismRuntime.SystemCallKind.System_Console_Write_string
+  name: System_Console_Write_string
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_Console_Write_string
+  commentId: F:PrismRuntime.SystemCallKind.System_Console_Write_string
+  fullName: PrismRuntime.SystemCallKind.System_Console_Write_string
+  nameWithType: SystemCallKind.System_Console_Write_string
+- uid: PrismRuntime.SystemCallKind.System_Console_WriteLine_string
+  name: System_Console_WriteLine_string
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_Console_WriteLine_string
+  commentId: F:PrismRuntime.SystemCallKind.System_Console_WriteLine_string
+  fullName: PrismRuntime.SystemCallKind.System_Console_WriteLine_string
+  nameWithType: SystemCallKind.System_Console_WriteLine_string
+- uid: PrismRuntime.SystemCallKind.System_IO_Directory_Create
+  name: System_IO_Directory_Create
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_IO_Directory_Create
+  commentId: F:PrismRuntime.SystemCallKind.System_IO_Directory_Create
+  fullName: PrismRuntime.SystemCallKind.System_IO_Directory_Create
+  nameWithType: SystemCallKind.System_IO_Directory_Create
+- uid: PrismRuntime.SystemCallKind.System_IO_Directory_Delete
+  name: System_IO_Directory_Delete
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_IO_Directory_Delete
+  commentId: F:PrismRuntime.SystemCallKind.System_IO_Directory_Delete
+  fullName: PrismRuntime.SystemCallKind.System_IO_Directory_Delete
+  nameWithType: SystemCallKind.System_IO_Directory_Delete
+- uid: PrismRuntime.SystemCallKind.System_IO_Directory_Exists
+  name: System_IO_Directory_Exists
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_IO_Directory_Exists
+  commentId: F:PrismRuntime.SystemCallKind.System_IO_Directory_Exists
+  fullName: PrismRuntime.SystemCallKind.System_IO_Directory_Exists
+  nameWithType: SystemCallKind.System_IO_Directory_Exists
+- uid: PrismRuntime.SystemCallKind.System_IO_File_Create
+  name: System_IO_File_Create
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_IO_File_Create
+  commentId: F:PrismRuntime.SystemCallKind.System_IO_File_Create
+  fullName: PrismRuntime.SystemCallKind.System_IO_File_Create
+  nameWithType: SystemCallKind.System_IO_File_Create
+- uid: PrismRuntime.SystemCallKind.System_IO_File_Delete
+  name: System_IO_File_Delete
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_IO_File_Delete
+  commentId: F:PrismRuntime.SystemCallKind.System_IO_File_Delete
+  fullName: PrismRuntime.SystemCallKind.System_IO_File_Delete
+  nameWithType: SystemCallKind.System_IO_File_Delete
+- uid: PrismRuntime.SystemCallKind.System_IO_File_Exists
+  name: System_IO_File_Exists
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_IO_File_Exists
+  commentId: F:PrismRuntime.SystemCallKind.System_IO_File_Exists
+  fullName: PrismRuntime.SystemCallKind.System_IO_File_Exists
+  nameWithType: SystemCallKind.System_IO_File_Exists
+- uid: PrismRuntime.SystemCallKind.System_IO_File_ReadAllBytes_string
+  name: System_IO_File_ReadAllBytes_string
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_IO_File_ReadAllBytes_string
+  commentId: F:PrismRuntime.SystemCallKind.System_IO_File_ReadAllBytes_string
+  fullName: PrismRuntime.SystemCallKind.System_IO_File_ReadAllBytes_string
+  nameWithType: SystemCallKind.System_IO_File_ReadAllBytes_string
+- uid: PrismRuntime.SystemCallKind.System_IO_File_WriteeAllBytes_string_bytes
+  name: System_IO_File_WriteeAllBytes_string_bytes
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_IO_File_WriteeAllBytes_string_bytes
+  commentId: F:PrismRuntime.SystemCallKind.System_IO_File_WriteeAllBytes_string_bytes
+  fullName: PrismRuntime.SystemCallKind.System_IO_File_WriteeAllBytes_string_bytes
+  nameWithType: SystemCallKind.System_IO_File_WriteeAllBytes_string_bytes
+- uid: PrismRuntime.SystemCallKind.System_Runtime_InteropServices_NativeMemory_Alloc
+  name: System_Runtime_InteropServices_NativeMemory_Alloc
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_Runtime_InteropServices_NativeMemory_Alloc
+  commentId: F:PrismRuntime.SystemCallKind.System_Runtime_InteropServices_NativeMemory_Alloc
+  fullName: PrismRuntime.SystemCallKind.System_Runtime_InteropServices_NativeMemory_Alloc
+  nameWithType: SystemCallKind.System_Runtime_InteropServices_NativeMemory_Alloc
+- uid: PrismRuntime.SystemCallKind.System_Runtime_InteropServices_NativeMemory_Free
+  name: System_Runtime_InteropServices_NativeMemory_Free
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_Runtime_InteropServices_NativeMemory_Free
+  commentId: F:PrismRuntime.SystemCallKind.System_Runtime_InteropServices_NativeMemory_Free
+  fullName: PrismRuntime.SystemCallKind.System_Runtime_InteropServices_NativeMemory_Free
+  nameWithType: SystemCallKind.System_Runtime_InteropServices_NativeMemory_Free
+- uid: PrismRuntime.SystemCallKind.System_Runtime_InteropServices_NativeMemory_Realloc
+  name: System_Runtime_InteropServices_NativeMemory_Realloc
+  href: API/PrismRuntime.SystemCallKind.html#PrismRuntime_SystemCallKind_System_Runtime_InteropServices_NativeMemory_Realloc
+  commentId: F:PrismRuntime.SystemCallKind.System_Runtime_InteropServices_NativeMemory_Realloc
+  fullName: PrismRuntime.SystemCallKind.System_Runtime_InteropServices_NativeMemory_Realloc
+  nameWithType: SystemCallKind.System_Runtime_InteropServices_NativeMemory_Realloc
 - uid: PrismRuntime.SystemCalls
   name: SystemCalls
   href: API/PrismRuntime.SystemCalls.html

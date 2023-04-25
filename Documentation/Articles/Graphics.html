@@ -170,7 +170,7 @@ using Cosmos.System;
 
 public class YourKernelName : Kernel
 {
-	public SVGACanvas Canvas;
+	public Disiplay Canvas;
 
 	protected override BeforeRun()
 	{
@@ -178,7 +178,7 @@ public class YourKernelName : Kernel
 		MouseManager.ScreenWidth = 800;
 		MouseManager.ScreenHeight = 600;
 
-		Canvas = new(800, 600); // Define the canvas instance.
+		Canvas = Display.GetDisplay(800, 600); // Define the canvas instance.
 	}
 
 	protected override Run()
@@ -193,8 +193,13 @@ public class YourKernelName : Kernel
 <p>This can be modified to fit any need and should work. Never forget to clear and update the screen each frame.</p>
 <hr>
 <h1 id="todo">ToDo</h1>
-<p>This project still has many things to finish, including video drivers.
-See <a href="https://wiki.osdev.org/Accelerated_Graphic_Cards">here</a>.</p>
+<p>This project still has many things to finish, including video drivers.</p>
+<blockquote>
+<p>See <a href="https://wiki.osdev.org/Accelerated_Graphic_Cards">here</a>.</p>
+</blockquote>
+<blockquote>
+<p>NVidia: <a href="https://nvidia.github.io/open-gpu-doc/">here</a>.</p>
+</blockquote>
 </article>
           </div>
 

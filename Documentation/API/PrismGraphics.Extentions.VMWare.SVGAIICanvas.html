@@ -79,7 +79,8 @@
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><a class="xref" href="PrismGraphics.Graphics.html">Graphics</a></div>
-    <div class="level2"><span class="xref">SVGAIICanvas</span></div>
+    <div class="level2"><a class="xref" href="PrismGraphics.Extentions.Display.html">Display</a></div>
+    <div class="level3"><span class="xref">SVGAIICanvas</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
@@ -87,6 +88,9 @@
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display_GetDisplay_System_UInt16_System_UInt16_">Display.GetDisplay(ushort, ushort)</a>
+    </div>
     <div>
       <a class="xref" href="PrismGraphics.Graphics.html#PrismGraphics_Graphics_Item_System_Int32_System_Int32_">Graphics.this[int, int]</a>
     </div>
@@ -182,7 +186,7 @@
   <h6><strong>Assembly</strong>: PrismGraphics.dll</h6>
   <h5 id="PrismGraphics_Extentions_VMWare_SVGAIICanvas_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SVGAIICanvas : Graphics, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class SVGAIICanvas : Display, IDisposable</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -223,6 +227,37 @@
         <td><span class="parametername">Height</span></td>
         <td><p>Total height (int pixels) of the canvas.</p>
 </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismGraphics_Extentions_VMWare_SVGAIICanvas_Video.md&amp;value=---%0Auid%3A%20PrismGraphics.Extentions.VMWare.SVGAIICanvas.Video%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Extentions/VMWare/SVGAIICanvas.cs/#L76">View Source</a>
+  </span>
+  <h4 id="PrismGraphics_Extentions_VMWare_SVGAIICanvas_Video" data-uid="PrismGraphics.Extentions.VMWare.SVGAIICanvas.Video">Video</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly VMWareSVGAII Video</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">VMWareSVGAII</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -295,16 +330,16 @@
     <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismGraphics_Extentions_VMWare_SVGAIICanvas_GetFPS.md&amp;value=---%0Auid%3A%20PrismGraphics.Extentions.VMWare.SVGAIICanvas.GetFPS%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Extentions/VMWare/SVGAIICanvas.cs/#L59">View Source</a>
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Extentions/VMWare/SVGAIICanvas.cs/#L60">View Source</a>
   </span>
   <a id="PrismGraphics_Extentions_VMWare_SVGAIICanvas_GetFPS_" data-uid="PrismGraphics.Extentions.VMWare.SVGAIICanvas.GetFPS*"></a>
   <h4 id="PrismGraphics_Extentions_VMWare_SVGAIICanvas_GetFPS" data-uid="PrismGraphics.Extentions.VMWare.SVGAIICanvas.GetFPS">GetFPS()</h4>
-  <div class="markdown level1 summary"><p>Gets the FPS of the canvas.</p>
+  <div class="markdown level1 summary"><p>Gets the FPS measurment of the display.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint GetFPS()</code></pre>
+    <pre><code class="lang-csharp hljs">public override uint GetFPS()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
@@ -317,27 +352,65 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></td>
-        <td><p>Canvas's FPS.</p>
+        <td><p>The FPS as a uint number.</p>
 </td>
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display_GetFPS">Display.GetFPS()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismGraphics_Extentions_VMWare_SVGAIICanvas_GetName.md&amp;value=---%0Auid%3A%20PrismGraphics.Extentions.VMWare.SVGAIICanvas.GetName%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Extentions/VMWare/SVGAIICanvas.cs/#L55">View Source</a>
+  </span>
+  <a id="PrismGraphics_Extentions_VMWare_SVGAIICanvas_GetName_" data-uid="PrismGraphics.Extentions.VMWare.SVGAIICanvas.GetName*"></a>
+  <h4 id="PrismGraphics_Extentions_VMWare_SVGAIICanvas_GetName" data-uid="PrismGraphics.Extentions.VMWare.SVGAIICanvas.GetName">GetName()</h4>
+  <div class="markdown level1 summary"><p>Gets the display driver's name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string GetName()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>the display name.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display_GetName">Display.GetName()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismGraphics_Extentions_VMWare_SVGAIICanvas_Update.md&amp;value=---%0Auid%3A%20PrismGraphics.Extentions.VMWare.SVGAIICanvas.Update%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Extentions/VMWare/SVGAIICanvas.cs/#L67">View Source</a>
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Extentions/VMWare/SVGAIICanvas.cs/#L65">View Source</a>
   </span>
   <a id="PrismGraphics_Extentions_VMWare_SVGAIICanvas_Update_" data-uid="PrismGraphics.Extentions.VMWare.SVGAIICanvas.Update*"></a>
   <h4 id="PrismGraphics_Extentions_VMWare_SVGAIICanvas_Update" data-uid="PrismGraphics.Extentions.VMWare.SVGAIICanvas.Update">Update()</h4>
-  <div class="markdown level1 summary"><p>Coppies the linear buffer to vram.</p>
+  <div class="markdown level1 summary"><p>Coppies the second buffer to the primary display buffer.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Update()</code></pre>
+    <pre><code class="lang-csharp hljs">public override void Update()</code></pre>
   </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display_Update">Display.Update()</a></div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>

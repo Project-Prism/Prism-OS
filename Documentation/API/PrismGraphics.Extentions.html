@@ -5,9 +5,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Prism OS Runtime </title>
+    <title>Namespace PrismGraphics.Extentions
+ </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Prism OS Runtime ">
+    <meta name="title" content="Namespace PrismGraphics.Extentions
+ ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../favicon.ico">
@@ -65,268 +67,20 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="">
-<h1 id="prism-os-runtime">Prism OS Runtime</h1>
+            <article class="content wrap" id="_content" data-uid="PrismGraphics.Extentions">
 
-<h2 id="system-calls">System calls</h2>
-<p>These are the avalable syscalls Prism OS offers, the EAX value will always become the return value after calling.</p>
-<p>All references to strings will be pointers to null-terminated strings in whatever format was used, typicaly it will be UTF-8.</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>EAX</th>
-<th>EBX</th>
-<th>ECX</th>
-<th>EDX</th>
-<th>ESI</th>
-<th>EDI</th>
-<th>Returns</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Console.WriteLine</td>
-<td>0x00</td>
-<td>Message</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Console.Write</td>
-<td>0x01</td>
-<td>Message</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Console.Clear</td>
-<td>0x02</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Console.SetColor</td>
-<td>0x03</td>
-<td>FG Color</td>
-<td>BG Color</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Console.ResetColor</td>
-<td>0x04</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Memory.Realloc</td>
-<td>0x05</td>
-<td>Old Address</td>
-<td>New Size</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>New Address</td>
-</tr>
-<tr>
-<td>Memory.Alloc</td>
-<td>0x06</td>
-<td>Size</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>Address</td>
-</tr>
-<tr>
-<td>Memory.Free</td>
-<td>0x07</td>
-<td>Address</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Memory.Set</td>
-<td>0x08</td>
-<td>Address</td>
-<td>Value</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Memory.Get</td>
-<td>0x09</td>
-<td>Address</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>Value</td>
-</tr>
-<tr>
-<td>Memory.Copy64</td>
-<td>0x10</td>
-<td>Destination</td>
-<td>Source</td>
-<td>Size</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Memory.Copy32</td>
-<td>0x11</td>
-<td>Destination</td>
-<td>Source</td>
-<td>Size</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Memory.Copy16</td>
-<td>0x12</td>
-<td>Destination</td>
-<td>Source</td>
-<td>Size</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Memory.Copy8</td>
-<td>0x13</td>
-<td>Destination</td>
-<td>Source</td>
-<td>Size</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Memory.Fill64</td>
-<td>0x14</td>
-<td>Destination</td>
-<td>Value</td>
-<td>Size</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Memory.Fill32</td>
-<td>0x15</td>
-<td>Destination</td>
-<td>Value</td>
-<td>Size</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Memory.Fill16</td>
-<td>0x16</td>
-<td>Destination</td>
-<td>Value</td>
-<td>Size</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Memory.Fill8</td>
-<td>0x17</td>
-<td>Destination</td>
-<td>Value</td>
-<td>Size</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>File.Read</td>
-<td>0x18</td>
-<td>Full Path</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>Binary</td>
-</tr>
-<tr>
-<td>File.Write</td>
-<td>0x19</td>
-<td>Full Path</td>
-<td>Binary</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>File.Remove</td>
-<td>0x20</td>
-<td>Full Path</td>
-<td>Name</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>File.Create</td>
-<td>0x21</td>
-<td>Full Path</td>
-<td>Name</td>
-<td>Type</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td>File.Exists</td>
-<td>0x22</td>
-<td>Full Path</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>0 = False, 1 = File, 2 = Folder</td>
-</tr>
-<tr>
-<td>File.GetSize</td>
-<td>0x23</td>
-<td>Full Path</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>Size of the file</td>
-</tr>
-</tbody>
-</table>
+  <h1 id="PrismGraphics_Extentions" data-uid="PrismGraphics.Extentions" class="text-break">Namespace PrismGraphics.Extentions
+</h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+</h3>
+      <h4><a class="xref" href="PrismGraphics.Extentions.Display.html">Display</a></h4>
+      <section><p>The generic display interface. Used to abstract driver classes and get display output.</p>
+</section>
+
+
 </article>
           </div>
 
@@ -334,9 +88,6 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/DocFX/Articles/Runtime.md/#L1" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <div class="toggle-mode">
