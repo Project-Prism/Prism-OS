@@ -1,4 +1,4 @@
-﻿using Cosmos.Core.Memory;
+﻿using System.Runtime.InteropServices;
 using Cosmos.Core;
 using PrismTools;
 using TinyMath;
@@ -33,24 +33,24 @@ public static unsafe class SystemCalls
 			return;
 		}
 
-		switch (Context.EAX)
+		switch ((SystemCallKind)Context.EAX)
 		{
 			#region Console
 
-			case 0x00: // WriteLine
+			case SystemCallKind.System_Console_WriteLine_string:
 				Console.WriteLine(GetString((char*)Context.EBX));
 				break;
-			case 0x01: // Write
+			case SystemCallKind.System_Console_Write_string:
 				Console.Write(GetString((char*)Context.EBX));
 				break;
-			case 0x02: // Clear
+			case SystemCallKind.System_Console_Clear:
 				Console.Clear();
 				break;
-			case 0x03: // Set Color
+			case SystemCallKind.System_Console_SetColor:
 				Console.ForegroundColor = (ConsoleColor)Context.EBX;
 				Console.BackgroundColor = (ConsoleColor)Context.ECX;
 				break;
-			case 0x04: // Reset Color
+			case SystemCallKind.System_Console_ResetColor:
 				Console.ResetColor();
 				break;
 
@@ -58,58 +58,58 @@ public static unsafe class SystemCalls
 
 			#region Memory
 
-			case 0x05: // Realloc
-				Context.EAX = (uint)Heap.Realloc((byte*)Context.EBX, Context.EDX);
+			case SystemCallKind.System_Runtime_InteropServices_NativeMemory_Realloc: // Realloc
+				Context.EAX = (uint)NativeMemory.Realloc((byte*)Context.EBX, Context.EDX);
 				break;
 
-			case 0x06: // Alloc
-				Context.EAX = (uint)Heap.Alloc(Context.EBX);
+			case SystemCallKind.System_Runtime_InteropServices_NativeMemory_Alloc: // Alloc
+				Context.EAX = (uint)NativeMemory.Alloc(Context.EBX);
 				break;
 
-			case 0x07: // Free
-				Heap.Free((uint*)Context.EBX);
+			case SystemCallKind.System_Runtime_InteropServices_NativeMemory_Free: // Free
+				NativeMemory.Free((uint*)Context.EBX);
 				break;
 
-			case 0x08: // Set
+			case SystemCallKind.Core_SetByte: // Set
 				*(uint*)Context.EBX = Context.ECX;
 				break;
 
-			case 0x09: // Get
+			case SystemCallKind.Core_GetByte: // Get
 				Context.EAX = *(uint*)Context.EBX;
 				break;
 
-			case 0x10: // Copy64
+			case SystemCallKind.System_Buffer_MemoryCopy64: // Copy64
 				System.Buffer.MemoryCopy((void*)Context.EBX, (void*)Context.ECX, Context.EDX * 8, Context.EDX * 8);
 				break;
 
-			case 0x11: // Copy32
+			case SystemCallKind.System_Buffer_MemoryCopy32: // Copy32
 				System.Buffer.MemoryCopy((void*)Context.EBX, (void*)Context.ECX, Context.EDX * 4, Context.EDX * 4);
 				break;
 
-			case 0x12: // Copy16
+			case SystemCallKind.System_Buffer_MemoryCopy16: // Copy16
 				System.Buffer.MemoryCopy((void*)Context.EBX, (void*)Context.ECX, Context.EDX * 2, Context.EDX * 2);
 				break;
 
-			case 0x13: // Copy8
+			case SystemCallKind.System_Buffer_MemoryCopy8: // Copy8
 				System.Buffer.MemoryCopy((void*)Context.EBX, (void*)Context.ECX, Context.EDX, Context.EDX);
 				break;
 
-			case 0x14: // Fill64
+			case SystemCallKind.Core_Fill64: // Fill64
 				for (int I = 0; I < (int)(int*)Context.EDX; I++)
 				{
 					*((long**)Context.EBX)[I] = (long)(long*)Context.ECX;
 				}
 				break;
 
-			case 0x15: // Fill32
+			case SystemCallKind.Core_Fill32: // Fill32
 				MemoryOperations.Fill((uint*)Context.EBX, Context.ECX, (int)(int*)Context.EDX);
 				break;
 
-			case 0x16: // Fill16
+			case SystemCallKind.Core_Fill16: // Fill16
 				MemoryOperations.Fill((ushort*)Context.EBX, (ushort)(ushort*)Context.ECX, (int)(int*)Context.EDX);
 				break;
 
-			case 0x17: // Fill8
+			case SystemCallKind.Core_Fill8: // Fill8
 				MemoryOperations.Fill((byte*)Context.EBX, (byte)(byte*)Context.ECX, (int)(int*)Context.EDX);
 				break;
 
@@ -117,7 +117,7 @@ public static unsafe class SystemCalls
 
 			#region Files
 
-			case 0x18: // Read
+			case SystemCallKind.System_IO_File_ReadAllBytes_string:
 				fixed (byte* PTR = File.ReadAllBytes(GetString((char*)Context.EBX)))
 				{
 					Context.EAX = (uint)new FileInfo(GetString((char*)Context.EBX)).Length;
@@ -125,7 +125,7 @@ public static unsafe class SystemCalls
 				}
 				break;
 
-			case 0x19: // Write
+			case SystemCallKind.System_IO_File_WriteeAllBytes_string_bytes:
 				byte[] Buffer = new byte[Context.EDX];
 				fixed (byte* PTR = Buffer)
 				{
@@ -134,56 +134,35 @@ public static unsafe class SystemCalls
 				File.WriteAllBytes(GetString((char*)Context.EBX), Buffer);
 				break;
 
-			case 0x20: // Remove
-				try
-				{
-					if (Context.ECX == 0)
-					{
-						Directory.Delete(GetString((char*)Context.EBX));
-					}
-					else
-					{
-						File.Delete(GetString((char*)Context.EBX));
-					}
-				}
-				catch { }
+			case SystemCallKind.System_IO_Directory_Delete:
+				Directory.Delete(GetString((char*)Context.EBX));
 				break;
 
-			case 0x21: // Create
-				if (Context.ECX == 0)
-				{
-					Directory.CreateDirectory(GetString((char*)Context.EBX));
-				}
-				else
-				{
-					File.Create(GetString((char*)Context.EBX));
-				}
+			case SystemCallKind.System_IO_File_Delete:
+				File.Delete(GetString((char*)Context.EBX));
 				break;
 
-			case 0x22: // Exists
-				if (Directory.Exists(GetString((char*)Context.EBX)))
-				{
-					Context.EAX = 1;
-				}
-				else if (File.Exists(GetString((char*)Context.EBX)))
-				{
-					Context.EAX = 2;
-				}
-				else
-				{
-					Context.EAX = 0;
-				}
+			case SystemCallKind.System_IO_Directory_Create:
+				Directory.CreateDirectory(GetString((char*)Context.EBX));
 				break;
 
-			case 0x23: // Size
-				Context.EAX = (uint)new FileInfo(GetString((char*)Context.EBX)).Length;
+			case SystemCallKind.System_IO_File_Create:
+				File.Create(GetString((char*)Context.EBX));
+				break;
+
+			case SystemCallKind.System_IO_Directory_Exists:
+				Context.EAX = (uint)(Directory.Exists(GetString((char*)Context.EBX)) ? 1 : 0);
+				break;
+
+			case SystemCallKind.System_IO_File_Exists:
+				Context.EAX = (uint)(File.Exists(GetString((char*)Context.EBX)) ? 1 : 0);
 				break;
 
 			#endregion
 
 			#region Eval
 
-			case 0x24:
+			case SystemCallKind.Core_Math_Eval:
 				fixed (char* C = SyntaxParser.Evaluate(GetString((char*)Context.EBX)).ToString())
 				{
 					Context.EAX = (uint)C;
@@ -193,7 +172,7 @@ public static unsafe class SystemCalls
 			#endregion
 
 			default:
-				Debugger.WriteFull($"Unimplemented systemcall: 0x{Context.EAX}", Severity.Fail);
+				Debugger.WriteFull($"Unimplemented systemcall: 0x{(int)Context.EAX}", Severity.Fail);
 				break;
 		}
 	}

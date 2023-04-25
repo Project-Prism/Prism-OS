@@ -5,6 +5,7 @@
 <h1 align="center">Prism OS</h1>
 
 <p align="center">
+  <img src="https://img.shields.io/tokei/lines/github/Project-Prism/Prism-OS?style=plastic" />
   <img src="https://img.shields.io/github/languages/code-size/Project-Prism/Prism-OS?style=plastic" />
   <img src="https://img.shields.io/github/downloads/Project-Prism/Prism-OS/total?style=plastic" />
   <img src="https://img.shields.io/github/v/release/Project-Prism/Prism-Os?style=plastic" />

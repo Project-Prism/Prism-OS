@@ -10,7 +10,7 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<Optimize>True</Optimize>
 	</PropertyGroup>
-
+	
 	<!--Cosmos Config-->
 	<PropertyGroup>
 		<Platform>cosmos</Platform>
@@ -36,6 +36,10 @@
 		<CompressionType>Gzip</CompressionType>
 		<RemoveBootDebugOutput>True</RemoveBootDebugOutput>
 		<OptimizationLevel>2</OptimizationLevel>
+		<QemuMemory>4096</QemuMemory>
+		<QemuNetworkDevice>PCNet</QemuNetworkDevice>
+		<QemuVideoDriver>VBE</QemuVideoDriver>
+		<QemuAudioDriver>AC97</QemuAudioDriver>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -51,18 +55,18 @@
 		<PackageReference Include="Cosmos.System2" Version="0.1.0-*" />
 		<PackageReference Include="Cosmos.Build" Version="0.1.0-*" />
 		<PackageReference Include="SuperDB-Core" Version="1.0.3" />
-		
+
 	</ItemGroup>
 
 	<ItemGroup>
-		
+
 		<ProjectReference Include="..\PrismAudio\PrismAudio.csproj" />
 		<ProjectReference Include="..\PrismFilesystem\PrismFilesystem.csproj" />
 		<ProjectReference Include="..\PrismGraphics\PrismGraphics.csproj" />
 		<ProjectReference Include="..\PrismNetwork\PrismNetwork.csproj" />
 		<ProjectReference Include="..\PrismRuntime\PrismRuntime.csproj" />
 		<ProjectReference Include="..\PrismTools\PrismTools.csproj" />
-		
+
 	</ItemGroup>
 
 </Project>

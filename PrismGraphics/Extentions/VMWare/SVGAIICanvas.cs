@@ -4,7 +4,7 @@ using Cosmos.HAL.Drivers.PCI.Video;
 
 namespace PrismGraphics.Extentions.VMWare;
 
-public unsafe class SVGAIICanvas : Graphics
+public unsafe class SVGAIICanvas : Display
 {
 	/// <summary>
 	/// Creates a new instance of the <see cref="SVGAIICanvas"/> class.
@@ -52,19 +52,17 @@ public unsafe class SVGAIICanvas : Graphics
 
 	#region Methods
 
-	/// <summary>
-	/// Gets the FPS of the canvas.
-	/// </summary>
-	/// <returns>Canvas's FPS.</returns>
-	public uint GetFPS()
+	public override string GetName()
+	{
+		return nameof(SVGAIICanvas);
+	}
+
+	public override uint GetFPS()
 	{
 		return _FPS;
 	}
 
-	/// <summary>
-	/// Coppies the linear buffer to vram.
-	/// </summary>
-	public void Update()
+	public override void Update()
 	{
 		CopyTo((uint*)Video.VideoMemory.Base);
 		Video.Update(0, 0, Width, Height);
@@ -75,7 +73,7 @@ public unsafe class SVGAIICanvas : Graphics
 
 	#region Fields
 
-	private readonly VMWareSVGAII Video;
+	public readonly VMWareSVGAII Video;
 	private uint _Frames;
 	private uint _FPS;
 

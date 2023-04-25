@@ -1,38 +1,36 @@
 ﻿#if IncludeVBE
 
-using Cosmos.Core;
+using Cosmos.Core.Multiboot;
 
 namespace PrismGraphics.Extentions.VESA;
 
 /// <summary>
 /// The VBE canvas extention class.
 /// </summary>
-public class VBECanvas : Graphics
+public unsafe class VBECanvas : Display
 {
 	/// <summary>
 	/// Creates a new instance of the <see cref="VBECanvas"/> class.
 	/// </summary>
-	public VBECanvas() : base(VBE.getModeInfo().width, VBE.getModeInfo().height)
+	public VBECanvas() : base((ushort)Multiboot2.Framebuffer->Width, (ushort)Multiboot2.Framebuffer->Height)
 	{
 		Timer T = new((O) => { _FPS = _Frames; _Frames = 0; }, null, 1000, 0);
 	}
 
 	#region Methods
 
-	/// <summary>
-	/// Coppies the linear buffer to vram.
-	/// </summary>
-	public unsafe void Update()
+	public override string GetName()
 	{
-		CopyTo((uint*)VBE.getLfbOffset());
+		return nameof(VBECanvas);
+	}
+
+	public override unsafe void Update()
+	{
+		CopyTo((uint*)Multiboot2.Framebuffer->Address);
 		_Frames++;
 	}
 
-	/// <summary>
-	/// Gets the FPS of the canvas.
-	/// </summary>
-	/// <returns>Canvas's FPS.</returns>
-	public uint GetFPS()
+	public override uint GetFPS()
 	{
 		return _FPS;
 	}

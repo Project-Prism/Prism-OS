@@ -2,7 +2,5 @@
   href: index.md
 - name: Graphics - Basic intro
   href: Graphics.md
-- name: Runtime - Basic info
-  href: Runtime.md
 - name: Shell
   href: Shell.md

@@ -33,6 +33,7 @@ public static unsafe class Shell
 			new Status(),
 			new Locker(),
 			new VEdit(),
+			new CPUID(),
 			new CLI()
 		};
 	}
