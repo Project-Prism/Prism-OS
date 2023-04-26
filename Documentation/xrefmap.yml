@@ -2877,6 +2877,18 @@ references:
   commentId: F:PrismFilesystem.Media.ELF
   fullName: PrismFilesystem.Media.ELF
   nameWithType: Media.ELF
+- uid: PrismFilesystem.Media.MalgunGothic
+  name: MalgunGothic
+  href: API/PrismFilesystem.Media.html#PrismFilesystem_Media_MalgunGothic
+  commentId: F:PrismFilesystem.Media.MalgunGothic
+  fullName: PrismFilesystem.Media.MalgunGothic
+  nameWithType: Media.MalgunGothic
+- uid: PrismFilesystem.Media.MalgunGothic32b
+  name: MalgunGothic32b
+  href: API/PrismFilesystem.Media.html#PrismFilesystem_Media_MalgunGothic32b
+  commentId: F:PrismFilesystem.Media.MalgunGothic32b
+  fullName: PrismFilesystem.Media.MalgunGothic32b
+  nameWithType: Media.MalgunGothic32b
 - uid: PrismFilesystem.Media.Prism
   name: Prism
   href: API/PrismFilesystem.Media.html#PrismFilesystem_Media_Prism
