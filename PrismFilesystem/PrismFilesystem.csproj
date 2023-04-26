@@ -11,6 +11,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="Media\Fonts\Malgun_Gothic_32x.psf" />
 		<None Remove="Media\Audio\Shutdown-Alt.wav" />
 		<None Remove="Media\Audio\Shutdown.wav" />
 		<None Remove="Media\Audio\Startup.wav" />
@@ -20,6 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Include="Media\Fonts\Malgun_Gothic_32x.psf" />
 		<EmbeddedResource Include="Media\Audio\Shutdown-Alt.wav" />
 		<EmbeddedResource Include="Media\Audio\Shutdown.wav" />
 		<EmbeddedResource Include="Media\Audio\Startup.wav" />

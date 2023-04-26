@@ -118,7 +118,7 @@ public class Font
 	/// <summary>
 	/// The standard charset of all fonts.
 	/// </summary>
-	public static string DefaultCharset = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+	public const string DefaultCharset = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
 
 	/// <summary>
 	/// The default font used before other fonts can be loaded.
