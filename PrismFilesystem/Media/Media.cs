@@ -19,6 +19,7 @@ public static class Media
 	[ManifestResourceStream(ResourceName = Base + "Executables.Test.elf")] public readonly static byte[] ELF;
 	[ManifestResourceStream(ResourceName = Base + "Images.Prism.bmp")] private readonly static byte[] PrismB;
 	[ManifestResourceStream(ResourceName = Base + "DOOM1.WAD")] public readonly static byte[] Doom;
+	[ManifestResourceStream(ResourceName = Base + "Test.bin")] public readonly static byte[] Test;
 
 	// System Sounds
 	public static MemoryAudioStream ShutdownAlt = MemoryAudioStream.FromWave(ShutdownAltB);

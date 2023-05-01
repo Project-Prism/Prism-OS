@@ -829,12 +829,22 @@ public unsafe class Graphics : IDisposable
 		// Loop Through Each Line Of Text
 		for (int I = 0; I < Text.Length; I++)
 		{
-			// Check if newline is detected.
-			if (Text[I] == '\n')
+			switch (Text[I])
 			{
-				BX = X - (Center ? TextWidth / 2 : 0);
-				BY += Font.Size;
-				continue;
+				case '\n':
+					BX = X - (Center ? TextWidth / 2 : 0);
+					BY += Font.Size;
+					continue;
+				case '\0':
+					continue;
+				case ' ':
+					BX += (int)(Size / 2);
+					continue;
+				case '\t':
+					BX += (int)(Size * 4);
+					continue;
+				default:
+					break;
 			}
 
 			// Get the glyph for this char.
@@ -901,10 +911,20 @@ public unsafe class Graphics : IDisposable
 
 	#region Fields
 
-	private ushort _Height;
-	private ushort _Width;
 
-	// The internal frame buffer.
+	/// <summary>
+	/// The internal Height value cache.
+	/// </summary>
+	internal ushort _Height;
+
+	/// <summary>
+	/// The internal Width value cache.
+	/// </summary>
+	internal ushort _Width;
+
+	/// <summary>
+	/// The graphics frame buffer, with a size matching <see cref="Size"/>.
+	/// </summary>
 	public uint* Internal;
 
 	#endregion

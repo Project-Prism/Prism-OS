@@ -18,6 +18,7 @@
 		<None Remove="Media\DOOM1.WAD" />
 		<None Remove="Media\Executables\Test.elf" />
 		<None Remove="Media\Images\Prism.bmp" />
+		<None Remove="Media\Test.bin" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -28,6 +29,7 @@
 		<EmbeddedResource Include="Media\DOOM1.WAD" />
 		<EmbeddedResource Include="Media\Executables\Test.elf" />
 		<EmbeddedResource Include="Media\Images\Prism.bmp" />
+		<EmbeddedResource Include="Media\Test.bin" />
 	</ItemGroup>
 
 	<!--Prism OS include group-->

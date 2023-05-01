@@ -1,4 +1,4 @@
-using Cosmos.HAL.Drivers.PCI.Audio;
+using Cosmos.HAL.Drivers.Audio;
 using Cosmos.System.Audio;
 using PrismTools;
 

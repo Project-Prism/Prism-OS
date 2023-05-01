@@ -1,19 +1,63 @@
-### In order to contribute your code into the main branch, it must follow these guidelines:
+<center>
+
+## Code agreement and guidelines
+
+| :warning: PLEASE READ BEFORE CONTINUING :warning:       |
+|---------------------------------------------------------|
+
+Any code that **_you contribute_** will be under _**full
+control**_ by the repository maintainers. They may change
+it's licensing, the code itself, or use it for whatever
+the organization sees as necesarry. This does not mean
+rights, you will still have access to and retain full
+ownership of your work. This agreement is in place to
+prevent attempted project hijacking and legal issues.
+Code taken from existing sources do not fall under
+these rules, as that would be unethical and illegal.
+All code taken from outside sources fall under their
+original licese(s) and shall have a reference to it's
+orignal license.
 
 <hr/>
 
-All functions, Local and Global Vriables, and NameSpaces Must be Capitalized With The 'PasCal' Naming Convention, And Spelled Properly. They Must Contain Profesional and Easy to Read Names, Usualy They Should Describe what the Function Does if Possible.
+### Including externaly sourced code
+
+You are allowed to include source code from external
+sources, as long as you make sure it's original license
+is compatable with this project's license (GPL - V2).
+It is recommended to remove the whole license copy from
+the source files (if it has it) and add a comment referencing
+the source's original author, source, and short name of the
+original license. If the source files themselves do not have a
+copy of the license within them, you must add comments showing
+the original author, source, and short name of the license.
+
+<hr/>
+
+### Spacing & Formatting
+
+All functions, Local and Global Vriables, and
+Namespaces Must be Capitalized With The 'PasCal'
+Naming Convention, And Spelled Properly. They
+Must Contain Profesional and Easy to Read Names,
+Usualy They Should Describe what the Function
+Does if Possible.
 
 
 Variables and Usings Should be Clustered Like This, With Descending Length:
 
 ![image](https://user-images.githubusercontent.com/76945439/220503038-eaef1550-a073-416f-980d-863715445ee3.png)
 
+> There shall not be more than one class/struct/enum or namespace
+in the same file.
+
 <hr/>
 
 Keep all code as simple as possible and make sure it's understandable
 
 <hr/>
+
+### Bundling
 
 If a class has more than one type of data, use #region tags like so:
 
@@ -33,3 +77,5 @@ Don't define namespaces within namespaces, and always include only one namespace
 ```cs
 namespace PrismOS;
 ```
+
+</center>

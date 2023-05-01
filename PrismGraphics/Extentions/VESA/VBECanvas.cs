@@ -12,12 +12,19 @@ public unsafe class VBECanvas : Display
 	/// <summary>
 	/// Creates a new instance of the <see cref="VBECanvas"/> class.
 	/// </summary>
-	public VBECanvas() : base((ushort)Multiboot2.Framebuffer->Width, (ushort)Multiboot2.Framebuffer->Height)
-	{
-		Timer T = new((O) => { _FPS = _Frames; _Frames = 0; }, null, 1000, 0);
-	}
+	public VBECanvas() : base((ushort)Multiboot2.Framebuffer->Width, (ushort)Multiboot2.Framebuffer->Height) { }
 
 	#region Methods
+
+	public override void DefineCursor(Graphics Graphics)
+	{
+		throw new NotSupportedException("VBE does not offer hardware-accelerated cursor support.");
+	}
+
+	public override void SetCursor(uint X, uint Y, bool IsVisible)
+	{
+		throw new NotSupportedException("VBE does not offer hardware-accelerated cursor support.");
+	}
 
 	public override string GetName()
 	{
@@ -29,18 +36,6 @@ public unsafe class VBECanvas : Display
 		CopyTo((uint*)Multiboot2.Framebuffer->Address);
 		_Frames++;
 	}
-
-	public override uint GetFPS()
-	{
-		return _FPS;
-	}
-
-	#endregion
-
-	#region Fields
-
-	private uint _Frames;
-	private uint _FPS;
 
 	#endregion
 }

@@ -1,9 +1,14 @@
-﻿#if IncludeVMWARE // Only compile with VMWare drivers if specified.
+﻿#if IncludeVMWARE
 
-using Cosmos.HAL.Drivers.PCI.Video;
+using Cosmos.HAL.Drivers.Video.SVGAII;
+using Cosmos.Core;
+using Cosmos.HAL;
 
 namespace PrismGraphics.Extentions.VMWare;
 
+/// <summary>
+/// The VMWare SVGAII canvas class. Allows for fast(er) graphics.
+/// </summary>
 public unsafe class SVGAIICanvas : Display
 {
 	/// <summary>
@@ -11,13 +16,27 @@ public unsafe class SVGAIICanvas : Display
 	/// </summary>
 	/// <param name="Width">Total width (in pixels) of the canvas.</param>
 	/// <param name="Height">Total height (int pixels) of the canvas.</param>
-	public SVGAIICanvas(ushort Width, ushort Height) : base(Width, Height)
+	public SVGAIICanvas(ushort Width, ushort Height): base(0, 0) // Use 0 so no data is assigned.
 	{
-		// Setup the FPS counter timer.
-		Timer T = new((O) => { _FPS = _Frames; _Frames = 0; }, null, 1000, 0);
+		Device = PCI.GetDevice(VendorID.VMWare, DeviceID.SVGAIIAdapter);
+		Device.EnableMemory(true);
 
-		// Set up video driver
-		(Video = new()).SetMode(Width, Height);
+		uint BasePort = Device.BaseAddressBar[0].BaseAddress;
+		IndexPort = (ushort)(BasePort + (uint)IOPortOffset.Index);
+		ValuePort = (ushort)(BasePort + (uint)IOPortOffset.Value);
+
+		WriteRegister(Register.ID, (uint)ID.V2);
+		if (ReadRegister(Register.ID) != (uint)ID.V2)
+		{
+			throw new NotSupportedException("Un-supported SVGAII device! Please consider updating.");
+		}
+
+		FIFOMemory = new MemoryBlock(ReadRegister(Register.MemStart), ReadRegister(Register.MemSize));
+		Features = ReadRegister(Register.Capabilities);
+		InitializeFIFO();
+
+		this.Height = Height;
+		this.Width = Width;
 	}
 
 	#region Properties
@@ -26,12 +45,24 @@ public unsafe class SVGAIICanvas : Display
 	{
 		get
 		{
-			return base.Height;
+			return _Height;
 		}
 		set
 		{
-			base.Height = value;
-			Video.SetMode(Width, Height);
+			// Memory resizing it already taken care of here.
+			_Height = value;
+
+			if (_Width != 0)
+			{
+				WriteRegister(Register.Width, Width);
+				WriteRegister(Register.Height, Height);
+				WriteRegister(Register.BitsPerPixel, 4);
+				WriteRegister(Register.Enable, 1);
+				InitializeFIFO();
+
+				ScreenBuffer = (uint*)ReadRegister(Register.FrameBufferStart);
+				Internal = ScreenBuffer + (Size * 4);
+			}
 		}
 	}
 
@@ -39,12 +70,24 @@ public unsafe class SVGAIICanvas : Display
 	{
 		get
 		{
-			return base.Width;
+			return _Width;
 		}
 		set
 		{
-			base.Width = value;
-			Video.SetMode(Width, Height);
+			// Memory resizing it already taken care of here.
+			_Width = value;
+
+			if (_Height != 0)
+			{
+				WriteRegister(Register.Width, Width);
+				WriteRegister(Register.Height, Height);
+				WriteRegister(Register.BitsPerPixel, 4);
+				WriteRegister(Register.Enable, 1);
+				InitializeFIFO();
+
+				ScreenBuffer = (uint*)ReadRegister(Register.FrameBufferStart);
+				Internal = ScreenBuffer + (Size * 4);
+			}
 		}
 	}
 
@@ -52,20 +95,180 @@ public unsafe class SVGAIICanvas : Display
 
 	#region Methods
 
+	/// <summary>
+	/// Initialize FIFO.
+	/// </summary>
+	public void InitializeFIFO()
+	{
+		FIFOMemory[(uint)FIFO.Min] = (uint)Register.FifoNumRegisters * sizeof(uint);
+		FIFOMemory[(uint)FIFO.Max] = FIFOMemory.Size;
+		FIFOMemory[(uint)FIFO.NextCmd] = FIFOMemory[(uint)FIFO.Min];
+		FIFOMemory[(uint)FIFO.Stop] = FIFOMemory[(uint)FIFO.Min];
+		WriteRegister(Register.ConfigDone, 1);
+	}
+
+	/// <summary>
+	/// Write register.
+	/// </summary>
+	/// <param name="register">A register.</param>
+	/// <param name="value">A value.</param>
+	public void WriteRegister(Register register, uint value)
+	{
+		IOPort.Write32(IndexPort, (uint)register);
+		IOPort.Write32(ValuePort, value);
+	}
+
+	/// <summary>
+	/// Read register.
+	/// </summary>
+	/// <param name="register">A register.</param>
+	/// <returns>uint value.</returns>
+	public uint ReadRegister(Register register)
+	{
+		IOPort.Write32(IndexPort, (uint)register);
+		return IOPort.Read32(ValuePort);
+	}
+
+	/// <summary>
+	/// Get FIFO.
+	/// </summary>
+	/// <param name="cmd">FIFO command.</param>
+	/// <returns>uint value.</returns>
+	public uint GetFIFO(FIFO cmd)
+	{
+		return FIFOMemory[(uint)cmd];
+	}
+
+	/// <summary>
+	/// Set FIFO.
+	/// </summary>
+	/// <param name="cmd">Command.</param>
+	/// <param name="value">Value.</param>
+	/// <returns></returns>
+	public uint SetFIFO(FIFO cmd, uint value)
+	{
+		return FIFOMemory[(uint)cmd] = value;
+	}
+
+	/// <summary>
+	/// Wait for FIFO.
+	/// </summary>
+	public void WaitForFifo()
+	{
+		WriteRegister(Register.Sync, 1);
+		while (ReadRegister(Register.Busy) != 0) { }
+	}
+
+	/// <summary>
+	/// Write to FIFO.
+	/// </summary>
+	/// <param name="value">Value to write.</param>
+	public void WriteToFifo(uint value)
+	{
+		if ((GetFIFO(FIFO.NextCmd) == GetFIFO(FIFO.Max) - 4 && GetFIFO(FIFO.Stop) == GetFIFO(FIFO.Min)) ||
+			GetFIFO(FIFO.NextCmd) + 4 == GetFIFO(FIFO.Stop))
+			WaitForFifo();
+
+		SetFIFO((FIFO)GetFIFO(FIFO.NextCmd), value);
+		SetFIFO(FIFO.NextCmd, GetFIFO(FIFO.NextCmd) + 4);
+
+		if (GetFIFO(FIFO.NextCmd) == GetFIFO(FIFO.Max))
+			SetFIFO(FIFO.NextCmd, GetFIFO(FIFO.Min));
+	}
+
+	/// <summary>
+	/// A method that checks if the device has a specific feature.
+	/// </summary>
+	/// <param name="Feature">The feature to check for.</param>
+	/// <returns>True if supported, otherwise false.</returns>
+	public bool HasFeature(Capability Feature)
+	{
+		return (Features & (uint)Feature) != 0;
+	}
+
+	public new void DrawFilledRectangle(int X, int Y, ushort Width, ushort Height, ushort Radius, Color Color)
+	{
+		if (Radius == 0 && Color.A == 255 && HasFeature(Capability.RectFill))
+		{
+			WriteToFifo((uint)FIFOCommand.RECT_FILL);
+			WriteToFifo(Color.ARGB);
+			WriteToFifo((uint)X);
+			WriteToFifo((uint)Y);
+			WriteToFifo(Width);
+			WriteToFifo(Height);
+			WaitForFifo();
+		}
+		else
+		{
+			base.DrawFilledRectangle(X, Y, Width, Height, Radius, Color);
+		}
+	}
+
+	public new void Clear(Color Color)
+	{
+		if (HasFeature(Capability.RectFill))
+		{
+			WriteToFifo((uint)FIFOCommand.RECT_FILL);
+			WriteToFifo(Color.ARGB);
+			WriteToFifo(0);
+			WriteToFifo(0);
+			WriteToFifo(Width);
+			WriteToFifo(Height);
+			WaitForFifo();
+		}
+		else
+		{
+			base.Clear(Color);
+		}
+	}
+
+	public override void DefineCursor(Graphics Graphics)
+	{
+		if (!HasFeature(Capability.AlphaCursor))
+		{
+			throw new NotSupportedException("This device does not have accelerated cursor support.");
+		}
+
+		WaitForFifo();
+		WriteToFifo((uint)FIFOCommand.DEFINE_ALPHA_CURSOR);
+		WriteToFifo(0); // ID
+		WriteToFifo(0); // Hotspot X
+		WriteToFifo(0); // Hotspot Y
+		WriteToFifo(Graphics.Width); // Width
+		WriteToFifo(Graphics.Height); // Height
+
+		for (uint I = 0; I < Graphics.Size; I++)
+		{
+			WriteToFifo(Graphics[I].ARGB);
+		}
+
+		WaitForFifo();
+	}
+
+	public override void SetCursor(uint X, uint Y, bool IsVisible)
+	{
+		WriteRegister(Register.CursorOn, (uint)(IsVisible ? 1 : 0));
+		WriteRegister(Register.CursorX, X);
+		WriteRegister(Register.CursorY, Y);
+		WriteRegister(Register.CursorCount, ReadRegister(Register.CursorCount) + 1);
+	}
+
 	public override string GetName()
 	{
 		return nameof(SVGAIICanvas);
 	}
 
-	public override uint GetFPS()
-	{
-		return _FPS;
-	}
-
 	public override void Update()
 	{
-		CopyTo((uint*)Video.VideoMemory.Base);
-		Video.Update(0, 0, Width, Height);
+		MemoryOperations.Copy(ScreenBuffer, Internal, (int)Size * 4);
+
+		WriteToFifo((uint)FIFOCommand.Update);
+		WriteToFifo(0);
+		WriteToFifo(0);
+		WriteToFifo(Width);
+		WriteToFifo(Height);
+		WaitForFifo();
+
 		_Frames++;
 	}
 
@@ -73,9 +276,12 @@ public unsafe class SVGAIICanvas : Display
 
 	#region Fields
 
-	public readonly VMWareSVGAII Video;
-	private uint _Frames;
-	private uint _FPS;
+	public readonly MemoryBlock FIFOMemory;
+	public readonly PCIDevice Device;
+	public readonly ushort IndexPort;
+	public readonly ushort ValuePort;
+	public readonly uint Features;
+	public uint* ScreenBuffer;
 
 	#endregion
 }

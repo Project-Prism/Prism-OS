@@ -63,22 +63,6 @@ public class Font
 		// Get the index of the char in the font.
 		uint Index = (uint)DefaultCharset.IndexOf(C);
 
-		if (C == '\0')
-		{
-			Temp.Height = 0;
-			Temp.Width = 0;
-			return Temp;
-		}
-		if (C == ' ')
-		{
-			Temp.Width = (ushort)(Size / 2);
-			return Temp;
-		}
-		if (C == '\t')
-		{
-			Temp.Width = (ushort)(Size * 2);
-			return Temp;
-		}
 		if (Index < 0)
 		{
 			Temp.Width = (ushort)(Size / 2);

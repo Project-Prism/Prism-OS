@@ -15,8 +15,8 @@ public static unsafe class SystemCalls
 	public static void Init()
 	{
 		Debugger.WritePartial("Initializing syscalls...");
-		INTs.SetIRQMaskState(16, false);
-		INTs.SetIrqHandler(16, SystemCall);
+		INTs.SetIRQMaskState(0x80, false);
+		INTs.SetIrqHandler(0x80, SystemCall);
 		Debugger.Finalize(Severity.Success);
 	}
 
@@ -27,11 +27,6 @@ public static unsafe class SystemCalls
 	public static void SystemCall(ref INTs.IRQContext Context)
 	{
 		Console.WriteLine("System Call!!!!");
-
-		if (Context.Interrupt != 16)
-		{
-			return;
-		}
 
 		switch ((SystemCallKind)Context.EAX)
 		{
@@ -172,7 +167,7 @@ public static unsafe class SystemCalls
 			#endregion
 
 			default:
-				Debugger.WriteFull($"Unimplemented systemcall: 0x{(int)Context.EAX}", Severity.Fail);
+				Debugger.WriteFull($"Unimplemented systemcall: {(int)Context.EAX}", Severity.Fail);
 				break;
 		}
 	}
