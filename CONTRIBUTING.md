@@ -1,6 +1,6 @@
 <center>
 
-## Code agreement and guidelines
+<h2>Code agreement and guidelines</h2>
 
 | :warning: PLEASE READ BEFORE CONTINUING :warning:       |
 |---------------------------------------------------------|
@@ -20,7 +20,7 @@ orignal license.
 
 <hr/>
 
-### Including externaly sourced code
+<h3>Including externaly sourced code</h3>
 
 You are allowed to include source code from external
 sources, as long as you make sure it's original license
@@ -34,7 +34,7 @@ the original author, source, and short name of the license.
 
 <hr/>
 
-### Spacing & Formatting
+<h3>Spacing & Formatting</h3>
 
 All functions, Local and Global Vriables, and
 Namespaces Must be Capitalized With The 'PasCal'
@@ -46,7 +46,7 @@ Does if Possible.
 
 Variables and Usings Should be Clustered Like This, With Descending Length:
 
-![image](https://user-images.githubusercontent.com/76945439/220503038-eaef1550-a073-416f-980d-863715445ee3.png)
+<img width="50%" alt="image" src="https://user-images.githubusercontent.com/76945439/220503038-eaef1550-a073-416f-980d-863715445ee3.png">
 
 > There shall not be more than one class/struct/enum or namespace
 in the same file.
@@ -57,11 +57,11 @@ Keep all code as simple as possible and make sure it's understandable
 
 <hr/>
 
-### Bundling
+<h3>Bundling</h3>
 
 If a class has more than one type of data, use #region tags like so:
 
-<img width="156" alt="image" src="https://user-images.githubusercontent.com/76945439/220502977-54f45a7f-5947-41a4-ac68-18a73f631a7c.png">
+<img width="50%" alt="image" src="https://user-images.githubusercontent.com/76945439/220502977-54f45a7f-5947-41a4-ac68-18a73f631a7c.png">
 
 <hr/>
 
