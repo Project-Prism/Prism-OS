@@ -1,9 +1,12 @@
-<center>
+﻿<center>
 
 <h2>Code agreement and guidelines</h2>
 
-| :warning: PLEASE READ BEFORE CONTINUING :warning:       |
-|---------------------------------------------------------|
+<hr/>
+
+⚠️ PLEASE READ BEFORE CONTINUING ⚠️
+
+<hr/>
 
 Any code that **_you contribute_** will be under _**full
 control**_ by the repository maintainers. They may change
