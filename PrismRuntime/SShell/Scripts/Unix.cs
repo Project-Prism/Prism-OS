@@ -1,9 +1,9 @@
-﻿using PrismFilesystem.Formats.ELF.Structure.ELFHeader;
-using Console = System.Console;
+﻿using Console = System.Console;
 using PrismFilesystem;
 using Cosmos.System;
 using Cosmos.Core;
 using PrismAudio;
+using PrismRuntime.Formats.ELF.ELFHeader;
 
 namespace PrismRuntime.SShell.Scripts;
 
