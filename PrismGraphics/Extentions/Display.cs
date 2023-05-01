@@ -33,10 +33,11 @@ public abstract class Display : Graphics
 
 	/// <summary>
 	/// Gets a display output, the best mode is automatically chosen.
+	/// The Width and Height arguments may not always be used.
 	/// </summary>
-	/// <param name="Width"></param>
-	/// <param name="Height"></param>
-	/// <returns></returns>
+	/// <param name="Width">The requested Width of the display.</param>
+	/// <param name="Height">The requested Height of the display.</param>
+	/// <returns>An instance of the display class.</returns>
 	public static Display GetDisplay(ushort Width, ushort Height)
 	{
 		if (Multiboot2.IsVBEAvailable)

@@ -714,6 +714,16 @@ public struct Color
 	}
 
 	/// <summary>
+	/// Inverts the specified color.
+	/// </summary>
+	/// <param name="ToInvert">The color that will be inverted.</param>
+	/// <returns>An inverted variant of the input.</returns>
+	public static Color Invert(Color ToInvert)
+	{
+		return White - ToInvert;
+	}
+
+	/// <summary>
 	/// Gets the value of the channel with the most value.
 	/// </summary>
 	/// <param name="Color">The color to calculate.</param>
