@@ -2,13 +2,13 @@
 
 namespace PrismRuntime.SSharp;
 
-public unsafe class Executable
+public unsafe class Binary
 {
 	/// <summary>
-	/// Creates a new instance of the <see cref="Executable"/> class.
+	/// Creates a new instance of the <see cref="Binary"/> class.
 	/// </summary>
 	/// <param name="Binary">Raw executable binary.</param>
-	public Executable(byte[] Binary)
+	public Binary(byte[] Binary)
 	{
 		ROM = new(new MemoryStream(Binary));
 		IsEnabled = true;

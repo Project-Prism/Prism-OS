@@ -42,7 +42,7 @@ public class CLI : Script
 						case "Exit();":
 							return;
 						default:
-							Executable EXE = Compiler.Compile(Input);
+							Binary EXE = Compiler.Compile(Input);
 
 							while (EXE.IsEnabled)
 							{
@@ -68,13 +68,13 @@ public class CLI : Script
 			}
 
 			Console.WriteLine("Compiling " + Args[1] + "...");
-			Executable EXE = Compiler.Compile(File.ReadAllText(Args[1]));
+			Binary EXE = Compiler.Compile(File.ReadAllText(Args[1]));
 
 			File.WriteAllBytes(Args[2], ((MemoryStream)EXE.ROM.BaseStream).ToArray());
 		}
 		if (Args[0] == "dump")
 		{
-			new Executable(File.ReadAllBytes(Args[1])).Dump();
+			new Binary(File.ReadAllBytes(Args[1])).Dump();
 			return;
 		}
 	}

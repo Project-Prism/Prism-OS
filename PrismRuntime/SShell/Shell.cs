@@ -1,8 +1,8 @@
-﻿using PrismRuntime.SShell.Scripts;
+﻿using PrismRuntime.Formats.ELF.ELFHeader;
+using PrismRuntime.SShell.Scripts;
+using PrismRuntime.Formats;
 using PrismRuntime.SSharp;
 using PrismTools;
-using PrismRuntime.Formats.ELF;
-using PrismRuntime.Formats.ELF.ELFHeader;
 
 namespace PrismRuntime.SShell;
 
@@ -78,7 +78,7 @@ public static unsafe class Shell
 			// Check if the file isn't an ELF. Run as a SSharp program if it isn't.
 			if (ROM.Length < sizeof(ELFHeader32))
 			{
-				Executable EXE = new(File.ReadAllBytes(VS[0]));
+				Binary EXE = new(File.ReadAllBytes(VS[0]));
 
 				while (EXE.IsEnabled)
 				{
@@ -91,8 +91,8 @@ public static unsafe class Shell
 			else
 			{
 				// Create a new header, then run it.
-				ELFFile32 ELF = new(ROM);
-				ELF.Main();
+				Executable E = Executable.FromELF32(ROM);
+				E.Main();
 				return;
 			}
 		}

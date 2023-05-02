@@ -12,7 +12,7 @@ public static class Compiler
 	/// </summary>
 	/// <param name="Input">S# Source.</param>
 	/// <returns>S# Executable.</returns>
-	public static Executable Compile(string Input)
+	public static Binary Compile(string Input)
 	{
 		// Set binary output.
 		BinaryWriter Output = new(new MemoryStream());

@@ -72,14 +72,6 @@ public static unsafe class SystemCalls
                 NativeMemory.Free((uint*)Context.EBX);
                 break;
 
-            case SystemCallKind.Core_SetByte: // Set
-                *(uint*)Context.EBX = Context.ECX;
-                break;
-
-            case SystemCallKind.Core_GetByte: // Get
-                Context.EAX = *(uint*)Context.EBX;
-                break;
-
             case SystemCallKind.System_Buffer_MemoryCopy64: // Copy64
                 System.Buffer.MemoryCopy((void*)Context.EBX, (void*)Context.ECX, Context.EDX * 8, Context.EDX * 8);
                 break;
