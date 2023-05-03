@@ -132,7 +132,7 @@ using Cosmos.System;
 
 public class YourKernelName : Kernel
 {
-	public Disiplay Canvas;
+	public Display Canvas;
 
 	protected override BeforeRun()
 	{
