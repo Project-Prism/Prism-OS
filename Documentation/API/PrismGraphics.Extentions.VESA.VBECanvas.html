@@ -93,6 +93,9 @@
       <a class="xref" href="PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display_GetDisplay_System_UInt16_System_UInt16_">Display.GetDisplay(ushort, ushort)</a>
     </div>
     <div>
+      <a class="xref" href="PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display_GetFPS">Display.GetFPS()</a>
+    </div>
+    <div>
       <a class="xref" href="PrismGraphics.Graphics.html#PrismGraphics_Graphics_Item_System_Int32_System_Int32_">Graphics.this[int, int]</a>
     </div>
     <div>
@@ -217,44 +220,46 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismGraphics_Extentions_VESA_VBECanvas_GetFPS.md&amp;value=---%0Auid%3A%20PrismGraphics.Extentions.VESA.VBECanvas.GetFPS%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismGraphics_Extentions_VESA_VBECanvas_DefineCursor_PrismGraphics_Graphics_.md&amp;value=---%0Auid%3A%20PrismGraphics.Extentions.VESA.VBECanvas.DefineCursor(PrismGraphics.Graphics)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Extentions/VESA/VBECanvas.cs/#L33">View Source</a>
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Extentions/VESA/VBECanvas.cs/#L19">View Source</a>
   </span>
-  <a id="PrismGraphics_Extentions_VESA_VBECanvas_GetFPS_" data-uid="PrismGraphics.Extentions.VESA.VBECanvas.GetFPS*"></a>
-  <h4 id="PrismGraphics_Extentions_VESA_VBECanvas_GetFPS" data-uid="PrismGraphics.Extentions.VESA.VBECanvas.GetFPS">GetFPS()</h4>
-  <div class="markdown level1 summary"><p>Gets the FPS measurment of the display.</p>
+  <a id="PrismGraphics_Extentions_VESA_VBECanvas_DefineCursor_" data-uid="PrismGraphics.Extentions.VESA.VBECanvas.DefineCursor*"></a>
+  <h4 id="PrismGraphics_Extentions_VESA_VBECanvas_DefineCursor_PrismGraphics_Graphics_" data-uid="PrismGraphics.Extentions.VESA.VBECanvas.DefineCursor(PrismGraphics.Graphics)">DefineCursor(Graphics)</h4>
+  <div class="markdown level1 summary"><p>Sets the image of the hardware accelerated cursor.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override uint GetFPS()</code></pre>
+    <pre><code class="lang-csharp hljs">public override void DefineCursor(Graphics Graphics)</code></pre>
   </div>
-  <h5 class="returns">Returns</h5>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
+        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></td>
-        <td><p>The FPS as a uint number.</p>
+        <td><a class="xref" href="PrismGraphics.Graphics.html">Graphics</a></td>
+        <td><span class="parametername">Graphics</span></td>
+        <td><p>The image to use as the cursor.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display_GetFPS">Display.GetFPS()</a></div>
+  <div><a class="xref" href="PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display_DefineCursor_PrismGraphics_Graphics_">Display.DefineCursor(Graphics)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismGraphics_Extentions_VESA_VBECanvas_GetName.md&amp;value=---%0Auid%3A%20PrismGraphics.Extentions.VESA.VBECanvas.GetName%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Extentions/VESA/VBECanvas.cs/#L22">View Source</a>
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Extentions/VESA/VBECanvas.cs/#L29">View Source</a>
   </span>
   <a id="PrismGraphics_Extentions_VESA_VBECanvas_GetName_" data-uid="PrismGraphics.Extentions.VESA.VBECanvas.GetName*"></a>
   <h4 id="PrismGraphics_Extentions_VESA_VBECanvas_GetName" data-uid="PrismGraphics.Extentions.VESA.VBECanvas.GetName">GetName()</h4>
@@ -285,10 +290,57 @@
   <div><a class="xref" href="PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display_GetName">Display.GetName()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismGraphics_Extentions_VESA_VBECanvas_SetCursor_System_UInt32_System_UInt32_System_Boolean_.md&amp;value=---%0Auid%3A%20PrismGraphics.Extentions.VESA.VBECanvas.SetCursor(System.UInt32%2CSystem.UInt32%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Extentions/VESA/VBECanvas.cs/#L24">View Source</a>
+  </span>
+  <a id="PrismGraphics_Extentions_VESA_VBECanvas_SetCursor_" data-uid="PrismGraphics.Extentions.VESA.VBECanvas.SetCursor*"></a>
+  <h4 id="PrismGraphics_Extentions_VESA_VBECanvas_SetCursor_System_UInt32_System_UInt32_System_Boolean_" data-uid="PrismGraphics.Extentions.VESA.VBECanvas.SetCursor(System.UInt32,System.UInt32,System.Boolean)">SetCursor(uint, uint, bool)</h4>
+  <div class="markdown level1 summary"><p>Sets the position of the hardware accelerated cursor on the screen.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void SetCursor(uint X, uint Y, bool IsVisible)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></td>
+        <td><span class="parametername">X</span></td>
+        <td><p>The X-axis position.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></td>
+        <td><span class="parametername">Y</span></td>
+        <td><p>The Y-axis position.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">IsVisible</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="PrismGraphics.Extentions.Display.html#PrismGraphics_Extentions_Display_SetCursor_System_UInt32_System_UInt32_System_Boolean_">Display.SetCursor(uint, uint, bool)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismGraphics_Extentions_VESA_VBECanvas_Update.md&amp;value=---%0Auid%3A%20PrismGraphics.Extentions.VESA.VBECanvas.Update%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Extentions/VESA/VBECanvas.cs/#L27">View Source</a>
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Extentions/VESA/VBECanvas.cs/#L34">View Source</a>
   </span>
   <a id="PrismGraphics_Extentions_VESA_VBECanvas_Update_" data-uid="PrismGraphics.Extentions.VESA.VBECanvas.Update*"></a>
   <h4 id="PrismGraphics_Extentions_VESA_VBECanvas_Update" data-uid="PrismGraphics.Extentions.VESA.VBECanvas.Update">Update()</h4>

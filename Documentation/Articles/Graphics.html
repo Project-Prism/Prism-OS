@@ -164,13 +164,13 @@ Canvas.Height = NewHeight;
 <p>Note that this is only intended for resizing things that will be re-drawn. For scaling, see [NOT DOCUMENTED, COMING SOON].</p>
 <h3 id="get-a-basic-screen-output">Get a basic screen output</h3>
 <p>To draw a basic screen with a mouse, Something simillar to the following should be used:</p>
-<pre><code class="lang-cs">using PrismGeaphics.Extentions.VMWare;
+<pre><code class="lang-cs">using PrismGraphics.Extentions.VMWare;
 using PrismGraphics;
 using Cosmos.System;
 
 public class YourKernelName : Kernel
 {
-	public Disiplay Canvas;
+	public Display Canvas;
 
 	protected override BeforeRun()
 	{

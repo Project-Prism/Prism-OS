@@ -245,246 +245,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.ELFFile32.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.ELFFile32.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.ELFFile64.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.ELFFile64.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFClassType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFClassType.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFEndianType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFEndianType.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFHeader.ELFHeader32.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFHeader.ELFHeader32.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFHeader.ELFHeader64.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFHeader.ELFHeader64.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFHeader.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFHeader.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFMachineType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFMachineType.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFProgramHeader.ELFProgramHeader32.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFProgramHeader.ELFProgramHeader32.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFProgramHeader.ELFProgramHeader64.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFProgramHeader.ELFProgramHeader64.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFProgramHeader.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFProgramHeader.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFProgramType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFProgramType.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFSectionFlagsType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFSectionFlagsType.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFSectionHeader.ELFSectionHeader32.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFSectionHeader.ELFSectionHeader32.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFSectionHeader.ELFSectionHeader64.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFSectionHeader.ELFSectionHeader64.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFSectionHeader.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFSectionHeader.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFSectionType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFSectionType.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFSymbolTable.ELFSymbolTable32.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFSymbolTable.ELFSymbolTable32.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFSymbolTable.ELFSymbolTable64.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFSymbolTable.ELFSymbolTable64.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFSymbolTable.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFSymbolTable.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFSystemABIType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFSystemABIType.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.ELFType.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.Structure.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.Structure.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismFilesystem.Formats.ELF.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismFilesystem.Formats.ELF.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "API/PrismFilesystem.Formats.INI.INIReader.yml",
       "output": {
         ".html": {
@@ -915,20 +675,290 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "API/PrismRuntime.SSharp.Compiler.yml",
+      "source_relative_path": "API/PrismRuntime.Core.PermissionLevel.yml",
       "output": {
         ".html": {
-          "relative_path": "API/PrismRuntime.SSharp.Compiler.html"
+          "relative_path": "API/PrismRuntime.Core.PermissionLevel.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "API/PrismRuntime.SSharp.Executable.yml",
+      "source_relative_path": "API/PrismRuntime.Core.SystemCallKind.yml",
       "output": {
         ".html": {
-          "relative_path": "API/PrismRuntime.SSharp.Executable.html"
+          "relative_path": "API/PrismRuntime.Core.SystemCallKind.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Core.SystemCalls.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Core.SystemCalls.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Core.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Core.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFClassType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFClassType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFEndianType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFEndianType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFHeader.ELFHeader32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFHeader.ELFHeader32.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFHeader.ELFHeader64.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFHeader.ELFHeader64.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFHeader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFHeader.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFMachineType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFMachineType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFProgramHeader.ELFProgramHeader32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFProgramHeader.ELFProgramHeader32.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFProgramHeader.ELFProgramHeader64.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFProgramHeader.ELFProgramHeader64.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFProgramHeader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFProgramHeader.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFProgramType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFProgramType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFSectionFlagsType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFSectionFlagsType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFSectionHeader.ELFSectionHeader32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFSectionHeader.ELFSectionHeader32.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFSectionHeader.ELFSectionHeader64.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFSectionHeader.ELFSectionHeader64.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFSectionHeader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFSectionHeader.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFSectionType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFSectionType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFSymbolTable.ELFSymbolTable32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFSymbolTable.ELFSymbolTable32.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFSymbolTable.ELFSymbolTable64.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFSymbolTable.ELFSymbolTable64.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFSymbolTable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFSymbolTable.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFSystemABIType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFSystemABIType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.ELFType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.ELFType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.ELF.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.ELF.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.Executable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.Executable.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.Formats.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.Formats.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SSharp.Binary.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SSharp.Binary.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SSharp.Compiler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SSharp.Compiler.html"
         }
       },
       "version": ""
@@ -999,16 +1029,6 @@
       "output": {
         ".html": {
           "relative_path": "API/PrismRuntime.SShell.Scripts.CLI.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismRuntime.SShell.Scripts.CPUID.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismRuntime.SShell.Scripts.CPUID.html"
         }
       },
       "version": ""
@@ -1115,10 +1135,30 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.Unix.LSBLK.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.Unix.LSBLK.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "API/PrismRuntime.SShell.Scripts.Unix.MKDir.yml",
       "output": {
         ".html": {
           "relative_path": "API/PrismRuntime.SShell.Scripts.Unix.MKDir.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismRuntime.SShell.Scripts.Unix.MKFS.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismRuntime.SShell.Scripts.Unix.MKFS.html"
         }
       },
       "version": ""
@@ -1245,36 +1285,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "API/PrismRuntime.SystemCallKind.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismRuntime.SystemCallKind.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismRuntime.SystemCalls.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismRuntime.SystemCalls.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismRuntime.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismRuntime.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "API/PrismTools.Compression.DeflateStream.yml",
       "output": {
         ".html": {
@@ -1319,6 +1329,16 @@
       "output": {
         ".html": {
           "relative_path": "API/PrismTools.Debugger.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismTools.EventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismTools.EventHandler.html"
         }
       },
       "version": ""

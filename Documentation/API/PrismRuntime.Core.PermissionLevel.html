@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class Unix
+    <title>Enum PermissionLevel
  </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class Unix
+    <meta name="title" content="Enum PermissionLevel
  ">
     <meta name="generator" content="docfx ">
   
@@ -67,50 +67,48 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="PrismRuntime.SShell.Scripts.Unix">
+            <article class="content wrap" id="_content" data-uid="PrismRuntime.Core.PermissionLevel">
 
 
 
-  <h1 id="PrismRuntime_SShell_Scripts_Unix" data-uid="PrismRuntime.SShell.Scripts.Unix" class="text-break">Class Unix
+
+  <h1 id="PrismRuntime_Core_PermissionLevel" data-uid="PrismRuntime.Core.PermissionLevel" class="text-break">Enum PermissionLevel
 </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">Unix</span></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
-    </div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="PrismRuntime.html">PrismRuntime</a>.<a class="xref" href="PrismRuntime.SShell.html">SShell</a>.<a class="xref" href="PrismRuntime.SShell.Scripts.html">Scripts</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="PrismRuntime.html">PrismRuntime</a>.<a class="xref" href="PrismRuntime.Core.html">Core</a></h6>
   <h6><strong>Assembly</strong>: PrismRuntime.dll</h6>
-  <h5 id="PrismRuntime_SShell_Scripts_Unix_syntax">Syntax</h5>
+  <h5 id="PrismRuntime_Core_PermissionLevel_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class Unix</code></pre>
+    <pre><code class="lang-csharp hljs">public enum PermissionLevel</code></pre>
   </div>
-
+  <h3 id="fields">Fields
+</h3>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    <thead>
+    <tbody>
+      <tr>
+        <td id="PrismRuntime_Core_PermissionLevel_Kernel">Kernel</td>
+        <td><p>Full access to all files and features. No access to full system memory.
+Core apps are exepmt from external kernel permissions due to them possibly
+requiring those permissions, and just the nature in how they work. This
+will be acceptable because external kernel access cannot modify internal
+kernel accessing apps, so they cannot be injected with malicous code.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PrismRuntime_Core_PermissionLevel_User">User</td>
+        <td><p>Basic access to the current active user's home directory and features such as UI, Graphics,
+Audio, and others.</p>
+</td>
+      </tr>
+    </tbody>
+  </thead></thead></table>
 </article>
           </div>
 
@@ -119,10 +117,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismRuntime_SShell_Scripts_Unix.md&amp;value=---%0Auid%3A%20PrismRuntime.SShell.Scripts.Unix%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismRuntime_Core_PermissionLevel.md&amp;value=---%0Auid%3A%20PrismRuntime.Core.PermissionLevel%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismRuntime/SShell/Scripts/Unix.cs/#L11" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismRuntime/Core/PermissionLevel.cs/#L3" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
