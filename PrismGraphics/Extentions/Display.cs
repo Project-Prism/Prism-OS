@@ -40,13 +40,13 @@ public abstract class Display : Graphics
 	/// <returns>An instance of the display class.</returns>
 	public static Display GetDisplay(ushort Width, ushort Height)
 	{
-		if (Multiboot2.IsVBEAvailable)
-		{
-			return new VBECanvas();
-		}
 		if (VMTools.IsVMWare)
 		{
 			return new SVGAIICanvas(Width, Height);
+		}
+		if (Multiboot2.IsVBEAvailable)
+		{
+			return new VBECanvas();
 		}
 
 		throw new NotImplementedException("No display is available!");
