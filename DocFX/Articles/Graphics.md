@@ -126,7 +126,7 @@ Note that this is only intended for resizing things that will be re-drawn. For s
 To draw a basic screen with a mouse, Something simillar to the following should be used:
 
 ```cs
-using PrismGeaphics.Extentions.VMWare;
+using PrismGraphics.Extentions.VMWare;
 using PrismGraphics;
 using Cosmos.System;
 
