@@ -31,6 +31,7 @@ public static class AudioPlayer
 
 			// Inform that audio player is done initializing.
 			Debugger.Finalize(Severity.Success);
+			IsAvailable = true;
 		}
 		catch
 		{
@@ -57,6 +58,7 @@ public static class AudioPlayer
 	private static readonly Debugger Debugger;
 	public static readonly AudioMixer Mixer;
 	private static readonly AudioManager AM;
+	public static readonly bool IsAvailable;
 
 	#endregion
 }

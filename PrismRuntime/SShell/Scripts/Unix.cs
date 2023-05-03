@@ -1,9 +1,10 @@
-﻿using Console = System.Console;
+﻿using PrismRuntime.Formats.ELF.ELFHeader;
+using Console = System.Console;
+using Cosmos.System.FileSystem;
 using PrismFilesystem;
 using Cosmos.System;
 using Cosmos.Core;
 using PrismAudio;
-using PrismRuntime.Formats.ELF.ELFHeader;
 
 namespace PrismRuntime.SShell.Scripts;
 
@@ -16,9 +17,13 @@ public static unsafe class Unix
 		public override void Invoke(string[] Args)
 		{
 			Console.Clear();
-			AudioPlayer.Play(Media.ShutdownAlt);
-			Thread.Sleep(5000);
-			Power.Shutdown();
+
+			if (AudioPlayer.IsAvailable)
+			{
+				AudioPlayer.Play(Media.ShutdownAlt);
+				Thread.Sleep(5000);
+				Power.Shutdown();
+			}
 		}
 	}
 	public class HexDump : Script
@@ -98,6 +103,21 @@ public static unsafe class Unix
 			Power.Reboot();
 		}
 	}
+	public class LSBLK : Script
+	{
+		public LSBLK() : base(nameof(LSBLK).ToLower(), "Lists all of the connected block devices.") { }
+
+		public override void Invoke(string[] Args)
+		{
+			foreach (Disk Current in FilesystemManager.VFS.GetDisks())
+			{
+				foreach (ManagedPartition Partition in Current.Partitions)
+				{
+					Console.WriteLine($"{Partition.RootPath} > {Current.Size / 1073741824} GB");
+				}
+			}
+		}
+	}
 	public class Clear : Script
 	{
 		public Clear() : base("clear", "Clear the terminal screen.") { }
@@ -146,6 +166,31 @@ public static unsafe class Unix
 			for (int I = 0; I < Args.Length; I++)
 			{
 				File.Create(Args[I]);
+			}
+		}
+	}
+	public class MKFS : Script
+	{
+		public MKFS() : base(nameof(MKFS).ToLower(), "Initialize a disk with a file system.")
+		{
+			AdvancedDescription = "mkfs [type] [disk ID]";
+		}
+
+		public override void Invoke(string[] Args)
+		{
+			if (Args.Length < 2)
+			{
+				Console.WriteLine("Insuficcient arguments.");
+				return;
+			}
+
+			if (int.TryParse(Args[1], out int ID))
+			{
+				FilesystemManager.Format(ID, Args[0].ToUpper());
+			}
+			else
+			{
+				Console.WriteLine("Invalid disk ID!");
 			}
 		}
 	}

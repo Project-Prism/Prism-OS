@@ -19,15 +19,9 @@
 	<!--Prism OS include group-->
 	<ItemGroup>
 
-		<ProjectReference Include="..\PrismAudio\PrismAudio.csproj" />
-
 		<ProjectReference Include="..\PrismFilesystem\PrismFilesystem.csproj" />
-
-		<ProjectReference Include="..\PrismTools\PrismTools.csproj">
-			<CopyLocalSatelliteAssemblies>False</CopyLocalSatelliteAssemblies>
-			<CopyLocal>False</CopyLocal>
-			<Private>True</Private>
-		</ProjectReference>
+		<ProjectReference Include="..\PrismAudio\PrismAudio.csproj" />
+		<ProjectReference Include="..\PrismTools\PrismTools.csproj" />
 
 	</ItemGroup>
 

@@ -4,7 +4,7 @@
 
 <hr/>
 
-⚠️ PLEASE READ BEFORE CONTINUING ⚠️
+<p>⚠️ PLEASE READ BEFORE CONTINUING ⚠️</p>
 
 <hr/>
 

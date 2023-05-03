@@ -19,9 +19,11 @@ public static unsafe class Shell
 			new Unix.HexDump(),
 			new Unix.ReadELF(),
 			new Unix.Reboot(),
+			//new Unix.LSBLK(),
 			new Unix.Clear(),
 			new Unix.MKDir(),
 			new Unix.Touch(),
+			//new Unix.MKFS(),
 			new Unix.Halt(),
 			new Unix.Cat(),
 			new Unix.Man(),
@@ -33,7 +35,6 @@ public static unsafe class Shell
 			new Status(),
 			new Locker(),
 			new VEdit(),
-			new CPUID(),
 			new CLI()
 		};
 	}
