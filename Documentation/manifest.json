@@ -1285,6 +1285,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "API/PrismTools.ByteFormatter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismTools.ByteFormatter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "API/PrismTools.Compression.DeflateStream.yml",
       "output": {
         ".html": {
