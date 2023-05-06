@@ -838,10 +838,10 @@ public unsafe class Graphics : IDisposable
 				case '\0':
 					continue;
 				case ' ':
-					BX += (int)(Size / 2);
+					BX += Font.Size / 2;
 					continue;
 				case '\t':
-					BX += (int)(Size * 4);
+					BX += Font.Size * 4;
 					continue;
 				default:
 					break;

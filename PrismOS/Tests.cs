@@ -5,6 +5,7 @@ using Cosmos.Core.Memory;
 using PrismGraphics;
 using Cosmos.System;
 using Cosmos.Core;
+using PrismTools;
 
 namespace PrismOS;
 
@@ -18,9 +19,6 @@ public static class Tests
 	/// </summary>
 	public static void TestGraphics()
 	{
-		// Swap width and height evert 1.5 seconds.
-		//Timer T = new((O) => { (Buffer.Width, Buffer.Height) = (Buffer.Height, Buffer.Width); Buffer.Clear(Color.ClassicBlue); }, null, 1500, 0);
-
 		Graphics GradientBuffer = Gradient.GetGradient(256, 256, new Color[]
 		{
 			Color.Red,
@@ -33,10 +31,12 @@ public static class Tests
 
 		Display Canvas = Display.GetDisplay(800, 600);
 		Graphics Buffer = new(128, 64);
-		Button Button1 = new(75, 15, 64, 16, 4, "Button1", () => { });
+		Button Button1 = new(75, 15, 128, 32, 4, "Button1", () => { });
 		Engine Engine = new(800, 600, 75);
-		int MemoryN = 0;
 
+		// Swap width and height evert 1.5 seconds.
+		Timer T1 = new((O) => { (Buffer.Width, Buffer.Height) = (Buffer.Height, Buffer.Width); Buffer.Clear(Color.ClassicBlue); }, null, 1500, 0);
+		
 		Engine.Objects.Add(Mesh.GetCube(200, 200, 200));
 		Engine.Camera.Position.Z = 200;
 		Button1.Render();
@@ -49,21 +49,17 @@ public static class Tests
 			Engine.Objects[^1].TestLogic(0.01f);
 			Engine.Render();
 
+			string Info = $"{Canvas.GetFPS()} FPS\n{Canvas.GetName()}\n{ByteFormatter.GetMegaBytes(GCImplementation.GetUsedRAM())} MB";
+
 			Canvas.Clear();
-			Canvas.DrawString(15, 15, $"{Canvas.GetFPS()} FPS\n{Canvas.GetName()}", default, Color.White);
-			Canvas.DrawString(15, 30, GCImplementation.GetUsedRAM() / 1024 + " K", default, Color.White);
-			Canvas.DrawImage(15, 50, Buffer, false);
+			Canvas.DrawImage(150, 150, Buffer, false);
 			Canvas.DrawImage(15, 75, Engine, false);
 			Canvas.DrawImage(Button1.X, Button1.Y, Button1.MainImage);
 			Canvas.DrawImage(200, 15, GradientBuffer, false);
 			Canvas.DrawFilledRectangle((int)MouseManager.X, (int)MouseManager.Y, 16, 16, 0, Color.White);
+			Canvas.DrawString(15, 15, Info, default, Color.White);
 			Canvas.Update();
-
-			if (MemoryN++ == 3)
-			{
-				Heap.Collect();
-				MemoryN = 0;
-			}
+			Heap.Collect();
 		}
 	}
 }

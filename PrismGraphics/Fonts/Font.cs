@@ -31,14 +31,29 @@ public class Font
 	/// </summary>
 	/// <param name="String">String to measure.</param>
 	/// <returns>Width of the input string.</returns>
-	public ushort MeasureString(string String)
+	public ushort MeasureString(string Text)
 	{
 		ushort Width = 0;
 
 		// Loop over every character in the string.
-		for (int I = 0; I < String.Length; I++)
+		for (int I = 0; I < Text.Length; I++)
 		{
-			Width += (ushort)(GetGlyph(String[I]).Width + 2);
+			switch (Text[I])
+			{
+				case '\n': // We don't measure height currently.
+				case '\0':
+					continue;
+				case ' ':
+					Width += (ushort)(Size / 2);
+					continue;
+				case '\t':
+					Width += (ushort)(Size * 4);
+					continue;
+				default:
+					break;
+			}
+
+			Width += (ushort)(GetGlyph(Text[I]).Width + 2);
 		}
 
 		return Width;
