@@ -4,32 +4,32 @@ using System.Text;
 
 namespace PrismAPI.Network;
 
-public class WebClient
+public class HTTPClient
 {
-	public WebClient(string URL)
+	public HTTPClient(string URL)
 	{
 		this.URL = new(URL);
 	}
-	public WebClient(URL URL)
+	public HTTPClient(URL URL)
 	{
 		this.URL = URL;
 	}
-	public WebClient()
+	public HTTPClient()
 	{
 		URL = new("");
 	}
 
 	#region Methods
 
-	public byte[] DownloadFile(int Port = 80)
+	public byte[] Get(int Port = 80)
 	{
-		EndPoint EP = new(URL.GetAddress(), (ushort)Port);
+		EndPoint EP = new(URL.Address, (ushort)Port);
 		string Request =
-			$"GET {URL.GetPath()} HTTP/1.1\n" +
+			$"GET {URL.Path} HTTP/1.1\n" +
 			"Connection: Keep - Alive";
 
-		TcpClient Client = new(URL.GetAddress(), Port);
-		Client.Connect(URL.GetAddress(), Port);
+		TcpClient Client = new(URL.Address, Port);
+		Client.Connect(URL.Address, Port);
 		Client.Send(Encoding.UTF8.GetBytes(Request));
 		return Client.Receive(ref EP);
 	}

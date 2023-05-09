@@ -18,35 +18,88 @@ public class URL
 		this.FullURL = FullURL;
 	}
 
-	#region Methods
+	#region Properties
 
-	/// <summary>
-	/// Gets the protocol of the url.
-	/// </summary>
-	/// <returns>Protocol of the url (e.g. http, ftp)</returns>
-	public string GetProtocol() => FullURL.Split(':')[0];
-	/// <summary>
-	/// Gets the main domain of the url.
-	/// </summary>
-	/// <returns>Domain of the url.</returns>
-	public string GetDomain() => FullURL.Replace("//", "&&&&").Split("/")[0].Replace("&&&&", "//") + "/";
-	/// <summary>
-	/// Gets the path of the URL
-	/// </summary>
-	/// <returns>Path of the url after the domain.</returns>
-	public string GetPath() => FullURL.Split('/')[^1];
+	public bool HasProtocol => FullURL.Contains(Delimiter);
 
-	/// <summary>
-	/// Gets the address of the url.
-	/// </summary>
-	/// <returns>Address to contact</returns>
-	public Address GetAddress()
+	public Address Address
 	{
-		DnsClient Client = new();
-		Client.Connect(NetworkConfiguration.CurrentNetworkConfig.IPConfig.DefaultGateway);
-		Client.SendAsk(GetDomain());
-		return Client.Receive();
+		get
+		{
+			DnsClient Client = new();
+			Client.Connect(NetworkConfiguration.CurrentNetworkConfig.IPConfig.DefaultGateway);
+			Client.SendAsk(Host);
+			return Client.Receive();
+		}
 	}
+
+	public string Protocol
+	{
+		get
+		{
+			if (!HasProtocol)
+			{
+				return string.Empty;
+			}
+
+			return FullURL[..FullURL.IndexOf(Delimiter)];
+		}
+		set
+		{
+			if (!HasProtocol)
+			{
+				return;
+			}
+
+			FullURL = FullURL.Replace(Protocol + Delimiter, value + Delimiter);
+		}
+	}
+
+	public string Host
+	{
+		get
+		{
+			string Temp = FullURL;
+
+			if (HasProtocol)
+			{
+				Temp = Temp.Replace(Protocol + Delimiter, string.Empty);
+			}
+
+			return Temp.Split('/')[0].Split(':')[0];
+		}
+		set
+		{
+			FullURL = FullURL.Replace(Delimiter + Host, Delimiter + value);
+		}
+	}
+
+	public string Path
+	{
+		get
+		{
+			string Temp = FullURL;
+
+			if (HasProtocol)
+			{
+				Temp = Temp.Replace(Protocol + Delimiter, string.Empty);
+			}
+
+			return Temp.Split(Host + /*':' + Port +*/ '/')[1];
+		}
+		set
+		{
+			FullURL = FullURL.Replace(Host + /*':' + Port +*/ '/' + Path, Host + /*':' + Port +*/ '/' + value);
+		}
+	}
+
+	public string Port => throw new NotImplementedException();
+
+	#endregion
+
+	#region Constants
+
+	public const string Delimiter = "://";
 
 	#endregion
 
