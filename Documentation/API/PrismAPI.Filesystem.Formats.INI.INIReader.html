@@ -1,0 +1,925 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class INIReader
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class INIReader
+ ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader">
+
+
+
+  <h1 id="PrismAPI_Filesystem_Formats_INI_INIReader" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader" class="text-break">Class INIReader
+</h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">INIReader</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="PrismAPI.html">PrismAPI</a>.<a class="xref" href="PrismAPI.Filesystem.html">Filesystem</a>.<a class="xref" href="PrismAPI.Filesystem.Formats.html">Formats</a>.<a class="xref" href="PrismAPI.Filesystem.Formats.INI.html">INI</a></h6>
+  <h6><strong>Assembly</strong>: PrismAPI.dll</h6>
+  <h5 id="PrismAPI_Filesystem_Formats_INI_INIReader_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class INIReader</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Filesystem_Formats_INI_INIReader__ctor_System_String_.md&amp;value=---%0Auid%3A%20PrismAPI.Filesystem.Formats.INI.INIReader.%23ctor(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Filesystem/Formats/INI/INIReader.cs/#L5">View Source</a>
+  </span>
+  <a id="PrismAPI_Filesystem_Formats_INI_INIReader__ctor_" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.#ctor*"></a>
+  <h4 id="PrismAPI_Filesystem_Formats_INI_INIReader__ctor_System_String_" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.#ctor(System.String)">INIReader(string)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public INIReader(string Source)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">Source</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Filesystem_Formats_INI_INIReader_ToString.md&amp;value=---%0Auid%3A%20PrismAPI.Filesystem.Formats.INI.INIReader.ToString%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Filesystem/Formats/INI/INIReader.cs/#L165">View Source</a>
+  </span>
+  <a id="PrismAPI_Filesystem_Formats_INI_INIReader_ToString_" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.ToString*"></a>
+  <h4 id="PrismAPI_Filesystem_Formats_INI_INIReader_ToString" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.ToString">ToString()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Filesystem_Formats_INI_INIReader_TryReadByte_System_String_System_Byte__.md&amp;value=---%0Auid%3A%20PrismAPI.Filesystem.Formats.INI.INIReader.TryReadByte(System.String%2CSystem.Byte%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Filesystem/Formats/INI/INIReader.cs/#L114">View Source</a>
+  </span>
+  <a id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadByte_" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadByte*"></a>
+  <h4 id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadByte_System_String_System_Byte__" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadByte(System.String,System.Byte@)">TryReadByte(string, out byte)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryReadByte(string Key, out byte Value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">Key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></td>
+        <td><span class="parametername">Value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Filesystem_Formats_INI_INIReader_TryReadChar_System_String_System_Char__.md&amp;value=---%0Auid%3A%20PrismAPI.Filesystem.Formats.INI.INIReader.TryReadChar(System.String%2CSystem.Char%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Filesystem/Formats/INI/INIReader.cs/#L123">View Source</a>
+  </span>
+  <a id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadChar_" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadChar*"></a>
+  <h4 id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadChar_System_String_System_Char__" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadChar(System.String,System.Char@)">TryReadChar(string, out char)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryReadChar(string Key, out char Value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">Key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></td>
+        <td><span class="parametername">Value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Filesystem_Formats_INI_INIReader_TryReadDouble_System_String_System_Double__.md&amp;value=---%0Auid%3A%20PrismAPI.Filesystem.Formats.INI.INIReader.TryReadDouble(System.String%2CSystem.Double%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Filesystem/Formats/INI/INIReader.cs/#L96">View Source</a>
+  </span>
+  <a id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadDouble_" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadDouble*"></a>
+  <h4 id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadDouble_System_String_System_Double__" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadDouble(System.String,System.Double@)">TryReadDouble(string, out double)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryReadDouble(string Key, out double Value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">Key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></td>
+        <td><span class="parametername">Value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Filesystem_Formats_INI_INIReader_TryReadFloat_System_String_System_Single__.md&amp;value=---%0Auid%3A%20PrismAPI.Filesystem.Formats.INI.INIReader.TryReadFloat(System.String%2CSystem.Single%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Filesystem/Formats/INI/INIReader.cs/#L105">View Source</a>
+  </span>
+  <a id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadFloat_" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadFloat*"></a>
+  <h4 id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadFloat_System_String_System_Single__" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadFloat(System.String,System.Single@)">TryReadFloat(string, out float)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryReadFloat(string Key, out float Value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">Key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></td>
+        <td><span class="parametername">Value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Filesystem_Formats_INI_INIReader_TryReadInt_System_String_System_Int32__.md&amp;value=---%0Auid%3A%20PrismAPI.Filesystem.Formats.INI.INIReader.TryReadInt(System.String%2CSystem.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Filesystem/Formats/INI/INIReader.cs/#L55">View Source</a>
+  </span>
+  <a id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadInt_" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadInt*"></a>
+  <h4 id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadInt_System_String_System_Int32__" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadInt(System.String,System.Int32@)">TryReadInt(string, out int)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryReadInt(string Key, out int Value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">Key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">Value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Filesystem_Formats_INI_INIReader_TryReadLong_System_String_System_Int64__.md&amp;value=---%0Auid%3A%20PrismAPI.Filesystem.Formats.INI.INIReader.TryReadLong(System.String%2CSystem.Int64%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Filesystem/Formats/INI/INIReader.cs/#L64">View Source</a>
+  </span>
+  <a id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadLong_" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadLong*"></a>
+  <h4 id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadLong_System_String_System_Int64__" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadLong(System.String,System.Int64@)">TryReadLong(string, out long)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryReadLong(string Key, out long Value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">Key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td><span class="parametername">Value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Filesystem_Formats_INI_INIReader_TryReadShort_System_String_System_Int16__.md&amp;value=---%0Auid%3A%20PrismAPI.Filesystem.Formats.INI.INIReader.TryReadShort(System.String%2CSystem.Int16%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Filesystem/Formats/INI/INIReader.cs/#L46">View Source</a>
+  </span>
+  <a id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadShort_" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadShort*"></a>
+  <h4 id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadShort_System_String_System_Int16__" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadShort(System.String,System.Int16@)">TryReadShort(string, out short)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryReadShort(string Key, out short Value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">Key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a></td>
+        <td><span class="parametername">Value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Filesystem_Formats_INI_INIReader_TryReadString_System_String_System_String__.md&amp;value=---%0Auid%3A%20PrismAPI.Filesystem.Formats.INI.INIReader.TryReadString(System.String%2CSystem.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Filesystem/Formats/INI/INIReader.cs/#L78">View Source</a>
+  </span>
+  <a id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadString_" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadString*"></a>
+  <h4 id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadString_System_String_System_String__" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadString(System.String,System.String@)">TryReadString(string, out string)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryReadString(string Key, out string Value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">Key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">Value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Filesystem_Formats_INI_INIReader_TryReadUInt_System_String_System_UInt32__.md&amp;value=---%0Auid%3A%20PrismAPI.Filesystem.Formats.INI.INIReader.TryReadUInt(System.String%2CSystem.UInt32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Filesystem/Formats/INI/INIReader.cs/#L23">View Source</a>
+  </span>
+  <a id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadUInt_" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadUInt*"></a>
+  <h4 id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadUInt_System_String_System_UInt32__" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadUInt(System.String,System.UInt32@)">TryReadUInt(string, out uint)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryReadUInt(string Key, out uint Value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">Key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></td>
+        <td><span class="parametername">Value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Filesystem_Formats_INI_INIReader_TryReadULong_System_String_System_UInt64__.md&amp;value=---%0Auid%3A%20PrismAPI.Filesystem.Formats.INI.INIReader.TryReadULong(System.String%2CSystem.UInt64%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Filesystem/Formats/INI/INIReader.cs/#L32">View Source</a>
+  </span>
+  <a id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadULong_" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadULong*"></a>
+  <h4 id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadULong_System_String_System_UInt64__" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadULong(System.String,System.UInt64@)">TryReadULong(string, out ulong)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryReadULong(string Key, out ulong Value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">Key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></td>
+        <td><span class="parametername">Value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Filesystem_Formats_INI_INIReader_TryReadUShort_System_String_System_UInt16__.md&amp;value=---%0Auid%3A%20PrismAPI.Filesystem.Formats.INI.INIReader.TryReadUShort(System.String%2CSystem.UInt16%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Filesystem/Formats/INI/INIReader.cs/#L14">View Source</a>
+  </span>
+  <a id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadUShort_" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadUShort*"></a>
+  <h4 id="PrismAPI_Filesystem_Formats_INI_INIReader_TryReadUShort_System_String_System_UInt16__" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryReadUShort(System.String,System.UInt16@)">TryReadUShort(string, out ushort)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryReadUShort(string Key, out ushort Value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">Key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></td>
+        <td><span class="parametername">Value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Filesystem_Formats_INI_INIReader_TryWrite_System_String_System_Object_.md&amp;value=---%0Auid%3A%20PrismAPI.Filesystem.Formats.INI.INIReader.TryWrite(System.String%2CSystem.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Filesystem/Formats/INI/INIReader.cs/#L137">View Source</a>
+  </span>
+  <a id="PrismAPI_Filesystem_Formats_INI_INIReader_TryWrite_" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryWrite*"></a>
+  <h4 id="PrismAPI_Filesystem_Formats_INI_INIReader_TryWrite_System_String_System_Object_" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.TryWrite(System.String,System.Object)">TryWrite(string, object)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryWrite(string Key, object Value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">Key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">Value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Filesystem_Formats_INI_INIReader_Validate_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20PrismAPI.Filesystem.Formats.INI.INIReader.Validate(System.String%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Filesystem/Formats/INI/INIReader.cs/#L152">View Source</a>
+  </span>
+  <a id="PrismAPI_Filesystem_Formats_INI_INIReader_Validate_" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.Validate*"></a>
+  <h4 id="PrismAPI_Filesystem_Formats_INI_INIReader_Validate_System_String_System_Int32_" data-uid="PrismAPI.Filesystem.Formats.INI.INIReader.Validate(System.String,System.Int32)">Validate(string, int)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Validate(string Key, int Index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">Key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">Index</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Filesystem_Formats_INI_INIReader.md&amp;value=---%0Auid%3A%20PrismAPI.Filesystem.Formats.INI.INIReader%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Filesystem/Formats/INI/INIReader.cs/#L3" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        
+        <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

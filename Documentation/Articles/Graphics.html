@@ -72,29 +72,11 @@
 <p>Try not to be intimidated by the sheer size of the graphics library! It is quite simple when you look at it from a high level perspective.</p>
 <p>This readme is still in progress, so it is not finished!</p>
 <hr>
-<p>Prism OS supports inclusion/exclusion of specific video drivers at compile time. You can modify what is added when compiling by editing <a href="https://github.com/Project-Prism/Prism-OS/blob/main/Directory.Build.props">this</a> file.
-Here are the available options for video drivers:</p>
-<table>
-<thead>
-<tr>
-<th>Available Constants</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>IncludeVMWARE</td>
-</tr>
-<tr>
-<td>IncludeVBE</td>
-</tr>
-</tbody>
-</table>
-<hr>
 <blockquote>
 <p>There is no hardware acceleration and is constantly WIP, expect bugs!</p>
 </blockquote>
 <hr>
-<h2 id="animation---animationcontrollercs">Animation - <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Animation/AnimationController.cs">AnimationController.cs</a></h2>
+<h2 id="animation---animationcontrollercs">Animation - <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Animation/AnimationController.cs">AnimationController.cs</a></h2>
 <h3 id="examples">Examples</h3>
 <p>Interpolate <code>0.0f</code> to <code>255.0f</code> over the span of <code>5</code> seconds with the <code>Ease</code> mode.</p>
 <pre><code class="lang-cs">AnimationController A = new(0.0f, 255.0f, new(0, 0, 5), AnimationMode.Ease);
@@ -137,7 +119,7 @@ while (true)
 <h4 id="the-algorithm">The algorithm</h4>
 <p>It's two actually. The absolute starting point circles around continuously and linearly and the length of the arc eases in and out between a short and long length</p>
 <hr>
-<h2 id="graphics---gradientcs">Graphics - <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Gradient.cs">Gradient.cs</a></h2>
+<h2 id="graphics---gradientcs">Graphics - <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Gradient.cs">Gradient.cs</a></h2>
 <p>PrismGraphics includes a file to generate gradients. They are rendered off of a class abstracted from the normal graphics class.
 To generate a new gradient, try:</p>
 <pre><code class="lang-cs">Gradient G = new(200, 200, Color.White, Color.Green);
@@ -148,12 +130,12 @@ To rotate this, pass it through the rotate filter:</p>
 </code></pre>
 <hr>
 <h2 id="graphics---getting-a-display-output">Graphics - Getting a display output</h2>
-<p>Getting a display output using the <code>PrismGraphics</code> library is very simple. There are a few modes to choose from, but for now <code>SVGAIICanvas</code> is the only type that is working.</p>
+<p>Getting a display output using the <code>PrismAPI.Graphics</code> library is very simple. There are a few modes to choose from, but for now <code>SVGAIICanvas</code> is the only type that is working.</p>
 <h3 id="defining-new-instance">Defining new instance</h3>
 <p>To get a display, define a new instance of the SVGAII canvas like so:</p>
-<pre><code class="lang-cs">using PrismGraphics.Extentions.VMWare;
+<pre><code class="lang-cs">using PrismAPI.Hardware.GPU;
 
-SVGAIICanvas Canvas = new(800, 600);
+Display Canvas = new(800, 600);
 </code></pre>
 <p>In this case <code>800, 600</code> are the width and height (in pixels) of the canvas.</p>
 <h3 id="resizing">Resizing</h3>
@@ -164,8 +146,8 @@ Canvas.Height = NewHeight;
 <p>Note that this is only intended for resizing things that will be re-drawn. For scaling, see [NOT DOCUMENTED, COMING SOON].</p>
 <h3 id="get-a-basic-screen-output">Get a basic screen output</h3>
 <p>To draw a basic screen with a mouse, Something simillar to the following should be used:</p>
-<pre><code class="lang-cs">using PrismGraphics.Extentions.VMWare;
-using PrismGraphics;
+<pre><code class="lang-cs">using PrismAPI.Hardware.GPU;
+using PrismAPI.Graphics;
 using Cosmos.System;
 
 public class YourKernelName : Kernel

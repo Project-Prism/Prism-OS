@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>An idea of a scripting languge </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="An idea of a scripting languge ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="an-idea-of-a-scripting-languge">An idea of a scripting languge</h1>
+
+<p>This is an idea as defined by my (Terminal.cs's) perfered coding style &amp; 'attitude'.
+I have not imeplented it because i am not smart enough, but i feel if it were to be a thing, it could make development in almost any programming field easier.</p>
+<p>This 'standard' defines all the syntax, types, and misc implementations that should be included in this language.</p>
+<hr>
+<h2 id="syntax-standard-library--naming">Syntax, Standard 'library', &amp; naming</h2>
+<p>Syntax should be kept mostly minimal, with it being only used to promote cleaner and more understandable structure.
+An example of this could be as follows:</p>
+<pre><code class="lang-cs">import Library; // Standard 'library' name.
+import &quot;&quot;; // Imports external assembly, possibly web URLs to projects aswell. The project will be managed by a lightweight manager that should 100% be cross platform and 100% open source.
+
+namespace &quot;MyNamespace1&quot;; // Define the file's namespace, dis-allow putting multiple namespaces in a single file to dicourage bad design.
+
+// 'public' and 'static' are keywords to modify how the structure will work. 'public' defines it as available to all external code willing to act on it and 'static' marks it as a initialize-once object.
+public static MyStructure1 // Only have one type of structure to prevent confusion and promote good design, it will be a combination of a 'class' and an unsafe 'structure', allowing it to be used for any purpose the programmer sees needed.
+{
+	public MyStructure1 // Allow for static structures to have initializers - This promotes good design and makes organization easier. The visibility level of the constructor cannot be higher than the class itself, and the constructor won't have '()' as static structures cannot be instantiated.
+	{
+		// Initialize statics here.
+		StructurePointer = new(); // Allow pointers to be assigned normally.
+		V1 = 50;
+
+		StructurePointer-&gt;F = string.Empty; // Empty string, but not null.
+	}
+
+	// Do not allow structures to be defined inside another to promote good design - nested classes add lots of clutter.
+
+	#region Fields // Add regions so that code can be organized in IDEs. Common names to be used should be as followed: Properties, Operators, Methods, and Fields.
+
+	public static MyStructure2* StructurePointer;
+	public static int V1; // Variables inside the class must be static as it is in a static context, and it's visibility level must not be higher than the class itself.
+
+	#endregion
+}
+
+public MyStructure2 // A structure to be instantiated as an object.
+{
+	public MyStructure2() // Object structures
+	{
+		MyProperty = 55;
+	}
+
+	#region Properties
+
+	public int MyProperty
+	{
+		get // Run whenever something tries to get the value.
+		{
+			return MyProperty; // Allow a property to define itself so that aditional variable declaratoins are not needed.
+		}
+		set // Set, run whenever the property or a value inside of the property is changed, this promotes event-based design and leads to greater performance.
+		{
+			MyMethod1(); // run some method
+			MyProperty = Value; // Value is the name of what the property was set to, and setting the property inside of the property again just sets an automatically internal variable so there is no recursion.
+		}
+	}
+
+	#endregion
+
+	#region
+
+	public string F;
+
+	#endregion
+}
+</code></pre>
+<h2 id="naming-schemes">Naming schemes</h2>
+<h3 id="library-names">Library names</h3>
+<h4 id="primitive-types">Primitive Types</h4>
+<ul>
+<li>Vector2</li>
+<li>Vector3</li>
+<li>Vector4</li>
+<li>string</li>
+<li>bool</li>
+<li>ulong</li>
+<li>long</li>
+<li>uint</li>
+<li>int</li>
+<li>ushort</li>
+<li>short</li>
+<li>byte</li>
+<li>char</li>
+<li>double</li>
+<li>float</li>
+</ul>
+<h3 id="tools">Tools</h3>
+<ul>
+<li>Library.Console
+<ul>
+<li>WriteLine(type ToWrite);</li>
+<li>Write(type ToWrite);</li>
+<li>Clear();</li>
+</ul>
+</li>
+<li>Library.Math
+<ul>
+<li>Sin();</li>
+<li>SinF</li>
+<li>Cos</li>
+<li>CosF</li>
+<li>Tan</li>
+<li>TanF</li>
+<li>Sqrt</li>
+<li>SqrtF</li>
+<li>Cbrt</li>
+<li>CbrtF,</li>
+<li>PI (constant)</li>
+</ul>
+</li>
+</ul>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/DocFX/Articles/Temp.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        
+        <span>Generated by <strong>DocFX</strong></span>
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
