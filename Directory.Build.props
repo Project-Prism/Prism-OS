@@ -1,5 +1,0 @@
-<Project>
-	<PropertyGroup>
-		<DefineConstants>IncludeVMWARE;IncludeVBE</DefineConstants>
-	</PropertyGroup>
-</Project>

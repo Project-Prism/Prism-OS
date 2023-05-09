@@ -1,11 +1,11 @@
-﻿using PrismGraphics.UI.Controls;
-using PrismGraphics.Extentions;
-using PrismGraphics.Rasterizer;
+﻿using PrismAPI.Graphics.UI.Controls;
+using PrismAPI.Graphics.Rasterizer;
+using PrismAPI.Hardware.GPU;
 using Cosmos.Core.Memory;
-using PrismGraphics;
+using PrismAPI.Graphics;
+using PrismAPI.Tools;
 using Cosmos.System;
 using Cosmos.Core;
-using PrismTools;
 
 namespace PrismOS;
 
@@ -19,7 +19,7 @@ public static class Tests
 	/// </summary>
 	public static void TestGraphics()
 	{
-		Graphics GradientBuffer = Gradient.GetGradient(256, 256, new Color[]
+		Canvas GradientBuffer = Gradient.GetGradient(256, 256, new Color[]
 		{
 			Color.Red,
 			Color.DeepOrange,
@@ -30,7 +30,7 @@ public static class Tests
 		});
 
 		Display Canvas = Display.GetDisplay(800, 600);
-		Graphics Buffer = new(128, 64);
+		Canvas Buffer = new(128, 64);
 		Button Button1 = new(75, 15, 128, 32, 4, "Button1", () => { });
 		Engine Engine = new(800, 600, 75);
 

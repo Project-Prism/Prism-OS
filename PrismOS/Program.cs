@@ -1,10 +1,9 @@
-﻿using PrismRuntime.SShell;
-using PrismRuntime.Core;
-using PrismFilesystem;
-using Cosmos.System;
-using PrismNetwork;
-using PrismAudio;
-using PrismTools;
+﻿using PrismAPI.Runtime.SShell;
+using PrismAPI.Filesystem;
+using PrismAPI.Network;
+using PrismAPI.Runtime;
+using PrismAPI.Audio;
+using PrismAPI.Tools;
 
 namespace PrismOS;
 
@@ -13,7 +12,7 @@ namespace PrismOS;
 // TO-DO: Fix gradient's MaskAlpha method. (?)
 // TO-DO: Move 3D engine to be shader based for all transformations.
 */
-public unsafe class Program : Kernel
+public unsafe class Program : Cosmos.System.Kernel
 {
 	/// <summary>
 	/// A method called once when the kernel boots, Used to initialize the system.
@@ -21,13 +20,13 @@ public unsafe class Program : Kernel
 	protected override void BeforeRun()
 	{
 		// Clear console & display ascii art.
-		System.Console.Clear();
-		System.Console.WriteLine(@"    ____       _                   ____  _____");
-		System.Console.WriteLine(@"   / __ \_____(_)________ ___     / __ \/ ___/");
-		System.Console.WriteLine(@"  / /_/ / ___/ / ___/ __ `__ \   / / / /\__ \ ");
-		System.Console.WriteLine(@" / ____/ /  / (__  ) / / / / /  / /_/ /___/ / ");
-		System.Console.WriteLine(@"/_/   /_/  /_/____/_/ /_/ /_/   \____//____/  ");
-		System.Console.WriteLine("CopyLeft PrismProject 2023. Licensed with GPL2.\n");
+		Console.Clear();
+		Console.WriteLine(@"    ____       _                   ____  _____");
+		Console.WriteLine(@"   / __ \_____(_)________ ___     / __ \/ ___/");
+		Console.WriteLine(@"  / /_/ / ___/ / ___/ __ `__ \   / / / /\__ \ ");
+		Console.WriteLine(@" / ____/ /  / (__  ) / / / / /  / /_/ /___/ / ");
+		Console.WriteLine(@"/_/   /_/  /_/____/_/ /_/ /_/   \____//____/  ");
+		Console.WriteLine("CopyLeft PrismProject 2023. Licensed with GPL2.\n");
 
 		// Initialize system services.
 		FilesystemManager.Init();

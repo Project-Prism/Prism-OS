@@ -1,18 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<!--Generic Config-->
+	<!-- Generic Config -->
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-		<SelfContained>True</SelfContained>
-		<LangVersion>10</LangVersion>
+
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+		<CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<SelfContained>true</SelfContained>
+		<DebugType>none</DebugType>
+		<Nullable>enable</Nullable>
 		<Optimize>True</Optimize>
+
 	</PropertyGroup>
-	
+
 	<!--Cosmos Config-->
 	<PropertyGroup>
+
 		<Platform>cosmos</Platform>
 		<SupportsX86Intrinsics>false</SupportsX86Intrinsics>
 		<EnableGDB>False</EnableGDB>
@@ -40,32 +46,33 @@
 		<QemuNetworkDevice>PCNet</QemuNetworkDevice>
 		<QemuVideoDriver>VBE</QemuVideoDriver>
 		<QemuAudioDriver>AC97</QemuAudioDriver>
+
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\README.md">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
+
+		<None Remove="Media\Audio\Shutdown-Alt.wav" />
+		<None Remove="Media\Audio\Shutdown.wav" />
+		<None Remove="Media\Audio\Startup.wav" />
+		<None Remove="Media\Fonts\Malgun_Gothic_32x.psf" />
+		<None Remove="Media\Images\Prism.bmp" />
+
 	</ItemGroup>
 
 	<ItemGroup>
 
-		<PackageReference Include="Cosmos.Debug.Kernel" Version="0.1.0-*" />
-		<PackageReference Include="Cosmos.System2" Version="0.1.0-*" />
+		<EmbeddedResource Include="Media\Audio\Shutdown-Alt.wav" />
+		<EmbeddedResource Include="Media\Audio\Shutdown.wav" />
+		<EmbeddedResource Include="Media\Audio\Startup.wav" />
+		<EmbeddedResource Include="Media\Fonts\Malgun_Gothic_32x.psf" />
+		<EmbeddedResource Include="Media\Images\Prism.bmp" />
+
+	</ItemGroup>
+
+	<ItemGroup>
+
 		<PackageReference Include="Cosmos.Build" Version="0.1.0-*" />
-		<PackageReference Include="SuperDB-Core" Version="1.0.3" />
-
-	</ItemGroup>
-
-	<ItemGroup>
-
-		<ProjectReference Include="..\PrismAudio\PrismAudio.csproj" />
-		<ProjectReference Include="..\PrismFilesystem\PrismFilesystem.csproj" />
-		<ProjectReference Include="..\PrismGraphics\PrismGraphics.csproj" />
-		<ProjectReference Include="..\PrismNetwork\PrismNetwork.csproj" />
-		<ProjectReference Include="..\PrismRuntime\PrismRuntime.csproj" />
-		<ProjectReference Include="..\PrismTools\PrismTools.csproj" />
+		<ProjectReference Include="..\PrismAPI\PrismAPI.csproj" />
 
 	</ItemGroup>
 

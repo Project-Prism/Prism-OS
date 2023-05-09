@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<!-- Config group -->
+	<PropertyGroup>
+
+		<GenerateDocumentationFile>false</GenerateDocumentationFile>
+		<CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<SelfContained>true</SelfContained>
+		<DebugType>none</DebugType>
+		<Nullable>enable</Nullable>
+		<Optimize>True</Optimize>
+		
+	</PropertyGroup>
+	
+	<!-- Cosmos include group -->
+	<ItemGroup>
+
+		<PackageReference Include="Cosmos.System2" Version="0.1.0-*" />
+		<PackageReference Include="Cosmos.HAL2" Version="0.1.0-*" />
+		<PackageReference Include="TinyMath" Version="*" />
+
+	</ItemGroup>
+
+</Project>

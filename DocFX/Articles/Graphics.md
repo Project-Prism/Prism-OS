@@ -8,21 +8,11 @@ This readme is still in progress, so it is not finished!
 
 <hr/>
 
-Prism OS supports inclusion/exclusion of specific video drivers at compile time. You can modify what is added when compiling by editing [this](https://github.com/Project-Prism/Prism-OS/blob/main/Directory.Build.props) file.
-Here are the available options for video drivers:
-
-| Available Constants |
-|---------------------|
-| IncludeVMWARE       |
-| IncludeVBE          |
-
-<hr/>
-
 > There is no hardware acceleration and is constantly WIP, expect bugs!
 
 <hr/>
 
-## Animation - [AnimationController.cs](https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Animation/AnimationController.cs)
+## Animation - [AnimationController.cs](https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Animation/AnimationController.cs)
 
 ### Examples
 
@@ -76,7 +66,7 @@ It's two actually. The absolute starting point circles around continuously and l
 
 <hr/>
 
-## Graphics - [Gradient.cs](https://github.com/Project-Prism/Prism-OS/blob/main/PrismGraphics/Gradient.cs)
+## Graphics - [Gradient.cs](https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Gradient.cs)
 
 PrismGraphics includes a file to generate gradients. They are rendered off of a class abstracted from the normal graphics class.
 To generate a new gradient, try:
@@ -96,16 +86,16 @@ Filters.Rotate(Angle, G);
 
 ## Graphics - Getting a display output
 
-Getting a display output using the ``PrismGraphics`` library is very simple. There are a few modes to choose from, but for now ``SVGAIICanvas`` is the only type that is working.
+Getting a display output using the ``PrismAPI.Graphics`` library is very simple. There are a few modes to choose from, but for now ``SVGAIICanvas`` is the only type that is working.
 
 ### Defining new instance
 
 To get a display, define a new instance of the SVGAII canvas like so:
 
 ```cs
-using PrismGraphics.Extentions.VMWare;
+using PrismAPI.Hardware.GPU;
 
-SVGAIICanvas Canvas = new(800, 600);
+Display Canvas = new(800, 600);
 ```
 
 In this case ``800, 600`` are the width and height (in pixels) of the canvas.
@@ -126,8 +116,8 @@ Note that this is only intended for resizing things that will be re-drawn. For s
 To draw a basic screen with a mouse, Something simillar to the following should be used:
 
 ```cs
-using PrismGraphics.Extentions.VMWare;
-using PrismGraphics;
+using PrismAPI.Hardware.GPU;
+using PrismAPI.Graphics;
 using Cosmos.System;
 
 public class YourKernelName : Kernel

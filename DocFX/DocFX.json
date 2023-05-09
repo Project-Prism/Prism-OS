@@ -4,10 +4,9 @@
       "src": [
         {
           "files": [
-            "*/*.csproj"
+            "PrismAPI/PrismAPI.csproj"
           ],
           "exclude": [
-            "PrismOS/PrismOS.csproj",
             "**/obj/**",
             "**/bin/**"
           ],
@@ -19,7 +18,7 @@
       "disableGitFeatures": false,
       "disableDefaultFilter": false,
       "noRestore": false,
-      "namespaceLayout": "flattened"
+      "namespaceLayout": "nested"
     }
   ],
   "build": {
