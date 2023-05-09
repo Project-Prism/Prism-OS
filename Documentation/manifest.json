@@ -775,6 +775,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.Network.HTTPClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.Network.HTTPClient.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "API/PrismAPI.Network.NetworkManager.yml",
       "output": {
         ".html": {
@@ -789,16 +799,6 @@
       "output": {
         ".html": {
           "relative_path": "API/PrismAPI.Network.URL.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Network.WebClient.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismAPI.Network.WebClient.html"
         }
       },
       "version": ""
