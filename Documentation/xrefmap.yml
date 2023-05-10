@@ -2646,12 +2646,6 @@ references:
   commentId: F:PrismAPI.Graphics.Animation.AnimationController.IsContinuous
   fullName: PrismAPI.Graphics.Animation.AnimationController.IsContinuous
   nameWithType: AnimationController.IsContinuous
-- uid: PrismAPI.Graphics.Animation.AnimationController.IsEnabled
-  name: IsEnabled
-  href: API/PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_IsEnabled
-  commentId: F:PrismAPI.Graphics.Animation.AnimationController.IsEnabled
-  fullName: PrismAPI.Graphics.Animation.AnimationController.IsEnabled
-  nameWithType: AnimationController.IsEnabled
 - uid: PrismAPI.Graphics.Animation.AnimationController.IsFinished
   name: IsFinished
   href: API/PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_IsFinished
