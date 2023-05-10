@@ -81,6 +81,9 @@ public struct Color
 			byte M = byte.Parse(Components[2]);
 			byte K = byte.Parse(Components[3]);
 
+			// Alpha is always 255 with CYMK.
+			_A = 255;
+
 			if (K != 255)
 			{
 				_A = 255;
@@ -201,7 +204,6 @@ public struct Color
 
 			// Assign the ARGB value.
 			_ARGB = GetPacked(_A, _R, _G, _B);
-
 			return;
 		}
 
@@ -229,11 +231,8 @@ public struct Color
 
 			// Assign the ARGB value.
 			_ARGB = GetPacked(_A, _R, _G, _B);
-
 			return;
 		}
-
-		#region Color Names
 
 		// Assume input is a color name.
 		ARGB = ColorInfo switch
@@ -389,8 +388,6 @@ public struct Color
 			_ => throw new($"Color '{ColorInfo}' does not exist!"),
 		};
 
-		#endregion
-
 		return;
 	}
 
@@ -510,98 +507,68 @@ public struct Color
 
 	#region Operators
 
-	public static Color operator +(Color Original, Color ToAdd)
-	{
-		return new()
-		{
-			A = Original.A,
-			R = Original.R + ToAdd.R,
-			G = Original.G + ToAdd.G,
-			B = Original.B + ToAdd.B,
-		};
-	}
-	public static Color operator -(Color Original, Color ToSubtract)
-	{
-		return new()
-		{
-			A = Original.A,
-			R = Original.R - ToSubtract.R,
-			G = Original.G - ToSubtract.G,
-			B = Original.B - ToSubtract.B,
-		};
-	}
-	public static Color operator *(Color Original, Color ToMultiply)
-	{
-		return new()
-		{
-			A = Original.A,
-			R = Original.R * ToMultiply.R,
-			G = Original.G * ToMultiply.G,
-			B = Original.B * ToMultiply.B,
-		};
-	}
+	public static Color operator +(Color Original, Color Value) => new(
+		Original.A + Value.A,
+		Original.R + Value.R,
+		Original.G + Value.G,
+		Original.B + Value.B);
+	public static Color operator -(Color Original, Color Value) => new(
+		Original.A - Value.A,
+		Original.R - Value.R,
+		Original.G - Value.G,
+		Original.B - Value.B);
+	public static Color operator *(Color Original, Color Value) => new(
+		Original.A * Value.A,
+		Original.R * Value.R,
+		Original.G * Value.G,
+		Original.B * Value.B);
+	public static Color operator /(Color Original, Color Value) => new(
+		Original.A / Value.A,
+		Original.R / Value.R,
+		Original.G / Value.G,
+		Original.B / Value.B);
 
-	public static Color operator -(Color Original, float Value)
-	{
-		return new()
-		{
-			A = Original.A,
-			R = Original.R - Value,
-			G = Original.G - Value,
-			B = Original.B - Value,
-		};
-	}
-	public static Color operator /(Color Original, float Value)
-	{
-		return new()
-		{
-			A = Original.A,
-			R = Original.R / Value,
-			G = Original.G / Value,
-			B = Original.B / Value,
-		};
-	}
-	public static Color operator *(Color Original, float Value)
-	{
-		return new()
-		{
-			A = Original.A,
-			R = Original.R * Value,
-			G = Original.G * Value,
-			B = Original.B * Value,
-		};
-	}
+	public static Color operator +(Color Original, float Value) => new(
+		Original.A + Value,
+		Original.R + Value,
+		Original.G + Value,
+		Original.B + Value);
+	public static Color operator -(Color Original, float Value) => new(
+		Original.A - Value,
+		Original.R - Value,
+		Original.G - Value,
+		Original.B - Value);
+	public static Color operator *(Color Original, float Value) => new(
+		Original.A * Value,
+		Original.R * Value,
+		Original.G * Value,
+		Original.B * Value);
+	public static Color operator /(Color Original, float Value) => new(
+		Original.A + Value,
+		Original.R + Value,
+		Original.G + Value,
+		Original.B + Value);
 
-	public static Color operator -(Color Original, long Value)
-	{
-		return new()
-		{
-			A = Original.A,
-			R = Original.R - Value,
-			G = Original.G - Value,
-			B = Original.B - Value,
-		};
-	}
-	public static Color operator /(Color Original, long Value)
-	{
-		return new()
-		{
-			A = Original.A,
-			R = Original.R / Value,
-			G = Original.G / Value,
-			B = Original.B / Value,
-		};
-	}
-	public static Color operator *(Color Original, long Value)
-	{
-		return new()
-		{
-			A = Original.A,
-			R = Original.R * Value,
-			G = Original.G * Value,
-			B = Original.B * Value,
-		};
-	}
+	public static Color operator +(float Value, Color Original) => new(
+		Value + Original.A,
+		Value + Original.R,
+		Value + Original.G,
+		Value + Original.B);
+	public static Color operator -(float Value, Color Original) => new(
+		Value - Original.A,
+		Value - Original.R,
+		Value - Original.G,
+		Value - Original.B);
+	public static Color operator *(float Value, Color Original) => new(
+		Value * Original.A,
+		Value * Original.R,
+		Value * Original.G,
+		Value * Original.B);
+	public static Color operator /(float Value, Color Original) => new(
+		Value / Original.A,
+		Value / Original.R,
+		Value / Original.G,
+		Value / Original.B);
 
 	public static bool operator ==(Color C1, Color C2)
 	{
@@ -615,6 +582,48 @@ public struct Color
 	#endregion
 
 	#region Methods
+
+	/// <summary>
+	/// Blends two colors together based on their alpha values.
+	/// </summary>
+	/// <param name="Source">The original color.</param>
+	/// <param name="NewColor">The new color to mix.</param>
+	/// <returns>Mixed color.</returns>
+	public static Color AlphaBlend(Color Source, Color NewColor)
+	{
+		if (NewColor.A == 255)
+		{
+			return NewColor;
+		}
+		if (NewColor.A == 0)
+		{
+			return Source;
+		}
+
+		return Source * (255 - NewColor) / 255 + NewColor;
+	}
+
+	/// <summary>
+	/// Converts an ARGB color to it's packed ARGB format.
+	/// </summary>
+	/// <param name="A">Alpha channel.</param>
+	/// <param name="R">Red channel.</param>
+	/// <param name="G">Green channel.</param>
+	/// <param name="B">Blue channel.</param>
+	/// <returns>Packed value.</returns>
+	private static uint GetPacked(float A, float R, float G, float B)
+	{
+		return (uint)((byte)A << 24 | (byte)R << 16 | (byte)G << 8 | (byte)B);
+	}
+
+	/// <summary>
+	/// Normalizes the color to be between 0.0 and 1.0.
+	/// </summary>
+	/// <returns>A normalized color.</returns>
+	public static Color Normalize(Color ToNormalize)
+	{
+		return ToNormalize / 255;
+	}
 
 	/// <summary>
 	/// Internal method, used by <see cref="FromHSL(float, float, float)"/>./>
@@ -651,52 +660,6 @@ public struct Color
 	}
 
 	/// <summary>
-	/// Blends two colors together based on their alpha values.
-	/// </summary>
-	/// <param name="Source">The original color.</param>
-	/// <param name="NewColor">The new color to mix.</param>
-	/// <returns>Mixed color.</returns>
-	public static Color AlphaBlend(Color Source, Color NewColor)
-	{
-		if (NewColor.A == 255)
-		{
-			return NewColor;
-		}
-		if (NewColor.A == 0)
-		{
-			return Source;
-		}
-
-		return new(
-			(byte)(Source.A * (255f - NewColor.A) / 255f + NewColor.A),
-			(byte)(Source.R * (255f - NewColor.A) / 255f + NewColor.R),
-			(byte)(Source.G * (255f - NewColor.A) / 255f + NewColor.G),
-			(byte)(Source.B * (255f - NewColor.A) / 255f + NewColor.B));
-	}
-
-	/// <summary>
-	/// Converts an ARGB color to it's packed ARGB format.
-	/// </summary>
-	/// <param name="A">Alpha channel.</param>
-	/// <param name="R">Red channel.</param>
-	/// <param name="G">Green channel.</param>
-	/// <param name="B">Blue channel.</param>
-	/// <returns>Packed value.</returns>
-	public static uint GetPacked(float A, float R, float G, float B)
-	{
-		return (uint)((byte)A << 24 | (byte)R << 16 | (byte)G << 8 | (byte)B);
-	}
-
-	/// <summary>
-	/// Normalizes the color to be between 0.0 and 1.0.
-	/// </summary>
-	/// <returns>A normalized color.</returns>
-	public static Color Normalize(Color ToNormalize)
-	{
-		return ToNormalize / 255;
-	}
-
-	/// <summary>
 	/// Inverts the specified color.
 	/// </summary>
 	/// <param name="ToInvert">The color that will be inverted.</param>
@@ -713,24 +676,12 @@ public struct Color
 	/// <param name="EndValue">The color to end with.</param>
 	/// <param name="Index">Any number between 0.0 and 1.0.</param>
 	/// <returns>The value between 'StartValue' and 'EndValue' as marked by 'Index'.</returns>
-	public static Color Lerp(Color StartValue, Color EndValue, float Index, bool IsClamped = true)
+	public static Color Lerp(Color StartValue, Color EndValue, float Index)
 	{
-		// Check if clamping is requested.
-		if (IsClamped)
-		{
-			// Ensure 'Index' is between 0.0 and 1.0.
-			Index = (float)Math.Clamp(Index, 0.0, 1.0);
-		}
+		// Ensure 'Index' is between 0.0 and 1.0.
+		Index = (float)Math.Clamp(Index, 0.0, 1.0);
 
-		//return StartValue + (EndValue - StartValue) * Index;
-
-		return new()
-		{
-			A = (byte)(StartValue.A + (EndValue.A - StartValue.A) * Index),
-			R = (byte)(StartValue.R + (EndValue.R - StartValue.R) * Index),
-			G = (byte)(StartValue.G + (EndValue.G - StartValue.G) * Index),
-			B = (byte)(StartValue.B + (EndValue.B - StartValue.B) * Index),
-		};
+		return StartValue + (EndValue - StartValue) * Index;
 	}
 
 	/// <summary>
@@ -758,13 +709,10 @@ public struct Color
 	/// <summary>
 	/// Converts the color to be only in grayscale.
 	/// </summary>
-	/// <param name="UseAlpha">Allow alpha when converting.</param>
 	/// <returns>Grayscale color.</returns>
-	public Color ToGrayscale(bool UseAlpha)
+	public Color ToGrayscale()
 	{
-		float Average = (R + G + B) / 3f;
-
-		return new(UseAlpha ? Average : A, Average, Average, Average);
+		return new(255, Brightness, Brightness, Brightness);
 	}
 
 	#endregion

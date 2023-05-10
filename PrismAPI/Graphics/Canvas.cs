@@ -911,7 +911,6 @@ public unsafe class Canvas : IDisposable
 
 	#region Fields
 
-
 	/// <summary>
 	/// The internal Height value cache.
 	/// </summary>
