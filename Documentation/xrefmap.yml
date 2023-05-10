@@ -3385,22 +3385,6 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Color.G
   nameWithType: Color.G
-- uid: PrismAPI.Graphics.Color.GetPacked(System.Single,System.Single,System.Single,System.Single)
-  name: GetPacked(float, float, float, float)
-  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_GetPacked_System_Single_System_Single_System_Single_System_Single_
-  commentId: M:PrismAPI.Graphics.Color.GetPacked(System.Single,System.Single,System.Single,System.Single)
-  name.vb: GetPacked(Single, Single, Single, Single)
-  fullName: PrismAPI.Graphics.Color.GetPacked(float, float, float, float)
-  fullName.vb: PrismAPI.Graphics.Color.GetPacked(Single, Single, Single, Single)
-  nameWithType: Color.GetPacked(float, float, float, float)
-  nameWithType.vb: Color.GetPacked(Single, Single, Single, Single)
-- uid: PrismAPI.Graphics.Color.GetPacked*
-  name: GetPacked
-  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_GetPacked_
-  commentId: Overload:PrismAPI.Graphics.Color.GetPacked
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.Color.GetPacked
-  nameWithType: Color.GetPacked
 - uid: PrismAPI.Graphics.Color.GoogleBlue
   name: GoogleBlue
   href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_GoogleBlue
@@ -3456,15 +3440,15 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Color.Invert
   nameWithType: Color.Invert
-- uid: PrismAPI.Graphics.Color.Lerp(PrismAPI.Graphics.Color,PrismAPI.Graphics.Color,System.Single,System.Boolean)
-  name: Lerp(Color, Color, float, bool)
-  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_Lerp_PrismAPI_Graphics_Color_PrismAPI_Graphics_Color_System_Single_System_Boolean_
-  commentId: M:PrismAPI.Graphics.Color.Lerp(PrismAPI.Graphics.Color,PrismAPI.Graphics.Color,System.Single,System.Boolean)
-  name.vb: Lerp(Color, Color, Single, Boolean)
-  fullName: PrismAPI.Graphics.Color.Lerp(PrismAPI.Graphics.Color, PrismAPI.Graphics.Color, float, bool)
-  fullName.vb: PrismAPI.Graphics.Color.Lerp(PrismAPI.Graphics.Color, PrismAPI.Graphics.Color, Single, Boolean)
-  nameWithType: Color.Lerp(Color, Color, float, bool)
-  nameWithType.vb: Color.Lerp(Color, Color, Single, Boolean)
+- uid: PrismAPI.Graphics.Color.Lerp(PrismAPI.Graphics.Color,PrismAPI.Graphics.Color,System.Single)
+  name: Lerp(Color, Color, float)
+  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_Lerp_PrismAPI_Graphics_Color_PrismAPI_Graphics_Color_System_Single_
+  commentId: M:PrismAPI.Graphics.Color.Lerp(PrismAPI.Graphics.Color,PrismAPI.Graphics.Color,System.Single)
+  name.vb: Lerp(Color, Color, Single)
+  fullName: PrismAPI.Graphics.Color.Lerp(PrismAPI.Graphics.Color, PrismAPI.Graphics.Color, float)
+  fullName.vb: PrismAPI.Graphics.Color.Lerp(PrismAPI.Graphics.Color, PrismAPI.Graphics.Color, Single)
+  nameWithType: Color.Lerp(Color, Color, float)
+  nameWithType.vb: Color.Lerp(Color, Color, Single)
 - uid: PrismAPI.Graphics.Color.Lerp*
   name: Lerp
   href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_Lerp_
@@ -3568,6 +3552,24 @@ references:
   fullName.vb: PrismAPI.Graphics.Color.+(PrismAPI.Graphics.Color, PrismAPI.Graphics.Color)
   nameWithType: Color.operator +(Color, Color)
   nameWithType.vb: Color.+(Color, Color)
+- uid: PrismAPI.Graphics.Color.op_Addition(PrismAPI.Graphics.Color,System.Single)
+  name: operator +(Color, float)
+  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Addition_PrismAPI_Graphics_Color_System_Single_
+  commentId: M:PrismAPI.Graphics.Color.op_Addition(PrismAPI.Graphics.Color,System.Single)
+  name.vb: +(Color, Single)
+  fullName: PrismAPI.Graphics.Color.operator +(PrismAPI.Graphics.Color, float)
+  fullName.vb: PrismAPI.Graphics.Color.+(PrismAPI.Graphics.Color, Single)
+  nameWithType: Color.operator +(Color, float)
+  nameWithType.vb: Color.+(Color, Single)
+- uid: PrismAPI.Graphics.Color.op_Addition(System.Single,PrismAPI.Graphics.Color)
+  name: operator +(float, Color)
+  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Addition_System_Single_PrismAPI_Graphics_Color_
+  commentId: M:PrismAPI.Graphics.Color.op_Addition(System.Single,PrismAPI.Graphics.Color)
+  name.vb: +(Single, Color)
+  fullName: PrismAPI.Graphics.Color.operator +(float, PrismAPI.Graphics.Color)
+  fullName.vb: PrismAPI.Graphics.Color.+(Single, PrismAPI.Graphics.Color)
+  nameWithType: Color.operator +(float, Color)
+  nameWithType.vb: Color.+(Single, Color)
 - uid: PrismAPI.Graphics.Color.op_Addition*
   name: operator +
   href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Addition_
@@ -3578,15 +3580,15 @@ references:
   fullName.vb: PrismAPI.Graphics.Color.+
   nameWithType: Color.operator +
   nameWithType.vb: Color.+
-- uid: PrismAPI.Graphics.Color.op_Division(PrismAPI.Graphics.Color,System.Int64)
-  name: operator /(Color, long)
-  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Division_PrismAPI_Graphics_Color_System_Int64_
-  commentId: M:PrismAPI.Graphics.Color.op_Division(PrismAPI.Graphics.Color,System.Int64)
-  name.vb: /(Color, Long)
-  fullName: PrismAPI.Graphics.Color.operator /(PrismAPI.Graphics.Color, long)
-  fullName.vb: PrismAPI.Graphics.Color./(PrismAPI.Graphics.Color, Long)
-  nameWithType: Color.operator /(Color, long)
-  nameWithType.vb: Color./(Color, Long)
+- uid: PrismAPI.Graphics.Color.op_Division(PrismAPI.Graphics.Color,PrismAPI.Graphics.Color)
+  name: operator /(Color, Color)
+  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Division_PrismAPI_Graphics_Color_PrismAPI_Graphics_Color_
+  commentId: M:PrismAPI.Graphics.Color.op_Division(PrismAPI.Graphics.Color,PrismAPI.Graphics.Color)
+  name.vb: /(Color, Color)
+  fullName: PrismAPI.Graphics.Color.operator /(PrismAPI.Graphics.Color, PrismAPI.Graphics.Color)
+  fullName.vb: PrismAPI.Graphics.Color./(PrismAPI.Graphics.Color, PrismAPI.Graphics.Color)
+  nameWithType: Color.operator /(Color, Color)
+  nameWithType.vb: Color./(Color, Color)
 - uid: PrismAPI.Graphics.Color.op_Division(PrismAPI.Graphics.Color,System.Single)
   name: operator /(Color, float)
   href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Division_PrismAPI_Graphics_Color_System_Single_
@@ -3596,6 +3598,15 @@ references:
   fullName.vb: PrismAPI.Graphics.Color./(PrismAPI.Graphics.Color, Single)
   nameWithType: Color.operator /(Color, float)
   nameWithType.vb: Color./(Color, Single)
+- uid: PrismAPI.Graphics.Color.op_Division(System.Single,PrismAPI.Graphics.Color)
+  name: operator /(float, Color)
+  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Division_System_Single_PrismAPI_Graphics_Color_
+  commentId: M:PrismAPI.Graphics.Color.op_Division(System.Single,PrismAPI.Graphics.Color)
+  name.vb: /(Single, Color)
+  fullName: PrismAPI.Graphics.Color.operator /(float, PrismAPI.Graphics.Color)
+  fullName.vb: PrismAPI.Graphics.Color./(Single, PrismAPI.Graphics.Color)
+  nameWithType: Color.operator /(float, Color)
+  nameWithType.vb: Color./(Single, Color)
 - uid: PrismAPI.Graphics.Color.op_Division*
   name: operator /
   href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Division_
@@ -3653,15 +3664,6 @@ references:
   fullName.vb: PrismAPI.Graphics.Color.*(PrismAPI.Graphics.Color, PrismAPI.Graphics.Color)
   nameWithType: Color.operator *(Color, Color)
   nameWithType.vb: Color.*(Color, Color)
-- uid: PrismAPI.Graphics.Color.op_Multiply(PrismAPI.Graphics.Color,System.Int64)
-  name: operator *(Color, long)
-  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Multiply_PrismAPI_Graphics_Color_System_Int64_
-  commentId: M:PrismAPI.Graphics.Color.op_Multiply(PrismAPI.Graphics.Color,System.Int64)
-  name.vb: '*(Color, Long)'
-  fullName: PrismAPI.Graphics.Color.operator *(PrismAPI.Graphics.Color, long)
-  fullName.vb: PrismAPI.Graphics.Color.*(PrismAPI.Graphics.Color, Long)
-  nameWithType: Color.operator *(Color, long)
-  nameWithType.vb: Color.*(Color, Long)
 - uid: PrismAPI.Graphics.Color.op_Multiply(PrismAPI.Graphics.Color,System.Single)
   name: operator *(Color, float)
   href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Multiply_PrismAPI_Graphics_Color_System_Single_
@@ -3671,6 +3673,15 @@ references:
   fullName.vb: PrismAPI.Graphics.Color.*(PrismAPI.Graphics.Color, Single)
   nameWithType: Color.operator *(Color, float)
   nameWithType.vb: Color.*(Color, Single)
+- uid: PrismAPI.Graphics.Color.op_Multiply(System.Single,PrismAPI.Graphics.Color)
+  name: operator *(float, Color)
+  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Multiply_System_Single_PrismAPI_Graphics_Color_
+  commentId: M:PrismAPI.Graphics.Color.op_Multiply(System.Single,PrismAPI.Graphics.Color)
+  name.vb: '*(Single, Color)'
+  fullName: PrismAPI.Graphics.Color.operator *(float, PrismAPI.Graphics.Color)
+  fullName.vb: PrismAPI.Graphics.Color.*(Single, PrismAPI.Graphics.Color)
+  nameWithType: Color.operator *(float, Color)
+  nameWithType.vb: Color.*(Single, Color)
 - uid: PrismAPI.Graphics.Color.op_Multiply*
   name: operator *
   href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Multiply_
@@ -3690,15 +3701,6 @@ references:
   fullName.vb: PrismAPI.Graphics.Color.-(PrismAPI.Graphics.Color, PrismAPI.Graphics.Color)
   nameWithType: Color.operator -(Color, Color)
   nameWithType.vb: Color.-(Color, Color)
-- uid: PrismAPI.Graphics.Color.op_Subtraction(PrismAPI.Graphics.Color,System.Int64)
-  name: operator -(Color, long)
-  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Subtraction_PrismAPI_Graphics_Color_System_Int64_
-  commentId: M:PrismAPI.Graphics.Color.op_Subtraction(PrismAPI.Graphics.Color,System.Int64)
-  name.vb: -(Color, Long)
-  fullName: PrismAPI.Graphics.Color.operator -(PrismAPI.Graphics.Color, long)
-  fullName.vb: PrismAPI.Graphics.Color.-(PrismAPI.Graphics.Color, Long)
-  nameWithType: Color.operator -(Color, long)
-  nameWithType.vb: Color.-(Color, Long)
 - uid: PrismAPI.Graphics.Color.op_Subtraction(PrismAPI.Graphics.Color,System.Single)
   name: operator -(Color, float)
   href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Subtraction_PrismAPI_Graphics_Color_System_Single_
@@ -3708,6 +3710,15 @@ references:
   fullName.vb: PrismAPI.Graphics.Color.-(PrismAPI.Graphics.Color, Single)
   nameWithType: Color.operator -(Color, float)
   nameWithType.vb: Color.-(Color, Single)
+- uid: PrismAPI.Graphics.Color.op_Subtraction(System.Single,PrismAPI.Graphics.Color)
+  name: operator -(float, Color)
+  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Subtraction_System_Single_PrismAPI_Graphics_Color_
+  commentId: M:PrismAPI.Graphics.Color.op_Subtraction(System.Single,PrismAPI.Graphics.Color)
+  name.vb: -(Single, Color)
+  fullName: PrismAPI.Graphics.Color.operator -(float, PrismAPI.Graphics.Color)
+  fullName.vb: PrismAPI.Graphics.Color.-(Single, PrismAPI.Graphics.Color)
+  nameWithType: Color.operator -(float, Color)
+  nameWithType.vb: Color.-(Single, Color)
 - uid: PrismAPI.Graphics.Color.op_Subtraction*
   name: operator -
   href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Subtraction_
@@ -3773,15 +3784,12 @@ references:
   commentId: F:PrismAPI.Graphics.Color.SuperOrange
   fullName: PrismAPI.Graphics.Color.SuperOrange
   nameWithType: Color.SuperOrange
-- uid: PrismAPI.Graphics.Color.ToGrayscale(System.Boolean)
-  name: ToGrayscale(bool)
-  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_ToGrayscale_System_Boolean_
-  commentId: M:PrismAPI.Graphics.Color.ToGrayscale(System.Boolean)
-  name.vb: ToGrayscale(Boolean)
-  fullName: PrismAPI.Graphics.Color.ToGrayscale(bool)
-  fullName.vb: PrismAPI.Graphics.Color.ToGrayscale(Boolean)
-  nameWithType: Color.ToGrayscale(bool)
-  nameWithType.vb: Color.ToGrayscale(Boolean)
+- uid: PrismAPI.Graphics.Color.ToGrayscale
+  name: ToGrayscale()
+  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_ToGrayscale
+  commentId: M:PrismAPI.Graphics.Color.ToGrayscale
+  fullName: PrismAPI.Graphics.Color.ToGrayscale()
+  nameWithType: Color.ToGrayscale()
 - uid: PrismAPI.Graphics.Color.ToGrayscale*
   name: ToGrayscale
   href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_ToGrayscale_
