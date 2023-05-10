@@ -1,6 +1,4 @@
-﻿using PrismAPI.Graphics.Animation;
-
-namespace PrismAPI.Graphics;
+﻿namespace PrismAPI.Graphics;
 
 /// <summary>
 /// Gradient class, used for generating gradients.
@@ -22,7 +20,7 @@ public unsafe static class Gradient
 
 		for (int I = 0; I < Height; I++)
 		{
-			Temp.DrawFilledRectangle(0, I, Width, 1, 0, Common.Lerp(Start, End, 1.0f / Height * I));
+			Temp.DrawFilledRectangle(0, I, Width, 1, 0, Color.Lerp(Start, End, 1.0f / Height * I));
 		}
 
 		return Temp;
@@ -49,7 +47,7 @@ public unsafe static class Gradient
 			for (int I2 = 0; I2 < HeightDelta; I2++)
 			{
 				// Get the interpolated color. It's calculated based on 'I1' and delta height index 'I2'.
-				Color Calculated = Common.Lerp(Colors[I1], Colors[I1 + 1], 1.0f / HeightDelta * I2);
+				Color Calculated = Color.Lerp(Colors[I1], Colors[I1 + 1], 1.0f / HeightDelta * I2);
 
 				// Fill this line with the correct color across with 1 pixel height.
 				Temp.DrawFilledRectangle(0, HeightDelta * I1 + I2, Width, 1, 0, Calculated);

@@ -40,11 +40,30 @@ public class AnimationController
 	/// <summary>
 	/// The delay in MS of each update.
 	/// </summary>
-	public const int DelayMS = 25;
+	public const int DelayMS = 55; // Limit to 55 for now due to max PIT speed.
 
 	#endregion
 
 	#region Methods
+
+	/// <summary>
+	/// The function used to linearly interpolate between 2 numbers.
+	/// </summary>
+	/// <param name="StartValue">The number to start with.</param>
+	/// <param name="EndValue">The number to end with.</param>
+	/// <param name="Index">Any number between 0.0 and 1.0.</param>
+	/// <returns>The value between 'StartValue' and 'EndValue' as marked by 'Index'.</returns>
+	public static float Lerp(float StartValue, float EndValue, float Index, bool IsClamped = true)
+	{
+		// Check if clamping is requested.
+		if (IsClamped)
+		{
+			// Ensure 'Index' is between 0.0 and 1.0.
+			Index = (float)Math.Clamp(Index, 0.0, 1.0);
+		}
+
+		return StartValue + (EndValue - StartValue) * Index;
+	}
 
 	private static float BounceOut(float T)
 	{
@@ -95,7 +114,7 @@ public class AnimationController
 
 	private static float Ease(float T)
 	{
-		return Common.Lerp(EaseIn(T), EaseOut(T), T);
+		return Lerp(EaseIn(T), EaseOut(T), T);
 	}
 
 	private static float Flip(float X)
@@ -109,6 +128,10 @@ public class AnimationController
 	/// <exception cref="NotImplementedException">Thrown when invalid animation is played.</exception>
 	private void Next()
 	{
+		if (!IsEnabled)
+		{
+			return;
+		}
 		if (IsFinished)
 		{
 			if (IsContinuous)
@@ -126,15 +149,24 @@ public class AnimationController
 		// Set the output value.
 		Current = Mode switch
 		{
-			AnimationMode.BounceOut => Common.Lerp(Source, Target, BounceOut(ElapsedTime / (float)Duration.TotalMilliseconds)),
-			AnimationMode.BounceIn => Common.Lerp(Source, Target, BounceIn(ElapsedTime / (float)Duration.TotalMilliseconds)),
-			AnimationMode.Bounce => Common.Lerp(Source, Target, Bounce(ElapsedTime / (float)Duration.TotalMilliseconds)),
-			AnimationMode.EaseOut => Common.Lerp(Source, Target, EaseOut(ElapsedTime / (float)Duration.TotalMilliseconds)),
-			AnimationMode.EaseIn => Common.Lerp(Source, Target, EaseIn(ElapsedTime / (float)Duration.TotalMilliseconds)),
-			AnimationMode.Ease => Common.Lerp(Source, Target, Ease(ElapsedTime / (float)Duration.TotalMilliseconds)),
-			AnimationMode.Linear => Common.Lerp(Source, Target, ElapsedTime / (float)Duration.TotalMilliseconds),
+			AnimationMode.BounceOut => Lerp(Source, Target, BounceOut(ElapsedTime / (float)Duration.TotalMilliseconds)),
+			AnimationMode.BounceIn => Lerp(Source, Target, BounceIn(ElapsedTime / (float)Duration.TotalMilliseconds)),
+			AnimationMode.Bounce => Lerp(Source, Target, Bounce(ElapsedTime / (float)Duration.TotalMilliseconds)),
+			AnimationMode.EaseOut => Lerp(Source, Target, EaseOut(ElapsedTime / (float)Duration.TotalMilliseconds)),
+			AnimationMode.EaseIn => Lerp(Source, Target, EaseIn(ElapsedTime / (float)Duration.TotalMilliseconds)),
+			AnimationMode.Ease => Lerp(Source, Target, Ease(ElapsedTime / (float)Duration.TotalMilliseconds)),
+			AnimationMode.Linear => Lerp(Source, Target, ElapsedTime / (float)Duration.TotalMilliseconds),
 			_ => throw new NotImplementedException("That mode isn't implemented!"),
 		};
+	}
+
+	/// <summary>
+	/// Inverts the animation direction.
+	/// </summary>
+	public void Invert()
+	{
+		(Source, Target) = (Target, Source);
+		Reset();
 	}
 
 	/// <summary>
@@ -168,6 +200,11 @@ public class AnimationController
 	/// A bool to change if the animation is looping/continuous.
 	/// </summary>
 	public bool IsContinuous;
+
+	/// <summary>
+	/// A bool to change if the animation is currently playing.
+	/// </summary>
+	public bool IsEnabled;
 
 	/// <summary>
 	/// Animation timer, used to increment the animation every 50 MS.

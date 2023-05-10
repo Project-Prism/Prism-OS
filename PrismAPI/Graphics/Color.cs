@@ -724,6 +724,31 @@ public struct Color
 	}
 
 	/// <summary>
+	/// The function to linearly interpolate between 2 colors. (32-bit)
+	/// </summary>
+	/// <param name="StartValue">The color to start with.</param>
+	/// <param name="EndValue">The color to end with.</param>
+	/// <param name="Index">Any number between 0.0 and 1.0.</param>
+	/// <returns>The value between 'StartValue' and 'EndValue' as marked by 'Index'.</returns>
+	public static Color Lerp(Color StartValue, Color EndValue, float Index, bool IsClamped = true)
+	{
+		// Check if clamping is requested.
+		if (IsClamped)
+		{
+			// Ensure 'Index' is between 0.0 and 1.0.
+			Index = (float)Math.Clamp(Index, 0.0, 1.0);
+		}
+
+		return new()
+		{
+			A = (byte)(StartValue.A + (EndValue.A - StartValue.A) * Index),
+			R = (byte)(StartValue.R + (EndValue.R - StartValue.R) * Index),
+			G = (byte)(StartValue.G + (EndValue.G - StartValue.G) * Index),
+			B = (byte)(StartValue.B + (EndValue.B - StartValue.B) * Index),
+		};
+	}
+
+	/// <summary>
 	/// Gets the value of the channel with the most value.
 	/// </summary>
 	/// <param name="Color">The color to calculate.</param>
