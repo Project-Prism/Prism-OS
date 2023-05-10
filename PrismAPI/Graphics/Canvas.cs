@@ -46,7 +46,7 @@ public unsafe class Canvas : IDisposable
 				return Color.Black;
 			}
 
-			return Internal[Y * Width + X];
+			return new(Internal[Y * Width + X]);
 		}
 		set
 		{
@@ -81,7 +81,7 @@ public unsafe class Canvas : IDisposable
 				return Color.Black;
 			}
 
-			return Internal[Index];
+			return new(Internal[Index]);
 		}
 		set
 		{

@@ -83,7 +83,7 @@ public unsafe static class Gradient
 				float B = 0.5f + 0.5f * MathF.Cos(ElapsedMS + UVY + 4);
 
 				// Output to screen
-				Temp[X, Y] = (255, R * 255, G * 255, B * 255);
+				Temp[X, Y] = new(255, R * 255, G * 255, B * 255);
 			}
 		}
 

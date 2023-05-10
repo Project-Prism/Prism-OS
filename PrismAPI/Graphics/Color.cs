@@ -435,10 +435,10 @@ public struct Color
 		set
 		{
 			_ARGB = value;
-			_A = (byte)(_ARGB >> 24);
-			_R = (byte)(_ARGB >> 16);
-			_G = (byte)(_ARGB >> 8);
-			_B = (byte)_ARGB;
+			_A = _ARGB >> 24;
+			_R = _ARGB >> 16;
+			_G = _ARGB >> 8;
+			_B = _ARGB;
 		}
 	}
 
@@ -509,23 +509,6 @@ public struct Color
 	#endregion
 
 	#region Operators
-
-	public static implicit operator Color((float, float, float, float) ARGB)
-	{
-		return new(ARGB.Item1, ARGB.Item2, ARGB.Item3, ARGB.Item4);
-	}
-	public static implicit operator Color((float, float, float) RGB)
-	{
-		return new(255f, RGB.Item1, RGB.Item2, RGB.Item3);
-	}
-	public static implicit operator Color(string Color)
-	{
-		return new(Color);
-	}
-	public static implicit operator Color(uint ARGB)
-	{
-		return new(ARGB);
-	}
 
 	public static Color operator +(Color Original, Color ToAdd)
 	{
@@ -739,6 +722,8 @@ public struct Color
 			Index = (float)Math.Clamp(Index, 0.0, 1.0);
 		}
 
+		//return StartValue + (EndValue - StartValue) * Index;
+
 		return new()
 		{
 			A = (byte)(StartValue.A + (EndValue.A - StartValue.A) * Index),
@@ -782,16 +767,6 @@ public struct Color
 		return new(UseAlpha ? Average : A, Average, Average, Average);
 	}
 
-	public override int GetHashCode()
-	{
-		return (int)(A * R / G * B);
-	}
-
-	public override string ToString()
-	{
-		return $"{typeof(Color).FullName} [A: {A}, R: {R}, G: {G}, B: {B}]";
-	}
-
 	#endregion
 
 	#region Fields
@@ -832,10 +807,10 @@ public struct Color
 	public static readonly Color UltraViolet = new(255, 107, 91, 149);
 	public static readonly Color Greenery = new(255, 136, 176, 75);
 	public static readonly Color Emerald = new(255, 0, 155, 119);
-	public static readonly Color LightPurple = 0xFFA0A5DD;
-	public static readonly Color Minty = 0xFF74C68B;
-	public static readonly Color SunsetRed = 0xFFE07572;
-	public static readonly Color LightYellow = 0xFFF9C980;
+	public static readonly Color LightPurple = new(0xFFA0A5DD);
+	public static readonly Color Minty = new(0xFF74C68B);
+	public static readonly Color SunsetRed = new(0xFFE07572);
+	public static readonly Color LightYellow = new(0xFFF9C980);
 
 	#endregion
 

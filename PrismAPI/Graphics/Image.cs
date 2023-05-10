@@ -266,7 +266,7 @@ public unsafe static class Image
                         for (int x = 0; x < Result.Width; x++)
                         {
                             // Read ARGB color
-                            Result[x, y] = line.ReadUInt32();
+                            Result[x, y] = new(line.ReadUInt32());
                         }
                     }
 
@@ -370,7 +370,7 @@ public unsafe static class Image
         {
             for (int X = 0; X < Result.Width; X++)
             {
-                Result[X, Y] = (Reader.ReadByte(), Reader.ReadByte(), Reader.ReadByte());
+                Result[X, Y] = new(Reader.ReadByte(), Reader.ReadByte(), Reader.ReadByte());
             }
         }
 

@@ -20,8 +20,8 @@ public class Button : Control, IDisposable
 		ButtonHovering = new(Width, Height);
 		ButtonClicked = new(Width, Height);
 		ButtonIdle = new(Width, Height);
-		StartColor = "#EAEAEA";
-		EndColor = "#979797";
+		StartColor = new("#EAEAEA");
+		EndColor = new("#979797");
 		this.OnClick = OnClick;
 		this.Text = Text;
 	}
