@@ -455,26 +455,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Graphics.Animation.Common.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismAPI.Graphics.Animation.Common.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Graphics.Animation.ImageController.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismAPI.Graphics.Animation.ImageController.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "API/PrismAPI.Graphics.Animation.yml",
       "output": {
         ".html": {

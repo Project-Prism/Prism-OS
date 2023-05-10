@@ -2627,12 +2627,31 @@ references:
   commentId: F:PrismAPI.Graphics.Animation.AnimationController.ElapsedTime
   fullName: PrismAPI.Graphics.Animation.AnimationController.ElapsedTime
   nameWithType: AnimationController.ElapsedTime
+- uid: PrismAPI.Graphics.Animation.AnimationController.Invert
+  name: Invert()
+  href: API/PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_Invert
+  commentId: M:PrismAPI.Graphics.Animation.AnimationController.Invert
+  fullName: PrismAPI.Graphics.Animation.AnimationController.Invert()
+  nameWithType: AnimationController.Invert()
+- uid: PrismAPI.Graphics.Animation.AnimationController.Invert*
+  name: Invert
+  href: API/PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_Invert_
+  commentId: Overload:PrismAPI.Graphics.Animation.AnimationController.Invert
+  isSpec: "True"
+  fullName: PrismAPI.Graphics.Animation.AnimationController.Invert
+  nameWithType: AnimationController.Invert
 - uid: PrismAPI.Graphics.Animation.AnimationController.IsContinuous
   name: IsContinuous
   href: API/PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_IsContinuous
   commentId: F:PrismAPI.Graphics.Animation.AnimationController.IsContinuous
   fullName: PrismAPI.Graphics.Animation.AnimationController.IsContinuous
   nameWithType: AnimationController.IsContinuous
+- uid: PrismAPI.Graphics.Animation.AnimationController.IsEnabled
+  name: IsEnabled
+  href: API/PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_IsEnabled
+  commentId: F:PrismAPI.Graphics.Animation.AnimationController.IsEnabled
+  fullName: PrismAPI.Graphics.Animation.AnimationController.IsEnabled
+  nameWithType: AnimationController.IsEnabled
 - uid: PrismAPI.Graphics.Animation.AnimationController.IsFinished
   name: IsFinished
   href: API/PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_IsFinished
@@ -2646,6 +2665,22 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Animation.AnimationController.IsFinished
   nameWithType: AnimationController.IsFinished
+- uid: PrismAPI.Graphics.Animation.AnimationController.Lerp(System.Single,System.Single,System.Single,System.Boolean)
+  name: Lerp(float, float, float, bool)
+  href: API/PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_Lerp_System_Single_System_Single_System_Single_System_Boolean_
+  commentId: M:PrismAPI.Graphics.Animation.AnimationController.Lerp(System.Single,System.Single,System.Single,System.Boolean)
+  name.vb: Lerp(Single, Single, Single, Boolean)
+  fullName: PrismAPI.Graphics.Animation.AnimationController.Lerp(float, float, float, bool)
+  fullName.vb: PrismAPI.Graphics.Animation.AnimationController.Lerp(Single, Single, Single, Boolean)
+  nameWithType: AnimationController.Lerp(float, float, float, bool)
+  nameWithType.vb: AnimationController.Lerp(Single, Single, Single, Boolean)
+- uid: PrismAPI.Graphics.Animation.AnimationController.Lerp*
+  name: Lerp
+  href: API/PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_Lerp_
+  commentId: Overload:PrismAPI.Graphics.Animation.AnimationController.Lerp
+  isSpec: "True"
+  fullName: PrismAPI.Graphics.Animation.AnimationController.Lerp
+  nameWithType: AnimationController.Lerp
 - uid: PrismAPI.Graphics.Animation.AnimationController.Mode
   name: Mode
   href: API/PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_Mode
@@ -2756,6 +2791,12 @@ references:
   fullName.vb: PrismAPI.Graphics.Animation.ColorController.New
   nameWithType: ColorController.ColorController
   nameWithType.vb: ColorController.New
+- uid: PrismAPI.Graphics.Animation.ColorController.Controller
+  name: Controller
+  href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_Controller
+  commentId: F:PrismAPI.Graphics.Animation.ColorController.Controller
+  fullName: PrismAPI.Graphics.Animation.ColorController.Controller
+  nameWithType: ColorController.Controller
 - uid: PrismAPI.Graphics.Animation.ColorController.Current
   name: Current
   href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_Current
@@ -2769,216 +2810,18 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Animation.ColorController.Current
   nameWithType: ColorController.Current
-- uid: PrismAPI.Graphics.Animation.ColorController.Duration
-  name: Duration
-  href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_Duration
-  commentId: P:PrismAPI.Graphics.Animation.ColorController.Duration
-  fullName: PrismAPI.Graphics.Animation.ColorController.Duration
-  nameWithType: ColorController.Duration
-- uid: PrismAPI.Graphics.Animation.ColorController.Duration*
-  name: Duration
-  href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_Duration_
-  commentId: Overload:PrismAPI.Graphics.Animation.ColorController.Duration
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.Animation.ColorController.Duration
-  nameWithType: ColorController.Duration
-- uid: PrismAPI.Graphics.Animation.ColorController.ElapsedTime
-  name: ElapsedTime
-  href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_ElapsedTime
-  commentId: P:PrismAPI.Graphics.Animation.ColorController.ElapsedTime
-  fullName: PrismAPI.Graphics.Animation.ColorController.ElapsedTime
-  nameWithType: ColorController.ElapsedTime
-- uid: PrismAPI.Graphics.Animation.ColorController.ElapsedTime*
-  name: ElapsedTime
-  href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_ElapsedTime_
-  commentId: Overload:PrismAPI.Graphics.Animation.ColorController.ElapsedTime
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.Animation.ColorController.ElapsedTime
-  nameWithType: ColorController.ElapsedTime
-- uid: PrismAPI.Graphics.Animation.ColorController.IsContinuous
-  name: IsContinuous
-  href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_IsContinuous
-  commentId: P:PrismAPI.Graphics.Animation.ColorController.IsContinuous
-  fullName: PrismAPI.Graphics.Animation.ColorController.IsContinuous
-  nameWithType: ColorController.IsContinuous
-- uid: PrismAPI.Graphics.Animation.ColorController.IsContinuous*
-  name: IsContinuous
-  href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_IsContinuous_
-  commentId: Overload:PrismAPI.Graphics.Animation.ColorController.IsContinuous
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.Animation.ColorController.IsContinuous
-  nameWithType: ColorController.IsContinuous
-- uid: PrismAPI.Graphics.Animation.ColorController.IsFinished
-  name: IsFinished
-  href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_IsFinished
-  commentId: P:PrismAPI.Graphics.Animation.ColorController.IsFinished
-  fullName: PrismAPI.Graphics.Animation.ColorController.IsFinished
-  nameWithType: ColorController.IsFinished
-- uid: PrismAPI.Graphics.Animation.ColorController.IsFinished*
-  name: IsFinished
-  href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_IsFinished_
-  commentId: Overload:PrismAPI.Graphics.Animation.ColorController.IsFinished
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.Animation.ColorController.IsFinished
-  nameWithType: ColorController.IsFinished
-- uid: PrismAPI.Graphics.Animation.ColorController.Mode
-  name: Mode
-  href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_Mode
-  commentId: P:PrismAPI.Graphics.Animation.ColorController.Mode
-  fullName: PrismAPI.Graphics.Animation.ColorController.Mode
-  nameWithType: ColorController.Mode
-- uid: PrismAPI.Graphics.Animation.ColorController.Mode*
-  name: Mode
-  href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_Mode_
-  commentId: Overload:PrismAPI.Graphics.Animation.ColorController.Mode
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.Animation.ColorController.Mode
-  nameWithType: ColorController.Mode
-- uid: PrismAPI.Graphics.Animation.ColorController.Reset
-  name: Reset()
-  href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_Reset
-  commentId: M:PrismAPI.Graphics.Animation.ColorController.Reset
-  fullName: PrismAPI.Graphics.Animation.ColorController.Reset()
-  nameWithType: ColorController.Reset()
-- uid: PrismAPI.Graphics.Animation.ColorController.Reset*
-  name: Reset
-  href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_Reset_
-  commentId: Overload:PrismAPI.Graphics.Animation.ColorController.Reset
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.Animation.ColorController.Reset
-  nameWithType: ColorController.Reset
 - uid: PrismAPI.Graphics.Animation.ColorController.Source
   name: Source
   href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_Source
-  commentId: P:PrismAPI.Graphics.Animation.ColorController.Source
-  fullName: PrismAPI.Graphics.Animation.ColorController.Source
-  nameWithType: ColorController.Source
-- uid: PrismAPI.Graphics.Animation.ColorController.Source*
-  name: Source
-  href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_Source_
-  commentId: Overload:PrismAPI.Graphics.Animation.ColorController.Source
-  isSpec: "True"
+  commentId: F:PrismAPI.Graphics.Animation.ColorController.Source
   fullName: PrismAPI.Graphics.Animation.ColorController.Source
   nameWithType: ColorController.Source
 - uid: PrismAPI.Graphics.Animation.ColorController.Target
   name: Target
   href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_Target
-  commentId: P:PrismAPI.Graphics.Animation.ColorController.Target
+  commentId: F:PrismAPI.Graphics.Animation.ColorController.Target
   fullName: PrismAPI.Graphics.Animation.ColorController.Target
   nameWithType: ColorController.Target
-- uid: PrismAPI.Graphics.Animation.ColorController.Target*
-  name: Target
-  href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_Target_
-  commentId: Overload:PrismAPI.Graphics.Animation.ColorController.Target
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.Animation.ColorController.Target
-  nameWithType: ColorController.Target
-- uid: PrismAPI.Graphics.Animation.Common
-  name: Common
-  href: API/PrismAPI.Graphics.Animation.Common.html
-  commentId: T:PrismAPI.Graphics.Animation.Common
-  fullName: PrismAPI.Graphics.Animation.Common
-  nameWithType: Common
-- uid: PrismAPI.Graphics.Animation.Common.Lerp(PrismAPI.Graphics.Color,PrismAPI.Graphics.Color,System.Single,System.Boolean)
-  name: Lerp(Color, Color, float, bool)
-  href: API/PrismAPI.Graphics.Animation.Common.html#PrismAPI_Graphics_Animation_Common_Lerp_PrismAPI_Graphics_Color_PrismAPI_Graphics_Color_System_Single_System_Boolean_
-  commentId: M:PrismAPI.Graphics.Animation.Common.Lerp(PrismAPI.Graphics.Color,PrismAPI.Graphics.Color,System.Single,System.Boolean)
-  name.vb: Lerp(Color, Color, Single, Boolean)
-  fullName: PrismAPI.Graphics.Animation.Common.Lerp(PrismAPI.Graphics.Color, PrismAPI.Graphics.Color, float, bool)
-  fullName.vb: PrismAPI.Graphics.Animation.Common.Lerp(PrismAPI.Graphics.Color, PrismAPI.Graphics.Color, Single, Boolean)
-  nameWithType: Common.Lerp(Color, Color, float, bool)
-  nameWithType.vb: Common.Lerp(Color, Color, Single, Boolean)
-- uid: PrismAPI.Graphics.Animation.Common.Lerp(System.Double,System.Double,System.Double,System.Boolean)
-  name: Lerp(double, double, double, bool)
-  href: API/PrismAPI.Graphics.Animation.Common.html#PrismAPI_Graphics_Animation_Common_Lerp_System_Double_System_Double_System_Double_System_Boolean_
-  commentId: M:PrismAPI.Graphics.Animation.Common.Lerp(System.Double,System.Double,System.Double,System.Boolean)
-  name.vb: Lerp(Double, Double, Double, Boolean)
-  fullName: PrismAPI.Graphics.Animation.Common.Lerp(double, double, double, bool)
-  fullName.vb: PrismAPI.Graphics.Animation.Common.Lerp(Double, Double, Double, Boolean)
-  nameWithType: Common.Lerp(double, double, double, bool)
-  nameWithType.vb: Common.Lerp(Double, Double, Double, Boolean)
-- uid: PrismAPI.Graphics.Animation.Common.Lerp(System.Single,System.Single,System.Single,System.Boolean)
-  name: Lerp(float, float, float, bool)
-  href: API/PrismAPI.Graphics.Animation.Common.html#PrismAPI_Graphics_Animation_Common_Lerp_System_Single_System_Single_System_Single_System_Boolean_
-  commentId: M:PrismAPI.Graphics.Animation.Common.Lerp(System.Single,System.Single,System.Single,System.Boolean)
-  name.vb: Lerp(Single, Single, Single, Boolean)
-  fullName: PrismAPI.Graphics.Animation.Common.Lerp(float, float, float, bool)
-  fullName.vb: PrismAPI.Graphics.Animation.Common.Lerp(Single, Single, Single, Boolean)
-  nameWithType: Common.Lerp(float, float, float, bool)
-  nameWithType.vb: Common.Lerp(Single, Single, Single, Boolean)
-- uid: PrismAPI.Graphics.Animation.Common.Lerp*
-  name: Lerp
-  href: API/PrismAPI.Graphics.Animation.Common.html#PrismAPI_Graphics_Animation_Common_Lerp_
-  commentId: Overload:PrismAPI.Graphics.Animation.Common.Lerp
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.Animation.Common.Lerp
-  nameWithType: Common.Lerp
-- uid: PrismAPI.Graphics.Animation.Common.Loop(System.Single,System.Single,System.Single)
-  name: Loop(float, float, float)
-  href: API/PrismAPI.Graphics.Animation.Common.html#PrismAPI_Graphics_Animation_Common_Loop_System_Single_System_Single_System_Single_
-  commentId: M:PrismAPI.Graphics.Animation.Common.Loop(System.Single,System.Single,System.Single)
-  name.vb: Loop(Single, Single, Single)
-  fullName: PrismAPI.Graphics.Animation.Common.Loop(float, float, float)
-  fullName.vb: PrismAPI.Graphics.Animation.Common.Loop(Single, Single, Single)
-  nameWithType: Common.Loop(float, float, float)
-  nameWithType.vb: Common.Loop(Single, Single, Single)
-- uid: PrismAPI.Graphics.Animation.Common.Loop*
-  name: Loop
-  href: API/PrismAPI.Graphics.Animation.Common.html#PrismAPI_Graphics_Animation_Common_Loop_
-  commentId: Overload:PrismAPI.Graphics.Animation.Common.Loop
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.Animation.Common.Loop
-  nameWithType: Common.Loop
-- uid: PrismAPI.Graphics.Animation.ImageController
-  name: ImageController
-  href: API/PrismAPI.Graphics.Animation.ImageController.html
-  commentId: T:PrismAPI.Graphics.Animation.ImageController
-  fullName: PrismAPI.Graphics.Animation.ImageController
-  nameWithType: ImageController
-- uid: PrismAPI.Graphics.Animation.ImageController.#ctor(PrismAPI.Graphics.Canvas,System.Single,System.Single,System.TimeSpan,PrismAPI.Graphics.Animation.AnimationMode)
-  name: ImageController(Canvas, float, float, TimeSpan, AnimationMode)
-  href: API/PrismAPI.Graphics.Animation.ImageController.html#PrismAPI_Graphics_Animation_ImageController__ctor_PrismAPI_Graphics_Canvas_System_Single_System_Single_System_TimeSpan_PrismAPI_Graphics_Animation_AnimationMode_
-  commentId: M:PrismAPI.Graphics.Animation.ImageController.#ctor(PrismAPI.Graphics.Canvas,System.Single,System.Single,System.TimeSpan,PrismAPI.Graphics.Animation.AnimationMode)
-  name.vb: New(Canvas, Single, Single, TimeSpan, AnimationMode)
-  fullName: PrismAPI.Graphics.Animation.ImageController.ImageController(PrismAPI.Graphics.Canvas, float, float, System.TimeSpan, PrismAPI.Graphics.Animation.AnimationMode)
-  fullName.vb: PrismAPI.Graphics.Animation.ImageController.New(PrismAPI.Graphics.Canvas, Single, Single, System.TimeSpan, PrismAPI.Graphics.Animation.AnimationMode)
-  nameWithType: ImageController.ImageController(Canvas, float, float, TimeSpan, AnimationMode)
-  nameWithType.vb: ImageController.New(Canvas, Single, Single, TimeSpan, AnimationMode)
-- uid: PrismAPI.Graphics.Animation.ImageController.#ctor*
-  name: ImageController
-  href: API/PrismAPI.Graphics.Animation.ImageController.html#PrismAPI_Graphics_Animation_ImageController__ctor_
-  commentId: Overload:PrismAPI.Graphics.Animation.ImageController.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: PrismAPI.Graphics.Animation.ImageController.ImageController
-  fullName.vb: PrismAPI.Graphics.Animation.ImageController.New
-  nameWithType: ImageController.ImageController
-  nameWithType.vb: ImageController.New
-- uid: PrismAPI.Graphics.Animation.ImageController.Animator
-  name: Animator
-  href: API/PrismAPI.Graphics.Animation.ImageController.html#PrismAPI_Graphics_Animation_ImageController_Animator
-  commentId: F:PrismAPI.Graphics.Animation.ImageController.Animator
-  fullName: PrismAPI.Graphics.Animation.ImageController.Animator
-  nameWithType: ImageController.Animator
-- uid: PrismAPI.Graphics.Animation.ImageController.Current
-  name: Current
-  href: API/PrismAPI.Graphics.Animation.ImageController.html#PrismAPI_Graphics_Animation_ImageController_Current
-  commentId: P:PrismAPI.Graphics.Animation.ImageController.Current
-  fullName: PrismAPI.Graphics.Animation.ImageController.Current
-  nameWithType: ImageController.Current
-- uid: PrismAPI.Graphics.Animation.ImageController.Current*
-  name: Current
-  href: API/PrismAPI.Graphics.Animation.ImageController.html#PrismAPI_Graphics_Animation_ImageController_Current_
-  commentId: Overload:PrismAPI.Graphics.Animation.ImageController.Current
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.Animation.ImageController.Current
-  nameWithType: ImageController.Current
-- uid: PrismAPI.Graphics.Animation.ImageController.Source
-  name: Source
-  href: API/PrismAPI.Graphics.Animation.ImageController.html#PrismAPI_Graphics_Animation_ImageController_Source
-  commentId: F:PrismAPI.Graphics.Animation.ImageController.Source
-  fullName: PrismAPI.Graphics.Animation.ImageController.Source
-  nameWithType: ImageController.Source
 - uid: PrismAPI.Graphics.Canvas
   name: Canvas
   href: API/PrismAPI.Graphics.Canvas.html
@@ -3548,19 +3391,6 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Color.G
   nameWithType: Color.G
-- uid: PrismAPI.Graphics.Color.GetHashCode
-  name: GetHashCode()
-  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_GetHashCode
-  commentId: M:PrismAPI.Graphics.Color.GetHashCode
-  fullName: PrismAPI.Graphics.Color.GetHashCode()
-  nameWithType: Color.GetHashCode()
-- uid: PrismAPI.Graphics.Color.GetHashCode*
-  name: GetHashCode
-  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_GetHashCode_
-  commentId: Overload:PrismAPI.Graphics.Color.GetHashCode
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.Color.GetHashCode
-  nameWithType: Color.GetHashCode
 - uid: PrismAPI.Graphics.Color.GetPacked(System.Single,System.Single,System.Single,System.Single)
   name: GetPacked(float, float, float, float)
   href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_GetPacked_System_Single_System_Single_System_Single_System_Single_
@@ -3632,6 +3462,22 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Color.Invert
   nameWithType: Color.Invert
+- uid: PrismAPI.Graphics.Color.Lerp(PrismAPI.Graphics.Color,PrismAPI.Graphics.Color,System.Single,System.Boolean)
+  name: Lerp(Color, Color, float, bool)
+  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_Lerp_PrismAPI_Graphics_Color_PrismAPI_Graphics_Color_System_Single_System_Boolean_
+  commentId: M:PrismAPI.Graphics.Color.Lerp(PrismAPI.Graphics.Color,PrismAPI.Graphics.Color,System.Single,System.Boolean)
+  name.vb: Lerp(Color, Color, Single, Boolean)
+  fullName: PrismAPI.Graphics.Color.Lerp(PrismAPI.Graphics.Color, PrismAPI.Graphics.Color, float, bool)
+  fullName.vb: PrismAPI.Graphics.Color.Lerp(PrismAPI.Graphics.Color, PrismAPI.Graphics.Color, Single, Boolean)
+  nameWithType: Color.Lerp(Color, Color, float, bool)
+  nameWithType.vb: Color.Lerp(Color, Color, Single, Boolean)
+- uid: PrismAPI.Graphics.Color.Lerp*
+  name: Lerp
+  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_Lerp_
+  commentId: Overload:PrismAPI.Graphics.Color.Lerp
+  isSpec: "True"
+  fullName: PrismAPI.Graphics.Color.Lerp
+  nameWithType: Color.Lerp
 - uid: PrismAPI.Graphics.Color.LightBlack
   name: LightBlack
   href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_LightBlack
@@ -3785,52 +3631,6 @@ references:
   fullName.vb: PrismAPI.Graphics.Color.=
   nameWithType: Color.operator ==
   nameWithType.vb: Color.=
-- uid: PrismAPI.Graphics.Color.op_Implicit(System.String)~PrismAPI.Graphics.Color
-  name: implicit operator Color(string)
-  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Implicit_System_String__PrismAPI_Graphics_Color
-  commentId: M:PrismAPI.Graphics.Color.op_Implicit(System.String)~PrismAPI.Graphics.Color
-  name.vb: CType(String)
-  fullName: PrismAPI.Graphics.Color.implicit operator PrismAPI.Graphics.Color(string)
-  fullName.vb: PrismAPI.Graphics.Color.CType(String)
-  nameWithType: Color.implicit operator Color(string)
-  nameWithType.vb: Color.CType(String)
-- uid: PrismAPI.Graphics.Color.op_Implicit(System.UInt32)~PrismAPI.Graphics.Color
-  name: implicit operator Color(uint)
-  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Implicit_System_UInt32__PrismAPI_Graphics_Color
-  commentId: M:PrismAPI.Graphics.Color.op_Implicit(System.UInt32)~PrismAPI.Graphics.Color
-  name.vb: CType(UInteger)
-  fullName: PrismAPI.Graphics.Color.implicit operator PrismAPI.Graphics.Color(uint)
-  fullName.vb: PrismAPI.Graphics.Color.CType(UInteger)
-  nameWithType: Color.implicit operator Color(uint)
-  nameWithType.vb: Color.CType(UInteger)
-- uid: PrismAPI.Graphics.Color.op_Implicit(System.ValueTuple{System.Single,System.Single,System.Single,System.Single})~PrismAPI.Graphics.Color
-  name: implicit operator Color((float, float, float, float))
-  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Implicit_System_ValueTuple_System_Single_System_Single_System_Single_System_Single___PrismAPI_Graphics_Color
-  commentId: M:PrismAPI.Graphics.Color.op_Implicit(System.ValueTuple{System.Single,System.Single,System.Single,System.Single})~PrismAPI.Graphics.Color
-  name.vb: CType((Single, Single, Single, Single))
-  fullName: PrismAPI.Graphics.Color.implicit operator PrismAPI.Graphics.Color((float, float, float, float))
-  fullName.vb: PrismAPI.Graphics.Color.CType((Single, Single, Single, Single))
-  nameWithType: Color.implicit operator Color((float, float, float, float))
-  nameWithType.vb: Color.CType((Single, Single, Single, Single))
-- uid: PrismAPI.Graphics.Color.op_Implicit(System.ValueTuple{System.Single,System.Single,System.Single})~PrismAPI.Graphics.Color
-  name: implicit operator Color((float, float, float))
-  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Implicit_System_ValueTuple_System_Single_System_Single_System_Single___PrismAPI_Graphics_Color
-  commentId: M:PrismAPI.Graphics.Color.op_Implicit(System.ValueTuple{System.Single,System.Single,System.Single})~PrismAPI.Graphics.Color
-  name.vb: CType((Single, Single, Single))
-  fullName: PrismAPI.Graphics.Color.implicit operator PrismAPI.Graphics.Color((float, float, float))
-  fullName.vb: PrismAPI.Graphics.Color.CType((Single, Single, Single))
-  nameWithType: Color.implicit operator Color((float, float, float))
-  nameWithType.vb: Color.CType((Single, Single, Single))
-- uid: PrismAPI.Graphics.Color.op_Implicit*
-  name: implicit operator
-  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Implicit_
-  commentId: Overload:PrismAPI.Graphics.Color.op_Implicit
-  isSpec: "True"
-  name.vb: CType
-  fullName: PrismAPI.Graphics.Color.implicit operator
-  fullName.vb: PrismAPI.Graphics.Color.CType
-  nameWithType: Color.implicit operator
-  nameWithType.vb: Color.CType
 - uid: PrismAPI.Graphics.Color.op_Inequality(PrismAPI.Graphics.Color,PrismAPI.Graphics.Color)
   name: operator !=(Color, Color)
   href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_op_Inequality_PrismAPI_Graphics_Color_PrismAPI_Graphics_Color_
@@ -3995,19 +3795,6 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Color.ToGrayscale
   nameWithType: Color.ToGrayscale
-- uid: PrismAPI.Graphics.Color.ToString
-  name: ToString()
-  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_ToString
-  commentId: M:PrismAPI.Graphics.Color.ToString
-  fullName: PrismAPI.Graphics.Color.ToString()
-  nameWithType: Color.ToString()
-- uid: PrismAPI.Graphics.Color.ToString*
-  name: ToString
-  href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_ToString_
-  commentId: Overload:PrismAPI.Graphics.Color.ToString
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.Color.ToString
-  nameWithType: Color.ToString
 - uid: PrismAPI.Graphics.Color.Transparent
   name: Transparent
   href: API/PrismAPI.Graphics.Color.html#PrismAPI_Graphics_Color_Transparent
