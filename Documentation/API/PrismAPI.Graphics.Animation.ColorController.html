@@ -80,10 +80,41 @@ See: <a class="xref" href="PrismAPI.Graphics.Animation.AnimationController.html"
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">ColorController</span></div>
+    <div class="level1"><a class="xref" href="PrismAPI.Graphics.Animation.AnimationController.html">AnimationController</a></div>
+    <div class="level2"><span class="xref">ColorController</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_IsFinished">AnimationController.IsFinished</a>
+    </div>
+    <div>
+      <a class="xref" href="PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_DelayMS">AnimationController.DelayMS</a>
+    </div>
+    <div>
+      <a class="xref" href="PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_Lerp_System_Single_System_Single_System_Single_">AnimationController.Lerp(float, float, float)</a>
+    </div>
+    <div>
+      <a class="xref" href="PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_Invert">AnimationController.Invert()</a>
+    </div>
+    <div>
+      <a class="xref" href="PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_Reset">AnimationController.Reset()</a>
+    </div>
+    <div>
+      <a class="xref" href="PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_ElapsedTime">AnimationController.ElapsedTime</a>
+    </div>
+    <div>
+      <a class="xref" href="PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_Mode">AnimationController.Mode</a>
+    </div>
+    <div>
+      <a class="xref" href="PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_Duration">AnimationController.Duration</a>
+    </div>
+    <div>
+      <a class="xref" href="PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_IsContinuous">AnimationController.IsContinuous</a>
+    </div>
+    <div>
+      <a class="xref" href="PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_Timer">AnimationController.Timer</a>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -110,7 +141,7 @@ See: <a class="xref" href="PrismAPI.Graphics.Animation.AnimationController.html"
   <h6><strong>Assembly</strong>: PrismAPI.dll</h6>
   <h5 id="PrismAPI_Graphics_Animation_ColorController_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ColorController</code></pre>
+    <pre><code class="lang-csharp hljs">public class ColorController : AnimationController</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -119,7 +150,7 @@ See: <a class="xref" href="PrismAPI.Graphics.Animation.AnimationController.html"
     <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Graphics_Animation_ColorController__ctor_PrismAPI_Graphics_Color_PrismAPI_Graphics_Color_System_TimeSpan_PrismAPI_Graphics_Animation_AnimationMode_.md&amp;value=---%0Auid%3A%20PrismAPI.Graphics.Animation.ColorController.%23ctor(PrismAPI.Graphics.Color%2CPrismAPI.Graphics.Color%2CSystem.TimeSpan%2CPrismAPI.Graphics.Animation.AnimationMode)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Animation/ColorController.cs/#L16">View Source</a>
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Animation/ColorController.cs/#L18">View Source</a>
   </span>
   <a id="PrismAPI_Graphics_Animation_ColorController__ctor_" data-uid="PrismAPI.Graphics.Animation.ColorController.#ctor*"></a>
   <h4 id="PrismAPI_Graphics_Animation_ColorController__ctor_PrismAPI_Graphics_Color_PrismAPI_Graphics_Color_System_TimeSpan_PrismAPI_Graphics_Animation_AnimationMode_" data-uid="PrismAPI.Graphics.Animation.ColorController.#ctor(PrismAPI.Graphics.Color,PrismAPI.Graphics.Color,System.TimeSpan,PrismAPI.Graphics.Animation.AnimationMode)">ColorController(Color, Color, TimeSpan, AnimationMode)</h4>
@@ -170,40 +201,10 @@ See: <a class="xref" href="PrismAPI.Graphics.Animation.AnimationController.html"
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Graphics_Animation_ColorController_Controller.md&amp;value=---%0Auid%3A%20PrismAPI.Graphics.Animation.ColorController.Controller%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Animation/ColorController.cs/#L39">View Source</a>
-  </span>
-  <h4 id="PrismAPI_Graphics_Animation_ColorController_Controller" data-uid="PrismAPI.Graphics.Animation.ColorController.Controller">Controller</h4>
-  <div class="markdown level1 summary"><p>The controller to control the color interpolation.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AnimationController Controller</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="PrismAPI.Graphics.Animation.AnimationController.html">AnimationController</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Graphics_Animation_ColorController_Source.md&amp;value=---%0Auid%3A%20PrismAPI.Graphics.Animation.ColorController.Source%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Animation/ColorController.cs/#L44">View Source</a>
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Animation/ColorController.cs/#L41">View Source</a>
   </span>
   <h4 id="PrismAPI_Graphics_Animation_ColorController_Source" data-uid="PrismAPI.Graphics.Animation.ColorController.Source">Source</h4>
   <div class="markdown level1 summary"><p>The source color of the animation.</p>
@@ -233,7 +234,7 @@ See: <a class="xref" href="PrismAPI.Graphics.Animation.AnimationController.html"
     <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Graphics_Animation_ColorController_Target.md&amp;value=---%0Auid%3A%20PrismAPI.Graphics.Animation.ColorController.Target%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Animation/ColorController.cs/#L49">View Source</a>
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Animation/ColorController.cs/#L46">View Source</a>
   </span>
   <h4 id="PrismAPI_Graphics_Animation_ColorController_Target" data-uid="PrismAPI.Graphics.Animation.ColorController.Target">Target</h4>
   <div class="markdown level1 summary"><p>The target color of the animation.</p>
@@ -265,7 +266,7 @@ See: <a class="xref" href="PrismAPI.Graphics.Animation.AnimationController.html"
     <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Graphics_Animation_ColorController_Current.md&amp;value=---%0Auid%3A%20PrismAPI.Graphics.Animation.ColorController.Current%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Animation/ColorController.cs/#L30">View Source</a>
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Animation/ColorController.cs/#L32">View Source</a>
   </span>
   <a id="PrismAPI_Graphics_Animation_ColorController_Current_" data-uid="PrismAPI.Graphics.Animation.ColorController.Current*"></a>
   <h4 id="PrismAPI_Graphics_Animation_ColorController_Current" data-uid="PrismAPI.Graphics.Animation.ColorController.Current">Current</h4>

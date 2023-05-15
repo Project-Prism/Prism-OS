@@ -2659,15 +2659,15 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Animation.AnimationController.IsFinished
   nameWithType: AnimationController.IsFinished
-- uid: PrismAPI.Graphics.Animation.AnimationController.Lerp(System.Single,System.Single,System.Single,System.Boolean)
-  name: Lerp(float, float, float, bool)
-  href: API/PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_Lerp_System_Single_System_Single_System_Single_System_Boolean_
-  commentId: M:PrismAPI.Graphics.Animation.AnimationController.Lerp(System.Single,System.Single,System.Single,System.Boolean)
-  name.vb: Lerp(Single, Single, Single, Boolean)
-  fullName: PrismAPI.Graphics.Animation.AnimationController.Lerp(float, float, float, bool)
-  fullName.vb: PrismAPI.Graphics.Animation.AnimationController.Lerp(Single, Single, Single, Boolean)
-  nameWithType: AnimationController.Lerp(float, float, float, bool)
-  nameWithType.vb: AnimationController.Lerp(Single, Single, Single, Boolean)
+- uid: PrismAPI.Graphics.Animation.AnimationController.Lerp(System.Single,System.Single,System.Single)
+  name: Lerp(float, float, float)
+  href: API/PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_Lerp_System_Single_System_Single_System_Single_
+  commentId: M:PrismAPI.Graphics.Animation.AnimationController.Lerp(System.Single,System.Single,System.Single)
+  name.vb: Lerp(Single, Single, Single)
+  fullName: PrismAPI.Graphics.Animation.AnimationController.Lerp(float, float, float)
+  fullName.vb: PrismAPI.Graphics.Animation.AnimationController.Lerp(Single, Single, Single)
+  nameWithType: AnimationController.Lerp(float, float, float)
+  nameWithType.vb: AnimationController.Lerp(Single, Single, Single)
 - uid: PrismAPI.Graphics.Animation.AnimationController.Lerp*
   name: Lerp
   href: API/PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_Lerp_
@@ -2785,12 +2785,6 @@ references:
   fullName.vb: PrismAPI.Graphics.Animation.ColorController.New
   nameWithType: ColorController.ColorController
   nameWithType.vb: ColorController.New
-- uid: PrismAPI.Graphics.Animation.ColorController.Controller
-  name: Controller
-  href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_Controller
-  commentId: F:PrismAPI.Graphics.Animation.ColorController.Controller
-  fullName: PrismAPI.Graphics.Animation.ColorController.Controller
-  nameWithType: ColorController.Controller
 - uid: PrismAPI.Graphics.Animation.ColorController.Current
   name: Current
   href: API/PrismAPI.Graphics.Animation.ColorController.html#PrismAPI_Graphics_Animation_ColorController_Current
@@ -2876,19 +2870,6 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Canvas.CopyTo
   nameWithType: Canvas.CopyTo
-- uid: PrismAPI.Graphics.Canvas.Dispose
-  name: Dispose()
-  href: API/PrismAPI.Graphics.Canvas.html#PrismAPI_Graphics_Canvas_Dispose
-  commentId: M:PrismAPI.Graphics.Canvas.Dispose
-  fullName: PrismAPI.Graphics.Canvas.Dispose()
-  nameWithType: Canvas.Dispose()
-- uid: PrismAPI.Graphics.Canvas.Dispose*
-  name: Dispose
-  href: API/PrismAPI.Graphics.Canvas.html#PrismAPI_Graphics_Canvas_Dispose_
-  commentId: Overload:PrismAPI.Graphics.Canvas.Dispose
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.Canvas.Dispose
-  nameWithType: Canvas.Dispose
 - uid: PrismAPI.Graphics.Canvas.DrawAngledLine(System.Int32,System.Int32,System.Int16,System.UInt16,PrismAPI.Graphics.Color)
   name: DrawAngledLine(int, int, short, ushort, Color)
   href: API/PrismAPI.Graphics.Canvas.html#PrismAPI_Graphics_Canvas_DrawAngledLine_System_Int32_System_Int32_System_Int16_System_UInt16_PrismAPI_Graphics_Color_
@@ -3116,6 +3097,22 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Canvas.DrawTriangle
   nameWithType: Canvas.DrawTriangle
+- uid: PrismAPI.Graphics.Canvas.Finalize
+  name: ~Canvas()
+  href: API/PrismAPI.Graphics.Canvas.html#PrismAPI_Graphics_Canvas_Finalize
+  commentId: M:PrismAPI.Graphics.Canvas.Finalize
+  name.vb: ''
+  fullName: PrismAPI.Graphics.Canvas.~Canvas()
+  fullName.vb: ''
+  nameWithType: Canvas.~Canvas()
+  nameWithType.vb: ''
+- uid: PrismAPI.Graphics.Canvas.Finalize*
+  name: ~Canvas
+  href: API/PrismAPI.Graphics.Canvas.html#PrismAPI_Graphics_Canvas_Finalize_
+  commentId: Overload:PrismAPI.Graphics.Canvas.Finalize
+  isSpec: "True"
+  fullName: PrismAPI.Graphics.Canvas.~Canvas
+  nameWithType: Canvas.~Canvas
 - uid: PrismAPI.Graphics.Canvas.Height
   name: Height
   href: API/PrismAPI.Graphics.Canvas.html#PrismAPI_Graphics_Canvas_Height
@@ -3846,6 +3843,19 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Filters.ApplyAA
   nameWithType: Filters.ApplyAA
+- uid: PrismAPI.Graphics.Filters.ApplyHDR(PrismAPI.Graphics.Canvas,PrismAPI.Graphics.Canvas,PrismAPI.Graphics.Canvas)
+  name: ApplyHDR(Canvas, Canvas, Canvas)
+  href: API/PrismAPI.Graphics.Filters.html#PrismAPI_Graphics_Filters_ApplyHDR_PrismAPI_Graphics_Canvas_PrismAPI_Graphics_Canvas_PrismAPI_Graphics_Canvas_
+  commentId: M:PrismAPI.Graphics.Filters.ApplyHDR(PrismAPI.Graphics.Canvas,PrismAPI.Graphics.Canvas,PrismAPI.Graphics.Canvas)
+  fullName: PrismAPI.Graphics.Filters.ApplyHDR(PrismAPI.Graphics.Canvas, PrismAPI.Graphics.Canvas, PrismAPI.Graphics.Canvas)
+  nameWithType: Filters.ApplyHDR(Canvas, Canvas, Canvas)
+- uid: PrismAPI.Graphics.Filters.ApplyHDR*
+  name: ApplyHDR
+  href: API/PrismAPI.Graphics.Filters.html#PrismAPI_Graphics_Filters_ApplyHDR_
+  commentId: Overload:PrismAPI.Graphics.Filters.ApplyHDR
+  isSpec: "True"
+  fullName: PrismAPI.Graphics.Filters.ApplyHDR
+  nameWithType: Filters.ApplyHDR
 - uid: PrismAPI.Graphics.Filters.MaskAlpha(PrismAPI.Graphics.Canvas,PrismAPI.Graphics.Canvas)
   name: MaskAlpha(Canvas, Canvas)
   href: API/PrismAPI.Graphics.Filters.html#PrismAPI_Graphics_Filters_MaskAlpha_PrismAPI_Graphics_Canvas_PrismAPI_Graphics_Canvas_
@@ -4055,40 +4065,43 @@ references:
   commentId: T:PrismAPI.Graphics.Gradient
   fullName: PrismAPI.Graphics.Gradient
   nameWithType: Gradient
-- uid: PrismAPI.Graphics.Gradient.GetGradient(System.UInt16,System.UInt16,PrismAPI.Graphics.Color,PrismAPI.Graphics.Color)
-  name: GetGradient(ushort, ushort, Color, Color)
-  href: API/PrismAPI.Graphics.Gradient.html#PrismAPI_Graphics_Gradient_GetGradient_System_UInt16_System_UInt16_PrismAPI_Graphics_Color_PrismAPI_Graphics_Color_
-  commentId: M:PrismAPI.Graphics.Gradient.GetGradient(System.UInt16,System.UInt16,PrismAPI.Graphics.Color,PrismAPI.Graphics.Color)
-  name.vb: GetGradient(UShort, UShort, Color, Color)
-  fullName: PrismAPI.Graphics.Gradient.GetGradient(ushort, ushort, PrismAPI.Graphics.Color, PrismAPI.Graphics.Color)
-  fullName.vb: PrismAPI.Graphics.Gradient.GetGradient(UShort, UShort, PrismAPI.Graphics.Color, PrismAPI.Graphics.Color)
-  nameWithType: Gradient.GetGradient(ushort, ushort, Color, Color)
-  nameWithType.vb: Gradient.GetGradient(UShort, UShort, Color, Color)
-- uid: PrismAPI.Graphics.Gradient.GetGradient(System.UInt16,System.UInt16,PrismAPI.Graphics.Color[])
-  name: GetGradient(ushort, ushort, Color[])
-  href: API/PrismAPI.Graphics.Gradient.html#PrismAPI_Graphics_Gradient_GetGradient_System_UInt16_System_UInt16_PrismAPI_Graphics_Color___
-  commentId: M:PrismAPI.Graphics.Gradient.GetGradient(System.UInt16,System.UInt16,PrismAPI.Graphics.Color[])
-  name.vb: GetGradient(UShort, UShort, Color())
-  fullName: PrismAPI.Graphics.Gradient.GetGradient(ushort, ushort, PrismAPI.Graphics.Color[])
-  fullName.vb: PrismAPI.Graphics.Gradient.GetGradient(UShort, UShort, PrismAPI.Graphics.Color())
-  nameWithType: Gradient.GetGradient(ushort, ushort, Color[])
-  nameWithType.vb: Gradient.GetGradient(UShort, UShort, Color())
-- uid: PrismAPI.Graphics.Gradient.GetGradient(System.UInt16,System.UInt16,System.UInt32)
-  name: GetGradient(ushort, ushort, uint)
-  href: API/PrismAPI.Graphics.Gradient.html#PrismAPI_Graphics_Gradient_GetGradient_System_UInt16_System_UInt16_System_UInt32_
-  commentId: M:PrismAPI.Graphics.Gradient.GetGradient(System.UInt16,System.UInt16,System.UInt32)
-  name.vb: GetGradient(UShort, UShort, UInteger)
-  fullName: PrismAPI.Graphics.Gradient.GetGradient(ushort, ushort, uint)
-  fullName.vb: PrismAPI.Graphics.Gradient.GetGradient(UShort, UShort, UInteger)
-  nameWithType: Gradient.GetGradient(ushort, ushort, uint)
-  nameWithType.vb: Gradient.GetGradient(UShort, UShort, UInteger)
-- uid: PrismAPI.Graphics.Gradient.GetGradient*
-  name: GetGradient
-  href: API/PrismAPI.Graphics.Gradient.html#PrismAPI_Graphics_Gradient_GetGradient_
-  commentId: Overload:PrismAPI.Graphics.Gradient.GetGradient
+- uid: PrismAPI.Graphics.Gradient.#ctor(System.UInt16,System.UInt16,PrismAPI.Graphics.Color,PrismAPI.Graphics.Color)
+  name: Gradient(ushort, ushort, Color, Color)
+  href: API/PrismAPI.Graphics.Gradient.html#PrismAPI_Graphics_Gradient__ctor_System_UInt16_System_UInt16_PrismAPI_Graphics_Color_PrismAPI_Graphics_Color_
+  commentId: M:PrismAPI.Graphics.Gradient.#ctor(System.UInt16,System.UInt16,PrismAPI.Graphics.Color,PrismAPI.Graphics.Color)
+  name.vb: New(UShort, UShort, Color, Color)
+  fullName: PrismAPI.Graphics.Gradient.Gradient(ushort, ushort, PrismAPI.Graphics.Color, PrismAPI.Graphics.Color)
+  fullName.vb: PrismAPI.Graphics.Gradient.New(UShort, UShort, PrismAPI.Graphics.Color, PrismAPI.Graphics.Color)
+  nameWithType: Gradient.Gradient(ushort, ushort, Color, Color)
+  nameWithType.vb: Gradient.New(UShort, UShort, Color, Color)
+- uid: PrismAPI.Graphics.Gradient.#ctor(System.UInt16,System.UInt16,PrismAPI.Graphics.Color[])
+  name: Gradient(ushort, ushort, Color[])
+  href: API/PrismAPI.Graphics.Gradient.html#PrismAPI_Graphics_Gradient__ctor_System_UInt16_System_UInt16_PrismAPI_Graphics_Color___
+  commentId: M:PrismAPI.Graphics.Gradient.#ctor(System.UInt16,System.UInt16,PrismAPI.Graphics.Color[])
+  name.vb: New(UShort, UShort, Color())
+  fullName: PrismAPI.Graphics.Gradient.Gradient(ushort, ushort, PrismAPI.Graphics.Color[])
+  fullName.vb: PrismAPI.Graphics.Gradient.New(UShort, UShort, PrismAPI.Graphics.Color())
+  nameWithType: Gradient.Gradient(ushort, ushort, Color[])
+  nameWithType.vb: Gradient.New(UShort, UShort, Color())
+- uid: PrismAPI.Graphics.Gradient.#ctor(System.UInt16,System.UInt16,System.UInt32)
+  name: Gradient(ushort, ushort, uint)
+  href: API/PrismAPI.Graphics.Gradient.html#PrismAPI_Graphics_Gradient__ctor_System_UInt16_System_UInt16_System_UInt32_
+  commentId: M:PrismAPI.Graphics.Gradient.#ctor(System.UInt16,System.UInt16,System.UInt32)
+  name.vb: New(UShort, UShort, UInteger)
+  fullName: PrismAPI.Graphics.Gradient.Gradient(ushort, ushort, uint)
+  fullName.vb: PrismAPI.Graphics.Gradient.New(UShort, UShort, UInteger)
+  nameWithType: Gradient.Gradient(ushort, ushort, uint)
+  nameWithType.vb: Gradient.New(UShort, UShort, UInteger)
+- uid: PrismAPI.Graphics.Gradient.#ctor*
+  name: Gradient
+  href: API/PrismAPI.Graphics.Gradient.html#PrismAPI_Graphics_Gradient__ctor_
+  commentId: Overload:PrismAPI.Graphics.Gradient.#ctor
   isSpec: "True"
-  fullName: PrismAPI.Graphics.Gradient.GetGradient
-  nameWithType: Gradient.GetGradient
+  name.vb: New
+  fullName: PrismAPI.Graphics.Gradient.Gradient
+  fullName.vb: PrismAPI.Graphics.Gradient.New
+  nameWithType: Gradient.Gradient
+  nameWithType.vb: Gradient.New
 - uid: PrismAPI.Graphics.Image
   name: Image
   href: API/PrismAPI.Graphics.Image.html
@@ -4761,316 +4774,6 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Rasterizer.Triangle.Width
   nameWithType: Triangle.Width
-- uid: PrismAPI.Graphics.UI
-  name: PrismAPI.Graphics.UI
-  href: API/PrismAPI.Graphics.UI.html
-  commentId: N:PrismAPI.Graphics.UI
-  fullName: PrismAPI.Graphics.UI
-  nameWithType: PrismAPI.Graphics.UI
-- uid: PrismAPI.Graphics.UI.Controls
-  name: PrismAPI.Graphics.UI.Controls
-  href: API/PrismAPI.Graphics.UI.Controls.html
-  commentId: N:PrismAPI.Graphics.UI.Controls
-  fullName: PrismAPI.Graphics.UI.Controls
-  nameWithType: PrismAPI.Graphics.UI.Controls
-- uid: PrismAPI.Graphics.UI.Controls.Button
-  name: Button
-  href: API/PrismAPI.Graphics.UI.Controls.Button.html
-  commentId: T:PrismAPI.Graphics.UI.Controls.Button
-  fullName: PrismAPI.Graphics.UI.Controls.Button
-  nameWithType: Button
-- uid: PrismAPI.Graphics.UI.Controls.Button.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16,System.UInt16,System.String,System.Action)
-  name: Button(int, int, ushort, ushort, ushort, string, Action)
-  href: API/PrismAPI.Graphics.UI.Controls.Button.html#PrismAPI_Graphics_UI_Controls_Button__ctor_System_Int32_System_Int32_System_UInt16_System_UInt16_System_UInt16_System_String_System_Action_
-  commentId: M:PrismAPI.Graphics.UI.Controls.Button.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16,System.UInt16,System.String,System.Action)
-  name.vb: New(Integer, Integer, UShort, UShort, UShort, String, Action)
-  fullName: PrismAPI.Graphics.UI.Controls.Button.Button(int, int, ushort, ushort, ushort, string, System.Action)
-  fullName.vb: PrismAPI.Graphics.UI.Controls.Button.New(Integer, Integer, UShort, UShort, UShort, String, System.Action)
-  nameWithType: Button.Button(int, int, ushort, ushort, ushort, string, Action)
-  nameWithType.vb: Button.New(Integer, Integer, UShort, UShort, UShort, String, Action)
-- uid: PrismAPI.Graphics.UI.Controls.Button.#ctor*
-  name: Button
-  href: API/PrismAPI.Graphics.UI.Controls.Button.html#PrismAPI_Graphics_UI_Controls_Button__ctor_
-  commentId: Overload:PrismAPI.Graphics.UI.Controls.Button.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: PrismAPI.Graphics.UI.Controls.Button.Button
-  fullName.vb: PrismAPI.Graphics.UI.Controls.Button.New
-  nameWithType: Button.Button
-  nameWithType.vb: Button.New
-- uid: PrismAPI.Graphics.UI.Controls.Button.Dispose
-  name: Dispose()
-  href: API/PrismAPI.Graphics.UI.Controls.Button.html#PrismAPI_Graphics_UI_Controls_Button_Dispose
-  commentId: M:PrismAPI.Graphics.UI.Controls.Button.Dispose
-  fullName: PrismAPI.Graphics.UI.Controls.Button.Dispose()
-  nameWithType: Button.Dispose()
-- uid: PrismAPI.Graphics.UI.Controls.Button.Dispose*
-  name: Dispose
-  href: API/PrismAPI.Graphics.UI.Controls.Button.html#PrismAPI_Graphics_UI_Controls_Button_Dispose_
-  commentId: Overload:PrismAPI.Graphics.UI.Controls.Button.Dispose
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.UI.Controls.Button.Dispose
-  nameWithType: Button.Dispose
-- uid: PrismAPI.Graphics.UI.Controls.Button.EndColor
-  name: EndColor
-  href: API/PrismAPI.Graphics.UI.Controls.Button.html#PrismAPI_Graphics_UI_Controls_Button_EndColor
-  commentId: F:PrismAPI.Graphics.UI.Controls.Button.EndColor
-  fullName: PrismAPI.Graphics.UI.Controls.Button.EndColor
-  nameWithType: Button.EndColor
-- uid: PrismAPI.Graphics.UI.Controls.Button.MainImage
-  name: MainImage
-  href: API/PrismAPI.Graphics.UI.Controls.Button.html#PrismAPI_Graphics_UI_Controls_Button_MainImage
-  commentId: P:PrismAPI.Graphics.UI.Controls.Button.MainImage
-  fullName: PrismAPI.Graphics.UI.Controls.Button.MainImage
-  nameWithType: Button.MainImage
-- uid: PrismAPI.Graphics.UI.Controls.Button.MainImage*
-  name: MainImage
-  href: API/PrismAPI.Graphics.UI.Controls.Button.html#PrismAPI_Graphics_UI_Controls_Button_MainImage_
-  commentId: Overload:PrismAPI.Graphics.UI.Controls.Button.MainImage
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.UI.Controls.Button.MainImage
-  nameWithType: Button.MainImage
-- uid: PrismAPI.Graphics.UI.Controls.Button.OnClick
-  name: OnClick
-  href: API/PrismAPI.Graphics.UI.Controls.Button.html#PrismAPI_Graphics_UI_Controls_Button_OnClick
-  commentId: F:PrismAPI.Graphics.UI.Controls.Button.OnClick
-  fullName: PrismAPI.Graphics.UI.Controls.Button.OnClick
-  nameWithType: Button.OnClick
-- uid: PrismAPI.Graphics.UI.Controls.Button.Render
-  name: Render()
-  href: API/PrismAPI.Graphics.UI.Controls.Button.html#PrismAPI_Graphics_UI_Controls_Button_Render
-  commentId: M:PrismAPI.Graphics.UI.Controls.Button.Render
-  fullName: PrismAPI.Graphics.UI.Controls.Button.Render()
-  nameWithType: Button.Render()
-- uid: PrismAPI.Graphics.UI.Controls.Button.Render*
-  name: Render
-  href: API/PrismAPI.Graphics.UI.Controls.Button.html#PrismAPI_Graphics_UI_Controls_Button_Render_
-  commentId: Overload:PrismAPI.Graphics.UI.Controls.Button.Render
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.UI.Controls.Button.Render
-  nameWithType: Button.Render
-- uid: PrismAPI.Graphics.UI.Controls.Button.StartColor
-  name: StartColor
-  href: API/PrismAPI.Graphics.UI.Controls.Button.html#PrismAPI_Graphics_UI_Controls_Button_StartColor
-  commentId: F:PrismAPI.Graphics.UI.Controls.Button.StartColor
-  fullName: PrismAPI.Graphics.UI.Controls.Button.StartColor
-  nameWithType: Button.StartColor
-- uid: PrismAPI.Graphics.UI.Controls.Button.Text
-  name: Text
-  href: API/PrismAPI.Graphics.UI.Controls.Button.html#PrismAPI_Graphics_UI_Controls_Button_Text
-  commentId: F:PrismAPI.Graphics.UI.Controls.Button.Text
-  fullName: PrismAPI.Graphics.UI.Controls.Button.Text
-  nameWithType: Button.Text
-- uid: PrismAPI.Graphics.UI.Controls.Control
-  name: Control
-  href: API/PrismAPI.Graphics.UI.Controls.Control.html
-  commentId: T:PrismAPI.Graphics.UI.Controls.Control
-  fullName: PrismAPI.Graphics.UI.Controls.Control
-  nameWithType: Control
-- uid: PrismAPI.Graphics.UI.Controls.Control.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16,System.UInt16)
-  name: Control(int, int, ushort, ushort, ushort)
-  href: API/PrismAPI.Graphics.UI.Controls.Control.html#PrismAPI_Graphics_UI_Controls_Control__ctor_System_Int32_System_Int32_System_UInt16_System_UInt16_System_UInt16_
-  commentId: M:PrismAPI.Graphics.UI.Controls.Control.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16,System.UInt16)
-  name.vb: New(Integer, Integer, UShort, UShort, UShort)
-  fullName: PrismAPI.Graphics.UI.Controls.Control.Control(int, int, ushort, ushort, ushort)
-  fullName.vb: PrismAPI.Graphics.UI.Controls.Control.New(Integer, Integer, UShort, UShort, UShort)
-  nameWithType: Control.Control(int, int, ushort, ushort, ushort)
-  nameWithType.vb: Control.New(Integer, Integer, UShort, UShort, UShort)
-- uid: PrismAPI.Graphics.UI.Controls.Control.#ctor*
-  name: Control
-  href: API/PrismAPI.Graphics.UI.Controls.Control.html#PrismAPI_Graphics_UI_Controls_Control__ctor_
-  commentId: Overload:PrismAPI.Graphics.UI.Controls.Control.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: PrismAPI.Graphics.UI.Controls.Control.Control
-  fullName.vb: PrismAPI.Graphics.UI.Controls.Control.New
-  nameWithType: Control.Control
-  nameWithType.vb: Control.New
-- uid: PrismAPI.Graphics.UI.Controls.Control.Height
-  name: Height
-  href: API/PrismAPI.Graphics.UI.Controls.Control.html#PrismAPI_Graphics_UI_Controls_Control_Height
-  commentId: P:PrismAPI.Graphics.UI.Controls.Control.Height
-  fullName: PrismAPI.Graphics.UI.Controls.Control.Height
-  nameWithType: Control.Height
-- uid: PrismAPI.Graphics.UI.Controls.Control.Height*
-  name: Height
-  href: API/PrismAPI.Graphics.UI.Controls.Control.html#PrismAPI_Graphics_UI_Controls_Control_Height_
-  commentId: Overload:PrismAPI.Graphics.UI.Controls.Control.Height
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.UI.Controls.Control.Height
-  nameWithType: Control.Height
-- uid: PrismAPI.Graphics.UI.Controls.Control.MainImage
-  name: MainImage
-  href: API/PrismAPI.Graphics.UI.Controls.Control.html#PrismAPI_Graphics_UI_Controls_Control_MainImage
-  commentId: P:PrismAPI.Graphics.UI.Controls.Control.MainImage
-  fullName: PrismAPI.Graphics.UI.Controls.Control.MainImage
-  nameWithType: Control.MainImage
-- uid: PrismAPI.Graphics.UI.Controls.Control.MainImage*
-  name: MainImage
-  href: API/PrismAPI.Graphics.UI.Controls.Control.html#PrismAPI_Graphics_UI_Controls_Control_MainImage_
-  commentId: Overload:PrismAPI.Graphics.UI.Controls.Control.MainImage
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.UI.Controls.Control.MainImage
-  nameWithType: Control.MainImage
-- uid: PrismAPI.Graphics.UI.Controls.Control.Radius
-  name: Radius
-  href: API/PrismAPI.Graphics.UI.Controls.Control.html#PrismAPI_Graphics_UI_Controls_Control_Radius
-  commentId: P:PrismAPI.Graphics.UI.Controls.Control.Radius
-  fullName: PrismAPI.Graphics.UI.Controls.Control.Radius
-  nameWithType: Control.Radius
-- uid: PrismAPI.Graphics.UI.Controls.Control.Radius*
-  name: Radius
-  href: API/PrismAPI.Graphics.UI.Controls.Control.html#PrismAPI_Graphics_UI_Controls_Control_Radius_
-  commentId: Overload:PrismAPI.Graphics.UI.Controls.Control.Radius
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.UI.Controls.Control.Radius
-  nameWithType: Control.Radius
-- uid: PrismAPI.Graphics.UI.Controls.Control.Render
-  name: Render()
-  href: API/PrismAPI.Graphics.UI.Controls.Control.html#PrismAPI_Graphics_UI_Controls_Control_Render
-  commentId: M:PrismAPI.Graphics.UI.Controls.Control.Render
-  fullName: PrismAPI.Graphics.UI.Controls.Control.Render()
-  nameWithType: Control.Render()
-- uid: PrismAPI.Graphics.UI.Controls.Control.Render*
-  name: Render
-  href: API/PrismAPI.Graphics.UI.Controls.Control.html#PrismAPI_Graphics_UI_Controls_Control_Render_
-  commentId: Overload:PrismAPI.Graphics.UI.Controls.Control.Render
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.UI.Controls.Control.Render
-  nameWithType: Control.Render
-- uid: PrismAPI.Graphics.UI.Controls.Control.Width
-  name: Width
-  href: API/PrismAPI.Graphics.UI.Controls.Control.html#PrismAPI_Graphics_UI_Controls_Control_Width
-  commentId: P:PrismAPI.Graphics.UI.Controls.Control.Width
-  fullName: PrismAPI.Graphics.UI.Controls.Control.Width
-  nameWithType: Control.Width
-- uid: PrismAPI.Graphics.UI.Controls.Control.Width*
-  name: Width
-  href: API/PrismAPI.Graphics.UI.Controls.Control.html#PrismAPI_Graphics_UI_Controls_Control_Width_
-  commentId: Overload:PrismAPI.Graphics.UI.Controls.Control.Width
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.UI.Controls.Control.Width
-  nameWithType: Control.Width
-- uid: PrismAPI.Graphics.UI.Controls.Control.X
-  name: X
-  href: API/PrismAPI.Graphics.UI.Controls.Control.html#PrismAPI_Graphics_UI_Controls_Control_X
-  commentId: F:PrismAPI.Graphics.UI.Controls.Control.X
-  fullName: PrismAPI.Graphics.UI.Controls.Control.X
-  nameWithType: Control.X
-- uid: PrismAPI.Graphics.UI.Controls.Control.Y
-  name: Y
-  href: API/PrismAPI.Graphics.UI.Controls.Control.html#PrismAPI_Graphics_UI_Controls_Control_Y
-  commentId: F:PrismAPI.Graphics.UI.Controls.Control.Y
-  fullName: PrismAPI.Graphics.UI.Controls.Control.Y
-  nameWithType: Control.Y
-- uid: PrismAPI.Graphics.UI.Window
-  name: Window
-  href: API/PrismAPI.Graphics.UI.Window.html
-  commentId: T:PrismAPI.Graphics.UI.Window
-  fullName: PrismAPI.Graphics.UI.Window
-  nameWithType: Window
-- uid: PrismAPI.Graphics.UI.Window.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16)
-  name: Window(int, int, ushort, ushort)
-  href: API/PrismAPI.Graphics.UI.Window.html#PrismAPI_Graphics_UI_Window__ctor_System_Int32_System_Int32_System_UInt16_System_UInt16_
-  commentId: M:PrismAPI.Graphics.UI.Window.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16)
-  name.vb: New(Integer, Integer, UShort, UShort)
-  fullName: PrismAPI.Graphics.UI.Window.Window(int, int, ushort, ushort)
-  fullName.vb: PrismAPI.Graphics.UI.Window.New(Integer, Integer, UShort, UShort)
-  nameWithType: Window.Window(int, int, ushort, ushort)
-  nameWithType.vb: Window.New(Integer, Integer, UShort, UShort)
-- uid: PrismAPI.Graphics.UI.Window.#ctor*
-  name: Window
-  href: API/PrismAPI.Graphics.UI.Window.html#PrismAPI_Graphics_UI_Window__ctor_
-  commentId: Overload:PrismAPI.Graphics.UI.Window.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: PrismAPI.Graphics.UI.Window.Window
-  fullName.vb: PrismAPI.Graphics.UI.Window.New
-  nameWithType: Window.Window
-  nameWithType.vb: Window.New
-- uid: PrismAPI.Graphics.UI.Window.AddControl(PrismAPI.Graphics.UI.Controls.Control)
-  name: AddControl(Control)
-  href: API/PrismAPI.Graphics.UI.Window.html#PrismAPI_Graphics_UI_Window_AddControl_PrismAPI_Graphics_UI_Controls_Control_
-  commentId: M:PrismAPI.Graphics.UI.Window.AddControl(PrismAPI.Graphics.UI.Controls.Control)
-  fullName: PrismAPI.Graphics.UI.Window.AddControl(PrismAPI.Graphics.UI.Controls.Control)
-  nameWithType: Window.AddControl(Control)
-- uid: PrismAPI.Graphics.UI.Window.AddControl*
-  name: AddControl
-  href: API/PrismAPI.Graphics.UI.Window.html#PrismAPI_Graphics_UI_Window_AddControl_
-  commentId: Overload:PrismAPI.Graphics.UI.Window.AddControl
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.UI.Window.AddControl
-  nameWithType: Window.AddControl
-- uid: PrismAPI.Graphics.UI.Window.Height
-  name: Height
-  href: API/PrismAPI.Graphics.UI.Window.html#PrismAPI_Graphics_UI_Window_Height
-  commentId: P:PrismAPI.Graphics.UI.Window.Height
-  fullName: PrismAPI.Graphics.UI.Window.Height
-  nameWithType: Window.Height
-- uid: PrismAPI.Graphics.UI.Window.Height*
-  name: Height
-  href: API/PrismAPI.Graphics.UI.Window.html#PrismAPI_Graphics_UI_Window_Height_
-  commentId: Overload:PrismAPI.Graphics.UI.Window.Height
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.UI.Window.Height
-  nameWithType: Window.Height
-- uid: PrismAPI.Graphics.UI.Window.MainImage
-  name: MainImage
-  href: API/PrismAPI.Graphics.UI.Window.html#PrismAPI_Graphics_UI_Window_MainImage
-  commentId: F:PrismAPI.Graphics.UI.Window.MainImage
-  fullName: PrismAPI.Graphics.UI.Window.MainImage
-  nameWithType: Window.MainImage
-- uid: PrismAPI.Graphics.UI.Window.RemoveControl(PrismAPI.Graphics.UI.Controls.Control)
-  name: RemoveControl(Control)
-  href: API/PrismAPI.Graphics.UI.Window.html#PrismAPI_Graphics_UI_Window_RemoveControl_PrismAPI_Graphics_UI_Controls_Control_
-  commentId: M:PrismAPI.Graphics.UI.Window.RemoveControl(PrismAPI.Graphics.UI.Controls.Control)
-  fullName: PrismAPI.Graphics.UI.Window.RemoveControl(PrismAPI.Graphics.UI.Controls.Control)
-  nameWithType: Window.RemoveControl(Control)
-- uid: PrismAPI.Graphics.UI.Window.RemoveControl*
-  name: RemoveControl
-  href: API/PrismAPI.Graphics.UI.Window.html#PrismAPI_Graphics_UI_Window_RemoveControl_
-  commentId: Overload:PrismAPI.Graphics.UI.Window.RemoveControl
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.UI.Window.RemoveControl
-  nameWithType: Window.RemoveControl
-- uid: PrismAPI.Graphics.UI.Window.Render
-  name: Render()
-  href: API/PrismAPI.Graphics.UI.Window.html#PrismAPI_Graphics_UI_Window_Render
-  commentId: M:PrismAPI.Graphics.UI.Window.Render
-  fullName: PrismAPI.Graphics.UI.Window.Render()
-  nameWithType: Window.Render()
-- uid: PrismAPI.Graphics.UI.Window.Render*
-  name: Render
-  href: API/PrismAPI.Graphics.UI.Window.html#PrismAPI_Graphics_UI_Window_Render_
-  commentId: Overload:PrismAPI.Graphics.UI.Window.Render
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.UI.Window.Render
-  nameWithType: Window.Render
-- uid: PrismAPI.Graphics.UI.Window.Width
-  name: Width
-  href: API/PrismAPI.Graphics.UI.Window.html#PrismAPI_Graphics_UI_Window_Width
-  commentId: P:PrismAPI.Graphics.UI.Window.Width
-  fullName: PrismAPI.Graphics.UI.Window.Width
-  nameWithType: Window.Width
-- uid: PrismAPI.Graphics.UI.Window.Width*
-  name: Width
-  href: API/PrismAPI.Graphics.UI.Window.html#PrismAPI_Graphics_UI_Window_Width_
-  commentId: Overload:PrismAPI.Graphics.UI.Window.Width
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.UI.Window.Width
-  nameWithType: Window.Width
-- uid: PrismAPI.Graphics.UI.Window.X
-  name: X
-  href: API/PrismAPI.Graphics.UI.Window.html#PrismAPI_Graphics_UI_Window_X
-  commentId: F:PrismAPI.Graphics.UI.Window.X
-  fullName: PrismAPI.Graphics.UI.Window.X
-  nameWithType: Window.X
-- uid: PrismAPI.Graphics.UI.Window.Y
-  name: Y
-  href: API/PrismAPI.Graphics.UI.Window.html#PrismAPI_Graphics_UI_Window_Y
-  commentId: F:PrismAPI.Graphics.UI.Window.Y
-  fullName: PrismAPI.Graphics.UI.Window.Y
-  nameWithType: Window.Y
 - uid: PrismAPI.Hardware.GPU
   name: PrismAPI.Hardware.GPU
   href: API/PrismAPI.Hardware.GPU.html
@@ -5186,91 +4889,91 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Hardware.GPU.Display.Update
   nameWithType: Display.Update
-- uid: PrismAPI.Hardware.GPU.VESA
-  name: PrismAPI.Hardware.GPU.VESA
-  href: API/PrismAPI.Hardware.GPU.VESA.html
-  commentId: N:PrismAPI.Hardware.GPU.VESA
-  fullName: PrismAPI.Hardware.GPU.VESA
-  nameWithType: PrismAPI.Hardware.GPU.VESA
-- uid: PrismAPI.Hardware.GPU.VESA.VBECanvas
+- uid: PrismAPI.Hardware.GPU.Vesa
+  name: PrismAPI.Hardware.GPU.Vesa
+  href: API/PrismAPI.Hardware.GPU.Vesa.html
+  commentId: N:PrismAPI.Hardware.GPU.Vesa
+  fullName: PrismAPI.Hardware.GPU.Vesa
+  nameWithType: PrismAPI.Hardware.GPU.Vesa
+- uid: PrismAPI.Hardware.GPU.Vesa.VBECanvas
   name: VBECanvas
-  href: API/PrismAPI.Hardware.GPU.VESA.VBECanvas.html
-  commentId: T:PrismAPI.Hardware.GPU.VESA.VBECanvas
-  fullName: PrismAPI.Hardware.GPU.VESA.VBECanvas
+  href: API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.html
+  commentId: T:PrismAPI.Hardware.GPU.Vesa.VBECanvas
+  fullName: PrismAPI.Hardware.GPU.Vesa.VBECanvas
   nameWithType: VBECanvas
-- uid: PrismAPI.Hardware.GPU.VESA.VBECanvas.#ctor
+- uid: PrismAPI.Hardware.GPU.Vesa.VBECanvas.#ctor
   name: VBECanvas()
-  href: API/PrismAPI.Hardware.GPU.VESA.VBECanvas.html#PrismAPI_Hardware_GPU_VESA_VBECanvas__ctor
-  commentId: M:PrismAPI.Hardware.GPU.VESA.VBECanvas.#ctor
+  href: API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.html#PrismAPI_Hardware_GPU_Vesa_VBECanvas__ctor
+  commentId: M:PrismAPI.Hardware.GPU.Vesa.VBECanvas.#ctor
   name.vb: New()
-  fullName: PrismAPI.Hardware.GPU.VESA.VBECanvas.VBECanvas()
-  fullName.vb: PrismAPI.Hardware.GPU.VESA.VBECanvas.New()
+  fullName: PrismAPI.Hardware.GPU.Vesa.VBECanvas.VBECanvas()
+  fullName.vb: PrismAPI.Hardware.GPU.Vesa.VBECanvas.New()
   nameWithType: VBECanvas.VBECanvas()
   nameWithType.vb: VBECanvas.New()
-- uid: PrismAPI.Hardware.GPU.VESA.VBECanvas.#ctor*
+- uid: PrismAPI.Hardware.GPU.Vesa.VBECanvas.#ctor*
   name: VBECanvas
-  href: API/PrismAPI.Hardware.GPU.VESA.VBECanvas.html#PrismAPI_Hardware_GPU_VESA_VBECanvas__ctor_
-  commentId: Overload:PrismAPI.Hardware.GPU.VESA.VBECanvas.#ctor
+  href: API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.html#PrismAPI_Hardware_GPU_Vesa_VBECanvas__ctor_
+  commentId: Overload:PrismAPI.Hardware.GPU.Vesa.VBECanvas.#ctor
   isSpec: "True"
   name.vb: New
-  fullName: PrismAPI.Hardware.GPU.VESA.VBECanvas.VBECanvas
-  fullName.vb: PrismAPI.Hardware.GPU.VESA.VBECanvas.New
+  fullName: PrismAPI.Hardware.GPU.Vesa.VBECanvas.VBECanvas
+  fullName.vb: PrismAPI.Hardware.GPU.Vesa.VBECanvas.New
   nameWithType: VBECanvas.VBECanvas
   nameWithType.vb: VBECanvas.New
-- uid: PrismAPI.Hardware.GPU.VESA.VBECanvas.DefineCursor(PrismAPI.Graphics.Canvas)
+- uid: PrismAPI.Hardware.GPU.Vesa.VBECanvas.DefineCursor(PrismAPI.Graphics.Canvas)
   name: DefineCursor(Canvas)
-  href: API/PrismAPI.Hardware.GPU.VESA.VBECanvas.html#PrismAPI_Hardware_GPU_VESA_VBECanvas_DefineCursor_PrismAPI_Graphics_Canvas_
-  commentId: M:PrismAPI.Hardware.GPU.VESA.VBECanvas.DefineCursor(PrismAPI.Graphics.Canvas)
-  fullName: PrismAPI.Hardware.GPU.VESA.VBECanvas.DefineCursor(PrismAPI.Graphics.Canvas)
+  href: API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.html#PrismAPI_Hardware_GPU_Vesa_VBECanvas_DefineCursor_PrismAPI_Graphics_Canvas_
+  commentId: M:PrismAPI.Hardware.GPU.Vesa.VBECanvas.DefineCursor(PrismAPI.Graphics.Canvas)
+  fullName: PrismAPI.Hardware.GPU.Vesa.VBECanvas.DefineCursor(PrismAPI.Graphics.Canvas)
   nameWithType: VBECanvas.DefineCursor(Canvas)
-- uid: PrismAPI.Hardware.GPU.VESA.VBECanvas.DefineCursor*
+- uid: PrismAPI.Hardware.GPU.Vesa.VBECanvas.DefineCursor*
   name: DefineCursor
-  href: API/PrismAPI.Hardware.GPU.VESA.VBECanvas.html#PrismAPI_Hardware_GPU_VESA_VBECanvas_DefineCursor_
-  commentId: Overload:PrismAPI.Hardware.GPU.VESA.VBECanvas.DefineCursor
+  href: API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.html#PrismAPI_Hardware_GPU_Vesa_VBECanvas_DefineCursor_
+  commentId: Overload:PrismAPI.Hardware.GPU.Vesa.VBECanvas.DefineCursor
   isSpec: "True"
-  fullName: PrismAPI.Hardware.GPU.VESA.VBECanvas.DefineCursor
+  fullName: PrismAPI.Hardware.GPU.Vesa.VBECanvas.DefineCursor
   nameWithType: VBECanvas.DefineCursor
-- uid: PrismAPI.Hardware.GPU.VESA.VBECanvas.GetName
+- uid: PrismAPI.Hardware.GPU.Vesa.VBECanvas.GetName
   name: GetName()
-  href: API/PrismAPI.Hardware.GPU.VESA.VBECanvas.html#PrismAPI_Hardware_GPU_VESA_VBECanvas_GetName
-  commentId: M:PrismAPI.Hardware.GPU.VESA.VBECanvas.GetName
-  fullName: PrismAPI.Hardware.GPU.VESA.VBECanvas.GetName()
+  href: API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.html#PrismAPI_Hardware_GPU_Vesa_VBECanvas_GetName
+  commentId: M:PrismAPI.Hardware.GPU.Vesa.VBECanvas.GetName
+  fullName: PrismAPI.Hardware.GPU.Vesa.VBECanvas.GetName()
   nameWithType: VBECanvas.GetName()
-- uid: PrismAPI.Hardware.GPU.VESA.VBECanvas.GetName*
+- uid: PrismAPI.Hardware.GPU.Vesa.VBECanvas.GetName*
   name: GetName
-  href: API/PrismAPI.Hardware.GPU.VESA.VBECanvas.html#PrismAPI_Hardware_GPU_VESA_VBECanvas_GetName_
-  commentId: Overload:PrismAPI.Hardware.GPU.VESA.VBECanvas.GetName
+  href: API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.html#PrismAPI_Hardware_GPU_Vesa_VBECanvas_GetName_
+  commentId: Overload:PrismAPI.Hardware.GPU.Vesa.VBECanvas.GetName
   isSpec: "True"
-  fullName: PrismAPI.Hardware.GPU.VESA.VBECanvas.GetName
+  fullName: PrismAPI.Hardware.GPU.Vesa.VBECanvas.GetName
   nameWithType: VBECanvas.GetName
-- uid: PrismAPI.Hardware.GPU.VESA.VBECanvas.SetCursor(System.UInt32,System.UInt32,System.Boolean)
+- uid: PrismAPI.Hardware.GPU.Vesa.VBECanvas.SetCursor(System.UInt32,System.UInt32,System.Boolean)
   name: SetCursor(uint, uint, bool)
-  href: API/PrismAPI.Hardware.GPU.VESA.VBECanvas.html#PrismAPI_Hardware_GPU_VESA_VBECanvas_SetCursor_System_UInt32_System_UInt32_System_Boolean_
-  commentId: M:PrismAPI.Hardware.GPU.VESA.VBECanvas.SetCursor(System.UInt32,System.UInt32,System.Boolean)
+  href: API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.html#PrismAPI_Hardware_GPU_Vesa_VBECanvas_SetCursor_System_UInt32_System_UInt32_System_Boolean_
+  commentId: M:PrismAPI.Hardware.GPU.Vesa.VBECanvas.SetCursor(System.UInt32,System.UInt32,System.Boolean)
   name.vb: SetCursor(UInteger, UInteger, Boolean)
-  fullName: PrismAPI.Hardware.GPU.VESA.VBECanvas.SetCursor(uint, uint, bool)
-  fullName.vb: PrismAPI.Hardware.GPU.VESA.VBECanvas.SetCursor(UInteger, UInteger, Boolean)
+  fullName: PrismAPI.Hardware.GPU.Vesa.VBECanvas.SetCursor(uint, uint, bool)
+  fullName.vb: PrismAPI.Hardware.GPU.Vesa.VBECanvas.SetCursor(UInteger, UInteger, Boolean)
   nameWithType: VBECanvas.SetCursor(uint, uint, bool)
   nameWithType.vb: VBECanvas.SetCursor(UInteger, UInteger, Boolean)
-- uid: PrismAPI.Hardware.GPU.VESA.VBECanvas.SetCursor*
+- uid: PrismAPI.Hardware.GPU.Vesa.VBECanvas.SetCursor*
   name: SetCursor
-  href: API/PrismAPI.Hardware.GPU.VESA.VBECanvas.html#PrismAPI_Hardware_GPU_VESA_VBECanvas_SetCursor_
-  commentId: Overload:PrismAPI.Hardware.GPU.VESA.VBECanvas.SetCursor
+  href: API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.html#PrismAPI_Hardware_GPU_Vesa_VBECanvas_SetCursor_
+  commentId: Overload:PrismAPI.Hardware.GPU.Vesa.VBECanvas.SetCursor
   isSpec: "True"
-  fullName: PrismAPI.Hardware.GPU.VESA.VBECanvas.SetCursor
+  fullName: PrismAPI.Hardware.GPU.Vesa.VBECanvas.SetCursor
   nameWithType: VBECanvas.SetCursor
-- uid: PrismAPI.Hardware.GPU.VESA.VBECanvas.Update
+- uid: PrismAPI.Hardware.GPU.Vesa.VBECanvas.Update
   name: Update()
-  href: API/PrismAPI.Hardware.GPU.VESA.VBECanvas.html#PrismAPI_Hardware_GPU_VESA_VBECanvas_Update
-  commentId: M:PrismAPI.Hardware.GPU.VESA.VBECanvas.Update
-  fullName: PrismAPI.Hardware.GPU.VESA.VBECanvas.Update()
+  href: API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.html#PrismAPI_Hardware_GPU_Vesa_VBECanvas_Update
+  commentId: M:PrismAPI.Hardware.GPU.Vesa.VBECanvas.Update
+  fullName: PrismAPI.Hardware.GPU.Vesa.VBECanvas.Update()
   nameWithType: VBECanvas.Update()
-- uid: PrismAPI.Hardware.GPU.VESA.VBECanvas.Update*
+- uid: PrismAPI.Hardware.GPU.Vesa.VBECanvas.Update*
   name: Update
-  href: API/PrismAPI.Hardware.GPU.VESA.VBECanvas.html#PrismAPI_Hardware_GPU_VESA_VBECanvas_Update_
-  commentId: Overload:PrismAPI.Hardware.GPU.VESA.VBECanvas.Update
+  href: API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.html#PrismAPI_Hardware_GPU_Vesa_VBECanvas_Update_
+  commentId: Overload:PrismAPI.Hardware.GPU.Vesa.VBECanvas.Update
   isSpec: "True"
-  fullName: PrismAPI.Hardware.GPU.VESA.VBECanvas.Update
+  fullName: PrismAPI.Hardware.GPU.Vesa.VBECanvas.Update
   nameWithType: VBECanvas.Update
 - uid: PrismAPI.Hardware.GPU.VMWare
   name: PrismAPI.Hardware.GPU.VMWare
@@ -7888,6 +7591,30 @@ references:
   commentId: T:PrismAPI.Tools.ByteFormatter
   fullName: PrismAPI.Tools.ByteFormatter
   nameWithType: ByteFormatter
+- uid: PrismAPI.Tools.ByteFormatter.BytesPerGigabyte
+  name: BytesPerGigabyte
+  href: API/PrismAPI.Tools.ByteFormatter.html#PrismAPI_Tools_ByteFormatter_BytesPerGigabyte
+  commentId: F:PrismAPI.Tools.ByteFormatter.BytesPerGigabyte
+  fullName: PrismAPI.Tools.ByteFormatter.BytesPerGigabyte
+  nameWithType: ByteFormatter.BytesPerGigabyte
+- uid: PrismAPI.Tools.ByteFormatter.BytesPerKilobyte
+  name: BytesPerKilobyte
+  href: API/PrismAPI.Tools.ByteFormatter.html#PrismAPI_Tools_ByteFormatter_BytesPerKilobyte
+  commentId: F:PrismAPI.Tools.ByteFormatter.BytesPerKilobyte
+  fullName: PrismAPI.Tools.ByteFormatter.BytesPerKilobyte
+  nameWithType: ByteFormatter.BytesPerKilobyte
+- uid: PrismAPI.Tools.ByteFormatter.BytesPerMegabyte
+  name: BytesPerMegabyte
+  href: API/PrismAPI.Tools.ByteFormatter.html#PrismAPI_Tools_ByteFormatter_BytesPerMegabyte
+  commentId: F:PrismAPI.Tools.ByteFormatter.BytesPerMegabyte
+  fullName: PrismAPI.Tools.ByteFormatter.BytesPerMegabyte
+  nameWithType: ByteFormatter.BytesPerMegabyte
+- uid: PrismAPI.Tools.ByteFormatter.BytesPerTerrabye
+  name: BytesPerTerrabye
+  href: API/PrismAPI.Tools.ByteFormatter.html#PrismAPI_Tools_ByteFormatter_BytesPerTerrabye
+  commentId: F:PrismAPI.Tools.ByteFormatter.BytesPerTerrabye
+  fullName: PrismAPI.Tools.ByteFormatter.BytesPerTerrabye
+  nameWithType: ByteFormatter.BytesPerTerrabye
 - uid: PrismAPI.Tools.ByteFormatter.GetGigabytes(System.UInt64)
   name: GetGigabytes(ulong)
   href: API/PrismAPI.Tools.ByteFormatter.html#PrismAPI_Tools_ByteFormatter_GetGigabytes_System_UInt64_
@@ -8251,3 +7978,394 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Tools.StringEx.NumberOf
   nameWithType: StringEx.NumberOf
+- uid: PrismAPI.UI
+  name: PrismAPI.UI
+  href: API/PrismAPI.UI.html
+  commentId: N:PrismAPI.UI
+  fullName: PrismAPI.UI
+  nameWithType: PrismAPI.UI
+- uid: PrismAPI.UI.Config
+  name: PrismAPI.UI.Config
+  href: API/PrismAPI.UI.Config.html
+  commentId: N:PrismAPI.UI.Config
+  fullName: PrismAPI.UI.Config
+  nameWithType: PrismAPI.UI.Config
+- uid: PrismAPI.UI.Config.CursorStatus
+  name: CursorStatus
+  href: API/PrismAPI.UI.Config.CursorStatus.html
+  commentId: T:PrismAPI.UI.Config.CursorStatus
+  fullName: PrismAPI.UI.Config.CursorStatus
+  nameWithType: CursorStatus
+- uid: PrismAPI.UI.Config.CursorStatus.Clicked
+  name: Clicked
+  href: API/PrismAPI.UI.Config.CursorStatus.html#PrismAPI_UI_Config_CursorStatus_Clicked
+  commentId: F:PrismAPI.UI.Config.CursorStatus.Clicked
+  fullName: PrismAPI.UI.Config.CursorStatus.Clicked
+  nameWithType: CursorStatus.Clicked
+- uid: PrismAPI.UI.Config.CursorStatus.Hovering
+  name: Hovering
+  href: API/PrismAPI.UI.Config.CursorStatus.html#PrismAPI_UI_Config_CursorStatus_Hovering
+  commentId: F:PrismAPI.UI.Config.CursorStatus.Hovering
+  fullName: PrismAPI.UI.Config.CursorStatus.Hovering
+  nameWithType: CursorStatus.Hovering
+- uid: PrismAPI.UI.Config.CursorStatus.Idle
+  name: Idle
+  href: API/PrismAPI.UI.Config.CursorStatus.html#PrismAPI_UI_Config_CursorStatus_Idle
+  commentId: F:PrismAPI.UI.Config.CursorStatus.Idle
+  fullName: PrismAPI.UI.Config.CursorStatus.Idle
+  nameWithType: CursorStatus.Idle
+- uid: PrismAPI.UI.Config.LayoutStyle
+  name: LayoutStyle
+  href: API/PrismAPI.UI.Config.LayoutStyle.html
+  commentId: T:PrismAPI.UI.Config.LayoutStyle
+  fullName: PrismAPI.UI.Config.LayoutStyle
+  nameWithType: LayoutStyle
+- uid: PrismAPI.UI.Config.LayoutStyle.Bottom
+  name: Bottom
+  href: API/PrismAPI.UI.Config.LayoutStyle.html#PrismAPI_UI_Config_LayoutStyle_Bottom
+  commentId: F:PrismAPI.UI.Config.LayoutStyle.Bottom
+  fullName: PrismAPI.UI.Config.LayoutStyle.Bottom
+  nameWithType: LayoutStyle.Bottom
+- uid: PrismAPI.UI.Config.LayoutStyle.Center
+  name: Center
+  href: API/PrismAPI.UI.Config.LayoutStyle.html#PrismAPI_UI_Config_LayoutStyle_Center
+  commentId: F:PrismAPI.UI.Config.LayoutStyle.Center
+  fullName: PrismAPI.UI.Config.LayoutStyle.Center
+  nameWithType: LayoutStyle.Center
+- uid: PrismAPI.UI.Config.LayoutStyle.Left
+  name: Left
+  href: API/PrismAPI.UI.Config.LayoutStyle.html#PrismAPI_UI_Config_LayoutStyle_Left
+  commentId: F:PrismAPI.UI.Config.LayoutStyle.Left
+  fullName: PrismAPI.UI.Config.LayoutStyle.Left
+  nameWithType: LayoutStyle.Left
+- uid: PrismAPI.UI.Config.LayoutStyle.None
+  name: None
+  href: API/PrismAPI.UI.Config.LayoutStyle.html#PrismAPI_UI_Config_LayoutStyle_None
+  commentId: F:PrismAPI.UI.Config.LayoutStyle.None
+  fullName: PrismAPI.UI.Config.LayoutStyle.None
+  nameWithType: LayoutStyle.None
+- uid: PrismAPI.UI.Config.LayoutStyle.Right
+  name: Right
+  href: API/PrismAPI.UI.Config.LayoutStyle.html#PrismAPI_UI_Config_LayoutStyle_Right
+  commentId: F:PrismAPI.UI.Config.LayoutStyle.Right
+  fullName: PrismAPI.UI.Config.LayoutStyle.Right
+  nameWithType: LayoutStyle.Right
+- uid: PrismAPI.UI.Config.LayoutStyle.Top
+  name: Top
+  href: API/PrismAPI.UI.Config.LayoutStyle.html#PrismAPI_UI_Config_LayoutStyle_Top
+  commentId: F:PrismAPI.UI.Config.LayoutStyle.Top
+  fullName: PrismAPI.UI.Config.LayoutStyle.Top
+  nameWithType: LayoutStyle.Top
+- uid: PrismAPI.UI.Config.ThemeStyle
+  name: ThemeStyle
+  href: API/PrismAPI.UI.Config.ThemeStyle.html
+  commentId: T:PrismAPI.UI.Config.ThemeStyle
+  fullName: PrismAPI.UI.Config.ThemeStyle
+  nameWithType: ThemeStyle
+- uid: PrismAPI.UI.Config.ThemeStyle.Aero
+  name: Aero
+  href: API/PrismAPI.UI.Config.ThemeStyle.html#PrismAPI_UI_Config_ThemeStyle_Aero
+  commentId: F:PrismAPI.UI.Config.ThemeStyle.Aero
+  fullName: PrismAPI.UI.Config.ThemeStyle.Aero
+  nameWithType: ThemeStyle.Aero
+- uid: PrismAPI.UI.Config.ThemeStyle.Holo
+  name: Holo
+  href: API/PrismAPI.UI.Config.ThemeStyle.html#PrismAPI_UI_Config_ThemeStyle_Holo
+  commentId: F:PrismAPI.UI.Config.ThemeStyle.Holo
+  fullName: PrismAPI.UI.Config.ThemeStyle.Holo
+  nameWithType: ThemeStyle.Holo
+- uid: PrismAPI.UI.Config.ThemeStyle.Luna
+  name: Luna
+  href: API/PrismAPI.UI.Config.ThemeStyle.html#PrismAPI_UI_Config_ThemeStyle_Luna
+  commentId: F:PrismAPI.UI.Config.ThemeStyle.Luna
+  fullName: PrismAPI.UI.Config.ThemeStyle.Luna
+  nameWithType: ThemeStyle.Luna
+- uid: PrismAPI.UI.Config.ThemeStyle.Material
+  name: Material
+  href: API/PrismAPI.UI.Config.ThemeStyle.html#PrismAPI_UI_Config_ThemeStyle_Material
+  commentId: F:PrismAPI.UI.Config.ThemeStyle.Material
+  fullName: PrismAPI.UI.Config.ThemeStyle.Material
+  nameWithType: ThemeStyle.Material
+- uid: PrismAPI.UI.Config.ThemeStyle.MaterialYou
+  name: MaterialYou
+  href: API/PrismAPI.UI.Config.ThemeStyle.html#PrismAPI_UI_Config_ThemeStyle_MaterialYou
+  commentId: F:PrismAPI.UI.Config.ThemeStyle.MaterialYou
+  fullName: PrismAPI.UI.Config.ThemeStyle.MaterialYou
+  nameWithType: ThemeStyle.MaterialYou
+- uid: PrismAPI.UI.Config.ThemeStyle.Metro
+  name: Metro
+  href: API/PrismAPI.UI.Config.ThemeStyle.html#PrismAPI_UI_Config_ThemeStyle_Metro
+  commentId: F:PrismAPI.UI.Config.ThemeStyle.Metro
+  fullName: PrismAPI.UI.Config.ThemeStyle.Metro
+  nameWithType: ThemeStyle.Metro
+- uid: PrismAPI.UI.Config.ThemeStyle.None
+  name: None
+  href: API/PrismAPI.UI.Config.ThemeStyle.html#PrismAPI_UI_Config_ThemeStyle_None
+  commentId: F:PrismAPI.UI.Config.ThemeStyle.None
+  fullName: PrismAPI.UI.Config.ThemeStyle.None
+  nameWithType: ThemeStyle.None
+- uid: PrismAPI.UI.Control
+  name: Control
+  href: API/PrismAPI.UI.Control.html
+  commentId: T:PrismAPI.UI.Control
+  fullName: PrismAPI.UI.Control
+  nameWithType: Control
+- uid: PrismAPI.UI.Control.#ctor(System.UInt16,System.UInt16)
+  name: Control(ushort, ushort)
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control__ctor_System_UInt16_System_UInt16_
+  commentId: M:PrismAPI.UI.Control.#ctor(System.UInt16,System.UInt16)
+  name.vb: New(UShort, UShort)
+  fullName: PrismAPI.UI.Control.Control(ushort, ushort)
+  fullName.vb: PrismAPI.UI.Control.New(UShort, UShort)
+  nameWithType: Control.Control(ushort, ushort)
+  nameWithType.vb: Control.New(UShort, UShort)
+- uid: PrismAPI.UI.Control.#ctor*
+  name: Control
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control__ctor_
+  commentId: Overload:PrismAPI.UI.Control.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: PrismAPI.UI.Control.Control
+  fullName.vb: PrismAPI.UI.Control.New
+  nameWithType: Control.Control
+  nameWithType.vb: Control.New
+- uid: PrismAPI.UI.Control.BackGround
+  name: BackGround
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_BackGround
+  commentId: F:PrismAPI.UI.Control.BackGround
+  fullName: PrismAPI.UI.Control.BackGround
+  nameWithType: Control.BackGround
+- uid: PrismAPI.UI.Control.ForeGround
+  name: ForeGround
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_ForeGround
+  commentId: F:PrismAPI.UI.Control.ForeGround
+  fullName: PrismAPI.UI.Control.ForeGround
+  nameWithType: Control.ForeGround
+- uid: PrismAPI.UI.Control.Layout
+  name: Layout
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_Layout
+  commentId: F:PrismAPI.UI.Control.Layout
+  fullName: PrismAPI.UI.Control.Layout
+  nameWithType: Control.Layout
+- uid: PrismAPI.UI.Control.OnClick(System.UInt32,System.UInt32,Cosmos.System.MouseState)
+  name: OnClick(uint, uint, MouseState)
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_OnClick_System_UInt32_System_UInt32_Cosmos_System_MouseState_
+  commentId: M:PrismAPI.UI.Control.OnClick(System.UInt32,System.UInt32,Cosmos.System.MouseState)
+  name.vb: OnClick(UInteger, UInteger, MouseState)
+  fullName: PrismAPI.UI.Control.OnClick(uint, uint, Cosmos.System.MouseState)
+  fullName.vb: PrismAPI.UI.Control.OnClick(UInteger, UInteger, Cosmos.System.MouseState)
+  nameWithType: Control.OnClick(uint, uint, MouseState)
+  nameWithType.vb: Control.OnClick(UInteger, UInteger, MouseState)
+- uid: PrismAPI.UI.Control.OnClick*
+  name: OnClick
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_OnClick_
+  commentId: Overload:PrismAPI.UI.Control.OnClick
+  isSpec: "True"
+  fullName: PrismAPI.UI.Control.OnClick
+  nameWithType: Control.OnClick
+- uid: PrismAPI.UI.Control.Radius
+  name: Radius
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_Radius
+  commentId: F:PrismAPI.UI.Control.Radius
+  fullName: PrismAPI.UI.Control.Radius
+  nameWithType: Control.Radius
+- uid: PrismAPI.UI.Control.Theme
+  name: Theme
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_Theme
+  commentId: F:PrismAPI.UI.Control.Theme
+  fullName: PrismAPI.UI.Control.Theme
+  nameWithType: Control.Theme
+- uid: PrismAPI.UI.Control.Update(PrismAPI.Graphics.Canvas,PrismAPI.UI.Config.CursorStatus)
+  name: Update(Canvas, CursorStatus)
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_Update_PrismAPI_Graphics_Canvas_PrismAPI_UI_Config_CursorStatus_
+  commentId: M:PrismAPI.UI.Control.Update(PrismAPI.Graphics.Canvas,PrismAPI.UI.Config.CursorStatus)
+  fullName: PrismAPI.UI.Control.Update(PrismAPI.Graphics.Canvas, PrismAPI.UI.Config.CursorStatus)
+  nameWithType: Control.Update(Canvas, CursorStatus)
+- uid: PrismAPI.UI.Control.Update*
+  name: Update
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_Update_
+  commentId: Overload:PrismAPI.UI.Control.Update
+  isSpec: "True"
+  fullName: PrismAPI.UI.Control.Update
+  nameWithType: Control.Update
+- uid: PrismAPI.UI.Control.X
+  name: X
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_X
+  commentId: F:PrismAPI.UI.Control.X
+  fullName: PrismAPI.UI.Control.X
+  nameWithType: Control.X
+- uid: PrismAPI.UI.Control.Y
+  name: Y
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_Y
+  commentId: F:PrismAPI.UI.Control.Y
+  fullName: PrismAPI.UI.Control.Y
+  nameWithType: Control.Y
+- uid: PrismAPI.UI.Controls
+  name: PrismAPI.UI.Controls
+  href: API/PrismAPI.UI.Controls.html
+  commentId: N:PrismAPI.UI.Controls
+  fullName: PrismAPI.UI.Controls
+  nameWithType: PrismAPI.UI.Controls
+- uid: PrismAPI.UI.Controls.Button
+  name: Button
+  href: API/PrismAPI.UI.Controls.Button.html
+  commentId: T:PrismAPI.UI.Controls.Button
+  fullName: PrismAPI.UI.Controls.Button
+  nameWithType: Button
+- uid: PrismAPI.UI.Controls.Button.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16,System.UInt16,System.String)
+  name: Button(int, int, ushort, ushort, ushort, string)
+  href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button__ctor_System_Int32_System_Int32_System_UInt16_System_UInt16_System_UInt16_System_String_
+  commentId: M:PrismAPI.UI.Controls.Button.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16,System.UInt16,System.String)
+  name.vb: New(Integer, Integer, UShort, UShort, UShort, String)
+  fullName: PrismAPI.UI.Controls.Button.Button(int, int, ushort, ushort, ushort, string)
+  fullName.vb: PrismAPI.UI.Controls.Button.New(Integer, Integer, UShort, UShort, UShort, String)
+  nameWithType: Button.Button(int, int, ushort, ushort, ushort, string)
+  nameWithType.vb: Button.New(Integer, Integer, UShort, UShort, UShort, String)
+- uid: PrismAPI.UI.Controls.Button.#ctor*
+  name: Button
+  href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button__ctor_
+  commentId: Overload:PrismAPI.UI.Controls.Button.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: PrismAPI.UI.Controls.Button.Button
+  fullName.vb: PrismAPI.UI.Controls.Button.New
+  nameWithType: Button.Button
+  nameWithType.vb: Button.New
+- uid: PrismAPI.UI.Controls.Button.EndColor
+  name: EndColor
+  href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button_EndColor
+  commentId: F:PrismAPI.UI.Controls.Button.EndColor
+  fullName: PrismAPI.UI.Controls.Button.EndColor
+  nameWithType: Button.EndColor
+- uid: PrismAPI.UI.Controls.Button.OnClick(System.UInt32,System.UInt32,Cosmos.System.MouseState)
+  name: OnClick(uint, uint, MouseState)
+  href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button_OnClick_System_UInt32_System_UInt32_Cosmos_System_MouseState_
+  commentId: M:PrismAPI.UI.Controls.Button.OnClick(System.UInt32,System.UInt32,Cosmos.System.MouseState)
+  name.vb: OnClick(UInteger, UInteger, MouseState)
+  fullName: PrismAPI.UI.Controls.Button.OnClick(uint, uint, Cosmos.System.MouseState)
+  fullName.vb: PrismAPI.UI.Controls.Button.OnClick(UInteger, UInteger, Cosmos.System.MouseState)
+  nameWithType: Button.OnClick(uint, uint, MouseState)
+  nameWithType.vb: Button.OnClick(UInteger, UInteger, MouseState)
+- uid: PrismAPI.UI.Controls.Button.OnClick*
+  name: OnClick
+  href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button_OnClick_
+  commentId: Overload:PrismAPI.UI.Controls.Button.OnClick
+  isSpec: "True"
+  fullName: PrismAPI.UI.Controls.Button.OnClick
+  nameWithType: Button.OnClick
+- uid: PrismAPI.UI.Controls.Button.StartColor
+  name: StartColor
+  href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button_StartColor
+  commentId: F:PrismAPI.UI.Controls.Button.StartColor
+  fullName: PrismAPI.UI.Controls.Button.StartColor
+  nameWithType: Button.StartColor
+- uid: PrismAPI.UI.Controls.Button.Text
+  name: Text
+  href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button_Text
+  commentId: F:PrismAPI.UI.Controls.Button.Text
+  fullName: PrismAPI.UI.Controls.Button.Text
+  nameWithType: Button.Text
+- uid: PrismAPI.UI.Controls.Button.Update(PrismAPI.Graphics.Canvas,PrismAPI.UI.Config.CursorStatus)
+  name: Update(Canvas, CursorStatus)
+  href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button_Update_PrismAPI_Graphics_Canvas_PrismAPI_UI_Config_CursorStatus_
+  commentId: M:PrismAPI.UI.Controls.Button.Update(PrismAPI.Graphics.Canvas,PrismAPI.UI.Config.CursorStatus)
+  fullName: PrismAPI.UI.Controls.Button.Update(PrismAPI.Graphics.Canvas, PrismAPI.UI.Config.CursorStatus)
+  nameWithType: Button.Update(Canvas, CursorStatus)
+- uid: PrismAPI.UI.Controls.Button.Update*
+  name: Update
+  href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button_Update_
+  commentId: Overload:PrismAPI.UI.Controls.Button.Update
+  isSpec: "True"
+  fullName: PrismAPI.UI.Controls.Button.Update
+  nameWithType: Button.Update
+- uid: PrismAPI.UI.Window
+  name: Window
+  href: API/PrismAPI.UI.Window.html
+  commentId: T:PrismAPI.UI.Window
+  fullName: PrismAPI.UI.Window
+  nameWithType: Window
+- uid: PrismAPI.UI.Window.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16)
+  name: Window(int, int, ushort, ushort)
+  href: API/PrismAPI.UI.Window.html#PrismAPI_UI_Window__ctor_System_Int32_System_Int32_System_UInt16_System_UInt16_
+  commentId: M:PrismAPI.UI.Window.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16)
+  name.vb: New(Integer, Integer, UShort, UShort)
+  fullName: PrismAPI.UI.Window.Window(int, int, ushort, ushort)
+  fullName.vb: PrismAPI.UI.Window.New(Integer, Integer, UShort, UShort)
+  nameWithType: Window.Window(int, int, ushort, ushort)
+  nameWithType.vb: Window.New(Integer, Integer, UShort, UShort)
+- uid: PrismAPI.UI.Window.#ctor*
+  name: Window
+  href: API/PrismAPI.UI.Window.html#PrismAPI_UI_Window__ctor_
+  commentId: Overload:PrismAPI.UI.Window.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: PrismAPI.UI.Window.Window
+  fullName.vb: PrismAPI.UI.Window.New
+  nameWithType: Window.Window
+  nameWithType.vb: Window.New
+- uid: PrismAPI.UI.Window.Controls
+  name: Controls
+  href: API/PrismAPI.UI.Window.html#PrismAPI_UI_Window_Controls
+  commentId: F:PrismAPI.UI.Window.Controls
+  fullName: PrismAPI.UI.Window.Controls
+  nameWithType: Window.Controls
+- uid: PrismAPI.UI.Window.OnClick(System.UInt32,System.UInt32,Cosmos.System.MouseState)
+  name: OnClick(uint, uint, MouseState)
+  href: API/PrismAPI.UI.Window.html#PrismAPI_UI_Window_OnClick_System_UInt32_System_UInt32_Cosmos_System_MouseState_
+  commentId: M:PrismAPI.UI.Window.OnClick(System.UInt32,System.UInt32,Cosmos.System.MouseState)
+  name.vb: OnClick(UInteger, UInteger, MouseState)
+  fullName: PrismAPI.UI.Window.OnClick(uint, uint, Cosmos.System.MouseState)
+  fullName.vb: PrismAPI.UI.Window.OnClick(UInteger, UInteger, Cosmos.System.MouseState)
+  nameWithType: Window.OnClick(uint, uint, MouseState)
+  nameWithType.vb: Window.OnClick(UInteger, UInteger, MouseState)
+- uid: PrismAPI.UI.Window.OnClick*
+  name: OnClick
+  href: API/PrismAPI.UI.Window.html#PrismAPI_UI_Window_OnClick_
+  commentId: Overload:PrismAPI.UI.Window.OnClick
+  isSpec: "True"
+  fullName: PrismAPI.UI.Window.OnClick
+  nameWithType: Window.OnClick
+- uid: PrismAPI.UI.Window.ShelfControls
+  name: ShelfControls
+  href: API/PrismAPI.UI.Window.html#PrismAPI_UI_Window_ShelfControls
+  commentId: F:PrismAPI.UI.Window.ShelfControls
+  fullName: PrismAPI.UI.Window.ShelfControls
+  nameWithType: Window.ShelfControls
+- uid: PrismAPI.UI.Window.Update(PrismAPI.Graphics.Canvas,PrismAPI.UI.Config.CursorStatus)
+  name: Update(Canvas, CursorStatus)
+  href: API/PrismAPI.UI.Window.html#PrismAPI_UI_Window_Update_PrismAPI_Graphics_Canvas_PrismAPI_UI_Config_CursorStatus_
+  commentId: M:PrismAPI.UI.Window.Update(PrismAPI.Graphics.Canvas,PrismAPI.UI.Config.CursorStatus)
+  fullName: PrismAPI.UI.Window.Update(PrismAPI.Graphics.Canvas, PrismAPI.UI.Config.CursorStatus)
+  nameWithType: Window.Update(Canvas, CursorStatus)
+- uid: PrismAPI.UI.Window.Update*
+  name: Update
+  href: API/PrismAPI.UI.Window.html#PrismAPI_UI_Window_Update_
+  commentId: Overload:PrismAPI.UI.Window.Update
+  isSpec: "True"
+  fullName: PrismAPI.UI.Window.Update
+  nameWithType: Window.Update
+- uid: PrismAPI.UI.WindowManager
+  name: WindowManager
+  href: API/PrismAPI.UI.WindowManager.html
+  commentId: T:PrismAPI.UI.WindowManager
+  fullName: PrismAPI.UI.WindowManager
+  nameWithType: WindowManager
+- uid: PrismAPI.UI.WindowManager.Update(PrismAPI.Graphics.Canvas)
+  name: Update(Canvas)
+  href: API/PrismAPI.UI.WindowManager.html#PrismAPI_UI_WindowManager_Update_PrismAPI_Graphics_Canvas_
+  commentId: M:PrismAPI.UI.WindowManager.Update(PrismAPI.Graphics.Canvas)
+  fullName: PrismAPI.UI.WindowManager.Update(PrismAPI.Graphics.Canvas)
+  nameWithType: WindowManager.Update(Canvas)
+- uid: PrismAPI.UI.WindowManager.Update*
+  name: Update
+  href: API/PrismAPI.UI.WindowManager.html#PrismAPI_UI_WindowManager_Update_
+  commentId: Overload:PrismAPI.UI.WindowManager.Update
+  isSpec: "True"
+  fullName: PrismAPI.UI.WindowManager.Update
+  nameWithType: WindowManager.Update
+- uid: PrismAPI.UI.WindowManager.Windows
+  name: Windows
+  href: API/PrismAPI.UI.WindowManager.html#PrismAPI_UI_WindowManager_Windows
+  commentId: F:PrismAPI.UI.WindowManager.Windows
+  fullName: PrismAPI.UI.WindowManager.Windows
+  nameWithType: WindowManager.Windows

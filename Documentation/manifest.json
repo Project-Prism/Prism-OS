@@ -615,56 +615,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Graphics.UI.Controls.Button.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismAPI.Graphics.UI.Controls.Button.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Graphics.UI.Controls.Control.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismAPI.Graphics.UI.Controls.Control.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Graphics.UI.Controls.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismAPI.Graphics.UI.Controls.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Graphics.UI.Window.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismAPI.Graphics.UI.Window.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Graphics.UI.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismAPI.Graphics.UI.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "API/PrismAPI.Graphics.yml",
       "output": {
         ".html": {
@@ -685,26 +635,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Hardware.GPU.VESA.VBECanvas.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismAPI.Hardware.GPU.VESA.VBECanvas.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Hardware.GPU.VESA.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismAPI.Hardware.GPU.VESA.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "API/PrismAPI.Hardware.GPU.VMWare.SVGAIICanvas.yml",
       "output": {
         ".html": {
@@ -719,6 +649,26 @@
       "output": {
         ".html": {
           "relative_path": "API/PrismAPI.Hardware.GPU.VMWare.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.Hardware.GPU.Vesa.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.Hardware.GPU.Vesa.html"
         }
       },
       "version": ""
@@ -1309,6 +1259,106 @@
       "output": {
         ".html": {
           "relative_path": "API/PrismAPI.Tools.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.UI.Config.CursorStatus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.UI.Config.CursorStatus.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.UI.Config.LayoutStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.UI.Config.LayoutStyle.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.UI.Config.ThemeStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.UI.Config.ThemeStyle.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.UI.Config.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.UI.Config.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.UI.Control.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.UI.Control.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.UI.Controls.Button.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.UI.Controls.Button.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.UI.Controls.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.UI.Controls.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.UI.Window.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.UI.Window.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.UI.WindowManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.UI.WindowManager.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.UI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.UI.html"
         }
       },
       "version": ""

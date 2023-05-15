@@ -119,7 +119,7 @@ Only use this on the base <a class="xref" href="PrismAPI.Graphics.Canvas.html">C
     <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Graphics_Filters_ApplyAA_PrismAPI_Graphics_Canvas_.md&amp;value=---%0Auid%3A%20PrismAPI.Graphics.Filters.ApplyAA(PrismAPI.Graphics.Canvas)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Filters.cs/#L192">View Source</a>
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Filters.cs/#L215">View Source</a>
   </span>
   <a id="PrismAPI_Graphics_Filters_ApplyAA_" data-uid="PrismAPI.Graphics.Filters.ApplyAA*"></a>
   <h4 id="PrismAPI_Graphics_Filters_ApplyAA_PrismAPI_Graphics_Canvas_" data-uid="PrismAPI.Graphics.Filters.ApplyAA(PrismAPI.Graphics.Canvas)">ApplyAA(Canvas)</h4>
@@ -161,6 +161,69 @@ Warning: This method is somewhat slow.</p>
       <tr>
         <td><a class="xref" href="PrismAPI.Graphics.Canvas.html">Canvas</a></td>
         <td><p>Filtered canvas image.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Graphics_Filters_ApplyHDR_PrismAPI_Graphics_Canvas_PrismAPI_Graphics_Canvas_PrismAPI_Graphics_Canvas_.md&amp;value=---%0Auid%3A%20PrismAPI.Graphics.Filters.ApplyHDR(PrismAPI.Graphics.Canvas%2CPrismAPI.Graphics.Canvas%2CPrismAPI.Graphics.Canvas)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Filters.cs/#L194">View Source</a>
+  </span>
+  <a id="PrismAPI_Graphics_Filters_ApplyHDR_" data-uid="PrismAPI.Graphics.Filters.ApplyHDR*"></a>
+  <h4 id="PrismAPI_Graphics_Filters_ApplyHDR_PrismAPI_Graphics_Canvas_PrismAPI_Graphics_Canvas_PrismAPI_Graphics_Canvas_" data-uid="PrismAPI.Graphics.Filters.ApplyHDR(PrismAPI.Graphics.Canvas,PrismAPI.Graphics.Canvas,PrismAPI.Graphics.Canvas)">ApplyHDR(Canvas, Canvas, Canvas)</h4>
+  <div class="markdown level1 summary"><p>Applies an HDR affect to an image given the High and Low exposure inputs.
+Assumes High and Low are the same size as Normal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Canvas ApplyHDR(Canvas High, Canvas Normal, Canvas Low)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="PrismAPI.Graphics.Canvas.html">Canvas</a></td>
+        <td><span class="parametername">High</span></td>
+        <td><p>The high exposure variant.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="PrismAPI.Graphics.Canvas.html">Canvas</a></td>
+        <td><span class="parametername">Normal</span></td>
+        <td><p>The normal exposure variant.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="PrismAPI.Graphics.Canvas.html">Canvas</a></td>
+        <td><span class="parametername">Low</span></td>
+        <td><p>The low exposure variant.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="PrismAPI.Graphics.Canvas.html">Canvas</a></td>
+        <td><p>And image with a HDR effect applied to it.</p>
 </td>
       </tr>
     </tbody>

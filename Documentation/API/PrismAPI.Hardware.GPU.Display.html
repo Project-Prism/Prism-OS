@@ -81,12 +81,8 @@
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><a class="xref" href="PrismAPI.Graphics.Canvas.html">Canvas</a></div>
     <div class="level2"><span class="xref">Display</span></div>
-      <div class="level3"><a class="xref" href="PrismAPI.Hardware.GPU.VESA.VBECanvas.html">VBECanvas</a></div>
+      <div class="level3"><a class="xref" href="PrismAPI.Hardware.GPU.Vesa.VBECanvas.html">VBECanvas</a></div>
       <div class="level3"><a class="xref" href="PrismAPI.Hardware.GPU.VMWare.SVGAIICanvas.html">SVGAIICanvas</a></div>
-  </div>
-  <div class="implements">
-    <h5>Implements</h5>
-    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -160,9 +156,6 @@
       <a class="xref" href="PrismAPI.Graphics.Canvas.html#PrismAPI_Graphics_Canvas_CopyTo_System_UInt32__">Canvas.CopyTo(uint*)</a>
     </div>
     <div>
-      <a class="xref" href="PrismAPI.Graphics.Canvas.html#PrismAPI_Graphics_Canvas_Dispose">Canvas.Dispose()</a>
-    </div>
-    <div>
       <a class="xref" href="PrismAPI.Graphics.Canvas.html#PrismAPI_Graphics_Canvas_Internal">Canvas.Internal</a>
     </div>
     <div>
@@ -191,7 +184,7 @@
   <h6><strong>Assembly</strong>: PrismAPI.dll</h6>
   <h5 id="PrismAPI_Hardware_GPU_Display_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class Display : Canvas, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class Display : Canvas</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -200,11 +193,12 @@
     <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Hardware_GPU_Display__ctor_System_UInt16_System_UInt16_.md&amp;value=---%0Auid%3A%20PrismAPI.Hardware.GPU.Display.%23ctor(System.UInt16%2CSystem.UInt16)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Hardware/GPU/Display.cs/#L14">View Source</a>
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Hardware/GPU/Display.cs/#L21">View Source</a>
   </span>
   <a id="PrismAPI_Hardware_GPU_Display__ctor_" data-uid="PrismAPI.Hardware.GPU.Display.#ctor*"></a>
   <h4 id="PrismAPI_Hardware_GPU_Display__ctor_System_UInt16_System_UInt16_" data-uid="PrismAPI.Hardware.GPU.Display.#ctor(System.UInt16,System.UInt16)">Display(ushort, ushort)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A generic constructor used to initialize the FPS counter.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -223,12 +217,14 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></td>
         <td><span class="parametername">Width</span></td>
-        <td></td>
+        <td><p>The Width of the display.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></td>
         <td><span class="parametername">Height</span></td>
-        <td></td>
+        <td><p>The Height of the display.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -239,11 +235,12 @@
     <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Hardware_GPU_Display_DefineCursor_PrismAPI_Graphics_Canvas_.md&amp;value=---%0Auid%3A%20PrismAPI.Hardware.GPU.Display.DefineCursor(PrismAPI.Graphics.Canvas)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Hardware/GPU/Display.cs/#L26">View Source</a>
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Hardware/GPU/Display.cs/#L36">View Source</a>
   </span>
   <a id="PrismAPI_Hardware_GPU_Display_DefineCursor_" data-uid="PrismAPI.Hardware.GPU.Display.DefineCursor*"></a>
   <h4 id="PrismAPI_Hardware_GPU_Display_DefineCursor_PrismAPI_Graphics_Canvas_" data-uid="PrismAPI.Hardware.GPU.Display.DefineCursor(PrismAPI.Graphics.Canvas)">DefineCursor(Canvas)</h4>
-  <div class="markdown level1 summary"><p>Sets the image of the hardware accelerated cursor.</p>
+  <div class="markdown level1 summary"><p>Sets the image of the hardware accelerated cursor.
+Please note that this may not work on all display methods.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -273,7 +270,7 @@
     <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Hardware_GPU_Display_GetDisplay_System_UInt16_System_UInt16_.md&amp;value=---%0Auid%3A%20PrismAPI.Hardware.GPU.Display.GetDisplay(System.UInt16%2CSystem.UInt16)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Hardware/GPU/Display.cs/#L42">View Source</a>
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Hardware/GPU/Display.cs/#L53">View Source</a>
   </span>
   <a id="PrismAPI_Hardware_GPU_Display_GetDisplay_" data-uid="PrismAPI.Hardware.GPU.Display.GetDisplay*"></a>
   <h4 id="PrismAPI_Hardware_GPU_Display_GetDisplay_System_UInt16_System_UInt16_" data-uid="PrismAPI.Hardware.GPU.Display.GetDisplay(System.UInt16,System.UInt16)">GetDisplay(ushort, ushort)</h4>
@@ -330,7 +327,7 @@ The Width and Height arguments may not always be used.</p>
     <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Hardware_GPU_Display_GetFPS.md&amp;value=---%0Auid%3A%20PrismAPI.Hardware.GPU.Display.GetFPS%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Hardware/GPU/Display.cs/#L71">View Source</a>
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Hardware/GPU/Display.cs/#L82">View Source</a>
   </span>
   <a id="PrismAPI_Hardware_GPU_Display_GetFPS_" data-uid="PrismAPI.Hardware.GPU.Display.GetFPS*"></a>
   <h4 id="PrismAPI_Hardware_GPU_Display_GetFPS" data-uid="PrismAPI.Hardware.GPU.Display.GetFPS">GetFPS()</h4>
@@ -362,7 +359,7 @@ The Width and Height arguments may not always be used.</p>
     <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Hardware_GPU_Display_GetName.md&amp;value=---%0Auid%3A%20PrismAPI.Hardware.GPU.Display.GetName%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Hardware/GPU/Display.cs/#L60">View Source</a>
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Hardware/GPU/Display.cs/#L71">View Source</a>
   </span>
   <a id="PrismAPI_Hardware_GPU_Display_GetName_" data-uid="PrismAPI.Hardware.GPU.Display.GetName*"></a>
   <h4 id="PrismAPI_Hardware_GPU_Display_GetName" data-uid="PrismAPI.Hardware.GPU.Display.GetName">GetName()</h4>
@@ -394,11 +391,12 @@ The Width and Height arguments may not always be used.</p>
     <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Hardware_GPU_Display_SetCursor_System_UInt32_System_UInt32_System_Boolean_.md&amp;value=---%0Auid%3A%20PrismAPI.Hardware.GPU.Display.SetCursor(System.UInt32%2CSystem.UInt32%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Hardware/GPU/Display.cs/#L33">View Source</a>
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Hardware/GPU/Display.cs/#L44">View Source</a>
   </span>
   <a id="PrismAPI_Hardware_GPU_Display_SetCursor_" data-uid="PrismAPI.Hardware.GPU.Display.SetCursor*"></a>
   <h4 id="PrismAPI_Hardware_GPU_Display_SetCursor_System_UInt32_System_UInt32_System_Boolean_" data-uid="PrismAPI.Hardware.GPU.Display.SetCursor(System.UInt32,System.UInt32,System.Boolean)">SetCursor(uint, uint, bool)</h4>
-  <div class="markdown level1 summary"><p>Sets the position of the hardware accelerated cursor on the screen.</p>
+  <div class="markdown level1 summary"><p>Sets the position of the hardware accelerated cursor on the screen.
+Please note that this may not work on all display methods.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -439,7 +437,7 @@ The Width and Height arguments may not always be used.</p>
     <a href="https://github.com/Project-Prism/Prism-OS/new/main/apiSpec/new?filename=PrismAPI_Hardware_GPU_Display_Update.md&amp;value=---%0Auid%3A%20PrismAPI.Hardware.GPU.Display.Update%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Hardware/GPU/Display.cs/#L65">View Source</a>
+    <a href="https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Hardware/GPU/Display.cs/#L76">View Source</a>
   </span>
   <a id="PrismAPI_Hardware_GPU_Display_Update_" data-uid="PrismAPI.Hardware.GPU.Display.Update*"></a>
   <h4 id="PrismAPI_Hardware_GPU_Display_Update" data-uid="PrismAPI.Hardware.GPU.Display.Update">Update()</h4>
@@ -449,10 +447,6 @@ The Width and Height arguments may not always be used.</p>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public abstract void Update()</code></pre>
-  </div>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
   </div>
 
 </article>
