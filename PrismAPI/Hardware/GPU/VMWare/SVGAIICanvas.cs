@@ -10,11 +10,13 @@ namespace PrismAPI.Hardware.GPU.VMWare;
 /// </summary>
 public unsafe class SVGAIICanvas : Display
 {
+	#region Constructors
+
 	/// <summary>
 	/// Creates a new instance of the <see cref="SVGAIICanvas"/> class.
 	/// </summary>
-	/// <param name="Width">Total width (in pixels) of the canvas.</param>
-	/// <param name="Height">Total height (int pixels) of the canvas.</param>
+	/// <param name="Width">Total width of the display.</param>
+	/// <param name="Height">Total height of the display.</param>
 	public SVGAIICanvas(ushort Width, ushort Height) : base(0, 0) // Use 0 so no data is assigned.
 	{
 		Device = PCI.GetDevice(VendorID.VMWare, DeviceID.SVGAIIAdapter);
@@ -38,6 +40,8 @@ public unsafe class SVGAIICanvas : Display
 		this.Width = Width;
 	}
 
+	#endregion
+
 	#region Properties
 
 	public new ushort Height
@@ -60,7 +64,7 @@ public unsafe class SVGAIICanvas : Display
 				InitializeFIFO();
 
 				ScreenBuffer = (uint*)ReadRegister(Register.FrameBufferStart);
-				Internal = ScreenBuffer + Size * 4;
+				Internal = ScreenBuffer + (Size * 4);
 			}
 		}
 	}
@@ -85,7 +89,7 @@ public unsafe class SVGAIICanvas : Display
 				InitializeFIFO();
 
 				ScreenBuffer = (uint*)ReadRegister(Register.FrameBufferStart);
-				Internal = ScreenBuffer + Size * 4;
+				Internal = ScreenBuffer + (Size * 4);
 			}
 		}
 	}
@@ -164,15 +168,18 @@ public unsafe class SVGAIICanvas : Display
 	/// <param name="value">Value to write.</param>
 	public void WriteToFifo(uint value)
 	{
-		if (GetFIFO(FIFO.NextCmd) == GetFIFO(FIFO.Max) - 4 && GetFIFO(FIFO.Stop) == GetFIFO(FIFO.Min) ||
-			GetFIFO(FIFO.NextCmd) + 4 == GetFIFO(FIFO.Stop))
+		if ((GetFIFO(FIFO.NextCmd) == GetFIFO(FIFO.Max) - 4 && GetFIFO(FIFO.Stop) == GetFIFO(FIFO.Min)) || GetFIFO(FIFO.NextCmd) + 4 == GetFIFO(FIFO.Stop))
+		{
 			WaitForFifo();
+		}
 
 		SetFIFO((FIFO)GetFIFO(FIFO.NextCmd), value);
 		SetFIFO(FIFO.NextCmd, GetFIFO(FIFO.NextCmd) + 4);
 
 		if (GetFIFO(FIFO.NextCmd) == GetFIFO(FIFO.Max))
+		{
 			SetFIFO(FIFO.NextCmd, GetFIFO(FIFO.Min));
+		}
 	}
 
 	/// <summary>

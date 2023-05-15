@@ -6,6 +6,8 @@
 /// </summary>
 public class AnimationController
 {
+	#region Constructors
+
 	/// <summary>
 	/// Creates a new instance of the <see cref="AnimationController"/> class.
 	/// </summary>
@@ -25,6 +27,8 @@ public class AnimationController
 		// Assign the timer.
 		Timer = new((O) => Next(), null, DelayMS, 0);
 	}
+
+	#endregion
 
 	#region Properties
 
@@ -53,14 +57,10 @@ public class AnimationController
 	/// <param name="EndValue">The number to end with.</param>
 	/// <param name="Index">Any number between 0.0 and 1.0.</param>
 	/// <returns>The value between 'StartValue' and 'EndValue' as marked by 'Index'.</returns>
-	public static float Lerp(float StartValue, float EndValue, float Index, bool IsClamped = true)
+	public static float Lerp(float StartValue, float EndValue, float Index)
 	{
-		// Check if clamping is requested.
-		if (IsClamped)
-		{
-			// Ensure 'Index' is between 0.0 and 1.0.
-			Index = (float)Math.Clamp(Index, 0.0, 1.0);
-		}
+		// Ensure 'Index' is between 0.0 and 1.0.
+		Index = (float)Math.Clamp(Index, 0.0, 1.0);
 
 		return StartValue + (EndValue - StartValue) * Index;
 	}

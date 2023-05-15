@@ -11,7 +11,8 @@ namespace PrismAPI.Filesystem;
 public static class FilesystemManager
 {
 	/// <summary>
-	/// Statically initializes this class when it is first accessed (lazy loading style).
+	/// Statically initializes this class when it is first accessed (lazy loading).
+	/// Should run when <see cref="Init()"/> is ran.
 	/// </summary>
 	static FilesystemManager()
 	{

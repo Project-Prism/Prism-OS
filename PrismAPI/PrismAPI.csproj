@@ -4,18 +4,19 @@
 	<PropertyGroup>
 
 		<GenerateDocumentationFile>false</GenerateDocumentationFile>
-		<CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
-		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+		<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<NoWin32Manifest>true</NoWin32Manifest>
 		<SelfContained>true</SelfContained>
 		<DebugType>none</DebugType>
 		<Nullable>enable</Nullable>
-		<Optimize>True</Optimize>
-		
+		<Optimize>true</Optimize>
+
 	</PropertyGroup>
-	
+
 	<!-- Cosmos include group -->
 	<ItemGroup>
 

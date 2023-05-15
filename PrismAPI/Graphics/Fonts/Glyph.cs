@@ -6,6 +6,8 @@
 /// </summary>
 public class Glyph
 {
+	#region Constructors
+
 	/// <summary>
 	/// Creates a new instance of the <see cref="Glyph"/> class.
 	/// </summary>
@@ -17,6 +19,8 @@ public class Glyph
 		this.Width = Width;
 		Points = new();
 	}
+
+	#endregion
 
 	#region Fields
 

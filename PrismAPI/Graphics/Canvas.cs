@@ -16,8 +16,10 @@ namespace PrismAPI.Graphics;
 ///		<item>See also: <see cref="Color"/></item>
 /// </list>
 /// </summary>
-public unsafe class Canvas : IDisposable
+public unsafe class Canvas
 {
+	#region Constructors
+
 	/// <summary>
 	/// Creates a new instance of the <see cref="Canvas"/> class..
 	/// </summary>
@@ -29,6 +31,21 @@ public unsafe class Canvas : IDisposable
 		this.Height = Height;
 		this.Width = Width;
 	}
+
+	/// <summary>
+	/// Destroys this instance of the <see cref="Canvas"/> class. Only used when it's finished being used.
+	/// </summary>
+	~Canvas()
+	{
+		if (Internal != null)
+		{
+			NativeMemory.Free(Internal);
+		}
+	}
+
+	#endregion
+
+	#region Properties
 
 	/// <summary>
 	/// Indexer to set or get a color value at the X and Y position.
@@ -101,17 +118,12 @@ public unsafe class Canvas : IDisposable
 		}
 	}
 
-	#region Properties
-
 	/// <summary>
 	/// The total height of the canvas in pixels.
 	/// </summary>
 	public ushort Height
 	{
-		get
-		{
-			return _Height;
-		}
+		get => _Height;
 		set
 		{
 			// Check if no allocations are needed & assign values.
@@ -122,19 +134,16 @@ public unsafe class Canvas : IDisposable
 				return;
 			}
 
-			if (Size == 0)
-			{
-				// Set new value.
-				_Height = value;
+			// Set new value.
+			_Height = value;
 
+			if (Internal == null)
+			{
 				// Allocate new chunk of memory.
 				Internal = (uint*)NativeMemory.Alloc(Size * 4);
 			}
 			else
 			{
-				// Set new value.
-				_Height = value;
-
 				// Re-allocate new memory & automatically free old chunk.
 				GCImplementation.DecRootCount((ushort*)Internal);
 				Internal = (uint*)NativeMemory.Realloc(Internal, Size * 4);
@@ -150,10 +159,7 @@ public unsafe class Canvas : IDisposable
 	/// </summary>
 	public ushort Width
 	{
-		get
-		{
-			return _Width;
-		}
+		get => _Width;
 		set
 		{
 			// Check if no allocations are needed & assign values.
@@ -164,19 +170,16 @@ public unsafe class Canvas : IDisposable
 				return;
 			}
 
-			if (Size == 0)
-			{
-				// Set new value.
-				_Width = value;
+			// Set new value.
+			_Width = value;
 
+			if (Internal == null)
+			{
 				// Allocate new chunk of memory.
 				Internal = (uint*)NativeMemory.Alloc(Size * 4);
 			}
 			else
 			{
-				// Set new value.
-				_Width = value;
-
 				// Re-allocate new memory & automatically free old chunk.
 				GCImplementation.DecRootCount((ushort*)Internal);
 				Internal = (uint*)NativeMemory.Realloc(Internal, Size * 4);
@@ -190,13 +193,7 @@ public unsafe class Canvas : IDisposable
 	/// <summary>
 	/// The total area of the canvas in pixels.
 	/// </summary>
-	public uint Size
-	{
-		get
-		{
-			return (uint)(_Width * _Height);
-		}
-	}
+	public uint Size => (uint)(_Width * _Height);
 
 	#endregion
 
@@ -251,7 +248,7 @@ public unsafe class Canvas : IDisposable
 			// Fill the region with the color
 			for (uint IY = 0; IY < RHeight; IY++)
 			{
-				MemoryOperations.Fill(Internal + Destination + IY * this.Width, Color.ARGB, (int)RWidth);
+				MemoryOperations.Fill(Internal + Destination + (IY * this.Width), Color.ARGB, (int)RWidth);
 			}
 			return;
 		}
@@ -889,20 +886,6 @@ public unsafe class Canvas : IDisposable
 	public void CopyTo(uint* Destination)
 	{
 		Buffer.MemoryCopy(Internal, Destination, Size * 4, Size * 4);
-	}
-
-	/// <summary>
-	/// Dispose of the canvas properly.
-	/// </summary>
-	public void Dispose()
-	{
-		// If the buffer is allocated, free it.
-		if (Size != 0)
-		{
-			NativeMemory.Free(Internal);
-		}
-
-		GC.SuppressFinalize(this);
 	}
 
 	#endregion

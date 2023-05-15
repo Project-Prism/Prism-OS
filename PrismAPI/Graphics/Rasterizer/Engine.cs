@@ -1,5 +1,4 @@
-﻿using PrismAPI.Graphics;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace PrismAPI.Graphics.Rasterizer;
 
@@ -14,6 +13,8 @@ namespace PrismAPI.Graphics.Rasterizer;
 /// </summary>
 public class Engine : Canvas
 {
+	#region Constructors
+
 	/// <summary>
 	/// Creates a new instance of the <see cref="Engine"/> class.
 	/// </summary>
@@ -32,6 +33,8 @@ public class Engine : Canvas
 		Gravity = 1f;
 		Zoom = 0f;
 	}
+
+	#endregion
 
 	#region Methods
 

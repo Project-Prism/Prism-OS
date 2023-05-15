@@ -1,10 +1,11 @@
-﻿using PrismAPI.Graphics;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace PrismAPI.Graphics.Rasterizer;
 
 public class Triangle
 {
+	#region Constructors
+
 	public Triangle(float X1, float Y1, float Z1, float X2, float Y2, float Z2, float X3, float Y3, float Z3, Color Color)
 	{
 		// Assign current points.
@@ -54,6 +55,8 @@ public class Triangle
 		L2 = Vector3.Zero;
 		L3 = Vector3.Zero;
 	}
+
+	#endregion
 
 	#region Properties
 

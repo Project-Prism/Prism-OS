@@ -1,17 +1,21 @@
 ﻿using Cosmos.Core.Multiboot;
 using PrismAPI.Graphics;
 
-namespace PrismAPI.Hardware.GPU.VESA;
+namespace PrismAPI.Hardware.GPU.Vesa;
 
 /// <summary>
 /// The VBE canvas extention class.
 /// </summary>
 public unsafe class VBECanvas : Display
 {
+	#region Constructors
+
 	/// <summary>
 	/// Creates a new instance of the <see cref="VBECanvas"/> class.
 	/// </summary>
 	public VBECanvas() : base((ushort)Multiboot2.Framebuffer->Width, (ushort)Multiboot2.Framebuffer->Height) { }
+
+	#endregion
 
 	#region Methods
 
@@ -30,7 +34,7 @@ public unsafe class VBECanvas : Display
 		return nameof(VBECanvas);
 	}
 
-	public override unsafe void Update()
+	public override void Update()
 	{
 		CopyTo((uint*)Multiboot2.Framebuffer->Address);
 		_Frames++;

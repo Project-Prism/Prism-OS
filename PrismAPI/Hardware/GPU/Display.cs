@@ -1,5 +1,5 @@
 ﻿using PrismAPI.Hardware.GPU.VMWare;
-using PrismAPI.Hardware.GPU.VESA;
+using PrismAPI.Hardware.GPU.Vesa;
 using Cosmos.Core.Multiboot;
 using PrismAPI.Graphics;
 using Cosmos.System;
@@ -11,22 +11,33 @@ namespace PrismAPI.Hardware.GPU;
 /// </summary>
 public abstract class Display : Canvas
 {
+	#region Constructors
+
+	/// <summary>
+	/// A generic constructor used to initialize the FPS counter.
+	/// </summary>
+	/// <param name="Width">The Width of the display.</param>
+	/// <param name="Height">The Height of the display.</param>
 	public Display(ushort Width, ushort Height) : base(Width, Height)
 	{
 		// Setup the FPS counter timer.
 		Timer T = new((O) => { _FPS = _Frames; _Frames = 0; }, null, 1000, 0);
 	}
 
+	#endregion
+
 	#region Methods
 
 	/// <summary>
 	/// Sets the image of the hardware accelerated cursor.
+	/// Please note that this may not work on all display methods.
 	/// </summary>
 	/// <param name="Cursor">The image to use as the cursor.</param>
 	public abstract void DefineCursor(Canvas Cursor);
 
 	/// <summary>
 	/// Sets the position of the hardware accelerated cursor on the screen.
+	/// Please note that this may not work on all display methods.
 	/// </summary>
 	/// <param name="X">The X-axis position.</param>
 	/// <param name="Y">The Y-axis position.</param>

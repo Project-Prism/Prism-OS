@@ -1,5 +1,4 @@
-﻿using PrismAPI.Graphics;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace PrismAPI.Graphics.Rasterizer;
 
@@ -8,6 +7,8 @@ namespace PrismAPI.Graphics.Rasterizer;
 /// </summary>
 public class Camera
 {
+	#region Constructors
+
 	/// <summary>
 	/// Creates a new instance of the <see cref="Camera"/> class.
 	/// </summary>
@@ -21,6 +22,8 @@ public class Camera
 		Ambient = Color.White;
 		this.FOV = FOV;
 	}
+
+	#endregion
 
 	#region Methods
 

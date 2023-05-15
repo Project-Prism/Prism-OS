@@ -1,5 +1,4 @@
-﻿using PrismAPI.Graphics;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace PrismAPI.Graphics.Rasterizer;
 
@@ -8,6 +7,8 @@ namespace PrismAPI.Graphics.Rasterizer;
 /// </summary>
 public class Light
 {
+	#region Constructors
+
 	/// <summary>
 	/// Creates a new instance of the <see cref="Light"/> class.
 	/// </summary>
@@ -22,6 +23,8 @@ public class Light
 		this.Color = Color;
 		this.Type = Type;
 	}
+
+	#endregion
 
 	#region Fields
 

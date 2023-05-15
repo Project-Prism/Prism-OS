@@ -26,8 +26,8 @@ public static class Filters
 			for (int IY = 0; IY < Height; IY++)
 			{
 				// Get the source coordinates.
-				int GX = (X + IX) % G.Width;
-				int GY = (Y + IY) % G.Height;
+				int GX = (X + IX) & G.Width;
+				int GY = (Y + IY) & G.Height;
 
 				// Get the looped pixel from the source & copy it to the destionation.
 				Temp[IX, IY] = G[GX, GY];
@@ -180,6 +180,29 @@ public static class Filters
 		}
 
 		// Return filtered image.
+		return Result;
+	}
+
+	/// <summary>
+	/// Applies an HDR affect to an image given the High and Low exposure inputs.
+	/// Assumes High and Low are the same size as Normal.
+	/// </summary>
+	/// <param name="High">The high exposure variant.</param>
+	/// <param name="Normal">The normal exposure variant.</param>
+	/// <param name="Low">The low exposure variant.</param>
+	/// <returns>And image with a HDR effect applied to it.</returns>
+	public static Canvas ApplyHDR(Canvas High, Canvas Normal, Canvas Low)
+	{
+		// Create result canvas instance.
+		Canvas Result = new(Normal.Width, Normal.Height);
+
+		// Loop over & blend all pixels together.
+		for (uint I = 0; I < Result.Size; I++)
+		{
+			Result[I] = (High[I] + Normal[I] + Low[I]) / 3;
+		}
+
+		// Resurn HDR blend result.
 		return Result;
 	}
 

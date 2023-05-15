@@ -11,6 +11,8 @@ namespace PrismAPI.Graphics.Rasterizer;
 /// </summary>
 public class Mesh
 {
+	#region Constructors
+
 	/// <summary>
 	/// Creates a new instance of the <see cref="Mesh"/> class.
 	/// </summary>
@@ -26,6 +28,8 @@ public class Mesh
 		HasPhysics = false;
 		Mass = 1f;
 	}
+
+	#endregion
 
 	#region Methods
 

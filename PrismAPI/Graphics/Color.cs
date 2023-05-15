@@ -7,6 +7,8 @@ namespace PrismAPI.Graphics;
 /// </summary>
 public struct Color
 {
+	#region Constructors
+
 	/// <summary>
 	/// Creates a new instance of the <see cref="Color"/> class with 4 channels specified.
 	/// </summary>
@@ -16,6 +18,7 @@ public struct Color
 	/// <param name="B">The Blue channel.</param>
 	public Color(float A, float R, float G, float B)
 	{
+		// Initialize fields.
 		_ARGB = GetPacked(A, R, G, B);
 		_A = A;
 		_R = R;
@@ -31,6 +34,7 @@ public struct Color
 	/// <param name="B">The Blue channel.</param>
 	public Color(float R, float G, float B)
 	{
+		// Initialize fields.
 		_ARGB = GetPacked(255, R, G, B);
 		_A = 255;
 		_R = R;
@@ -86,14 +90,12 @@ public struct Color
 
 			if (K != 255)
 			{
-				_A = 255;
 				_R = (255 - C) * (255 - K) / 255;
 				_G = (255 - M) * (255 - K) / 255;
 				_B = (255 - Y) * (255 - K) / 255;
 			}
 			else
 			{
-				_A = 255;
 				_R = 255 - C;
 				_G = 255 - M;
 				_B = 255 - Y;
@@ -146,24 +148,25 @@ public struct Color
 			// Get individual components.
 			string[] Components = ColorInfo[5..].Split(',');
 
+			// Alpha is always 255 with RGB.
+			_A = 255;
+
 			// Parse component data.
 			try
 			{
-				_A = 255;
 				_R = byte.Parse(Components[0]);
 				_G = byte.Parse(Components[1]);
 				_B = byte.Parse(Components[2]);
 			}
 			catch
 			{
-				_A = 255;
 				_R = float.Parse(Components[0]);
 				_G = float.Parse(Components[1]);
 				_B = float.Parse(Components[2]);
 			}
 
 			// Assign the ARGB value.
-			_ARGB = GetPacked(_A, _R, _G, _B);
+			_ARGB = GetPacked(255, _R, _G, _B);
 
 			return;
 		}
@@ -171,11 +174,11 @@ public struct Color
 		// Get HSV color.
 		if (ColorInfo.StartsWith("hsl("))
 		{
-			// Alpha is always 100% with HSL.
-			_A = 255;
-
 			// Get individual components.
 			string[] Components = ColorInfo[5..].Split(',');
+
+			// Alpha is always 100% with HSL.
+			_A = 255;
 
 			float H = float.Parse(Components[0]);
 			float S = float.Parse(Components[1]);
@@ -407,6 +410,8 @@ public struct Color
 		this.ARGB = ARGB;
 	}
 
+	#endregion
+
 	#region Properties
 
 	/// <summary>
@@ -425,17 +430,14 @@ public struct Color
 	/// </summary>
 	public uint ARGB
 	{
-		get
-		{
-			return _ARGB;
-		}
+		get => _ARGB;
 		set
 		{
 			_ARGB = value;
-			_A = _ARGB >> 24;
-			_R = _ARGB >> 16;
-			_G = _ARGB >> 8;
-			_B = _ARGB;
+			_A = (value >> 24) & 255;
+			_R = (value >> 16) & 255;
+			_G = (value >> 8) & 255;
+			_B = value & 255;
 		}
 	}
 
@@ -444,14 +446,11 @@ public struct Color
 	/// </summary>
 	public float A
 	{
-		get
-		{
-			return _A;
-		}
+		get => _A;
 		set
 		{
 			_A = value;
-			_ARGB = GetPacked(_A, _R, _G, _B);
+			_ARGB = GetPacked(value, _R, _G, _B);
 		}
 	}
 
@@ -460,14 +459,11 @@ public struct Color
 	/// </summary>
 	public float R
 	{
-		get
-		{
-			return _R;
-		}
+		get => _R;
 		set
 		{
 			_R = value;
-			_ARGB = GetPacked(_A, _R, _G, _B);
+			_ARGB = GetPacked(_A, value, _G, _B);
 		}
 	}
 
@@ -476,14 +472,11 @@ public struct Color
 	/// </summary>
 	public float G
 	{
-		get
-		{
-			return _G;
-		}
+		get => _G;
 		set
 		{
 			_G = value;
-			_ARGB = GetPacked(_A, _R, _G, _B);
+			_ARGB = GetPacked(_A, _R, value, _B);
 		}
 	}
 
@@ -492,14 +485,11 @@ public struct Color
 	/// </summary>
 	public float B
 	{
-		get
-		{
-			return _B;
-		}
+		get => _B;
 		set
 		{
 			_B = value;
-			_ARGB = GetPacked(_A, _R, _G, _B);
+			_ARGB = GetPacked(_A, _R, _G, value);
 		}
 	}
 
@@ -544,10 +534,10 @@ public struct Color
 		Original.G * Value,
 		Original.B * Value);
 	public static Color operator /(Color Original, float Value) => new(
-		Original.A + Value,
-		Original.R + Value,
-		Original.G + Value,
-		Original.B + Value);
+		Original.A / Value,
+		Original.R / Value,
+		Original.G / Value,
+		Original.B / Value);
 
 	public static Color operator +(float Value, Color Original) => new(
 		Value + Original.A,
@@ -600,7 +590,7 @@ public struct Color
 			return Source;
 		}
 
-		return Source * (255 - NewColor) / 255 + NewColor;
+		return (Source * (255 - NewColor) / 255) + NewColor;
 	}
 
 	/// <summary>
@@ -613,7 +603,7 @@ public struct Color
 	/// <returns>Packed value.</returns>
 	private static uint GetPacked(float A, float R, float G, float B)
 	{
-		return (uint)((byte)A << 24 | (byte)R << 16 | (byte)G << 8 | (byte)B);
+		return BitConverter.ToUInt32(new byte[] { (byte)B, (byte)G, (byte)R, (byte)A });
 	}
 
 	/// <summary>
@@ -622,7 +612,14 @@ public struct Color
 	/// <returns>A normalized color.</returns>
 	public static Color Normalize(Color ToNormalize)
 	{
-		return ToNormalize / 255;
+		// Don't use operators as to preserve the alpha value.
+		return new()
+		{
+			A = ToNormalize.A,
+			R = ToNormalize.R / 255,
+			G = ToNormalize.G / 255,
+			B = ToNormalize.B / 255,
+		};
 	}
 
 	/// <summary>

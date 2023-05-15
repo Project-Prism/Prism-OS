@@ -3,61 +3,46 @@
 	<!-- Generic Config -->
 	<PropertyGroup>
 
-		<GenerateDocumentationFile>False</GenerateDocumentationFile>
-		<CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
-		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+		<GenerateDocumentationFile>false</GenerateDocumentationFile>
+		<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<SelfContained>true</SelfContained>
 		<DebugType>none</DebugType>
 		<Nullable>enable</Nullable>
-		<Optimize>True</Optimize>
-
-	</PropertyGroup>
-
-	<!--Cosmos Config-->
-	<PropertyGroup>
-
-		<Platform>cosmos</Platform>
-		<SupportsX86Intrinsics>false</SupportsX86Intrinsics>
-		<EnableGDB>False</EnableGDB>
-		<StartCosmosGDB>False</StartCosmosGDB>
-		<VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
-		<CosmosDebugPort>Serial: COM1</CosmosDebugPort>
-		<Launch>VMware</Launch>
-		<Profile>VMware</Profile>
+		<Optimize>true</Optimize>
+		
 		<Description>Use VMware Player or Workstation to deploy and debug.</Description>
-		<PxeInterface>192.168.0.8</PxeInterface>
+		<StackCorruptionDetectionLevel>AllInstructions</StackCorruptionDetectionLevel>
+		<VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
+		<SupportsX86Intrinsics>false</SupportsX86Intrinsics>
+		<RemoveBootDebugOutput>true</RemoveBootDebugOutput>
+		<CompileVBEMultiboot>false</CompileVBEMultiboot>
+		<CosmosDebugPort>Serial: COM1</CosmosDebugPort>
+		<StartBochsDebugGui>true</StartBochsDebugGui>
+		<QemuNetworkDevice>PCNet</QemuNetworkDevice>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<CompileVBEMultiboot>False</CompileVBEMultiboot>
 		<VBEResolution>1280x720x32</VBEResolution>
 		<VMWareEdition>Workstation</VMWareEdition>
-		<DebugEnabled>False</DebugEnabled>
-		<EnableBochsDebug>True</EnableBochsDebug>
-		<StartBochsDebugGui>True</StartBochsDebugGui>
-		<ExtractMapFile>False</ExtractMapFile>
-		<StackCorruptionDetectionLevel>AllInstructions</StackCorruptionDetectionLevel>
-		<DebugType>none</DebugType>
-		<CompressionType>Gzip</CompressionType>
-		<RemoveBootDebugOutput>True</RemoveBootDebugOutput>
+		<EnableBochsDebug>true</EnableBochsDebug>
 		<OptimizationLevel>2</OptimizationLevel>
-		<QemuMemory>4096</QemuMemory>
-		<QemuNetworkDevice>PCNet</QemuNetworkDevice>
-		<QemuVideoDriver>VBE</QemuVideoDriver>
+		<PxeInterface>192.168.0.8</PxeInterface>
 		<QemuAudioDriver>AC97</QemuAudioDriver>
+		<CompressionType>Gzip</CompressionType>
+		<QemuVideoDriver>VBE</QemuVideoDriver>
+		<ExtractMapFile>false</ExtractMapFile>
+		<StartCosmosGDB>false</StartCosmosGDB>
+		<DebugEnabled>false</DebugEnabled>
+		<QemuMemory>4096</QemuMemory>
+		<EnableGDB>false</EnableGDB>
+		<Platform>cosmos</Platform>
+		<DebugType>none</DebugType>
+		<Profile>VMware</Profile>
+		<Launch>VMware</Launch>
 
 	</PropertyGroup>
-
-	<ItemGroup>
-
-		<None Remove="Media\Audio\Shutdown-Alt.wav" />
-		<None Remove="Media\Audio\Shutdown.wav" />
-		<None Remove="Media\Audio\Startup.wav" />
-		<None Remove="Media\Fonts\Malgun_Gothic_32x.psf" />
-		<None Remove="Media\Images\Prism.bmp" />
-
-	</ItemGroup>
 
 	<ItemGroup>
 
@@ -66,10 +51,12 @@
 		<EmbeddedResource Include="Media\Audio\Startup.wav" />
 		<EmbeddedResource Include="Media\Fonts\Malgun_Gothic_32x.psf" />
 		<EmbeddedResource Include="Media\Images\Prism.bmp" />
-
-	</ItemGroup>
-
-	<ItemGroup>
+		
+		<None Remove="Media\Audio\Shutdown-Alt.wav" />
+		<None Remove="Media\Audio\Shutdown.wav" />
+		<None Remove="Media\Audio\Startup.wav" />
+		<None Remove="Media\Fonts\Malgun_Gothic_32x.psf" />
+		<None Remove="Media\Images\Prism.bmp" />
 
 		<PackageReference Include="Cosmos.Build" Version="0.1.0-*" />
 		<ProjectReference Include="..\PrismAPI\PrismAPI.csproj" />

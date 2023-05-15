@@ -6,6 +6,8 @@
 /// </summary>
 public class Font
 {
+	#region Constructors
+
 	/// <summary>
 	/// Creates a new instance of the <see cref="Font"/> class.
 	/// </summary>
@@ -24,12 +26,14 @@ public class Font
 		Glyphs = new();
 	}
 
+	#endregion
+
 	#region Methods
 
 	/// <summary>
 	/// Measures a string's total width.
 	/// </summary>
-	/// <param name="String">String to measure.</param>
+	/// <param name="Text">String to measure.</param>
 	/// <returns>Width of the input string.</returns>
 	public ushort MeasureString(string Text)
 	{
@@ -50,10 +54,9 @@ public class Font
 					Width += (ushort)(Size * 4);
 					continue;
 				default:
-					break;
+					Width += (ushort)(GetGlyph(Text[I]).Width + 2);
+					continue;
 			}
-
-			Width += (ushort)(GetGlyph(Text[I]).Width + 2);
 		}
 
 		return Width;
@@ -92,9 +95,9 @@ public class Font
 			{
 				for (int ww = 0; ww < 8; ww++)
 				{
-					if ((Binary[SizePerFont + h * Size8 + aw] & 0x80 >> ww) != 0)
+					if ((Binary[SizePerFont + (h * Size8) + aw] & (0x80 >> ww)) != 0)
 					{
-						int Max = aw * 8 + ww;
+						int Max = (aw * 8) + ww;
 
 						Temp.Points.Add((Max, h));
 
