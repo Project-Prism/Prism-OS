@@ -35,7 +35,11 @@ public class AnimationController
 	/// <summary>
 	/// A boolean to tell if the animation has finished.
 	/// </summary>
-	public bool IsFinished => ElapsedTime >= Duration.TotalMilliseconds;
+	public bool IsFinished
+	{
+		get => ElapsedTime >= Duration.TotalMilliseconds;
+		set => ElapsedTime = (float)Duration.TotalMilliseconds;
+	}
 
 	#endregion
 
