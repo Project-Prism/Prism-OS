@@ -635,6 +635,36 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.Hardware.GPU.Intel.Skylake.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.Hardware.GPU.Intel.Skylake.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "API/PrismAPI.Hardware.GPU.VMWare.SVGAIICanvas.yml",
       "output": {
         ".html": {
@@ -679,6 +709,26 @@
       "output": {
         ".html": {
           "relative_path": "API/PrismAPI.Hardware.GPU.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.Hardware.Serial.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.Hardware.Serial.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.Hardware.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.Hardware.html"
         }
       },
       "version": ""

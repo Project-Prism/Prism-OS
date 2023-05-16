@@ -4774,6 +4774,12 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Rasterizer.Triangle.Width
   nameWithType: Triangle.Width
+- uid: PrismAPI.Hardware
+  name: PrismAPI.Hardware
+  href: API/PrismAPI.Hardware.html
+  commentId: N:PrismAPI.Hardware
+  fullName: PrismAPI.Hardware
+  nameWithType: PrismAPI.Hardware
 - uid: PrismAPI.Hardware.GPU
   name: PrismAPI.Hardware.GPU
   href: API/PrismAPI.Hardware.GPU.html
@@ -4889,6 +4895,153 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Hardware.GPU.Display.Update
   nameWithType: Display.Update
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake
+  name: PrismAPI.Hardware.GPU.Intel.Skylake
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.html
+  commentId: N:PrismAPI.Hardware.GPU.Intel.Skylake
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake
+  nameWithType: PrismAPI.Hardware.GPU.Intel.Skylake
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO
+  name: MMIO
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html
+  commentId: T:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO
+  nameWithType: MMIO
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.#ctor(Cosmos.HAL.PCIDevice)
+  name: MMIO(PCIDevice)
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIO__ctor_Cosmos_HAL_PCIDevice_
+  commentId: M:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.#ctor(Cosmos.HAL.PCIDevice)
+  name.vb: New(PCIDevice)
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.MMIO(Cosmos.HAL.PCIDevice)
+  fullName.vb: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.New(Cosmos.HAL.PCIDevice)
+  nameWithType: MMIO.MMIO(PCIDevice)
+  nameWithType.vb: MMIO.New(PCIDevice)
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.#ctor*
+  name: MMIO
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIO__ctor_
+  commentId: Overload:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.MMIO
+  fullName.vb: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.New
+  nameWithType: MMIO.MMIO
+  nameWithType.vb: MMIO.New
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.Device
+  name: Device
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIO_Device
+  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.Device
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.Device
+  nameWithType: MMIO.Device
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit,System.UInt16)
+  name: GetMMIO(MMIOUnit, ushort)
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIO_GetMMIO_PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_System_UInt16_
+  commentId: M:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit,System.UInt16)
+  name.vb: GetMMIO(MMIOUnit, UShort)
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit, ushort)
+  fullName.vb: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit, UShort)
+  nameWithType: MMIO.GetMMIO(MMIOUnit, ushort)
+  nameWithType.vb: MMIO.GetMMIO(MMIOUnit, UShort)
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit,System.UInt32)
+  name: GetMMIO(MMIOUnit, uint)
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIO_GetMMIO_PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_System_UInt32_
+  commentId: M:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit,System.UInt32)
+  name.vb: GetMMIO(MMIOUnit, UInteger)
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit, uint)
+  fullName.vb: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit, UInteger)
+  nameWithType: MMIO.GetMMIO(MMIOUnit, uint)
+  nameWithType.vb: MMIO.GetMMIO(MMIOUnit, UInteger)
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO*
+  name: GetMMIO
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIO_GetMMIO_
+  commentId: Overload:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO
+  isSpec: "True"
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO
+  nameWithType: MMIO.GetMMIO
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit,System.UInt32,System.UInt16)
+  name: SetMMIO(MMIOUnit, uint, ushort)
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIO_SetMMIO_PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_System_UInt32_System_UInt16_
+  commentId: M:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit,System.UInt32,System.UInt16)
+  name.vb: SetMMIO(MMIOUnit, UInteger, UShort)
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit, uint, ushort)
+  fullName.vb: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit, UInteger, UShort)
+  nameWithType: MMIO.SetMMIO(MMIOUnit, uint, ushort)
+  nameWithType.vb: MMIO.SetMMIO(MMIOUnit, UInteger, UShort)
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit,System.UInt32,System.UInt32)
+  name: SetMMIO(MMIOUnit, uint, uint)
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIO_SetMMIO_PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_System_UInt32_System_UInt32_
+  commentId: M:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit,System.UInt32,System.UInt32)
+  name.vb: SetMMIO(MMIOUnit, UInteger, UInteger)
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit, uint, uint)
+  fullName.vb: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit, UInteger, UInteger)
+  nameWithType: MMIO.SetMMIO(MMIOUnit, uint, uint)
+  nameWithType.vb: MMIO.SetMMIO(MMIOUnit, UInteger, UInteger)
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO*
+  name: SetMMIO
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIO_SetMMIO_
+  commentId: Overload:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO
+  isSpec: "True"
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO
+  nameWithType: MMIO.SetMMIO
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit
+  name: MMIOUnit
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html
+  commentId: T:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit
+  nameWithType: MMIOUnit
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.BlitterArbiter
+  name: BlitterArbiter
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_BlitterArbiter
+  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.BlitterArbiter
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.BlitterArbiter
+  nameWithType: MMIOUnit.BlitterArbiter
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.BlitterEngine
+  name: BlitterEngine
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_BlitterEngine
+  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.BlitterEngine
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.BlitterEngine
+  nameWithType: MMIOUnit.BlitterEngine
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.FenceRegisters
+  name: FenceRegisters
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_FenceRegisters
+  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.FenceRegisters
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.FenceRegisters
+  nameWithType: MMIOUnit.FenceRegisters
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MCHBAR
+  name: MCHBAR
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_MCHBAR
+  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MCHBAR
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MCHBAR
+  nameWithType: MMIOUnit.MCHBAR
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MediaEngine
+  name: MediaEngine
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_MediaEngine
+  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MediaEngine
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MediaEngine
+  nameWithType: MMIOUnit.MediaEngine
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MediaUnits
+  name: MediaUnits
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_MediaUnits
+  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MediaUnits
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MediaUnits
+  nameWithType: MMIOUnit.MediaUnits
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MemoryArbiter
+  name: MemoryArbiter
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_MemoryArbiter
+  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MemoryArbiter
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MemoryArbiter
+  nameWithType: MMIOUnit.MemoryArbiter
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MFXArbiter
+  name: MFXArbiter
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_MFXArbiter
+  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MFXArbiter
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MFXArbiter
+  nameWithType: MMIOUnit.MFXArbiter
+- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MFXControl
+  name: MFXControl
+  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_MFXControl
+  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MFXControl
+  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MFXControl
+  nameWithType: MMIOUnit.MFXControl
 - uid: PrismAPI.Hardware.GPU.Vesa
   name: PrismAPI.Hardware.GPU.Vesa
   href: API/PrismAPI.Hardware.GPU.Vesa.html
@@ -5236,6 +5389,50 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Hardware.GPU.VMWare.SVGAIICanvas.WriteToFifo
   nameWithType: SVGAIICanvas.WriteToFifo
+- uid: PrismAPI.Hardware.Serial
+  name: Serial
+  href: API/PrismAPI.Hardware.Serial.html
+  commentId: T:PrismAPI.Hardware.Serial
+  fullName: PrismAPI.Hardware.Serial
+  nameWithType: Serial
+- uid: PrismAPI.Hardware.Serial.Port
+  name: Port
+  href: API/PrismAPI.Hardware.Serial.html#PrismAPI_Hardware_Serial_Port
+  commentId: F:PrismAPI.Hardware.Serial.Port
+  fullName: PrismAPI.Hardware.Serial.Port
+  nameWithType: Serial.Port
+- uid: PrismAPI.Hardware.Serial.Write(System.String)
+  name: Write(string)
+  href: API/PrismAPI.Hardware.Serial.html#PrismAPI_Hardware_Serial_Write_System_String_
+  commentId: M:PrismAPI.Hardware.Serial.Write(System.String)
+  name.vb: Write(String)
+  fullName: PrismAPI.Hardware.Serial.Write(string)
+  fullName.vb: PrismAPI.Hardware.Serial.Write(String)
+  nameWithType: Serial.Write(string)
+  nameWithType.vb: Serial.Write(String)
+- uid: PrismAPI.Hardware.Serial.Write*
+  name: Write
+  href: API/PrismAPI.Hardware.Serial.html#PrismAPI_Hardware_Serial_Write_
+  commentId: Overload:PrismAPI.Hardware.Serial.Write
+  isSpec: "True"
+  fullName: PrismAPI.Hardware.Serial.Write
+  nameWithType: Serial.Write
+- uid: PrismAPI.Hardware.Serial.WriteLine(System.String)
+  name: WriteLine(string)
+  href: API/PrismAPI.Hardware.Serial.html#PrismAPI_Hardware_Serial_WriteLine_System_String_
+  commentId: M:PrismAPI.Hardware.Serial.WriteLine(System.String)
+  name.vb: WriteLine(String)
+  fullName: PrismAPI.Hardware.Serial.WriteLine(string)
+  fullName.vb: PrismAPI.Hardware.Serial.WriteLine(String)
+  nameWithType: Serial.WriteLine(string)
+  nameWithType.vb: Serial.WriteLine(String)
+- uid: PrismAPI.Hardware.Serial.WriteLine*
+  name: WriteLine
+  href: API/PrismAPI.Hardware.Serial.html#PrismAPI_Hardware_Serial_WriteLine_
+  commentId: Overload:PrismAPI.Hardware.Serial.WriteLine
+  isSpec: "True"
+  fullName: PrismAPI.Hardware.Serial.WriteLine
+  nameWithType: Serial.WriteLine
 - uid: PrismAPI.Network
   name: PrismAPI.Network
   href: API/PrismAPI.Network.html
