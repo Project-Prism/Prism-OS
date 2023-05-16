@@ -39,8 +39,8 @@ public static class Tests
 		
 		Engine.Objects.Add(Mesh.GetCube(200, 200, 200));
 		Engine.Camera.Position.Z = 200;
-		//WindowManager.Windows.Add(new(100, 100, 250, 150));
-		//WindowManager.Windows[^1].Controls.Add(new Button(50, 50, 128, 64, 4, "Button1"));
+		WindowManager.Windows.Add(new(100, 100, 250, 150));
+		WindowManager.Windows[^1].Controls.Add(new Button(50, 50, 128, 64, 4, "Button1"));
 
 		MouseManager.ScreenHeight = Canvas.Height;
 		MouseManager.ScreenWidth = Canvas.Width;
@@ -59,7 +59,7 @@ public static class Tests
 			Canvas.DrawFilledRectangle((int)MouseManager.X, (int)MouseManager.Y, 16, 16, 0, Color.White);
 			Canvas.DrawString(15, 15, Info, default, Color.White);
 			GCImplementation.Free(Info);
-			//WindowManager.Update(Canvas);
+			WindowManager.Update(Canvas);
 			Canvas.Update();
 			//Heap.Collect();
 		}
