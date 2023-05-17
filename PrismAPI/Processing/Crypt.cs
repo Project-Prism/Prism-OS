@@ -17,7 +17,7 @@ public static class Crypt
 
         for (int I = 0; I < Input.Length; I++)
         {
-            Encrypted[I] = (byte)((Input[I] + Key[I % Key.Length]) % 255);
+            Encrypted[I] = (byte)((Input[I] + Key[I % Key.Length]) & 255);
         }
 
         return Encrypted;
@@ -35,16 +35,7 @@ public static class Crypt
 
         for (int I = 0; I < Input.Length; I++)
         {
-            Decrypted[I] = (byte)((Input[I] - Key[I % Key.Length]) % 255);
-
-            if (Decrypted[I] == 0)
-            {
-                Decrypted[I] = 255;
-            }
-            else
-            {
-                Decrypted[I]--;
-            }
+            Decrypted[I] = (byte)((Input[I] - Key[I % Key.Length]) & 255);
         }
 
         return Decrypted;
