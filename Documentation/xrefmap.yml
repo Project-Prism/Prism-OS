@@ -6120,6 +6120,15 @@ references:
   commentId: T:PrismAPI.Processing.Crypt
   fullName: PrismAPI.Processing.Crypt
   nameWithType: Crypt
+- uid: PrismAPI.Processing.Crypt.Decrypt(System.Char[],System.Byte[])
+  name: Decrypt(char[], byte[])
+  href: API/PrismAPI.Processing.Crypt.html#PrismAPI_Processing_Crypt_Decrypt_System_Char___System_Byte___
+  commentId: M:PrismAPI.Processing.Crypt.Decrypt(System.Char[],System.Byte[])
+  name.vb: Decrypt(Char(), Byte())
+  fullName: PrismAPI.Processing.Crypt.Decrypt(char[], byte[])
+  fullName.vb: PrismAPI.Processing.Crypt.Decrypt(Char(), Byte())
+  nameWithType: Crypt.Decrypt(char[], byte[])
+  nameWithType.vb: Crypt.Decrypt(Char(), Byte())
 - uid: PrismAPI.Processing.Crypt.Decrypt(System.String,System.Byte[])
   name: Decrypt(string, byte[])
   href: API/PrismAPI.Processing.Crypt.html#PrismAPI_Processing_Crypt_Decrypt_System_String_System_Byte___
@@ -6136,6 +6145,15 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Processing.Crypt.Decrypt
   nameWithType: Crypt.Decrypt
+- uid: PrismAPI.Processing.Crypt.Encrypt(System.Char[],System.Byte[])
+  name: Encrypt(char[], byte[])
+  href: API/PrismAPI.Processing.Crypt.html#PrismAPI_Processing_Crypt_Encrypt_System_Char___System_Byte___
+  commentId: M:PrismAPI.Processing.Crypt.Encrypt(System.Char[],System.Byte[])
+  name.vb: Encrypt(Char(), Byte())
+  fullName: PrismAPI.Processing.Crypt.Encrypt(char[], byte[])
+  fullName.vb: PrismAPI.Processing.Crypt.Encrypt(Char(), Byte())
+  nameWithType: Crypt.Encrypt(char[], byte[])
+  nameWithType.vb: Crypt.Encrypt(Char(), Byte())
 - uid: PrismAPI.Processing.Crypt.Encrypt(System.String,System.Byte[])
   name: Encrypt(string, byte[])
   href: API/PrismAPI.Processing.Crypt.html#PrismAPI_Processing_Crypt_Encrypt_System_String_System_Byte___
