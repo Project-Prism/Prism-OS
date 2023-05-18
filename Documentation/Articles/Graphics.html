@@ -154,7 +154,7 @@ public class YourKernelName : Kernel
 {
 	public Display Canvas;
 
-	protected override BeforeRun()
+	protected override void BeforeRun()
 	{
 		// Set-up the mouse manager to fit in the canvas size.
 		MouseManager.ScreenWidth = 800;
@@ -163,7 +163,7 @@ public class YourKernelName : Kernel
 		Canvas = Display.GetDisplay(800, 600); // Define the canvas instance.
 	}
 
-	protected override Run()
+	protected override void Run()
 	{
 		Canvas.Clear(Color.CoolGreen); // Draw a green background.
 		Canvas.DrawFilledRectangle((int)MouseManager.X, (int)MouseManager.Y, 16, 16, 0, Color.White); // Draw the mouse.
