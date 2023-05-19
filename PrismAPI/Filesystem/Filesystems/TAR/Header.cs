@@ -5,7 +5,7 @@ namespace PrismAPI.Filesystem.Filesystems.TAR;
 /// <summary>
 /// The header file for posix tar files.
 /// </summary>
-public unsafe struct Header
+public struct Header
 {
     /// <summary>
     /// Creates a new instance of the <see cref="Header"/>  class.
@@ -17,11 +17,11 @@ public unsafe struct Header
         BinaryReader Reader = new(new MemoryStream(Binary));
 
         // Assign all values.
-        Name = Encoding.UTF8.GetString(Reader.ReadBytes(100)).Trim('\0');
+        Name = Encoding.ASCII.GetString(Reader.ReadBytes(100)).Trim('\0');
         Mode = Reader.ReadBytes(8);
         OwnerUID = Reader.ReadBytes(8);
         GroupUID = Reader.ReadBytes(8);
-        Size = Convert.ToInt64(Encoding.UTF8.GetString(Reader.ReadBytes(12)).Trim('\0'), 8);
+        Size = Convert.ToInt64(Encoding.ASCII.GetString(Reader.ReadBytes(12)).Trim('\0'), 8);
         LastModifyTime = Reader.ReadBytes(12);
         HRChecksum = Reader.ReadBytes(8);
         TypeFlag = (FileTypes)Reader.ReadByte();

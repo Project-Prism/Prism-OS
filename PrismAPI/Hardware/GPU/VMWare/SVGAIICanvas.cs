@@ -230,7 +230,7 @@ public unsafe class SVGAIICanvas : Display
 
 	public override void Update()
 	{
-		MemoryOperations.Copy(ScreenBuffer, Internal, (int)Size * 4);
+		CopyTo(ScreenBuffer);
 
 		WriteToFifo((uint)FIFOCommand.Update);
 		WriteToFifo(0);
