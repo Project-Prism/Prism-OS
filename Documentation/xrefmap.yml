@@ -8420,6 +8420,24 @@ references:
   commentId: F:PrismAPI.UI.Config.LayoutStyle.Top
   fullName: PrismAPI.UI.Config.LayoutStyle.Top
   nameWithType: LayoutStyle.Top
+- uid: PrismAPI.UI.Config.MenuStyle
+  name: MenuStyle
+  href: API/PrismAPI.UI.Config.MenuStyle.html
+  commentId: T:PrismAPI.UI.Config.MenuStyle
+  fullName: PrismAPI.UI.Config.MenuStyle
+  nameWithType: MenuStyle
+- uid: PrismAPI.UI.Config.MenuStyle.Docked
+  name: Docked
+  href: API/PrismAPI.UI.Config.MenuStyle.html#PrismAPI_UI_Config_MenuStyle_Docked
+  commentId: F:PrismAPI.UI.Config.MenuStyle.Docked
+  fullName: PrismAPI.UI.Config.MenuStyle.Docked
+  nameWithType: MenuStyle.Docked
+- uid: PrismAPI.UI.Config.MenuStyle.Floating
+  name: Floating
+  href: API/PrismAPI.UI.Config.MenuStyle.html#PrismAPI_UI_Config_MenuStyle_Floating
+  commentId: F:PrismAPI.UI.Config.MenuStyle.Floating
+  fullName: PrismAPI.UI.Config.MenuStyle.Floating
+  nameWithType: MenuStyle.Floating
 - uid: PrismAPI.UI.Config.ThemeStyle
   name: ThemeStyle
   href: API/PrismAPI.UI.Config.ThemeStyle.html
