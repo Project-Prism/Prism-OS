@@ -1,6 +1,4 @@
-﻿[comment]: <> (Images generated with ray.so website)
- 
- # Introduction - PrismGraphics
+﻿# Introduction - PrismGraphics
 
 PrismgGraphics is the 2D graphics rasterization platform that allows for drawing of text, images, shapes, gradients, and whatever else on a 2D canvas.
 
@@ -20,8 +18,7 @@ This readme is still in progress, so it is not finished!
 
 Interpolate ``0.0f`` to ``255.0f`` over the span of ``5`` seconds with the ``Ease`` mode.
 ```cs
-[comment]: <> (AnimationController A = new(0.0f, 255.0f, new(0, 0, 5), AnimationMode.Ease);)
-![ray-so-export](https://github.com/Project-Prism/Prism-OS/assets/76945439/dc7ff7a9-a0c6-4d89-87ad-6dd3dfcee6cc)
+AnimationController A = new(0.0f, 255.0f, new(0, 0, 5), AnimationMode.Ease);
 ```
 
 
