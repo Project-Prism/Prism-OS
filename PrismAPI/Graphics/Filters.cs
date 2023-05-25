@@ -240,4 +240,24 @@ public static class Filters
 		// Return filtered image.
 		return Result;
 	}
+
+	/// <summary>
+	/// Inverts an image's colors.
+	/// </summary>
+	/// <param name="G">The input to invert.</param>
+	/// <returns>An inverted version of the input.</returns>
+	public static Canvas Invert(Canvas G)
+	{
+		// Define new canvas to write inverted colors to.
+		Canvas Result = new(G.Width, G.Height);
+
+		// Loop over all pixel linearly.
+		for (uint I = 0; I < G.Size; I++)
+		{
+			Result[I] = Color.Invert(G[I]);
+		}
+
+		// Return the result of the operation.
+		return Result;
+	}
 }
