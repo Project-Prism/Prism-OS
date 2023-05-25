@@ -3856,6 +3856,19 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Filters.ApplyHDR
   nameWithType: Filters.ApplyHDR
+- uid: PrismAPI.Graphics.Filters.Invert(PrismAPI.Graphics.Canvas)
+  name: Invert(Canvas)
+  href: API/PrismAPI.Graphics.Filters.html#PrismAPI_Graphics_Filters_Invert_PrismAPI_Graphics_Canvas_
+  commentId: M:PrismAPI.Graphics.Filters.Invert(PrismAPI.Graphics.Canvas)
+  fullName: PrismAPI.Graphics.Filters.Invert(PrismAPI.Graphics.Canvas)
+  nameWithType: Filters.Invert(Canvas)
+- uid: PrismAPI.Graphics.Filters.Invert*
+  name: Invert
+  href: API/PrismAPI.Graphics.Filters.html#PrismAPI_Graphics_Filters_Invert_
+  commentId: Overload:PrismAPI.Graphics.Filters.Invert
+  isSpec: "True"
+  fullName: PrismAPI.Graphics.Filters.Invert
+  nameWithType: Filters.Invert
 - uid: PrismAPI.Graphics.Filters.MaskAlpha(PrismAPI.Graphics.Canvas,PrismAPI.Graphics.Canvas)
   name: MaskAlpha(Canvas, Canvas)
   href: API/PrismAPI.Graphics.Filters.html#PrismAPI_Graphics_Filters_MaskAlpha_PrismAPI_Graphics_Canvas_PrismAPI_Graphics_Canvas_
