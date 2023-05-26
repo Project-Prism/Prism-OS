@@ -28,7 +28,7 @@ public class Window : Control
         throw new NotImplementedException();
     }
 
-    public override void Update(Canvas Canvas, CursorStatus Staus)
+    public override void Update(Canvas Canvas, CursorStatus Status)
     {
         // Resize if needed.
         TitleShelf.Width = Width;
@@ -42,18 +42,18 @@ public class Window : Control
         // Draw the cache of each control for the title shelf.
         foreach (Control C in ShelfControls)
         {
-            TitleShelf.DrawImage(C.X, C.Y, C);
+            C.Update(TitleShelf, CursorStatus.Idle);
         }
 
         // Draw the cache of each control.
         foreach (Control C in Controls)
-        {
-            WindowBody.DrawImage(C.X, C.Y, C);
-        }
+		{
+			C.Update(WindowBody, CursorStatus.Idle);
+		}
 
         // Draw the window to the buffer.
-        Canvas.DrawImage(X, Y - 32, TitleShelf);
-        Canvas.DrawImage(X, Y, WindowBody);
+        Canvas.DrawImage(X, Y - 32, TitleShelf, false);
+        Canvas.DrawImage(X, Y, WindowBody, false);
     }
 
     #endregion
