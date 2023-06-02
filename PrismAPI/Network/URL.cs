@@ -9,6 +9,8 @@ namespace PrismAPI.Network;
 /// </summary>
 public class URL
 {
+	#region Constructors
+
 	/// <summary>
 	/// Creates a new instance of she <see cref="URL"/> class.
 	/// </summary>
@@ -17,6 +19,8 @@ public class URL
 	{
 		this.FullURL = FullURL;
 	}
+
+	#endregion
 
 	#region Properties
 

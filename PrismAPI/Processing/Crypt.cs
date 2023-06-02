@@ -2,6 +2,7 @@ namespace PrismAPI.Processing;
 
 /// <summary>
 /// The <see cref="Crypt"/> class, used for binary security.
+/// This class is not verified secure!
 /// </summary>
 public static class Crypt
 {

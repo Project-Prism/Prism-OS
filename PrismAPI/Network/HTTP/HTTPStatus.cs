@@ -1,7 +1,7 @@
 ﻿namespace PrismAPI.Network.HTTP;
 
 // Reference: https://loadium.com/blog/the-list-of-http-response-status-codes
-public enum Status
+public enum HTTPStatus
 {
 	// Infornmational
 	SwitchingProtocols = 101,
