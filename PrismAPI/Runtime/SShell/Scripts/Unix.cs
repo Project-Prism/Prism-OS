@@ -1,4 +1,4 @@
-﻿using Console = System.Console;
+using Console = System.Console;
 using Cosmos.System.FileSystem;
 using PrismAPI.Audio;
 using PrismAPI.Filesystem.Formats.ELF.ELFHeader;
@@ -21,7 +21,7 @@ public static unsafe class Unix
 	}
 	public class HexDump : Script
 	{
-		public HexDump() : base("hexdump", "Print all bytes of a file as 'readable' hex.")
+		public HexDump() : base("hexdump", "Prints all the bytes of a file as 'readable' hexadecimal.")
 		{
 			AdvancedDescription = "hexdump [NumberOfBytes] [path/to/file]";
 		}
@@ -31,7 +31,7 @@ public static unsafe class Unix
 			// Check if improper arguments were specifed.
 			if (Args.Length < 2 || Args[0].Length == 0 || Args[1].Length == 0)
 			{
-				Console.WriteLine("Please specify proper options. Run 'man hexdump' for more info.");
+				Console.WriteLine("Please specify the proper options for 'hexdump'. Run 'man hexdump' for more info.");
 				return;
 			}
 
@@ -60,7 +60,7 @@ public static unsafe class Unix
 			// Check if improper arguments were specifed.
 			if (Args.Length < 2 || Args[0].Length == 0 || Args[1].Length == 0)
 			{
-				Console.WriteLine("Please specify proper options. Run 'man readelf' for more info.");
+				Console.WriteLine("Please specify the proper options for 'readelf'. Run 'man readelf' for more info.");
 				return;
 			}
 
@@ -82,7 +82,7 @@ public static unsafe class Unix
 			}
 			else
 			{
-				Console.WriteLine($"Impropper arguments were specified.");
+				Console.WriteLine($"Incorrect arguments were specified.");
 				return;
 			}
 		}
@@ -113,7 +113,7 @@ public static unsafe class Unix
 	}
 	public class Clear : Script
 	{
-		public Clear() : base("clear", "Clear the terminal screen.") { }
+		public Clear() : base("clear", "Clears the terminal.") { }
 
 		public override void Invoke(string[] Args)
 		{
@@ -152,7 +152,7 @@ public static unsafe class Unix
 		{
 			if (Args.Length < 1)
 			{
-				Console.WriteLine("Insuficcient arguments.");
+				Console.WriteLine("Insufficient arguments.");
 				return;
 			}
 
@@ -173,7 +173,7 @@ public static unsafe class Unix
 		{
 			if (Args.Length < 2)
 			{
-				Console.WriteLine("Insuficcient arguments.");
+				Console.WriteLine("Insufficient arguments.");
 				return;
 			}
 
@@ -198,7 +198,7 @@ public static unsafe class Unix
 	}
 	public class Cat : Script
 	{
-		public Cat() : base("cat", "Echo the contents of a file to the terminal.")
+		public Cat() : base("cat", "Reads the contents of a file to the terminal.")
 		{
 			AdvancedDescription = "cat [full path]";
 		}
@@ -207,7 +207,7 @@ public static unsafe class Unix
 		{
 			if (Args.Length != 1)
 			{
-				Console.WriteLine("Incorect amonut of arguments.");
+				Console.WriteLine("Incorect amount of arguments.");
 			}
 
 			Console.WriteLine(File.ReadAllText(Args[0]));
@@ -215,7 +215,7 @@ public static unsafe class Unix
 	}
 	public class Man : Script
 	{
-		public Man() : base("man", "Lists all commands or advanced info about a specific command.")
+		public Man() : base("man", "Lists all the commands or prints advanced information about a specific command.")
 		{
 			AdvancedDescription = "man [command name, optional.]";
 		}
@@ -230,7 +230,7 @@ public static unsafe class Unix
 					{
 						if (S.AdvancedDescription.Length == 0)
 						{
-							Console.WriteLine("Command does not have advanced description.");
+							Console.WriteLine("Command does not have an advanced description.");
 							return;
 						}
 
@@ -238,7 +238,7 @@ public static unsafe class Unix
 						return;
 					}
 				}
-				Console.WriteLine($"man: Could not find command manual for '{Args[0]}'.");
+				Console.WriteLine($"man: Could not find a command manual for '{Args[0]}'.");
 				return;
 			}
 			else
@@ -252,7 +252,7 @@ public static unsafe class Unix
 	}
 	public class PWD : Script
 	{
-		public PWD() : base("pwd", "Print working directory.") { }
+		public PWD() : base("pwd", "Prints the current working directory.") { }
 
 		public override void Invoke(string[] Args)
 		{
@@ -270,7 +270,7 @@ public static unsafe class Unix
 		{
 			if (Args.Length < 2)
 			{
-				Console.WriteLine("Insuficcient arguments.");
+				Console.WriteLine("Insufficient arguments.");
 				return;
 			}
 
@@ -291,7 +291,7 @@ public static unsafe class Unix
 		{
 			if (Args.Length != 1)
 			{
-				Console.WriteLine("Insuficcient arguments.");
+				Console.WriteLine("Insufficient arguments.");
 				return;
 			}
 
@@ -300,7 +300,7 @@ public static unsafe class Unix
 	}
 	public class LS : Script
 	{
-		public LS() : base("ls", "List the contents of a directory.")
+		public LS() : base("ls", "Lists the contents of a directory.")
 		{
 			AdvancedDescription = "ls [full path, optional]";
 		}
@@ -340,7 +340,7 @@ public static unsafe class Unix
 	}
 	public class RM : Script
 	{
-		public RM() : base("rm", "Remove a file/directory.")
+		public RM() : base("rm", "Removes a file or directory.")
 		{
 			AdvancedDescription =
 				"rm [flags] [full path]\n" +
