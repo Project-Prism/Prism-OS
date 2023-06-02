@@ -755,30 +755,20 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Hardware.Serial.yml",
+      "source_relative_path": "API/PrismAPI.Network.HTTP.HTTPClient.yml",
       "output": {
         ".html": {
-          "relative_path": "API/PrismAPI.Hardware.Serial.html"
+          "relative_path": "API/PrismAPI.Network.HTTP.HTTPClient.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Hardware.yml",
+      "source_relative_path": "API/PrismAPI.Network.HTTP.HTTPStatus.yml",
       "output": {
         ".html": {
-          "relative_path": "API/PrismAPI.Hardware.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Network.HTTP.Status.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismAPI.Network.HTTP.Status.html"
+          "relative_path": "API/PrismAPI.Network.HTTP.HTTPStatus.html"
         }
       },
       "version": ""
@@ -789,16 +779,6 @@
       "output": {
         ".html": {
           "relative_path": "API/PrismAPI.Network.HTTP.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Network.HTTPClient.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismAPI.Network.HTTPClient.html"
         }
       },
       "version": ""
