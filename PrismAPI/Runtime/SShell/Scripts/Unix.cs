@@ -207,7 +207,7 @@ public static unsafe class Unix
 		{
 			if (Args.Length != 1)
 			{
-				Console.WriteLine("Incorect amount of arguments.");
+				Console.WriteLine("Incorrect amount of arguments.");
 			}
 
 			Console.WriteLine(File.ReadAllText(Args[0]));
