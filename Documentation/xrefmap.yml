@@ -4185,6 +4185,86 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Image.FromTGA
   nameWithType: Image.FromTGA
+- uid: PrismAPI.Graphics.Physics
+  name: PrismAPI.Graphics.Physics
+  href: API/PrismAPI.Graphics.Physics.html
+  commentId: N:PrismAPI.Graphics.Physics
+  fullName: PrismAPI.Graphics.Physics
+  nameWithType: PrismAPI.Graphics.Physics
+- uid: PrismAPI.Graphics.Physics.Colisions
+  name: PrismAPI.Graphics.Physics.Colisions
+  href: API/PrismAPI.Graphics.Physics.Colisions.html
+  commentId: N:PrismAPI.Graphics.Physics.Colisions
+  fullName: PrismAPI.Graphics.Physics.Colisions
+  nameWithType: PrismAPI.Graphics.Physics.Colisions
+- uid: PrismAPI.Graphics.Physics.Colisions.CubeColider
+  name: CubeColider
+  href: API/PrismAPI.Graphics.Physics.Colisions.CubeColider.html
+  commentId: T:PrismAPI.Graphics.Physics.Colisions.CubeColider
+  fullName: PrismAPI.Graphics.Physics.Colisions.CubeColider
+  nameWithType: CubeColider
+- uid: PrismAPI.Graphics.Physics.Gravity
+  name: Gravity
+  href: API/PrismAPI.Graphics.Physics.Gravity.html
+  commentId: T:PrismAPI.Graphics.Physics.Gravity
+  fullName: PrismAPI.Graphics.Physics.Gravity
+  nameWithType: Gravity
+- uid: PrismAPI.Graphics.Physics.Gravity.#ctor
+  name: Gravity()
+  href: API/PrismAPI.Graphics.Physics.Gravity.html#PrismAPI_Graphics_Physics_Gravity__ctor
+  commentId: M:PrismAPI.Graphics.Physics.Gravity.#ctor
+  name.vb: New()
+  fullName: PrismAPI.Graphics.Physics.Gravity.Gravity()
+  fullName.vb: PrismAPI.Graphics.Physics.Gravity.New()
+  nameWithType: Gravity.Gravity()
+  nameWithType.vb: Gravity.New()
+- uid: PrismAPI.Graphics.Physics.Gravity.#ctor*
+  name: Gravity
+  href: API/PrismAPI.Graphics.Physics.Gravity.html#PrismAPI_Graphics_Physics_Gravity__ctor_
+  commentId: Overload:PrismAPI.Graphics.Physics.Gravity.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: PrismAPI.Graphics.Physics.Gravity.Gravity
+  fullName.vb: PrismAPI.Graphics.Physics.Gravity.New
+  nameWithType: Gravity.Gravity
+  nameWithType.vb: Gravity.New
+- uid: PrismAPI.Graphics.Physics.Gravity.Force
+  name: Force
+  href: API/PrismAPI.Graphics.Physics.Gravity.html#PrismAPI_Graphics_Physics_Gravity_Force
+  commentId: F:PrismAPI.Graphics.Physics.Gravity.Force
+  fullName: PrismAPI.Graphics.Physics.Gravity.Force
+  nameWithType: Gravity.Force
+- uid: PrismAPI.Graphics.Physics.Gravity.Mass
+  name: Mass
+  href: API/PrismAPI.Graphics.Physics.Gravity.html#PrismAPI_Graphics_Physics_Gravity_Mass
+  commentId: F:PrismAPI.Graphics.Physics.Gravity.Mass
+  fullName: PrismAPI.Graphics.Physics.Gravity.Mass
+  nameWithType: Gravity.Mass
+- uid: PrismAPI.Graphics.Physics.Gravity.Next
+  name: Next()
+  href: API/PrismAPI.Graphics.Physics.Gravity.html#PrismAPI_Graphics_Physics_Gravity_Next
+  commentId: M:PrismAPI.Graphics.Physics.Gravity.Next
+  fullName: PrismAPI.Graphics.Physics.Gravity.Next()
+  nameWithType: Gravity.Next()
+- uid: PrismAPI.Graphics.Physics.Gravity.Next*
+  name: Next
+  href: API/PrismAPI.Graphics.Physics.Gravity.html#PrismAPI_Graphics_Physics_Gravity_Next_
+  commentId: Overload:PrismAPI.Graphics.Physics.Gravity.Next
+  isSpec: "True"
+  fullName: PrismAPI.Graphics.Physics.Gravity.Next
+  nameWithType: Gravity.Next
+- uid: PrismAPI.Graphics.Physics.Gravity.Speed
+  name: Speed
+  href: API/PrismAPI.Graphics.Physics.Gravity.html#PrismAPI_Graphics_Physics_Gravity_Speed
+  commentId: F:PrismAPI.Graphics.Physics.Gravity.Speed
+  fullName: PrismAPI.Graphics.Physics.Gravity.Speed
+  nameWithType: Gravity.Speed
+- uid: PrismAPI.Graphics.Physics.Gravity.Velocity
+  name: Velocity
+  href: API/PrismAPI.Graphics.Physics.Gravity.html#PrismAPI_Graphics_Physics_Gravity_Velocity
+  commentId: F:PrismAPI.Graphics.Physics.Gravity.Velocity
+  fullName: PrismAPI.Graphics.Physics.Gravity.Velocity
+  nameWithType: Gravity.Velocity
 - uid: PrismAPI.Graphics.Rasterizer
   name: PrismAPI.Graphics.Rasterizer
   href: API/PrismAPI.Graphics.Rasterizer.html
@@ -4312,12 +4392,6 @@ references:
   commentId: F:PrismAPI.Graphics.Rasterizer.Engine.Camera
   fullName: PrismAPI.Graphics.Rasterizer.Engine.Camera
   nameWithType: Engine.Camera
-- uid: PrismAPI.Graphics.Rasterizer.Engine.Gravity
-  name: Gravity
-  href: API/PrismAPI.Graphics.Rasterizer.Engine.html#PrismAPI_Graphics_Rasterizer_Engine_Gravity
-  commentId: F:PrismAPI.Graphics.Rasterizer.Engine.Gravity
-  fullName: PrismAPI.Graphics.Rasterizer.Engine.Gravity
-  nameWithType: Engine.Gravity
 - uid: PrismAPI.Graphics.Rasterizer.Engine.Lights
   name: Lights
   href: API/PrismAPI.Graphics.Rasterizer.Engine.html#PrismAPI_Graphics_Rasterizer_Engine_Lights
@@ -4447,12 +4521,6 @@ references:
   fullName.vb: PrismAPI.Graphics.Rasterizer.Mesh.New
   nameWithType: Mesh.Mesh
   nameWithType.vb: Mesh.New
-- uid: PrismAPI.Graphics.Rasterizer.Mesh.Force
-  name: Force
-  href: API/PrismAPI.Graphics.Rasterizer.Mesh.html#PrismAPI_Graphics_Rasterizer_Mesh_Force
-  commentId: F:PrismAPI.Graphics.Rasterizer.Mesh.Force
-  fullName: PrismAPI.Graphics.Rasterizer.Mesh.Force
-  nameWithType: Mesh.Force
 - uid: PrismAPI.Graphics.Rasterizer.Mesh.FromObject(System.Byte[],System.Single)
   name: FromObject(byte[], float)
   href: API/PrismAPI.Graphics.Rasterizer.Mesh.html#PrismAPI_Graphics_Rasterizer_Mesh_FromObject_System_Byte___System_Single_
@@ -4514,24 +4582,6 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Rasterizer.Mesh.GetRotationMatrix
   nameWithType: Mesh.GetRotationMatrix
-- uid: PrismAPI.Graphics.Rasterizer.Mesh.HasCollision
-  name: HasCollision
-  href: API/PrismAPI.Graphics.Rasterizer.Mesh.html#PrismAPI_Graphics_Rasterizer_Mesh_HasCollision
-  commentId: F:PrismAPI.Graphics.Rasterizer.Mesh.HasCollision
-  fullName: PrismAPI.Graphics.Rasterizer.Mesh.HasCollision
-  nameWithType: Mesh.HasCollision
-- uid: PrismAPI.Graphics.Rasterizer.Mesh.HasPhysics
-  name: HasPhysics
-  href: API/PrismAPI.Graphics.Rasterizer.Mesh.html#PrismAPI_Graphics_Rasterizer_Mesh_HasPhysics
-  commentId: F:PrismAPI.Graphics.Rasterizer.Mesh.HasPhysics
-  fullName: PrismAPI.Graphics.Rasterizer.Mesh.HasPhysics
-  nameWithType: Mesh.HasPhysics
-- uid: PrismAPI.Graphics.Rasterizer.Mesh.Mass
-  name: Mass
-  href: API/PrismAPI.Graphics.Rasterizer.Mesh.html#PrismAPI_Graphics_Rasterizer_Mesh_Mass
-  commentId: F:PrismAPI.Graphics.Rasterizer.Mesh.Mass
-  fullName: PrismAPI.Graphics.Rasterizer.Mesh.Mass
-  nameWithType: Mesh.Mass
 - uid: PrismAPI.Graphics.Rasterizer.Mesh.Position
   name: Position
   href: API/PrismAPI.Graphics.Rasterizer.Mesh.html#PrismAPI_Graphics_Rasterizer_Mesh_Position
@@ -4544,22 +4594,6 @@ references:
   commentId: F:PrismAPI.Graphics.Rasterizer.Mesh.Rotation
   fullName: PrismAPI.Graphics.Rasterizer.Mesh.Rotation
   nameWithType: Mesh.Rotation
-- uid: PrismAPI.Graphics.Rasterizer.Mesh.Step(System.Single,System.Single)
-  name: Step(float, float)
-  href: API/PrismAPI.Graphics.Rasterizer.Mesh.html#PrismAPI_Graphics_Rasterizer_Mesh_Step_System_Single_System_Single_
-  commentId: M:PrismAPI.Graphics.Rasterizer.Mesh.Step(System.Single,System.Single)
-  name.vb: Step(Single, Single)
-  fullName: PrismAPI.Graphics.Rasterizer.Mesh.Step(float, float)
-  fullName.vb: PrismAPI.Graphics.Rasterizer.Mesh.Step(Single, Single)
-  nameWithType: Mesh.Step(float, float)
-  nameWithType.vb: Mesh.Step(Single, Single)
-- uid: PrismAPI.Graphics.Rasterizer.Mesh.Step*
-  name: Step
-  href: API/PrismAPI.Graphics.Rasterizer.Mesh.html#PrismAPI_Graphics_Rasterizer_Mesh_Step_
-  commentId: Overload:PrismAPI.Graphics.Rasterizer.Mesh.Step
-  isSpec: "True"
-  fullName: PrismAPI.Graphics.Rasterizer.Mesh.Step
-  nameWithType: Mesh.Step
 - uid: PrismAPI.Graphics.Rasterizer.Mesh.TestLogic(System.Single)
   name: TestLogic(float)
   href: API/PrismAPI.Graphics.Rasterizer.Mesh.html#PrismAPI_Graphics_Rasterizer_Mesh_TestLogic_System_Single_
@@ -4582,12 +4616,6 @@ references:
   commentId: F:PrismAPI.Graphics.Rasterizer.Mesh.Triangles
   fullName: PrismAPI.Graphics.Rasterizer.Mesh.Triangles
   nameWithType: Mesh.Triangles
-- uid: PrismAPI.Graphics.Rasterizer.Mesh.Velocity
-  name: Velocity
-  href: API/PrismAPI.Graphics.Rasterizer.Mesh.html#PrismAPI_Graphics_Rasterizer_Mesh_Velocity
-  commentId: F:PrismAPI.Graphics.Rasterizer.Mesh.Velocity
-  fullName: PrismAPI.Graphics.Rasterizer.Mesh.Velocity
-  nameWithType: Mesh.Velocity
 - uid: PrismAPI.Graphics.Rasterizer.Triangle
   name: Triangle
   href: API/PrismAPI.Graphics.Rasterizer.Triangle.html
@@ -6154,150 +6182,6 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Network.URL.Protocol
   nameWithType: URL.Protocol
-- uid: PrismAPI.Processing
-  name: PrismAPI.Processing
-  href: API/PrismAPI.Processing.html
-  commentId: N:PrismAPI.Processing
-  fullName: PrismAPI.Processing
-  nameWithType: PrismAPI.Processing
-- uid: PrismAPI.Processing.Compression
-  name: PrismAPI.Processing.Compression
-  href: API/PrismAPI.Processing.Compression.html
-  commentId: N:PrismAPI.Processing.Compression
-  fullName: PrismAPI.Processing.Compression
-  nameWithType: PrismAPI.Processing.Compression
-- uid: PrismAPI.Processing.Compression.DeflateStream
-  name: DeflateStream
-  href: API/PrismAPI.Processing.Compression.DeflateStream.html
-  commentId: T:PrismAPI.Processing.Compression.DeflateStream
-  fullName: PrismAPI.Processing.Compression.DeflateStream
-  nameWithType: DeflateStream
-- uid: PrismAPI.Processing.Compression.DeflateStream.Inflate(System.Collections.Generic.IList{System.Byte})
-  name: Inflate(IList<byte>)
-  href: API/PrismAPI.Processing.Compression.DeflateStream.html#PrismAPI_Processing_Compression_DeflateStream_Inflate_System_Collections_Generic_IList_System_Byte__
-  commentId: M:PrismAPI.Processing.Compression.DeflateStream.Inflate(System.Collections.Generic.IList{System.Byte})
-  name.vb: Inflate(IList(Of Byte))
-  fullName: PrismAPI.Processing.Compression.DeflateStream.Inflate(System.Collections.Generic.IList<byte>)
-  fullName.vb: PrismAPI.Processing.Compression.DeflateStream.Inflate(System.Collections.Generic.IList(Of Byte))
-  nameWithType: DeflateStream.Inflate(IList<byte>)
-  nameWithType.vb: DeflateStream.Inflate(IList(Of Byte))
-- uid: PrismAPI.Processing.Compression.DeflateStream.Inflate*
-  name: Inflate
-  href: API/PrismAPI.Processing.Compression.DeflateStream.html#PrismAPI_Processing_Compression_DeflateStream_Inflate_
-  commentId: Overload:PrismAPI.Processing.Compression.DeflateStream.Inflate
-  isSpec: "True"
-  fullName: PrismAPI.Processing.Compression.DeflateStream.Inflate
-  nameWithType: DeflateStream.Inflate
-- uid: PrismAPI.Processing.Compression.LZW
-  name: LZW
-  href: API/PrismAPI.Processing.Compression.LZW.html
-  commentId: T:PrismAPI.Processing.Compression.LZW
-  fullName: PrismAPI.Processing.Compression.LZW
-  nameWithType: LZW
-- uid: PrismAPI.Processing.Compression.LZW.LZWCompress(System.Byte[])
-  name: LZWCompress(byte[])
-  href: API/PrismAPI.Processing.Compression.LZW.html#PrismAPI_Processing_Compression_LZW_LZWCompress_System_Byte___
-  commentId: M:PrismAPI.Processing.Compression.LZW.LZWCompress(System.Byte[])
-  name.vb: LZWCompress(Byte())
-  fullName: PrismAPI.Processing.Compression.LZW.LZWCompress(byte[])
-  fullName.vb: PrismAPI.Processing.Compression.LZW.LZWCompress(Byte())
-  nameWithType: LZW.LZWCompress(byte[])
-  nameWithType.vb: LZW.LZWCompress(Byte())
-- uid: PrismAPI.Processing.Compression.LZW.LZWCompress*
-  name: LZWCompress
-  href: API/PrismAPI.Processing.Compression.LZW.html#PrismAPI_Processing_Compression_LZW_LZWCompress_
-  commentId: Overload:PrismAPI.Processing.Compression.LZW.LZWCompress
-  isSpec: "True"
-  fullName: PrismAPI.Processing.Compression.LZW.LZWCompress
-  nameWithType: LZW.LZWCompress
-- uid: PrismAPI.Processing.Compression.LZW.LZWDecompress(System.Byte[])
-  name: LZWDecompress(byte[])
-  href: API/PrismAPI.Processing.Compression.LZW.html#PrismAPI_Processing_Compression_LZW_LZWDecompress_System_Byte___
-  commentId: M:PrismAPI.Processing.Compression.LZW.LZWDecompress(System.Byte[])
-  name.vb: LZWDecompress(Byte())
-  fullName: PrismAPI.Processing.Compression.LZW.LZWDecompress(byte[])
-  fullName.vb: PrismAPI.Processing.Compression.LZW.LZWDecompress(Byte())
-  nameWithType: LZW.LZWDecompress(byte[])
-  nameWithType.vb: LZW.LZWDecompress(Byte())
-- uid: PrismAPI.Processing.Compression.LZW.LZWDecompress*
-  name: LZWDecompress
-  href: API/PrismAPI.Processing.Compression.LZW.html#PrismAPI_Processing_Compression_LZW_LZWDecompress_
-  commentId: Overload:PrismAPI.Processing.Compression.LZW.LZWDecompress
-  isSpec: "True"
-  fullName: PrismAPI.Processing.Compression.LZW.LZWDecompress
-  nameWithType: LZW.LZWDecompress
-- uid: PrismAPI.Processing.Crypt
-  name: Crypt
-  href: API/PrismAPI.Processing.Crypt.html
-  commentId: T:PrismAPI.Processing.Crypt
-  fullName: PrismAPI.Processing.Crypt
-  nameWithType: Crypt
-- uid: PrismAPI.Processing.Crypt.Decrypt(System.Char[],System.Byte[])
-  name: Decrypt(char[], byte[])
-  href: API/PrismAPI.Processing.Crypt.html#PrismAPI_Processing_Crypt_Decrypt_System_Char___System_Byte___
-  commentId: M:PrismAPI.Processing.Crypt.Decrypt(System.Char[],System.Byte[])
-  name.vb: Decrypt(Char(), Byte())
-  fullName: PrismAPI.Processing.Crypt.Decrypt(char[], byte[])
-  fullName.vb: PrismAPI.Processing.Crypt.Decrypt(Char(), Byte())
-  nameWithType: Crypt.Decrypt(char[], byte[])
-  nameWithType.vb: Crypt.Decrypt(Char(), Byte())
-- uid: PrismAPI.Processing.Crypt.Decrypt(System.String,System.Byte[])
-  name: Decrypt(string, byte[])
-  href: API/PrismAPI.Processing.Crypt.html#PrismAPI_Processing_Crypt_Decrypt_System_String_System_Byte___
-  commentId: M:PrismAPI.Processing.Crypt.Decrypt(System.String,System.Byte[])
-  name.vb: Decrypt(String, Byte())
-  fullName: PrismAPI.Processing.Crypt.Decrypt(string, byte[])
-  fullName.vb: PrismAPI.Processing.Crypt.Decrypt(String, Byte())
-  nameWithType: Crypt.Decrypt(string, byte[])
-  nameWithType.vb: Crypt.Decrypt(String, Byte())
-- uid: PrismAPI.Processing.Crypt.Decrypt*
-  name: Decrypt
-  href: API/PrismAPI.Processing.Crypt.html#PrismAPI_Processing_Crypt_Decrypt_
-  commentId: Overload:PrismAPI.Processing.Crypt.Decrypt
-  isSpec: "True"
-  fullName: PrismAPI.Processing.Crypt.Decrypt
-  nameWithType: Crypt.Decrypt
-- uid: PrismAPI.Processing.Crypt.Encrypt(System.Char[],System.Byte[])
-  name: Encrypt(char[], byte[])
-  href: API/PrismAPI.Processing.Crypt.html#PrismAPI_Processing_Crypt_Encrypt_System_Char___System_Byte___
-  commentId: M:PrismAPI.Processing.Crypt.Encrypt(System.Char[],System.Byte[])
-  name.vb: Encrypt(Char(), Byte())
-  fullName: PrismAPI.Processing.Crypt.Encrypt(char[], byte[])
-  fullName.vb: PrismAPI.Processing.Crypt.Encrypt(Char(), Byte())
-  nameWithType: Crypt.Encrypt(char[], byte[])
-  nameWithType.vb: Crypt.Encrypt(Char(), Byte())
-- uid: PrismAPI.Processing.Crypt.Encrypt(System.String,System.Byte[])
-  name: Encrypt(string, byte[])
-  href: API/PrismAPI.Processing.Crypt.html#PrismAPI_Processing_Crypt_Encrypt_System_String_System_Byte___
-  commentId: M:PrismAPI.Processing.Crypt.Encrypt(System.String,System.Byte[])
-  name.vb: Encrypt(String, Byte())
-  fullName: PrismAPI.Processing.Crypt.Encrypt(string, byte[])
-  fullName.vb: PrismAPI.Processing.Crypt.Encrypt(String, Byte())
-  nameWithType: Crypt.Encrypt(string, byte[])
-  nameWithType.vb: Crypt.Encrypt(String, Byte())
-- uid: PrismAPI.Processing.Crypt.Encrypt*
-  name: Encrypt
-  href: API/PrismAPI.Processing.Crypt.html#PrismAPI_Processing_Crypt_Encrypt_
-  commentId: Overload:PrismAPI.Processing.Crypt.Encrypt
-  isSpec: "True"
-  fullName: PrismAPI.Processing.Crypt.Encrypt
-  nameWithType: Crypt.Encrypt
-- uid: PrismAPI.Processing.Crypt.Hash(System.String)
-  name: Hash(string)
-  href: API/PrismAPI.Processing.Crypt.html#PrismAPI_Processing_Crypt_Hash_System_String_
-  commentId: M:PrismAPI.Processing.Crypt.Hash(System.String)
-  name.vb: Hash(String)
-  fullName: PrismAPI.Processing.Crypt.Hash(string)
-  fullName.vb: PrismAPI.Processing.Crypt.Hash(String)
-  nameWithType: Crypt.Hash(string)
-  nameWithType.vb: Crypt.Hash(String)
-- uid: PrismAPI.Processing.Crypt.Hash*
-  name: Hash
-  href: API/PrismAPI.Processing.Crypt.html#PrismAPI_Processing_Crypt_Hash_
-  commentId: Overload:PrismAPI.Processing.Crypt.Hash
-  isSpec: "True"
-  fullName: PrismAPI.Processing.Crypt.Hash
-  nameWithType: Crypt.Hash
 - uid: PrismAPI.Runtime
   name: PrismAPI.Runtime
   href: API/PrismAPI.Runtime.html
@@ -6389,24 +6273,6 @@ references:
   commentId: F:PrismAPI.Runtime.Executable.Permissions
   fullName: PrismAPI.Runtime.Executable.Permissions
   nameWithType: Executable.Permissions
-- uid: PrismAPI.Runtime.PermissionLevel
-  name: PermissionLevel
-  href: API/PrismAPI.Runtime.PermissionLevel.html
-  commentId: T:PrismAPI.Runtime.PermissionLevel
-  fullName: PrismAPI.Runtime.PermissionLevel
-  nameWithType: PermissionLevel
-- uid: PrismAPI.Runtime.PermissionLevel.Kernel
-  name: Kernel
-  href: API/PrismAPI.Runtime.PermissionLevel.html#PrismAPI_Runtime_PermissionLevel_Kernel
-  commentId: F:PrismAPI.Runtime.PermissionLevel.Kernel
-  fullName: PrismAPI.Runtime.PermissionLevel.Kernel
-  nameWithType: PermissionLevel.Kernel
-- uid: PrismAPI.Runtime.PermissionLevel.User
-  name: User
-  href: API/PrismAPI.Runtime.PermissionLevel.html#PrismAPI_Runtime_PermissionLevel_User
-  commentId: F:PrismAPI.Runtime.PermissionLevel.User
-  fullName: PrismAPI.Runtime.PermissionLevel.User
-  nameWithType: PermissionLevel.User
 - uid: PrismAPI.Runtime.SSharp
   name: PrismAPI.Runtime.SSharp
   href: API/PrismAPI.Runtime.SSharp.html
@@ -7690,398 +7556,502 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Runtime.SShell.Shell.Main
   nameWithType: Shell.Main
-- uid: PrismAPI.Runtime.SystemCallKind
-  name: SystemCallKind
-  href: API/PrismAPI.Runtime.SystemCallKind.html
-  commentId: T:PrismAPI.Runtime.SystemCallKind
-  fullName: PrismAPI.Runtime.SystemCallKind
-  nameWithType: SystemCallKind
-- uid: PrismAPI.Runtime.SystemCallKind.Core_Fill16
-  name: Core_Fill16
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_Core_Fill16
-  commentId: F:PrismAPI.Runtime.SystemCallKind.Core_Fill16
-  fullName: PrismAPI.Runtime.SystemCallKind.Core_Fill16
-  nameWithType: SystemCallKind.Core_Fill16
-- uid: PrismAPI.Runtime.SystemCallKind.Core_Fill32
-  name: Core_Fill32
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_Core_Fill32
-  commentId: F:PrismAPI.Runtime.SystemCallKind.Core_Fill32
-  fullName: PrismAPI.Runtime.SystemCallKind.Core_Fill32
-  nameWithType: SystemCallKind.Core_Fill32
-- uid: PrismAPI.Runtime.SystemCallKind.Core_Fill64
-  name: Core_Fill64
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_Core_Fill64
-  commentId: F:PrismAPI.Runtime.SystemCallKind.Core_Fill64
-  fullName: PrismAPI.Runtime.SystemCallKind.Core_Fill64
-  nameWithType: SystemCallKind.Core_Fill64
-- uid: PrismAPI.Runtime.SystemCallKind.Core_Fill8
-  name: Core_Fill8
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_Core_Fill8
-  commentId: F:PrismAPI.Runtime.SystemCallKind.Core_Fill8
-  fullName: PrismAPI.Runtime.SystemCallKind.Core_Fill8
-  nameWithType: SystemCallKind.Core_Fill8
-- uid: PrismAPI.Runtime.SystemCallKind.Core_Get_Permissions
-  name: Core_Get_Permissions
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_Core_Get_Permissions
-  commentId: F:PrismAPI.Runtime.SystemCallKind.Core_Get_Permissions
-  fullName: PrismAPI.Runtime.SystemCallKind.Core_Get_Permissions
-  nameWithType: SystemCallKind.Core_Get_Permissions
-- uid: PrismAPI.Runtime.SystemCallKind.Core_Math_Eval
-  name: Core_Math_Eval
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_Core_Math_Eval
-  commentId: F:PrismAPI.Runtime.SystemCallKind.Core_Math_Eval
-  fullName: PrismAPI.Runtime.SystemCallKind.Core_Math_Eval
-  nameWithType: SystemCallKind.Core_Math_Eval
-- uid: PrismAPI.Runtime.SystemCallKind.Core_Set_Permissions
-  name: Core_Set_Permissions
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_Core_Set_Permissions
-  commentId: F:PrismAPI.Runtime.SystemCallKind.Core_Set_Permissions
-  fullName: PrismAPI.Runtime.SystemCallKind.Core_Set_Permissions
-  nameWithType: SystemCallKind.Core_Set_Permissions
-- uid: PrismAPI.Runtime.SystemCallKind.System_Buffer_MemoryCopy16
-  name: System_Buffer_MemoryCopy16
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_Buffer_MemoryCopy16
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_Buffer_MemoryCopy16
-  fullName: PrismAPI.Runtime.SystemCallKind.System_Buffer_MemoryCopy16
-  nameWithType: SystemCallKind.System_Buffer_MemoryCopy16
-- uid: PrismAPI.Runtime.SystemCallKind.System_Buffer_MemoryCopy32
-  name: System_Buffer_MemoryCopy32
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_Buffer_MemoryCopy32
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_Buffer_MemoryCopy32
-  fullName: PrismAPI.Runtime.SystemCallKind.System_Buffer_MemoryCopy32
-  nameWithType: SystemCallKind.System_Buffer_MemoryCopy32
-- uid: PrismAPI.Runtime.SystemCallKind.System_Buffer_MemoryCopy64
-  name: System_Buffer_MemoryCopy64
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_Buffer_MemoryCopy64
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_Buffer_MemoryCopy64
-  fullName: PrismAPI.Runtime.SystemCallKind.System_Buffer_MemoryCopy64
-  nameWithType: SystemCallKind.System_Buffer_MemoryCopy64
-- uid: PrismAPI.Runtime.SystemCallKind.System_Buffer_MemoryCopy8
-  name: System_Buffer_MemoryCopy8
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_Buffer_MemoryCopy8
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_Buffer_MemoryCopy8
-  fullName: PrismAPI.Runtime.SystemCallKind.System_Buffer_MemoryCopy8
-  nameWithType: SystemCallKind.System_Buffer_MemoryCopy8
-- uid: PrismAPI.Runtime.SystemCallKind.System_Console_Clear
-  name: System_Console_Clear
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_Console_Clear
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_Console_Clear
-  fullName: PrismAPI.Runtime.SystemCallKind.System_Console_Clear
-  nameWithType: SystemCallKind.System_Console_Clear
-- uid: PrismAPI.Runtime.SystemCallKind.System_Console_ResetColor
-  name: System_Console_ResetColor
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_Console_ResetColor
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_Console_ResetColor
-  fullName: PrismAPI.Runtime.SystemCallKind.System_Console_ResetColor
-  nameWithType: SystemCallKind.System_Console_ResetColor
-- uid: PrismAPI.Runtime.SystemCallKind.System_Console_SetColor
-  name: System_Console_SetColor
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_Console_SetColor
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_Console_SetColor
-  fullName: PrismAPI.Runtime.SystemCallKind.System_Console_SetColor
-  nameWithType: SystemCallKind.System_Console_SetColor
-- uid: PrismAPI.Runtime.SystemCallKind.System_Console_Write_string
-  name: System_Console_Write_string
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_Console_Write_string
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_Console_Write_string
-  fullName: PrismAPI.Runtime.SystemCallKind.System_Console_Write_string
-  nameWithType: SystemCallKind.System_Console_Write_string
-- uid: PrismAPI.Runtime.SystemCallKind.System_Console_WriteLine_string
-  name: System_Console_WriteLine_string
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_Console_WriteLine_string
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_Console_WriteLine_string
-  fullName: PrismAPI.Runtime.SystemCallKind.System_Console_WriteLine_string
-  nameWithType: SystemCallKind.System_Console_WriteLine_string
-- uid: PrismAPI.Runtime.SystemCallKind.System_IO_Directory_Create
-  name: System_IO_Directory_Create
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_IO_Directory_Create
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_IO_Directory_Create
-  fullName: PrismAPI.Runtime.SystemCallKind.System_IO_Directory_Create
-  nameWithType: SystemCallKind.System_IO_Directory_Create
-- uid: PrismAPI.Runtime.SystemCallKind.System_IO_Directory_Delete
-  name: System_IO_Directory_Delete
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_IO_Directory_Delete
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_IO_Directory_Delete
-  fullName: PrismAPI.Runtime.SystemCallKind.System_IO_Directory_Delete
-  nameWithType: SystemCallKind.System_IO_Directory_Delete
-- uid: PrismAPI.Runtime.SystemCallKind.System_IO_Directory_Exists
-  name: System_IO_Directory_Exists
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_IO_Directory_Exists
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_IO_Directory_Exists
-  fullName: PrismAPI.Runtime.SystemCallKind.System_IO_Directory_Exists
-  nameWithType: SystemCallKind.System_IO_Directory_Exists
-- uid: PrismAPI.Runtime.SystemCallKind.System_IO_File_Create
-  name: System_IO_File_Create
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_IO_File_Create
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_IO_File_Create
-  fullName: PrismAPI.Runtime.SystemCallKind.System_IO_File_Create
-  nameWithType: SystemCallKind.System_IO_File_Create
-- uid: PrismAPI.Runtime.SystemCallKind.System_IO_File_Delete
-  name: System_IO_File_Delete
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_IO_File_Delete
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_IO_File_Delete
-  fullName: PrismAPI.Runtime.SystemCallKind.System_IO_File_Delete
-  nameWithType: SystemCallKind.System_IO_File_Delete
-- uid: PrismAPI.Runtime.SystemCallKind.System_IO_File_Exists
-  name: System_IO_File_Exists
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_IO_File_Exists
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_IO_File_Exists
-  fullName: PrismAPI.Runtime.SystemCallKind.System_IO_File_Exists
-  nameWithType: SystemCallKind.System_IO_File_Exists
-- uid: PrismAPI.Runtime.SystemCallKind.System_IO_File_ReadAllBytes_string
-  name: System_IO_File_ReadAllBytes_string
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_IO_File_ReadAllBytes_string
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_IO_File_ReadAllBytes_string
-  fullName: PrismAPI.Runtime.SystemCallKind.System_IO_File_ReadAllBytes_string
-  nameWithType: SystemCallKind.System_IO_File_ReadAllBytes_string
-- uid: PrismAPI.Runtime.SystemCallKind.System_IO_File_WriteeAllBytes_string_bytes
-  name: System_IO_File_WriteeAllBytes_string_bytes
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_IO_File_WriteeAllBytes_string_bytes
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_IO_File_WriteeAllBytes_string_bytes
-  fullName: PrismAPI.Runtime.SystemCallKind.System_IO_File_WriteeAllBytes_string_bytes
-  nameWithType: SystemCallKind.System_IO_File_WriteeAllBytes_string_bytes
-- uid: PrismAPI.Runtime.SystemCallKind.System_Runtime_InteropServices_NativeMemory_Alloc
-  name: System_Runtime_InteropServices_NativeMemory_Alloc
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_Runtime_InteropServices_NativeMemory_Alloc
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_Runtime_InteropServices_NativeMemory_Alloc
-  fullName: PrismAPI.Runtime.SystemCallKind.System_Runtime_InteropServices_NativeMemory_Alloc
-  nameWithType: SystemCallKind.System_Runtime_InteropServices_NativeMemory_Alloc
-- uid: PrismAPI.Runtime.SystemCallKind.System_Runtime_InteropServices_NativeMemory_Free
-  name: System_Runtime_InteropServices_NativeMemory_Free
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_Runtime_InteropServices_NativeMemory_Free
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_Runtime_InteropServices_NativeMemory_Free
-  fullName: PrismAPI.Runtime.SystemCallKind.System_Runtime_InteropServices_NativeMemory_Free
-  nameWithType: SystemCallKind.System_Runtime_InteropServices_NativeMemory_Free
-- uid: PrismAPI.Runtime.SystemCallKind.System_Runtime_InteropServices_NativeMemory_Realloc
-  name: System_Runtime_InteropServices_NativeMemory_Realloc
-  href: API/PrismAPI.Runtime.SystemCallKind.html#PrismAPI_Runtime_SystemCallKind_System_Runtime_InteropServices_NativeMemory_Realloc
-  commentId: F:PrismAPI.Runtime.SystemCallKind.System_Runtime_InteropServices_NativeMemory_Realloc
-  fullName: PrismAPI.Runtime.SystemCallKind.System_Runtime_InteropServices_NativeMemory_Realloc
-  nameWithType: SystemCallKind.System_Runtime_InteropServices_NativeMemory_Realloc
-- uid: PrismAPI.Runtime.SystemCalls
-  name: SystemCalls
-  href: API/PrismAPI.Runtime.SystemCalls.html
-  commentId: T:PrismAPI.Runtime.SystemCalls
-  fullName: PrismAPI.Runtime.SystemCalls
-  nameWithType: SystemCalls
-- uid: PrismAPI.Runtime.SystemCalls.Debugger
+- uid: PrismAPI.Runtime.SystemCall
+  name: PrismAPI.Runtime.SystemCall
+  href: API/PrismAPI.Runtime.SystemCall.html
+  commentId: N:PrismAPI.Runtime.SystemCall
+  fullName: PrismAPI.Runtime.SystemCall
+  nameWithType: PrismAPI.Runtime.SystemCall
+- uid: PrismAPI.Runtime.SystemCall.AccessLevel
+  name: AccessLevel
+  href: API/PrismAPI.Runtime.SystemCall.AccessLevel.html
+  commentId: T:PrismAPI.Runtime.SystemCall.AccessLevel
+  fullName: PrismAPI.Runtime.SystemCall.AccessLevel
+  nameWithType: AccessLevel
+- uid: PrismAPI.Runtime.SystemCall.AccessLevel.Kernel
+  name: Kernel
+  href: API/PrismAPI.Runtime.SystemCall.AccessLevel.html#PrismAPI_Runtime_SystemCall_AccessLevel_Kernel
+  commentId: F:PrismAPI.Runtime.SystemCall.AccessLevel.Kernel
+  fullName: PrismAPI.Runtime.SystemCall.AccessLevel.Kernel
+  nameWithType: AccessLevel.Kernel
+- uid: PrismAPI.Runtime.SystemCall.AccessLevel.User
+  name: User
+  href: API/PrismAPI.Runtime.SystemCall.AccessLevel.html#PrismAPI_Runtime_SystemCall_AccessLevel_User
+  commentId: F:PrismAPI.Runtime.SystemCall.AccessLevel.User
+  fullName: PrismAPI.Runtime.SystemCall.AccessLevel.User
+  nameWithType: AccessLevel.User
+- uid: PrismAPI.Runtime.SystemCall.Handler
+  name: Handler
+  href: API/PrismAPI.Runtime.SystemCall.Handler.html
+  commentId: T:PrismAPI.Runtime.SystemCall.Handler
+  fullName: PrismAPI.Runtime.SystemCall.Handler
+  nameWithType: Handler
+- uid: PrismAPI.Runtime.SystemCall.Handler.Debugger
   name: Debugger
-  href: API/PrismAPI.Runtime.SystemCalls.html#PrismAPI_Runtime_SystemCalls_Debugger
-  commentId: P:PrismAPI.Runtime.SystemCalls.Debugger
-  fullName: PrismAPI.Runtime.SystemCalls.Debugger
-  nameWithType: SystemCalls.Debugger
-- uid: PrismAPI.Runtime.SystemCalls.Debugger*
+  href: API/PrismAPI.Runtime.SystemCall.Handler.html#PrismAPI_Runtime_SystemCall_Handler_Debugger
+  commentId: P:PrismAPI.Runtime.SystemCall.Handler.Debugger
+  fullName: PrismAPI.Runtime.SystemCall.Handler.Debugger
+  nameWithType: Handler.Debugger
+- uid: PrismAPI.Runtime.SystemCall.Handler.Debugger*
   name: Debugger
-  href: API/PrismAPI.Runtime.SystemCalls.html#PrismAPI_Runtime_SystemCalls_Debugger_
-  commentId: Overload:PrismAPI.Runtime.SystemCalls.Debugger
+  href: API/PrismAPI.Runtime.SystemCall.Handler.html#PrismAPI_Runtime_SystemCall_Handler_Debugger_
+  commentId: Overload:PrismAPI.Runtime.SystemCall.Handler.Debugger
   isSpec: "True"
-  fullName: PrismAPI.Runtime.SystemCalls.Debugger
-  nameWithType: SystemCalls.Debugger
-- uid: PrismAPI.Runtime.SystemCalls.Init
+  fullName: PrismAPI.Runtime.SystemCall.Handler.Debugger
+  nameWithType: Handler.Debugger
+- uid: PrismAPI.Runtime.SystemCall.Handler.Init
   name: Init()
-  href: API/PrismAPI.Runtime.SystemCalls.html#PrismAPI_Runtime_SystemCalls_Init
-  commentId: M:PrismAPI.Runtime.SystemCalls.Init
-  fullName: PrismAPI.Runtime.SystemCalls.Init()
-  nameWithType: SystemCalls.Init()
-- uid: PrismAPI.Runtime.SystemCalls.Init*
+  href: API/PrismAPI.Runtime.SystemCall.Handler.html#PrismAPI_Runtime_SystemCall_Handler_Init
+  commentId: M:PrismAPI.Runtime.SystemCall.Handler.Init
+  fullName: PrismAPI.Runtime.SystemCall.Handler.Init()
+  nameWithType: Handler.Init()
+- uid: PrismAPI.Runtime.SystemCall.Handler.Init*
   name: Init
-  href: API/PrismAPI.Runtime.SystemCalls.html#PrismAPI_Runtime_SystemCalls_Init_
-  commentId: Overload:PrismAPI.Runtime.SystemCalls.Init
+  href: API/PrismAPI.Runtime.SystemCall.Handler.html#PrismAPI_Runtime_SystemCall_Handler_Init_
+  commentId: Overload:PrismAPI.Runtime.SystemCall.Handler.Init
   isSpec: "True"
-  fullName: PrismAPI.Runtime.SystemCalls.Init
-  nameWithType: SystemCalls.Init
-- uid: PrismAPI.Runtime.SystemCalls.SystemCall(Cosmos.Core.INTs.IRQContext@)
+  fullName: PrismAPI.Runtime.SystemCall.Handler.Init
+  nameWithType: Handler.Init
+- uid: PrismAPI.Runtime.SystemCall.Handler.SystemCall(Cosmos.Core.INTs.IRQContext@)
   name: SystemCall(ref IRQContext)
-  href: API/PrismAPI.Runtime.SystemCalls.html#PrismAPI_Runtime_SystemCalls_SystemCall_Cosmos_Core_INTs_IRQContext__
-  commentId: M:PrismAPI.Runtime.SystemCalls.SystemCall(Cosmos.Core.INTs.IRQContext@)
+  href: API/PrismAPI.Runtime.SystemCall.Handler.html#PrismAPI_Runtime_SystemCall_Handler_SystemCall_Cosmos_Core_INTs_IRQContext__
+  commentId: M:PrismAPI.Runtime.SystemCall.Handler.SystemCall(Cosmos.Core.INTs.IRQContext@)
   name.vb: SystemCall(IRQContext)
-  fullName: PrismAPI.Runtime.SystemCalls.SystemCall(ref Cosmos.Core.INTs.IRQContext)
-  fullName.vb: PrismAPI.Runtime.SystemCalls.SystemCall(Cosmos.Core.INTs.IRQContext)
-  nameWithType: SystemCalls.SystemCall(ref INTs.IRQContext)
-  nameWithType.vb: SystemCalls.SystemCall(INTs.IRQContext)
-- uid: PrismAPI.Runtime.SystemCalls.SystemCall*
+  fullName: PrismAPI.Runtime.SystemCall.Handler.SystemCall(ref Cosmos.Core.INTs.IRQContext)
+  fullName.vb: PrismAPI.Runtime.SystemCall.Handler.SystemCall(Cosmos.Core.INTs.IRQContext)
+  nameWithType: Handler.SystemCall(ref INTs.IRQContext)
+  nameWithType.vb: Handler.SystemCall(INTs.IRQContext)
+- uid: PrismAPI.Runtime.SystemCall.Handler.SystemCall*
   name: SystemCall
-  href: API/PrismAPI.Runtime.SystemCalls.html#PrismAPI_Runtime_SystemCalls_SystemCall_
-  commentId: Overload:PrismAPI.Runtime.SystemCalls.SystemCall
+  href: API/PrismAPI.Runtime.SystemCall.Handler.html#PrismAPI_Runtime_SystemCall_Handler_SystemCall_
+  commentId: Overload:PrismAPI.Runtime.SystemCall.Handler.SystemCall
   isSpec: "True"
-  fullName: PrismAPI.Runtime.SystemCalls.SystemCall
-  nameWithType: SystemCalls.SystemCall
+  fullName: PrismAPI.Runtime.SystemCall.Handler.SystemCall
+  nameWithType: Handler.SystemCall
+- uid: PrismAPI.Runtime.SystemCall.Kind
+  name: Kind
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html
+  commentId: T:PrismAPI.Runtime.SystemCall.Kind
+  fullName: PrismAPI.Runtime.SystemCall.Kind
+  nameWithType: Kind
+- uid: PrismAPI.Runtime.SystemCall.Kind.Core_Fill16
+  name: Core_Fill16
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_Core_Fill16
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.Core_Fill16
+  fullName: PrismAPI.Runtime.SystemCall.Kind.Core_Fill16
+  nameWithType: Kind.Core_Fill16
+- uid: PrismAPI.Runtime.SystemCall.Kind.Core_Fill32
+  name: Core_Fill32
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_Core_Fill32
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.Core_Fill32
+  fullName: PrismAPI.Runtime.SystemCall.Kind.Core_Fill32
+  nameWithType: Kind.Core_Fill32
+- uid: PrismAPI.Runtime.SystemCall.Kind.Core_Fill64
+  name: Core_Fill64
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_Core_Fill64
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.Core_Fill64
+  fullName: PrismAPI.Runtime.SystemCall.Kind.Core_Fill64
+  nameWithType: Kind.Core_Fill64
+- uid: PrismAPI.Runtime.SystemCall.Kind.Core_Fill8
+  name: Core_Fill8
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_Core_Fill8
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.Core_Fill8
+  fullName: PrismAPI.Runtime.SystemCall.Kind.Core_Fill8
+  nameWithType: Kind.Core_Fill8
+- uid: PrismAPI.Runtime.SystemCall.Kind.Core_Get_Permissions
+  name: Core_Get_Permissions
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_Core_Get_Permissions
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.Core_Get_Permissions
+  fullName: PrismAPI.Runtime.SystemCall.Kind.Core_Get_Permissions
+  nameWithType: Kind.Core_Get_Permissions
+- uid: PrismAPI.Runtime.SystemCall.Kind.Core_Math_Eval
+  name: Core_Math_Eval
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_Core_Math_Eval
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.Core_Math_Eval
+  fullName: PrismAPI.Runtime.SystemCall.Kind.Core_Math_Eval
+  nameWithType: Kind.Core_Math_Eval
+- uid: PrismAPI.Runtime.SystemCall.Kind.Core_Set_Permissions
+  name: Core_Set_Permissions
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_Core_Set_Permissions
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.Core_Set_Permissions
+  fullName: PrismAPI.Runtime.SystemCall.Kind.Core_Set_Permissions
+  nameWithType: Kind.Core_Set_Permissions
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_Buffer_MemoryCopy16
+  name: System_Buffer_MemoryCopy16
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_Buffer_MemoryCopy16
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_Buffer_MemoryCopy16
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_Buffer_MemoryCopy16
+  nameWithType: Kind.System_Buffer_MemoryCopy16
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_Buffer_MemoryCopy32
+  name: System_Buffer_MemoryCopy32
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_Buffer_MemoryCopy32
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_Buffer_MemoryCopy32
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_Buffer_MemoryCopy32
+  nameWithType: Kind.System_Buffer_MemoryCopy32
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_Buffer_MemoryCopy64
+  name: System_Buffer_MemoryCopy64
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_Buffer_MemoryCopy64
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_Buffer_MemoryCopy64
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_Buffer_MemoryCopy64
+  nameWithType: Kind.System_Buffer_MemoryCopy64
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_Buffer_MemoryCopy8
+  name: System_Buffer_MemoryCopy8
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_Buffer_MemoryCopy8
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_Buffer_MemoryCopy8
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_Buffer_MemoryCopy8
+  nameWithType: Kind.System_Buffer_MemoryCopy8
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_Console_Clear
+  name: System_Console_Clear
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_Console_Clear
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_Console_Clear
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_Console_Clear
+  nameWithType: Kind.System_Console_Clear
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_Console_ResetColor
+  name: System_Console_ResetColor
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_Console_ResetColor
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_Console_ResetColor
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_Console_ResetColor
+  nameWithType: Kind.System_Console_ResetColor
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_Console_SetColor
+  name: System_Console_SetColor
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_Console_SetColor
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_Console_SetColor
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_Console_SetColor
+  nameWithType: Kind.System_Console_SetColor
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_Console_Write_string
+  name: System_Console_Write_string
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_Console_Write_string
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_Console_Write_string
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_Console_Write_string
+  nameWithType: Kind.System_Console_Write_string
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_Console_WriteLine_string
+  name: System_Console_WriteLine_string
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_Console_WriteLine_string
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_Console_WriteLine_string
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_Console_WriteLine_string
+  nameWithType: Kind.System_Console_WriteLine_string
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_IO_Directory_Create
+  name: System_IO_Directory_Create
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_IO_Directory_Create
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_IO_Directory_Create
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_IO_Directory_Create
+  nameWithType: Kind.System_IO_Directory_Create
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_IO_Directory_Delete
+  name: System_IO_Directory_Delete
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_IO_Directory_Delete
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_IO_Directory_Delete
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_IO_Directory_Delete
+  nameWithType: Kind.System_IO_Directory_Delete
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_IO_Directory_Exists
+  name: System_IO_Directory_Exists
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_IO_Directory_Exists
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_IO_Directory_Exists
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_IO_Directory_Exists
+  nameWithType: Kind.System_IO_Directory_Exists
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_IO_File_Create
+  name: System_IO_File_Create
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_IO_File_Create
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_IO_File_Create
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_IO_File_Create
+  nameWithType: Kind.System_IO_File_Create
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_IO_File_Delete
+  name: System_IO_File_Delete
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_IO_File_Delete
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_IO_File_Delete
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_IO_File_Delete
+  nameWithType: Kind.System_IO_File_Delete
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_IO_File_Exists
+  name: System_IO_File_Exists
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_IO_File_Exists
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_IO_File_Exists
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_IO_File_Exists
+  nameWithType: Kind.System_IO_File_Exists
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_IO_File_ReadAllBytes_string
+  name: System_IO_File_ReadAllBytes_string
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_IO_File_ReadAllBytes_string
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_IO_File_ReadAllBytes_string
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_IO_File_ReadAllBytes_string
+  nameWithType: Kind.System_IO_File_ReadAllBytes_string
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_IO_File_WriteeAllBytes_string_bytes
+  name: System_IO_File_WriteeAllBytes_string_bytes
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_IO_File_WriteeAllBytes_string_bytes
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_IO_File_WriteeAllBytes_string_bytes
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_IO_File_WriteeAllBytes_string_bytes
+  nameWithType: Kind.System_IO_File_WriteeAllBytes_string_bytes
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_Runtime_InteropServices_NativeMemory_Alloc
+  name: System_Runtime_InteropServices_NativeMemory_Alloc
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_Runtime_InteropServices_NativeMemory_Alloc
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_Runtime_InteropServices_NativeMemory_Alloc
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_Runtime_InteropServices_NativeMemory_Alloc
+  nameWithType: Kind.System_Runtime_InteropServices_NativeMemory_Alloc
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_Runtime_InteropServices_NativeMemory_Free
+  name: System_Runtime_InteropServices_NativeMemory_Free
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_Runtime_InteropServices_NativeMemory_Free
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_Runtime_InteropServices_NativeMemory_Free
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_Runtime_InteropServices_NativeMemory_Free
+  nameWithType: Kind.System_Runtime_InteropServices_NativeMemory_Free
+- uid: PrismAPI.Runtime.SystemCall.Kind.System_Runtime_InteropServices_NativeMemory_Realloc
+  name: System_Runtime_InteropServices_NativeMemory_Realloc
+  href: API/PrismAPI.Runtime.SystemCall.Kind.html#PrismAPI_Runtime_SystemCall_Kind_System_Runtime_InteropServices_NativeMemory_Realloc
+  commentId: F:PrismAPI.Runtime.SystemCall.Kind.System_Runtime_InteropServices_NativeMemory_Realloc
+  fullName: PrismAPI.Runtime.SystemCall.Kind.System_Runtime_InteropServices_NativeMemory_Realloc
+  nameWithType: Kind.System_Runtime_InteropServices_NativeMemory_Realloc
 - uid: PrismAPI.Tools
   name: PrismAPI.Tools
   href: API/PrismAPI.Tools.html
   commentId: N:PrismAPI.Tools
   fullName: PrismAPI.Tools
   nameWithType: PrismAPI.Tools
-- uid: PrismAPI.Tools.ByteFormatter
-  name: ByteFormatter
-  href: API/PrismAPI.Tools.ByteFormatter.html
-  commentId: T:PrismAPI.Tools.ByteFormatter
-  fullName: PrismAPI.Tools.ByteFormatter
-  nameWithType: ByteFormatter
-- uid: PrismAPI.Tools.ByteFormatter.BytesPerGigabyte
-  name: BytesPerGigabyte
-  href: API/PrismAPI.Tools.ByteFormatter.html#PrismAPI_Tools_ByteFormatter_BytesPerGigabyte
-  commentId: F:PrismAPI.Tools.ByteFormatter.BytesPerGigabyte
-  fullName: PrismAPI.Tools.ByteFormatter.BytesPerGigabyte
-  nameWithType: ByteFormatter.BytesPerGigabyte
-- uid: PrismAPI.Tools.ByteFormatter.BytesPerKilobyte
-  name: BytesPerKilobyte
-  href: API/PrismAPI.Tools.ByteFormatter.html#PrismAPI_Tools_ByteFormatter_BytesPerKilobyte
-  commentId: F:PrismAPI.Tools.ByteFormatter.BytesPerKilobyte
-  fullName: PrismAPI.Tools.ByteFormatter.BytesPerKilobyte
-  nameWithType: ByteFormatter.BytesPerKilobyte
-- uid: PrismAPI.Tools.ByteFormatter.BytesPerMegabyte
-  name: BytesPerMegabyte
-  href: API/PrismAPI.Tools.ByteFormatter.html#PrismAPI_Tools_ByteFormatter_BytesPerMegabyte
-  commentId: F:PrismAPI.Tools.ByteFormatter.BytesPerMegabyte
-  fullName: PrismAPI.Tools.ByteFormatter.BytesPerMegabyte
-  nameWithType: ByteFormatter.BytesPerMegabyte
-- uid: PrismAPI.Tools.ByteFormatter.BytesPerTerrabye
-  name: BytesPerTerrabye
-  href: API/PrismAPI.Tools.ByteFormatter.html#PrismAPI_Tools_ByteFormatter_BytesPerTerrabye
-  commentId: F:PrismAPI.Tools.ByteFormatter.BytesPerTerrabye
-  fullName: PrismAPI.Tools.ByteFormatter.BytesPerTerrabye
-  nameWithType: ByteFormatter.BytesPerTerrabye
-- uid: PrismAPI.Tools.ByteFormatter.GetGigabytes(System.UInt64)
-  name: GetGigabytes(ulong)
-  href: API/PrismAPI.Tools.ByteFormatter.html#PrismAPI_Tools_ByteFormatter_GetGigabytes_System_UInt64_
-  commentId: M:PrismAPI.Tools.ByteFormatter.GetGigabytes(System.UInt64)
-  name.vb: GetGigabytes(ULong)
-  fullName: PrismAPI.Tools.ByteFormatter.GetGigabytes(ulong)
-  fullName.vb: PrismAPI.Tools.ByteFormatter.GetGigabytes(ULong)
-  nameWithType: ByteFormatter.GetGigabytes(ulong)
-  nameWithType.vb: ByteFormatter.GetGigabytes(ULong)
-- uid: PrismAPI.Tools.ByteFormatter.GetGigabytes*
-  name: GetGigabytes
-  href: API/PrismAPI.Tools.ByteFormatter.html#PrismAPI_Tools_ByteFormatter_GetGigabytes_
-  commentId: Overload:PrismAPI.Tools.ByteFormatter.GetGigabytes
+- uid: PrismAPI.Tools.Compression
+  name: PrismAPI.Tools.Compression
+  href: API/PrismAPI.Tools.Compression.html
+  commentId: N:PrismAPI.Tools.Compression
+  fullName: PrismAPI.Tools.Compression
+  nameWithType: PrismAPI.Tools.Compression
+- uid: PrismAPI.Tools.Compression.DeflateStream
+  name: DeflateStream
+  href: API/PrismAPI.Tools.Compression.DeflateStream.html
+  commentId: T:PrismAPI.Tools.Compression.DeflateStream
+  fullName: PrismAPI.Tools.Compression.DeflateStream
+  nameWithType: DeflateStream
+- uid: PrismAPI.Tools.Compression.DeflateStream.Inflate(System.Collections.Generic.IList{System.Byte})
+  name: Inflate(IList<byte>)
+  href: API/PrismAPI.Tools.Compression.DeflateStream.html#PrismAPI_Tools_Compression_DeflateStream_Inflate_System_Collections_Generic_IList_System_Byte__
+  commentId: M:PrismAPI.Tools.Compression.DeflateStream.Inflate(System.Collections.Generic.IList{System.Byte})
+  name.vb: Inflate(IList(Of Byte))
+  fullName: PrismAPI.Tools.Compression.DeflateStream.Inflate(System.Collections.Generic.IList<byte>)
+  fullName.vb: PrismAPI.Tools.Compression.DeflateStream.Inflate(System.Collections.Generic.IList(Of Byte))
+  nameWithType: DeflateStream.Inflate(IList<byte>)
+  nameWithType.vb: DeflateStream.Inflate(IList(Of Byte))
+- uid: PrismAPI.Tools.Compression.DeflateStream.Inflate*
+  name: Inflate
+  href: API/PrismAPI.Tools.Compression.DeflateStream.html#PrismAPI_Tools_Compression_DeflateStream_Inflate_
+  commentId: Overload:PrismAPI.Tools.Compression.DeflateStream.Inflate
   isSpec: "True"
-  fullName: PrismAPI.Tools.ByteFormatter.GetGigabytes
-  nameWithType: ByteFormatter.GetGigabytes
-- uid: PrismAPI.Tools.ByteFormatter.GetKilobytes(System.UInt64)
-  name: GetKilobytes(ulong)
-  href: API/PrismAPI.Tools.ByteFormatter.html#PrismAPI_Tools_ByteFormatter_GetKilobytes_System_UInt64_
-  commentId: M:PrismAPI.Tools.ByteFormatter.GetKilobytes(System.UInt64)
-  name.vb: GetKilobytes(ULong)
-  fullName: PrismAPI.Tools.ByteFormatter.GetKilobytes(ulong)
-  fullName.vb: PrismAPI.Tools.ByteFormatter.GetKilobytes(ULong)
-  nameWithType: ByteFormatter.GetKilobytes(ulong)
-  nameWithType.vb: ByteFormatter.GetKilobytes(ULong)
-- uid: PrismAPI.Tools.ByteFormatter.GetKilobytes*
-  name: GetKilobytes
-  href: API/PrismAPI.Tools.ByteFormatter.html#PrismAPI_Tools_ByteFormatter_GetKilobytes_
-  commentId: Overload:PrismAPI.Tools.ByteFormatter.GetKilobytes
+  fullName: PrismAPI.Tools.Compression.DeflateStream.Inflate
+  nameWithType: DeflateStream.Inflate
+- uid: PrismAPI.Tools.Compression.LZW
+  name: LZW
+  href: API/PrismAPI.Tools.Compression.LZW.html
+  commentId: T:PrismAPI.Tools.Compression.LZW
+  fullName: PrismAPI.Tools.Compression.LZW
+  nameWithType: LZW
+- uid: PrismAPI.Tools.Compression.LZW.LZWCompress(System.Byte[])
+  name: LZWCompress(byte[])
+  href: API/PrismAPI.Tools.Compression.LZW.html#PrismAPI_Tools_Compression_LZW_LZWCompress_System_Byte___
+  commentId: M:PrismAPI.Tools.Compression.LZW.LZWCompress(System.Byte[])
+  name.vb: LZWCompress(Byte())
+  fullName: PrismAPI.Tools.Compression.LZW.LZWCompress(byte[])
+  fullName.vb: PrismAPI.Tools.Compression.LZW.LZWCompress(Byte())
+  nameWithType: LZW.LZWCompress(byte[])
+  nameWithType.vb: LZW.LZWCompress(Byte())
+- uid: PrismAPI.Tools.Compression.LZW.LZWCompress*
+  name: LZWCompress
+  href: API/PrismAPI.Tools.Compression.LZW.html#PrismAPI_Tools_Compression_LZW_LZWCompress_
+  commentId: Overload:PrismAPI.Tools.Compression.LZW.LZWCompress
   isSpec: "True"
-  fullName: PrismAPI.Tools.ByteFormatter.GetKilobytes
-  nameWithType: ByteFormatter.GetKilobytes
-- uid: PrismAPI.Tools.ByteFormatter.GetMegaBytes(System.UInt64)
-  name: GetMegaBytes(ulong)
-  href: API/PrismAPI.Tools.ByteFormatter.html#PrismAPI_Tools_ByteFormatter_GetMegaBytes_System_UInt64_
-  commentId: M:PrismAPI.Tools.ByteFormatter.GetMegaBytes(System.UInt64)
-  name.vb: GetMegaBytes(ULong)
-  fullName: PrismAPI.Tools.ByteFormatter.GetMegaBytes(ulong)
-  fullName.vb: PrismAPI.Tools.ByteFormatter.GetMegaBytes(ULong)
-  nameWithType: ByteFormatter.GetMegaBytes(ulong)
-  nameWithType.vb: ByteFormatter.GetMegaBytes(ULong)
-- uid: PrismAPI.Tools.ByteFormatter.GetMegaBytes*
-  name: GetMegaBytes
-  href: API/PrismAPI.Tools.ByteFormatter.html#PrismAPI_Tools_ByteFormatter_GetMegaBytes_
-  commentId: Overload:PrismAPI.Tools.ByteFormatter.GetMegaBytes
+  fullName: PrismAPI.Tools.Compression.LZW.LZWCompress
+  nameWithType: LZW.LZWCompress
+- uid: PrismAPI.Tools.Compression.LZW.LZWDecompress(System.Byte[])
+  name: LZWDecompress(byte[])
+  href: API/PrismAPI.Tools.Compression.LZW.html#PrismAPI_Tools_Compression_LZW_LZWDecompress_System_Byte___
+  commentId: M:PrismAPI.Tools.Compression.LZW.LZWDecompress(System.Byte[])
+  name.vb: LZWDecompress(Byte())
+  fullName: PrismAPI.Tools.Compression.LZW.LZWDecompress(byte[])
+  fullName.vb: PrismAPI.Tools.Compression.LZW.LZWDecompress(Byte())
+  nameWithType: LZW.LZWDecompress(byte[])
+  nameWithType.vb: LZW.LZWDecompress(Byte())
+- uid: PrismAPI.Tools.Compression.LZW.LZWDecompress*
+  name: LZWDecompress
+  href: API/PrismAPI.Tools.Compression.LZW.html#PrismAPI_Tools_Compression_LZW_LZWDecompress_
+  commentId: Overload:PrismAPI.Tools.Compression.LZW.LZWDecompress
   isSpec: "True"
-  fullName: PrismAPI.Tools.ByteFormatter.GetMegaBytes
-  nameWithType: ByteFormatter.GetMegaBytes
-- uid: PrismAPI.Tools.ByteFormatter.GetTerabytes(System.UInt64)
-  name: GetTerabytes(ulong)
-  href: API/PrismAPI.Tools.ByteFormatter.html#PrismAPI_Tools_ByteFormatter_GetTerabytes_System_UInt64_
-  commentId: M:PrismAPI.Tools.ByteFormatter.GetTerabytes(System.UInt64)
-  name.vb: GetTerabytes(ULong)
-  fullName: PrismAPI.Tools.ByteFormatter.GetTerabytes(ulong)
-  fullName.vb: PrismAPI.Tools.ByteFormatter.GetTerabytes(ULong)
-  nameWithType: ByteFormatter.GetTerabytes(ulong)
-  nameWithType.vb: ByteFormatter.GetTerabytes(ULong)
-- uid: PrismAPI.Tools.ByteFormatter.GetTerabytes*
-  name: GetTerabytes
-  href: API/PrismAPI.Tools.ByteFormatter.html#PrismAPI_Tools_ByteFormatter_GetTerabytes_
-  commentId: Overload:PrismAPI.Tools.ByteFormatter.GetTerabytes
+  fullName: PrismAPI.Tools.Compression.LZW.LZWDecompress
+  nameWithType: LZW.LZWDecompress
+- uid: PrismAPI.Tools.Crypt
+  name: Crypt
+  href: API/PrismAPI.Tools.Crypt.html
+  commentId: T:PrismAPI.Tools.Crypt
+  fullName: PrismAPI.Tools.Crypt
+  nameWithType: Crypt
+- uid: PrismAPI.Tools.Crypt.Decrypt(System.Char[],System.Byte[])
+  name: Decrypt(char[], byte[])
+  href: API/PrismAPI.Tools.Crypt.html#PrismAPI_Tools_Crypt_Decrypt_System_Char___System_Byte___
+  commentId: M:PrismAPI.Tools.Crypt.Decrypt(System.Char[],System.Byte[])
+  name.vb: Decrypt(Char(), Byte())
+  fullName: PrismAPI.Tools.Crypt.Decrypt(char[], byte[])
+  fullName.vb: PrismAPI.Tools.Crypt.Decrypt(Char(), Byte())
+  nameWithType: Crypt.Decrypt(char[], byte[])
+  nameWithType.vb: Crypt.Decrypt(Char(), Byte())
+- uid: PrismAPI.Tools.Crypt.Decrypt(System.String,System.Byte[])
+  name: Decrypt(string, byte[])
+  href: API/PrismAPI.Tools.Crypt.html#PrismAPI_Tools_Crypt_Decrypt_System_String_System_Byte___
+  commentId: M:PrismAPI.Tools.Crypt.Decrypt(System.String,System.Byte[])
+  name.vb: Decrypt(String, Byte())
+  fullName: PrismAPI.Tools.Crypt.Decrypt(string, byte[])
+  fullName.vb: PrismAPI.Tools.Crypt.Decrypt(String, Byte())
+  nameWithType: Crypt.Decrypt(string, byte[])
+  nameWithType.vb: Crypt.Decrypt(String, Byte())
+- uid: PrismAPI.Tools.Crypt.Decrypt*
+  name: Decrypt
+  href: API/PrismAPI.Tools.Crypt.html#PrismAPI_Tools_Crypt_Decrypt_
+  commentId: Overload:PrismAPI.Tools.Crypt.Decrypt
   isSpec: "True"
-  fullName: PrismAPI.Tools.ByteFormatter.GetTerabytes
-  nameWithType: ByteFormatter.GetTerabytes
-- uid: PrismAPI.Tools.Debugger
+  fullName: PrismAPI.Tools.Crypt.Decrypt
+  nameWithType: Crypt.Decrypt
+- uid: PrismAPI.Tools.Crypt.Encrypt(System.Char[],System.Byte[])
+  name: Encrypt(char[], byte[])
+  href: API/PrismAPI.Tools.Crypt.html#PrismAPI_Tools_Crypt_Encrypt_System_Char___System_Byte___
+  commentId: M:PrismAPI.Tools.Crypt.Encrypt(System.Char[],System.Byte[])
+  name.vb: Encrypt(Char(), Byte())
+  fullName: PrismAPI.Tools.Crypt.Encrypt(char[], byte[])
+  fullName.vb: PrismAPI.Tools.Crypt.Encrypt(Char(), Byte())
+  nameWithType: Crypt.Encrypt(char[], byte[])
+  nameWithType.vb: Crypt.Encrypt(Char(), Byte())
+- uid: PrismAPI.Tools.Crypt.Encrypt(System.String,System.Byte[])
+  name: Encrypt(string, byte[])
+  href: API/PrismAPI.Tools.Crypt.html#PrismAPI_Tools_Crypt_Encrypt_System_String_System_Byte___
+  commentId: M:PrismAPI.Tools.Crypt.Encrypt(System.String,System.Byte[])
+  name.vb: Encrypt(String, Byte())
+  fullName: PrismAPI.Tools.Crypt.Encrypt(string, byte[])
+  fullName.vb: PrismAPI.Tools.Crypt.Encrypt(String, Byte())
+  nameWithType: Crypt.Encrypt(string, byte[])
+  nameWithType.vb: Crypt.Encrypt(String, Byte())
+- uid: PrismAPI.Tools.Crypt.Encrypt*
+  name: Encrypt
+  href: API/PrismAPI.Tools.Crypt.html#PrismAPI_Tools_Crypt_Encrypt_
+  commentId: Overload:PrismAPI.Tools.Crypt.Encrypt
+  isSpec: "True"
+  fullName: PrismAPI.Tools.Crypt.Encrypt
+  nameWithType: Crypt.Encrypt
+- uid: PrismAPI.Tools.Crypt.Hash(System.String)
+  name: Hash(string)
+  href: API/PrismAPI.Tools.Crypt.html#PrismAPI_Tools_Crypt_Hash_System_String_
+  commentId: M:PrismAPI.Tools.Crypt.Hash(System.String)
+  name.vb: Hash(String)
+  fullName: PrismAPI.Tools.Crypt.Hash(string)
+  fullName.vb: PrismAPI.Tools.Crypt.Hash(String)
+  nameWithType: Crypt.Hash(string)
+  nameWithType.vb: Crypt.Hash(String)
+- uid: PrismAPI.Tools.Crypt.Hash*
+  name: Hash
+  href: API/PrismAPI.Tools.Crypt.html#PrismAPI_Tools_Crypt_Hash_
+  commentId: Overload:PrismAPI.Tools.Crypt.Hash
+  isSpec: "True"
+  fullName: PrismAPI.Tools.Crypt.Hash
+  nameWithType: Crypt.Hash
+- uid: PrismAPI.Tools.Diagnostics
+  name: PrismAPI.Tools.Diagnostics
+  href: API/PrismAPI.Tools.Diagnostics.html
+  commentId: N:PrismAPI.Tools.Diagnostics
+  fullName: PrismAPI.Tools.Diagnostics
+  nameWithType: PrismAPI.Tools.Diagnostics
+- uid: PrismAPI.Tools.Diagnostics.Debugger
   name: Debugger
-  href: API/PrismAPI.Tools.Debugger.html
-  commentId: T:PrismAPI.Tools.Debugger
-  fullName: PrismAPI.Tools.Debugger
+  href: API/PrismAPI.Tools.Diagnostics.Debugger.html
+  commentId: T:PrismAPI.Tools.Diagnostics.Debugger
+  fullName: PrismAPI.Tools.Diagnostics.Debugger
   nameWithType: Debugger
-- uid: PrismAPI.Tools.Debugger.#ctor(System.String)
+- uid: PrismAPI.Tools.Diagnostics.Debugger.#ctor(System.String)
   name: Debugger(string)
-  href: API/PrismAPI.Tools.Debugger.html#PrismAPI_Tools_Debugger__ctor_System_String_
-  commentId: M:PrismAPI.Tools.Debugger.#ctor(System.String)
+  href: API/PrismAPI.Tools.Diagnostics.Debugger.html#PrismAPI_Tools_Diagnostics_Debugger__ctor_System_String_
+  commentId: M:PrismAPI.Tools.Diagnostics.Debugger.#ctor(System.String)
   name.vb: New(String)
-  fullName: PrismAPI.Tools.Debugger.Debugger(string)
-  fullName.vb: PrismAPI.Tools.Debugger.New(String)
+  fullName: PrismAPI.Tools.Diagnostics.Debugger.Debugger(string)
+  fullName.vb: PrismAPI.Tools.Diagnostics.Debugger.New(String)
   nameWithType: Debugger.Debugger(string)
   nameWithType.vb: Debugger.New(String)
-- uid: PrismAPI.Tools.Debugger.#ctor*
+- uid: PrismAPI.Tools.Diagnostics.Debugger.#ctor*
   name: Debugger
-  href: API/PrismAPI.Tools.Debugger.html#PrismAPI_Tools_Debugger__ctor_
-  commentId: Overload:PrismAPI.Tools.Debugger.#ctor
+  href: API/PrismAPI.Tools.Diagnostics.Debugger.html#PrismAPI_Tools_Diagnostics_Debugger__ctor_
+  commentId: Overload:PrismAPI.Tools.Diagnostics.Debugger.#ctor
   isSpec: "True"
   name.vb: New
-  fullName: PrismAPI.Tools.Debugger.Debugger
-  fullName.vb: PrismAPI.Tools.Debugger.New
+  fullName: PrismAPI.Tools.Diagnostics.Debugger.Debugger
+  fullName.vb: PrismAPI.Tools.Diagnostics.Debugger.New
   nameWithType: Debugger.Debugger
   nameWithType.vb: Debugger.New
-- uid: PrismAPI.Tools.Debugger.Category
+- uid: PrismAPI.Tools.Diagnostics.Debugger.Category
   name: Category
-  href: API/PrismAPI.Tools.Debugger.html#PrismAPI_Tools_Debugger_Category
-  commentId: F:PrismAPI.Tools.Debugger.Category
-  fullName: PrismAPI.Tools.Debugger.Category
+  href: API/PrismAPI.Tools.Diagnostics.Debugger.html#PrismAPI_Tools_Diagnostics_Debugger_Category
+  commentId: F:PrismAPI.Tools.Diagnostics.Debugger.Category
+  fullName: PrismAPI.Tools.Diagnostics.Debugger.Category
   nameWithType: Debugger.Category
-- uid: PrismAPI.Tools.Debugger.Finalize(PrismAPI.Tools.Severity)
+- uid: PrismAPI.Tools.Diagnostics.Debugger.Finalize(PrismAPI.Tools.Diagnostics.Severity)
   name: Finalize(Severity)
-  href: API/PrismAPI.Tools.Debugger.html#PrismAPI_Tools_Debugger_Finalize_PrismAPI_Tools_Severity_
-  commentId: M:PrismAPI.Tools.Debugger.Finalize(PrismAPI.Tools.Severity)
-  fullName: PrismAPI.Tools.Debugger.Finalize(PrismAPI.Tools.Severity)
+  href: API/PrismAPI.Tools.Diagnostics.Debugger.html#PrismAPI_Tools_Diagnostics_Debugger_Finalize_PrismAPI_Tools_Diagnostics_Severity_
+  commentId: M:PrismAPI.Tools.Diagnostics.Debugger.Finalize(PrismAPI.Tools.Diagnostics.Severity)
+  fullName: PrismAPI.Tools.Diagnostics.Debugger.Finalize(PrismAPI.Tools.Diagnostics.Severity)
   nameWithType: Debugger.Finalize(Severity)
-- uid: PrismAPI.Tools.Debugger.Finalize*
+- uid: PrismAPI.Tools.Diagnostics.Debugger.Finalize*
   name: Finalize
-  href: API/PrismAPI.Tools.Debugger.html#PrismAPI_Tools_Debugger_Finalize_
-  commentId: Overload:PrismAPI.Tools.Debugger.Finalize
+  href: API/PrismAPI.Tools.Diagnostics.Debugger.html#PrismAPI_Tools_Diagnostics_Debugger_Finalize_
+  commentId: Overload:PrismAPI.Tools.Diagnostics.Debugger.Finalize
   isSpec: "True"
-  fullName: PrismAPI.Tools.Debugger.Finalize
+  fullName: PrismAPI.Tools.Diagnostics.Debugger.Finalize
   nameWithType: Debugger.Finalize
-- uid: PrismAPI.Tools.Debugger.WriteFull(System.String,PrismAPI.Tools.Severity)
+- uid: PrismAPI.Tools.Diagnostics.Debugger.WriteFull(System.String,PrismAPI.Tools.Diagnostics.Severity)
   name: WriteFull(string, Severity)
-  href: API/PrismAPI.Tools.Debugger.html#PrismAPI_Tools_Debugger_WriteFull_System_String_PrismAPI_Tools_Severity_
-  commentId: M:PrismAPI.Tools.Debugger.WriteFull(System.String,PrismAPI.Tools.Severity)
+  href: API/PrismAPI.Tools.Diagnostics.Debugger.html#PrismAPI_Tools_Diagnostics_Debugger_WriteFull_System_String_PrismAPI_Tools_Diagnostics_Severity_
+  commentId: M:PrismAPI.Tools.Diagnostics.Debugger.WriteFull(System.String,PrismAPI.Tools.Diagnostics.Severity)
   name.vb: WriteFull(String, Severity)
-  fullName: PrismAPI.Tools.Debugger.WriteFull(string, PrismAPI.Tools.Severity)
-  fullName.vb: PrismAPI.Tools.Debugger.WriteFull(String, PrismAPI.Tools.Severity)
+  fullName: PrismAPI.Tools.Diagnostics.Debugger.WriteFull(string, PrismAPI.Tools.Diagnostics.Severity)
+  fullName.vb: PrismAPI.Tools.Diagnostics.Debugger.WriteFull(String, PrismAPI.Tools.Diagnostics.Severity)
   nameWithType: Debugger.WriteFull(string, Severity)
   nameWithType.vb: Debugger.WriteFull(String, Severity)
-- uid: PrismAPI.Tools.Debugger.WriteFull*
+- uid: PrismAPI.Tools.Diagnostics.Debugger.WriteFull*
   name: WriteFull
-  href: API/PrismAPI.Tools.Debugger.html#PrismAPI_Tools_Debugger_WriteFull_
-  commentId: Overload:PrismAPI.Tools.Debugger.WriteFull
+  href: API/PrismAPI.Tools.Diagnostics.Debugger.html#PrismAPI_Tools_Diagnostics_Debugger_WriteFull_
+  commentId: Overload:PrismAPI.Tools.Diagnostics.Debugger.WriteFull
   isSpec: "True"
-  fullName: PrismAPI.Tools.Debugger.WriteFull
+  fullName: PrismAPI.Tools.Diagnostics.Debugger.WriteFull
   nameWithType: Debugger.WriteFull
-- uid: PrismAPI.Tools.Debugger.WritePartial(System.String)
+- uid: PrismAPI.Tools.Diagnostics.Debugger.WritePartial(System.String)
   name: WritePartial(string)
-  href: API/PrismAPI.Tools.Debugger.html#PrismAPI_Tools_Debugger_WritePartial_System_String_
-  commentId: M:PrismAPI.Tools.Debugger.WritePartial(System.String)
+  href: API/PrismAPI.Tools.Diagnostics.Debugger.html#PrismAPI_Tools_Diagnostics_Debugger_WritePartial_System_String_
+  commentId: M:PrismAPI.Tools.Diagnostics.Debugger.WritePartial(System.String)
   name.vb: WritePartial(String)
-  fullName: PrismAPI.Tools.Debugger.WritePartial(string)
-  fullName.vb: PrismAPI.Tools.Debugger.WritePartial(String)
+  fullName: PrismAPI.Tools.Diagnostics.Debugger.WritePartial(string)
+  fullName.vb: PrismAPI.Tools.Diagnostics.Debugger.WritePartial(String)
   nameWithType: Debugger.WritePartial(string)
   nameWithType.vb: Debugger.WritePartial(String)
-- uid: PrismAPI.Tools.Debugger.WritePartial*
+- uid: PrismAPI.Tools.Diagnostics.Debugger.WritePartial*
   name: WritePartial
-  href: API/PrismAPI.Tools.Debugger.html#PrismAPI_Tools_Debugger_WritePartial_
-  commentId: Overload:PrismAPI.Tools.Debugger.WritePartial
+  href: API/PrismAPI.Tools.Diagnostics.Debugger.html#PrismAPI_Tools_Diagnostics_Debugger_WritePartial_
+  commentId: Overload:PrismAPI.Tools.Diagnostics.Debugger.WritePartial
   isSpec: "True"
-  fullName: PrismAPI.Tools.Debugger.WritePartial
+  fullName: PrismAPI.Tools.Diagnostics.Debugger.WritePartial
   nameWithType: Debugger.WritePartial
+- uid: PrismAPI.Tools.Diagnostics.Severity
+  name: Severity
+  href: API/PrismAPI.Tools.Diagnostics.Severity.html
+  commentId: T:PrismAPI.Tools.Diagnostics.Severity
+  fullName: PrismAPI.Tools.Diagnostics.Severity
+  nameWithType: Severity
+- uid: PrismAPI.Tools.Diagnostics.Severity.Fail
+  name: Fail
+  href: API/PrismAPI.Tools.Diagnostics.Severity.html#PrismAPI_Tools_Diagnostics_Severity_Fail
+  commentId: F:PrismAPI.Tools.Diagnostics.Severity.Fail
+  fullName: PrismAPI.Tools.Diagnostics.Severity.Fail
+  nameWithType: Severity.Fail
+- uid: PrismAPI.Tools.Diagnostics.Severity.Info
+  name: Info
+  href: API/PrismAPI.Tools.Diagnostics.Severity.html#PrismAPI_Tools_Diagnostics_Severity_Info
+  commentId: F:PrismAPI.Tools.Diagnostics.Severity.Info
+  fullName: PrismAPI.Tools.Diagnostics.Severity.Info
+  nameWithType: Severity.Info
+- uid: PrismAPI.Tools.Diagnostics.Severity.Success
+  name: Success
+  href: API/PrismAPI.Tools.Diagnostics.Severity.html#PrismAPI_Tools_Diagnostics_Severity_Success
+  commentId: F:PrismAPI.Tools.Diagnostics.Severity.Success
+  fullName: PrismAPI.Tools.Diagnostics.Severity.Success
+  nameWithType: Severity.Success
+- uid: PrismAPI.Tools.Diagnostics.Severity.Warn
+  name: Warn
+  href: API/PrismAPI.Tools.Diagnostics.Severity.html#PrismAPI_Tools_Diagnostics_Severity_Warn
+  commentId: F:PrismAPI.Tools.Diagnostics.Severity.Warn
+  fullName: PrismAPI.Tools.Diagnostics.Severity.Warn
+  nameWithType: Severity.Warn
 - uid: PrismAPI.Tools.EventHandler
   name: EventHandler
   href: API/PrismAPI.Tools.EventHandler.html
@@ -8138,172 +8108,236 @@ references:
   commentId: F:PrismAPI.Tools.EventHandler.Method
   fullName: PrismAPI.Tools.EventHandler.Method
   nameWithType: EventHandler.Method
-- uid: PrismAPI.Tools.KeyboardEx
+- uid: PrismAPI.Tools.Extentions
+  name: PrismAPI.Tools.Extentions
+  href: API/PrismAPI.Tools.Extentions.html
+  commentId: N:PrismAPI.Tools.Extentions
+  fullName: PrismAPI.Tools.Extentions
+  nameWithType: PrismAPI.Tools.Extentions
+- uid: PrismAPI.Tools.Extentions.KeyboardEx
   name: KeyboardEx
-  href: API/PrismAPI.Tools.KeyboardEx.html
-  commentId: T:PrismAPI.Tools.KeyboardEx
-  fullName: PrismAPI.Tools.KeyboardEx
+  href: API/PrismAPI.Tools.Extentions.KeyboardEx.html
+  commentId: T:PrismAPI.Tools.Extentions.KeyboardEx
+  fullName: PrismAPI.Tools.Extentions.KeyboardEx
   nameWithType: KeyboardEx
-- uid: PrismAPI.Tools.KeyboardEx.ReadKey
+- uid: PrismAPI.Tools.Extentions.KeyboardEx.ReadKey
   name: ReadKey()
-  href: API/PrismAPI.Tools.KeyboardEx.html#PrismAPI_Tools_KeyboardEx_ReadKey
-  commentId: M:PrismAPI.Tools.KeyboardEx.ReadKey
-  fullName: PrismAPI.Tools.KeyboardEx.ReadKey()
+  href: API/PrismAPI.Tools.Extentions.KeyboardEx.html#PrismAPI_Tools_Extentions_KeyboardEx_ReadKey
+  commentId: M:PrismAPI.Tools.Extentions.KeyboardEx.ReadKey
+  fullName: PrismAPI.Tools.Extentions.KeyboardEx.ReadKey()
   nameWithType: KeyboardEx.ReadKey()
-- uid: PrismAPI.Tools.KeyboardEx.ReadKey*
+- uid: PrismAPI.Tools.Extentions.KeyboardEx.ReadKey*
   name: ReadKey
-  href: API/PrismAPI.Tools.KeyboardEx.html#PrismAPI_Tools_KeyboardEx_ReadKey_
-  commentId: Overload:PrismAPI.Tools.KeyboardEx.ReadKey
+  href: API/PrismAPI.Tools.Extentions.KeyboardEx.html#PrismAPI_Tools_Extentions_KeyboardEx_ReadKey_
+  commentId: Overload:PrismAPI.Tools.Extentions.KeyboardEx.ReadKey
   isSpec: "True"
-  fullName: PrismAPI.Tools.KeyboardEx.ReadKey
+  fullName: PrismAPI.Tools.Extentions.KeyboardEx.ReadKey
   nameWithType: KeyboardEx.ReadKey
-- uid: PrismAPI.Tools.KeyboardEx.RegisterCallback(System.Action{System.ConsoleKeyInfo})
+- uid: PrismAPI.Tools.Extentions.KeyboardEx.RegisterCallback(System.Action{System.ConsoleKeyInfo})
   name: RegisterCallback(Action<ConsoleKeyInfo>)
-  href: API/PrismAPI.Tools.KeyboardEx.html#PrismAPI_Tools_KeyboardEx_RegisterCallback_System_Action_System_ConsoleKeyInfo__
-  commentId: M:PrismAPI.Tools.KeyboardEx.RegisterCallback(System.Action{System.ConsoleKeyInfo})
+  href: API/PrismAPI.Tools.Extentions.KeyboardEx.html#PrismAPI_Tools_Extentions_KeyboardEx_RegisterCallback_System_Action_System_ConsoleKeyInfo__
+  commentId: M:PrismAPI.Tools.Extentions.KeyboardEx.RegisterCallback(System.Action{System.ConsoleKeyInfo})
   name.vb: RegisterCallback(Action(Of ConsoleKeyInfo))
-  fullName: PrismAPI.Tools.KeyboardEx.RegisterCallback(System.Action<System.ConsoleKeyInfo>)
-  fullName.vb: PrismAPI.Tools.KeyboardEx.RegisterCallback(System.Action(Of System.ConsoleKeyInfo))
+  fullName: PrismAPI.Tools.Extentions.KeyboardEx.RegisterCallback(System.Action<System.ConsoleKeyInfo>)
+  fullName.vb: PrismAPI.Tools.Extentions.KeyboardEx.RegisterCallback(System.Action(Of System.ConsoleKeyInfo))
   nameWithType: KeyboardEx.RegisterCallback(Action<ConsoleKeyInfo>)
   nameWithType.vb: KeyboardEx.RegisterCallback(Action(Of ConsoleKeyInfo))
-- uid: PrismAPI.Tools.KeyboardEx.RegisterCallback*
+- uid: PrismAPI.Tools.Extentions.KeyboardEx.RegisterCallback*
   name: RegisterCallback
-  href: API/PrismAPI.Tools.KeyboardEx.html#PrismAPI_Tools_KeyboardEx_RegisterCallback_
-  commentId: Overload:PrismAPI.Tools.KeyboardEx.RegisterCallback
+  href: API/PrismAPI.Tools.Extentions.KeyboardEx.html#PrismAPI_Tools_Extentions_KeyboardEx_RegisterCallback_
+  commentId: Overload:PrismAPI.Tools.Extentions.KeyboardEx.RegisterCallback
   isSpec: "True"
-  fullName: PrismAPI.Tools.KeyboardEx.RegisterCallback
+  fullName: PrismAPI.Tools.Extentions.KeyboardEx.RegisterCallback
   nameWithType: KeyboardEx.RegisterCallback
-- uid: PrismAPI.Tools.KeyboardEx.TryReadKey(System.ConsoleKeyInfo@)
+- uid: PrismAPI.Tools.Extentions.KeyboardEx.TryReadKey(System.ConsoleKeyInfo@)
   name: TryReadKey(out ConsoleKeyInfo)
-  href: API/PrismAPI.Tools.KeyboardEx.html#PrismAPI_Tools_KeyboardEx_TryReadKey_System_ConsoleKeyInfo__
-  commentId: M:PrismAPI.Tools.KeyboardEx.TryReadKey(System.ConsoleKeyInfo@)
+  href: API/PrismAPI.Tools.Extentions.KeyboardEx.html#PrismAPI_Tools_Extentions_KeyboardEx_TryReadKey_System_ConsoleKeyInfo__
+  commentId: M:PrismAPI.Tools.Extentions.KeyboardEx.TryReadKey(System.ConsoleKeyInfo@)
   name.vb: TryReadKey(ConsoleKeyInfo)
-  fullName: PrismAPI.Tools.KeyboardEx.TryReadKey(out System.ConsoleKeyInfo)
-  fullName.vb: PrismAPI.Tools.KeyboardEx.TryReadKey(System.ConsoleKeyInfo)
+  fullName: PrismAPI.Tools.Extentions.KeyboardEx.TryReadKey(out System.ConsoleKeyInfo)
+  fullName.vb: PrismAPI.Tools.Extentions.KeyboardEx.TryReadKey(System.ConsoleKeyInfo)
   nameWithType: KeyboardEx.TryReadKey(out ConsoleKeyInfo)
   nameWithType.vb: KeyboardEx.TryReadKey(ConsoleKeyInfo)
-- uid: PrismAPI.Tools.KeyboardEx.TryReadKey*
+- uid: PrismAPI.Tools.Extentions.KeyboardEx.TryReadKey*
   name: TryReadKey
-  href: API/PrismAPI.Tools.KeyboardEx.html#PrismAPI_Tools_KeyboardEx_TryReadKey_
-  commentId: Overload:PrismAPI.Tools.KeyboardEx.TryReadKey
+  href: API/PrismAPI.Tools.Extentions.KeyboardEx.html#PrismAPI_Tools_Extentions_KeyboardEx_TryReadKey_
+  commentId: Overload:PrismAPI.Tools.Extentions.KeyboardEx.TryReadKey
   isSpec: "True"
-  fullName: PrismAPI.Tools.KeyboardEx.TryReadKey
+  fullName: PrismAPI.Tools.Extentions.KeyboardEx.TryReadKey
   nameWithType: KeyboardEx.TryReadKey
-- uid: PrismAPI.Tools.MouseEx
+- uid: PrismAPI.Tools.Extentions.MouseEx
   name: MouseEx
-  href: API/PrismAPI.Tools.MouseEx.html
-  commentId: T:PrismAPI.Tools.MouseEx
-  fullName: PrismAPI.Tools.MouseEx
+  href: API/PrismAPI.Tools.Extentions.MouseEx.html
+  commentId: T:PrismAPI.Tools.Extentions.MouseEx
+  fullName: PrismAPI.Tools.Extentions.MouseEx
   nameWithType: MouseEx
-- uid: PrismAPI.Tools.MouseEx.IsClickPressed
+- uid: PrismAPI.Tools.Extentions.MouseEx.IsClickPressed
   name: IsClickPressed()
-  href: API/PrismAPI.Tools.MouseEx.html#PrismAPI_Tools_MouseEx_IsClickPressed
-  commentId: M:PrismAPI.Tools.MouseEx.IsClickPressed
-  fullName: PrismAPI.Tools.MouseEx.IsClickPressed()
+  href: API/PrismAPI.Tools.Extentions.MouseEx.html#PrismAPI_Tools_Extentions_MouseEx_IsClickPressed
+  commentId: M:PrismAPI.Tools.Extentions.MouseEx.IsClickPressed
+  fullName: PrismAPI.Tools.Extentions.MouseEx.IsClickPressed()
   nameWithType: MouseEx.IsClickPressed()
-- uid: PrismAPI.Tools.MouseEx.IsClickPressed*
+- uid: PrismAPI.Tools.Extentions.MouseEx.IsClickPressed*
   name: IsClickPressed
-  href: API/PrismAPI.Tools.MouseEx.html#PrismAPI_Tools_MouseEx_IsClickPressed_
-  commentId: Overload:PrismAPI.Tools.MouseEx.IsClickPressed
+  href: API/PrismAPI.Tools.Extentions.MouseEx.html#PrismAPI_Tools_Extentions_MouseEx_IsClickPressed_
+  commentId: Overload:PrismAPI.Tools.Extentions.MouseEx.IsClickPressed
   isSpec: "True"
-  fullName: PrismAPI.Tools.MouseEx.IsClickPressed
+  fullName: PrismAPI.Tools.Extentions.MouseEx.IsClickPressed
   nameWithType: MouseEx.IsClickPressed
-- uid: PrismAPI.Tools.MouseEx.IsClickReady
+- uid: PrismAPI.Tools.Extentions.MouseEx.IsClickReady
   name: IsClickReady()
-  href: API/PrismAPI.Tools.MouseEx.html#PrismAPI_Tools_MouseEx_IsClickReady
-  commentId: M:PrismAPI.Tools.MouseEx.IsClickReady
-  fullName: PrismAPI.Tools.MouseEx.IsClickReady()
+  href: API/PrismAPI.Tools.Extentions.MouseEx.html#PrismAPI_Tools_Extentions_MouseEx_IsClickReady
+  commentId: M:PrismAPI.Tools.Extentions.MouseEx.IsClickReady
+  fullName: PrismAPI.Tools.Extentions.MouseEx.IsClickReady()
   nameWithType: MouseEx.IsClickReady()
-- uid: PrismAPI.Tools.MouseEx.IsClickReady*
+- uid: PrismAPI.Tools.Extentions.MouseEx.IsClickReady*
   name: IsClickReady
-  href: API/PrismAPI.Tools.MouseEx.html#PrismAPI_Tools_MouseEx_IsClickReady_
-  commentId: Overload:PrismAPI.Tools.MouseEx.IsClickReady
+  href: API/PrismAPI.Tools.Extentions.MouseEx.html#PrismAPI_Tools_Extentions_MouseEx_IsClickReady_
+  commentId: Overload:PrismAPI.Tools.Extentions.MouseEx.IsClickReady
   isSpec: "True"
-  fullName: PrismAPI.Tools.MouseEx.IsClickReady
+  fullName: PrismAPI.Tools.Extentions.MouseEx.IsClickReady
   nameWithType: MouseEx.IsClickReady
-- uid: PrismAPI.Tools.MouseEx.IsMouseWithin(System.Int32,System.Int32,System.UInt16,System.UInt16)
+- uid: PrismAPI.Tools.Extentions.MouseEx.IsMouseWithin(System.Int32,System.Int32,System.UInt16,System.UInt16)
   name: IsMouseWithin(int, int, ushort, ushort)
-  href: API/PrismAPI.Tools.MouseEx.html#PrismAPI_Tools_MouseEx_IsMouseWithin_System_Int32_System_Int32_System_UInt16_System_UInt16_
-  commentId: M:PrismAPI.Tools.MouseEx.IsMouseWithin(System.Int32,System.Int32,System.UInt16,System.UInt16)
+  href: API/PrismAPI.Tools.Extentions.MouseEx.html#PrismAPI_Tools_Extentions_MouseEx_IsMouseWithin_System_Int32_System_Int32_System_UInt16_System_UInt16_
+  commentId: M:PrismAPI.Tools.Extentions.MouseEx.IsMouseWithin(System.Int32,System.Int32,System.UInt16,System.UInt16)
   name.vb: IsMouseWithin(Integer, Integer, UShort, UShort)
-  fullName: PrismAPI.Tools.MouseEx.IsMouseWithin(int, int, ushort, ushort)
-  fullName.vb: PrismAPI.Tools.MouseEx.IsMouseWithin(Integer, Integer, UShort, UShort)
+  fullName: PrismAPI.Tools.Extentions.MouseEx.IsMouseWithin(int, int, ushort, ushort)
+  fullName.vb: PrismAPI.Tools.Extentions.MouseEx.IsMouseWithin(Integer, Integer, UShort, UShort)
   nameWithType: MouseEx.IsMouseWithin(int, int, ushort, ushort)
   nameWithType.vb: MouseEx.IsMouseWithin(Integer, Integer, UShort, UShort)
-- uid: PrismAPI.Tools.MouseEx.IsMouseWithin*
+- uid: PrismAPI.Tools.Extentions.MouseEx.IsMouseWithin*
   name: IsMouseWithin
-  href: API/PrismAPI.Tools.MouseEx.html#PrismAPI_Tools_MouseEx_IsMouseWithin_
-  commentId: Overload:PrismAPI.Tools.MouseEx.IsMouseWithin
+  href: API/PrismAPI.Tools.Extentions.MouseEx.html#PrismAPI_Tools_Extentions_MouseEx_IsMouseWithin_
+  commentId: Overload:PrismAPI.Tools.Extentions.MouseEx.IsMouseWithin
   isSpec: "True"
-  fullName: PrismAPI.Tools.MouseEx.IsMouseWithin
+  fullName: PrismAPI.Tools.Extentions.MouseEx.IsMouseWithin
   nameWithType: MouseEx.IsMouseWithin
-- uid: PrismAPI.Tools.Severity
-  name: Severity
-  href: API/PrismAPI.Tools.Severity.html
-  commentId: T:PrismAPI.Tools.Severity
-  fullName: PrismAPI.Tools.Severity
-  nameWithType: Severity
-- uid: PrismAPI.Tools.Severity.Fail
-  name: Fail
-  href: API/PrismAPI.Tools.Severity.html#PrismAPI_Tools_Severity_Fail
-  commentId: F:PrismAPI.Tools.Severity.Fail
-  fullName: PrismAPI.Tools.Severity.Fail
-  nameWithType: Severity.Fail
-- uid: PrismAPI.Tools.Severity.Info
-  name: Info
-  href: API/PrismAPI.Tools.Severity.html#PrismAPI_Tools_Severity_Info
-  commentId: F:PrismAPI.Tools.Severity.Info
-  fullName: PrismAPI.Tools.Severity.Info
-  nameWithType: Severity.Info
-- uid: PrismAPI.Tools.Severity.Success
-  name: Success
-  href: API/PrismAPI.Tools.Severity.html#PrismAPI_Tools_Severity_Success
-  commentId: F:PrismAPI.Tools.Severity.Success
-  fullName: PrismAPI.Tools.Severity.Success
-  nameWithType: Severity.Success
-- uid: PrismAPI.Tools.Severity.Warn
-  name: Warn
-  href: API/PrismAPI.Tools.Severity.html#PrismAPI_Tools_Severity_Warn
-  commentId: F:PrismAPI.Tools.Severity.Warn
-  fullName: PrismAPI.Tools.Severity.Warn
-  nameWithType: Severity.Warn
-- uid: PrismAPI.Tools.StringEx
+- uid: PrismAPI.Tools.Extentions.StringEx
   name: StringEx
-  href: API/PrismAPI.Tools.StringEx.html
-  commentId: T:PrismAPI.Tools.StringEx
-  fullName: PrismAPI.Tools.StringEx
+  href: API/PrismAPI.Tools.Extentions.StringEx.html
+  commentId: T:PrismAPI.Tools.Extentions.StringEx
+  fullName: PrismAPI.Tools.Extentions.StringEx
   nameWithType: StringEx
-- uid: PrismAPI.Tools.StringEx.GetLineColumn(System.String,System.Int32)
+- uid: PrismAPI.Tools.Extentions.StringEx.BytesPerGigabyte
+  name: BytesPerGigabyte
+  href: API/PrismAPI.Tools.Extentions.StringEx.html#PrismAPI_Tools_Extentions_StringEx_BytesPerGigabyte
+  commentId: F:PrismAPI.Tools.Extentions.StringEx.BytesPerGigabyte
+  fullName: PrismAPI.Tools.Extentions.StringEx.BytesPerGigabyte
+  nameWithType: StringEx.BytesPerGigabyte
+- uid: PrismAPI.Tools.Extentions.StringEx.BytesPerKilobyte
+  name: BytesPerKilobyte
+  href: API/PrismAPI.Tools.Extentions.StringEx.html#PrismAPI_Tools_Extentions_StringEx_BytesPerKilobyte
+  commentId: F:PrismAPI.Tools.Extentions.StringEx.BytesPerKilobyte
+  fullName: PrismAPI.Tools.Extentions.StringEx.BytesPerKilobyte
+  nameWithType: StringEx.BytesPerKilobyte
+- uid: PrismAPI.Tools.Extentions.StringEx.BytesPerMegabyte
+  name: BytesPerMegabyte
+  href: API/PrismAPI.Tools.Extentions.StringEx.html#PrismAPI_Tools_Extentions_StringEx_BytesPerMegabyte
+  commentId: F:PrismAPI.Tools.Extentions.StringEx.BytesPerMegabyte
+  fullName: PrismAPI.Tools.Extentions.StringEx.BytesPerMegabyte
+  nameWithType: StringEx.BytesPerMegabyte
+- uid: PrismAPI.Tools.Extentions.StringEx.BytesPerTerrabye
+  name: BytesPerTerrabye
+  href: API/PrismAPI.Tools.Extentions.StringEx.html#PrismAPI_Tools_Extentions_StringEx_BytesPerTerrabye
+  commentId: F:PrismAPI.Tools.Extentions.StringEx.BytesPerTerrabye
+  fullName: PrismAPI.Tools.Extentions.StringEx.BytesPerTerrabye
+  nameWithType: StringEx.BytesPerTerrabye
+- uid: PrismAPI.Tools.Extentions.StringEx.GetGigabytes(System.UInt64)
+  name: GetGigabytes(ulong)
+  href: API/PrismAPI.Tools.Extentions.StringEx.html#PrismAPI_Tools_Extentions_StringEx_GetGigabytes_System_UInt64_
+  commentId: M:PrismAPI.Tools.Extentions.StringEx.GetGigabytes(System.UInt64)
+  name.vb: GetGigabytes(ULong)
+  fullName: PrismAPI.Tools.Extentions.StringEx.GetGigabytes(ulong)
+  fullName.vb: PrismAPI.Tools.Extentions.StringEx.GetGigabytes(ULong)
+  nameWithType: StringEx.GetGigabytes(ulong)
+  nameWithType.vb: StringEx.GetGigabytes(ULong)
+- uid: PrismAPI.Tools.Extentions.StringEx.GetGigabytes*
+  name: GetGigabytes
+  href: API/PrismAPI.Tools.Extentions.StringEx.html#PrismAPI_Tools_Extentions_StringEx_GetGigabytes_
+  commentId: Overload:PrismAPI.Tools.Extentions.StringEx.GetGigabytes
+  isSpec: "True"
+  fullName: PrismAPI.Tools.Extentions.StringEx.GetGigabytes
+  nameWithType: StringEx.GetGigabytes
+- uid: PrismAPI.Tools.Extentions.StringEx.GetKilobytes(System.UInt64)
+  name: GetKilobytes(ulong)
+  href: API/PrismAPI.Tools.Extentions.StringEx.html#PrismAPI_Tools_Extentions_StringEx_GetKilobytes_System_UInt64_
+  commentId: M:PrismAPI.Tools.Extentions.StringEx.GetKilobytes(System.UInt64)
+  name.vb: GetKilobytes(ULong)
+  fullName: PrismAPI.Tools.Extentions.StringEx.GetKilobytes(ulong)
+  fullName.vb: PrismAPI.Tools.Extentions.StringEx.GetKilobytes(ULong)
+  nameWithType: StringEx.GetKilobytes(ulong)
+  nameWithType.vb: StringEx.GetKilobytes(ULong)
+- uid: PrismAPI.Tools.Extentions.StringEx.GetKilobytes*
+  name: GetKilobytes
+  href: API/PrismAPI.Tools.Extentions.StringEx.html#PrismAPI_Tools_Extentions_StringEx_GetKilobytes_
+  commentId: Overload:PrismAPI.Tools.Extentions.StringEx.GetKilobytes
+  isSpec: "True"
+  fullName: PrismAPI.Tools.Extentions.StringEx.GetKilobytes
+  nameWithType: StringEx.GetKilobytes
+- uid: PrismAPI.Tools.Extentions.StringEx.GetLineColumn(System.String,System.Int32)
   name: GetLineColumn(string, int)
-  href: API/PrismAPI.Tools.StringEx.html#PrismAPI_Tools_StringEx_GetLineColumn_System_String_System_Int32_
-  commentId: M:PrismAPI.Tools.StringEx.GetLineColumn(System.String,System.Int32)
+  href: API/PrismAPI.Tools.Extentions.StringEx.html#PrismAPI_Tools_Extentions_StringEx_GetLineColumn_System_String_System_Int32_
+  commentId: M:PrismAPI.Tools.Extentions.StringEx.GetLineColumn(System.String,System.Int32)
   name.vb: GetLineColumn(String, Integer)
-  fullName: PrismAPI.Tools.StringEx.GetLineColumn(string, int)
-  fullName.vb: PrismAPI.Tools.StringEx.GetLineColumn(String, Integer)
+  fullName: PrismAPI.Tools.Extentions.StringEx.GetLineColumn(string, int)
+  fullName.vb: PrismAPI.Tools.Extentions.StringEx.GetLineColumn(String, Integer)
   nameWithType: StringEx.GetLineColumn(string, int)
   nameWithType.vb: StringEx.GetLineColumn(String, Integer)
-- uid: PrismAPI.Tools.StringEx.GetLineColumn*
+- uid: PrismAPI.Tools.Extentions.StringEx.GetLineColumn*
   name: GetLineColumn
-  href: API/PrismAPI.Tools.StringEx.html#PrismAPI_Tools_StringEx_GetLineColumn_
-  commentId: Overload:PrismAPI.Tools.StringEx.GetLineColumn
+  href: API/PrismAPI.Tools.Extentions.StringEx.html#PrismAPI_Tools_Extentions_StringEx_GetLineColumn_
+  commentId: Overload:PrismAPI.Tools.Extentions.StringEx.GetLineColumn
   isSpec: "True"
-  fullName: PrismAPI.Tools.StringEx.GetLineColumn
+  fullName: PrismAPI.Tools.Extentions.StringEx.GetLineColumn
   nameWithType: StringEx.GetLineColumn
-- uid: PrismAPI.Tools.StringEx.NumberOf(System.String,System.Char)
+- uid: PrismAPI.Tools.Extentions.StringEx.GetMegaBytes(System.UInt64)
+  name: GetMegaBytes(ulong)
+  href: API/PrismAPI.Tools.Extentions.StringEx.html#PrismAPI_Tools_Extentions_StringEx_GetMegaBytes_System_UInt64_
+  commentId: M:PrismAPI.Tools.Extentions.StringEx.GetMegaBytes(System.UInt64)
+  name.vb: GetMegaBytes(ULong)
+  fullName: PrismAPI.Tools.Extentions.StringEx.GetMegaBytes(ulong)
+  fullName.vb: PrismAPI.Tools.Extentions.StringEx.GetMegaBytes(ULong)
+  nameWithType: StringEx.GetMegaBytes(ulong)
+  nameWithType.vb: StringEx.GetMegaBytes(ULong)
+- uid: PrismAPI.Tools.Extentions.StringEx.GetMegaBytes*
+  name: GetMegaBytes
+  href: API/PrismAPI.Tools.Extentions.StringEx.html#PrismAPI_Tools_Extentions_StringEx_GetMegaBytes_
+  commentId: Overload:PrismAPI.Tools.Extentions.StringEx.GetMegaBytes
+  isSpec: "True"
+  fullName: PrismAPI.Tools.Extentions.StringEx.GetMegaBytes
+  nameWithType: StringEx.GetMegaBytes
+- uid: PrismAPI.Tools.Extentions.StringEx.GetTerabytes(System.UInt64)
+  name: GetTerabytes(ulong)
+  href: API/PrismAPI.Tools.Extentions.StringEx.html#PrismAPI_Tools_Extentions_StringEx_GetTerabytes_System_UInt64_
+  commentId: M:PrismAPI.Tools.Extentions.StringEx.GetTerabytes(System.UInt64)
+  name.vb: GetTerabytes(ULong)
+  fullName: PrismAPI.Tools.Extentions.StringEx.GetTerabytes(ulong)
+  fullName.vb: PrismAPI.Tools.Extentions.StringEx.GetTerabytes(ULong)
+  nameWithType: StringEx.GetTerabytes(ulong)
+  nameWithType.vb: StringEx.GetTerabytes(ULong)
+- uid: PrismAPI.Tools.Extentions.StringEx.GetTerabytes*
+  name: GetTerabytes
+  href: API/PrismAPI.Tools.Extentions.StringEx.html#PrismAPI_Tools_Extentions_StringEx_GetTerabytes_
+  commentId: Overload:PrismAPI.Tools.Extentions.StringEx.GetTerabytes
+  isSpec: "True"
+  fullName: PrismAPI.Tools.Extentions.StringEx.GetTerabytes
+  nameWithType: StringEx.GetTerabytes
+- uid: PrismAPI.Tools.Extentions.StringEx.NumberOf(System.String,System.Char)
   name: NumberOf(string, char)
-  href: API/PrismAPI.Tools.StringEx.html#PrismAPI_Tools_StringEx_NumberOf_System_String_System_Char_
-  commentId: M:PrismAPI.Tools.StringEx.NumberOf(System.String,System.Char)
+  href: API/PrismAPI.Tools.Extentions.StringEx.html#PrismAPI_Tools_Extentions_StringEx_NumberOf_System_String_System_Char_
+  commentId: M:PrismAPI.Tools.Extentions.StringEx.NumberOf(System.String,System.Char)
   name.vb: NumberOf(String, Char)
-  fullName: PrismAPI.Tools.StringEx.NumberOf(string, char)
-  fullName.vb: PrismAPI.Tools.StringEx.NumberOf(String, Char)
+  fullName: PrismAPI.Tools.Extentions.StringEx.NumberOf(string, char)
+  fullName.vb: PrismAPI.Tools.Extentions.StringEx.NumberOf(String, Char)
   nameWithType: StringEx.NumberOf(string, char)
   nameWithType.vb: StringEx.NumberOf(String, Char)
-- uid: PrismAPI.Tools.StringEx.NumberOf*
+- uid: PrismAPI.Tools.Extentions.StringEx.NumberOf*
   name: NumberOf
-  href: API/PrismAPI.Tools.StringEx.html#PrismAPI_Tools_StringEx_NumberOf_
-  commentId: Overload:PrismAPI.Tools.StringEx.NumberOf
+  href: API/PrismAPI.Tools.Extentions.StringEx.html#PrismAPI_Tools_Extentions_StringEx_NumberOf_
+  commentId: Overload:PrismAPI.Tools.Extentions.StringEx.NumberOf
   isSpec: "True"
-  fullName: PrismAPI.Tools.StringEx.NumberOf
+  fullName: PrismAPI.Tools.Extentions.StringEx.NumberOf
   nameWithType: StringEx.NumberOf
 - uid: PrismAPI.UI
   name: PrismAPI.UI
