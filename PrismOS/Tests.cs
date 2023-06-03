@@ -1,9 +1,9 @@
 ﻿using PrismAPI.Graphics.Rasterizer;
+using PrismAPI.Tools.Extentions;
 using PrismAPI.Hardware.GPU;
 using PrismAPI.UI.Controls;
 using Cosmos.Core.Memory;
 using PrismAPI.Graphics;
-using PrismAPI.Tools;
 using Cosmos.System;
 using Cosmos.Core;
 using PrismAPI.UI;
@@ -50,7 +50,7 @@ public static class Tests
 			Engine.Objects[^1].TestLogic(0.01f);
 			Engine.Render();
 
-			string Info = $"{Canvas.GetFPS()} FPS\n{Canvas.GetName()}\n{ByteFormatter.GetMegaBytes(GCImplementation.GetUsedRAM())} MB";
+			string Info = $"{Canvas.GetFPS()} FPS\n{Canvas.GetName()}\n{StringEx.GetMegaBytes(GCImplementation.GetUsedRAM())} MB";
 
 			Canvas.Clear();
 			Canvas.DrawImage(150, 150, Buffer, false);
@@ -61,7 +61,7 @@ public static class Tests
 			GCImplementation.Free(Info);
 			WindowManager.Update(Canvas);
 			Canvas.Update();
-			//Heap.Collect();
+			Heap.Collect();
 		}
 	}
 }

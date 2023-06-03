@@ -1,6 +1,6 @@
-﻿namespace PrismAPI.Runtime;
+﻿namespace PrismAPI.Runtime.SystemCall;
 
-public enum PermissionLevel
+public enum AccessLevel
 {
     /// <summary>
     /// Full access to all files and features. No access to full system memory.

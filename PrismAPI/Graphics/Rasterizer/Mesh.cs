@@ -21,12 +21,6 @@ public class Mesh
 		Triangles = new();
 		Position = Vector3.Zero;
 		Rotation = Vector3.Zero;
-		Velocity = Vector3.Zero;
-		Force = Vector3.Zero;
-
-		HasCollision = true;
-		HasPhysics = false;
-		Mass = 1f;
 	}
 
 	#endregion
@@ -208,15 +202,6 @@ public class Mesh
 		Rotation.X += ElapsedTime;
 	}
 
-	public void Step(float Gravity, float DT)
-	{
-		// Increment gravity.
-		Force.Y += Mass * Gravity;
-		Velocity.Y += Force.Y / Mass * DT;
-		Position.Y += Velocity.Y * DT;
-		Force = Vector3.Zero;
-	}
-
 	#endregion
 
 	#region Fields
@@ -225,12 +210,6 @@ public class Mesh
 	public List<Triangle> Triangles;
 	public Vector3 Position;
 	public Vector3 Rotation;
-	public Vector3 Velocity;
-	public Vector3 Force;
-
-	public bool HasCollision;
-	public bool HasPhysics;
-	public float Mass;
 
 	#endregion
 }

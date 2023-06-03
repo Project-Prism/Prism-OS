@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace PrismAPI.Processing.Compression;
+namespace PrismAPI.Tools.Compression;
 
 /// <summary>
 /// LZW (De)compression class.

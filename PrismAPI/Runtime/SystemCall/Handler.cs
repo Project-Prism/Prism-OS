@@ -1,11 +1,11 @@
 ﻿using System.Runtime.InteropServices;
-using PrismAPI.Tools;
+using PrismAPI.Tools.Diagnostics;
 using Cosmos.Core;
 using TinyMath;
 
-namespace PrismAPI.Runtime;
+namespace PrismAPI.Runtime.SystemCall;
 
-public static unsafe class SystemCalls
+public static unsafe class Handler
 {
     #region Methods
 
@@ -35,24 +35,24 @@ public static unsafe class SystemCalls
         // can just do the action anyway due to them being core apps, it will be good so
         // the user knows it is going to be doing special access.
 
-        switch ((SystemCallKind)Context.EAX)
+        switch ((Kind)Context.EAX)
         {
             #region Console
 
-            case SystemCallKind.System_Console_WriteLine_string:
+            case Kind.System_Console_WriteLine_string:
                 Console.WriteLine(GetString((char*)Context.EBX));
                 break;
-            case SystemCallKind.System_Console_Write_string:
+            case Kind.System_Console_Write_string:
                 Console.Write(GetString((char*)Context.EBX));
                 break;
-            case SystemCallKind.System_Console_Clear:
+            case Kind.System_Console_Clear:
                 Console.Clear();
                 break;
-            case SystemCallKind.System_Console_SetColor:
+            case Kind.System_Console_SetColor:
                 Console.ForegroundColor = (ConsoleColor)Context.EBX;
                 Console.BackgroundColor = (ConsoleColor)Context.ECX;
                 break;
-            case SystemCallKind.System_Console_ResetColor:
+            case Kind.System_Console_ResetColor:
                 Console.ResetColor();
                 break;
 
@@ -60,50 +60,50 @@ public static unsafe class SystemCalls
 
             #region Memory
 
-            case SystemCallKind.System_Runtime_InteropServices_NativeMemory_Realloc: // Realloc
+            case Kind.System_Runtime_InteropServices_NativeMemory_Realloc: // Realloc
                 Context.EAX = (uint)NativeMemory.Realloc((byte*)Context.EBX, Context.EDX);
                 break;
 
-            case SystemCallKind.System_Runtime_InteropServices_NativeMemory_Alloc: // Alloc
+            case Kind.System_Runtime_InteropServices_NativeMemory_Alloc: // Alloc
                 Context.EAX = (uint)NativeMemory.Alloc(Context.EBX);
                 break;
 
-            case SystemCallKind.System_Runtime_InteropServices_NativeMemory_Free: // Free
+            case Kind.System_Runtime_InteropServices_NativeMemory_Free: // Free
                 NativeMemory.Free((uint*)Context.EBX);
                 break;
 
-            case SystemCallKind.System_Buffer_MemoryCopy64: // Copy64
+            case Kind.System_Buffer_MemoryCopy64: // Copy64
                 System.Buffer.MemoryCopy((void*)Context.EBX, (void*)Context.ECX, Context.EDX * 8, Context.EDX * 8);
                 break;
 
-            case SystemCallKind.System_Buffer_MemoryCopy32: // Copy32
+            case Kind.System_Buffer_MemoryCopy32: // Copy32
                 System.Buffer.MemoryCopy((void*)Context.EBX, (void*)Context.ECX, Context.EDX * 4, Context.EDX * 4);
                 break;
 
-            case SystemCallKind.System_Buffer_MemoryCopy16: // Copy16
+            case Kind.System_Buffer_MemoryCopy16: // Copy16
                 System.Buffer.MemoryCopy((void*)Context.EBX, (void*)Context.ECX, Context.EDX * 2, Context.EDX * 2);
                 break;
 
-            case SystemCallKind.System_Buffer_MemoryCopy8: // Copy8
+            case Kind.System_Buffer_MemoryCopy8: // Copy8
                 System.Buffer.MemoryCopy((void*)Context.EBX, (void*)Context.ECX, Context.EDX, Context.EDX);
                 break;
 
-            case SystemCallKind.Core_Fill64: // Fill64
+            case Kind.Core_Fill64: // Fill64
                 for (int I = 0; I < (int)(int*)Context.EDX; I++)
                 {
                     *((long**)Context.EBX)[I] = (long)(long*)Context.ECX;
                 }
                 break;
 
-            case SystemCallKind.Core_Fill32: // Fill32
+            case Kind.Core_Fill32: // Fill32
                 MemoryOperations.Fill((uint*)Context.EBX, Context.ECX, (int)(int*)Context.EDX);
                 break;
 
-            case SystemCallKind.Core_Fill16: // Fill16
+            case Kind.Core_Fill16: // Fill16
                 MemoryOperations.Fill((ushort*)Context.EBX, (ushort)(ushort*)Context.ECX, (int)(int*)Context.EDX);
                 break;
 
-            case SystemCallKind.Core_Fill8: // Fill8
+            case Kind.Core_Fill8: // Fill8
                 MemoryOperations.Fill((byte*)Context.EBX, (byte)(byte*)Context.ECX, (int)(int*)Context.EDX);
                 break;
 
@@ -111,7 +111,7 @@ public static unsafe class SystemCalls
 
             #region Files
 
-            case SystemCallKind.System_IO_File_ReadAllBytes_string:
+            case Kind.System_IO_File_ReadAllBytes_string:
                 fixed (byte* PTR = File.ReadAllBytes(GetString((char*)Context.EBX)))
                 {
                     Context.EAX = (uint)new FileInfo(GetString((char*)Context.EBX)).Length;
@@ -119,7 +119,7 @@ public static unsafe class SystemCalls
                 }
                 break;
 
-            case SystemCallKind.System_IO_File_WriteeAllBytes_string_bytes:
+            case Kind.System_IO_File_WriteeAllBytes_string_bytes:
                 byte[] Buffer = new byte[Context.EDX];
                 fixed (byte* PTR = Buffer)
                 {
@@ -128,27 +128,27 @@ public static unsafe class SystemCalls
                 File.WriteAllBytes(GetString((char*)Context.EBX), Buffer);
                 break;
 
-            case SystemCallKind.System_IO_Directory_Delete:
+            case Kind.System_IO_Directory_Delete:
                 Directory.Delete(GetString((char*)Context.EBX));
                 break;
 
-            case SystemCallKind.System_IO_File_Delete:
+            case Kind.System_IO_File_Delete:
                 File.Delete(GetString((char*)Context.EBX));
                 break;
 
-            case SystemCallKind.System_IO_Directory_Create:
+            case Kind.System_IO_Directory_Create:
                 Directory.CreateDirectory(GetString((char*)Context.EBX));
                 break;
 
-            case SystemCallKind.System_IO_File_Create:
+            case Kind.System_IO_File_Create:
                 File.Create(GetString((char*)Context.EBX));
                 break;
 
-            case SystemCallKind.System_IO_Directory_Exists:
+            case Kind.System_IO_Directory_Exists:
                 Context.EAX = (uint)(Directory.Exists(GetString((char*)Context.EBX)) ? 1 : 0);
                 break;
 
-            case SystemCallKind.System_IO_File_Exists:
+            case Kind.System_IO_File_Exists:
                 Context.EAX = (uint)(File.Exists(GetString((char*)Context.EBX)) ? 1 : 0);
                 break;
 
@@ -156,7 +156,7 @@ public static unsafe class SystemCalls
 
             #region Core
 
-            case SystemCallKind.Core_Set_Permissions:
+            case Kind.Core_Set_Permissions:
                 // If CallingBinary.Permissions == Kernel
                 // CallingBinary.Permissions = Requested permissions
                 // Else ask user permission
@@ -164,10 +164,10 @@ public static unsafe class SystemCalls
                 // CallingBinary.Permissions = Requested permissions
                 // Else, do nothing and return.
                 break;
-            case SystemCallKind.Core_Get_Permissions:
+            case Kind.Core_Get_Permissions:
                 // Return CallingBinary.Permissions
                 break;
-            case SystemCallKind.Core_Math_Eval:
+            case Kind.Core_Math_Eval:
                 fixed (char* C = SyntaxParser.Evaluate(GetString((char*)Context.EBX)).ToString())
                 {
                     Context.EAX = (uint)C;

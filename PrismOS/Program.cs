@@ -1,9 +1,9 @@
-﻿using PrismAPI.Runtime.SShell;
+﻿using PrismAPI.Runtime.SystemCall;
+using PrismAPI.Tools.Extentions;
+using PrismAPI.Runtime.SShell;
 using PrismAPI.Filesystem;
 using PrismAPI.Network;
-using PrismAPI.Runtime;
 using PrismAPI.Audio;
-using PrismAPI.Tools;
 
 namespace PrismOS;
 
@@ -31,7 +31,7 @@ public unsafe class Program : Cosmos.System.Kernel
 		// Initialize system services.
 		FilesystemManager.Init();
 		NetworkManager.Init();
-		SystemCalls.Init();
+		Handler.Init();
 
 		AudioPlayer.Play(Media.Startup);
 	}

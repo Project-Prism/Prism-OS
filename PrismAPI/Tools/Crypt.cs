@@ -1,4 +1,4 @@
-namespace PrismAPI.Processing;
+namespace PrismAPI.Tools;
 
 /// <summary>
 /// The <see cref="Crypt"/> class, used for binary security.
@@ -6,47 +6,47 @@ namespace PrismAPI.Processing;
 /// </summary>
 public static class Crypt
 {
-	/// <summary>
-	/// Encrypts data using an char array as a key.
+    /// <summary>
+    /// Encrypts data using an char array as a key.
     /// Chars in C# can use up to 2 bytes per character.
-	/// </summary>
-	/// <param name="Key">The Key to encrypt with.</param>
-	/// <param name="Input">The Input data to encrypt.</param>
-	/// <returns>Encrypted data.</returns>
-	public static byte[] Encrypt(char[] Key, byte[] Input)
-	{
-		byte[] Encrypted = new byte[Input.Length];
+    /// </summary>
+    /// <param name="Key">The Key to encrypt with.</param>
+    /// <param name="Input">The Input data to encrypt.</param>
+    /// <returns>Encrypted data.</returns>
+    public static byte[] Encrypt(char[] Key, byte[] Input)
+    {
+        byte[] Encrypted = new byte[Input.Length];
 
         // Loop over all bytes to cypher/encrypt.
-		for (int I = 0; I < Input.Length; I++)
-		{
+        for (int I = 0; I < Input.Length; I++)
+        {
             // Offset the byte by the value of the key, and modulate the key.
-			Encrypted[I] = (byte)((Input[I] + Key[I % Key.Length]) & 255);
-		}
+            Encrypted[I] = (byte)(Input[I] + Key[I % Key.Length] & 255);
+        }
 
-		return Encrypted;
-	}
+        return Encrypted;
+    }
 
-	/// <summary>
-	/// Decrypts data using an int array as a key.
-	/// Chars in C# can use up to 2 bytes per character.
-	/// </summary>
-	/// <param name="Key">The Key to decrypt with.</param>
-	/// <param name="Input">The Input data to decrypt.</param>
-	/// <returns>decrypted data.</returns>
-	public static byte[] Decrypt(char[] Key, byte[] Input)
+    /// <summary>
+    /// Decrypts data using an int array as a key.
+    /// Chars in C# can use up to 2 bytes per character.
+    /// </summary>
+    /// <param name="Key">The Key to decrypt with.</param>
+    /// <param name="Input">The Input data to decrypt.</param>
+    /// <returns>decrypted data.</returns>
+    public static byte[] Decrypt(char[] Key, byte[] Input)
     {
-		byte[] Decrypted = new byte[Input.Length];
+        byte[] Decrypted = new byte[Input.Length];
 
-		// Loop over all bytes to decypher/decrypt.
-		for (int I = 0; I < Input.Length; I++)
-		{
-			// Offset the byte by the value of the key, and modulate the key.
-			Decrypted[I] = (byte)((Input[I] - Key[I % Key.Length]) & 255);
-		}
+        // Loop over all bytes to decypher/decrypt.
+        for (int I = 0; I < Input.Length; I++)
+        {
+            // Offset the byte by the value of the key, and modulate the key.
+            Decrypted[I] = (byte)(Input[I] - Key[I % Key.Length] & 255);
+        }
 
-		return Decrypted;
-	}
+        return Decrypted;
+    }
 
     /// <summary>
     /// Encrypts data using a string as a key.

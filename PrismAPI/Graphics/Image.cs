@@ -1,4 +1,4 @@
-﻿using PrismAPI.Processing.Compression;
+﻿using PrismAPI.Tools.Compression;
 using System.Runtime.InteropServices;
 using System.Text;
 

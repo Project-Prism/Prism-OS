@@ -1,5 +1,6 @@
 ﻿using PrismAPI.Runtime.SSharp.Structure;
-using PrismAPI.Tools;
+using PrismAPI.Tools.Diagnostics;
+using PrismAPI.Tools.Extentions;
 
 namespace PrismAPI.Runtime.SSharp;
 

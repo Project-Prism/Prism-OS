@@ -30,7 +30,6 @@ public class Engine : Canvas
 		Lights = new();
 		Objects = new();
 		Camera = new(FOV);
-		Gravity = 1f;
 		Zoom = 0f;
 	}
 
@@ -56,13 +55,6 @@ public class Engine : Canvas
 		// Calculate Objects - Loops over all triangle in every mesh.
 		foreach (Mesh M in Objects)
 		{
-			// Check if the mesh has physics.
-			if (M.HasPhysics)
-			{
-				// Apply physics.
-				M.Step(Gravity, 1.0f);
-			}
-
 			// Create a rotation matrix for the mesh - Separate from camera rotation.
 			Matrix4x4 Rotation = M.GetRotationMatrix();
 
@@ -102,7 +94,6 @@ public class Engine : Canvas
 	public List<Mesh> Objects;
 	public Color SkyColor;
 	public Camera Camera;
-	public float Gravity;
 	public float Zoom;
 
 	#endregion

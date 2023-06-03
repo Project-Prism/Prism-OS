@@ -1,6 +1,7 @@
 ﻿using PrismAPI.Filesystem.Formats.ELF.ELFProgramHeader;
 using PrismAPI.Filesystem.Formats.ELF.ELFHeader;
 using PrismAPI.Filesystem.Formats.ELF;
+using PrismAPI.Runtime.SystemCall;
 
 namespace PrismAPI.Runtime;
 
@@ -13,7 +14,7 @@ public unsafe class Executable
     public Executable()
     {
         Main = (delegate* unmanaged<void>)0;
-        Permissions = PermissionLevel.User;
+        Permissions = AccessLevel.User;
     }
 
     #region Methods
@@ -122,7 +123,7 @@ public unsafe class Executable
     #region Fields
 
     public delegate* unmanaged<void> Main;
-    public PermissionLevel Permissions;
+    public AccessLevel Permissions;
 
     #endregion
 }

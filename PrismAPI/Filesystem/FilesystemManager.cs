@@ -1,7 +1,7 @@
 ﻿using Cosmos.System.FileSystem.VFS;
 using Cosmos.System.FileSystem;
 using Cosmos.HAL.BlockDevice;
-using PrismAPI.Tools;
+using PrismAPI.Tools.Diagnostics;
 
 namespace PrismAPI.Filesystem;
 

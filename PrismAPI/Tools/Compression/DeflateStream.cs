@@ -1,4 +1,4 @@
-﻿namespace PrismAPI.Processing.Compression;
+﻿namespace PrismAPI.Tools.Compression;
 
 /// <summary>
 /// public domain zlib decode    

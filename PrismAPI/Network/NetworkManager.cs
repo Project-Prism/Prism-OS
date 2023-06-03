@@ -1,7 +1,7 @@
 ﻿using Cosmos.System.Network.IPv4.UDP.DHCP;
 using Cosmos.System.Network.IPv4.TCP;
 using Cosmos.System.Network.IPv4;
-using PrismAPI.Tools;
+using PrismAPI.Tools.Diagnostics;
 
 namespace PrismAPI.Network;
 

@@ -1,6 +1,6 @@
-﻿namespace PrismAPI.Runtime;
+﻿namespace PrismAPI.Runtime.SystemCall;
 
-public enum SystemCallKind : uint
+public enum Kind : uint
 {
     System_Console_WriteLine_string,
     System_Console_Write_string,
