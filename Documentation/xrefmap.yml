@@ -4930,302 +4930,6 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Hardware.GPU.Display.Update
   nameWithType: Display.Update
-- uid: PrismAPI.Hardware.GPU.Intel
-  name: PrismAPI.Hardware.GPU.Intel
-  href: API/PrismAPI.Hardware.GPU.Intel.html
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4
-  name: PrismAPI.Hardware.GPU.Intel.Gen4
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.html
-  commentId: N:PrismAPI.Hardware.GPU.Intel.Gen4
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4
-  nameWithType: PrismAPI.Hardware.GPU.Intel.Gen4
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID
-  name: FunctionID
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.html
-  commentId: T:PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID
-  nameWithType: FunctionID
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.ClipperUnit
-  name: ClipperUnit
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.html#PrismAPI_Hardware_GPU_Intel_Gen4_FunctionID_ClipperUnit
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.ClipperUnit
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.ClipperUnit
-  nameWithType: FunctionID.ClipperUnit
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.CommandStream
-  name: CommandStream
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.html#PrismAPI_Hardware_GPU_Intel_Gen4_FunctionID_CommandStream
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.CommandStream
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.CommandStream
-  nameWithType: FunctionID.CommandStream
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.ExtendedMath
-  name: ExtendedMath
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.html#PrismAPI_Hardware_GPU_Intel_Gen4_FunctionID_ExtendedMath
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.ExtendedMath
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.ExtendedMath
-  nameWithType: FunctionID.ExtendedMath
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.FanUnit
-  name: FanUnit
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.html#PrismAPI_Hardware_GPU_Intel_Gen4_FunctionID_FanUnit
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.FanUnit
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.FanUnit
-  nameWithType: FunctionID.FanUnit
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.Gateway
-  name: Gateway
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.html#PrismAPI_Hardware_GPU_Intel_Gen4_FunctionID_Gateway
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.Gateway
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.Gateway
-  nameWithType: FunctionID.Gateway
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.GeometryShader
-  name: GeometryShader
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.html#PrismAPI_Hardware_GPU_Intel_Gen4_FunctionID_GeometryShader
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.GeometryShader
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.GeometryShader
-  nameWithType: FunctionID.GeometryShader
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.MaskerUnit
-  name: MaskerUnit
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.html#PrismAPI_Hardware_GPU_Intel_Gen4_FunctionID_MaskerUnit
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.MaskerUnit
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.MaskerUnit
-  nameWithType: FunctionID.MaskerUnit
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.NULL
-  name: "NULL"
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.html#PrismAPI_Hardware_GPU_Intel_Gen4_FunctionID_NULL
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.NULL
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.NULL
-  nameWithType: FunctionID.NULL
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.ReadDataPort
-  name: ReadDataPort
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.html#PrismAPI_Hardware_GPU_Intel_Gen4_FunctionID_ReadDataPort
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.ReadDataPort
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.ReadDataPort
-  nameWithType: FunctionID.ReadDataPort
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.Sampler
-  name: Sampler
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.html#PrismAPI_Hardware_GPU_Intel_Gen4_FunctionID_Sampler
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.Sampler
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.Sampler
-  nameWithType: FunctionID.Sampler
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.ThreadSpawner
-  name: ThreadSpawner
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.html#PrismAPI_Hardware_GPU_Intel_Gen4_FunctionID_ThreadSpawner
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.ThreadSpawner
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.ThreadSpawner
-  nameWithType: FunctionID.ThreadSpawner
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.URB
-  name: URB
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.html#PrismAPI_Hardware_GPU_Intel_Gen4_FunctionID_URB
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.URB
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.URB
-  nameWithType: FunctionID.URB
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.VertexFetch
-  name: VertexFetch
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.html#PrismAPI_Hardware_GPU_Intel_Gen4_FunctionID_VertexFetch
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.VertexFetch
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.VertexFetch
-  nameWithType: FunctionID.VertexFetch
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.VertexShader
-  name: VertexShader
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.html#PrismAPI_Hardware_GPU_Intel_Gen4_FunctionID_VertexShader
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.VertexShader
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.VertexShader
-  nameWithType: FunctionID.VertexShader
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.VideoFrontEnd
-  name: VideoFrontEnd
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.html#PrismAPI_Hardware_GPU_Intel_Gen4_FunctionID_VideoFrontEnd
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.VideoFrontEnd
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.VideoFrontEnd
-  nameWithType: FunctionID.VideoFrontEnd
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.WriteDataPort
-  name: WriteDataPort
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.html#PrismAPI_Hardware_GPU_Intel_Gen4_FunctionID_WriteDataPort
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.WriteDataPort
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.WriteDataPort
-  nameWithType: FunctionID.WriteDataPort
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline
-  name: Pipeline
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.html
-  commentId: T:PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline
-  nameWithType: Pipeline
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.GetSelectCommand(System.Boolean)
-  name: GetSelectCommand(bool)
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.html#PrismAPI_Hardware_GPU_Intel_Gen4_Pipeline_GetSelectCommand_System_Boolean_
-  commentId: M:PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.GetSelectCommand(System.Boolean)
-  name.vb: GetSelectCommand(Boolean)
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.GetSelectCommand(bool)
-  fullName.vb: PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.GetSelectCommand(Boolean)
-  nameWithType: Pipeline.GetSelectCommand(bool)
-  nameWithType.vb: Pipeline.GetSelectCommand(Boolean)
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.GetSelectCommand*
-  name: GetSelectCommand
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.html#PrismAPI_Hardware_GPU_Intel_Gen4_Pipeline_GetSelectCommand_
-  commentId: Overload:PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.GetSelectCommand
-  isSpec: "True"
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.GetSelectCommand
-  nameWithType: Pipeline.GetSelectCommand
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.GetURBFenceOPCode(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name: GetURBFenceOPCode(bool, bool, bool, bool, bool, bool)
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.html#PrismAPI_Hardware_GPU_Intel_Gen4_Pipeline_GetURBFenceOPCode_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Boolean_
-  commentId: M:PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.GetURBFenceOPCode(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
-  name.vb: GetURBFenceOPCode(Boolean, Boolean, Boolean, Boolean, Boolean, Boolean)
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.GetURBFenceOPCode(bool, bool, bool, bool, bool, bool)
-  fullName.vb: PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.GetURBFenceOPCode(Boolean, Boolean, Boolean, Boolean, Boolean, Boolean)
-  nameWithType: Pipeline.GetURBFenceOPCode(bool, bool, bool, bool, bool, bool)
-  nameWithType.vb: Pipeline.GetURBFenceOPCode(Boolean, Boolean, Boolean, Boolean, Boolean, Boolean)
-- uid: PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.GetURBFenceOPCode*
-  name: GetURBFenceOPCode
-  href: API/PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.html#PrismAPI_Hardware_GPU_Intel_Gen4_Pipeline_GetURBFenceOPCode_
-  commentId: Overload:PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.GetURBFenceOPCode
-  isSpec: "True"
-  fullName: PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.GetURBFenceOPCode
-  nameWithType: Pipeline.GetURBFenceOPCode
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake
-  name: PrismAPI.Hardware.GPU.Intel.Skylake
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.html
-  commentId: N:PrismAPI.Hardware.GPU.Intel.Skylake
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake
-  nameWithType: PrismAPI.Hardware.GPU.Intel.Skylake
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO
-  name: MMIO
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html
-  commentId: T:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO
-  nameWithType: MMIO
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.#ctor(Cosmos.HAL.PCIDevice)
-  name: MMIO(PCIDevice)
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIO__ctor_Cosmos_HAL_PCIDevice_
-  commentId: M:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.#ctor(Cosmos.HAL.PCIDevice)
-  name.vb: New(PCIDevice)
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.MMIO(Cosmos.HAL.PCIDevice)
-  fullName.vb: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.New(Cosmos.HAL.PCIDevice)
-  nameWithType: MMIO.MMIO(PCIDevice)
-  nameWithType.vb: MMIO.New(PCIDevice)
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.#ctor*
-  name: MMIO
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIO__ctor_
-  commentId: Overload:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.MMIO
-  fullName.vb: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.New
-  nameWithType: MMIO.MMIO
-  nameWithType.vb: MMIO.New
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.Device
-  name: Device
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIO_Device
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.Device
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.Device
-  nameWithType: MMIO.Device
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit,System.UInt16)
-  name: GetMMIO(MMIOUnit, ushort)
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIO_GetMMIO_PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_System_UInt16_
-  commentId: M:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit,System.UInt16)
-  name.vb: GetMMIO(MMIOUnit, UShort)
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit, ushort)
-  fullName.vb: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit, UShort)
-  nameWithType: MMIO.GetMMIO(MMIOUnit, ushort)
-  nameWithType.vb: MMIO.GetMMIO(MMIOUnit, UShort)
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit,System.UInt32)
-  name: GetMMIO(MMIOUnit, uint)
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIO_GetMMIO_PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_System_UInt32_
-  commentId: M:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit,System.UInt32)
-  name.vb: GetMMIO(MMIOUnit, UInteger)
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit, uint)
-  fullName.vb: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit, UInteger)
-  nameWithType: MMIO.GetMMIO(MMIOUnit, uint)
-  nameWithType.vb: MMIO.GetMMIO(MMIOUnit, UInteger)
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO*
-  name: GetMMIO
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIO_GetMMIO_
-  commentId: Overload:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO
-  isSpec: "True"
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.GetMMIO
-  nameWithType: MMIO.GetMMIO
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit,System.UInt32,System.UInt16)
-  name: SetMMIO(MMIOUnit, uint, ushort)
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIO_SetMMIO_PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_System_UInt32_System_UInt16_
-  commentId: M:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit,System.UInt32,System.UInt16)
-  name.vb: SetMMIO(MMIOUnit, UInteger, UShort)
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit, uint, ushort)
-  fullName.vb: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit, UInteger, UShort)
-  nameWithType: MMIO.SetMMIO(MMIOUnit, uint, ushort)
-  nameWithType.vb: MMIO.SetMMIO(MMIOUnit, UInteger, UShort)
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit,System.UInt32,System.UInt32)
-  name: SetMMIO(MMIOUnit, uint, uint)
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIO_SetMMIO_PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_System_UInt32_System_UInt32_
-  commentId: M:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit,System.UInt32,System.UInt32)
-  name.vb: SetMMIO(MMIOUnit, UInteger, UInteger)
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit, uint, uint)
-  fullName.vb: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO(PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit, UInteger, UInteger)
-  nameWithType: MMIO.SetMMIO(MMIOUnit, uint, uint)
-  nameWithType.vb: MMIO.SetMMIO(MMIOUnit, UInteger, UInteger)
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO*
-  name: SetMMIO
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIO_SetMMIO_
-  commentId: Overload:PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO
-  isSpec: "True"
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.SetMMIO
-  nameWithType: MMIO.SetMMIO
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit
-  name: MMIOUnit
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html
-  commentId: T:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit
-  nameWithType: MMIOUnit
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.BlitterArbiter
-  name: BlitterArbiter
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_BlitterArbiter
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.BlitterArbiter
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.BlitterArbiter
-  nameWithType: MMIOUnit.BlitterArbiter
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.BlitterEngine
-  name: BlitterEngine
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_BlitterEngine
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.BlitterEngine
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.BlitterEngine
-  nameWithType: MMIOUnit.BlitterEngine
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.FenceRegisters
-  name: FenceRegisters
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_FenceRegisters
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.FenceRegisters
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.FenceRegisters
-  nameWithType: MMIOUnit.FenceRegisters
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MCHBAR
-  name: MCHBAR
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_MCHBAR
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MCHBAR
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MCHBAR
-  nameWithType: MMIOUnit.MCHBAR
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MediaEngine
-  name: MediaEngine
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_MediaEngine
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MediaEngine
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MediaEngine
-  nameWithType: MMIOUnit.MediaEngine
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MediaUnits
-  name: MediaUnits
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_MediaUnits
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MediaUnits
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MediaUnits
-  nameWithType: MMIOUnit.MediaUnits
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MemoryArbiter
-  name: MemoryArbiter
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_MemoryArbiter
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MemoryArbiter
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MemoryArbiter
-  nameWithType: MMIOUnit.MemoryArbiter
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MFXArbiter
-  name: MFXArbiter
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_MFXArbiter
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MFXArbiter
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MFXArbiter
-  nameWithType: MMIOUnit.MFXArbiter
-- uid: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MFXControl
-  name: MFXControl
-  href: API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html#PrismAPI_Hardware_GPU_Intel_Skylake_MMIOUnit_MFXControl
-  commentId: F:PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MFXControl
-  fullName: PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.MFXControl
-  nameWithType: MMIOUnit.MFXControl
 - uid: PrismAPI.Hardware.GPU.Vesa
   name: PrismAPI.Hardware.GPU.Vesa
   href: API/PrismAPI.Hardware.GPU.Vesa.html
@@ -8339,6 +8043,235 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Tools.Extentions.StringEx.NumberOf
   nameWithType: StringEx.NumberOf
+- uid: PrismAPI.Tools.FluentXS
+  name: PrismAPI.Tools.FluentXS
+  href: API/PrismAPI.Tools.FluentXS.html
+  commentId: N:PrismAPI.Tools.FluentXS
+  fullName: PrismAPI.Tools.FluentXS
+  nameWithType: PrismAPI.Tools.FluentXS
+- uid: PrismAPI.Tools.FluentXS.ArgumentBuilder
+  name: ArgumentBuilder
+  href: API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html
+  commentId: T:PrismAPI.Tools.FluentXS.ArgumentBuilder
+  fullName: PrismAPI.Tools.FluentXS.ArgumentBuilder
+  nameWithType: ArgumentBuilder
+- uid: PrismAPI.Tools.FluentXS.ArgumentBuilder.#ctor
+  name: ArgumentBuilder()
+  href: API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html#PrismAPI_Tools_FluentXS_ArgumentBuilder__ctor
+  commentId: M:PrismAPI.Tools.FluentXS.ArgumentBuilder.#ctor
+  name.vb: New()
+  fullName: PrismAPI.Tools.FluentXS.ArgumentBuilder.ArgumentBuilder()
+  fullName.vb: PrismAPI.Tools.FluentXS.ArgumentBuilder.New()
+  nameWithType: ArgumentBuilder.ArgumentBuilder()
+  nameWithType.vb: ArgumentBuilder.New()
+- uid: PrismAPI.Tools.FluentXS.ArgumentBuilder.#ctor(System.Int32)
+  name: ArgumentBuilder(int)
+  href: API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html#PrismAPI_Tools_FluentXS_ArgumentBuilder__ctor_System_Int32_
+  commentId: M:PrismAPI.Tools.FluentXS.ArgumentBuilder.#ctor(System.Int32)
+  name.vb: New(Integer)
+  fullName: PrismAPI.Tools.FluentXS.ArgumentBuilder.ArgumentBuilder(int)
+  fullName.vb: PrismAPI.Tools.FluentXS.ArgumentBuilder.New(Integer)
+  nameWithType: ArgumentBuilder.ArgumentBuilder(int)
+  nameWithType.vb: ArgumentBuilder.New(Integer)
+- uid: PrismAPI.Tools.FluentXS.ArgumentBuilder.#ctor*
+  name: ArgumentBuilder
+  href: API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html#PrismAPI_Tools_FluentXS_ArgumentBuilder__ctor_
+  commentId: Overload:PrismAPI.Tools.FluentXS.ArgumentBuilder.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: PrismAPI.Tools.FluentXS.ArgumentBuilder.ArgumentBuilder
+  fullName.vb: PrismAPI.Tools.FluentXS.ArgumentBuilder.New
+  nameWithType: ArgumentBuilder.ArgumentBuilder
+  nameWithType.vb: ArgumentBuilder.New
+- uid: PrismAPI.Tools.FluentXS.ArgumentBuilder.Add(System.Type,System.String,System.Nullable{System.UInt32})
+  name: Add(Type, string, uint?)
+  href: API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html#PrismAPI_Tools_FluentXS_ArgumentBuilder_Add_System_Type_System_String_System_Nullable_System_UInt32__
+  commentId: M:PrismAPI.Tools.FluentXS.ArgumentBuilder.Add(System.Type,System.String,System.Nullable{System.UInt32})
+  name.vb: Add(Type, String, UInteger?)
+  fullName: PrismAPI.Tools.FluentXS.ArgumentBuilder.Add(System.Type, string, uint?)
+  fullName.vb: PrismAPI.Tools.FluentXS.ArgumentBuilder.Add(System.Type, String, UInteger?)
+  nameWithType: ArgumentBuilder.Add(Type, string, uint?)
+  nameWithType.vb: ArgumentBuilder.Add(Type, String, UInteger?)
+- uid: PrismAPI.Tools.FluentXS.ArgumentBuilder.Add(System.UInt32,System.String,System.Nullable{System.UInt32})
+  name: Add(uint, string, uint?)
+  href: API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html#PrismAPI_Tools_FluentXS_ArgumentBuilder_Add_System_UInt32_System_String_System_Nullable_System_UInt32__
+  commentId: M:PrismAPI.Tools.FluentXS.ArgumentBuilder.Add(System.UInt32,System.String,System.Nullable{System.UInt32})
+  name.vb: Add(UInteger, String, UInteger?)
+  fullName: PrismAPI.Tools.FluentXS.ArgumentBuilder.Add(uint, string, uint?)
+  fullName.vb: PrismAPI.Tools.FluentXS.ArgumentBuilder.Add(UInteger, String, UInteger?)
+  nameWithType: ArgumentBuilder.Add(uint, string, uint?)
+  nameWithType.vb: ArgumentBuilder.Add(UInteger, String, UInteger?)
+- uid: PrismAPI.Tools.FluentXS.ArgumentBuilder.Add*
+  name: Add
+  href: API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html#PrismAPI_Tools_FluentXS_ArgumentBuilder_Add_
+  commentId: Overload:PrismAPI.Tools.FluentXS.ArgumentBuilder.Add
+  isSpec: "True"
+  fullName: PrismAPI.Tools.FluentXS.ArgumentBuilder.Add
+  nameWithType: ArgumentBuilder.Add
+- uid: PrismAPI.Tools.FluentXS.ArgumentBuilder.Add``1(System.String,System.Nullable{System.UInt32})
+  name: Add<T>(string, uint?)
+  href: API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html#PrismAPI_Tools_FluentXS_ArgumentBuilder_Add__1_System_String_System_Nullable_System_UInt32__
+  commentId: M:PrismAPI.Tools.FluentXS.ArgumentBuilder.Add``1(System.String,System.Nullable{System.UInt32})
+  name.vb: Add(Of T)(String, UInteger?)
+  fullName: PrismAPI.Tools.FluentXS.ArgumentBuilder.Add<T>(string, uint?)
+  fullName.vb: PrismAPI.Tools.FluentXS.ArgumentBuilder.Add(Of T)(String, UInteger?)
+  nameWithType: ArgumentBuilder.Add<T>(string, uint?)
+  nameWithType.vb: ArgumentBuilder.Add(Of T)(String, UInteger?)
+- uid: PrismAPI.Tools.FluentXS.ArgumentBuilder.Get(System.String)
+  name: Get(string)
+  href: API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html#PrismAPI_Tools_FluentXS_ArgumentBuilder_Get_System_String_
+  commentId: M:PrismAPI.Tools.FluentXS.ArgumentBuilder.Get(System.String)
+  name.vb: Get(String)
+  fullName: PrismAPI.Tools.FluentXS.ArgumentBuilder.Get(string)
+  fullName.vb: PrismAPI.Tools.FluentXS.ArgumentBuilder.Get(String)
+  nameWithType: ArgumentBuilder.Get(string)
+  nameWithType.vb: ArgumentBuilder.Get(String)
+- uid: PrismAPI.Tools.FluentXS.ArgumentBuilder.Get*
+  name: Get
+  href: API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html#PrismAPI_Tools_FluentXS_ArgumentBuilder_Get_
+  commentId: Overload:PrismAPI.Tools.FluentXS.ArgumentBuilder.Get
+  isSpec: "True"
+  fullName: PrismAPI.Tools.FluentXS.ArgumentBuilder.Get
+  nameWithType: ArgumentBuilder.Get
+- uid: PrismAPI.Tools.FluentXS.ArgumentBuilder.Get``1(System.Linq.Expressions.Expression{System.Func{``0}})
+  name: Get<T>(Expression<Func<T>>)
+  href: API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html#PrismAPI_Tools_FluentXS_ArgumentBuilder_Get__1_System_Linq_Expressions_Expression_System_Func___0___
+  commentId: M:PrismAPI.Tools.FluentXS.ArgumentBuilder.Get``1(System.Linq.Expressions.Expression{System.Func{``0}})
+  name.vb: Get(Of T)(Expression(Of Func(Of T)))
+  fullName: PrismAPI.Tools.FluentXS.ArgumentBuilder.Get<T>(System.Linq.Expressions.Expression<System.Func<T>>)
+  fullName.vb: PrismAPI.Tools.FluentXS.ArgumentBuilder.Get(Of T)(System.Linq.Expressions.Expression(Of System.Func(Of T)))
+  nameWithType: ArgumentBuilder.Get<T>(Expression<Func<T>>)
+  nameWithType.vb: ArgumentBuilder.Get(Of T)(Expression(Of Func(Of T)))
+- uid: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetArg(System.String)
+  name: GetArg(string)
+  href: API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html#PrismAPI_Tools_FluentXS_ArgumentBuilder_GetArg_System_String_
+  commentId: M:PrismAPI.Tools.FluentXS.ArgumentBuilder.GetArg(System.String)
+  name.vb: GetArg(String)
+  fullName: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetArg(string)
+  fullName.vb: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetArg(String)
+  nameWithType: ArgumentBuilder.GetArg(string)
+  nameWithType.vb: ArgumentBuilder.GetArg(String)
+- uid: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetArg*
+  name: GetArg
+  href: API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html#PrismAPI_Tools_FluentXS_ArgumentBuilder_GetArg_
+  commentId: Overload:PrismAPI.Tools.FluentXS.ArgumentBuilder.GetArg
+  isSpec: "True"
+  fullName: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetArg
+  nameWithType: ArgumentBuilder.GetArg
+- uid: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetArg``1(System.Linq.Expressions.Expression{System.Func{``0}})
+  name: GetArg<T>(Expression<Func<T>>)
+  href: API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html#PrismAPI_Tools_FluentXS_ArgumentBuilder_GetArg__1_System_Linq_Expressions_Expression_System_Func___0___
+  commentId: M:PrismAPI.Tools.FluentXS.ArgumentBuilder.GetArg``1(System.Linq.Expressions.Expression{System.Func{``0}})
+  name.vb: GetArg(Of T)(Expression(Of Func(Of T)))
+  fullName: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetArg<T>(System.Linq.Expressions.Expression<System.Func<T>>)
+  fullName.vb: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetArg(Of T)(System.Linq.Expressions.Expression(Of System.Func(Of T)))
+  nameWithType: ArgumentBuilder.GetArg<T>(Expression<Func<T>>)
+  nameWithType.vb: ArgumentBuilder.GetArg(Of T)(Expression(Of Func(Of T)))
+- uid: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetOffset(System.Linq.Expressions.Expression{System.Func{System.Object,System.Object}})
+  name: GetOffset(Expression<Func<object, object>>)
+  href: API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html#PrismAPI_Tools_FluentXS_ArgumentBuilder_GetOffset_System_Linq_Expressions_Expression_System_Func_System_Object_System_Object___
+  commentId: M:PrismAPI.Tools.FluentXS.ArgumentBuilder.GetOffset(System.Linq.Expressions.Expression{System.Func{System.Object,System.Object}})
+  name.vb: GetOffset(Expression(Of Func(Of Object, Object)))
+  fullName: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetOffset(System.Linq.Expressions.Expression<System.Func<object, object>>)
+  fullName.vb: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetOffset(System.Linq.Expressions.Expression(Of System.Func(Of Object, Object)))
+  nameWithType: ArgumentBuilder.GetOffset(Expression<Func<object, object>>)
+  nameWithType.vb: ArgumentBuilder.GetOffset(Expression(Of Func(Of Object, Object)))
+- uid: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetOffset(System.String)
+  name: GetOffset(string)
+  href: API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html#PrismAPI_Tools_FluentXS_ArgumentBuilder_GetOffset_System_String_
+  commentId: M:PrismAPI.Tools.FluentXS.ArgumentBuilder.GetOffset(System.String)
+  name.vb: GetOffset(String)
+  fullName: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetOffset(string)
+  fullName.vb: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetOffset(String)
+  nameWithType: ArgumentBuilder.GetOffset(string)
+  nameWithType.vb: ArgumentBuilder.GetOffset(String)
+- uid: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetOffset*
+  name: GetOffset
+  href: API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html#PrismAPI_Tools_FluentXS_ArgumentBuilder_GetOffset_
+  commentId: Overload:PrismAPI.Tools.FluentXS.ArgumentBuilder.GetOffset
+  isSpec: "True"
+  fullName: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetOffset
+  nameWithType: ArgumentBuilder.GetOffset
+- uid: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetType(System.String)
+  name: GetType(string)
+  href: API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html#PrismAPI_Tools_FluentXS_ArgumentBuilder_GetType_System_String_
+  commentId: M:PrismAPI.Tools.FluentXS.ArgumentBuilder.GetType(System.String)
+  name.vb: GetType(String)
+  fullName: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetType(string)
+  fullName.vb: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetType(String)
+  nameWithType: ArgumentBuilder.GetType(string)
+  nameWithType.vb: ArgumentBuilder.GetType(String)
+- uid: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetType*
+  name: GetType
+  href: API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html#PrismAPI_Tools_FluentXS_ArgumentBuilder_GetType_
+  commentId: Overload:PrismAPI.Tools.FluentXS.ArgumentBuilder.GetType
+  isSpec: "True"
+  fullName: PrismAPI.Tools.FluentXS.ArgumentBuilder.GetType
+  nameWithType: ArgumentBuilder.GetType
+- uid: PrismAPI.Tools.FluentXS.PlugArgument
+  name: PlugArgument
+  href: API/PrismAPI.Tools.FluentXS.PlugArgument.html
+  commentId: T:PrismAPI.Tools.FluentXS.PlugArgument
+  fullName: PrismAPI.Tools.FluentXS.PlugArgument
+  nameWithType: PlugArgument
+- uid: PrismAPI.Tools.FluentXS.PlugArgument.#ctor(System.String,System.Int32,System.Type)
+  name: PlugArgument(string, int, Type?)
+  href: API/PrismAPI.Tools.FluentXS.PlugArgument.html#PrismAPI_Tools_FluentXS_PlugArgument__ctor_System_String_System_Int32_System_Type_
+  commentId: M:PrismAPI.Tools.FluentXS.PlugArgument.#ctor(System.String,System.Int32,System.Type)
+  name.vb: New(String, Integer, Type)
+  fullName: PrismAPI.Tools.FluentXS.PlugArgument.PlugArgument(string, int, System.Type?)
+  fullName.vb: PrismAPI.Tools.FluentXS.PlugArgument.New(String, Integer, System.Type)
+  nameWithType: PlugArgument.PlugArgument(string, int, Type?)
+  nameWithType.vb: PlugArgument.New(String, Integer, Type)
+- uid: PrismAPI.Tools.FluentXS.PlugArgument.#ctor*
+  name: PlugArgument
+  href: API/PrismAPI.Tools.FluentXS.PlugArgument.html#PrismAPI_Tools_FluentXS_PlugArgument__ctor_
+  commentId: Overload:PrismAPI.Tools.FluentXS.PlugArgument.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: PrismAPI.Tools.FluentXS.PlugArgument.PlugArgument
+  fullName.vb: PrismAPI.Tools.FluentXS.PlugArgument.New
+  nameWithType: PlugArgument.PlugArgument
+  nameWithType.vb: PlugArgument.New
+- uid: PrismAPI.Tools.FluentXS.PlugArgument.Name
+  name: Name
+  href: API/PrismAPI.Tools.FluentXS.PlugArgument.html#PrismAPI_Tools_FluentXS_PlugArgument_Name
+  commentId: P:PrismAPI.Tools.FluentXS.PlugArgument.Name
+  fullName: PrismAPI.Tools.FluentXS.PlugArgument.Name
+  nameWithType: PlugArgument.Name
+- uid: PrismAPI.Tools.FluentXS.PlugArgument.Name*
+  name: Name
+  href: API/PrismAPI.Tools.FluentXS.PlugArgument.html#PrismAPI_Tools_FluentXS_PlugArgument_Name_
+  commentId: Overload:PrismAPI.Tools.FluentXS.PlugArgument.Name
+  isSpec: "True"
+  fullName: PrismAPI.Tools.FluentXS.PlugArgument.Name
+  nameWithType: PlugArgument.Name
+- uid: PrismAPI.Tools.FluentXS.PlugArgument.Offset
+  name: Offset
+  href: API/PrismAPI.Tools.FluentXS.PlugArgument.html#PrismAPI_Tools_FluentXS_PlugArgument_Offset
+  commentId: P:PrismAPI.Tools.FluentXS.PlugArgument.Offset
+  fullName: PrismAPI.Tools.FluentXS.PlugArgument.Offset
+  nameWithType: PlugArgument.Offset
+- uid: PrismAPI.Tools.FluentXS.PlugArgument.Offset*
+  name: Offset
+  href: API/PrismAPI.Tools.FluentXS.PlugArgument.html#PrismAPI_Tools_FluentXS_PlugArgument_Offset_
+  commentId: Overload:PrismAPI.Tools.FluentXS.PlugArgument.Offset
+  isSpec: "True"
+  fullName: PrismAPI.Tools.FluentXS.PlugArgument.Offset
+  nameWithType: PlugArgument.Offset
+- uid: PrismAPI.Tools.FluentXS.PlugArgument.Type
+  name: Type
+  href: API/PrismAPI.Tools.FluentXS.PlugArgument.html#PrismAPI_Tools_FluentXS_PlugArgument_Type
+  commentId: P:PrismAPI.Tools.FluentXS.PlugArgument.Type
+  fullName: PrismAPI.Tools.FluentXS.PlugArgument.Type
+  nameWithType: PlugArgument.Type
+- uid: PrismAPI.Tools.FluentXS.PlugArgument.Type*
+  name: Type
+  href: API/PrismAPI.Tools.FluentXS.PlugArgument.html#PrismAPI_Tools_FluentXS_PlugArgument_Type_
+  commentId: Overload:PrismAPI.Tools.FluentXS.PlugArgument.Type
+  isSpec: "True"
+  fullName: PrismAPI.Tools.FluentXS.PlugArgument.Type
+  nameWithType: PlugArgument.Type
 - uid: PrismAPI.UI
   name: PrismAPI.UI
   href: API/PrismAPI.UI.html

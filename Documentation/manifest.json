@@ -675,76 +675,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismAPI.Hardware.GPU.Intel.Gen4.FunctionID.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismAPI.Hardware.GPU.Intel.Gen4.Pipeline.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Hardware.GPU.Intel.Gen4.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismAPI.Hardware.GPU.Intel.Gen4.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIO.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismAPI.Hardware.GPU.Intel.Skylake.MMIOUnit.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Hardware.GPU.Intel.Skylake.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismAPI.Hardware.GPU.Intel.Skylake.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "API/PrismAPI.Hardware.GPU.Intel.yml",
-      "output": {
-        ".html": {
-          "relative_path": "API/PrismAPI.Hardware.GPU.Intel.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "API/PrismAPI.Hardware.GPU.VMWare.SVGAIICanvas.yml",
       "output": {
         ".html": {
@@ -1369,6 +1299,36 @@
       "output": {
         ".html": {
           "relative_path": "API/PrismAPI.Tools.Extentions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.Tools.FluentXS.ArgumentBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.Tools.FluentXS.ArgumentBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.Tools.FluentXS.PlugArgument.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.Tools.FluentXS.PlugArgument.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.Tools.FluentXS.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.Tools.FluentXS.html"
         }
       },
       "version": ""
