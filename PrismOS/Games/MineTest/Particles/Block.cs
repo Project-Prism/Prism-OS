@@ -5,28 +5,28 @@ namespace PrismOS.Games.MineTest.Particles;
 
 public class Block : Particle
 {
-	#region Constructors
+    #region Constructors
 
-	public Block()
-	{
-		State = 0;
-	}
+    public Block()
+    {
+        State = 0;
+    }
 
-	#endregion
+    #endregion
 
-	#region Properties
+    #region Properties
 
-	public override Canvas Texture => throw new NotImplementedException();
+    public override Canvas Texture => throw new NotImplementedException();
 
-	public override string Name => "block";
+    public override string Name => "block";
 
-	public override uint ID => 0;
+    public override uint ID => 0;
 
-	#endregion
+    #endregion
 
-	#region Fields
+    #region Fields
 
-	public VarInt State;
+    public VarInt State;
 
-	#endregion
+    #endregion
 }

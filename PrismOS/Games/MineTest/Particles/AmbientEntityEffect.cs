@@ -4,13 +4,13 @@ namespace PrismOS.Games.MineTest.Particles;
 
 public class AmbientEntityEffect : Particle
 {
-	#region Properties
+    #region Properties
 
-	public override Canvas Texture => throw new NotImplementedException();
+    public override Canvas Texture => throw new NotImplementedException();
 
-	public override string Name => "ambient_entity_effect";
+    public override string Name => "ambient_entity_effect";
 
-	public override uint ID => 0;
+    public override uint ID => 0;
 
-	#endregion
+    #endregion
 }

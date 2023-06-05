@@ -2,11 +2,11 @@
 
 public class SnowyPlains : Biome
 {
-	#region Properties
+    #region Properties
 
-	public override string Name => "snowy_plains";
+    public override string Name => "snowy_plains";
 
-	public override uint ID => 3;
+    public override uint ID => 3;
 
-	#endregion
+    #endregion
 }

@@ -1,9 +1,9 @@
 ﻿using PrismAPI.Runtime.SystemCall;
-using PrismAPI.Tools.Extentions;
-using PrismAPI.Runtime.SShell;
 using PrismAPI.Filesystem;
+using PrismOS.Services;
 using PrismAPI.Network;
 using PrismAPI.Audio;
+using Cosmos.System;
 
 namespace PrismOS;
 
@@ -12,26 +12,25 @@ namespace PrismOS;
 // TO-DO: Fix gradient's MaskAlpha method. (?)
 // TO-DO: Move 3D engine to be shader based for all transformations.
 */
-public unsafe class Program : Cosmos.System.Kernel
+public unsafe class Program : Kernel
 {
+	#region Methods
+
 	/// <summary>
 	/// A method called once when the kernel boots, Used to initialize the system.
 	/// </summary>
 	protected override void BeforeRun()
 	{
-		// Clear console & display ascii art.
-		Console.Clear();
-		Console.WriteLine(@"    ____       _                   ____  _____");
-		Console.WriteLine(@"   / __ \_____(_)________ ___     / __ \/ ___/");
-		Console.WriteLine(@"  / /_/ / ___/ / ___/ __ `__ \   / / / /\__ \ ");
-		Console.WriteLine(@" / ____/ /  / (__  ) / / / / /  / /_/ /___/ / ");
-		Console.WriteLine(@"/_/   /_/  /_/____/_/ /_/ /_/   \____//____/  ");
-		Console.WriteLine("CopyLeft PrismProject 2023. Licensed with GPL2.\n");
+		// Initialize the screen service.
+		Screen = new();
 
 		// Initialize system services.
 		FilesystemManager.Init();
 		NetworkManager.Init();
 		Handler.Init();
+
+		// Disable the screen PIT timer.
+		Screen.EnableTicks = false;
 
 		AudioPlayer.Play(Media.Startup);
 	}
@@ -41,12 +40,15 @@ public unsafe class Program : Cosmos.System.Kernel
 	/// </summary>
 	protected override void Run()
 	{
-		// Hold any key for graphics test.
-		if (KeyboardEx.TryReadKey(out _))
-		{
-			Tests.TestGraphics();
-		}
-
-		Shell.Main();
+		// Run screen service without PIT timer.
+		Screen?.Tick();
 	}
+
+	#endregion
+
+	#region Fields
+
+	public static Screen? Screen;
+
+	#endregion
 }

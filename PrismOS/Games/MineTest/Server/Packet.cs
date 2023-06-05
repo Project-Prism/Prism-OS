@@ -8,30 +8,30 @@ namespace PrismOS.Games.MineTest.Server;
 /// </summary>
 public class Packet
 {
-	#region Methods
+    #region Methods
 
-	public static long WritePosition(Vector3 Position)
-	{
-		return (((long)Position.X & 0x3FFFFFF) << 38) | (((long)Position.Z & 0x3FFFFFF) << 12) | ((long)Position.Y & 0xFFF);
-	}
+    public static long WritePosition(Vector3 Position)
+    {
+        return ((long)Position.X & 0x3FFFFFF) << 38 | ((long)Position.Z & 0x3FFFFFF) << 12 | (long)Position.Y & 0xFFF;
+    }
 
-	public static Vector3 ReadPosition(long Position)
-	{
-		return new()
-		{
-			X = Position >> 38,
-			Y = Position << 52 >> 52,
-			Z = Position << 26 >> 38,
-		};
-	}
+    public static Vector3 ReadPosition(long Position)
+    {
+        return new()
+        {
+            X = Position >> 38,
+            Y = Position << 52 >> 52,
+            Z = Position << 26 >> 38,
+        };
+    }
 
-	#endregion
+    #endregion
 
-	#region Fields
+    #region Fields
 
-	//public VarInt Length;
-	//public VarInt PacketID;
-	//public byte[] Contents;
+    //public VarInt Length;
+    //public VarInt PacketID;
+    //public byte[] Contents;
 
-	#endregion
+    #endregion
 }

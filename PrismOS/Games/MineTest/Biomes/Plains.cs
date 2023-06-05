@@ -2,11 +2,11 @@
 
 public class Plains : Biome
 {
-	#region Properties
+    #region Properties
 
-	public override string Name => "plains";
+    public override string Name => "plains";
 
-	public override uint ID => 1;
+    public override uint ID => 1;
 
-	#endregion
+    #endregion
 }

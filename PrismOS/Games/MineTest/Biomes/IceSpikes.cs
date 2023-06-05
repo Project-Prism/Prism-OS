@@ -2,11 +2,11 @@
 
 public class IceSpikes : Biome
 {
-	#region Properties
+    #region Properties
 
-	public override string Name => "ice_spikes";
+    public override string Name => "ice_spikes";
 
-	public override uint ID => 4;
+    public override uint ID => 4;
 
-	#endregion
+    #endregion
 }

@@ -2,11 +2,11 @@
 
 public class SunflowerPlains : Biome
 {
-	#region Properties
+    #region Properties
 
-	public override string Name => "sunflower_plains";
+    public override string Name => "sunflower_plains";
 
-	public override uint ID => 2;
+    public override uint ID => 2;
 
-	#endregion
+    #endregion
 }

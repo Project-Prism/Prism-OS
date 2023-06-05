@@ -4,7 +4,7 @@
 /// The <see cref="Filters"/> class, used to apply advanced filter effects to a graphics canvas.
 /// Only use this on the base <see cref="Canvas"/> class to avoid memory issues.
 /// </summary>
-public static class Filters
+public static unsafe class Filters
 {
 	/// <summary>
 	/// Samples/Crops a graphics item.
@@ -69,7 +69,7 @@ public static class Filters
 			{
 				double PX = Math.Floor(X * XRatio);
 
-				Result[Y * Width + X] = G[(uint)(PY * G.Width + PX)];
+				Result.Internal[Y * Width + X] = G.Internal[(uint)(PY * G.Width + PX)];
 			}
 		}
 
@@ -101,7 +101,7 @@ public static class Filters
 			}
 
 			// Set gradient pixel.
-			Temp[I] = Scaled[I];
+			Temp.Internal[I] = Scaled.Internal[I];
 		}
 
 		return Temp;
@@ -159,7 +159,7 @@ public static class Filters
 				for (uint I = 0; I < G.Size; I++)
 				{
 					// Copy the pixels in reverse order.
-					Result[G.Size - I] = G[I];
+					Result.Internal[G.Size - I] = G.Internal[I];
 				}
 
 				return Result;

@@ -2,11 +2,11 @@
 
 public class Void : Biome
 {
-	#region Properties
+    #region Properties
 
-	public override string Name => "the_void";
+    public override string Name => "the_void";
 
-	public override uint ID => 0;
+    public override uint ID => 0;
 
-	#endregion
+    #endregion
 }

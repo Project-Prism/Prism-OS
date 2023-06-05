@@ -32,7 +32,7 @@ public class Gradient : Canvas
 	public Gradient(ushort Width, ushort Height, Color[] Colors) : base(Width, Height)
 	{
 		// Calculate the height 'delta', it is the total width per gradient pair.
-		int HeightDelta = Height / Colors.Length;
+		int HeightDelta = Height / (Colors.Length - 1);
 
 		// Loop over each color to draw in the gradient.
 		for (int I1 = 0; I1 < Colors.Length - 1; I1++)
