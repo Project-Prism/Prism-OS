@@ -44,6 +44,12 @@ public unsafe class SVGAIICanvas : Display
 
 	#region Properties
 
+	public override bool IsEnabled
+	{
+		get => ReadRegister(Register.Enable) == 1;
+		set => WriteRegister(Register.Enable, value ? 1u : 0u);
+	}
+
 	public new ushort Height
 	{
 		get
@@ -99,18 +105,6 @@ public unsafe class SVGAIICanvas : Display
 	#region Methods
 
 	/// <summary>
-	/// Initialize FIFO.
-	/// </summary>
-	public void InitializeFIFO()
-	{
-		FIFOMemory[(uint)FIFO.Min] = (uint)Register.FifoNumRegisters * sizeof(uint);
-		FIFOMemory[(uint)FIFO.Max] = FIFOMemory.Size;
-		FIFOMemory[(uint)FIFO.NextCmd] = FIFOMemory[(uint)FIFO.Min];
-		FIFOMemory[(uint)FIFO.Stop] = FIFOMemory[(uint)FIFO.Min];
-		WriteRegister(Register.ConfigDone, 1);
-	}
-
-	/// <summary>
 	/// Write register.
 	/// </summary>
 	/// <param name="register">A register.</param>
@@ -133,13 +127,13 @@ public unsafe class SVGAIICanvas : Display
 	}
 
 	/// <summary>
-	/// Get FIFO.
+	/// A method that checks if the device has a specific feature.
 	/// </summary>
-	/// <param name="cmd">FIFO command.</param>
-	/// <returns>uint value.</returns>
-	public uint GetFIFO(FIFO cmd)
+	/// <param name="Feature">The feature to check for.</param>
+	/// <returns>True if supported, otherwise false.</returns>
+	public bool HasFeature(Capability Feature)
 	{
-		return FIFOMemory[(uint)cmd];
+		return (Features & (uint)Feature) != 0;
 	}
 
 	/// <summary>
@@ -151,15 +145,6 @@ public unsafe class SVGAIICanvas : Display
 	public uint SetFIFO(FIFO cmd, uint value)
 	{
 		return FIFOMemory[(uint)cmd] = value;
-	}
-
-	/// <summary>
-	/// Wait for FIFO.
-	/// </summary>
-	public void WaitForFifo()
-	{
-		WriteRegister(Register.Sync, 1);
-		while (ReadRegister(Register.Busy) != 0) { }
 	}
 
 	/// <summary>
@@ -183,13 +168,42 @@ public unsafe class SVGAIICanvas : Display
 	}
 
 	/// <summary>
-	/// A method that checks if the device has a specific feature.
+	/// Get FIFO.
 	/// </summary>
-	/// <param name="Feature">The feature to check for.</param>
-	/// <returns>True if supported, otherwise false.</returns>
-	public bool HasFeature(Capability Feature)
+	/// <param name="cmd">FIFO command.</param>
+	/// <returns>uint value.</returns>
+	public uint GetFIFO(FIFO cmd)
 	{
-		return (Features & (uint)Feature) != 0;
+		return FIFOMemory[(uint)cmd];
+	}
+
+	/// <summary>
+	/// Initialize FIFO.
+	/// </summary>
+	public void InitializeFIFO()
+	{
+		FIFOMemory[(uint)FIFO.Min] = (uint)Register.FifoNumRegisters * sizeof(uint);
+		FIFOMemory[(uint)FIFO.Max] = FIFOMemory.Size;
+		FIFOMemory[(uint)FIFO.NextCmd] = FIFOMemory[(uint)FIFO.Min];
+		FIFOMemory[(uint)FIFO.Stop] = FIFOMemory[(uint)FIFO.Min];
+		WriteRegister(Register.ConfigDone, 1);
+	}
+
+	/// <summary>
+	/// Wait for FIFO.
+	/// </summary>
+	public void WaitForFifo()
+	{
+		WriteRegister(Register.Sync, 1);
+		while (ReadRegister(Register.Busy) != 0) { }
+	}
+
+	public override void SetCursor(uint X, uint Y, bool IsVisible)
+	{
+		WriteRegister(Register.CursorOn, (uint)(IsVisible ? 1 : 0));
+		WriteRegister(Register.CursorX, X);
+		WriteRegister(Register.CursorY, Y);
+		WriteRegister(Register.CursorCount, ReadRegister(Register.CursorCount) + 1);
 	}
 
 	public override void DefineCursor(Canvas Cursor)
@@ -213,14 +227,6 @@ public unsafe class SVGAIICanvas : Display
 		}
 
 		WaitForFifo();
-	}
-
-	public override void SetCursor(uint X, uint Y, bool IsVisible)
-	{
-		WriteRegister(Register.CursorOn, (uint)(IsVisible ? 1 : 0));
-		WriteRegister(Register.CursorX, X);
-		WriteRegister(Register.CursorY, Y);
-		WriteRegister(Register.CursorCount, ReadRegister(Register.CursorCount) + 1);
 	}
 
 	public override string GetName()

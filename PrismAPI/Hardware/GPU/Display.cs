@@ -26,22 +26,16 @@ public abstract class Display : Canvas
 
 	#endregion
 
+	#region Properties
+
+	/// <summary>
+	/// A toggle telling whether the display is enabled or not.
+	/// </summary>
+	public abstract bool IsEnabled { get; set; }
+
+	#endregion
+
 	#region Methods
-
-	/// <summary>
-	/// Sets the image of the hardware accelerated cursor.
-	/// Please note that this may not work on all display methods.
-	/// </summary>
-	/// <param name="Cursor">The image to use as the cursor.</param>
-	public abstract void DefineCursor(Canvas Cursor);
-
-	/// <summary>
-	/// Sets the position of the hardware accelerated cursor on the screen.
-	/// Please note that this may not work on all display methods.
-	/// </summary>
-	/// <param name="X">The X-axis position.</param>
-	/// <param name="Y">The Y-axis position.</param>
-	public abstract void SetCursor(uint X, uint Y, bool IsVisible);
 
 	/// <summary>
 	/// Gets a display output, the best mode is automatically chosen.
@@ -63,6 +57,21 @@ public abstract class Display : Canvas
 
 		throw new NotImplementedException("No display is available!");
 	}
+
+	/// <summary>
+	/// Sets the position of the hardware accelerated cursor on the screen.
+	/// Please note that this may not work on all display methods.
+	/// </summary>
+	/// <param name="X">The X-axis position.</param>
+	/// <param name="Y">The Y-axis position.</param>
+	public abstract void SetCursor(uint X, uint Y, bool IsVisible);
+
+	/// <summary>
+	/// Sets the image of the hardware accelerated cursor.
+	/// Please note that this may not work on all display methods.
+	/// </summary>
+	/// <param name="Cursor">The image to use as the cursor.</param>
+	public abstract void DefineCursor(Canvas Cursor);
 
 	/// <summary>
 	/// Gets the display driver's name.

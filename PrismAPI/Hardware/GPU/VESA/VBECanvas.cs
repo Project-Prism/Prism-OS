@@ -1,4 +1,5 @@
 ﻿using Cosmos.Core.Multiboot;
+using Cosmos.HAL.Drivers.Video.SVGAII;
 using PrismAPI.Graphics;
 
 namespace PrismAPI.Hardware.GPU.Vesa;
@@ -17,14 +18,28 @@ public unsafe class VBECanvas : Display
 
 	#endregion
 
+	#region Properties
+
+	public override bool IsEnabled
+	{
+		get => Multiboot2.IsVBEAvailable;
+		set => throw new NotSupportedException("VBE does not offer disabling the display at runtime.");
+	}
+
+	public new ushort Height => throw new NotSupportedException("VBE does not offer changing the resolution at runtime.");
+
+	public new ushort Width => throw new NotSupportedException("VBE does not offer changing the resolution at runtime.");
+
+	#endregion
+
 	#region Methods
 
-	public override void DefineCursor(Canvas Cursor)
+	public override void SetCursor(uint X, uint Y, bool IsVisible)
 	{
 		throw new NotSupportedException("VBE does not offer hardware-accelerated cursor support.");
 	}
 
-	public override void SetCursor(uint X, uint Y, bool IsVisible)
+	public override void DefineCursor(Canvas Cursor)
 	{
 		throw new NotSupportedException("VBE does not offer hardware-accelerated cursor support.");
 	}
