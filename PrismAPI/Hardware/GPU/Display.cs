@@ -1,8 +1,8 @@
-﻿using Cosmos.Core.Multiboot;
-using Cosmos.System;
-using PrismAPI.Graphics;
+﻿using PrismAPI.Hardware.GPU.VMWare;
 using PrismAPI.Hardware.GPU.Vesa;
-using PrismAPI.Hardware.GPU.VMWare;
+using Cosmos.Core.Multiboot;
+using PrismAPI.Graphics;
+using Cosmos.System;
 
 namespace PrismAPI.Hardware.GPU;
 
@@ -11,103 +11,101 @@ namespace PrismAPI.Hardware.GPU;
 /// </summary>
 public abstract class Display : Canvas
 {
-    #region Constructors
+	#region Constructors
 
-    /// <summary>
-    /// A generic constructor used to initialize the FPS counter.
-    /// </summary>
-    /// <param name="Width">The Width of the display.</param>
-    /// <param name="Height">The Height of the display.</param>
-    public Display(ushort Width, ushort Height) : base(Width, Height)
-    {
-        // Setup the FPS counter timer.
-        Timer T = new((O) => { _FPS = _Frames; _Frames = 0; }, null, 1000, 0);
-    }
+	/// <summary>
+	/// A generic constructor used to initialize the FPS counter.
+	/// </summary>
+	/// <param name="Width">The Width of the display.</param>
+	/// <param name="Height">The Height of the display.</param>
+	public Display(ushort Width, ushort Height) : base(Width, Height)
+	{
+		// Setup the FPS counter timer.
+		Timer T = new((O) => { _FPS = _Frames; _Frames = 0; }, null, 1000, 0);
+	}
 
-    #endregion
+	#endregion
 
-    #region Methods
-    /// <summary>
-    /// Disable the display.
-    /// </summary>
-    public abstract void Disable();
-    /// <summary>
-    /// Set a display resolution.
-    /// Please note that this may not work on all display methods.
-    /// </summary>
-    /// <param name="Width">The requested Width of the display.</param>
-    /// <param name="Height">The requested Height of the display.</param>
-    public abstract void SetMode(ushort Width, ushort Height);
+	#region Properties
 
-    /// <summary>
-    /// Sets the image of the hardware accelerated cursor.
-    /// Please note that this may not work on all display methods.
-    /// </summary>
-    /// <param name="Cursor">The image to use as the cursor.</param>
-    public abstract void DefineCursor(Canvas Cursor);
+	/// <summary>
+	/// A toggle telling whether the display is enabled or not.
+	/// </summary>
+	public abstract bool IsEnabled { get; set; }
 
-    /// <summary>
-    /// Sets the position of the hardware accelerated cursor on the screen.
-    /// Please note that this may not work on all display methods.
-    /// </summary>
-    /// <param name="X">The X-axis position.</param>
-    /// <param name="Y">The Y-axis position.</param>
-    public abstract void SetCursor(uint X, uint Y, bool IsVisible);
+	#endregion
 
-    /// <summary>
-    /// Gets a display output, the best mode is automatically chosen.
-    /// The Width and Height arguments may not always be used.
-    /// </summary>
-    /// <param name="Width">The requested Width of the display.</param>
-    /// <param name="Height">The requested Height of the display.</param>
-    /// <returns>An instance of the display class.</returns>
-    public static Display GetDisplay(ushort Width, ushort Height)
-    {
-        if (VMTools.IsVMWare)
-        {
-            return new SVGAIICanvas(Width, Height);
-        }
-        if (Multiboot2.IsVBEAvailable)
-        {
-            return new VBECanvas();
-        }
+	#region Methods
 
-        throw new NotImplementedException("No display is available!");
-    }
+	/// <summary>
+	/// Gets a display output, the best mode is automatically chosen.
+	/// The Width and Height arguments may not always be used.
+	/// </summary>
+	/// <param name="Width">The requested Width of the display.</param>
+	/// <param name="Height">The requested Height of the display.</param>
+	/// <returns>An instance of the display class.</returns>
+	public static Display GetDisplay(ushort Width, ushort Height)
+	{
+		if (VMTools.IsVMWare)
+		{
+			return new SVGAIICanvas(Width, Height);
+		}
+		if (Multiboot2.IsVBEAvailable)
+		{
+			return new VBECanvas();
+		}
 
-    /// <summary>
-    /// Gets the display driver's name.
-    /// </summary>
-    /// <returns>the display name.</returns>
-    public abstract string GetName();
+		throw new NotImplementedException("No display is available!");
+	}
 
-    /// <summary>
-    /// Coppies the second buffer to the primary display buffer.
-    /// </summary>
-    public abstract void Update();
+	/// <summary>
+	/// Sets the position of the hardware accelerated cursor on the screen.
+	/// Please note that this may not work on all display methods.
+	/// </summary>
+	/// <param name="X">The X-axis position.</param>
+	/// <param name="Y">The Y-axis position.</param>
+	public abstract void SetCursor(uint X, uint Y, bool IsVisible);
 
-    /// <summary>
-    /// Gets the FPS measurment of the display.
-    /// </summary>
-    /// <returns>The FPS as a uint number.</returns>
-    public uint GetFPS()
-    {
-        return _FPS;
-    }
+	/// <summary>
+	/// Sets the image of the hardware accelerated cursor.
+	/// Please note that this may not work on all display methods.
+	/// </summary>
+	/// <param name="Cursor">The image to use as the cursor.</param>
+	public abstract void DefineCursor(Canvas Cursor);
 
-    #endregion
+	/// <summary>
+	/// Gets the display driver's name.
+	/// </summary>
+	/// <returns>the display name.</returns>
+	public abstract string GetName();
 
-    #region Fields
+	/// <summary>
+	/// Coppies the second buffer to the primary display buffer.
+	/// </summary>
+	public abstract void Update();
 
-    /// <summary>
-    /// The internal frame counter, used for FPS calculation.
-    /// </summary>
-    internal uint _Frames;
+	/// <summary>
+	/// Gets the FPS measurment of the display.
+	/// </summary>
+	/// <returns>The FPS as a uint number.</returns>
+	public uint GetFPS()
+	{
+		return _FPS;
+	}
 
-    /// <summary>
-    /// The internal FPS value, returned from <see cref="GetFPS()"/>.
-    /// </summary>
-    internal uint _FPS;
+	#endregion
 
-    #endregion
+	#region Fields
+
+	/// <summary>
+	/// The internal frame counter, used for FPS calculation.
+	/// </summary>
+	internal uint _Frames;
+
+	/// <summary>
+	/// The internal FPS value, returned from <see cref="GetFPS()"/>.
+	/// </summary>
+	internal uint _FPS;
+
+	#endregion
 }
