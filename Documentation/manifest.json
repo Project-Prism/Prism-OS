@@ -1215,6 +1215,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.Tools.Coordinates.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.Tools.Coordinates.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "API/PrismAPI.Tools.Crypt.yml",
       "output": {
         ".html": {

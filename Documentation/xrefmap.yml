@@ -16,10 +16,30 @@ references:
   commentId: T:PrismAPI.Audio.AudioPlayer
   fullName: PrismAPI.Audio.AudioPlayer
   nameWithType: AudioPlayer
+- uid: PrismAPI.Audio.AudioPlayer.Init
+  name: Init()
+  href: API/PrismAPI.Audio.AudioPlayer.html#PrismAPI_Audio_AudioPlayer_Init
+  commentId: M:PrismAPI.Audio.AudioPlayer.Init
+  fullName: PrismAPI.Audio.AudioPlayer.Init()
+  nameWithType: AudioPlayer.Init()
+- uid: PrismAPI.Audio.AudioPlayer.Init*
+  name: Init
+  href: API/PrismAPI.Audio.AudioPlayer.html#PrismAPI_Audio_AudioPlayer_Init_
+  commentId: Overload:PrismAPI.Audio.AudioPlayer.Init
+  isSpec: "True"
+  fullName: PrismAPI.Audio.AudioPlayer.Init
+  nameWithType: AudioPlayer.Init
 - uid: PrismAPI.Audio.AudioPlayer.IsAvailable
   name: IsAvailable
   href: API/PrismAPI.Audio.AudioPlayer.html#PrismAPI_Audio_AudioPlayer_IsAvailable
-  commentId: F:PrismAPI.Audio.AudioPlayer.IsAvailable
+  commentId: P:PrismAPI.Audio.AudioPlayer.IsAvailable
+  fullName: PrismAPI.Audio.AudioPlayer.IsAvailable
+  nameWithType: AudioPlayer.IsAvailable
+- uid: PrismAPI.Audio.AudioPlayer.IsAvailable*
+  name: IsAvailable
+  href: API/PrismAPI.Audio.AudioPlayer.html#PrismAPI_Audio_AudioPlayer_IsAvailable_
+  commentId: Overload:PrismAPI.Audio.AudioPlayer.IsAvailable
+  isSpec: "True"
   fullName: PrismAPI.Audio.AudioPlayer.IsAvailable
   nameWithType: AudioPlayer.IsAvailable
 - uid: PrismAPI.Audio.AudioPlayer.Mixer
@@ -7572,6 +7592,28 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Tools.Compression.LZW.LZWDecompress
   nameWithType: LZW.LZWDecompress
+- uid: PrismAPI.Tools.Coordinates
+  name: Coordinates
+  href: API/PrismAPI.Tools.Coordinates.html
+  commentId: T:PrismAPI.Tools.Coordinates
+  fullName: PrismAPI.Tools.Coordinates
+  nameWithType: Coordinates
+- uid: PrismAPI.Tools.Coordinates.Scale(System.Single,System.Single,System.Single)
+  name: Scale(float, float, float)
+  href: API/PrismAPI.Tools.Coordinates.html#PrismAPI_Tools_Coordinates_Scale_System_Single_System_Single_System_Single_
+  commentId: M:PrismAPI.Tools.Coordinates.Scale(System.Single,System.Single,System.Single)
+  name.vb: Scale(Single, Single, Single)
+  fullName: PrismAPI.Tools.Coordinates.Scale(float, float, float)
+  fullName.vb: PrismAPI.Tools.Coordinates.Scale(Single, Single, Single)
+  nameWithType: Coordinates.Scale(float, float, float)
+  nameWithType.vb: Coordinates.Scale(Single, Single, Single)
+- uid: PrismAPI.Tools.Coordinates.Scale*
+  name: Scale
+  href: API/PrismAPI.Tools.Coordinates.html#PrismAPI_Tools_Coordinates_Scale_
+  commentId: Overload:PrismAPI.Tools.Coordinates.Scale
+  isSpec: "True"
+  fullName: PrismAPI.Tools.Coordinates.Scale
+  nameWithType: Coordinates.Scale
 - uid: PrismAPI.Tools.Crypt
   name: Crypt
   href: API/PrismAPI.Tools.Crypt.html
