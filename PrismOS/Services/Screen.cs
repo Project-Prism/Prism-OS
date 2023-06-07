@@ -10,6 +10,7 @@ using PrismAPI.Graphics;
 using Cosmos.System;
 using Cosmos.Core;
 using PrismAPI.UI;
+using PrismAPI.Tools;
 
 namespace PrismOS.Services;
 
@@ -97,6 +98,12 @@ public class Screen : Service
 		Canvas.DrawString(15, 15, Info, default, Color.White);
 		WindowManager.Update(Canvas);
 		Heap.Collect();
+
+		//int ClockSize = 40;
+		//Canvas.DrawFilledCircle(W2, H2, (ushort)ClockSize, Color.White);
+		//Canvas.DrawAngledLine(W2, H2, (short)Coordinates.Scale(Cosmos.HAL.RTC.Second, 360, 60), (ushort)(ClockSize / 1.5), Color.Red);
+		//Canvas.DrawAngledLine(W2, H2, (short)Coordinates.Scale(Cosmos.HAL.RTC.Minute, 360, 60), (ushort)(ClockSize / 2), Color.Black);
+		//Canvas.DrawAngledLine(W2, H2, (short)Coordinates.Scale(Cosmos.HAL.RTC.Hour, 360, 12), (ushort)(ClockSize / 3), Color.Black);
 
 		Canvas.DrawImage((int)MouseManager.X, (int)MouseManager.Y, Media.Cursor);
 
