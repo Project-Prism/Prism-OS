@@ -1,6 +1,7 @@
 ﻿using PrismAPI.Graphics.Rasterizer;
 using PrismAPI.Graphics.Animation;
 using PrismAPI.Tools.Extentions;
+using PrismAPI.Graphics.Fonts;
 using PrismAPI.Hardware.GPU;
 using PrismAPI.UI.Controls;
 using PrismAPI.Filesystem;
@@ -19,7 +20,7 @@ public class Screen : Service
 	public Screen() : base()
 	{
 		EnableTicks = true;
-		Canvas = Display.GetDisplay(800, 600);
+		Canvas = Display.GetDisplay(1920, 1080);
 
 		A = new(25f, 270f, new(0, 0, 0, 0, 750), AnimationMode.Ease);
 		B = new(0f, 360f, new(0, 0, 0, 0, 500), AnimationMode.Linear);
@@ -56,7 +57,7 @@ public class Screen : Service
 	#endregion
 
 	#region Methods
-
+		
 	public override void Tick()
 	{
 		Canvas.Clear();
@@ -93,10 +94,11 @@ public class Screen : Service
 
 		Canvas.DrawImage(15, 75, Engine, false);
 		Canvas.DrawImage(200, 15, Gradient, false);
-		Canvas.DrawFilledRectangle((int)MouseManager.X, (int)MouseManager.Y, 16, 16, 0, Color.White);
 		Canvas.DrawString(15, 15, Info, default, Color.White);
 		WindowManager.Update(Canvas);
 		Heap.Collect();
+
+		Canvas.DrawImage((int)MouseManager.X, (int)MouseManager.Y, Media.Cursor);
 
 		Canvas.Update();
 	}

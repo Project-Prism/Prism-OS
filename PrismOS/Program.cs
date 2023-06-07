@@ -12,7 +12,7 @@ namespace PrismOS;
 // TO-DO: Fix gradient's MaskAlpha method. (?)
 // TO-DO: Move 3D engine to be shader based for all transformations.
 */
-public unsafe class Program : Kernel
+public class Program : Kernel
 {
 	#region Methods
 
@@ -27,6 +27,7 @@ public unsafe class Program : Kernel
 		// Initialize system services.
 		FilesystemManager.Init();
 		NetworkManager.Init();
+		AudioPlayer.Init();
 		Handler.Init();
 
 		// Disable the screen PIT timer.

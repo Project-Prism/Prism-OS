@@ -1,6 +1,6 @@
+using PrismAPI.Tools.Diagnostics;
 using Cosmos.HAL.Drivers.Audio;
 using Cosmos.System.Audio;
-using PrismAPI.Tools.Diagnostics;
 
 namespace PrismAPI.Audio;
 
@@ -18,28 +18,43 @@ public static class AudioPlayer
         Debugger = new("Audio");
         Mixer = new();
         AM = new();
-
-        // Attempt to load the audio driver.
-        try
-        {
-            Debugger.WritePartial("Initializing audio...");
-
-            // Assign values and initialize audio player.
-            AM.Output = AC97.Initialize(4096);
-            AM.Stream = Mixer;
-            AM.Enable();
-
-            // Inform that audio player is done initializing.
-            Debugger.Finalize(Severity.Success);
-            IsAvailable = true;
-        }
-        catch
-        {
-            Debugger.Finalize(Severity.Fail);
-        }
     }
 
-    #region Methods
+	#region Properties
+
+    /// <summary>
+    /// A bool defining whether the audio player is available.
+    /// </summary>
+	public static bool IsAvailable { get; internal set; }
+
+	#endregion
+
+	#region Methods
+
+    /// <summary>
+    /// Attempts to load the audio driver.
+    /// <see cref="IsAvailable"/> will become True if the operation was sucessfull.
+    /// </summary>
+	public static void Init()
+    {
+		try
+		{
+			Debugger.WritePartial("Initializing audio...");
+
+			// Assign values and initialize audio player.
+			AM.Output = AC97.Initialize(4096);
+			AM.Stream = Mixer;
+			AM.Enable();
+
+			// Inform that audio player is done initializing.
+			Debugger.Finalize(Severity.Success);
+			IsAvailable = true;
+		}
+		catch
+		{
+			Debugger.Finalize(Severity.Fail);
+		}
+	}
 
     /// <summary>
     /// Plays an audio stream, which can be loaded from any supported format.
@@ -58,7 +73,6 @@ public static class AudioPlayer
     private static readonly Debugger Debugger;
     public static readonly AudioMixer Mixer;
     private static readonly AudioManager AM;
-    public static readonly bool IsAvailable;
 
     #endregion
 }
