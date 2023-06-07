@@ -10,7 +10,6 @@ namespace PrismAPI.Hardware.GPU.VMWare;
 /// </summary>
 public unsafe class SVGAIICanvas : Display
 {
-		Features = ReadRegister(Register.Capabilities);
     #region Constructors
 
     /// <summary>
