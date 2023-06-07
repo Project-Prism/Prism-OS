@@ -4921,6 +4921,19 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Hardware.GPU.Display.GetName
   nameWithType: Display.GetName
+- uid: PrismAPI.Hardware.GPU.Display.IsEnabled
+  name: IsEnabled
+  href: API/PrismAPI.Hardware.GPU.Display.html#PrismAPI_Hardware_GPU_Display_IsEnabled
+  commentId: P:PrismAPI.Hardware.GPU.Display.IsEnabled
+  fullName: PrismAPI.Hardware.GPU.Display.IsEnabled
+  nameWithType: Display.IsEnabled
+- uid: PrismAPI.Hardware.GPU.Display.IsEnabled*
+  name: IsEnabled
+  href: API/PrismAPI.Hardware.GPU.Display.html#PrismAPI_Hardware_GPU_Display_IsEnabled_
+  commentId: Overload:PrismAPI.Hardware.GPU.Display.IsEnabled
+  isSpec: "True"
+  fullName: PrismAPI.Hardware.GPU.Display.IsEnabled
+  nameWithType: Display.IsEnabled
 - uid: PrismAPI.Hardware.GPU.Display.SetCursor(System.UInt32,System.UInt32,System.Boolean)
   name: SetCursor(uint, uint, bool)
   href: API/PrismAPI.Hardware.GPU.Display.html#PrismAPI_Hardware_GPU_Display_SetCursor_System_UInt32_System_UInt32_System_Boolean_
@@ -5007,6 +5020,32 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Hardware.GPU.Vesa.VBECanvas.GetName
   nameWithType: VBECanvas.GetName
+- uid: PrismAPI.Hardware.GPU.Vesa.VBECanvas.Height
+  name: Height
+  href: API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.html#PrismAPI_Hardware_GPU_Vesa_VBECanvas_Height
+  commentId: P:PrismAPI.Hardware.GPU.Vesa.VBECanvas.Height
+  fullName: PrismAPI.Hardware.GPU.Vesa.VBECanvas.Height
+  nameWithType: VBECanvas.Height
+- uid: PrismAPI.Hardware.GPU.Vesa.VBECanvas.Height*
+  name: Height
+  href: API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.html#PrismAPI_Hardware_GPU_Vesa_VBECanvas_Height_
+  commentId: Overload:PrismAPI.Hardware.GPU.Vesa.VBECanvas.Height
+  isSpec: "True"
+  fullName: PrismAPI.Hardware.GPU.Vesa.VBECanvas.Height
+  nameWithType: VBECanvas.Height
+- uid: PrismAPI.Hardware.GPU.Vesa.VBECanvas.IsEnabled
+  name: IsEnabled
+  href: API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.html#PrismAPI_Hardware_GPU_Vesa_VBECanvas_IsEnabled
+  commentId: P:PrismAPI.Hardware.GPU.Vesa.VBECanvas.IsEnabled
+  fullName: PrismAPI.Hardware.GPU.Vesa.VBECanvas.IsEnabled
+  nameWithType: VBECanvas.IsEnabled
+- uid: PrismAPI.Hardware.GPU.Vesa.VBECanvas.IsEnabled*
+  name: IsEnabled
+  href: API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.html#PrismAPI_Hardware_GPU_Vesa_VBECanvas_IsEnabled_
+  commentId: Overload:PrismAPI.Hardware.GPU.Vesa.VBECanvas.IsEnabled
+  isSpec: "True"
+  fullName: PrismAPI.Hardware.GPU.Vesa.VBECanvas.IsEnabled
+  nameWithType: VBECanvas.IsEnabled
 - uid: PrismAPI.Hardware.GPU.Vesa.VBECanvas.SetCursor(System.UInt32,System.UInt32,System.Boolean)
   name: SetCursor(uint, uint, bool)
   href: API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.html#PrismAPI_Hardware_GPU_Vesa_VBECanvas_SetCursor_System_UInt32_System_UInt32_System_Boolean_
@@ -5036,6 +5075,19 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Hardware.GPU.Vesa.VBECanvas.Update
   nameWithType: VBECanvas.Update
+- uid: PrismAPI.Hardware.GPU.Vesa.VBECanvas.Width
+  name: Width
+  href: API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.html#PrismAPI_Hardware_GPU_Vesa_VBECanvas_Width
+  commentId: P:PrismAPI.Hardware.GPU.Vesa.VBECanvas.Width
+  fullName: PrismAPI.Hardware.GPU.Vesa.VBECanvas.Width
+  nameWithType: VBECanvas.Width
+- uid: PrismAPI.Hardware.GPU.Vesa.VBECanvas.Width*
+  name: Width
+  href: API/PrismAPI.Hardware.GPU.Vesa.VBECanvas.html#PrismAPI_Hardware_GPU_Vesa_VBECanvas_Width_
+  commentId: Overload:PrismAPI.Hardware.GPU.Vesa.VBECanvas.Width
+  isSpec: "True"
+  fullName: PrismAPI.Hardware.GPU.Vesa.VBECanvas.Width
+  nameWithType: VBECanvas.Width
 - uid: PrismAPI.Hardware.GPU.VMWare
   name: PrismAPI.Hardware.GPU.VMWare
   href: API/PrismAPI.Hardware.GPU.VMWare.html
@@ -5169,6 +5221,19 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Hardware.GPU.VMWare.SVGAIICanvas.InitializeFIFO
   nameWithType: SVGAIICanvas.InitializeFIFO
+- uid: PrismAPI.Hardware.GPU.VMWare.SVGAIICanvas.IsEnabled
+  name: IsEnabled
+  href: API/PrismAPI.Hardware.GPU.VMWare.SVGAIICanvas.html#PrismAPI_Hardware_GPU_VMWare_SVGAIICanvas_IsEnabled
+  commentId: P:PrismAPI.Hardware.GPU.VMWare.SVGAIICanvas.IsEnabled
+  fullName: PrismAPI.Hardware.GPU.VMWare.SVGAIICanvas.IsEnabled
+  nameWithType: SVGAIICanvas.IsEnabled
+- uid: PrismAPI.Hardware.GPU.VMWare.SVGAIICanvas.IsEnabled*
+  name: IsEnabled
+  href: API/PrismAPI.Hardware.GPU.VMWare.SVGAIICanvas.html#PrismAPI_Hardware_GPU_VMWare_SVGAIICanvas_IsEnabled_
+  commentId: Overload:PrismAPI.Hardware.GPU.VMWare.SVGAIICanvas.IsEnabled
+  isSpec: "True"
+  fullName: PrismAPI.Hardware.GPU.VMWare.SVGAIICanvas.IsEnabled
+  nameWithType: SVGAIICanvas.IsEnabled
 - uid: PrismAPI.Hardware.GPU.VMWare.SVGAIICanvas.ReadRegister(Cosmos.HAL.Drivers.Video.SVGAII.Register)
   name: ReadRegister(Register)
   href: API/PrismAPI.Hardware.GPU.VMWare.SVGAIICanvas.html#PrismAPI_Hardware_GPU_VMWare_SVGAIICanvas_ReadRegister_Cosmos_HAL_Drivers_Video_SVGAII_Register_
