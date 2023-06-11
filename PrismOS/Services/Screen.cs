@@ -1,16 +1,14 @@
 ﻿using PrismAPI.Graphics.Rasterizer;
 using PrismAPI.Graphics.Animation;
 using PrismAPI.Tools.Extentions;
-using PrismAPI.Graphics.Fonts;
 using PrismAPI.Hardware.GPU;
 using PrismAPI.UI.Controls;
 using PrismAPI.Filesystem;
-using Cosmos.Core.Memory;
+using PrismAPI.UI.Config;
 using PrismAPI.Graphics;
 using Cosmos.System;
 using Cosmos.Core;
 using PrismAPI.UI;
-using PrismAPI.Tools;
 
 namespace PrismOS.Services;
 
@@ -49,7 +47,10 @@ public class Screen : Service
 		Engine.Objects.Add(Mesh.GetCube(200, 200, 200));
 		Engine.Camera.Position.Z = 200;
 		WindowManager.Windows.Add(new(100, 100, 250, 150));
-		WindowManager.Windows[^1].Controls.Add(new Button(50, 50, 128, 64, 4, "Button1"));
+		WindowManager.Windows[^1].Controls.Add(new Button(50, 50, 128, 64, 4, "Button1")
+		{
+			Theme = ThemeStyle.Material,
+		});
 
 		MouseManager.ScreenHeight = Canvas.Height;
 		MouseManager.ScreenWidth = Canvas.Width;
@@ -97,7 +98,7 @@ public class Screen : Service
 		Canvas.DrawImage(200, 15, Gradient, false);
 		Canvas.DrawString(15, 15, Info, default, Color.White);
 		WindowManager.Update(Canvas);
-		Heap.Collect();
+		//Heap.Collect();
 
 		//int ClockSize = 40;
 		//Canvas.DrawFilledCircle(W2, H2, (ushort)ClockSize, Color.White);

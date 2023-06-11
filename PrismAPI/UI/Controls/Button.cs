@@ -1,6 +1,5 @@
 ﻿using PrismAPI.UI.Config;
 using PrismAPI.Graphics;
-using Cosmos.System;
 
 namespace PrismAPI.UI.Controls;
 
@@ -32,34 +31,61 @@ public class Button : Control
 
 	#region Methods
 
-	public override void Update(Canvas Canvas, CursorStatus Status)
+	public override void Update(Canvas Canvas)
 	{
 		Clear(Color.Transparent);
-		DrawFilledRectangle(0, 0, Width, Height, Radius, Color.White);
 
-		switch (Status)
+		switch (Theme)
 		{
-			case CursorStatus.Hovering:
-				Gradient GradientHovering = new(Width, Height, StartColor - 32f, EndColor);
-				DrawImage(0, 0, Filters.MaskAlpha(this, GradientHovering));
+			// The material 2.0 design from android 5+.
+			case ThemeStyle.Material:
+				switch (Status)
+				{
+					case CursorStatus.Hovering:
+						DrawFilledRectangle(0, 0, Width, Height, Radius, Color.LightGray);
+						DrawString(Width / 2, Height / 2, Text, default, Color.Black, true);
+						break;
+					case CursorStatus.Clicked:
+						DrawFilledRectangle(0, 0, Width, Height, Radius, Color.DeepGray);
+						DrawString(Width / 2, Height / 2, Text, default, Color.White, true);
+						break;
+					case CursorStatus.Idle:
+						DrawFilledRectangle(0, 0, Width, Height, Radius, Color.White);
+						DrawString(Width / 2, Height / 2, Text, default, Color.Black, true);
+						break;
+				}
 				break;
-			case CursorStatus.Clicked:
-				Gradient GradientClicked = new(Width, Height, EndColor, StartColor);
-				DrawImage(0, 0, Filters.MaskAlpha(this, GradientClicked));
+
+			// The Holo theme from android 3.x+.
+			case ThemeStyle.Holo:
+				// Apply a basic layer to mask.
+				DrawFilledRectangle(0, 0, Width, Height, Radius, Color.White);
+
+				switch (Status)
+				{
+					case CursorStatus.Hovering:
+						Gradient GradientHovering = new(Width, Height, StartColor - 32f, EndColor);
+						DrawImage(0, 0, Filters.MaskAlpha(this, GradientHovering), Radius != 0);
+						DrawString(Width / 2, Height / 2, Text, default, Color.Black, true);
+						break;
+					case CursorStatus.Clicked:
+						Gradient GradientClicked = new(Width, Height, EndColor, StartColor);
+						DrawImage(0, 0, Filters.MaskAlpha(this, GradientClicked), Radius != 0);
+						DrawString(Width / 2, Height / 2, Text, default, Color.Black, true);
+						break;
+					case CursorStatus.Idle:
+						Gradient GradientIdle = new(Width, Height, StartColor, EndColor);
+						DrawImage(0, 0, Filters.MaskAlpha(this, GradientIdle), Radius != 0);
+						DrawString(Width / 2, Height / 2, Text, default, Color.Black, true);
+						break;
+				}
 				break;
-			case CursorStatus.Idle:
-				Gradient GradientIdle = new(Width, Height, StartColor, EndColor);
-				DrawImage(0, 0, Filters.MaskAlpha(this, GradientIdle));
-				break;
+
+			default:
+				return;
 		}
 
-		DrawString(Width / 2, Height / 2, Text, default, Color.Black, true);
-		Canvas.DrawImage(X, Y, this);
-	}
-
-	public override void OnClick(uint X, uint Y, MouseState State)
-	{
-		throw new NotImplementedException();
+		Canvas.DrawImage(X, Y, this, Radius != 0);
 	}
 
 	#endregion

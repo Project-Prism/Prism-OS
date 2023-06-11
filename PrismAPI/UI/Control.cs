@@ -14,6 +14,7 @@ public abstract class Control : Canvas
         Theme = ThemeStyle.None;
         BackGround = Color.White;
         ForeGround = Color.Black;
+        IsEnabled = true;
         Radius = 0;
     }
 
@@ -21,19 +22,22 @@ public abstract class Control : Canvas
 
     #region Methods
 
-    public abstract void OnClick(uint X, uint Y, MouseState State);
-
-    public abstract void Update(Canvas Canvas, CursorStatus Status);
+    public abstract void Update(Canvas Canvas);
 
     #endregion
 
     #region Fields
 
-    public LayoutStyle Layout;
+    // The onclick event - Runs when the element is clicked on screen.
+    public Action<int, int, MouseState> OnClick;
+
+    public CursorStatus Status;
+	public LayoutStyle Layout;
     public ThemeStyle Theme;
     public Color BackGround;
     public Color ForeGround;
-    public ushort Radius;
+	public bool IsEnabled;
+	public ushort Radius;
     public int X;
     public int Y;
 

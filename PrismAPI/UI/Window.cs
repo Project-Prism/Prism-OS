@@ -1,69 +1,101 @@
-﻿using PrismAPI.Graphics;
-using Cosmos.System;
+﻿using PrismAPI.Tools.Extentions;
 using PrismAPI.UI.Config;
+using PrismAPI.Graphics;
+using Cosmos.System;
 
 namespace PrismAPI.UI;
 
 public class Window : Control
 {
-    public Window(int X, int Y, ushort Width, ushort Height) : base(Width, Height)
-    {
-        // Initialize the control list.
-        ShelfControls = new();
-        Controls = new();
+	#region Constructors
 
-        // Initialize the window's buffers.
-        TitleShelf = new(Width, 32);
-        WindowBody = new(Width, Height);
+	public Window(int X, int Y, ushort Width, ushort Height) : base(Width, Height)
+	{
+		// Initialize the control list.
+		ShelfControls = new();
+		Controls = new();
 
-        // Initialize the window fields.
-        this.X = X;
-        this.Y = Y;
-    }
+		// Initialize the window's buffers.
+		TitleShelf = new(Width, 32);
+		WindowBody = new(Width, Height);
 
-    #region Methods
+		// Initialize the window fields.
+		this.X = X;
+		this.Y = Y;
+	}
 
-    public override void OnClick(uint X, uint Y, MouseState State)
-    {
-        throw new NotImplementedException();
-    }
+	#endregion
 
-    public override void Update(Canvas Canvas, CursorStatus Status)
-    {
-        // Resize if needed.
-        TitleShelf.Width = Width;
-        WindowBody.Height = Height;
-        WindowBody.Width = Width;
+	#region Methods
 
-        // Draw the window back panel.
-        TitleShelf.Clear(Color.DeepGray);
-        WindowBody.Clear(Color.White);
+	public override void Update(Canvas Canvas)
+	{
+		// Resize if needed.
+		TitleShelf.Width = Width;
+		WindowBody.Height = Height;
+		WindowBody.Width = Width;
 
-        // Draw the cache of each control for the title shelf.
-        foreach (Control C in ShelfControls)
-        {
-            C.Update(TitleShelf, CursorStatus.Idle);
-        }
+		// Draw the window back panel.
+		TitleShelf.Clear(Color.DeepGray);
+		WindowBody.Clear(Color.White);
 
-        // Draw the cache of each control.
-        foreach (Control C in Controls)
+		// Draw the cache of each control for the title shelf.
+		foreach (Control C in ShelfControls)
 		{
-			C.Update(WindowBody, CursorStatus.Idle);
+			C.Update(TitleShelf);
 		}
 
-        // Draw the window to the buffer.
-        Canvas.DrawImage(X, Y - 32, TitleShelf, false);
-        Canvas.DrawImage(X, Y, WindowBody, false);
-    }
+		// Draw the cache of each control.
+		foreach (Control C in Controls)
+		{
+			// Check if the control is even enabled - skip if not.
+			if (!C.IsEnabled)
+			{
+				continue;
+			}
 
-    #endregion
+			// Check if the mouse is hovering over the control.
+			if (MouseEx.IsMouseWithin(X + C.X, Y + C.Y, C.Width, C.Height))
+			{
+				// Set the cursor's status to hovering.
+				C.Status = CursorStatus.Hovering;
 
-    #region Fields
+				// Check if a click (any kind) has been detected.
+				if (MouseManager.MouseState != MouseManager.LastMouseState)
+				{
+					// Assign new click state before click method.
+					C.Status = CursorStatus.Clicked;
 
-    public readonly List<Control> ShelfControls;
-    public readonly List<Control> Controls;
-    private readonly Canvas TitleShelf;
-    private readonly Canvas WindowBody;
+					// Execute the control's click method.
+					C.OnClick(X - (int)MouseManager.X, Y - (int)MouseManager.Y, MouseManager.LastMouseState);
+				}
+			}
+			else
+			{
+				// Set the control's status to idle - nothing is happening.
+				C.Status = CursorStatus.Idle;
+			}
 
-    #endregion
+			// Update the control onto the window body.
+			C.Update(WindowBody);
+		}
+
+		// Draw the window to the buffer.
+		Canvas.DrawImage(X, Y - 32, TitleShelf, Radius != 0);
+		Canvas.DrawImage(X, Y, WindowBody, Radius != 0);
+	}
+
+	#endregion
+
+	#region Fields
+
+	public readonly List<Control> ShelfControls;
+	public readonly List<Control> Controls;
+	private readonly Canvas TitleShelf;
+	private readonly Canvas WindowBody;
+	internal bool IsMoving;
+	internal int IX;
+	internal int IY;
+
+	#endregion
 }
