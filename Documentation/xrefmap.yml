@@ -1384,11 +1384,11 @@ references:
   fullName: PrismAPI.Filesystem.Formats.ELF.ELFHeader.ELFHeader32.Flags
   nameWithType: ELFHeader32.Flags
 - uid: PrismAPI.Filesystem.Formats.ELF.ELFHeader.ELFHeader32.IsValid
-  name: IsValid()
+  name: IsValid
   href: API/PrismAPI.Filesystem.Formats.ELF.ELFHeader.ELFHeader32.html#PrismAPI_Filesystem_Formats_ELF_ELFHeader_ELFHeader32_IsValid
-  commentId: M:PrismAPI.Filesystem.Formats.ELF.ELFHeader.ELFHeader32.IsValid
-  fullName: PrismAPI.Filesystem.Formats.ELF.ELFHeader.ELFHeader32.IsValid()
-  nameWithType: ELFHeader32.IsValid()
+  commentId: P:PrismAPI.Filesystem.Formats.ELF.ELFHeader.ELFHeader32.IsValid
+  fullName: PrismAPI.Filesystem.Formats.ELF.ELFHeader.ELFHeader32.IsValid
+  nameWithType: ELFHeader32.IsValid
 - uid: PrismAPI.Filesystem.Formats.ELF.ELFHeader.ELFHeader32.IsValid*
   name: IsValid
   href: API/PrismAPI.Filesystem.Formats.ELF.ELFHeader.ELFHeader32.html#PrismAPI_Filesystem_Formats_ELF_ELFHeader_ELFHeader32_IsValid_
@@ -1530,11 +1530,11 @@ references:
   fullName: PrismAPI.Filesystem.Formats.ELF.ELFHeader.ELFHeader64.Flags
   nameWithType: ELFHeader64.Flags
 - uid: PrismAPI.Filesystem.Formats.ELF.ELFHeader.ELFHeader64.IsValid
-  name: IsValid()
+  name: IsValid
   href: API/PrismAPI.Filesystem.Formats.ELF.ELFHeader.ELFHeader64.html#PrismAPI_Filesystem_Formats_ELF_ELFHeader_ELFHeader64_IsValid
-  commentId: M:PrismAPI.Filesystem.Formats.ELF.ELFHeader.ELFHeader64.IsValid
-  fullName: PrismAPI.Filesystem.Formats.ELF.ELFHeader.ELFHeader64.IsValid()
-  nameWithType: ELFHeader64.IsValid()
+  commentId: P:PrismAPI.Filesystem.Formats.ELF.ELFHeader.ELFHeader64.IsValid
+  fullName: PrismAPI.Filesystem.Formats.ELF.ELFHeader.ELFHeader64.IsValid
+  nameWithType: ELFHeader64.IsValid
 - uid: PrismAPI.Filesystem.Formats.ELF.ELFHeader.ELFHeader64.IsValid*
   name: IsValid
   href: API/PrismAPI.Filesystem.Formats.ELF.ELFHeader.ELFHeader64.html#PrismAPI_Filesystem_Formats_ELF_ELFHeader_ELFHeader64_IsValid_
@@ -4847,25 +4847,6 @@ references:
   commentId: T:PrismAPI.Hardware.GPU.Display
   fullName: PrismAPI.Hardware.GPU.Display
   nameWithType: Display
-- uid: PrismAPI.Hardware.GPU.Display.#ctor(System.UInt16,System.UInt16)
-  name: Display(ushort, ushort)
-  href: API/PrismAPI.Hardware.GPU.Display.html#PrismAPI_Hardware_GPU_Display__ctor_System_UInt16_System_UInt16_
-  commentId: M:PrismAPI.Hardware.GPU.Display.#ctor(System.UInt16,System.UInt16)
-  name.vb: New(UShort, UShort)
-  fullName: PrismAPI.Hardware.GPU.Display.Display(ushort, ushort)
-  fullName.vb: PrismAPI.Hardware.GPU.Display.New(UShort, UShort)
-  nameWithType: Display.Display(ushort, ushort)
-  nameWithType.vb: Display.New(UShort, UShort)
-- uid: PrismAPI.Hardware.GPU.Display.#ctor*
-  name: Display
-  href: API/PrismAPI.Hardware.GPU.Display.html#PrismAPI_Hardware_GPU_Display__ctor_
-  commentId: Overload:PrismAPI.Hardware.GPU.Display.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: PrismAPI.Hardware.GPU.Display.Display
-  fullName.vb: PrismAPI.Hardware.GPU.Display.New
-  nameWithType: Display.Display
-  nameWithType.vb: Display.New
 - uid: PrismAPI.Hardware.GPU.Display.DefineCursor(PrismAPI.Graphics.Canvas)
   name: DefineCursor(Canvas)
   href: API/PrismAPI.Hardware.GPU.Display.html#PrismAPI_Hardware_GPU_Display_DefineCursor_PrismAPI_Graphics_Canvas_
@@ -6451,25 +6432,6 @@ references:
   commentId: T:PrismAPI.Runtime.SShell.Scripts.Script
   fullName: PrismAPI.Runtime.SShell.Scripts.Script
   nameWithType: Script
-- uid: PrismAPI.Runtime.SShell.Scripts.Script.#ctor(System.String,System.String)
-  name: Script(string, string)
-  href: API/PrismAPI.Runtime.SShell.Scripts.Script.html#PrismAPI_Runtime_SShell_Scripts_Script__ctor_System_String_System_String_
-  commentId: M:PrismAPI.Runtime.SShell.Scripts.Script.#ctor(System.String,System.String)
-  name.vb: New(String, String)
-  fullName: PrismAPI.Runtime.SShell.Scripts.Script.Script(string, string)
-  fullName.vb: PrismAPI.Runtime.SShell.Scripts.Script.New(String, String)
-  nameWithType: Script.Script(string, string)
-  nameWithType.vb: Script.New(String, String)
-- uid: PrismAPI.Runtime.SShell.Scripts.Script.#ctor*
-  name: Script
-  href: API/PrismAPI.Runtime.SShell.Scripts.Script.html#PrismAPI_Runtime_SShell_Scripts_Script__ctor_
-  commentId: Overload:PrismAPI.Runtime.SShell.Scripts.Script.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: PrismAPI.Runtime.SShell.Scripts.Script.Script
-  fullName.vb: PrismAPI.Runtime.SShell.Scripts.Script.New
-  nameWithType: Script.Script
-  nameWithType.vb: Script.New
 - uid: PrismAPI.Runtime.SShell.Scripts.Script.AdvancedDescription
   name: AdvancedDescription
   href: API/PrismAPI.Runtime.SShell.Scripts.Script.html#PrismAPI_Runtime_SShell_Scripts_Script_AdvancedDescription
@@ -8529,25 +8491,6 @@ references:
   commentId: T:PrismAPI.UI.Control
   fullName: PrismAPI.UI.Control
   nameWithType: Control
-- uid: PrismAPI.UI.Control.#ctor(System.UInt16,System.UInt16)
-  name: Control(ushort, ushort)
-  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control__ctor_System_UInt16_System_UInt16_
-  commentId: M:PrismAPI.UI.Control.#ctor(System.UInt16,System.UInt16)
-  name.vb: New(UShort, UShort)
-  fullName: PrismAPI.UI.Control.Control(ushort, ushort)
-  fullName.vb: PrismAPI.UI.Control.New(UShort, UShort)
-  nameWithType: Control.Control(ushort, ushort)
-  nameWithType.vb: Control.New(UShort, UShort)
-- uid: PrismAPI.UI.Control.#ctor*
-  name: Control
-  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control__ctor_
-  commentId: Overload:PrismAPI.UI.Control.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: PrismAPI.UI.Control.Control
-  fullName.vb: PrismAPI.UI.Control.New
-  nameWithType: Control.Control
-  nameWithType.vb: Control.New
 - uid: PrismAPI.UI.Control.BackGround
   name: BackGround
   href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_BackGround
