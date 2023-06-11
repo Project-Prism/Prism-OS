@@ -39,6 +39,7 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
+[Bb]in/
 
 # DocFX generated files - Don't need in the repo because github actions deploys it automatically.
 DocFX/Site

@@ -19,7 +19,7 @@
 		<VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
 		<SupportsX86Intrinsics>false</SupportsX86Intrinsics>
 		<RemoveBootDebugOutput>true</RemoveBootDebugOutput>
-		<CompileVBEMultiboot>false</CompileVBEMultiboot>
+		<CompileVBEMultiboot>true</CompileVBEMultiboot>
 		<CosmosDebugPort>Serial: COM1</CosmosDebugPort>
 		<StartBochsDebugGui>true</StartBochsDebugGui>
 		<QemuNetworkDevice>PCNet</QemuNetworkDevice>
