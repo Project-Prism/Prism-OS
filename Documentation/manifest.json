@@ -1435,6 +1435,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.UI.DialogBox.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.UI.DialogBox.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "API/PrismAPI.UI.Window.yml",
       "output": {
         ".html": {

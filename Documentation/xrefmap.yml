@@ -8560,26 +8560,22 @@ references:
   commentId: F:PrismAPI.UI.Control.ForeGround
   fullName: PrismAPI.UI.Control.ForeGround
   nameWithType: Control.ForeGround
+- uid: PrismAPI.UI.Control.IsEnabled
+  name: IsEnabled
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_IsEnabled
+  commentId: F:PrismAPI.UI.Control.IsEnabled
+  fullName: PrismAPI.UI.Control.IsEnabled
+  nameWithType: Control.IsEnabled
 - uid: PrismAPI.UI.Control.Layout
   name: Layout
   href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_Layout
   commentId: F:PrismAPI.UI.Control.Layout
   fullName: PrismAPI.UI.Control.Layout
   nameWithType: Control.Layout
-- uid: PrismAPI.UI.Control.OnClick(System.UInt32,System.UInt32,Cosmos.System.MouseState)
-  name: OnClick(uint, uint, MouseState)
-  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_OnClick_System_UInt32_System_UInt32_Cosmos_System_MouseState_
-  commentId: M:PrismAPI.UI.Control.OnClick(System.UInt32,System.UInt32,Cosmos.System.MouseState)
-  name.vb: OnClick(UInteger, UInteger, MouseState)
-  fullName: PrismAPI.UI.Control.OnClick(uint, uint, Cosmos.System.MouseState)
-  fullName.vb: PrismAPI.UI.Control.OnClick(UInteger, UInteger, Cosmos.System.MouseState)
-  nameWithType: Control.OnClick(uint, uint, MouseState)
-  nameWithType.vb: Control.OnClick(UInteger, UInteger, MouseState)
-- uid: PrismAPI.UI.Control.OnClick*
+- uid: PrismAPI.UI.Control.OnClick
   name: OnClick
-  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_OnClick_
-  commentId: Overload:PrismAPI.UI.Control.OnClick
-  isSpec: "True"
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_OnClick
+  commentId: F:PrismAPI.UI.Control.OnClick
   fullName: PrismAPI.UI.Control.OnClick
   nameWithType: Control.OnClick
 - uid: PrismAPI.UI.Control.Radius
@@ -8588,18 +8584,24 @@ references:
   commentId: F:PrismAPI.UI.Control.Radius
   fullName: PrismAPI.UI.Control.Radius
   nameWithType: Control.Radius
+- uid: PrismAPI.UI.Control.Status
+  name: Status
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_Status
+  commentId: F:PrismAPI.UI.Control.Status
+  fullName: PrismAPI.UI.Control.Status
+  nameWithType: Control.Status
 - uid: PrismAPI.UI.Control.Theme
   name: Theme
   href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_Theme
   commentId: F:PrismAPI.UI.Control.Theme
   fullName: PrismAPI.UI.Control.Theme
   nameWithType: Control.Theme
-- uid: PrismAPI.UI.Control.Update(PrismAPI.Graphics.Canvas,PrismAPI.UI.Config.CursorStatus)
-  name: Update(Canvas, CursorStatus)
-  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_Update_PrismAPI_Graphics_Canvas_PrismAPI_UI_Config_CursorStatus_
-  commentId: M:PrismAPI.UI.Control.Update(PrismAPI.Graphics.Canvas,PrismAPI.UI.Config.CursorStatus)
-  fullName: PrismAPI.UI.Control.Update(PrismAPI.Graphics.Canvas, PrismAPI.UI.Config.CursorStatus)
-  nameWithType: Control.Update(Canvas, CursorStatus)
+- uid: PrismAPI.UI.Control.Update(PrismAPI.Graphics.Canvas)
+  name: Update(Canvas)
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_Update_PrismAPI_Graphics_Canvas_
+  commentId: M:PrismAPI.UI.Control.Update(PrismAPI.Graphics.Canvas)
+  fullName: PrismAPI.UI.Control.Update(PrismAPI.Graphics.Canvas)
+  nameWithType: Control.Update(Canvas)
 - uid: PrismAPI.UI.Control.Update*
   name: Update
   href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_Update_
@@ -8656,22 +8658,6 @@ references:
   commentId: F:PrismAPI.UI.Controls.Button.EndColor
   fullName: PrismAPI.UI.Controls.Button.EndColor
   nameWithType: Button.EndColor
-- uid: PrismAPI.UI.Controls.Button.OnClick(System.UInt32,System.UInt32,Cosmos.System.MouseState)
-  name: OnClick(uint, uint, MouseState)
-  href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button_OnClick_System_UInt32_System_UInt32_Cosmos_System_MouseState_
-  commentId: M:PrismAPI.UI.Controls.Button.OnClick(System.UInt32,System.UInt32,Cosmos.System.MouseState)
-  name.vb: OnClick(UInteger, UInteger, MouseState)
-  fullName: PrismAPI.UI.Controls.Button.OnClick(uint, uint, Cosmos.System.MouseState)
-  fullName.vb: PrismAPI.UI.Controls.Button.OnClick(UInteger, UInteger, Cosmos.System.MouseState)
-  nameWithType: Button.OnClick(uint, uint, MouseState)
-  nameWithType.vb: Button.OnClick(UInteger, UInteger, MouseState)
-- uid: PrismAPI.UI.Controls.Button.OnClick*
-  name: OnClick
-  href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button_OnClick_
-  commentId: Overload:PrismAPI.UI.Controls.Button.OnClick
-  isSpec: "True"
-  fullName: PrismAPI.UI.Controls.Button.OnClick
-  nameWithType: Button.OnClick
 - uid: PrismAPI.UI.Controls.Button.StartColor
   name: StartColor
   href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button_StartColor
@@ -8684,12 +8670,12 @@ references:
   commentId: F:PrismAPI.UI.Controls.Button.Text
   fullName: PrismAPI.UI.Controls.Button.Text
   nameWithType: Button.Text
-- uid: PrismAPI.UI.Controls.Button.Update(PrismAPI.Graphics.Canvas,PrismAPI.UI.Config.CursorStatus)
-  name: Update(Canvas, CursorStatus)
-  href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button_Update_PrismAPI_Graphics_Canvas_PrismAPI_UI_Config_CursorStatus_
-  commentId: M:PrismAPI.UI.Controls.Button.Update(PrismAPI.Graphics.Canvas,PrismAPI.UI.Config.CursorStatus)
-  fullName: PrismAPI.UI.Controls.Button.Update(PrismAPI.Graphics.Canvas, PrismAPI.UI.Config.CursorStatus)
-  nameWithType: Button.Update(Canvas, CursorStatus)
+- uid: PrismAPI.UI.Controls.Button.Update(PrismAPI.Graphics.Canvas)
+  name: Update(Canvas)
+  href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button_Update_PrismAPI_Graphics_Canvas_
+  commentId: M:PrismAPI.UI.Controls.Button.Update(PrismAPI.Graphics.Canvas)
+  fullName: PrismAPI.UI.Controls.Button.Update(PrismAPI.Graphics.Canvas)
+  nameWithType: Button.Update(Canvas)
 - uid: PrismAPI.UI.Controls.Button.Update*
   name: Update
   href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button_Update_
@@ -8697,6 +8683,28 @@ references:
   isSpec: "True"
   fullName: PrismAPI.UI.Controls.Button.Update
   nameWithType: Button.Update
+- uid: PrismAPI.UI.DialogBox
+  name: DialogBox
+  href: API/PrismAPI.UI.DialogBox.html
+  commentId: T:PrismAPI.UI.DialogBox
+  fullName: PrismAPI.UI.DialogBox
+  nameWithType: DialogBox
+- uid: PrismAPI.UI.DialogBox.ShowMessageDialog(System.String,System.String)
+  name: ShowMessageDialog(string, string)
+  href: API/PrismAPI.UI.DialogBox.html#PrismAPI_UI_DialogBox_ShowMessageDialog_System_String_System_String_
+  commentId: M:PrismAPI.UI.DialogBox.ShowMessageDialog(System.String,System.String)
+  name.vb: ShowMessageDialog(String, String)
+  fullName: PrismAPI.UI.DialogBox.ShowMessageDialog(string, string)
+  fullName.vb: PrismAPI.UI.DialogBox.ShowMessageDialog(String, String)
+  nameWithType: DialogBox.ShowMessageDialog(string, string)
+  nameWithType.vb: DialogBox.ShowMessageDialog(String, String)
+- uid: PrismAPI.UI.DialogBox.ShowMessageDialog*
+  name: ShowMessageDialog
+  href: API/PrismAPI.UI.DialogBox.html#PrismAPI_UI_DialogBox_ShowMessageDialog_
+  commentId: Overload:PrismAPI.UI.DialogBox.ShowMessageDialog
+  isSpec: "True"
+  fullName: PrismAPI.UI.DialogBox.ShowMessageDialog
+  nameWithType: DialogBox.ShowMessageDialog
 - uid: PrismAPI.UI.Window
   name: Window
   href: API/PrismAPI.UI.Window.html
@@ -8728,34 +8736,18 @@ references:
   commentId: F:PrismAPI.UI.Window.Controls
   fullName: PrismAPI.UI.Window.Controls
   nameWithType: Window.Controls
-- uid: PrismAPI.UI.Window.OnClick(System.UInt32,System.UInt32,Cosmos.System.MouseState)
-  name: OnClick(uint, uint, MouseState)
-  href: API/PrismAPI.UI.Window.html#PrismAPI_UI_Window_OnClick_System_UInt32_System_UInt32_Cosmos_System_MouseState_
-  commentId: M:PrismAPI.UI.Window.OnClick(System.UInt32,System.UInt32,Cosmos.System.MouseState)
-  name.vb: OnClick(UInteger, UInteger, MouseState)
-  fullName: PrismAPI.UI.Window.OnClick(uint, uint, Cosmos.System.MouseState)
-  fullName.vb: PrismAPI.UI.Window.OnClick(UInteger, UInteger, Cosmos.System.MouseState)
-  nameWithType: Window.OnClick(uint, uint, MouseState)
-  nameWithType.vb: Window.OnClick(UInteger, UInteger, MouseState)
-- uid: PrismAPI.UI.Window.OnClick*
-  name: OnClick
-  href: API/PrismAPI.UI.Window.html#PrismAPI_UI_Window_OnClick_
-  commentId: Overload:PrismAPI.UI.Window.OnClick
-  isSpec: "True"
-  fullName: PrismAPI.UI.Window.OnClick
-  nameWithType: Window.OnClick
 - uid: PrismAPI.UI.Window.ShelfControls
   name: ShelfControls
   href: API/PrismAPI.UI.Window.html#PrismAPI_UI_Window_ShelfControls
   commentId: F:PrismAPI.UI.Window.ShelfControls
   fullName: PrismAPI.UI.Window.ShelfControls
   nameWithType: Window.ShelfControls
-- uid: PrismAPI.UI.Window.Update(PrismAPI.Graphics.Canvas,PrismAPI.UI.Config.CursorStatus)
-  name: Update(Canvas, CursorStatus)
-  href: API/PrismAPI.UI.Window.html#PrismAPI_UI_Window_Update_PrismAPI_Graphics_Canvas_PrismAPI_UI_Config_CursorStatus_
-  commentId: M:PrismAPI.UI.Window.Update(PrismAPI.Graphics.Canvas,PrismAPI.UI.Config.CursorStatus)
-  fullName: PrismAPI.UI.Window.Update(PrismAPI.Graphics.Canvas, PrismAPI.UI.Config.CursorStatus)
-  nameWithType: Window.Update(Canvas, CursorStatus)
+- uid: PrismAPI.UI.Window.Update(PrismAPI.Graphics.Canvas)
+  name: Update(Canvas)
+  href: API/PrismAPI.UI.Window.html#PrismAPI_UI_Window_Update_PrismAPI_Graphics_Canvas_
+  commentId: M:PrismAPI.UI.Window.Update(PrismAPI.Graphics.Canvas)
+  fullName: PrismAPI.UI.Window.Update(PrismAPI.Graphics.Canvas)
+  nameWithType: Window.Update(Canvas)
 - uid: PrismAPI.UI.Window.Update*
   name: Update
   href: API/PrismAPI.UI.Window.html#PrismAPI_UI_Window_Update_
