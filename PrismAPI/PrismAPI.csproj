@@ -2,19 +2,21 @@
 
 	<!-- Config group -->
 	<PropertyGroup>
-
 		<GenerateDocumentationFile>false</GenerateDocumentationFile>
 		<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<NoWin32Manifest>true</NoWin32Manifest>
 		<SelfContained>true</SelfContained>
+		<Title>PrismAPI</Title>
 		<DebugType>none</DebugType>
 		<Nullable>enable</Nullable>
 		<Optimize>true</Optimize>
-
+		<Title>PrismAPI</Title>
+		<Authors>Prism-OS</Authors>
 	</PropertyGroup>
 
 	<!-- Cosmos include group -->
