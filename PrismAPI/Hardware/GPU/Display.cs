@@ -18,10 +18,10 @@ public abstract class Display : Canvas
 	/// </summary>
 	/// <param name="Width">The Width of the display.</param>
 	/// <param name="Height">The Height of the display.</param>
-	public Display(ushort Width, ushort Height) : base(Width, Height)
+	internal Display(ushort Width, ushort Height) : base(Width, Height)
 	{
 		// Setup the FPS counter timer.
-		Timer T = new((O) => { _FPS = _Frames; _Frames = 0; }, null, 1000, 0);
+		Timer T = new((_) => { _FPS = _Frames; _Frames = 0; }, null, 1000, 0);
 	}
 
 	#endregion

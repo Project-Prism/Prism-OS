@@ -32,7 +32,7 @@ public class CLI : Script
 					string? Input = Console.ReadLine();
 					Console.ResetColor();
 
-					if (Input == null || Input.Length == 0)
+					if (string.IsNullOrEmpty(Input))
 					{
 						continue;
 					}
@@ -50,7 +50,6 @@ public class CLI : Script
 							}
 							break;
 					}
-
 				}
 				catch (Exception E)
 				{

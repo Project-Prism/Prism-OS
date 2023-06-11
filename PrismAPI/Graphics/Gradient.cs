@@ -44,7 +44,7 @@ public class Gradient : Canvas
 				Color Calculated = Color.Lerp(Colors[I1], Colors[I1 + 1], 1.0f / HeightDelta * I2);
 
 				// Fill this line with the correct color across with 1 pixel height.
-				DrawFilledRectangle(0, HeightDelta * I1 + I2, Width, 1, 0, Calculated);
+				DrawFilledRectangle(0, (HeightDelta * I1) + I2, Width, 1, 0, Calculated);
 			}
 		}
 	}
@@ -68,9 +68,9 @@ public class Gradient : Canvas
 				int UVX = X / Width;
 
 				// Time varying pixel color
-				float R = 0.5f + 0.5f * MathF.Cos(ElapsedMS + UVX);
-				float G = 0.5f + 0.5f * MathF.Cos(ElapsedMS + UVY + 2);
-				float B = 0.5f + 0.5f * MathF.Cos(ElapsedMS + UVY + 4);
+				float R = 0.5f + (0.5f * MathF.Cos(ElapsedMS + UVX));
+				float G = 0.5f + (0.5f * MathF.Cos(ElapsedMS + UVY + 2));
+				float B = 0.5f + (0.5f * MathF.Cos(ElapsedMS + UVY + 4));
 
 				// Output to screen
 				this[X, Y] = new(255, R * 255, G * 255, B * 255);

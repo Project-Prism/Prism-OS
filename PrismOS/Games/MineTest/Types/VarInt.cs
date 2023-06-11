@@ -96,7 +96,7 @@ public class VarInt
                 return ((MemoryStream)Stream.BaseStream).ToArray();
             }
 
-            Stream.Write(Clone & SEGMENT_BITS | CONTINUE_BIT);
+            Stream.Write((Clone & SEGMENT_BITS) | CONTINUE_BIT);
 
             // Note: >>> means that the sign bit is shifted with the rest of the number rather than being left alone
             //Clone >>>= 7;

@@ -20,7 +20,7 @@ public static class DialogBox
 			},
 		};
 
-		Temp.Controls[^1].OnClick = (int X, int Y, MouseState State) => { WindowManager.Windows.Remove(Temp); };
+		Temp.Controls[^1].OnClick = (int _, int _, MouseState _) => WindowManager.Windows.Remove(Temp);
 		WindowManager.Windows.Add(Temp);
 
 		return Temp;

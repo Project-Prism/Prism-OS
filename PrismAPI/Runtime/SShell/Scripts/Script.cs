@@ -5,7 +5,7 @@
 /// </summary>
 public abstract class Script
 {
-	public Script(string ScriptName, string BasicDescription)
+	internal Script(string ScriptName, string BasicDescription)
 	{
 		AdvancedDescription = string.Empty;
 		this.BasicDescription = BasicDescription;

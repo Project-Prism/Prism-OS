@@ -16,7 +16,7 @@ public static class KeyboardEx
         Callbacks = new();
 
         // Create timer to call every 150 MS.
-        Timer T = new((O) =>
+        Timer T = new((_) =>
         {
             if (TryReadKey(out ConsoleKeyInfo Key))
             {

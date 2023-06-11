@@ -116,7 +116,7 @@ public class ArgumentBuilder
 	[Pure]
 	public string GetOffset(string name)
 	{
-		return $@"[esp + {Get(name)}]";
+		return $"[esp + {Get(name)}]";
 	}
 
 	#endregion

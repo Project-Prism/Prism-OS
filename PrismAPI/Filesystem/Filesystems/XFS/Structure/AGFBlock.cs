@@ -1,7 +1,7 @@
 ﻿namespace PrismAPI.Filesystem.Filesystems.XFS.Structure;
 
 /// <summary>
-/// The second sector in an AG contains the information about the two free space B+trees and associated 
+/// The second sector in an AG contains the information about the two free space B+trees and associated
 /// free space information for the AG.The "AG Free Space Block", also knows as the AGF, uses the
 /// following structure:
 /// </summary>

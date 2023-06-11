@@ -14,8 +14,8 @@ public class Light
 	/// </summary>
 	/// <param name="Position">The position of the light source.</param>
 	/// <param name="Rotation">The rotation of the light source.</param>
-	/// <param name="Color">The color of the light source.</param>
 	/// <param name="Type">The kind of light to render.</param>
+	/// <param name="Color">The color of the light source.</param>
 	public Light(Vector3 Position, Vector3 Rotation, LightTypes Type, Color Color)
 	{
 		this.Position = Position;

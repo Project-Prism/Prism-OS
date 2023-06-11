@@ -63,7 +63,7 @@ public unsafe class Canvas
 				return Color.Black;
 			}
 
-			return new(Internal[Y * Width + X]);
+			return new(Internal[(Y * Width) + X]);
 		}
 		set
 		{
@@ -79,7 +79,7 @@ public unsafe class Canvas
 				value = Color.AlphaBlend(this[X, Y], value);
 			}
 
-			Internal[Y * Width + X] = value.ARGB;
+			Internal[(Y * Width) + X] = value.ARGB;
 		}
 	}
 
@@ -243,7 +243,7 @@ public unsafe class Canvas
 			uint RWidth = EndX - StartX;
 
 			// Calculate destination offset for the starting point
-			uint Destination = StartY * this.Width + StartX;
+			uint Destination = (StartY * this.Width) + StartX;
 
 			// Fill the region with the color
 			for (uint IY = 0; IY < RHeight; IY++)
@@ -289,8 +289,8 @@ public unsafe class Canvas
 			DrawFilledCircle(X + Radius, Y + Height - Radius - 1, Radius, Color);
 			DrawFilledCircle(X + Width - Radius - 1, Y + Height - Radius - 1, Radius, Color);
 
-			DrawFilledRectangle(X + Radius, Y, (ushort)(Width - Radius * 2), Height, 0, Color);
-			DrawFilledRectangle(X, Y + Radius, Width, (ushort)(Height - Radius * 2), 0, Color);
+			DrawFilledRectangle(X + Radius, Y, (ushort)(Width - (Radius * 2)), Height, 0, Color);
+			DrawFilledRectangle(X, Y + Radius, Width, (ushort)(Height - (Radius * 2)), 0, Color);
 		}
 	}
 
@@ -339,11 +339,11 @@ public unsafe class Canvas
 			{
 				if ((IX + IY) % 2 == 0)
 				{
-					DrawFilledRectangle(X + IX * BlockSize, Y + IY * BlockSize, BlockSize, BlockSize, 0, BlockType1);
+					DrawFilledRectangle(X + (IX * BlockSize), Y + (IY * BlockSize), BlockSize, BlockSize, 0, BlockType1);
 				}
 				else
 				{
-					DrawFilledRectangle(X + IX * BlockSize, Y + IY * BlockSize, BlockSize, BlockSize, 0, BlockType2);
+					DrawFilledRectangle(X + (IX * BlockSize), Y + (IY * BlockSize), BlockSize, BlockSize, 0, BlockType2);
 				}
 			}
 		}
@@ -391,18 +391,18 @@ public unsafe class Canvas
 		Max.Z = (int)(Max.Z + 0xF) >> 4;
 
 		// Half-edge constants
-		int C1 = (int)(D12.Y * Triangle.P1.X - D12.X * Triangle.P1.Y);
-		int C2 = (int)(D23.Y * Triangle.P2.X - D23.X * Triangle.P2.Y);
-		int C3 = (int)(D31.Y * Triangle.P3.X - D31.X * Triangle.P3.Y);
+		int C1 = (int)((D12.Y * Triangle.P1.X) - (D12.X * Triangle.P1.Y));
+		int C2 = (int)((D23.Y * Triangle.P2.X) - (D23.X * Triangle.P2.Y));
+		int C3 = (int)((D31.Y * Triangle.P3.X) - (D31.X * Triangle.P3.Y));
 
 		// Correct for fill convention
-		if (D12.Y < 0 || D12.Y == 0 && D12.X > 0) C1++;
-		if (D23.Y < 0 || D23.Y == 0 && D23.X > 0) C2++;
-		if (D31.Y < 0 || D31.Y == 0 && D31.X > 0) C3++;
+		if (D12.Y < 0 || (D12.Y == 0 && D12.X > 0)) C1++;
+		if (D23.Y < 0 || (D23.Y == 0 && D23.X > 0)) C2++;
+		if (D31.Y < 0 || (D31.Y == 0 && D31.X > 0)) C3++;
 
-		int CY1 = (int)(C1 + D12.X * ((int)Min.Y << 4) - D12.Y * ((int)Min.X << 4));
-		int CY2 = (int)(C2 + D23.X * ((int)Min.Y << 4) - D23.Y * ((int)Min.X << 4));
-		int CY3 = (int)(C3 + D31.X * ((int)Min.Y << 4) - D31.Y * ((int)Min.X << 4));
+		int CY1 = (int)(C1 + (D12.X * ((int)Min.Y << 4)) - (D12.Y * ((int)Min.X << 4)));
+		int CY2 = (int)(C2 + (D23.X * ((int)Min.Y << 4)) - (D23.Y * ((int)Min.X << 4)));
+		int CY3 = (int)(C3 + (D31.X * ((int)Min.Y << 4)) - (D31.Y * ((int)Min.X << 4)));
 
 		for (int Y = (int)Min.Y; Y < Max.Y; Y++)
 		{
@@ -479,8 +479,8 @@ public unsafe class Canvas
 			// Loop for each line in the circle.
 			for (int IY = -Radius; IY <= Radius; IY++)
 			{
-				int IX = (int)(Math.Sqrt(R2 - IY * IY) + 0.5);
-				uint* Offset = Internal + Width * (Y + IY) + X - IX;
+				int IX = (int)(Math.Sqrt(R2 - (IY * IY)) + 0.5);
+				uint* Offset = Internal + (Width * (Y + IY)) + X - IX;
 
 				// Clip circle if it is out of bounds
 				if (X + Radius >= Width)
@@ -506,7 +506,7 @@ public unsafe class Canvas
 		// Draw using slow algorithm.
 		for (int IX = -Radius; IX < Radius; IX++)
 		{
-			int Height = (int)Math.Sqrt(Radius * Radius - IX * IX);
+			int Height = (int)Math.Sqrt((Radius * Radius) - (IX * IX));
 
 			for (int IY = -Height; IY < Height; IY++)
 			{
@@ -524,7 +524,7 @@ public unsafe class Canvas
 	/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 	public void DrawCircle(int X, int Y, ushort Radius, Color Color)
 	{
-		int IX = 0, IY = Radius, DP = 3 - 2 * Radius;
+		int IX = 0, IY = Radius, DP = 3 - (2 * Radius);
 
 		while (IY >= IX)
 		{
@@ -542,11 +542,11 @@ public unsafe class Canvas
 			if (DP > 0)
 			{
 				IY--;
-				DP += 4 * (IX - IY) + 10;
+				DP += (4 * (IX - IY)) + 10;
 			}
 			else
 			{
-				DP += 4 * IX + 6;
+				DP += (4 * IX) + 6;
 			}
 		}
 	}
@@ -609,8 +609,8 @@ public unsafe class Canvas
 			double Power3V2 = U * U * U;
 			double Power2V2 = U * U;
 
-			double XU = Power3V1 * X1 + 3 * U * Power2V1 * X2 + 3 * Power2V2 * (1 - U) * X3 + Power3V2 * X4;
-			double YU = Power3V1 * Y1 + 3 * U * Power2V1 * Y2 + 3 * Power2V2 * (1 - U) * Y3 + Power3V2 * Y4;
+			double XU = (Power3V1 * X1) + (3 * U * Power2V1 * X2) + (3 * Power2V2 * (1 - U) * X3) + (Power3V2 * X4);
+			double YU = (Power3V1 * Y1) + (3 * U * Power2V1 * Y2) + (3 * Power2V2 * (1 - U) * Y3) + (Power3V2 * Y4);
 
 			this[(int)XU, (int)YU] = Color;
 		}
@@ -757,8 +757,8 @@ public unsafe class Canvas
 			uint Width = EndX - StartX;
 
 			// Calculate destination & source offsets.
-			uint Destination = StartY * this.Width + StartX;
-			uint Source = (uint)((StartY - Y) * Image.Width + (StartX - X));
+			uint Destination = (StartY * this.Width) + StartX;
+			uint Source = (uint)(((StartY - Y) * Image.Width) + (StartX - X));
 
 			// Draw each line.
 			for (uint IY = 0; IY < Height; IY++)

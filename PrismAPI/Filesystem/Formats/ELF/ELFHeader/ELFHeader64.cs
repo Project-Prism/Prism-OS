@@ -29,12 +29,9 @@ public unsafe struct ELFHeader64
         SHStringIndex = Original->SHStringIndex;
     }
 
-    #region Methods
+    #region Properties
 
-    public bool IsValid()
-    {
-        return MagicNumber == 0x7F454C46;
-    }
+    public bool IsValid => MagicNumber == 0x7F454C46;
 
     #endregion
 

@@ -31,7 +31,7 @@ public static class FilesystemManager
 	public static void Format(int Disk, string Format)
 	{
 		// Write format status indicating formatting has begun.
-		Debugger.WriteFull($@"Formatting disk {Disk}...", Severity.Info);
+		Debugger.WriteFull($"Formatting disk {Disk}...", Severity.Info);
 
 		// Select the proper disk to format.
 		Disk SelectedDisk = VFS.Disks[Disk];

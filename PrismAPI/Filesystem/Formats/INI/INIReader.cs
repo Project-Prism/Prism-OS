@@ -155,11 +155,8 @@ public class INIReader
         { // Return At Invalid Index
             return false;
         }
-        if (Source[(Index - Key.Length)..Index] == Key)
-        {
-            return true;
-        }
-        return false;
+
+        return Source[(Index - Key.Length)..Index] == Key;
     }
 
     public override string ToString()

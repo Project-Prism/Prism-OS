@@ -29,12 +29,9 @@ public unsafe struct ELFHeader32
         SHStringIndex = Original->SHStringIndex;
     }
 
-    #region Methods
+    #region Properties
 
-    public bool IsValid()
-    {
-        return MagicNumber == BitConverter.ToUInt32(new byte[] { 0x7F, 0x45, 0x4C, 0x46 });
-    }
+    public bool IsValid => MagicNumber == BitConverter.ToUInt32(new byte[] { 0x7F, 0x45, 0x4C, 0x46 });
 
     #endregion
 

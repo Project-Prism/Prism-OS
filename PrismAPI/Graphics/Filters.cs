@@ -69,7 +69,7 @@ public static unsafe class Filters
 			{
 				double PX = Math.Floor(X * XRatio);
 
-				Result.Internal[Y * Width + X] = G.Internal[(uint)(PY * G.Width + PX)];
+				Result.Internal[(Y * Width) + X] = G.Internal[(uint)((PY * G.Width) + PX)];
 			}
 		}
 
@@ -172,8 +172,8 @@ public static unsafe class Filters
 		{
 			for (int Y = 0; Y < G.Height; Y++)
 			{
-				int X2 = (int)(Math.Cos(Angle) * X - Math.Sin(Angle) * Y);
-				int Y2 = (int)(Math.Sin(Angle) * X + Math.Cos(Angle) * Y);
+				int X2 = (int)((Math.Cos(Angle) * X) - (Math.Sin(Angle) * Y));
+				int Y2 = (int)((Math.Sin(Angle) * X) + (Math.Cos(Angle) * Y));
 
 				Result[X2, Y2] = G[X, Y];
 			}

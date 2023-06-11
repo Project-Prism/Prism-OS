@@ -79,7 +79,7 @@ public class Font
 		Glyph Temp = new(0, Size);
 
 		// Get the index of the char in the font.
-		uint Index = (uint)DefaultCharset.IndexOf(C);
+		int Index = DefaultCharset.IndexOf(C);
 
 		if (Index < 0)
 		{

@@ -73,7 +73,7 @@ public static unsafe class Unix
 					ELFHeader32 Header = new((ELFHeader32*)P);
 
 					// Print out it's details.
-					Console.WriteLine($"Is Valid: {Header.IsValid()}");
+					Console.WriteLine($"Is Valid: {Header.IsValid}");
 					Console.WriteLine($"Type: {Header.Type}");
 					Console.WriteLine($"Machine Type: {Header.MachineType}");
 					Console.WriteLine($"Machine Version: {Header.MachineVersion}");
@@ -82,7 +82,7 @@ public static unsafe class Unix
 			}
 			else
 			{
-				Console.WriteLine($"Incorrect arguments were specified.");
+				Console.WriteLine("Incorrect arguments were specified.");
 				return;
 			}
 		}

@@ -12,7 +12,7 @@ public class Packet
 
     public static long WritePosition(Vector3 Position)
     {
-        return ((long)Position.X & 0x3FFFFFF) << 38 | ((long)Position.Z & 0x3FFFFFF) << 12 | (long)Position.Y & 0xFFF;
+        return ((long)Position.X & 0x3FFFFFF) << 38 | ((long)Position.Z & 0x3FFFFFF) << 12 | ((long)Position.Y & 0xFFF);
     }
 
     public static Vector3 ReadPosition(long Position)

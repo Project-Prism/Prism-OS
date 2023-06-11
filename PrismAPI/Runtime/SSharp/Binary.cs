@@ -71,7 +71,7 @@ public unsafe class Binary
 		switch ((OPCode)ROM.ReadByte())
 		{
 			case OPCode.System_Runtime_ThrowException:
-				Console.WriteLine($"Exception: " + ROM.ReadString());
+				Console.WriteLine($"Exception: {ROM.ReadString()}");
 				break;
 			case OPCode.System_Console_WriteLine:
 				Console.WriteLine(ROM.ReadString());

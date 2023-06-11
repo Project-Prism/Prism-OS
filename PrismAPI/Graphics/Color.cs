@@ -198,12 +198,12 @@ public struct Color
 				return;
 			}
 
-			float Q = L < 0.5 ? L * S + L : L + S - L * S;
-			float P = 2 * L - Q;
+			float Q = L < 0.5 ? (L * S) + L : L + S - (L * S);
+			float P = (2 * L) - Q;
 
-			_R = FromHue(P, Q, H + 1 / 3);
+			_R = FromHue(P, Q, H + (1 / 3));
 			_G = FromHue(P, Q, H);
-			_B = FromHue(P, Q, H - 1 / 3);
+			_B = FromHue(P, Q, H - (1 / 3));
 
 			// Assign the ARGB value.
 			_ARGB = GetPacked(_A, _R, _G, _B);
@@ -410,27 +410,21 @@ public struct Color
 		this.ARGB = ARGB;
 	}
 
-	#endregion
+    #endregion
 
-	#region Properties
+    #region Properties
 
-	/// <summary>
-	/// Property used to get the overall brightness of the color.
-	/// </summary>
-	public float Brightness
+    /// <summary>
+    /// Property used to get the overall brightness of the color.
+    /// </summary>
+    public float Brightness => (Max(this) + Min(this)) / (byte.MaxValue * 2f);
+
+    /// <summary>
+    /// Packed ARGB value of the color.
+    /// </summary>
+    public uint ARGB
 	{
-		get
-		{
-			return (Max(this) + Min(this)) / (byte.MaxValue * 2f);
-		}
-	}
-
-	/// <summary>
-	/// Packed ARGB value of the color.
-	/// </summary>
-	public uint ARGB
-	{
-		get => _ARGB;
+        readonly get => _ARGB;
 		set
 		{
 			_ARGB = value;
@@ -446,7 +440,7 @@ public struct Color
 	/// </summary>
 	public float A
 	{
-		get => _A;
+        readonly get => _A;
 		set
 		{
 			_A = value;
@@ -459,7 +453,7 @@ public struct Color
 	/// </summary>
 	public float R
 	{
-		get => _R;
+        readonly get => _R;
 		set
 		{
 			_R = value;
@@ -472,7 +466,7 @@ public struct Color
 	/// </summary>
 	public float G
 	{
-		get => _G;
+        readonly get => _G;
 		set
 		{
 			_G = value;
@@ -485,7 +479,7 @@ public struct Color
 	/// </summary>
 	public float B
 	{
-		get => _B;
+        readonly get => _B;
 		set
 		{
 			_B = value;
@@ -634,15 +628,15 @@ public struct Color
 	{
 		if (T < 0)
 		{
-			T += 1;
+            T++;
 		}
 		if (T > 1)
 		{
-			T -= 1;
+            T--;
 		}
 		if (T < 1 / 6)
 		{
-			return P + (Q - P) * 6 * T;
+			return P + ((Q - P) * 6 * T);
 		}
 		if (T < 0.5)
 		{
@@ -650,7 +644,7 @@ public struct Color
 		}
 		if (T < 2 / 3)
 		{
-			return P + (Q - P) * (2 / 3 - T) * 6;
+			return P + ((Q - P) * ((2 / 3) - T) * 6);
 		}
 
 		return P;
@@ -678,7 +672,7 @@ public struct Color
 		// Ensure 'Index' is between 0.0 and 1.0.
 		Index = (float)Math.Clamp(Index, 0.0, 1.0);
 
-		return StartValue + (EndValue - StartValue) * Index;
+		return StartValue + ((EndValue - StartValue) * Index);
 	}
 
 	/// <summary>

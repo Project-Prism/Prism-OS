@@ -1,7 +1,7 @@
 ﻿namespace PrismAPI.Tools.Compression;
 
 /// <summary>
-/// public domain zlib decode    
+/// public domain zlib decode
 /// original: v0.2  Sean Barrett 2006-11-18
 /// ported to C# by Tammo Hinrichs, 2012-08-02
 /// simple implementation
@@ -142,9 +142,13 @@ public class DeflateStream
         // not resolved by fast table, so compute it the slow way
         // use jpeg approach, which requires MSbits at top
         int k = BitReverse((int)CodeBuffer, 16);
+
         for (s = FastBits + 1; ; ++s)
+        {
             if (k < z.MaxCode[s])
                 break;
+        }
+
         if (s == 16) return -1; // invalid code!
                                 // code size is s, so:
         b = (k >> 16 - s) - z.FirstCode[s] + z.FirstSymbol[s];
@@ -202,7 +206,9 @@ public class DeflateStream
             int c = HuffmanDecode(codeLength);
             // Debug.Assert(c >= 0 && c < 19);
             if (c < 16)
+            {
                 lenCodes[n++] = (byte)c;
+            }
             else if (c == 16)
             {
                 c = (int)Receive(2) + 3;
@@ -244,9 +250,13 @@ public class DeflateStream
         //Debug.Assert(NumBits == 0);
         // now fill header the normal way
         while (k < 4)
+        {
             header[k++] = (byte)Get8();
-        int len = header[1] * 256 + header[0];
-        int nlen = header[3] * 256 + header[2];
+        }
+
+        int len = (header[1] * 256) + header[0];
+        int nlen = (header[3] * 256) + header[2];
+
         if (nlen != (len ^ 0xffff)) throw new Exception("zlib corrupt");
         if (InPos + len > In.Count) throw new Exception("read past buffer");
 

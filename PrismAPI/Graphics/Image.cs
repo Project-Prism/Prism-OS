@@ -42,7 +42,7 @@ public unsafe static class Image
         Canvas Temp = new(0, 0);
 
         // Reading magic number to identify if BMP file. (BM as string - 42 4D as Hex)
-        if ("42-4D" != BitConverter.ToString(Reader.ReadBytes(2))) // do uint if not work?
+        if (BitConverter.ToString(Reader.ReadBytes(2)) != "42-4D") // do uint if not work?
         {
             throw new FormatException("The input file is not a bitmap file!");
         }
@@ -104,7 +104,7 @@ public unsafe static class Image
         // Look at the link above for the explanation.
         if (TotalImageSize == 0)
         {
-            TotalImageSize = (uint)((Temp.Width * PixelSize + 31 & ~31) >> 3) * Temp.Height;
+            TotalImageSize = (uint)(((Temp.Width * PixelSize) + 31 & ~31) >> 3) * Temp.Height;
         }
 
         // Calculate the padding.
@@ -160,7 +160,7 @@ public unsafe static class Image
                 }
 
                 // Set the pixel value. The bits should be A, R, G, B but the order is switched.
-                Temp.Internal[X + (Temp.Height - (Y + 1)) * Temp.Width] = BitConverter.ToUInt32(Pixel, 0);
+                Temp.Internal[X + ((Temp.Height - (Y + 1)) * Temp.Width)] = BitConverter.ToUInt32(Pixel, 0);
             }
 
             // Increment the padding.

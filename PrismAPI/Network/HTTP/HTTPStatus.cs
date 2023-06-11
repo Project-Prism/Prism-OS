@@ -73,5 +73,4 @@ public enum HTTPStatus
 	LoopDetected = 508,
 	NotExtended = 510,
 	NetworkAuthenticationRequired = 511,
-
 }

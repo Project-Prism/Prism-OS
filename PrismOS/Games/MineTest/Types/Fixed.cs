@@ -61,7 +61,6 @@ public class Fixed
         return new(Value / 32.0D);
     }
 
-
     public static implicit operator int(Fixed Value)
     {
         return (int)(Value.Value * 32.0D);

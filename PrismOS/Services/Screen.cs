@@ -59,7 +59,7 @@ public class Screen : Service
 	#endregion
 
 	#region Methods
-		
+
 	public override void Tick()
 	{
 		Canvas.Clear();

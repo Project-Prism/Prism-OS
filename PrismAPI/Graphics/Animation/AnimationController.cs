@@ -25,7 +25,7 @@ public class AnimationController
 		this.Mode = Mode;
 
 		// Assign the timer.
-		Timer = new((O) => Next(), null, DelayMS, 0);
+		Timer = new((_) => Next(), null, DelayMS, 0);
 	}
 
 	#endregion
@@ -66,7 +66,7 @@ public class AnimationController
 		// Ensure 'Index' is between 0.0 and 1.0.
 		Index = (float)Math.Clamp(Index, 0.0, 1.0);
 
-		return StartValue + (EndValue - StartValue) * Index;
+		return StartValue + ((EndValue - StartValue) * Index);
 	}
 
 	private static float BounceOut(float T)
@@ -77,15 +77,15 @@ public class AnimationController
 		}
 		else if (T < 2f / 2.75f)
 		{
-			return 7.5625f * (T -= 1.5f / 2.75f) * T + 0.75f;
+			return (7.5625f * (T -= 1.5f / 2.75f) * T) + 0.75f;
 		}
 		else if (T < 2.5f / 2.75f)
 		{
-			return 7.5625f * (T -= 2.25f / 2.75f) * T + 0.9375f;
+			return (7.5625f * (T -= 2.25f / 2.75f) * T) + 0.9375f;
 		}
 		else
 		{
-			return 7.5625f * (T -= 2.625f / 2.75f) * T + 0.984375f;
+			return (7.5625f * (T -= 2.625f / 2.75f) * T) + 0.984375f;
 		}
 	}
 
@@ -102,7 +102,7 @@ public class AnimationController
 		}
 		else
 		{
-			return BounceOut(T * 2f - 1f) * 0.5f + 0.5f;
+			return (BounceOut((T * 2f) - 1f) * 0.5f) + 0.5f;
 		}
 	}
 

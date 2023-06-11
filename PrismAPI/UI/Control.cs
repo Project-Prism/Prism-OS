@@ -8,8 +8,9 @@ public abstract class Control : Canvas
 {
     #region Constructors
 
-    public Control(ushort Width, ushort Height) : base(Width, Height)
+    internal Control(ushort Width, ushort Height) : base(Width, Height)
     {
+        OnClick = new((int _, int _, MouseState _) => { });
         Layout = LayoutStyle.None;
         Theme = ThemeStyle.None;
         BackGround = Color.White;

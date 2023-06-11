@@ -2,9 +2,9 @@
 
 public abstract class Service
 {
-	public Service()
+	internal Service()
 	{
-		Timer T = new((object? O) => { if (EnableTicks) { Tick(); } }, null, 55, 0);
+		Timer T = new((_) => { if (EnableTicks) { Tick(); } }, null, 55, 0);
 	}
 
 	public abstract void Tick();
