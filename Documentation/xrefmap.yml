@@ -8717,6 +8717,12 @@ references:
   isSpec: "True"
   fullName: PrismAPI.UI.WindowManager.Update
   nameWithType: WindowManager.Update
+- uid: PrismAPI.UI.WindowManager.Widgets
+  name: Widgets
+  href: API/PrismAPI.UI.WindowManager.html#PrismAPI_UI_WindowManager_Widgets
+  commentId: F:PrismAPI.UI.WindowManager.Widgets
+  fullName: PrismAPI.UI.WindowManager.Widgets
+  nameWithType: WindowManager.Widgets
 - uid: PrismAPI.UI.WindowManager.Windows
   name: Windows
   href: API/PrismAPI.UI.WindowManager.html#PrismAPI_UI_WindowManager_Windows
