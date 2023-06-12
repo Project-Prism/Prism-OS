@@ -46,7 +46,7 @@ public class Screen : Service
 
 		Engine.Objects.Add(Mesh.GetCube(200, 200, 200));
 		Engine.Camera.Position.Z = 200;
-		WindowManager.Windows.Add(new(100, 100, 250, 150));
+		WindowManager.Windows.Add(new(100, 100, 250, 150, "Window1"));
 		WindowManager.Windows[^1].Controls.Add(new Button(50, 50, 128, 64, 4, "Button1")
 		{
 			Theme = ThemeStyle.Material,

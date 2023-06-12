@@ -12,11 +12,12 @@ public static class DialogBox
 		int X = (ushort)((MouseManager.ScreenWidth / 2) + (Height / 2));
 		int Y = (ushort)((MouseManager.ScreenWidth / 2) + (Width / 2));
 
-		Window Temp = new(X, Y, Width, Height)
+		Window Temp = new(X, Y, Width, Height, Title)
 		{
 			Controls =
 			{
-				new Button(Width - 128, Height - 64, 128, 64, 0, "OK")
+				new Button(Width - 128, Height - 64, 128, 64, 0, "OK"),
+				new Label(Message),
 			},
 		};
 

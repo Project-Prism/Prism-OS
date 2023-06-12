@@ -9,7 +9,7 @@ public class Window : Control
 {
 	#region Constructors
 
-	public Window(int X, int Y, ushort Width, ushort Height) : base(Width, Height)
+	public Window(int X, int Y, ushort Width, ushort Height, string Title) : base(Width, Height)
 	{
 		// Initialize the control list.
 		ShelfControls = new();
@@ -20,6 +20,7 @@ public class Window : Control
 		WindowBody = new(Width, Height);
 
 		// Initialize the window fields.
+		this.Title = Title;
 		this.X = X;
 		this.Y = Y;
 	}
@@ -44,6 +45,9 @@ public class Window : Control
 		{
 			C.Update(TitleShelf);
 		}
+
+		// Draw the window's title on the shelf.
+		TitleShelf.DrawString(TitleShelf.Width / 2, TitleShelf.Height / 2, Title, default, Color.White, true);
 
 		// Draw the cache of each control.
 		foreach (Control C in Controls)
@@ -94,6 +98,7 @@ public class Window : Control
 	private readonly Canvas TitleShelf;
 	private readonly Canvas WindowBody;
 	internal bool IsMoving;
+	public string Title;
 	internal int IX;
 	internal int IY;
 
