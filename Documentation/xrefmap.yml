@@ -8626,6 +8626,50 @@ references:
   isSpec: "True"
   fullName: PrismAPI.UI.Controls.Button.Update
   nameWithType: Button.Update
+- uid: PrismAPI.UI.Controls.Label
+  name: Label
+  href: API/PrismAPI.UI.Controls.Label.html
+  commentId: T:PrismAPI.UI.Controls.Label
+  fullName: PrismAPI.UI.Controls.Label
+  nameWithType: Label
+- uid: PrismAPI.UI.Controls.Label.#ctor(System.String)
+  name: Label(string)
+  href: API/PrismAPI.UI.Controls.Label.html#PrismAPI_UI_Controls_Label__ctor_System_String_
+  commentId: M:PrismAPI.UI.Controls.Label.#ctor(System.String)
+  name.vb: New(String)
+  fullName: PrismAPI.UI.Controls.Label.Label(string)
+  fullName.vb: PrismAPI.UI.Controls.Label.New(String)
+  nameWithType: Label.Label(string)
+  nameWithType.vb: Label.New(String)
+- uid: PrismAPI.UI.Controls.Label.#ctor*
+  name: Label
+  href: API/PrismAPI.UI.Controls.Label.html#PrismAPI_UI_Controls_Label__ctor_
+  commentId: Overload:PrismAPI.UI.Controls.Label.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: PrismAPI.UI.Controls.Label.Label
+  fullName.vb: PrismAPI.UI.Controls.Label.New
+  nameWithType: Label.Label
+  nameWithType.vb: Label.New
+- uid: PrismAPI.UI.Controls.Label.Contents
+  name: Contents
+  href: API/PrismAPI.UI.Controls.Label.html#PrismAPI_UI_Controls_Label_Contents
+  commentId: F:PrismAPI.UI.Controls.Label.Contents
+  fullName: PrismAPI.UI.Controls.Label.Contents
+  nameWithType: Label.Contents
+- uid: PrismAPI.UI.Controls.Label.Update(PrismAPI.Graphics.Canvas)
+  name: Update(Canvas)
+  href: API/PrismAPI.UI.Controls.Label.html#PrismAPI_UI_Controls_Label_Update_PrismAPI_Graphics_Canvas_
+  commentId: M:PrismAPI.UI.Controls.Label.Update(PrismAPI.Graphics.Canvas)
+  fullName: PrismAPI.UI.Controls.Label.Update(PrismAPI.Graphics.Canvas)
+  nameWithType: Label.Update(Canvas)
+- uid: PrismAPI.UI.Controls.Label.Update*
+  name: Update
+  href: API/PrismAPI.UI.Controls.Label.html#PrismAPI_UI_Controls_Label_Update_
+  commentId: Overload:PrismAPI.UI.Controls.Label.Update
+  isSpec: "True"
+  fullName: PrismAPI.UI.Controls.Label.Update
+  nameWithType: Label.Update
 - uid: PrismAPI.UI.DialogBox
   name: DialogBox
   href: API/PrismAPI.UI.DialogBox.html
@@ -8654,15 +8698,15 @@ references:
   commentId: T:PrismAPI.UI.Window
   fullName: PrismAPI.UI.Window
   nameWithType: Window
-- uid: PrismAPI.UI.Window.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16)
-  name: Window(int, int, ushort, ushort)
-  href: API/PrismAPI.UI.Window.html#PrismAPI_UI_Window__ctor_System_Int32_System_Int32_System_UInt16_System_UInt16_
-  commentId: M:PrismAPI.UI.Window.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16)
-  name.vb: New(Integer, Integer, UShort, UShort)
-  fullName: PrismAPI.UI.Window.Window(int, int, ushort, ushort)
-  fullName.vb: PrismAPI.UI.Window.New(Integer, Integer, UShort, UShort)
-  nameWithType: Window.Window(int, int, ushort, ushort)
-  nameWithType.vb: Window.New(Integer, Integer, UShort, UShort)
+- uid: PrismAPI.UI.Window.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16,System.String)
+  name: Window(int, int, ushort, ushort, string)
+  href: API/PrismAPI.UI.Window.html#PrismAPI_UI_Window__ctor_System_Int32_System_Int32_System_UInt16_System_UInt16_System_String_
+  commentId: M:PrismAPI.UI.Window.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16,System.String)
+  name.vb: New(Integer, Integer, UShort, UShort, String)
+  fullName: PrismAPI.UI.Window.Window(int, int, ushort, ushort, string)
+  fullName.vb: PrismAPI.UI.Window.New(Integer, Integer, UShort, UShort, String)
+  nameWithType: Window.Window(int, int, ushort, ushort, string)
+  nameWithType.vb: Window.New(Integer, Integer, UShort, UShort, String)
 - uid: PrismAPI.UI.Window.#ctor*
   name: Window
   href: API/PrismAPI.UI.Window.html#PrismAPI_UI_Window__ctor_
@@ -8685,6 +8729,12 @@ references:
   commentId: F:PrismAPI.UI.Window.ShelfControls
   fullName: PrismAPI.UI.Window.ShelfControls
   nameWithType: Window.ShelfControls
+- uid: PrismAPI.UI.Window.Title
+  name: Title
+  href: API/PrismAPI.UI.Window.html#PrismAPI_UI_Window_Title
+  commentId: F:PrismAPI.UI.Window.Title
+  fullName: PrismAPI.UI.Window.Title
+  nameWithType: Window.Title
 - uid: PrismAPI.UI.Window.Update(PrismAPI.Graphics.Canvas)
   name: Update(Canvas)
   href: API/PrismAPI.UI.Window.html#PrismAPI_UI_Window_Update_PrismAPI_Graphics_Canvas_
