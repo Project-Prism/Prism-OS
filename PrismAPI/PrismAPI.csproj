@@ -2,7 +2,8 @@
 
 	<!-- Config group -->
 	<PropertyGroup>
-
+		
+		<PackageLicenseExpression>GPL-2.0-or-later</PackageLicenseExpression>
 		<GenerateDocumentationFile>false</GenerateDocumentationFile>
 		<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -13,10 +14,23 @@
 		<NoWin32Manifest>true</NoWin32Manifest>
 		<Authors>The Prism Project</Authors>
 		<SelfContained>true</SelfContained>
+		<PackageId>PrismAPI</PackageId>
 		<DebugType>none</DebugType>
 		<Nullable>enable</Nullable>
 		<Optimize>true</Optimize>
+		<Version>1.0.0</Version>
 		<Title>PrismAPI</Title>
+
+		<!-- Package Description -->
+		<Description>
+
+		The PrismAPI package, can be used for many purposed in external cosmos projects.
+		This project offers no waranty (as shown by the license) and is not garunteed to work 100% of the time.
+		Use within your reasonale needs and give credits where due.
+
+		Full API documentation: https://prism-project.net/Documentation/
+
+		</Description>
 
 	</PropertyGroup>
 
