@@ -25,9 +25,9 @@ public static class WindowManager
 		{
 			// Check if the widget is even enabled - skip if not.
 			if (!W.IsEnabled)
-            {
-                continue;
-            }
+			{
+				continue;
+			}
 
 			// Check if the mouse is hovering over the control.
 			if (MouseEx.IsMouseWithin(W.X, W.Y, W.Width, W.Height))
@@ -87,9 +87,9 @@ public static class WindowManager
 		}
 	}
 
-    #endregion
+	#endregion
 
-    #region Fields
+	#region Fields
 
 	public static List<Control> Widgets;
 	public static List<Window> Windows;
