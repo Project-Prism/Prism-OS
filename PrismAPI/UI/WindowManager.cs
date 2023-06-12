@@ -22,36 +22,36 @@ public static class WindowManager
 	public static void Update(Canvas Canvas)
 	{
 		foreach (Control W in Widgets)
-        {
-            // Check if the widget is even enabled - skip if not.
-            if (!W.IsEnabled)
+		{
+			// Check if the widget is even enabled - skip if not.
+			if (!W.IsEnabled)
             {
                 continue;
             }
 
-            // Check if the mouse is hovering over the control.
-            if (MouseEx.IsMouseWithin(W.X, W.Y, W.Width, W.Height))
-            {
-                // Set the cursor's status to hovering.
-                W.Status = CursorStatus.Hovering;
+			// Check if the mouse is hovering over the control.
+			if (MouseEx.IsMouseWithin(W.X, W.Y, W.Width, W.Height))
+			{
+				// Set the cursor's status to hovering.
+				W.Status = CursorStatus.Hovering;
 
-                // Check if a click (any kind) has been detected.
-                if (MouseManager.MouseState != MouseManager.LastMouseState)
-                {
-                    // Assign new click state before click method.
-                    W.Status = CursorStatus.Clicked;
+				// Check if a click (any kind) has been detected.
+				if (MouseManager.MouseState != MouseManager.LastMouseState)
+				{
+					// Assign new click state before click method.
+					W.Status = CursorStatus.Clicked;
 
-                    // Execute the control's click method.
-                    W.OnClick((int)MouseManager.X, (int)MouseManager.Y, MouseManager.LastMouseState);
-                }
-            }
-            else
-            {
-                // Set the control's status to idle - nothing is happening.
-                W.Status = CursorStatus.Idle;
-            }
+					// Execute the control's click method.
+					W.OnClick((int)MouseManager.X, (int)MouseManager.Y, MouseManager.LastMouseState);
+				}
+			}
+			else
+			{
+				// Set the control's status to idle - nothing is happening.
+				W.Status = CursorStatus.Idle;
+			}
 
-            // Update the widget onto the screen body.
+			// Update the widget onto the screen body.
 			W.Update(Canvas);
 		}
 
@@ -91,7 +91,7 @@ public static class WindowManager
 
     #region Fields
 
-    public static List<Control> Widgets;
+	public static List<Control> Widgets;
 	public static List<Window> Windows;
 
 	internal static bool IsDragging;
