@@ -1,0 +1,3 @@
+# Launch Prism OS with QEMU with KVM and Audio enabled.
+
+qemu-system-x86_64 -enable-kvm -m 4G -device ac97 -cdrom ./PrismOS/bin/Debug/net6.0/PrismOS.iso 

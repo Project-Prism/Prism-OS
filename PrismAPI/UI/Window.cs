@@ -9,7 +9,7 @@ public class Window : Control
 {
 	#region Constructors
 
-	public Window(int X, int Y, ushort Width, ushort Height, string Title) : base(Width, Height)
+	public Window(int X, int Y, ushort Width, ushort Height, string Title) : base(Width, Height, ThemeStyle.None)
 	{
 		// Initialize the control list.
 		ShelfControls = new();
@@ -72,6 +72,10 @@ public class Window : Control
 
 					// Execute the control's click method.
 					C.OnClick(X - (int)MouseManager.X, Y - (int)MouseManager.Y, MouseManager.LastMouseState);
+				}
+				else if (MouseManager.MouseState == MouseState.None)
+				{
+					C.Status = CursorStatus.Idle;
 				}
 			}
 			else

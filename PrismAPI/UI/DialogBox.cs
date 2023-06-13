@@ -1,4 +1,5 @@
 ﻿using PrismAPI.UI.Controls;
+using PrismAPI.UI.Config;
 using Cosmos.System;
 
 namespace PrismAPI.UI;
@@ -16,7 +17,7 @@ public static class DialogBox
 		{
 			Controls =
 			{
-				new Button(Width - 128, Height - 64, 128, 64, 0, "OK"),
+				new Button(Width - 128, Height - 64, 128, 64, 0, "OK", ThemeStyle.Holo),
 				new Label(Message),
 			},
 		};
