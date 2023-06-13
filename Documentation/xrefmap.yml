@@ -8576,15 +8576,15 @@ references:
   commentId: T:PrismAPI.UI.Controls.Button
   fullName: PrismAPI.UI.Controls.Button
   nameWithType: Button
-- uid: PrismAPI.UI.Controls.Button.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16,System.UInt16,System.String)
-  name: Button(int, int, ushort, ushort, ushort, string)
-  href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button__ctor_System_Int32_System_Int32_System_UInt16_System_UInt16_System_UInt16_System_String_
-  commentId: M:PrismAPI.UI.Controls.Button.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16,System.UInt16,System.String)
-  name.vb: New(Integer, Integer, UShort, UShort, UShort, String)
-  fullName: PrismAPI.UI.Controls.Button.Button(int, int, ushort, ushort, ushort, string)
-  fullName.vb: PrismAPI.UI.Controls.Button.New(Integer, Integer, UShort, UShort, UShort, String)
-  nameWithType: Button.Button(int, int, ushort, ushort, ushort, string)
-  nameWithType.vb: Button.New(Integer, Integer, UShort, UShort, UShort, String)
+- uid: PrismAPI.UI.Controls.Button.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16,System.UInt16,System.String,PrismAPI.UI.Config.ThemeStyle)
+  name: Button(int, int, ushort, ushort, ushort, string, ThemeStyle)
+  href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button__ctor_System_Int32_System_Int32_System_UInt16_System_UInt16_System_UInt16_System_String_PrismAPI_UI_Config_ThemeStyle_
+  commentId: M:PrismAPI.UI.Controls.Button.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16,System.UInt16,System.String,PrismAPI.UI.Config.ThemeStyle)
+  name.vb: New(Integer, Integer, UShort, UShort, UShort, String, ThemeStyle)
+  fullName: PrismAPI.UI.Controls.Button.Button(int, int, ushort, ushort, ushort, string, PrismAPI.UI.Config.ThemeStyle)
+  fullName.vb: PrismAPI.UI.Controls.Button.New(Integer, Integer, UShort, UShort, UShort, String, PrismAPI.UI.Config.ThemeStyle)
+  nameWithType: Button.Button(int, int, ushort, ushort, ushort, string, ThemeStyle)
+  nameWithType.vb: Button.New(Integer, Integer, UShort, UShort, UShort, String, ThemeStyle)
 - uid: PrismAPI.UI.Controls.Button.#ctor*
   name: Button
   href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button__ctor_
@@ -8601,6 +8601,12 @@ references:
   commentId: F:PrismAPI.UI.Controls.Button.EndColor
   fullName: PrismAPI.UI.Controls.Button.EndColor
   nameWithType: Button.EndColor
+- uid: PrismAPI.UI.Controls.Button.MidColor
+  name: MidColor
+  href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button_MidColor
+  commentId: F:PrismAPI.UI.Controls.Button.MidColor
+  fullName: PrismAPI.UI.Controls.Button.MidColor
+  nameWithType: Button.MidColor
 - uid: PrismAPI.UI.Controls.Button.StartColor
   name: StartColor
   href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button_StartColor
