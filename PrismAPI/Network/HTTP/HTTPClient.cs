@@ -27,8 +27,10 @@ public class HTTPClient
 
 	#region Methods
 
-	public byte[] Get(int Port = 80)
+	public byte[] Get()
     {
+		int Port = URL.HasPort ? int.Parse(URL.Port) : 80;
+
         EndPoint EP = new(URL.Address, (ushort)Port);
         string Request =
             $"GET {URL.Path} HTTP/1.1\n" +

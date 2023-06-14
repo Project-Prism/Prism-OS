@@ -1,6 +1,4 @@
-﻿using Cosmos.System.Network.IPv4.UDP.DNS;
-using Cosmos.System.Network.Config;
-using Cosmos.System.Network.IPv4;
+﻿using Cosmos.System.Network.IPv4;
 
 namespace PrismAPI.Network;
 
@@ -26,14 +24,14 @@ public class URL
 
 	public bool HasProtocol => FullURL.Contains(Delimiter);
 
+	public bool HasPort => FullURL.Contains(':');
+
 	public Address Address
 	{
 		get
 		{
-			DnsClient Client = new();
-			Client.Connect(NetworkConfiguration.CurrentNetworkConfig.IPConfig.DefaultGateway);
-			Client.SendAsk(Host);
-			return Client.Receive();
+			NetworkManager.DNS.SendAsk(Host);
+			return NetworkManager.DNS.Receive();
 		}
 	}
 
@@ -97,7 +95,20 @@ public class URL
 		}
 	}
 
-	public string Port => throw new NotImplementedException();
+	public string Port
+	{
+		get
+		{
+			string Temp = FullURL;
+
+			if (HasProtocol)
+			{
+				Temp = Temp.Replace(Protocol + Delimiter, string.Empty);
+			}
+
+			return Temp.Split('/')[0].Split(':')[1];
+		}
+	}
 
 	#endregion
 

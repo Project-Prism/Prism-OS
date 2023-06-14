@@ -1,4 +1,5 @@
 ﻿using Cosmos.System.Network.IPv4.UDP.DHCP;
+using Cosmos.System.Network.IPv4.UDP.DNS;
 using Cosmos.System.Network.IPv4.TCP;
 using Cosmos.System.Network.IPv4;
 using PrismAPI.Tools.Diagnostics;
@@ -28,8 +29,16 @@ public static class NetworkManager
 	{
 		try
 		{
+			// Initialize the network;
+			Debugger = new("Network");
+
 			Debugger.WritePartial("Initializing network...");
+
+			// Initialize networking.
 			_ = new DHCPClient().SendDiscoverPacket();
+
+			// Set-up the DNS (cloudflare).
+			DNS.Connect(new(1, 1, 1, 1));
 			Debugger.Finalize(Severity.Success);
 		}
 		catch
@@ -42,7 +51,8 @@ public static class NetworkManager
 
 	#region Fields
 
-	public static Debugger Debugger { get; set; } = new("Network");
+	public static Debugger Debugger = null!;
+	public static DnsClient DNS = null!;
 
 	#endregion
 }
