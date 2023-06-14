@@ -8,10 +8,14 @@ public class Label : Control
 {
 	#region Constructors
 
-	public Label(string Contents) : base(0, 0, ThemeStyle.None)
+	public Label(int X, int Y, string Contents) : base(0, 0, ThemeStyle.None)
 	{
 		// Initialize core string for safety.
 		InternalContents = string.Empty;
+
+		// Initialize the X and Y position.
+		this.X = X;
+		this.Y = Y;
 
 		this.Contents = Contents;
 	}
@@ -25,8 +29,8 @@ public class Label : Control
 		get => InternalContents;
 		set
 		{
-			Width = Font.Fallback.MeasureString(Contents);
-			Height = (ushort)((Font.Fallback.Size * Contents.Count(C => C == '\n')) + 1);
+			Width = Font.Fallback.MeasureString(value);
+			Height = (ushort)((Font.Fallback.Size * value.Count(C => C == '\n')) + 1);
 			InternalContents = value;
 		}
 	}
@@ -37,7 +41,10 @@ public class Label : Control
 
 	public override void Update(Canvas Canvas)
 	{
-		Canvas.DrawString(X, Y, Contents, default, Color.White);
+		// Don't draw directly to canvas to allow for text clipping.
+		Clear(Color.Transparent);
+		DrawString(0, 0, Contents, default, Color.White);
+		Canvas.DrawImage(X, Y, this, true);
 	}
 
 	#endregion

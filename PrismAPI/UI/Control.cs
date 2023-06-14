@@ -10,7 +10,10 @@ public abstract class Control : Canvas
 
 	internal Control(ushort Width, ushort Height, ThemeStyle Theme) : base(Width, Height)
 	{
+		// Initialize the event handlers.
 		OnClick = new((int _, int _, MouseState _) => { });
+		OnKey = new((ConsoleKeyInfo _) => { });
+
 		Layout = LayoutStyle.None;
 		BackGround = Color.White;
 		ForeGround = Color.Black;
@@ -31,6 +34,9 @@ public abstract class Control : Canvas
 
 	// The onclick event - Runs when the element is clicked on screen.
 	public Action<int, int, MouseState> OnClick;
+
+	// The onkey event - Runs when the element is typed into;
+	public Action<ConsoleKeyInfo> OnKey;
 
 	public CursorStatus Status;
 	public LayoutStyle Layout;

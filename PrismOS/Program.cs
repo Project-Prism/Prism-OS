@@ -8,6 +8,7 @@ using Cosmos.Core.Memory;
 using PrismAPI.UI.Config;
 using PrismAPI.Graphics;
 using PrismAPI.Network;
+using PrismAPI.Tools;
 using PrismAPI.Audio;
 using Cosmos.System;
 using PrismAPI.UI;
@@ -33,11 +34,7 @@ public class Program : Kernel
 		Canvas = Display.GetDisplay(1920, 1080);
 
 		// Initialize the FPS widget.
-		FPSWidget = new("Initializing...")
-		{
-			X = 15,
-			Y = 15,
-		};
+		FPSWidget = new(15, 15, "Initializing...");
 
 		// Initialize the animations.
 		AnimationController A = new(25f, 270f, new(0, 0, 0, 0, 750), AnimationMode.Ease);
@@ -111,21 +108,11 @@ public class Program : Kernel
 	protected override void Run()
 	{
 		Canvas.Clear();
-
 		FPSWidget.Contents = $"{Canvas.GetFPS()} FPS\n{Canvas.GetName()}\n{StringEx.GetMegaBytes(GCImplementation.GetUsedRAM())} MB";
-
 		WindowManager.Update(Canvas);
-		Heap.Collect();
-
-		//int ClockSize = 40;
-		//Canvas.DrawFilledCircle(W2, H2, (ushort)ClockSize, Color.White);
-		//Canvas.DrawAngledLine(W2, H2, (short)Coordinates.Scale(Cosmos.HAL.RTC.Second, 360, 60), (ushort)(ClockSize / 1.5), Color.Red);
-		//Canvas.DrawAngledLine(W2, H2, (short)Coordinates.Scale(Cosmos.HAL.RTC.Minute, 360, 60), (ushort)(ClockSize / 2), Color.Black);
-		//Canvas.DrawAngledLine(W2, H2, (short)Coordinates.Scale(Cosmos.HAL.RTC.Hour, 360, 12), (ushort)(ClockSize / 3), Color.Black);
-
 		Canvas.DrawImage((int)MouseManager.X, (int)MouseManager.Y, Media.Cursor);
-
 		Canvas.Update();
+		Heap.Collect();
 	}
 
 	#endregion

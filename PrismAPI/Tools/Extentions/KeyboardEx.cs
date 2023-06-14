@@ -7,6 +7,8 @@ namespace PrismAPI.Tools.Extentions;
 /// </summary>
 public static class KeyboardEx
 {
+	#region Constructors
+
     /// <summary>
     /// Initializes the KeyboardEx class uppon access.
     /// </summary>
@@ -27,6 +29,8 @@ public static class KeyboardEx
             }
         }, null, 150, 0);
     }
+
+	#endregion
 
     #region Methods
 
@@ -59,12 +63,15 @@ public static class KeyboardEx
     /// <summary>
     /// A non-blocking key read method.
     /// </summary>
-    /// <returns>The currently pressed key.</returns>
-    public static ConsoleKeyInfo ReadKey()
+    /// <returns>The currently pressed key, or null if none is pressed.</returns>
+    public static ConsoleKeyInfo? ReadKey()
     {
-        ConsoleKeyInfo Key;
-        while (!TryReadKey(out Key)) { }
-        return Key;
+		if (TryReadKey(out ConsoleKeyInfo Key))
+		{
+			return Key;
+		}
+
+		return null;
     }
 
     #endregion

@@ -23,22 +23,14 @@ public static class MouseEx
     }
 
     /// <summary>
-    /// Checks if the mouse has any buttons pressed.
+    /// Checks if the mouse has any button events pressed.
     /// </summary>
-    /// <returns>True if any buttons are pressed, Otherwise False.</returns>
-    public static bool IsClickPressed()
-    {
-        return MouseManager.MouseState != MouseState.None;
-    }
+    /// <returns>True if any button events are pressed, Otherwise False.</returns>
+    public static bool IsClickFired => MouseManager.MouseState == MouseState.None && MouseManager.LastMouseState != MouseState.None;
 
-    /// <summary>
-    /// A method to check if a click event is ready to be fired.
-    /// </summary>
-    /// <returns>True if a control's click event is ready to fire, Otherwise False.</returns>
-    public static bool IsClickReady()
-    {
-        return
-            MouseManager.MouseState == MouseState.None &&
-            MouseManager.LastMouseState == MouseState.Left;
-    }
+	/// <summary>
+	/// Checks if the mouse has any buttons pressed.
+	/// </summary>
+	/// <returns>True if any buttons are pressed, Otherwise False.</returns>
+	public static bool IsClicked => MouseManager.MouseState != MouseState.None;
 }

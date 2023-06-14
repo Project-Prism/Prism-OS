@@ -29,27 +29,16 @@ public class Window : Control
 
 	#region Methods
 
-	public override void Update(Canvas Canvas)
+	/// <summary>
+	/// Processes all of the controls in a list and renders them onto a target;
+	/// </summary>
+	/// <param name="X">The X offset position for mouse targeting.</param>
+	/// <param name="Y">The Y offset position for mouse targeting.</param>
+	/// <param name="Controls">The controls to process.</param>
+	/// <param name="Target">The target to render on.</param>
+	internal static void Process(int X, int Y, List<Control> Controls, Canvas Target, ConsoleKeyInfo? Key)
 	{
-		// Resize if needed.
-		TitleShelf.Width = Width;
-		WindowBody.Height = Height;
-		WindowBody.Width = Width;
-
-		// Draw the window back panel.
-		TitleShelf.Clear(Color.DeepGray);
-		WindowBody.Clear(Color.White);
-
-		// Draw the cache of each control for the title shelf.
-		foreach (Control C in ShelfControls)
-		{
-			C.Update(TitleShelf);
-		}
-
-		// Draw the window's title on the shelf.
-		TitleShelf.DrawString(TitleShelf.Width / 2, TitleShelf.Height / 2, Title, default, Color.White, true);
-
-		// Draw the cache of each control.
+		// Loop over all of the controls to process.
 		foreach (Control C in Controls)
 		{
 			// Check if the control is even enabled - skip if not.
@@ -61,32 +50,55 @@ public class Window : Control
 			// Check if the mouse is hovering over the control.
 			if (MouseEx.IsMouseWithin(X + C.X, Y + C.Y, C.Width, C.Height))
 			{
-				// Set the cursor's status to hovering.
-				C.Status = CursorStatus.Hovering;
+				// Assign new click state before click method.
+				C.Status = MouseEx.IsClicked ? CursorStatus.Clicked : CursorStatus.Hovering;
 
-				// Check if a click (any kind) has been detected.
-				if (MouseManager.MouseState != MouseManager.LastMouseState)
+				// Check if a click (any kind) has been detected - Only run if button hasn't already been clicked last frame.
+				if (MouseEx.IsClickFired)
 				{
-					// Assign new click state before click method.
-					C.Status = CursorStatus.Clicked;
-
-					// Execute the control's click method.
 					C.OnClick(X - (int)MouseManager.X, Y - (int)MouseManager.Y, MouseManager.LastMouseState);
-				}
-				else if (MouseManager.MouseState == MouseState.None)
-				{
-					C.Status = CursorStatus.Idle;
 				}
 			}
 			else
 			{
-				// Set the control's status to idle - nothing is happening.
+				// Set the control's status to idle and continue - nothing is happening.
 				C.Status = CursorStatus.Idle;
 			}
 
+			// Execute the control's key method if it was detected.
+			if (Key != null)
+			{
+				C.OnKey(Key.Value);
+			}
+
 			// Update the control onto the window body.
-			C.Update(WindowBody);
+			C.Update(Target);
 		}
+	}
+
+	/// <summary>
+	/// Updates the window and it's controls, then coppies itself to the target canvas.
+	/// </summary>
+	/// <param name="Canvas">The canvas to render on.</param>
+	public override void Update(Canvas Canvas)
+	{
+		// Resize if needed.
+		TitleShelf.Width = Width;
+		WindowBody.Height = Height;
+		WindowBody.Width = Width;
+
+		// Draw the window back panel.
+		TitleShelf.Clear(Color.DeepGray);
+		WindowBody.Clear(Color.White);
+
+		// Try to read the current key - null if no key is pressed.
+		ConsoleKeyInfo? Key = KeyboardEx.ReadKey();
+
+		// Process all controls for the window body and shelf.
+		Process(X, Y - 32, ShelfControls, TitleShelf, Key);
+		Process(X, Y, Controls, WindowBody, Key);
+
+		TitleShelf.DrawString(TitleShelf.Width / 2, TitleShelf.Height / 2, Title, default, Color.White, true);
 
 		// Draw the window to the buffer.
 		Canvas.DrawImage(X, Y - 32, TitleShelf, Radius != 0);

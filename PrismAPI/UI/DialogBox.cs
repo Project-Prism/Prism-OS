@@ -18,7 +18,7 @@ public static class DialogBox
 			Controls =
 			{
 				new Button(Width - 128, Height - 64, 128, 64, 0, "OK", ThemeStyle.Holo),
-				new Label(Message),
+				new Label(15, 15, Message),
 			},
 		};
 
