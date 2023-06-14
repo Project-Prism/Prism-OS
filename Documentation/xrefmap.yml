@@ -8660,7 +8660,14 @@ references:
 - uid: PrismAPI.UI.Controls.Label.Contents
   name: Contents
   href: API/PrismAPI.UI.Controls.Label.html#PrismAPI_UI_Controls_Label_Contents
-  commentId: F:PrismAPI.UI.Controls.Label.Contents
+  commentId: P:PrismAPI.UI.Controls.Label.Contents
+  fullName: PrismAPI.UI.Controls.Label.Contents
+  nameWithType: Label.Contents
+- uid: PrismAPI.UI.Controls.Label.Contents*
+  name: Contents
+  href: API/PrismAPI.UI.Controls.Label.html#PrismAPI_UI_Controls_Label_Contents_
+  commentId: Overload:PrismAPI.UI.Controls.Label.Contents
+  isSpec: "True"
   fullName: PrismAPI.UI.Controls.Label.Contents
   nameWithType: Label.Contents
 - uid: PrismAPI.UI.Controls.Label.Update(PrismAPI.Graphics.Canvas)
