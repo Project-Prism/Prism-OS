@@ -7953,32 +7953,32 @@ references:
   commentId: T:PrismAPI.Tools.Extentions.MouseEx
   fullName: PrismAPI.Tools.Extentions.MouseEx
   nameWithType: MouseEx
-- uid: PrismAPI.Tools.Extentions.MouseEx.IsClickPressed
-  name: IsClickPressed()
-  href: API/PrismAPI.Tools.Extentions.MouseEx.html#PrismAPI_Tools_Extentions_MouseEx_IsClickPressed
-  commentId: M:PrismAPI.Tools.Extentions.MouseEx.IsClickPressed
-  fullName: PrismAPI.Tools.Extentions.MouseEx.IsClickPressed()
-  nameWithType: MouseEx.IsClickPressed()
-- uid: PrismAPI.Tools.Extentions.MouseEx.IsClickPressed*
-  name: IsClickPressed
-  href: API/PrismAPI.Tools.Extentions.MouseEx.html#PrismAPI_Tools_Extentions_MouseEx_IsClickPressed_
-  commentId: Overload:PrismAPI.Tools.Extentions.MouseEx.IsClickPressed
+- uid: PrismAPI.Tools.Extentions.MouseEx.IsClicked
+  name: IsClicked
+  href: API/PrismAPI.Tools.Extentions.MouseEx.html#PrismAPI_Tools_Extentions_MouseEx_IsClicked
+  commentId: P:PrismAPI.Tools.Extentions.MouseEx.IsClicked
+  fullName: PrismAPI.Tools.Extentions.MouseEx.IsClicked
+  nameWithType: MouseEx.IsClicked
+- uid: PrismAPI.Tools.Extentions.MouseEx.IsClicked*
+  name: IsClicked
+  href: API/PrismAPI.Tools.Extentions.MouseEx.html#PrismAPI_Tools_Extentions_MouseEx_IsClicked_
+  commentId: Overload:PrismAPI.Tools.Extentions.MouseEx.IsClicked
   isSpec: "True"
-  fullName: PrismAPI.Tools.Extentions.MouseEx.IsClickPressed
-  nameWithType: MouseEx.IsClickPressed
-- uid: PrismAPI.Tools.Extentions.MouseEx.IsClickReady
-  name: IsClickReady()
-  href: API/PrismAPI.Tools.Extentions.MouseEx.html#PrismAPI_Tools_Extentions_MouseEx_IsClickReady
-  commentId: M:PrismAPI.Tools.Extentions.MouseEx.IsClickReady
-  fullName: PrismAPI.Tools.Extentions.MouseEx.IsClickReady()
-  nameWithType: MouseEx.IsClickReady()
-- uid: PrismAPI.Tools.Extentions.MouseEx.IsClickReady*
-  name: IsClickReady
-  href: API/PrismAPI.Tools.Extentions.MouseEx.html#PrismAPI_Tools_Extentions_MouseEx_IsClickReady_
-  commentId: Overload:PrismAPI.Tools.Extentions.MouseEx.IsClickReady
+  fullName: PrismAPI.Tools.Extentions.MouseEx.IsClicked
+  nameWithType: MouseEx.IsClicked
+- uid: PrismAPI.Tools.Extentions.MouseEx.IsClickFired
+  name: IsClickFired
+  href: API/PrismAPI.Tools.Extentions.MouseEx.html#PrismAPI_Tools_Extentions_MouseEx_IsClickFired
+  commentId: P:PrismAPI.Tools.Extentions.MouseEx.IsClickFired
+  fullName: PrismAPI.Tools.Extentions.MouseEx.IsClickFired
+  nameWithType: MouseEx.IsClickFired
+- uid: PrismAPI.Tools.Extentions.MouseEx.IsClickFired*
+  name: IsClickFired
+  href: API/PrismAPI.Tools.Extentions.MouseEx.html#PrismAPI_Tools_Extentions_MouseEx_IsClickFired_
+  commentId: Overload:PrismAPI.Tools.Extentions.MouseEx.IsClickFired
   isSpec: "True"
-  fullName: PrismAPI.Tools.Extentions.MouseEx.IsClickReady
-  nameWithType: MouseEx.IsClickReady
+  fullName: PrismAPI.Tools.Extentions.MouseEx.IsClickFired
+  nameWithType: MouseEx.IsClickFired
 - uid: PrismAPI.Tools.Extentions.MouseEx.IsMouseWithin(System.Int32,System.Int32,System.UInt16,System.UInt16)
   name: IsMouseWithin(int, int, ushort, ushort)
   href: API/PrismAPI.Tools.Extentions.MouseEx.html#PrismAPI_Tools_Extentions_MouseEx_IsMouseWithin_System_Int32_System_Int32_System_UInt16_System_UInt16_
@@ -8530,6 +8530,12 @@ references:
   commentId: F:PrismAPI.UI.Control.OnClick
   fullName: PrismAPI.UI.Control.OnClick
   nameWithType: Control.OnClick
+- uid: PrismAPI.UI.Control.OnKey
+  name: OnKey
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_OnKey
+  commentId: F:PrismAPI.UI.Control.OnKey
+  fullName: PrismAPI.UI.Control.OnKey
+  nameWithType: Control.OnKey
 - uid: PrismAPI.UI.Control.Radius
   name: Radius
   href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_Radius
@@ -8647,15 +8653,15 @@ references:
   commentId: T:PrismAPI.UI.Controls.Label
   fullName: PrismAPI.UI.Controls.Label
   nameWithType: Label
-- uid: PrismAPI.UI.Controls.Label.#ctor(System.String)
-  name: Label(string)
-  href: API/PrismAPI.UI.Controls.Label.html#PrismAPI_UI_Controls_Label__ctor_System_String_
-  commentId: M:PrismAPI.UI.Controls.Label.#ctor(System.String)
-  name.vb: New(String)
-  fullName: PrismAPI.UI.Controls.Label.Label(string)
-  fullName.vb: PrismAPI.UI.Controls.Label.New(String)
-  nameWithType: Label.Label(string)
-  nameWithType.vb: Label.New(String)
+- uid: PrismAPI.UI.Controls.Label.#ctor(System.Int32,System.Int32,System.String)
+  name: Label(int, int, string)
+  href: API/PrismAPI.UI.Controls.Label.html#PrismAPI_UI_Controls_Label__ctor_System_Int32_System_Int32_System_String_
+  commentId: M:PrismAPI.UI.Controls.Label.#ctor(System.Int32,System.Int32,System.String)
+  name.vb: New(Integer, Integer, String)
+  fullName: PrismAPI.UI.Controls.Label.Label(int, int, string)
+  fullName.vb: PrismAPI.UI.Controls.Label.New(Integer, Integer, String)
+  nameWithType: Label.Label(int, int, string)
+  nameWithType.vb: Label.New(Integer, Integer, String)
 - uid: PrismAPI.UI.Controls.Label.#ctor*
   name: Label
   href: API/PrismAPI.UI.Controls.Label.html#PrismAPI_UI_Controls_Label__ctor_
@@ -8692,6 +8698,76 @@ references:
   isSpec: "True"
   fullName: PrismAPI.UI.Controls.Label.Update
   nameWithType: Label.Update
+- uid: PrismAPI.UI.Controls.Textbox
+  name: Textbox
+  href: API/PrismAPI.UI.Controls.Textbox.html
+  commentId: T:PrismAPI.UI.Controls.Textbox
+  fullName: PrismAPI.UI.Controls.Textbox
+  nameWithType: Textbox
+- uid: PrismAPI.UI.Controls.Textbox.#ctor(System.Int32,System.Int32,System.String,System.String)
+  name: Textbox(int, int, string, string)
+  href: API/PrismAPI.UI.Controls.Textbox.html#PrismAPI_UI_Controls_Textbox__ctor_System_Int32_System_Int32_System_String_System_String_
+  commentId: M:PrismAPI.UI.Controls.Textbox.#ctor(System.Int32,System.Int32,System.String,System.String)
+  name.vb: New(Integer, Integer, String, String)
+  fullName: PrismAPI.UI.Controls.Textbox.Textbox(int, int, string, string)
+  fullName.vb: PrismAPI.UI.Controls.Textbox.New(Integer, Integer, String, String)
+  nameWithType: Textbox.Textbox(int, int, string, string)
+  nameWithType.vb: Textbox.New(Integer, Integer, String, String)
+- uid: PrismAPI.UI.Controls.Textbox.#ctor*
+  name: Textbox
+  href: API/PrismAPI.UI.Controls.Textbox.html#PrismAPI_UI_Controls_Textbox__ctor_
+  commentId: Overload:PrismAPI.UI.Controls.Textbox.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: PrismAPI.UI.Controls.Textbox.Textbox
+  fullName.vb: PrismAPI.UI.Controls.Textbox.New
+  nameWithType: Textbox.Textbox
+  nameWithType.vb: Textbox.New
+- uid: PrismAPI.UI.Controls.Textbox.Hint
+  name: Hint
+  href: API/PrismAPI.UI.Controls.Textbox.html#PrismAPI_UI_Controls_Textbox_Hint
+  commentId: P:PrismAPI.UI.Controls.Textbox.Hint
+  fullName: PrismAPI.UI.Controls.Textbox.Hint
+  nameWithType: Textbox.Hint
+- uid: PrismAPI.UI.Controls.Textbox.Hint*
+  name: Hint
+  href: API/PrismAPI.UI.Controls.Textbox.html#PrismAPI_UI_Controls_Textbox_Hint_
+  commentId: Overload:PrismAPI.UI.Controls.Textbox.Hint
+  isSpec: "True"
+  fullName: PrismAPI.UI.Controls.Textbox.Hint
+  nameWithType: Textbox.Hint
+- uid: PrismAPI.UI.Controls.Textbox.IsActive
+  name: IsActive
+  href: API/PrismAPI.UI.Controls.Textbox.html#PrismAPI_UI_Controls_Textbox_IsActive
+  commentId: F:PrismAPI.UI.Controls.Textbox.IsActive
+  fullName: PrismAPI.UI.Controls.Textbox.IsActive
+  nameWithType: Textbox.IsActive
+- uid: PrismAPI.UI.Controls.Textbox.Text
+  name: Text
+  href: API/PrismAPI.UI.Controls.Textbox.html#PrismAPI_UI_Controls_Textbox_Text
+  commentId: P:PrismAPI.UI.Controls.Textbox.Text
+  fullName: PrismAPI.UI.Controls.Textbox.Text
+  nameWithType: Textbox.Text
+- uid: PrismAPI.UI.Controls.Textbox.Text*
+  name: Text
+  href: API/PrismAPI.UI.Controls.Textbox.html#PrismAPI_UI_Controls_Textbox_Text_
+  commentId: Overload:PrismAPI.UI.Controls.Textbox.Text
+  isSpec: "True"
+  fullName: PrismAPI.UI.Controls.Textbox.Text
+  nameWithType: Textbox.Text
+- uid: PrismAPI.UI.Controls.Textbox.Update(PrismAPI.Graphics.Canvas)
+  name: Update(Canvas)
+  href: API/PrismAPI.UI.Controls.Textbox.html#PrismAPI_UI_Controls_Textbox_Update_PrismAPI_Graphics_Canvas_
+  commentId: M:PrismAPI.UI.Controls.Textbox.Update(PrismAPI.Graphics.Canvas)
+  fullName: PrismAPI.UI.Controls.Textbox.Update(PrismAPI.Graphics.Canvas)
+  nameWithType: Textbox.Update(Canvas)
+- uid: PrismAPI.UI.Controls.Textbox.Update*
+  name: Update
+  href: API/PrismAPI.UI.Controls.Textbox.html#PrismAPI_UI_Controls_Textbox_Update_
+  commentId: Overload:PrismAPI.UI.Controls.Textbox.Update
+  isSpec: "True"
+  fullName: PrismAPI.UI.Controls.Textbox.Update
+  nameWithType: Textbox.Update
 - uid: PrismAPI.UI.DialogBox
   name: DialogBox
   href: API/PrismAPI.UI.DialogBox.html
