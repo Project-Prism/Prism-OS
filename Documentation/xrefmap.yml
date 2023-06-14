@@ -5398,15 +5398,12 @@ references:
   fullName.vb: PrismAPI.Network.HTTP.HTTPClient.New
   nameWithType: HTTPClient.HTTPClient
   nameWithType.vb: HTTPClient.New
-- uid: PrismAPI.Network.HTTP.HTTPClient.Get(System.Int32)
-  name: Get(int)
-  href: API/PrismAPI.Network.HTTP.HTTPClient.html#PrismAPI_Network_HTTP_HTTPClient_Get_System_Int32_
-  commentId: M:PrismAPI.Network.HTTP.HTTPClient.Get(System.Int32)
-  name.vb: Get(Integer)
-  fullName: PrismAPI.Network.HTTP.HTTPClient.Get(int)
-  fullName.vb: PrismAPI.Network.HTTP.HTTPClient.Get(Integer)
-  nameWithType: HTTPClient.Get(int)
-  nameWithType.vb: HTTPClient.Get(Integer)
+- uid: PrismAPI.Network.HTTP.HTTPClient.Get
+  name: Get()
+  href: API/PrismAPI.Network.HTTP.HTTPClient.html#PrismAPI_Network_HTTP_HTTPClient_Get
+  commentId: M:PrismAPI.Network.HTTP.HTTPClient.Get
+  fullName: PrismAPI.Network.HTTP.HTTPClient.Get()
+  nameWithType: HTTPClient.Get()
 - uid: PrismAPI.Network.HTTP.HTTPClient.Get*
   name: Get
   href: API/PrismAPI.Network.HTTP.HTTPClient.html#PrismAPI_Network_HTTP_HTTPClient_Get_
@@ -5801,16 +5798,15 @@ references:
 - uid: PrismAPI.Network.NetworkManager.Debugger
   name: Debugger
   href: API/PrismAPI.Network.NetworkManager.html#PrismAPI_Network_NetworkManager_Debugger
-  commentId: P:PrismAPI.Network.NetworkManager.Debugger
+  commentId: F:PrismAPI.Network.NetworkManager.Debugger
   fullName: PrismAPI.Network.NetworkManager.Debugger
   nameWithType: NetworkManager.Debugger
-- uid: PrismAPI.Network.NetworkManager.Debugger*
-  name: Debugger
-  href: API/PrismAPI.Network.NetworkManager.html#PrismAPI_Network_NetworkManager_Debugger_
-  commentId: Overload:PrismAPI.Network.NetworkManager.Debugger
-  isSpec: "True"
-  fullName: PrismAPI.Network.NetworkManager.Debugger
-  nameWithType: NetworkManager.Debugger
+- uid: PrismAPI.Network.NetworkManager.DNS
+  name: DNS
+  href: API/PrismAPI.Network.NetworkManager.html#PrismAPI_Network_NetworkManager_DNS
+  commentId: F:PrismAPI.Network.NetworkManager.DNS
+  fullName: PrismAPI.Network.NetworkManager.DNS
+  nameWithType: NetworkManager.DNS
 - uid: PrismAPI.Network.NetworkManager.Init
   name: Init()
   href: API/PrismAPI.Network.NetworkManager.html#PrismAPI_Network_NetworkManager_Init
@@ -5887,6 +5883,19 @@ references:
   commentId: F:PrismAPI.Network.URL.FullURL
   fullName: PrismAPI.Network.URL.FullURL
   nameWithType: URL.FullURL
+- uid: PrismAPI.Network.URL.HasPort
+  name: HasPort
+  href: API/PrismAPI.Network.URL.html#PrismAPI_Network_URL_HasPort
+  commentId: P:PrismAPI.Network.URL.HasPort
+  fullName: PrismAPI.Network.URL.HasPort
+  nameWithType: URL.HasPort
+- uid: PrismAPI.Network.URL.HasPort*
+  name: HasPort
+  href: API/PrismAPI.Network.URL.html#PrismAPI_Network_URL_HasPort_
+  commentId: Overload:PrismAPI.Network.URL.HasPort
+  isSpec: "True"
+  fullName: PrismAPI.Network.URL.HasPort
+  nameWithType: URL.HasPort
 - uid: PrismAPI.Network.URL.HasProtocol
   name: HasProtocol
   href: API/PrismAPI.Network.URL.html#PrismAPI_Network_URL_HasProtocol
