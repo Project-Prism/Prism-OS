@@ -2626,7 +2626,14 @@ references:
 - uid: PrismAPI.Graphics.Animation.AnimationController.Current
   name: Current
   href: API/PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_Current
-  commentId: F:PrismAPI.Graphics.Animation.AnimationController.Current
+  commentId: P:PrismAPI.Graphics.Animation.AnimationController.Current
+  fullName: PrismAPI.Graphics.Animation.AnimationController.Current
+  nameWithType: AnimationController.Current
+- uid: PrismAPI.Graphics.Animation.AnimationController.Current*
+  name: Current
+  href: API/PrismAPI.Graphics.Animation.AnimationController.html#PrismAPI_Graphics_Animation_AnimationController_Current_
+  commentId: Overload:PrismAPI.Graphics.Animation.AnimationController.Current
+  isSpec: "True"
   fullName: PrismAPI.Graphics.Animation.AnimationController.Current
   nameWithType: AnimationController.Current
 - uid: PrismAPI.Graphics.Animation.AnimationController.DelayMS
@@ -2931,6 +2938,22 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Canvas.DrawArc
   nameWithType: Canvas.DrawArc
+- uid: PrismAPI.Graphics.Canvas.DrawBlurredRectangle(System.Int32,System.Int32,System.UInt16,System.UInt16,System.Single)
+  name: DrawBlurredRectangle(int, int, ushort, ushort, float)
+  href: API/PrismAPI.Graphics.Canvas.html#PrismAPI_Graphics_Canvas_DrawBlurredRectangle_System_Int32_System_Int32_System_UInt16_System_UInt16_System_Single_
+  commentId: M:PrismAPI.Graphics.Canvas.DrawBlurredRectangle(System.Int32,System.Int32,System.UInt16,System.UInt16,System.Single)
+  name.vb: DrawBlurredRectangle(Integer, Integer, UShort, UShort, Single)
+  fullName: PrismAPI.Graphics.Canvas.DrawBlurredRectangle(int, int, ushort, ushort, float)
+  fullName.vb: PrismAPI.Graphics.Canvas.DrawBlurredRectangle(Integer, Integer, UShort, UShort, Single)
+  nameWithType: Canvas.DrawBlurredRectangle(int, int, ushort, ushort, float)
+  nameWithType.vb: Canvas.DrawBlurredRectangle(Integer, Integer, UShort, UShort, Single)
+- uid: PrismAPI.Graphics.Canvas.DrawBlurredRectangle*
+  name: DrawBlurredRectangle
+  href: API/PrismAPI.Graphics.Canvas.html#PrismAPI_Graphics_Canvas_DrawBlurredRectangle_
+  commentId: Overload:PrismAPI.Graphics.Canvas.DrawBlurredRectangle
+  isSpec: "True"
+  fullName: PrismAPI.Graphics.Canvas.DrawBlurredRectangle
+  nameWithType: Canvas.DrawBlurredRectangle
 - uid: PrismAPI.Graphics.Canvas.DrawCircle(System.Int32,System.Int32,System.UInt16,PrismAPI.Graphics.Color)
   name: DrawCircle(int, int, ushort, Color)
   href: API/PrismAPI.Graphics.Canvas.html#PrismAPI_Graphics_Canvas_DrawCircle_System_Int32_System_Int32_System_UInt16_PrismAPI_Graphics_Color_
