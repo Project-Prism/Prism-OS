@@ -607,13 +607,7 @@ public struct Color
 	public static Color Normalize(Color ToNormalize)
 	{
 		// Don't use operators as to preserve the alpha value.
-		return new()
-		{
-			A = ToNormalize.A,
-			R = ToNormalize.R / 255,
-			G = ToNormalize.G / 255,
-			B = ToNormalize.B / 255,
-		};
+		return ToNormalize / 255;
 	}
 
 	/// <summary>

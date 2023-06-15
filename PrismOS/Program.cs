@@ -1,5 +1,4 @@
 ﻿using PrismAPI.Runtime.SystemCall;
-using PrismAPI.Graphics.Animation;
 using PrismAPI.Tools.Extentions;
 using PrismAPI.Hardware.GPU;
 using PrismAPI.UI.Controls;
@@ -8,7 +7,6 @@ using Cosmos.Core.Memory;
 using PrismAPI.UI.Config;
 using PrismAPI.Graphics;
 using PrismAPI.Network;
-using PrismAPI.Tools;
 using PrismAPI.Audio;
 using Cosmos.System;
 using PrismAPI.UI;
@@ -33,50 +31,13 @@ public class Program : Kernel
 		// Initialize the display output.
 		Canvas = Display.GetDisplay(1920, 1080);
 
+		Boot.Show(Canvas);
+
 		// Initialize the FPS widget.
 		FPSWidget = new(15, 15, "Initializing...");
 
-		// Initialize the animations.
-		AnimationController A = new(25f, 270f, new(0, 0, 0, 0, 750), AnimationMode.Ease);
-		AnimationController B = new(0f, 360f, new(0, 0, 0, 0, 500), AnimationMode.Linear);
-
-		A.IsContinuous = true;
-
-		// Get the half size of the target canvas.
-		H3 = (ushort)(Canvas.Height / 3);
-		W3 = (ushort)(Canvas.Width / 3);
-		H2 = (ushort)(Canvas.Height / 2);
-		W2 = (ushort)(Canvas.Width / 2);
-
-		bool EnableTimer = true;
-
-		// Add a timer to update the screen while booting.
-		Timer T = new((_) =>
-		{
-			if (!EnableTimer)
-			{
-				return;
-			}
-
-			if (B.IsFinished)
-			{
-				B.Reset();
-			}
-
-			Canvas.Clear();
-			Canvas.DrawImage(W2 - (H3 / 2), H2 - (H3 / 2), Media.Prism, false);
-
-			int LengthOffset = (int)(B.Current + A.Current);
-			int Offset = (int)B.Current;
-
-			Canvas.DrawArc(W2, H2 + (H2 / 2) + (H3 / 2), 19, Color.LightGray, Offset, LengthOffset);
-			Canvas.DrawArc(W2, H2 + (H2 / 2) + (H3 / 2), 20, Color.White, Offset, LengthOffset);
-			Canvas.DrawArc(W2, H2 + (H2 / 2) + (H3 / 2), 21, Color.LightGray, Offset, LengthOffset);
-
-			Canvas.Update();
-		}, null, 55, 0);
-
-		Media.Prism = Filters.Scale(H3, H3, Media.Prism);
+		// Scale the boot slash image.
+		Media.Prism = Filters.Scale((ushort)(Canvas.Height / 3), (ushort)(Canvas.Height / 3), Media.Prism);
 
 		WindowManager.Windows.Add(new(100, 100, 250, 150, "Window1")
 		{
@@ -97,7 +58,7 @@ public class Program : Kernel
 		Handler.Init();
 
 		// Disable the screen timer.
-		EnableTimer = false;
+		Boot.Hide();
 
 		AudioPlayer.Play(Media.Startup);
 	}
@@ -107,10 +68,12 @@ public class Program : Kernel
 	/// </summary>
 	protected override void Run()
 	{
-		Canvas.Clear();
+		Canvas.Clear(Color.CoolGreen);
 		FPSWidget.Contents = $"{Canvas.GetFPS()} FPS\n{Canvas.GetName()}\n{StringEx.GetMegaBytes(GCImplementation.GetUsedRAM())} MB";
 		WindowManager.Update(Canvas);
 		Canvas.DrawImage((int)MouseManager.X, (int)MouseManager.Y, Media.Cursor);
+		//Canvas.DrawFilledRectangle(0, 0, 300, 300, 0, new(200, 32, 32, 32));
+		//Canvas.DrawBlurredRectangle(0, 0, 300, 300, 0.0075f);
 		Canvas.Update();
 		Heap.Collect();
 	}
@@ -121,10 +84,6 @@ public class Program : Kernel
 
 	public static Display Canvas = null!;
 	public Label FPSWidget = null!;
-	public ushort H3;
-	public ushort W3;
-	public ushort H2;
-	public ushort W2;
 
 	#endregion
 }

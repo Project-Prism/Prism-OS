@@ -18,7 +18,6 @@ public class AnimationController
 	public AnimationController(float Source, float Target, TimeSpan Duration, AnimationMode Mode)
 	{
 		// Assign internal data.
-		Current = Source;
 		this.Source = Source;
 		this.Target = Target;
 		this.Duration = Duration;
@@ -33,12 +32,27 @@ public class AnimationController
 	#region Properties
 
 	/// <summary>
+	/// The current animation value - Automatically picked each time this property is accessed.
+	/// </summary>
+	public float Current => Mode switch
+	{
+		AnimationMode.BounceOut => Lerp(Source, Target, BounceOut(ElapsedTime / (float)Duration.TotalMilliseconds)),
+		AnimationMode.BounceIn => Lerp(Source, Target, BounceIn(ElapsedTime / (float)Duration.TotalMilliseconds)),
+		AnimationMode.Bounce => Lerp(Source, Target, Bounce(ElapsedTime / (float)Duration.TotalMilliseconds)),
+		AnimationMode.EaseOut => Lerp(Source, Target, EaseOut(ElapsedTime / (float)Duration.TotalMilliseconds)),
+		AnimationMode.EaseIn => Lerp(Source, Target, EaseIn(ElapsedTime / (float)Duration.TotalMilliseconds)),
+		AnimationMode.Ease => Lerp(Source, Target, Ease(ElapsedTime / (float)Duration.TotalMilliseconds)),
+		AnimationMode.Linear => Lerp(Source, Target, ElapsedTime / (float)Duration.TotalMilliseconds),
+		_ => throw new NotImplementedException("That mode isn't implemented!"),
+	};
+
+	/// <summary>
 	/// A boolean to tell if the animation has finished.
 	/// </summary>
 	public bool IsFinished
 	{
 		get => ElapsedTime >= Duration.TotalMilliseconds;
-		set => ElapsedTime = (float)Duration.TotalMilliseconds;
+		set => Reset();
 	}
 
 	#endregion
@@ -145,19 +159,6 @@ public class AnimationController
 
 		// Increased the elapsed time.
 		ElapsedTime += DelayMS;
-
-		// Set the output value.
-		Current = Mode switch
-		{
-			AnimationMode.BounceOut => Lerp(Source, Target, BounceOut(ElapsedTime / (float)Duration.TotalMilliseconds)),
-			AnimationMode.BounceIn => Lerp(Source, Target, BounceIn(ElapsedTime / (float)Duration.TotalMilliseconds)),
-			AnimationMode.Bounce => Lerp(Source, Target, Bounce(ElapsedTime / (float)Duration.TotalMilliseconds)),
-			AnimationMode.EaseOut => Lerp(Source, Target, EaseOut(ElapsedTime / (float)Duration.TotalMilliseconds)),
-			AnimationMode.EaseIn => Lerp(Source, Target, EaseIn(ElapsedTime / (float)Duration.TotalMilliseconds)),
-			AnimationMode.Ease => Lerp(Source, Target, Ease(ElapsedTime / (float)Duration.TotalMilliseconds)),
-			AnimationMode.Linear => Lerp(Source, Target, ElapsedTime / (float)Duration.TotalMilliseconds),
-			_ => throw new NotImplementedException("That mode isn't implemented!"),
-		};
 	}
 
 	/// <summary>
@@ -184,7 +185,7 @@ public class AnimationController
 	/// <summary>
 	/// A value marking points in the animation.
 	/// </summary>
-	public float Current, Source, Target, ElapsedTime;
+	public float Source, Target, ElapsedTime;
 
 	/// <summary>
 	/// The animation mode to use.

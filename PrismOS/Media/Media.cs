@@ -6,7 +6,7 @@ using PrismAPI.Graphics;
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value
 #pragma warning disable CS8604 // Possibly null value
 
-namespace PrismAPI.Filesystem;
+namespace PrismOS;
 
 public static class Media
 {

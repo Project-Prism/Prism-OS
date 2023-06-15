@@ -202,12 +202,64 @@ public unsafe class Canvas
 	#region Rectangle
 
 	/// <summary>
+	/// Blurs a selected rectangular region of the canvas.
+	/// </summary>
+	/// <param name="X">The X position to start at.</param>
+	/// <param name="Y">The Y position to start at.</param>
+	/// <param name="Width">Width of the rectangle.</param>
+	/// <param name="Height">Height of the rectangle.</param>
+	/// <param name="Intensity">The intensity of the blur. C0.0 is 0% and 1.0 is 100%.</param>
+	public void DrawBlurredRectangle(int X, int Y, ushort Width, ushort Height, float Intensity)
+	{
+		// Clamp the intensity so that over-runs don't happen.
+		Intensity = Math.Clamp(Intensity, 0f, 1f);
+
+		// Get the X and Y axis block sizes.
+		float SampleSizeY = Height * Intensity;
+		float SampleSizeX = Width * Intensity;
+		uint SampleSize = (uint)(SampleSizeX * SampleSizeY);
+
+		// Create a new average color instance.
+		Color Average = new(0, 0, 0, 0);
+
+		// Loop over the selected area of the canvas.
+		for (float X2 = 0; X2 < Width; X2 += SampleSizeX)
+		{
+			for (float Y2 = 0; Y2 < Height; Y2 += SampleSizeY)
+			{
+				// Average out all of the pixels.
+				for (uint I = 0; I < SampleSize; I++)
+				{
+					// Convert index to X and Y offsets.
+					float X3 = I % SampleSizeX;
+					float Y3 = I / SampleSizeX;
+
+					// Average the current pixel by dividing it by the total sample size.
+					Average += this[(int)(X + X2 + X3), (int)(Y + Y2 + Y3)] / SampleSize;
+				}
+
+				// Remove transparency from the averaged color.
+				Average.A = 255;
+
+				// Clear the sample with the average and draw it on
+				DrawFilledRectangle((int)X2, (int)Y2, (ushort)SampleSizeX, (ushort)SampleSizeY, 0, Average);
+
+				// Reset the average color for this block.
+				Average.A = 0;
+				Average.R = 0;
+				Average.G = 0;
+				Average.B = 0;
+			}
+		}
+	}
+
+	/// <summary>
 	/// Draws a filled rectangle from X and Y with the specified Width and Height.
 	/// </summary>
-	/// <param name="X">X position.</param>
-	/// <param name="Y">Y position.</param>
+	/// <param name="X">The X position to start at.</param>
+	/// <param name="Y">The Y position to start at.</param>
 	/// <param name="Width">Width of the rectangle.</param>
-	/// <param name="Height">Height of the rectangle</param>
+	/// <param name="Height">Height of the rectangle.</param>
 	/// <param name="Radius">Border radius of the rectangle.</param>
 	/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 	public void DrawFilledRectangle(int X, int Y, ushort Width, ushort Height, ushort Radius, Color Color)
@@ -297,10 +349,10 @@ public unsafe class Canvas
 	/// <summary>
 	/// Draws a non-filled rectangle from X and Y with the specified Width and Height.
 	/// </summary>
-	/// <param name="X">X position.</param>
-	/// <param name="Y">Y position.</param>
+	/// <param name="X">The X position to start at.</param>
+	/// <param name="Y">The Y position to start at.</param>
 	/// <param name="Width">Width of the rectangle.</param>
-	/// <param name="Height">Height of the rectangle</param>
+	/// <param name="Height">Height of the rectangle.</param>
 	/// <param name="Radius">Border radius of the rectangle.</param>
 	/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 	public void DrawRectangle(int X, int Y, ushort Width, ushort Height, ushort Radius, Color Color)
@@ -323,14 +375,13 @@ public unsafe class Canvas
 	/// <summary>
 	/// Draws a grid of mixed blocks where each block has a size and count, creates a pattern.
 	/// </summary>
-	/// <param name="X">X position.</param>
-	/// <param name="Y">Y position.</param>
+	/// <param name="X">The X position to start at.</param>
+	/// <param name="Y">The Y position to start at.</param>
 	/// <param name="BlockCountX">Number of blocks in the X axis.</param>
 	/// <param name="BlockCountY">Number of blocks in the Y axis.</param>
 	/// <param name="BlockSize">Scale of all blocks.</param>
 	/// <param name="BlockType1">Color of block type 1.</param>
 	/// <param name="BlockType2">Color of block type 2.</param>
-	/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 	public void DrawRectangleGrid(int X, int Y, ushort BlockCountX, ushort BlockCountY, ushort BlockSize, Color BlockType1, Color BlockType2)
 	{
 		for (int IX = 0; IX < BlockCountX; IX++)
@@ -357,7 +408,6 @@ public unsafe class Canvas
 	/// Draws a filled triangle as marked by the triangle class.
 	/// </summary>
 	/// <param name="Triangle">The triangle coordinates.</param>
-	/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 	public void DrawFilledTriangle(Triangle Triangle)
 	{
 		Triangle.P1 *= 16;
@@ -444,7 +494,6 @@ public unsafe class Canvas
 	/// Draws a non-filled triangle as marked by the triangle class.
 	/// </summary>
 	/// <param name="Triangle">The triangle coordinates.</param>
-	/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 	public void DrawTriangle(Triangle Triangle)
 	{
 		DrawLine((int)Triangle.P1.X, (int)Triangle.P1.Y, (int)Triangle.P2.X, (int)Triangle.P2.Y, Triangle.Color);
