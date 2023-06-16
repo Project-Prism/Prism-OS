@@ -525,6 +525,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "API/PrismAPI.Graphics.Gaussian.yml",
+      "output": {
+        ".html": {
+          "relative_path": "API/PrismAPI.Graphics.Gaussian.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "API/PrismAPI.Graphics.Gradient.yml",
       "output": {
         ".html": {
