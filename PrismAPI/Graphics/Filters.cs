@@ -26,8 +26,8 @@ public static unsafe class Filters
 			for (int IY = 0; IY < Height; IY++)
 			{
 				// Get the source coordinates.
-				int GX = (X + IX) & G.Width;
-				int GY = (Y + IY) & G.Height;
+				int GX = (X + IX) & Math.Min(X + Width, G.Width);
+				int GY = (Y + IY) & Math.Min(Y + Height, G.Height);
 
 				// Get the looped pixel from the source & copy it to the destionation.
 				Temp[IX, IY] = G[GX, GY];

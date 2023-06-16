@@ -72,8 +72,6 @@ public class Program : Kernel
 		FPSWidget.Contents = $"{Canvas.GetFPS()} FPS\n{Canvas.GetName()}\n{StringEx.GetMegaBytes(GCImplementation.GetUsedRAM())} MB";
 		WindowManager.Update(Canvas);
 		Canvas.DrawImage((int)MouseManager.X, (int)MouseManager.Y, Media.Cursor);
-		//Canvas.DrawFilledRectangle(0, 0, 300, 300, 0, new(200, 32, 32, 32));
-		//Canvas.DrawBlurredRectangle(0, 0, 300, 300, 0.0075f);
 		Canvas.Update();
 		Heap.Collect();
 	}
