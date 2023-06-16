@@ -4,3 +4,5 @@
   href: Graphics.md
 - name: Shell
   href: Shell.md
+- name: Color
+  href: ../API/color.md
