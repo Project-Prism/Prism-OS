@@ -1,7 +1,7 @@
 ﻿namespace PrismAPI.Graphics.Animation;
 
 /// <summary>
-/// The <see cref="ColorController"/> class, used to add basic ease transitions to colors
+/// The <see cref="ColorController"/> class, used to add basic ease transitions to colors.
 /// See: <seealso cref="AnimationController"/>
 /// </summary>
 public class ColorController : AnimationController

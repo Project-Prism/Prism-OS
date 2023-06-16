@@ -443,8 +443,8 @@ public struct Color
         readonly get => _A;
 		set
 		{
-			_A = value;
-			_ARGB = GetPacked(value, _R, _G, _B);
+			_A = Math.Clamp(value, 0f, 255f);
+			_ARGB = GetPacked(_A, _R, _G, _B);
 		}
 	}
 
@@ -456,8 +456,8 @@ public struct Color
         readonly get => _R;
 		set
 		{
-			_R = value;
-			_ARGB = GetPacked(_A, value, _G, _B);
+			_R = Math.Clamp(value, 0f, 255f);
+			_ARGB = GetPacked(_A, _R, _G, _B);
 		}
 	}
 
@@ -469,8 +469,8 @@ public struct Color
         readonly get => _G;
 		set
 		{
-			_G = value;
-			_ARGB = GetPacked(_A, _R, value, _B);
+			_G = Math.Clamp(value, 0f, 255f);
+			_ARGB = GetPacked(_A, _R, _G, _B);
 		}
 	}
 
@@ -482,8 +482,8 @@ public struct Color
         readonly get => _B;
 		set
 		{
-			_B = value;
-			_ARGB = GetPacked(_A, _R, _G, value);
+			_B = Math.Clamp(value, 0f, 255f);
+			_ARGB = GetPacked(_A, _R, _G, _B);
 		}
 	}
 
@@ -666,7 +666,13 @@ public struct Color
 		// Ensure 'Index' is between 0.0 and 1.0.
 		Index = (float)Math.Clamp(Index, 0.0, 1.0);
 
-		return StartValue + ((EndValue - StartValue) * Index);
+		return new()
+		{
+			A = StartValue.A + ((EndValue.A - StartValue.A) * Index),
+			R = StartValue.R + ((EndValue.R - StartValue.R) * Index),
+			G = StartValue.G + ((EndValue.G - StartValue.G) * Index),
+			B = StartValue.B + ((EndValue.B - StartValue.B) * Index),
+		};
 	}
 
 	/// <summary>

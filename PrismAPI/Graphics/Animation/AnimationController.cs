@@ -52,7 +52,7 @@ public class AnimationController
 	public bool IsFinished
 	{
 		get => ElapsedTime >= Duration.TotalMilliseconds;
-		set => Reset();
+		set => ElapsedTime = value ? (float)Duration.TotalMilliseconds : 0;
 	}
 
 	#endregion
@@ -150,8 +150,7 @@ public class AnimationController
 		{
 			if (IsContinuous)
 			{
-				(Source, Target) = (Target, Source);
-				Reset();
+				Invert();
 			}
 
 			return;
