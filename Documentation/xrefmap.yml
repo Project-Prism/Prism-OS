@@ -2938,6 +2938,22 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Canvas.DrawArc
   nameWithType: Canvas.DrawArc
+- uid: PrismAPI.Graphics.Canvas.DrawBlurredRectangle(System.Int32,System.Int32,System.UInt16,System.UInt16,System.Int32)
+  name: DrawBlurredRectangle(int, int, ushort, ushort, int)
+  href: API/PrismAPI.Graphics.Canvas.html#PrismAPI_Graphics_Canvas_DrawBlurredRectangle_System_Int32_System_Int32_System_UInt16_System_UInt16_System_Int32_
+  commentId: M:PrismAPI.Graphics.Canvas.DrawBlurredRectangle(System.Int32,System.Int32,System.UInt16,System.UInt16,System.Int32)
+  name.vb: DrawBlurredRectangle(Integer, Integer, UShort, UShort, Integer)
+  fullName: PrismAPI.Graphics.Canvas.DrawBlurredRectangle(int, int, ushort, ushort, int)
+  fullName.vb: PrismAPI.Graphics.Canvas.DrawBlurredRectangle(Integer, Integer, UShort, UShort, Integer)
+  nameWithType: Canvas.DrawBlurredRectangle(int, int, ushort, ushort, int)
+  nameWithType.vb: Canvas.DrawBlurredRectangle(Integer, Integer, UShort, UShort, Integer)
+- uid: PrismAPI.Graphics.Canvas.DrawBlurredRectangle*
+  name: DrawBlurredRectangle
+  href: API/PrismAPI.Graphics.Canvas.html#PrismAPI_Graphics_Canvas_DrawBlurredRectangle_
+  commentId: Overload:PrismAPI.Graphics.Canvas.DrawBlurredRectangle
+  isSpec: "True"
+  fullName: PrismAPI.Graphics.Canvas.DrawBlurredRectangle
+  nameWithType: Canvas.DrawBlurredRectangle
 - uid: PrismAPI.Graphics.Canvas.DrawCircle(System.Int32,System.Int32,System.UInt16,PrismAPI.Graphics.Color)
   name: DrawCircle(int, int, ushort, Color)
   href: API/PrismAPI.Graphics.Canvas.html#PrismAPI_Graphics_Canvas_DrawCircle_System_Int32_System_Int32_System_UInt16_PrismAPI_Graphics_Color_
@@ -4099,31 +4115,6 @@ references:
   commentId: F:PrismAPI.Graphics.Fonts.Glyph.Width
   fullName: PrismAPI.Graphics.Fonts.Glyph.Width
   nameWithType: Glyph.Width
-- uid: PrismAPI.Graphics.Gaussian
-  name: Gaussian
-  href: API/PrismAPI.Graphics.Gaussian.html
-  commentId: T:PrismAPI.Graphics.Gaussian
-  fullName: PrismAPI.Graphics.Gaussian
-  nameWithType: Gaussian
-- uid: PrismAPI.Graphics.Gaussian.#ctor(PrismAPI.Graphics.Canvas,System.Int32)
-  name: Gaussian(Canvas, int)
-  href: API/PrismAPI.Graphics.Gaussian.html#PrismAPI_Graphics_Gaussian__ctor_PrismAPI_Graphics_Canvas_System_Int32_
-  commentId: M:PrismAPI.Graphics.Gaussian.#ctor(PrismAPI.Graphics.Canvas,System.Int32)
-  name.vb: New(Canvas, Integer)
-  fullName: PrismAPI.Graphics.Gaussian.Gaussian(PrismAPI.Graphics.Canvas, int)
-  fullName.vb: PrismAPI.Graphics.Gaussian.New(PrismAPI.Graphics.Canvas, Integer)
-  nameWithType: Gaussian.Gaussian(Canvas, int)
-  nameWithType.vb: Gaussian.New(Canvas, Integer)
-- uid: PrismAPI.Graphics.Gaussian.#ctor*
-  name: Gaussian
-  href: API/PrismAPI.Graphics.Gaussian.html#PrismAPI_Graphics_Gaussian__ctor_
-  commentId: Overload:PrismAPI.Graphics.Gaussian.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: PrismAPI.Graphics.Gaussian.Gaussian
-  fullName.vb: PrismAPI.Graphics.Gaussian.New
-  nameWithType: Gaussian.Gaussian
-  nameWithType.vb: Gaussian.New
 - uid: PrismAPI.Graphics.Gradient
   name: Gradient
   href: API/PrismAPI.Graphics.Gradient.html
