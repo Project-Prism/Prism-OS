@@ -1,4 +1,6 @@
-﻿namespace PrismAPI.Graphics;
+﻿using Cosmos.Core;
+
+namespace PrismAPI.Graphics;
 
 /// <summary>
 /// The <see cref="Filters"/> class, used to apply advanced filter effects to a graphics canvas.
@@ -20,18 +22,19 @@ public static unsafe class Filters
 		// Create temporary graphics object.
 		Canvas Temp = new(Width, Height);
 
-		// Loop over each pixel, and loop around when end is reached
-		for (int IX = 0; IX < Width; IX++)
-		{
-			for (int IY = 0; IY < Height; IY++)
-			{
-				// Get the source coordinates.
-				int GX = (X + IX) & Math.Min(X + Width, G.Width);
-				int GY = (Y + IY) & Math.Min(Y + Height, G.Height);
+		// Get addresses for initial source and destination.
+		uint* Destination = Temp.Internal;
+		uint* Source = G.Internal + ((Y * G.Width) + X);
 
-				// Get the looped pixel from the source & copy it to the destionation.
-				Temp[IX, IY] = G[GX, GY];
-			}
+		// Loop over each horizontal line.
+		for (int I = 0; I < Height; I++)
+		{
+			// Copy one whole line to the temporary image.
+			MemoryOperations.Copy(Destination, Source, Width);
+
+			// Increment the addresses to the next horizontal line.
+			Destination += Width;
+			Source += G.Width;
 		}
 
 		// Return filtered image.
@@ -83,25 +86,22 @@ public static unsafe class Filters
 	/// <param name="Input">The input canvas to mask.</param>
 	/// <param name="Mask">The mask to use on top of the input.</param>
 	/// <returns>A masked canvas.</returns>
-	public static Canvas MaskAlpha(Canvas Input, Canvas Mask)
+	public static Canvas MaskAlpha(Canvas ToMask, Canvas Mask)
 	{
-		// Get a scaled version if the gradient is smaller or bigger than the input.
-		Canvas Scaled = Scale(Input.Width, Input.Height, Mask);
-
 		// Create a temporary buffer.
-		Canvas Temp = new(Input.Width, Input.Height);
+		Canvas Temp = new(ToMask.Width, ToMask.Height);
 
 		// Loop over every pixel.
-		for (uint I = 0; I < Input.Size; I++)
+		for (uint I = 0; I < ToMask.Size; I++)
 		{
 			// Skip if pixel is alpha.
-			if (Input[I].A < 255)
+			if (ToMask[I].A < 255)
 			{
 				continue;
 			}
 
 			// Set gradient pixel.
-			Temp.Internal[I] = Scaled.Internal[I];
+			Temp.Internal[I] = Mask.Internal[I];
 		}
 
 		return Temp;
@@ -199,7 +199,7 @@ public static unsafe class Filters
 		// Loop over & blend all pixels together.
 		for (uint I = 0; I < Result.Size; I++)
 		{
-			Result[I] = (High[I] + Normal[I] + Low[I]) / 3;
+			Result.Internal[I] = ((High[I] + Normal[I] + Low[I]) / 3).ARGB;
 		}
 
 		// Resurn HDR blend result.
@@ -234,7 +234,7 @@ public static unsafe class Filters
 			Average += G[I + 1] / 6; // Left.
 
 			// Draw the average on to the buffer.
-			Result[I] = Average;
+			Result.Internal[I] = Average.ARGB;
 		}
 
 		// Return filtered image.
@@ -254,7 +254,7 @@ public static unsafe class Filters
 		// Loop over all pixel linearly.
 		for (uint I = 0; I < G.Size; I++)
 		{
-			Result[I] = Color.Invert(G[I]);
+			Result.Internal[I] = Color.Invert(G[I]).ARGB;
 		}
 
 		// Return the result of the operation.

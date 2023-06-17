@@ -89,21 +89,21 @@ public class Font
 
 		ushort SizePerFont = (ushort)(Size * Size8 * Index);
 
-		for (int h = 0; h < Size; h++)
+		for (int I = 0; I < Size * Size8; I++)
 		{
-			for (int aw = 0; aw < Size8; aw++)
+			int X = I % Size8;
+			int Y = I / Size8;
+
+			for (int ww = 0; ww < 8; ww++)
 			{
-				for (int ww = 0; ww < 8; ww++)
+				if ((Binary[SizePerFont + (Y * Size8) + X] & (0x80 >> ww)) != 0)
 				{
-					if ((Binary[SizePerFont + (h * Size8) + aw] & (0x80 >> ww)) != 0)
-					{
-						int Max = (aw * 8) + ww;
+					int Max = (X * 8) + ww;
 
-						Temp.Points.Add((Max, h));
+					Temp.Points.Add((Max, Y));
 
-						// Get max font width used.
-						Temp.Width = (ushort)Math.Max(Temp.Width, Max);
-					}
+					// Get max font width used.
+					Temp.Width = (ushort)Math.Max(Temp.Width, Max);
 				}
 			}
 		}

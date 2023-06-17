@@ -837,8 +837,6 @@ public unsafe class Canvas
 				case '\t':
 					BX += Font.Size * 4;
 					continue;
-				default:
-					break;
 			}
 
 			// Get the glyph for this char.
