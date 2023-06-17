@@ -202,13 +202,67 @@ public unsafe class Canvas
 	#region Rectangle
 
 	/// <summary>
+	/// Draws a blurred rectangle from X and Y with the specified Width and Height.
+	/// </summary>
+	/// <param name="X">The X position to start at.</param>
+	/// <param name="Y">The Y position to start at.</param>
+	/// <param name="Width">Width of the rectangle.</param>
+	/// <param name="Height">Height of the rectangle.</param>
+	/// <param name="Radial">The blur intensity - 5 is typically fine.</param>
+	public void DrawBlurredRectangle(int X, int Y, ushort Width, ushort Height, int Radial)
+	{
+		uint Size = (uint)(Width * Height);
+
+		int[] A = new int[Size];
+		int[] R = new int[Size];
+		int[] G = new int[Size];
+		int[] B = new int[Size];
+
+		for (uint I = 0; I < Size; I++)
+		{
+			// Get the source X and Y position.
+			int SX = (int)(X + (I % Width));
+			int SY = (int)(Y + (I / Width));
+
+			A[I] = (int)this[SX, SY].A;
+			R[I] = (int)this[SX, SY].R;
+			G[I] = (int)this[SX, SY].G;
+			B[I] = (int)this[SX, SY].B;
+		}
+
+		var newAlpha = new int[Size];
+		var newRed = new int[Size];
+		var newGreen = new int[Size];
+		var newBlue = new int[Size];
+
+		Filters.GaussBlur4(A, newAlpha, Width, Height, Radial);
+		Filters.GaussBlur4(R, newRed, Width, Height, Radial);
+		Filters.GaussBlur4(G, newGreen, Width, Height, Radial);
+		Filters.GaussBlur4(B, newBlue, Width, Height, Radial);
+
+		for (uint I = 0; I < Size; I++)
+		{
+			newAlpha[I] = Math.Clamp(newAlpha[I], 0, 255);
+			newRed[I] = Math.Clamp(newRed[I], 0, 255);
+			newGreen[I] = Math.Clamp(newGreen[I], 0, 255);
+			newBlue[I] = Math.Clamp(newBlue[I], 0, 255);
+
+			// Get the source X and Y position.
+			int SX = (int)(X + (I % Width));
+			int SY = (int)(Y + (I / Width));
+
+			this[SX, SY] = new(newAlpha[I], newRed[I], newGreen[I], newBlue[I]);
+		}
+	}
+
+	/// <summary>
 	/// Draws a filled rectangle from X and Y with the specified Width and Height.
 	/// </summary>
 	/// <param name="X">The X position to start at.</param>
 	/// <param name="Y">The Y position to start at.</param>
 	/// <param name="Width">Width of the rectangle.</param>
 	/// <param name="Height">Height of the rectangle.</param>
-	/// <param name="Radius">Border radius of the rectangle.</param>
+	/// <param name="Radius">The border radius of the rectangle.</param>
 	/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 	public void DrawFilledRectangle(int X, int Y, ushort Width, ushort Height, ushort Radius, Color Color)
 	{
@@ -301,7 +355,7 @@ public unsafe class Canvas
 	/// <param name="Y">The Y position to start at.</param>
 	/// <param name="Width">Width of the rectangle.</param>
 	/// <param name="Height">Height of the rectangle.</param>
-	/// <param name="Radius">Border radius of the rectangle.</param>
+	/// <param name="Radius">The border radius of the rectangle.</param>
 	/// <param name="Color">The <see cref="Color"/> object to draw with.</param>
 	public void DrawRectangle(int X, int Y, ushort Width, ushort Height, ushort Radius, Color Color)
 	{
