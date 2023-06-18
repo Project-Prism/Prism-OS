@@ -1,4 +1,4 @@
-﻿# Introduction - PrismGraphics
+# Introduction - PrismGraphics
 
 PrismgGraphics is the 2D graphics rasterization platform that allows for drawing of text, images, shapes, gradients, and whatever else on a 2D canvas.
 
@@ -123,7 +123,7 @@ using Cosmos.System;
 
 public class YourKernelName : Kernel
 {
-	public Display Canvas;
+	public Display Canvas = null!;
 
 	protected override void BeforeRun()
 	{
@@ -148,11 +148,109 @@ This can be modified to fit any need and should work. Never forget to clear and 
 
 <hr/>
 
+What if we wanted it to look prettier though? Well, how about we put it in a window?
+```cs
+using PrismAPI.Hardware.GPU;
+using PrismAPI.Graphics;
+using Cosmos.System;
+using PrismAPI.UI;
+using PrismAPI.UI.Controls;
+
+namespace PrismOS;
+
+public class Program : Kernel
+{
+
+	public Display Canvas = null!;
+	public Window MyWindow = null!;
+	public Label MyLabel = null!;
+
+	protected override void BeforeRun()
+	{
+		// Set-up the mouse manager to fit in the canvas size.
+		MouseManager.ScreenWidth = 800;
+		MouseManager.ScreenHeight = 600;
+
+		Canvas = Display.GetDisplay(800, 600); // Define the canvas instance.
+		MyWindow = new(50, 50, 500, 400, "My Window");
+		MyLabel = new(15, 15, $"{Canvas.GetFPS()} FPS");
+
+		MyWindow.Controls.Add(MyLabel);
+		WindowManager.Windows.Add(MyWindow);
+	}
+
+	protected override void Run()
+	{
+		Canvas.Clear(Color.CoolGreen); // Draw a green background.
+		Canvas.DrawFilledRectangle((int)MouseManager.X, (int)MouseManager.Y, 16, 16, 0, Color.White); // Draw the mouse.
+		WindowManager.Update(Canvas);
+		Canvas.Update();
+	}
+}
+```
+
+This is a relatively basic script to add a window.
+
+First, we make an instance of Window, via `MyWindow`. The `50, 50` is the X and Y coordinates respectively, the `500, 400` is the Width and Height and the `"My Window"` is the title. We then add it to the WindowManager's list of Windows, so that it can be rendered. We run roughly the same code as before, but instead of drawing the FPS on the Canvas, we are doing so on the window. We then need to do `WindowManager.Update(Canvas);` to put the window on the canvas, then we draw the canvas to the screen.
+
+We use a label as they are much more convenient to work with, and DrawString() doesn't work with windows. We put it at the same place as the String was on the main Canvas.
+
+But there's a problem; The mouse is rendering behind the window, not that you can tell due to its white color. Let's fix this, shall we?
+
+The mouse is being rendered BEFORE the Window is drawn, so how about we move the mouse drawing code above `WindowManager.Update(Canvas);`, so it's drawn above it? But it gets lost in the vibrant whiteness of the window's background! We should change its color. I've changed it to StackoverflowOrange, as it's a unique color, but you can change it to whatever you want!
+
+Please note that you should never move `Canvas.Clear()` above anything else! This will make it clear all over whatever that is!
+
+Now, as you may have guessed from the Mouse problem, the text is just white and blending into the background. So let's make the backround a different color! I'm going to use Black, but you can use whatever you'd like. We just need to add two arguments; the first for the task bar color, the second for the main background color. I'm going to be adding `Color.DeepGray, Color.Black` to mine. And perfect! We have a pretty window! But still no visible label.
+
+```cs
+using PrismAPI.Hardware.GPU;
+using PrismAPI.Graphics;
+using Cosmos.System;
+using PrismAPI.UI;
+using PrismAPI.UI.Controls;
+
+namespace PrismOS;
+
+public class Program : Kernel
+{
+
+	public Display Canvas = null!;
+	public Window MyWindow = null!;
+	public Label MyLabel = null!;
+
+	protected override void BeforeRun()
+	{
+		// Set-up the mouse manager to fit in the canvas size.
+		MouseManager.ScreenWidth = 800;
+		MouseManager.ScreenHeight = 600;
+
+		Canvas = Display.GetDisplay(800, 600); // Define the canvas instance.
+		MyWindow = new(50, 50, 500, 400, "My Window", Color.DeepGray, Color.Black);
+		MyLabel = new(15, 15, $"{Canvas.GetFPS()} FPS");
+
+		MyWindow.Controls.Add(MyLabel);
+		WindowManager.Windows.Add(MyWindow);
+	}
+
+	protected override void Run()
+	{
+		Canvas.Clear(Color.CoolGreen); // Draw a green background.
+		WindowManager.Update(Canvas);
+		Canvas.DrawFilledRectangle((int)MouseManager.X, (int)MouseManager.Y, 16, 16, 0, Color.StackOverflowOrange); // Draw the mouse.
+		Canvas.Update();
+	}
+}
+```
+I'll come back to this later once there's a way to get the label to actually show up, as right now there isn't.
+
+<hr/>
+
 # ToDo
 
 This project still has many things to finish, including video drivers.
 
-> See [here](https://wiki.osdev.org/Accelerated_Graphic_Cards).
+> See [here](https://wiki.osdev.org/Accelerated_Graphic_Cards) for the OSDev Wiki's info on graphic cards.
 
-> NVidia: [here](https://nvidia.github.io/open-gpu-doc/).
+> NVidia: See [here](https://nvidia.github.io/open-gpu-doc/) for the NVidia GPU docs.
 
