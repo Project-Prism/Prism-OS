@@ -17,15 +17,10 @@ public class Button : Control
 	/// <param name="Height">The Height of the button.</param>
 	/// <param name="Radius">The radius/curvature of the button.</param>
 	/// <param name="Text">The text shown in the button.</param>
-	public Button(int X, int Y, ushort Width, ushort Height, ushort Radius, string Text, ThemeStyle Theme) : base(Width, Height, Theme)
+	public Button(int X, int Y, ushort Width, ushort Height, ushort Radius, string Text, ThemeStyle Theme) : base(X, Y, Width, Height, Theme)
 	{
-		StartColor = new(255, 234, 234, 234);
-		EndColor = new(255, 151, 151, 151);
-		MidColor = new(255, 119, 119, 119);
 		this.Radius = Radius;
 		this.Text = Text;
-		this.X = X;
-		this.Y = Y;
 	}
 
 	#endregion
@@ -54,43 +49,45 @@ public class Button : Control
 		switch (Status)
 		{
 			case CursorStatus.Hovering:
-				DrawFilledRectangle(0, 0, Width, Height, Radius, Color.LightGray);
-				DrawString(Width / 2, Height / 2, Text, default, Color.Black, true);
+				DrawFilledRectangle(0, 0, Width, Height, Radius, Background - 32);
+				DrawString(Width / 2, Height / 2, Text, default, Foreground, true);
 				break;
 			case CursorStatus.Clicked:
-				DrawFilledRectangle(0, 0, Width, Height, Radius, Color.DeepGray);
-				DrawString(Width / 2, Height / 2, Text, default, Color.White, true);
+				DrawFilledRectangle(0, 0, Width, Height, Radius, Foreground);
+				DrawString(Width / 2, Height / 2, Text, default, Background, true);
 				break;
 			case CursorStatus.Idle:
-				DrawFilledRectangle(0, 0, Width, Height, Radius, Color.White);
-				DrawString(Width / 2, Height / 2, Text, default, Color.Black, true);
+				DrawFilledRectangle(0, 0, Width, Height, Radius, Background);
+				DrawString(Width / 2, Height / 2, Text, default, Foreground, true);
 				break;
 		}
 	}
 
 	private void DrawHolo()
 	{
+		// Android holo theme colors.
+		Color Start = new(255, 234, 234, 234);
+		Color Mid = new(255, 180, 180, 180);
+		Color End = new(255, 151, 151, 151);
+
 		DrawFilledRectangle(0, 0, Width, Height, Radius, Color.White);
 
 		Gradient Overlay = Status switch
 		{
-			CursorStatus.Hovering => new(Width, Height, MidColor, EndColor),
-			CursorStatus.Clicked => new(Width, Height, EndColor, StartColor),
-			CursorStatus.Idle => new(Width, Height, StartColor, EndColor),
+			CursorStatus.Hovering => new(Width, Height, Mid, End),
+			CursorStatus.Clicked => new(Width, Height, End, Start),
+			CursorStatus.Idle => new(Width, Height, Start, End),
 			_ => new(Width, Height, Color.Red, Color.BloodOrange),
 		};
 
 		DrawImage(0, 0, Filters.MaskAlpha(this, Overlay), Radius != 0);
-		DrawString(Width / 2, Height / 2, Text, default, Color.Black, true);
+		DrawString(Width / 2, Height / 2, Text, default, Foreground, true);
 	}
 
 	#endregion
 
 	#region Fields
 
-	public Color StartColor;
-	public Color EndColor;
-	public Color MidColor;
 	public string Text;
 
 	#endregion

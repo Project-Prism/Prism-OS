@@ -33,11 +33,13 @@ public class Program : Kernel
 
 		Boot.Show(Canvas);
 
-		// Initialize the FPS widget.
+		// Initialize the FPS widget and task bar.
 		FPSWidget = new(15, 15, "Initializing...");
+		Taskbar = new(0, Canvas.Height - 48, Canvas.Width, 48);
 
-		// Scale the boot slash image.
+		// Scale the boot slash and wallpaper images.
 		Media.Prism = Filters.Scale((ushort)(Canvas.Height / 3), (ushort)(Canvas.Height / 3), Media.Prism);
+		Media.Wallpaper = Filters.Scale(Canvas.Width, Canvas.Height, Media.Wallpaper);
 
 		WindowManager.Windows.Add(new(100, 100, 250, 150, "Window1")
 		{
@@ -47,6 +49,7 @@ public class Program : Kernel
 			},
 		});
 		WindowManager.Widgets.Add(FPSWidget);
+		WindowManager.Widgets.Add(Taskbar);
 
 		MouseManager.ScreenHeight = Canvas.Height;
 		MouseManager.ScreenWidth = Canvas.Width;
@@ -68,12 +71,19 @@ public class Program : Kernel
 	/// </summary>
 	protected override void Run()
 	{
-		Canvas.Clear(Color.CoolGreen);
+		// Draw the wallpaper.
+		Canvas.DrawImage(0, 0, Media.Wallpaper, false);
 		FPSWidget.Contents = $"{Canvas.GetFPS()} FPS\n{Canvas.GetName()}\n{StringEx.GetMegaBytes(GCImplementation.GetUsedRAM())} MB";
+
+		// Example of a drawable widget.
+		Taskbar.Clear(Color.DeepGray);
+		Taskbar.DrawString(0, 28, $"{WindowManager.Windows.Count} windows are open.", default, Color.White);
+
+		// Draw the mouse on screen, then update.
 		WindowManager.Update(Canvas);
 		Canvas.DrawImage((int)MouseManager.X, (int)MouseManager.Y, Media.Cursor);
 		Canvas.Update();
-		Heap.Collect();
+		//Heap.Collect();
 	}
 
 	#endregion
@@ -81,6 +91,7 @@ public class Program : Kernel
 	#region Fields
 
 	public static Display Canvas = null!;
+	public Drawable Taskbar = null!;
 	public Label FPSWidget = null!;
 
 	#endregion

@@ -50,6 +50,7 @@
 		<EmbeddedResource Include="Media\Audio\Shutdown.wav" />
 		<EmbeddedResource Include="Media\Audio\Startup.wav" />
 		<EmbeddedResource Include="Media\Fonts\Malgun_Gothic_32x.psf" />
+		<EmbeddedResource Include="Media\Images\Wallpaper.bmp" />
 		<EmbeddedResource Include="Media\Images\Cursor.bmp" />
 		<EmbeddedResource Include="Media\Images\Prism.bmp" />
 		
@@ -57,6 +58,7 @@
 		<None Remove="Media\Audio\Shutdown.wav" />
 		<None Remove="Media\Audio\Startup.wav" />
 		<None Remove="Media\Fonts\Malgun_Gothic_32x.psf" />
+		<None Remove="Media\Images\Wallpaper.bmp" />
 		<None Remove="Media\Images\Cursor.bmp" />
 		<None Remove="Media\Images\Prism.bmp" />
 

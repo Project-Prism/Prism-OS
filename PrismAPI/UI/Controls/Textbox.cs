@@ -8,7 +8,7 @@ public class Textbox : Control
 {
 	#region  Constructors
 
-	public Textbox(int X, int Y, string Hint, string Text) : base(0, 0, ThemeStyle.None)
+	public Textbox(int X, int Y, string Hint, string Text) : base(X, Y, 0, 0, ThemeStyle.None)
 	{
 		// Initialize core strings for safety.
 		InternalHint = string.Empty;
@@ -16,10 +16,6 @@ public class Textbox : Control
 
 		// Set-up the OnKey event.
 		OnKey = new(ProcessKey);
-
-		// Initialize the X and Y positions.
-		this.X = X;
-		this.Y = Y;
 
 		// Initialize the core string setters - this sets the control's size;
 		this.Hint = Hint;
@@ -76,21 +72,21 @@ public class Textbox : Control
 	{
 		Clear();
 
-		DrawFilledRectangle(0, 0, Width, Height, Radius, Color.StackOverflowWhite);
+		DrawFilledRectangle(0, 0, Width, Height, Radius, Background - 16);
 
 		// Draw a green accent if the control is active.
 		if (IsActive)
 		{
-			DrawRectangle(0, Height - (Height / 8), Width, (ushort)(Height / 8), 0, Color.CoolGreen);
+			DrawRectangle(0, Height - (Height / 8), Width, (ushort)(Height / 8), 0, Accent);
 		}
 
 		if (string.IsNullOrEmpty(InternalText))
 		{
-			DrawString(Width / 2, Height / 2, InternalHint, default, Color.LightGray, true);
+			DrawString(Width / 2, Height / 2, InternalHint, default, Background - 32, true);
 		}
 		else
 		{
-			DrawString(Width / 2, Height / 2, InternalText, default, Color.Black, true);
+			DrawString(Width / 2, Height / 2, InternalText, default, Foreground, true);
 		}
 
 		Canvas.DrawImage(X, Y, this, Radius != 0);

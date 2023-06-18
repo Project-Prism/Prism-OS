@@ -9,7 +9,7 @@ public class Window : Control
 {
 	#region Constructors
 
-	public Window(int X, int Y, ushort Width, ushort Height, string Title) : base(Width, Height, ThemeStyle.None)
+	public Window(int X, int Y, ushort Width, ushort Height, string Title) : base(X, Y, Width, Height, ThemeStyle.None)
 	{
 		// Initialize the control list.
 		ShelfControls = new();
@@ -19,10 +19,8 @@ public class Window : Control
 		TitleShelf = new(Width, 32);
 		WindowBody = new(Width, Height);
 
-		// Initialize the window fields.
+		// Initialize the window's title.
 		this.Title = Title;
-		this.X = X;
-		this.Y = Y;
 	}
 
 	#endregion
@@ -88,8 +86,8 @@ public class Window : Control
 		WindowBody.Width = Width;
 
 		// Draw the window back panel.
-		TitleShelf.Clear(Color.DeepGray);
-		WindowBody.Clear(Color.White);
+		TitleShelf.Clear(Foreground + 32);
+		WindowBody.Clear(Background);
 
 		// Try to read the current key - null if no key is pressed.
 		ConsoleKeyInfo? Key = KeyboardEx.ReadKey();
@@ -98,7 +96,8 @@ public class Window : Control
 		Process(X, Y - 32, ShelfControls, TitleShelf, Key);
 		Process(X, Y, Controls, WindowBody, Key);
 
-		TitleShelf.DrawString(TitleShelf.Width / 2, TitleShelf.Height / 2, Title, default, Color.White, true);
+		// Draw with background color because title bar is already dark.
+		TitleShelf.DrawString(TitleShelf.Width / 2, TitleShelf.Height / 2, Title, default, Background, true);
 
 		// Draw the window to the buffer.
 		Canvas.DrawImage(X, Y - 32, TitleShelf, Radius != 0);

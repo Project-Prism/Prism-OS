@@ -8,14 +8,13 @@ public class Label : Control
 {
 	#region Constructors
 
-	public Label(int X, int Y, string Contents) : base(0, 0, ThemeStyle.None)
+	public Label(int X, int Y, string Contents) : base(X, Y, 0, 0, ThemeStyle.None)
 	{
 		// Initialize core string for safety.
 		InternalContents = string.Empty;
 
-		// Initialize the X and Y position.
-		this.X = X;
-		this.Y = Y;
+		// Make the initial background transparent.
+		Background.A = 0;
 
 		this.Contents = Contents;
 	}
@@ -42,9 +41,9 @@ public class Label : Control
 	public override void Update(Canvas Canvas)
 	{
 		// Don't draw directly to canvas to allow for text clipping.
-		Clear(Color.Transparent);
-		DrawString(0, 0, Contents, default, Color.White);
-		Canvas.DrawImage(X, Y, this, true);
+		Clear(Background);
+		DrawString(0, 0, Contents, default, Foreground);
+		Canvas.DrawImage(X, Y, this, Background.A != 255);
 	}
 
 	#endregion

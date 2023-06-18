@@ -8,18 +8,21 @@ public abstract class Control : Canvas
 {
 	#region Constructors
 
-	internal Control(ushort Width, ushort Height, ThemeStyle Theme) : base(Width, Height)
+	internal Control(int X, int Y, ushort Width, ushort Height, ThemeStyle Theme) : base(Width, Height)
 	{
 		// Initialize the event handlers.
 		OnClick = new((int _, int _, MouseState _) => { });
 		OnKey = new((ConsoleKeyInfo _) => { });
 
 		Layout = LayoutStyle.None;
-		BackGround = Color.White;
-		ForeGround = Color.Black;
+		Background = Color.White;
+		Foreground = Color.Black;
 		this.Theme = Theme;
 		IsEnabled = true;
 		Radius = 0;
+		Accent = Color.CoolGreen;
+		this.X = X;
+		this.Y = Y;
 	}
 
 	#endregion
@@ -40,11 +43,12 @@ public abstract class Control : Canvas
 
 	public CursorStatus Status;
 	public LayoutStyle Layout;
+	public Color Foreground;
+	public Color Background;
 	public ThemeStyle Theme;
-	public Color BackGround;
-	public Color ForeGround;
 	public bool IsEnabled;
 	public ushort Radius;
+	public Color Accent;
 	public int X;
 	public int Y;
 

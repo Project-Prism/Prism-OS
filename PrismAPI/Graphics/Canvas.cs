@@ -869,10 +869,17 @@ public unsafe class Canvas
 		// Pre-calculate the string's size.
 		ushort TextWidth = Font.MeasureString(Text);
 
-		// Advanced Calculations To Determine Position.
-		int NewlineCount = Text.Count(C => C == '\n');
-		int BY = Y - (Center ? Font.Size * NewlineCount / 2 : 0);
-		int BX = X - (Center ? TextWidth / 2 : 0);
+		// Create temporary coordinates.
+		int BX = X;
+		int BY = Y;
+
+		// Check if the text needs to be centered.
+		if (Center)
+		{
+			int NewlineCount = Text.Count(C => C == '\n');
+			BY -= Font.Size * (NewlineCount + 1) / 2;
+			BX -= TextWidth / 2;
+		}
 
 		// Loop Through Each Line Of Text
 		for (int I = 0; I < Text.Length; I++)

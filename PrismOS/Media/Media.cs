@@ -14,6 +14,7 @@ public static class Media
 	public const string Base = "PrismOS.Media.";
 	[ManifestResourceStream(ResourceName = Base + "Fonts.Malgun_Gothic_32x.psf")] public readonly static byte[] MalgunGothic32b;
 	[ManifestResourceStream(ResourceName = Base + "Audio.Shutdown-Alt.wav")] private readonly static byte[] ShutdownAltB;
+	[ManifestResourceStream(ResourceName = Base + "Images.Wallpaper.bmp")] private readonly static byte[] WallpaperB;
 	[ManifestResourceStream(ResourceName = Base + "Audio.Shutdown.wav")] private readonly static byte[] ShutdownB;
 	[ManifestResourceStream(ResourceName = Base + "Audio.Startup.wav")] private readonly static byte[] StartupB;
 	[ManifestResourceStream(ResourceName = Base + "Images.Cursor.bmp")] private readonly static byte[] CursorB;
@@ -24,10 +25,11 @@ public static class Media
 	public static MemoryAudioStream Shutdown = MemoryAudioStream.FromWave(ShutdownB);
 	public static MemoryAudioStream Startup = MemoryAudioStream.FromWave(StartupB);
 
-	// System Fonts
+	// System fonts.
 	public static Font MalgunGothic = new(MalgunGothic32b, 32);
 
-	// System Icons
+	// System images.
+	public static Canvas Wallpaper = Image.FromBitmap(WallpaperB);
 	public static Canvas Cursor = Image.FromBitmap(CursorB);
 	public static Canvas Prism = Image.FromBitmap(PrismB);
 }
