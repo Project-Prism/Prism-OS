@@ -1,6 +1,6 @@
 # Introduction - PrismGraphics
 
-PrismGraphics is the 2D graphics rasterization platform that allows for drawing of text, images, shapes, gradients, and whatever else on a 2D canvas.
+PrismgGraphics is the 2D graphics rasterization platform that allows for drawing of text, images, shapes, gradients, and whatever else on a 2D canvas.
 
 Try not to be intimidated by the sheer size of the graphics library! It is quite simple when you look at it from a high level perspective.
 
@@ -161,31 +161,31 @@ namespace PrismOS;
 public class Program : Kernel
 {
 
-    public Display Canvas = null!;
-    public Window MyWindow = null!;
-    public Label MyLabel = null!;
+	public Display Canvas = null!;
+	public Window MyWindow = null!;
+	public Label MyLabel = null!;
 
-    protected override void BeforeRun()
-    {
-        // Set-up the mouse manager to fit in the canvas size.
-        MouseManager.ScreenWidth = 800;
-        MouseManager.ScreenHeight = 600;
+	protected override void BeforeRun()
+	{
+		// Set-up the mouse manager to fit in the canvas size.
+		MouseManager.ScreenWidth = 800;
+		MouseManager.ScreenHeight = 600;
 
-        Canvas = Display.GetDisplay(800, 600); // Define the canvas instance.
-        MyWindow = new(50, 50, 500, 400, "My Window");
-        MyLabel = new(15, 15, $"{Canvas.GetFPS()} FPS");
+		Canvas = Display.GetDisplay(800, 600); // Define the canvas instance.
+		MyWindow = new(50, 50, 500, 400, "My Window");
+		MyLabel = new(15, 15, $"{Canvas.GetFPS()} FPS");
 
 		MyWindow.Controls.Add(MyLabel);
-        WindowManager.Windows.Add(MyWindow);
-    }
+		WindowManager.Windows.Add(MyWindow);
+	}
 
-    protected override void Run()
-    {
-        Canvas.Clear(Color.CoolGreen); // Draw a green background.
+	protected override void Run()
+	{
+		Canvas.Clear(Color.CoolGreen); // Draw a green background.
 		Canvas.DrawFilledRectangle((int)MouseManager.X, (int)MouseManager.Y, 16, 16, 0, Color.White); // Draw the mouse.
-        WindowManager.Update(Canvas);
-        Canvas.Update();
-    }
+		WindowManager.Update(Canvas);
+		Canvas.Update();
+	}
 }
 ```
 
@@ -215,31 +215,31 @@ namespace PrismOS;
 public class Program : Kernel
 {
 
-    public Display Canvas = null!;
-    public Window MyWindow = null!;
-    public Label MyLabel = null!;
+	public Display Canvas = null!;
+	public Window MyWindow = null!;
+	public Label MyLabel = null!;
 
-    protected override void BeforeRun()
-    {
-        // Set-up the mouse manager to fit in the canvas size.
-        MouseManager.ScreenWidth = 800;
-        MouseManager.ScreenHeight = 600;
+	protected override void BeforeRun()
+	{
+		// Set-up the mouse manager to fit in the canvas size.
+		MouseManager.ScreenWidth = 800;
+		MouseManager.ScreenHeight = 600;
 
-        Canvas = Display.GetDisplay(800, 600); // Define the canvas instance.
-        MyWindow = new(50, 50, 500, 400, "My Window", Color.DeepGray, Color.Black);
-        MyLabel = new(15, 15, $"{Canvas.GetFPS()} FPS");
+		Canvas = Display.GetDisplay(800, 600); // Define the canvas instance.
+		MyWindow = new(50, 50, 500, 400, "My Window", Color.DeepGray, Color.Black);
+		MyLabel = new(15, 15, $"{Canvas.GetFPS()} FPS");
 
-        MyWindow.Controls.Add(MyLabel);
-        WindowManager.Windows.Add(MyWindow);
-    }
+		MyWindow.Controls.Add(MyLabel);
+		WindowManager.Windows.Add(MyWindow);
+	}
 
-    protected override void Run()
-    {
-        Canvas.Clear(Color.CoolGreen); // Draw a green background.
-        WindowManager.Update(Canvas);
-        Canvas.DrawFilledRectangle((int)MouseManager.X, (int)MouseManager.Y, 16, 16, 0, Color.StackOverflowOrange); // Draw the mouse.
-        Canvas.Update();
-    }
+	protected override void Run()
+	{
+		Canvas.Clear(Color.CoolGreen); // Draw a green background.
+		WindowManager.Update(Canvas);
+		Canvas.DrawFilledRectangle((int)MouseManager.X, (int)MouseManager.Y, 16, 16, 0, Color.StackOverflowOrange); // Draw the mouse.
+		Canvas.Update();
+	}
 }
 ```
 I'll come back to this later once there's a way to get the label to actually show up, as right now there isn't.
