@@ -14,29 +14,22 @@
 		<Nullable>enable</Nullable>
 		<Optimize>true</Optimize>
 		
-		<Description>Use VMware Player or Workstation to deploy and debug.</Description>
 		<StackCorruptionDetectionLevel>AllInstructions</StackCorruptionDetectionLevel>
-		<VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
 		<SupportsX86Intrinsics>false</SupportsX86Intrinsics>
 		<RemoveBootDebugOutput>true</RemoveBootDebugOutput>
 		<CompileVBEMultiboot>true</CompileVBEMultiboot>
 		<CosmosDebugPort>Serial: COM1</CosmosDebugPort>
-		<StartBochsDebugGui>true</StartBochsDebugGui>
 		<QemuNetworkDevice>PCNet</QemuNetworkDevice>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<VBEResolution>1280x720x32</VBEResolution>
 		<VMWareEdition>Workstation</VMWareEdition>
-		<EnableBochsDebug>true</EnableBochsDebug>
 		<OptimizationLevel>2</OptimizationLevel>
-		<PxeInterface>192.168.0.8</PxeInterface>
 		<QemuAudioDriver>AC97</QemuAudioDriver>
 		<CompressionType>Gzip</CompressionType>
 		<QemuVideoDriver>VBE</QemuVideoDriver>
 		<ExtractMapFile>false</ExtractMapFile>
-		<StartCosmosGDB>false</StartCosmosGDB>
 		<DebugEnabled>false</DebugEnabled>
 		<QemuMemory>4096</QemuMemory>
-		<EnableGDB>false</EnableGDB>
 		<Platform>cosmos</Platform>
 		<DebugType>none</DebugType>
 		<Profile>VMware</Profile>
