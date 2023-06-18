@@ -9,35 +9,6 @@ namespace PrismAPI.Graphics;
 public static unsafe class Filters
 {
 	/// <summary>
-	/// Generates a canvas layer with random white noise.
-	/// </summary>
-	/// <param name="Width">The Width to generate.</param>
-	/// <param name="Height">The Height to generate.</param>
-	/// <param name="Variance">The amount of difference possible for every pixel.</param>
-	/// <param name="Alpha">The transparency of the noise layer.</param>
-	/// <returns>A canvas layer filled with random white noise.</returns>
-	public static Canvas GenerateNoise(ushort Width, ushort Height, byte Variance, byte Alpha)
-	{
-		// Generate a new empty canvas instance.
-		Canvas Temp = new(Width, Height);
-
-		// Generate a new random generator.
-		Random Generator = new();
-
-		// Loop over every pixel and fill them with noise.
-		for (uint I = 0; I < Temp.Size; I++)
-		{
-			// Get the white level of the pixel.
-			byte Level = (byte)Generator.Next(Variance);
-
-			// Set the pixel with the specified alpha data.
-			Temp[I] = new(Alpha, Level, Level, Level);
-		}
-
-		return Temp;
-	}
-
-	/// <summary>
 	/// Samples/Crops a graphics item.
 	/// </summary>
 	/// <param name="X">The X position to start at.</param>
