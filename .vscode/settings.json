@@ -1,7 +1,3 @@
 {
-    "explorer.incrementalNaming": "simple",
-    "explorer.fileNesting.enabled": true,
-    "explorer.decorations.badges": true,
-    "explorer.excludeGitIgnore": true,
-    "explorer.compactFolders": false,
+	"explorer.excludeGitIgnore": true,
 }
