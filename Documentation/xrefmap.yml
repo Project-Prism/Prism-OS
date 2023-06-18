@@ -8523,18 +8523,24 @@ references:
   commentId: T:PrismAPI.UI.Control
   fullName: PrismAPI.UI.Control
   nameWithType: Control
-- uid: PrismAPI.UI.Control.BackGround
-  name: BackGround
-  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_BackGround
-  commentId: F:PrismAPI.UI.Control.BackGround
-  fullName: PrismAPI.UI.Control.BackGround
-  nameWithType: Control.BackGround
-- uid: PrismAPI.UI.Control.ForeGround
-  name: ForeGround
-  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_ForeGround
-  commentId: F:PrismAPI.UI.Control.ForeGround
-  fullName: PrismAPI.UI.Control.ForeGround
-  nameWithType: Control.ForeGround
+- uid: PrismAPI.UI.Control.Accent
+  name: Accent
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_Accent
+  commentId: F:PrismAPI.UI.Control.Accent
+  fullName: PrismAPI.UI.Control.Accent
+  nameWithType: Control.Accent
+- uid: PrismAPI.UI.Control.Background
+  name: Background
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_Background
+  commentId: F:PrismAPI.UI.Control.Background
+  fullName: PrismAPI.UI.Control.Background
+  nameWithType: Control.Background
+- uid: PrismAPI.UI.Control.Foreground
+  name: Foreground
+  href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_Foreground
+  commentId: F:PrismAPI.UI.Control.Foreground
+  fullName: PrismAPI.UI.Control.Foreground
+  nameWithType: Control.Foreground
 - uid: PrismAPI.UI.Control.IsEnabled
   name: IsEnabled
   href: API/PrismAPI.UI.Control.html#PrismAPI_UI_Control_IsEnabled
@@ -8633,24 +8639,6 @@ references:
   fullName.vb: PrismAPI.UI.Controls.Button.New
   nameWithType: Button.Button
   nameWithType.vb: Button.New
-- uid: PrismAPI.UI.Controls.Button.EndColor
-  name: EndColor
-  href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button_EndColor
-  commentId: F:PrismAPI.UI.Controls.Button.EndColor
-  fullName: PrismAPI.UI.Controls.Button.EndColor
-  nameWithType: Button.EndColor
-- uid: PrismAPI.UI.Controls.Button.MidColor
-  name: MidColor
-  href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button_MidColor
-  commentId: F:PrismAPI.UI.Controls.Button.MidColor
-  fullName: PrismAPI.UI.Controls.Button.MidColor
-  nameWithType: Button.MidColor
-- uid: PrismAPI.UI.Controls.Button.StartColor
-  name: StartColor
-  href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button_StartColor
-  commentId: F:PrismAPI.UI.Controls.Button.StartColor
-  fullName: PrismAPI.UI.Controls.Button.StartColor
-  nameWithType: Button.StartColor
 - uid: PrismAPI.UI.Controls.Button.Text
   name: Text
   href: API/PrismAPI.UI.Controls.Button.html#PrismAPI_UI_Controls_Button_Text
@@ -8670,6 +8658,50 @@ references:
   isSpec: "True"
   fullName: PrismAPI.UI.Controls.Button.Update
   nameWithType: Button.Update
+- uid: PrismAPI.UI.Controls.Drawable
+  name: Drawable
+  href: API/PrismAPI.UI.Controls.Drawable.html
+  commentId: T:PrismAPI.UI.Controls.Drawable
+  fullName: PrismAPI.UI.Controls.Drawable
+  nameWithType: Drawable
+- uid: PrismAPI.UI.Controls.Drawable.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16)
+  name: Drawable(int, int, ushort, ushort)
+  href: API/PrismAPI.UI.Controls.Drawable.html#PrismAPI_UI_Controls_Drawable__ctor_System_Int32_System_Int32_System_UInt16_System_UInt16_
+  commentId: M:PrismAPI.UI.Controls.Drawable.#ctor(System.Int32,System.Int32,System.UInt16,System.UInt16)
+  name.vb: New(Integer, Integer, UShort, UShort)
+  fullName: PrismAPI.UI.Controls.Drawable.Drawable(int, int, ushort, ushort)
+  fullName.vb: PrismAPI.UI.Controls.Drawable.New(Integer, Integer, UShort, UShort)
+  nameWithType: Drawable.Drawable(int, int, ushort, ushort)
+  nameWithType.vb: Drawable.New(Integer, Integer, UShort, UShort)
+- uid: PrismAPI.UI.Controls.Drawable.#ctor*
+  name: Drawable
+  href: API/PrismAPI.UI.Controls.Drawable.html#PrismAPI_UI_Controls_Drawable__ctor_
+  commentId: Overload:PrismAPI.UI.Controls.Drawable.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: PrismAPI.UI.Controls.Drawable.Drawable
+  fullName.vb: PrismAPI.UI.Controls.Drawable.New
+  nameWithType: Drawable.Drawable
+  nameWithType.vb: Drawable.New
+- uid: PrismAPI.UI.Controls.Drawable.EnableTransparency
+  name: EnableTransparency
+  href: API/PrismAPI.UI.Controls.Drawable.html#PrismAPI_UI_Controls_Drawable_EnableTransparency
+  commentId: F:PrismAPI.UI.Controls.Drawable.EnableTransparency
+  fullName: PrismAPI.UI.Controls.Drawable.EnableTransparency
+  nameWithType: Drawable.EnableTransparency
+- uid: PrismAPI.UI.Controls.Drawable.Update(PrismAPI.Graphics.Canvas)
+  name: Update(Canvas)
+  href: API/PrismAPI.UI.Controls.Drawable.html#PrismAPI_UI_Controls_Drawable_Update_PrismAPI_Graphics_Canvas_
+  commentId: M:PrismAPI.UI.Controls.Drawable.Update(PrismAPI.Graphics.Canvas)
+  fullName: PrismAPI.UI.Controls.Drawable.Update(PrismAPI.Graphics.Canvas)
+  nameWithType: Drawable.Update(Canvas)
+- uid: PrismAPI.UI.Controls.Drawable.Update*
+  name: Update
+  href: API/PrismAPI.UI.Controls.Drawable.html#PrismAPI_UI_Controls_Drawable_Update_
+  commentId: Overload:PrismAPI.UI.Controls.Drawable.Update
+  isSpec: "True"
+  fullName: PrismAPI.UI.Controls.Drawable.Update
+  nameWithType: Drawable.Update
 - uid: PrismAPI.UI.Controls.Label
   name: Label
   href: API/PrismAPI.UI.Controls.Label.html
