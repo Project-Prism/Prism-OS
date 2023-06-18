@@ -3899,6 +3899,22 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Filters.ApplyHDR
   nameWithType: Filters.ApplyHDR
+- uid: PrismAPI.Graphics.Filters.GenerateNoise(System.UInt16,System.UInt16,System.Byte,System.Byte)
+  name: GenerateNoise(ushort, ushort, byte, byte)
+  href: API/PrismAPI.Graphics.Filters.html#PrismAPI_Graphics_Filters_GenerateNoise_System_UInt16_System_UInt16_System_Byte_System_Byte_
+  commentId: M:PrismAPI.Graphics.Filters.GenerateNoise(System.UInt16,System.UInt16,System.Byte,System.Byte)
+  name.vb: GenerateNoise(UShort, UShort, Byte, Byte)
+  fullName: PrismAPI.Graphics.Filters.GenerateNoise(ushort, ushort, byte, byte)
+  fullName.vb: PrismAPI.Graphics.Filters.GenerateNoise(UShort, UShort, Byte, Byte)
+  nameWithType: Filters.GenerateNoise(ushort, ushort, byte, byte)
+  nameWithType.vb: Filters.GenerateNoise(UShort, UShort, Byte, Byte)
+- uid: PrismAPI.Graphics.Filters.GenerateNoise*
+  name: GenerateNoise
+  href: API/PrismAPI.Graphics.Filters.html#PrismAPI_Graphics_Filters_GenerateNoise_
+  commentId: Overload:PrismAPI.Graphics.Filters.GenerateNoise
+  isSpec: "True"
+  fullName: PrismAPI.Graphics.Filters.GenerateNoise
+  nameWithType: Filters.GenerateNoise
 - uid: PrismAPI.Graphics.Filters.Invert(PrismAPI.Graphics.Canvas)
   name: Invert(Canvas)
   href: API/PrismAPI.Graphics.Filters.html#PrismAPI_Graphics_Filters_Invert_PrismAPI_Graphics_Canvas_
