@@ -1,4 +1,5 @@
 {
 	"explorer.excludeGitIgnore": true,
+	"explorer.compactFolders": false,
 	"editor.insertSpaces": false,
 }
