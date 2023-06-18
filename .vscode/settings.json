@@ -1,3 +1,4 @@
 {
 	"explorer.excludeGitIgnore": true,
+	"editor.insertSpaces": false,
 }

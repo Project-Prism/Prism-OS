@@ -410,21 +410,21 @@ public struct Color
 		this.ARGB = ARGB;
 	}
 
-    #endregion
+	#endregion
 
-    #region Properties
+	#region Properties
 
-    /// <summary>
-    /// Property used to get the overall brightness of the color.
-    /// </summary>
-    public float Brightness => (Max(this) + Min(this)) / (byte.MaxValue * 2f);
+	/// <summary>
+	/// Property used to get the overall brightness of the color.
+	/// </summary>
+	public float Brightness => (Max(this) + Min(this)) / (byte.MaxValue * 2f);
 
-    /// <summary>
-    /// Packed ARGB value of the color.
-    /// </summary>
-    public uint ARGB
+	/// <summary>
+	/// Packed ARGB value of the color.
+	/// </summary>
+	public uint ARGB
 	{
-        readonly get => _ARGB;
+		readonly get => _ARGB;
 		set
 		{
 			_ARGB = value;
@@ -440,7 +440,7 @@ public struct Color
 	/// </summary>
 	public float A
 	{
-        readonly get => _A;
+		readonly get => _A;
 		set
 		{
 			_A = Math.Clamp(value, 0f, 255f);
@@ -453,7 +453,7 @@ public struct Color
 	/// </summary>
 	public float R
 	{
-        readonly get => _R;
+		readonly get => _R;
 		set
 		{
 			_R = Math.Clamp(value, 0f, 255f);
@@ -466,7 +466,7 @@ public struct Color
 	/// </summary>
 	public float G
 	{
-        readonly get => _G;
+		readonly get => _G;
 		set
 		{
 			_G = Math.Clamp(value, 0f, 255f);
@@ -479,7 +479,7 @@ public struct Color
 	/// </summary>
 	public float B
 	{
-        readonly get => _B;
+		readonly get => _B;
 		set
 		{
 			_B = Math.Clamp(value, 0f, 255f);
@@ -584,7 +584,14 @@ public struct Color
 			return Source;
 		}
 
-		return (Source * (255 - NewColor) / 255) + NewColor;
+		// Use explicit math here to decrease performance overhead and calculate it properly.
+		return new()
+		{
+			A = 255,
+			R = (int)NewColor.R + (int)(Source.R * NewColor.A) >> 8,
+			G = (int)NewColor.G + (int)(Source.G * NewColor.A) >> 8,
+			B = (int)NewColor.B + (int)(Source.B * NewColor.A) >> 8,
+		};
 	}
 
 	/// <summary>
@@ -622,11 +629,11 @@ public struct Color
 	{
 		if (T < 0)
 		{
-            T++;
+			T++;
 		}
 		if (T > 1)
 		{
-            T--;
+			T--;
 		}
 		if (T < 1 / 6)
 		{
