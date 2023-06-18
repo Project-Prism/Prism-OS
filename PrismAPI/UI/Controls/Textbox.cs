@@ -90,7 +90,6 @@ public class Textbox : Control
 		}
 		else
 		{
-
 			DrawString(Width / 2, Height / 2, InternalText, default, Color.Black, true);
 		}
 
