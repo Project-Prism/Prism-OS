@@ -80,5 +80,12 @@ Don't define namespaces within namespaces, and always include only one namespace
 ```cs
 namespace PrismOS;
 ```
+  
+<hr/>
+
+  <h3>Licensing</h3>
+
+You must include files from other projects (with compatable licenses) like so:
+![image](https://github.com/Project-Prism/Prism-OS/assets/76945439/e182ab0d-2643-4215-a072-605f0954e49c)
 
 </center>
