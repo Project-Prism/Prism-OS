@@ -27,7 +27,7 @@ orignal license.
 
 You are allowed to include source code from external
 sources, as long as you make sure it's original license
-is compatable with this project's license (GPL - V2).
+is compatible with this project's license (GPL - V2).
 It is recommended to remove the whole license copy from
 the source files (if it has it) and add a comment referencing
 the source's original author, source, and short name of the
@@ -39,30 +39,30 @@ the original author, source, and short name of the license.
 
 <h3>Spacing & Formatting</h3>
 
-All functions, Local and Global Vriables, and
-Namespaces Must be Capitalized With The 'PasCal'
-Naming Convention, And Spelled Properly. They
-Must Contain Profesional and Easy to Read Names,
-Usualy They Should Describe what the Function
-Does if Possible.
+All functions, local and global variables, and
+namespaces must be capitalized with the 'PascalCase'
+naming Convention, and spelled properly. They
+must contain professional and easy to read names,
+usually they should describe what the function
+does, if possible.
 
 
-Variables and Usings Should be Clustered Like This, With Descending Length:
+Variables and using statements should be clustered Like this, with descending length:
 
 <img width="50%" alt="image" src="https://user-images.githubusercontent.com/76945439/220503038-eaef1550-a073-416f-980d-863715445ee3.png">
 
-> There shall not be more than one class/struct/enum or namespace
+There shall also not be more than one class/struct/enum or namespace
 in the same file.
 
 <hr/>
 
-Keep all code as simple as possible and make sure it's understandable
+Keep all code as simple as possible and make sure all code is understandable.
 
 <hr/>
 
 <h3>Bundling</h3>
 
-If a class has more than one type of data, use #region tags like so:
+If a class has more than one type of data, use `#region` tags like so:
 
 <img width="50%" alt="image" src="https://user-images.githubusercontent.com/76945439/220502977-54f45a7f-5947-41a4-ac68-18a73f631a7c.png">
 
