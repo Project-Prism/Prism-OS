@@ -178,6 +178,19 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Filesystem.FilesystemManager.Init
   nameWithType: FilesystemManager.Init
+- uid: PrismAPI.Filesystem.FilesystemManager.Root
+  name: Root
+  href: API/PrismAPI.Filesystem.FilesystemManager.html#PrismAPI_Filesystem_FilesystemManager_Root
+  commentId: P:PrismAPI.Filesystem.FilesystemManager.Root
+  fullName: PrismAPI.Filesystem.FilesystemManager.Root
+  nameWithType: FilesystemManager.Root
+- uid: PrismAPI.Filesystem.FilesystemManager.Root*
+  name: Root
+  href: API/PrismAPI.Filesystem.FilesystemManager.html#PrismAPI_Filesystem_FilesystemManager_Root_
+  commentId: Overload:PrismAPI.Filesystem.FilesystemManager.Root
+  isSpec: "True"
+  fullName: PrismAPI.Filesystem.FilesystemManager.Root
+  nameWithType: FilesystemManager.Root
 - uid: PrismAPI.Filesystem.FilesystemManager.VFS
   name: VFS
   href: API/PrismAPI.Filesystem.FilesystemManager.html#PrismAPI_Filesystem_FilesystemManager_VFS
