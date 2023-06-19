@@ -10,6 +10,10 @@ manjarno## Ignore Visual Studio temporary files, build results, and
 *.userosscache
 *.sln.docstates
 
+# Weirdly not cleared prism os folders
+PrismOS/
+PrismAPI/
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 obj/
