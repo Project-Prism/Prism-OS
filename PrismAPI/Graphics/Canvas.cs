@@ -310,12 +310,12 @@ public unsafe class Canvas
 		// Fastest alpha supporting rectangle.
 		if (Radius == 0)
 		{
-			for (int IX = X; IX < X + Width; IX++)
+			for (int I = 0; I < Width * Height; I++)
 			{
-				for (int IY = Y; IY < Y + Height; IY++)
-				{
-					this[IX, IY] = Color;
-				}
+				int IX = I % Width;
+				int IY = I / Width;
+
+				this[X + IX, Y + IY] = Color;
 			}
 		}
 
@@ -824,12 +824,12 @@ public unsafe class Canvas
 		}
 
 		// Last resort for alpha images.
-		for (int IX = 0; IX < Image.Width; IX++)
+		for (int I = 0; I < Image.Width * Image.Height; I++)
 		{
-			for (int IY = 0; IY < Image.Height; IY++)
-			{
-				this[X + IX, Y + IY] = Image[IX, IY];
-			}
+			int IX = I % Image.Width;
+			int IY = I / Image.Width;
+
+			this[X + IX, Y + IY] = Image[IX, IY];
 		}
 	}
 

@@ -1,7 +1,7 @@
 ﻿using Cosmos.System.FileSystem.VFS;
+using PrismAPI.Tools.Diagnostics;
 using Cosmos.System.FileSystem;
 using Cosmos.HAL.BlockDevice;
-using PrismAPI.Tools.Diagnostics;
 
 namespace PrismAPI.Filesystem;
 
@@ -10,6 +10,8 @@ namespace PrismAPI.Filesystem;
 /// </summary>
 public static class FilesystemManager
 {
+	#region Constructors
+
 	/// <summary>
 	/// Statically initializes this class when it is first accessed (lazy loading).
 	/// Should run when <see cref="Init()"/> is ran.
@@ -20,6 +22,14 @@ public static class FilesystemManager
 		Debugger = new("Filesystem");
 		VFS = new();
 	}
+
+	#endregion
+
+	#region Properties
+
+	public static string Root => $"{VFS.Disks.Count - 1}:\\";
+
+	#endregion
 
 	#region Methods
 
@@ -60,7 +70,11 @@ public static class FilesystemManager
 		try
 		{
 			Debugger.WritePartial("Initializing FS...");
+
+			// Initialize the VFS.
 			VFSManager.RegisterVFS(VFS, false, false);
+
+			// Return success if all is loaded properly.
 			Debugger.Finalize(Severity.Success);
 		}
 		catch

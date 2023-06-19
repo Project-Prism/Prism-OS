@@ -1,7 +1,7 @@
 ﻿using PrismAPI.Filesystem.Formats.ELF.ELFHeader;
 using PrismAPI.Runtime.SShell.Scripts;
-using PrismAPI.Runtime.SSharp;
 using PrismAPI.Tools.Diagnostics;
+using PrismAPI.Runtime.SSharp;
 
 namespace PrismAPI.Runtime.SShell;
 

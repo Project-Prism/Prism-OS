@@ -22,6 +22,10 @@ public abstract class Display : Canvas
 	{
 		// Setup the FPS counter timer.
 		Timer T = new((_) => { _FPS = _Frames; _Frames = 0; }, null, 1000, 0);
+
+		// Set up the mouse manager.
+		MouseManager.ScreenHeight = Height;
+		MouseManager.ScreenWidth = Width;
 	}
 
 	#endregion
