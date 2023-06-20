@@ -19,6 +19,11 @@ public class Button : Control
 	/// <param name="Text">The text shown in the button.</param>
 	public Button(int X, int Y, ushort Width, ushort Height, ushort Radius, string Text, ThemeStyle Theme) : base(X, Y, Width, Height, Theme)
 	{
+		// Initialize the android holo theme colors.
+		Start = new(255, 234, 234, 234);
+		Mid = new(255, 180, 180, 180);
+		End = new(255, 151, 151, 151);
+
 		this.Radius = Radius;
 		this.Text = Text;
 	}
@@ -65,11 +70,6 @@ public class Button : Control
 
 	private void DrawHolo()
 	{
-		// Android holo theme colors.
-		Color Start = new(255, 234, 234, 234);
-		Color Mid = new(255, 180, 180, 180);
-		Color End = new(255, 151, 151, 151);
-
 		DrawFilledRectangle(0, 0, Width, Height, Radius, Color.White);
 
 		Gradient Overlay = Status switch
@@ -87,6 +87,11 @@ public class Button : Control
 	#endregion
 
 	#region Fields
+
+	// The cached android holo theme colors.
+	private readonly Color Start;
+	private readonly Color Mid;
+	private readonly Color End;
 
 	public string Text;
 

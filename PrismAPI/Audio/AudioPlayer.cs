@@ -9,6 +9,8 @@ namespace PrismAPI.Audio;
 /// </summary>
 public static class AudioPlayer
 {
+	#region Constructors
+
     /// <summary>
     /// Initializes the audio manager uppon app running.
     /// </summary>
@@ -19,6 +21,8 @@ public static class AudioPlayer
         Mixer = new();
         AM = new();
     }
+
+	#endregion
 
 	#region Properties
 

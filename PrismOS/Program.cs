@@ -51,9 +51,6 @@ public class Program : Kernel
 		WindowManager.Widgets.Add(FPSWidget);
 		WindowManager.Widgets.Add(Taskbar);
 
-		MouseManager.ScreenHeight = Canvas.Height;
-		MouseManager.ScreenWidth = Canvas.Width;
-
 		// Initialize system services.
 		FilesystemManager.Init();
 		NetworkManager.Init();

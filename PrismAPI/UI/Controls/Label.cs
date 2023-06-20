@@ -40,6 +40,15 @@ public class Label : Control
 
 	public override void Update(Canvas Canvas)
 	{
+		// Skip updating if there is nothing to do.
+		//if (InternalContents == LastContents)
+		//{
+		//	return;
+		//}
+
+		// Set last string object.
+		//LastContents = InternalContents;
+
 		// Don't draw directly to canvas to allow for text clipping.
 		Clear(Background);
 		DrawString(0, 0, Contents, default, Foreground);
@@ -51,6 +60,7 @@ public class Label : Control
 	#region Fields
 
 	internal string InternalContents;
+	//internal string LastContents;
 
 	#endregion
 }
