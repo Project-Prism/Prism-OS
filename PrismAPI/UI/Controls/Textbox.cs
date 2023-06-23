@@ -32,7 +32,7 @@ public class Textbox : Control
 		set
 		{
 			Width = Math.Max(Font.Fallback.MeasureString(value), Width);
-			Height = Math.Max((ushort)((Font.Fallback.Size * value.Count(C => C == '\n')) + 1), Height);
+			Height = Math.Max((ushort)(Font.Fallback.Size * (value.Count(C => C == '\n') + 1)), Height);
 			InternalHint = value;
 		}
 	}
@@ -43,7 +43,7 @@ public class Textbox : Control
 		set
 		{
 			Width = Math.Max(Font.Fallback.MeasureString(value), Width);
-			Height = Math.Max((ushort)((Font.Fallback.Size * value.Count(C => C == '\n')) + 1), Height);
+			Height = Math.Max((ushort)(Font.Fallback.Size * (value.Count(C => C == '\n') + 1)), Height);
 			InternalText = value;
 		}
 	}

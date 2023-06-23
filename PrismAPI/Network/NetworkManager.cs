@@ -38,7 +38,7 @@ public static class NetworkManager
 			_ = new DHCPClient().SendDiscoverPacket();
 
 			// Set-up the DNS (cloudflare).
-			DNS.Connect(new(1, 1, 1, 1));
+			DNSClient.Connect(new(1, 1, 1, 1));
 			Debugger.Finalize(Severity.Success);
 		}
 		catch
@@ -51,8 +51,8 @@ public static class NetworkManager
 
 	#region Fields
 
+	public static DnsClient DNSClient = null!;
 	public static Debugger Debugger = null!;
-	public static DnsClient DNS = null!;
 
 	#endregion
 }

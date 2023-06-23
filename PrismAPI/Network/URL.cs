@@ -30,8 +30,8 @@ public class URL
 	{
 		get
 		{
-			NetworkManager.DNS.SendAsk(Host);
-			return NetworkManager.DNS.Receive();
+			NetworkManager.DNSClient.SendAsk(Host);
+			return NetworkManager.DNSClient.Receive();
 		}
 	}
 
