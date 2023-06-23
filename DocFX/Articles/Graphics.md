@@ -1,6 +1,6 @@
 # Introduction - PrismGraphics
 
-PrismgGraphics is the 2D graphics rasterization platform that allows for drawing of text, images, shapes, gradients, and whatever else on a 2D canvas.
+PrismGraphics is the two-dimensional/three-dimensional graphics rasterization platform that allows for drawing of text, images, shapes, gradients, and whatever else on a 2D canvas.
 
 Try not to be intimidated by the sheer size of the graphics library! It is quite simple when you look at it from a high level perspective.
 
@@ -12,7 +12,24 @@ This readme is still in progress, so it is not finished!
 
 <hr/>
 
-## Animation - [AnimationController.cs](https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Animation/AnimationController.cs)
+## We need to start somewhere... (Output pixels to screen)
+
+Getting a display output using the ``PrismAPI.Graphics`` library is very simple. There are a few displays to choose from.
+
+### Defining new instance
+
+To get a display using VMware's SVGAII, define a new instance of his canvas canvas like so:
+
+```cs
+using PrismAPI.Hardware.GPU.VMware;
+
+SVGAIICanvas Canvas = new(800, 600);
+```
+
+In this case ``800, 600`` are the width and height (in pixels) of the canvas.
+
+## Making your OS more fancy (Adding animations)
+To add some really fancy animations, you need to create a new instance of [AnimationController.cs](https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Animation/AnimationController.cs) or class who inherits from.
 
 ### Examples
 
@@ -67,9 +84,9 @@ It's two actually. The absolute starting point circles around continuously and l
 
 <hr/>
 
-## Graphics - [Gradient.cs](https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Gradient.cs)
+## Still not much??
 
-PrismGraphics includes a file to generate gradients. They are rendered off of a class abstracted from the normal graphics class.
+PrismGraphics includes gradients generation. They are rendered off of a [Gradient.cs](https://github.com/Project-Prism/Prism-OS/blob/main/PrismAPI/Graphics/Gradient.cs) abstracted from the normal graphics class.
 To generate a new gradient, try:
 
 ```cs
@@ -85,22 +102,6 @@ Filters.Rotate(Angle, G);
 
 <hr/>
 
-## Graphics - Getting a display output
-
-Getting a display output using the ``PrismAPI.Graphics`` library is very simple. There are a few modes to choose from, but for now ``SVGAIICanvas`` is the only type that is working.
-
-### Defining new instance
-
-To get a display, define a new instance of the SVGAII canvas like so:
-
-```cs
-using PrismAPI.Hardware.GPU;
-
-Display Canvas = new(800, 600);
-```
-
-In this case ``800, 600`` are the width and height (in pixels) of the canvas.
-
 ### Resizing
 
 The width and/or height can be changed at any time by modifying the ``Width`` and ``Height`` properties in the canvas instance like so:
@@ -111,138 +112,6 @@ Canvas.Height = NewHeight;
 ```
 
 Note that this is only intended for resizing things that will be re-drawn. For scaling, see [NOT DOCUMENTED, COMING SOON].
-
-### Get a basic screen output
-
-To draw a basic screen with a mouse, Something simillar to the following should be used:
-
-```cs
-using PrismAPI.Hardware.GPU;
-using PrismAPI.Graphics;
-using Cosmos.System;
-
-public class YourKernelName : Kernel
-{
-	public Display Canvas = null!;
-
-	protected override void BeforeRun()
-	{
-		// Set-up the mouse manager to fit in the canvas size.
-		MouseManager.ScreenWidth = 800;
-		MouseManager.ScreenHeight = 600;
-
-		Canvas = Display.GetDisplay(800, 600); // Define the canvas instance.
-	}
-
-	protected override void Run()
-	{
-		Canvas.Clear(Color.CoolGreen); // Draw a green background.
-		Canvas.DrawFilledRectangle((int)MouseManager.X, (int)MouseManager.Y, 16, 16, 0, Color.White); // Draw the mouse.
-		Canvas.DrawString(15, 15, $"{Canvas.GetFPS()} FPS", default, Color.White); // The default value will become the default font.
-		Canvas.Update(); // Copy buffer to the screen.
-	}
-}
-```
-
-This can be modified to fit any need and should work. Never forget to clear and update the screen each frame.
-
-<hr/>
-
-What if we wanted it to look prettier though? Well, how about we put it in a window?
-```cs
-using PrismAPI.Hardware.GPU;
-using PrismAPI.Graphics;
-using Cosmos.System;
-using PrismAPI.UI;
-using PrismAPI.UI.Controls;
-
-namespace PrismOS;
-
-public class Program : Kernel
-{
-
-	public Display Canvas = null!;
-	public Window MyWindow = null!;
-	public Label MyLabel = null!;
-
-	protected override void BeforeRun()
-	{
-		// Set-up the mouse manager to fit in the canvas size.
-		MouseManager.ScreenWidth = 800;
-		MouseManager.ScreenHeight = 600;
-
-		Canvas = Display.GetDisplay(800, 600); // Define the canvas instance.
-		MyWindow = new(50, 50, 500, 400, "My Window");
-		MyLabel = new(15, 15, $"{Canvas.GetFPS()} FPS");
-
-		MyWindow.Controls.Add(MyLabel);
-		WindowManager.Windows.Add(MyWindow);
-	}
-
-	protected override void Run()
-	{
-		Canvas.Clear(Color.CoolGreen); // Draw a green background.
-		Canvas.DrawFilledRectangle((int)MouseManager.X, (int)MouseManager.Y, 16, 16, 0, Color.White); // Draw the mouse.
-		WindowManager.Update(Canvas);
-		Canvas.Update();
-	}
-}
-```
-
-This is a relatively basic script to add a window.
-
-First, we make an instance of Window, via `MyWindow`. The `50, 50` is the X and Y coordinates respectively, the `500, 400` is the Width and Height and the `"My Window"` is the title. We then add it to the WindowManager's list of Windows, so that it can be rendered. We run roughly the same code as before, but instead of drawing the FPS on the Canvas, we are doing so on the window. We then need to do `WindowManager.Update(Canvas);` to put the window on the canvas, then we draw the canvas to the screen.
-
-We use a label as they are much more convenient to work with, and DrawString() doesn't work with windows. We put it at the same place as the String was on the main Canvas.
-
-But there's a problem; The mouse is rendering behind the window, not that you can tell due to its white color. Let's fix this, shall we?
-
-The mouse is being rendered BEFORE the Window is drawn, so how about we move the mouse drawing code above `WindowManager.Update(Canvas);`, so it's drawn above it? But it gets lost in the vibrant whiteness of the window's background! We should change its color. I've changed it to StackoverflowOrange, as it's a unique color, but you can change it to whatever you want!
-
-Please note that you should never move `Canvas.Clear()` above anything else! This will make it clear all over whatever that is!
-
-Now, as you may have guessed from the Mouse problem, the text is just white and blending into the background. So let's make the backround a different color! I'm going to use Black, but you can use whatever you'd like. We just need to add two arguments; the first for the task bar color, the second for the main background color. I'm going to be adding `Color.DeepGray, Color.Black` to mine. And perfect! We have a pretty window! But still no visible label.
-
-```cs
-using PrismAPI.Hardware.GPU;
-using PrismAPI.Graphics;
-using Cosmos.System;
-using PrismAPI.UI;
-using PrismAPI.UI.Controls;
-
-namespace PrismOS;
-
-public class Program : Kernel
-{
-
-	public Display Canvas = null!;
-	public Window MyWindow = null!;
-	public Label MyLabel = null!;
-
-	protected override void BeforeRun()
-	{
-		// Set-up the mouse manager to fit in the canvas size.
-		MouseManager.ScreenWidth = 800;
-		MouseManager.ScreenHeight = 600;
-
-		Canvas = Display.GetDisplay(800, 600); // Define the canvas instance.
-		MyWindow = new(50, 50, 500, 400, "My Window", Color.DeepGray, Color.Black);
-		MyLabel = new(15, 15, $"{Canvas.GetFPS()} FPS");
-
-		MyWindow.Controls.Add(MyLabel);
-		WindowManager.Windows.Add(MyWindow);
-	}
-
-	protected override void Run()
-	{
-		Canvas.Clear(Color.CoolGreen); // Draw a green background.
-		WindowManager.Update(Canvas);
-		Canvas.DrawFilledRectangle((int)MouseManager.X, (int)MouseManager.Y, 16, 16, 0, Color.StackOverflowOrange); // Draw the mouse.
-		Canvas.Update();
-	}
-}
-```
-I'll come back to this later once there's a way to get the label to actually show up, as right now there isn't.
 
 <hr/>
 
