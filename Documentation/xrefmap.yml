@@ -5837,12 +5837,12 @@ references:
   commentId: F:PrismAPI.Network.NetworkManager.Debugger
   fullName: PrismAPI.Network.NetworkManager.Debugger
   nameWithType: NetworkManager.Debugger
-- uid: PrismAPI.Network.NetworkManager.DNS
-  name: DNS
-  href: API/PrismAPI.Network.NetworkManager.html#PrismAPI_Network_NetworkManager_DNS
-  commentId: F:PrismAPI.Network.NetworkManager.DNS
-  fullName: PrismAPI.Network.NetworkManager.DNS
-  nameWithType: NetworkManager.DNS
+- uid: PrismAPI.Network.NetworkManager.DNSClient
+  name: DNSClient
+  href: API/PrismAPI.Network.NetworkManager.html#PrismAPI_Network_NetworkManager_DNSClient
+  commentId: F:PrismAPI.Network.NetworkManager.DNSClient
+  fullName: PrismAPI.Network.NetworkManager.DNSClient
+  nameWithType: NetworkManager.DNSClient
 - uid: PrismAPI.Network.NetworkManager.Init
   name: Init()
   href: API/PrismAPI.Network.NetworkManager.html#PrismAPI_Network_NetworkManager_Init
