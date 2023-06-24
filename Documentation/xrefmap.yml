@@ -3182,12 +3182,6 @@ references:
   isSpec: "True"
   fullName: PrismAPI.Graphics.Canvas.Height
   nameWithType: Canvas.Height
-- uid: PrismAPI.Graphics.Canvas.Internal
-  name: Internal
-  href: API/PrismAPI.Graphics.Canvas.html#PrismAPI_Graphics_Canvas_Internal
-  commentId: F:PrismAPI.Graphics.Canvas.Internal
-  fullName: PrismAPI.Graphics.Canvas.Internal
-  nameWithType: Canvas.Internal
 - uid: PrismAPI.Graphics.Canvas.Item(System.Int32,System.Int32)
   name: this[int, int]
   href: API/PrismAPI.Graphics.Canvas.html#PrismAPI_Graphics_Canvas_Item_System_Int32_System_Int32_
