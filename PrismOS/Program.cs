@@ -74,13 +74,13 @@ public class Program : Kernel
 
 		// Example of a drawable widget.
 		Taskbar.Clear(Color.DeepGray);
-		Taskbar.DrawString(0, 28, $"{WindowManager.Windows.Count} windows are open.", default, Color.White);
+		Taskbar.DrawString(0, 28, $"{WindowManager.Windows.Count} window{((WindowManager.Windows.Count == 1) ? " is open." : "s are open.")}", default, Color.White);
 
 		// Draw the mouse on screen, then update.
 		WindowManager.Update(Canvas);
 		Canvas.DrawImage((int)MouseManager.X, (int)MouseManager.Y, Media.Cursor);
 		Canvas.Update();
-		//Heap.Collect();
+		Heap.Collect();
 	}
 
 	#endregion

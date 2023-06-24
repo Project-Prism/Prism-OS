@@ -126,16 +126,14 @@ public unsafe class Canvas
 		get => _Height;
 		set
 		{
-			// Check if no allocations are needed & assign values.
-			if (_Width == 0)
-			{
-				// Assign new values and return.
-				_Height = value;
-				return;
-			}
-
 			// Set new value.
 			_Height = value;
+
+			// Check if no allocations are needed.
+			if (_Width == 0)
+			{
+				return;
+			}
 
 			if (Internal == null)
 			{
@@ -162,16 +160,14 @@ public unsafe class Canvas
 		get => _Width;
 		set
 		{
-			// Check if no allocations are needed & assign values.
-			if (_Height == 0)
-			{
-				// Assign new values and return.
-				_Width = value;
-				return;
-			}
-
 			// Set new value.
 			_Width = value;
+
+			// Check if no allocations are needed.
+			if (_Height == 0)
+			{
+				return;
+			}
 
 			if (Internal == null)
 			{
@@ -963,7 +959,7 @@ public unsafe class Canvas
 	/// <summary>
 	/// The graphics frame buffer, with a size matching <see cref="Size"/>.
 	/// </summary>
-	public uint* Internal;
+	internal uint* Internal;
 
 	#endregion
 }
