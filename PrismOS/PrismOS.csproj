@@ -21,7 +21,7 @@
 		<CosmosDebugPort>Serial: COM1</CosmosDebugPort>
 		<QemuNetworkDevice>PCNet</QemuNetworkDevice>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<VBEResolution>1280x720x32</VBEResolution>
+		<VBEResolution>640x400x32</VBEResolution>
 		<VMWareEdition>Workstation</VMWareEdition>
 		<OptimizationLevel>2</OptimizationLevel>
 		<QemuAudioDriver>AC97</QemuAudioDriver>
@@ -56,6 +56,7 @@
 		<None Remove="Media\Images\Prism.bmp" />
 
 		<PackageReference Include="Cosmos.Build" Version="0.1.0-*" />
+		<PackageReference Include="Cosmos.Plugs" Version="0.1.0-*" />
 		<ProjectReference Include="..\PrismAPI\PrismAPI.csproj" />
 
 	</ItemGroup>

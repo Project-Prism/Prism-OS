@@ -37,6 +37,7 @@
 	<!-- Cosmos include group -->
 	<ItemGroup>
 
+		<PackageReference Include="Cosmos.Plugs" Version="0.1.0-*" />
 		<PackageReference Include="Cosmos.System2" Version="0.1.0-*" />
 		<PackageReference Include="Cosmos.HAL2" Version="0.1.0-*" />
 		<PackageReference Include="TinyMath" Version="*" />

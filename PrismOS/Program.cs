@@ -29,7 +29,7 @@ public class Program : Kernel
 	protected override void BeforeRun()
 	{
 		// Initialize the display output.
-		Canvas = Display.GetDisplay(1920, 1080);
+		Canvas = Display.GetDisplay(640, 400);
 
 		Boot.Show(Canvas);
 
@@ -41,13 +41,14 @@ public class Program : Kernel
 		Media.Prism = Filters.Scale((ushort)(Canvas.Height / 3), (ushort)(Canvas.Height / 3), Media.Prism);
 		Media.Wallpaper = Filters.Scale(Canvas.Width, Canvas.Height, Media.Wallpaper);
 
-		WindowManager.Windows.Add(new(100, 100, 250, 150, "Window1")
+		TestWindow = new(100, 100, 250, 150, "Window1")
 		{
 			Controls =
 			{
 				new Button(50, 50, 128, 64, 4, "Button1", ThemeStyle.Holo),
 			},
-		});
+		};
+		WindowManager.Windows.Add(TestWindow);
 		WindowManager.Widgets.Add(FPSWidget);
 		WindowManager.Widgets.Add(Taskbar);
 
@@ -80,13 +81,14 @@ public class Program : Kernel
 		WindowManager.Update(Canvas);
 		Canvas.DrawImage((int)MouseManager.X, (int)MouseManager.Y, Media.Cursor);
 		Canvas.Update();
-		Heap.Collect();
+		//Heap.Collect();
 	}
 
 	#endregion
 
 	#region Fields
 
+	public Window TestWindow = null!;
 	public static Display Canvas = null!;
 	public Drawable Taskbar = null!;
 	public Label FPSWidget = null!;

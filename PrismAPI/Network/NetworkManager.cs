@@ -18,7 +18,7 @@ public static class NetworkManager
 	public static ulong Ping(Address A)
 	{
 		DateTime T = DateTime.Now;
-		new TcpClient(80).Connect(A, 80);
+		new TcpClient().Connect(A, 80);
 		return (ulong)(DateTime.Now - T).TotalMilliseconds;
 	}
 
