@@ -146,6 +146,10 @@ public class AnimationController
 	/// <exception cref="NotImplementedException">Thrown when invalid animation is played.</exception>
 	private void Next()
 	{
+		if (!IsEnabled)
+		{
+			return;
+		}
 		if (IsFinished)
 		{
 			if (IsContinuous)
@@ -166,6 +170,22 @@ public class AnimationController
 	public void Invert()
 	{
 		(Source, Target) = (Target, Source);
+		Reset();
+	}
+
+	public void Play()
+	{
+		IsEnabled = true;
+	}
+
+	public void Pause()
+	{
+		IsEnabled = false;
+	}
+
+	public void Stop()
+	{
+		IsEnabled = false;
 		Reset();
 	}
 
@@ -200,6 +220,11 @@ public class AnimationController
 	/// A bool to change if the animation is looping/continuous.
 	/// </summary>
 	public bool IsContinuous;
+
+	/// <summary>
+	/// Defines whether or not the animation is playing. False by default.
+	/// </summary>
+	public bool IsEnabled;
 
 	/// <summary>
 	/// Animation timer, used to increment the animation every 50 MS.

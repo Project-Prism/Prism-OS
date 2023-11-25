@@ -940,6 +940,26 @@ public unsafe class Canvas
 		Buffer.MemoryCopy(Internal, Destination, Size * 4, Size * 4);
 	}
 
+	/// <summary>
+	/// Performs a quick display swap between the two canvases.
+	/// Cannot be used on raw device buffers.
+	/// This should be used when display updates run on their own thread, and a screen element
+	/// has a separate clock cycle.
+	/// </summary>
+	/// <param name="Canvas">The canvas to swap.</param>
+	public void Swap(Canvas Canvas)
+	{
+		if (Canvas._Width != _Width || Canvas._Height != Height)
+		{
+			throw new Exception("Attempted to swap two different sized buffers.");
+		}
+		
+		// This simply swaps the addresses, leading to an instant "transfer".
+		uint* Source = Canvas.Internal;
+		Canvas.Internal = Internal;
+		Internal = Source;
+	}
+
 	#endregion
 
 	#endregion

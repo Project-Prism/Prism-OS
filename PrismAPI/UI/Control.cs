@@ -1,6 +1,7 @@
 ﻿using PrismAPI.UI.Config;
 using PrismAPI.Graphics;
 using Cosmos.System;
+using PrismAPI.Graphics.Animation;
 
 namespace PrismAPI.UI;
 
@@ -15,6 +16,7 @@ public abstract class Control : Canvas
 		OnKey = new((ConsoleKeyInfo _) => { });
 
 		Layout = LayoutStyle.None;
+		Animator = new(0, 0, 0, 0);
 		Background = Color.White;
 		Foreground = Color.Black;
 		this.Theme = Theme;
@@ -40,8 +42,8 @@ public abstract class Control : Canvas
 
 	// The onkey event - Runs when the element is typed into;
 	public Action<ConsoleKeyInfo> OnKey;
-
 	public CursorStatus Status;
+	public Animation Animator;
 	public LayoutStyle Layout;
 	public Color Foreground;
 	public Color Background;
